@@ -17,13 +17,13 @@ development:
   encoding: unicode
   database: BPSF_development
   pool: 5
-  username: BPSF
+  username: Admin
   password:
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
   # domain sockets, so uncomment these lines.
-  #host: localhost
+  host: localhost
   #port: 5432
 
   # Schema search path. The server defaults to $user,public
@@ -43,13 +43,16 @@ test:
   encoding: unicode
   database: BPSF_test
   pool: 5
-  username: BPSF
+  username: Admin
   password:
+  host: localhost
+  #port: 5432
 
 production:
   adapter: postgresql
   encoding: unicode
   database: BPSF_production
   pool: 5
-  username: BPSF
+  host: localhost
+  username: Admin
   password:
