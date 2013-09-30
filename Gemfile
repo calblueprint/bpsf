@@ -6,12 +6,14 @@ gem 'pg', '0.12.2'
 gem 'rb-readline', '~> 0.4.2'
 gem 'faker', '1.0.1'
 gem 'jquery-rails', '2.0.2'
+gem "cancan", '~> 1.6.10'
 
 group :development, :test do
   gem 'rspec-rails', '2.11.0'
   gem 'childprocess', '0.3.6'
-  gem 'commands'
-  gem 'pry'
+  gem "ruby-progressbar", '~> 1.2.0'
+  gem 'commands', '~> 0.2.1'
+  gem 'pry', "~> 0.9.12.2"
 end
 
 group :development do
@@ -35,4 +37,5 @@ group :test do
   gem 'database_cleaner', '~> 1.0.0.RC1'
   gem 'launchy'
   gem 'simplecov', :require => false
+  gem "shoulda", '~> 3.5.0'
 end
