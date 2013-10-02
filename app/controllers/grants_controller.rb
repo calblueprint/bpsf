@@ -4,6 +4,7 @@ class GrantsController < ApplicationController
   end
 
   def create
+    # This is going to have to change to incorporate the Grant subclasses
     @grant = Grant.new params[:grant]
     if @grant.save
       flash[:success] = 'Grant created!'
@@ -17,6 +18,7 @@ class GrantsController < ApplicationController
   end
 
   def update
+    # This might have to change to incorporate the Grant subclasses
     if @grant.update_attributes params[:grant]
       flash[:success] = 'Grant updated!'
       redirect_to @grant
