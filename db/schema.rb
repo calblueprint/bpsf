@@ -22,14 +22,6 @@ ActiveRecord::Schema.define(:version => 20131002223044) do
     t.string   "type"
   end
 
-  create_table "grants", :force => true do |t|
-    t.string   "name"
-    t.string   "organization"
-    t.integer  "sum"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-    t.string   "type"
-  end
 
   create_table "user_admins", :force => true do |t|
     t.datetime "created_at", :null => false
