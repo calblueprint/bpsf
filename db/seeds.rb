@@ -5,3 +5,38 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+# Create Teachers (we refer to them as Recipients)
+teacher1 = Recipient.create!(:name => "John Keating",
+                             :email => "captain@whitman.com",
+                             :password => "password",
+                             :password_confirmation => "password")
+
+teacher2 = Recipient.create!(:name => "Severus Snape",
+                             :email => "severusandlily007@gmail.com",
+                             :password => "password",
+                             :password_confirmation => "password")
+
+# Create Admins
+admin1 = Admin.create!(:name => "Erin Rhoades",
+                       :email => "erinrhoades@berkeley.net",
+                       :password => "password",
+                       :password_confirmation => "password")
+
+admin2 = Admin.create!(:name => "Maurise Moss",
+                       :email => "moss@itcrowd.com",
+                       :password => "password",
+                       :password_confirmation => "password")
+
+# Create Parents (they are general Users)
+parent1 = User.create!(:name => "Homer J Simpson",
+                       :email => "chunkylover53@aol.com",
+                       :password => "password",
+                       :password => "password")
+
+parent2 = User.create!(:name => "Heathcliff Huxtable",
+                       :email => "zipzopzoobitybop@cosby.com",
+                       :password => "password",
+                       :password => "password")
+
+
