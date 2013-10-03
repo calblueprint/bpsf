@@ -12,5 +12,4 @@
 #
 #
 class LargeGrant < Grant
-  #attr_assescible ...
 end
