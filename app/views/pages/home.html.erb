@@ -3,7 +3,7 @@
 
 <h2>Grant Listing</h2>
 <ul>
-  <%= render @grants %>
+  <%= render partial: 'crowdfunding_grants', collection: @grants, as: :grant %>
 </ul>
 
 <%= link_to "Create Grant!", new_grant_path %>
