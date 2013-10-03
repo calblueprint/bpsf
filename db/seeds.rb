@@ -18,8 +18,8 @@ teacher2 = Recipient.create!(:name => "Severus Snape",
                              :password_confirmation => "password")
 
 # Create Admins
-admin1 = Admin.create!(:name => "Erin Rhoades",
-                       :email => "erinrhoades@berkeley.net",
+admin1 = Admin.create!(:name => "Brian Wong",
+                       :email => "brianderp@coolguys.org",
                        :password => "password",
                        :password_confirmation => "password")
 
