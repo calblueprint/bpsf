@@ -12,5 +12,4 @@
 #
 
 class SmallGrant < Grant
-  # attr_accessible ...
 end
