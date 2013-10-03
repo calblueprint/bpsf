@@ -1,3 +1,9 @@
 <h1>Home Page</h1>
 <p>This is a stub home page that we will change later.</p>
+
+<h2>Grant Listing</h2>
+<ul>
+  <%= render partial: 'crowdfunding_grants', collection: @grants, as: :grant %>
+</ul>
+
 <%= link_to "Create Grant!", new_grant_path %>
