@@ -11,15 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130930035515) do
+ActiveRecord::Schema.define(:version => 20131003211020) do
 
   create_table "grants", :force => true do |t|
     t.string   "name"
     t.string   "organization"
     t.integer  "sum"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
     t.string   "type"
+    t.boolean  "crowdfunding",      :default => false
+    t.boolean  "crowdfund_pending", :default => false
+    t.boolean  "pending",           :default => true
+    t.boolean  "complete",          :default => false
+    t.boolean  "rejected",          :default => false
   end
 
   create_table "user_admins", :force => true do |t|
