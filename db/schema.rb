@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131003211020) do
+ActiveRecord::Schema.define(:version => 20131004053038) do
 
   create_table "grants", :force => true do |t|
     t.string   "name"
@@ -25,6 +25,13 @@ ActiveRecord::Schema.define(:version => 20131003211020) do
     t.boolean  "pending",           :default => true
     t.boolean  "complete",          :default => false
     t.boolean  "rejected",          :default => false
+  end
+
+  create_table "schools", :force => true do |t|
+    t.string   "name"
+    t.integer  "donations_received"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
 
   create_table "users", :force => true do |t|
