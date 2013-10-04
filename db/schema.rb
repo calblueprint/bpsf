@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131003211020) do
+ActiveRecord::Schema.define(:version => 20131004050606) do
 
   create_table "grants", :force => true do |t|
     t.string   "name"
@@ -27,6 +27,24 @@ ActiveRecord::Schema.define(:version => 20131003211020) do
     t.boolean  "rejected",          :default => false
   end
 
+  create_table "schools", :force => true do |t|
+    t.string   "name"
+    t.integer  "donations_received"
+    t.string   "district"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  create_table "user_admins", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "user_recipients", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
     t.string   "encrypted_password",     :default => "", :null => false
@@ -40,6 +58,7 @@ ActiveRecord::Schema.define(:version => 20131003211020) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.string   "name"
     t.string   "type"
     t.string   "first_name"
     t.string   "last_name"
