@@ -14,7 +14,7 @@ group :development, :test do
   gem 'childprocess', '0.3.6'
   gem "ruby-progressbar", '~> 1.2.0'
   gem 'commands', '~> 0.2.1'
-  gem 'pry', "~> 0.9.12.2"
+  gem 'pry', '~> 0.9.12.2'
 end
 
 group :development do
@@ -26,6 +26,9 @@ group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
+  gem 'modernizr-rails', '~> 2.6.2.3'
+  gem 'compass-rails', '~> 1.0.3'
+  gem 'gumby-framework', '~> 0.0.1'
 end
 
 group :test do
