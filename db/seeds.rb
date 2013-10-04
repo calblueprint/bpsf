@@ -7,36 +7,45 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 # Create Teachers (we refer to them as Recipients)
-teacher1 = Recipient.create!(:name => "John Keating",
-                             :email => "captain@whitman.com",
-                             :password => "password",
-                             :password_confirmation => "password")
+teacher1 = Recipient.create! first_name: 'John',
+                             last_name: 'Keating',
+                             email: 'captain@whitman.com',
+                             password: 'password',
+                             password_confirmation: 'password'
 
-teacher2 = Recipient.create!(:name => "Severus Snape",
-                             :email => "severusandlily007@gmail.com",
-                             :password => "password",
-                             :password_confirmation => "password")
+teacher2 = Recipient.create! first_name: 'Severus',
+                             last_name: 'Snape',
+                             email: 'severusandlily007@gmail.com',
+                             password: 'password',
+                             password_confirmation: 'password'
 
 # Create Admins
-admin1 = Admin.create!(:name => "Brian Wong",
-                       :email => "brianderp@coolguys.org",
-                       :password => "password",
-                       :password_confirmation => "password")
+admin1 = Admin.create! first_name: 'Brian',
+                       last_name: 'Wong',
+                       email: 'brianderp@coolguys.org',
+                       password: 'password',
+                       password_confirmation: 'password'
 
-admin2 = Admin.create!(:name => "Maurise Moss",
-                       :email => "moss@itcrowd.com",
-                       :password => "password",
-                       :password_confirmation => "password")
+admin2 = Admin.create! first_name: 'Maurise',
+                       last_name: 'Moss',
+                       email: 'moss@itcrowd.com',
+                       password: 'password',
+                       password_confirmation: 'password'
 
 # Create Parents (they are general Users)
-parent1 = User.create!(:name => "Homer J Simpson",
-                       :email => "chunkylover53@aol.com",
-                       :password => "password",
-                       :password => "password")
+parent1 = User.create! first_name: 'Homer J',
+                       last_name: 'Simpson',
+                       email: 'chunkylover53@aol.com',
+                       password: 'password',
+                       password: 'password'
 
-parent2 = User.create!(:name => "Heathcliff Huxtable",
-                       :email => "zipzopzoobitybop@cosby.com",
-                       :password => "password",
-                       :password => "password")
+parent2 = User.create! first_name: 'Heathcliff',
+                       last_name: 'Huxtable',
+                       email: 'zipzopzoobitybop@cosby.com',
+                       password: 'password',
+                       password: 'password'
 
-
+Grant.create! name: 'Grant 1', organization: 'Blueprint', sum: 1500
+Grant.create! name: 'Grant 2', organization: 'Blueprint', sum: 300
+g = Grant.create! name: 'Crowdfunding Grant 1', organization: 'Blueprint', sum: 800
+g.toggle! :crowdfunding
