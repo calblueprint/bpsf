@@ -8,4 +8,9 @@
 
 <%= link_to "Create Grant!", new_grant_path %>
 
-<%= link_to "Sign In", new_user_session_path %>
+<% if user_signed_in? %>
+  <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+<% else %>
+  <%= link_to "Sign In", new_user_session_path %>
+<% end %>
+
