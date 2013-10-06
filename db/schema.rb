@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131004053038) do
+ActiveRecord::Schema.define(:version => 20131006083452) do
 
   create_table "grants", :force => true do |t|
     t.string   "name"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(:version => 20131004053038) do
     t.boolean  "pending",           :default => true
     t.boolean  "complete",          :default => false
     t.boolean  "rejected",          :default => false
+    t.integer  "user_id"
   end
 
   create_table "schools", :force => true do |t|
@@ -32,6 +33,16 @@ ActiveRecord::Schema.define(:version => 20131004053038) do
     t.integer  "donations_received"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
+  end
+
+  create_table "user_admins", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "user_recipients", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|
@@ -47,6 +58,7 @@ ActiveRecord::Schema.define(:version => 20131004053038) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.string   "name"
     t.string   "type"
     t.string   "first_name"
     t.string   "last_name"
