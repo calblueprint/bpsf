@@ -2,18 +2,35 @@
 #
 # Table name: grants
 #
-#  id                :integer          not null, primary key
-#  name              :string(255)
-#  organization      :string(255)
-#  sum               :integer
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
-#  type              :string(255)
-#  crowdfunding      :boolean          default(FALSE)
-#  crowdfund_pending :boolean          default(FALSE)
-#  pending           :boolean          default(TRUE)
-#  complete          :boolean          default(FALSE)
-#  rejected          :boolean          default(FALSE)
+#  id                 :integer          not null, primary key
+#  organization       :string(255)
+#  sum                :integer
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  type               :string(255)
+#  crowdfunding       :boolean          default(FALSE)
+#  crowdfund_pending  :boolean          default(FALSE)
+#  pending            :boolean          default(TRUE)
+#  complete           :boolean          default(FALSE)
+#  rejected           :boolean          default(FALSE)
+#  user_id            :integer
+#  title              :text
+#  summary            :text
+#  subject_areas      :text
+#  grade_level        :text
+#  duration           :text
+#  num_classes        :integer
+#  num_students       :integer
+#  total_budget       :integer
+#  requested_funds    :integer
+#  funds_will_pay_for :text
+#  budget_desc        :text
+#  purpose            :text
+#  methods            :text
+#  background         :text
+#  n_collaborators    :integer
+#  collaborators      :text
+#  comments           :text
 #
 
 class Grant < ActiveRecord::Base
