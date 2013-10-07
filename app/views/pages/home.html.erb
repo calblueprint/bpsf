@@ -6,6 +6,13 @@
   <%= render partial: 'crowdfunding_grants', collection: @grants, as: :grant %>
 </ul>
 
-<%= link_to "Create Grant!", new_grant_path %>
+<% if can? :create, Grant %>
+  <%= link_to "Create Grant!", new_grant_path %>
+<% end %>
 
-<%= link_to "Sign In", new_user_session_path %>
+<% if user_signed_in? %>
+  <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+<% else %>
+  <%= link_to "Sign In", new_user_session_path %>
+<% end %>
+
