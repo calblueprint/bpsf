@@ -3,11 +3,8 @@
 # Table name: grants
 #
 #  id                 :integer          not null, primary key
-#  organization       :string(255)
-#  sum                :integer
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
-#  type               :string(255)
 #  crowdfunding       :boolean          default(FALSE)
 #  crowdfund_pending  :boolean          default(FALSE)
 #  pending            :boolean          default(TRUE)
@@ -34,5 +31,8 @@
 #
 
 class Grant < ActiveRecord::Base
-  attr_accessible :name, :organization, :sum
+  attr_accessible :title, :organization, :sum, :summary, :subject_areas, 
+                  :grade_level, :duration, :num_classes, :num_students, :total_budget, 
+                  :requested_funds, :funds_will_pay_for, :budget_desc, :purpose, :methods, 
+                  :background, :n_collaborators, :collaborators, :comments
 end
