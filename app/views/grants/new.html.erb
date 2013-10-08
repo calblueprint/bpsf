@@ -2,8 +2,8 @@
 <%= form_for @grant do |f| %>
   <%= render 'shared/errors', object: f.object %>
 
-  <%= f.label :name %>
-  <%= f.text_field :name %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
 
   <%= f.submit 'Create grant!' %>
 <% end %>
