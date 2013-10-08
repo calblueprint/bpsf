@@ -8,6 +8,10 @@ BPSF::Application.routes.draw do
     get '', to: 'dashboard#index', as: '/'
   end
 
+  namespace :recipient do
+    get '', to: 'dashboard#index', as: '/'
+  end
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
