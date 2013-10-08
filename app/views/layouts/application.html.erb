@@ -11,7 +11,9 @@
 </head>
 <body>
   <div>
-    <%# render 'layouts/flash' %>
+    <% flash.each do |key, value| %>
+      <%= content_tag :div, value, class: "#{key} alert" %>
+    <% end %>
 
     <% if user_signed_in? %>
       Signed in as <%= current_user.email %>
