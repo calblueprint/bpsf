@@ -12,7 +12,7 @@ gem 'devise', '~> 3.1.1'
 group :development, :test do
   gem 'rspec-rails', '2.11.0'
   gem 'childprocess', '0.3.6'
-  gem "ruby-progressbar", '~> 1.2.0'
+  gem 'spork', '0.9.2'
   gem 'commands', '~> 0.2.1'
   gem 'pry', '~> 0.9.12.2'
 end
