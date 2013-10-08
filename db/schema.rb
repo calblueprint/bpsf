@@ -11,21 +11,34 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131006083452) do
+ActiveRecord::Schema.define(:version => 20131007222801) do
 
   create_table "grants", :force => true do |t|
-    t.string   "name"
-    t.string   "organization"
-    t.integer  "sum"
-    t.datetime "created_at",                           :null => false
-    t.datetime "updated_at",                           :null => false
-    t.string   "type"
-    t.boolean  "crowdfunding",      :default => false
-    t.boolean  "crowdfund_pending", :default => false
-    t.boolean  "pending",           :default => true
-    t.boolean  "complete",          :default => false
-    t.boolean  "rejected",          :default => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+    t.boolean  "crowdfunding",       :default => false
+    t.boolean  "crowdfund_pending",  :default => false
+    t.boolean  "pending",            :default => true
+    t.boolean  "complete",           :default => false
+    t.boolean  "rejected",           :default => false
     t.integer  "user_id"
+    t.text     "title"
+    t.text     "summary"
+    t.text     "subject_areas"
+    t.text     "grade_level"
+    t.text     "duration"
+    t.integer  "num_classes"
+    t.integer  "num_students"
+    t.integer  "total_budget"
+    t.integer  "requested_funds"
+    t.text     "funds_will_pay_for"
+    t.text     "budget_desc"
+    t.text     "purpose"
+    t.text     "methods"
+    t.text     "background"
+    t.integer  "n_collaborators"
+    t.text     "collaborators"
+    t.text     "comments"
   end
 
   create_table "schools", :force => true do |t|
