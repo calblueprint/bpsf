@@ -1,12 +1,11 @@
 BPSF::Application.routes.draw do
-
   root to: 'pages#home'
 
   resources :grants
   devise_for :users
 
   namespace :admin do
-    get '', to: 'admin_dashboard#index', as: '/'
+    get '', to: 'dashboard#index', as: '/'
   end
 
   # The priority is based upon order of creation:
