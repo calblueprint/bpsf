@@ -45,7 +45,7 @@ parent2 = User.create! first_name: 'Heathcliff',
                        password: 'password',
                        password: 'password'
 
-Grant.create! title: 'Grant 1'
-Grant.create! title: 'Grant 2'
-g = Grant.create! title: 'Crowdfunding Grant 1'
+teacher1.grants.create! title: "Grant 1"
+teacher2.grants.create! title: "Grant 2"
+g = teacher1.grants.create! title: "Crowdfunding Grant 1"
 g.toggle! :crowdfunding
