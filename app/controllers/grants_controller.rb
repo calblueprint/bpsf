@@ -34,7 +34,7 @@ class GrantsController < ApplicationController
   end
 
   def index
-    @grants = Grant.all # change to paginate later
+    @grants = Grant.all # [TODO] change to paginate later
   end
 
   def destroy
