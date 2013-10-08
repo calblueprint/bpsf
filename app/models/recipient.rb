@@ -21,4 +21,5 @@
 #
 
 class Recipient < User
+  has_many :grants, dependent: :destroy
 end
