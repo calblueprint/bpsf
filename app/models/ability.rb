@@ -3,6 +3,7 @@ class Ability
 
   def initialize(user)
     user ||= User.new
+    alias_action :create, :read, :update, :destroy, :to => :crud
 
     if user.type == "Admin"
       can :manage, :all
@@ -12,9 +13,9 @@ class Ability
       can :update, Grant do |grant|
         grant && grant.user_id = user.id
       end
-      cannot :destroy, Grant
+      can :destroy, Grant, user_id: user.id
       can :read, Recipient
-    elsif user.type == "User"
+    else
       can :read, Grant
       can :read, Recipient
     end
