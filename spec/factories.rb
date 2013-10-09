@@ -21,4 +21,9 @@ FactoryGirl.define do
     password 'foobar'
   end
 
+  factory :grant do
+    sequence(:title) { |n| "Grant #{n}" }
+    recipient
+  end
+
 end
