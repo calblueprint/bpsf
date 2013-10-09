@@ -1,0 +1,6 @@
+<li>
+  <%= link_to grant.title, grant %> |
+  <%= 'Pending' if grant.pending? %>
+  <%= 'Complete' if grant.complete? %>
+  <%= 'Rejected' if grant.rejected? %>
+</li>
