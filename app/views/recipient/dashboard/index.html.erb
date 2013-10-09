@@ -1,2 +1,6 @@
-<h1>Recipient::Dashboard#index</h1>
-<p>Find me in app/views/recipient/dashboard/index.html.erb</p>
+<h1>Recipient Dashboard</h1>
+
+<h2>Listing my grants</h2>
+<ul>
+  <%= render partial: 'my_grants', collection: @grants, as: :grant %>
+</ul>
