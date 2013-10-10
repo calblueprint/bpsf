@@ -7,17 +7,19 @@ class Admin::DashboardController < ApplicationController
 
   def toggle_complete
     @grant = Grant.find params[:id]
-    if @grant.complete?
+    if !@grant.complete?
       @grant.crowdfunding = false
       @grant.crowdfund_pending = false
       @grant.pending = false
       @grant.rejected = false
       @grant.save!
+      @grant.toggle! :complete
     else
       @grant.pending = true
       @grant.save!
+      @grant.toggle! :complete
     end
-    @grant.toggle! :complete
+
     redirect_to admin_dashboard_path
   end
 end
