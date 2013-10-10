@@ -33,10 +33,6 @@ class GrantsController < ApplicationController
     @grant = Grant.find params[:id]
   end
 
-  def index
-    @grants = Grant.all # [TODO] change to paginate later
-  end
-
   def destroy
     Grant.find(params[:id]).destroy
     flash[:success] = 'Grant deleted.'
