@@ -1,7 +1,5 @@
 <li>
   <%= link_to grant.title, grant %> | 
-  <%= 'Crowdfunding' if grant.crowdfunding? %>
-  <%= 'Crowdfund pending' if grant.crowdfund_pending? %>
-  <%= 'Pending' if grant.pending? %>
-  <%= 'Complete' if grant.complete? %>
+  <%= render partial: 'grant_status', locals: { grant: grant } %> | 
+  <%= render partial: 'toggle_links', locals: { grant: grant } %>
 </li>
