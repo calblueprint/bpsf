@@ -5,11 +5,12 @@ BPSF::Application.routes.draw do
   devise_for :users
 
   namespace :admin do
-    get '', to: 'dashboard#index', as: '/'
+    get '', to: 'dashboard#index', as: :dashboard
+    post 'toggle_complete', to: 'dashboard#toggle_complete', as: :toggle_complete
   end
 
   namespace :recipient do
-    get '', to: 'dashboard#index', as: '/'
+    get '', to: 'dashboard#index', as: :dashboard
   end
 
   # The priority is based upon order of creation:
