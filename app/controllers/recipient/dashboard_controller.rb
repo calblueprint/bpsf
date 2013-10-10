@@ -2,6 +2,6 @@ class Recipient::DashboardController < ApplicationController
   authorize_resource :class => false
   
   def index
-    @grants = Recipient.find(params[:recipient_id]).grants
+    @grants = current_user.grants
   end
 end
