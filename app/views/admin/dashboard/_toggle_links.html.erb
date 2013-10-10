@@ -1,1 +1,5 @@
-<%= link_to 'Complete!', admin_toggle_complete_path(id: grant.id), method: :post %>
+<% if !grant.complete? %>
+  <%= link_to 'Complete!', admin_toggle_complete_path(id: grant.id), method: :post %>
+<% else %>
+  <%= link_to 'Uncomplete!', admin_toggle_complete_path(id: grant.id), method: :post %>
+<% end %>
