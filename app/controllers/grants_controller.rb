@@ -34,7 +34,7 @@ class GrantsController < ApplicationController
   end
 
   def index
-    @grants = Grant.all # [TODO] change to paginate later
+    redirect_to root_url
   end
 
   def destroy
