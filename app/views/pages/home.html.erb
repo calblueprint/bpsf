@@ -3,7 +3,7 @@
 
 <h2>Grant Listing</h2>
 <ul>
-  <%= render partial: 'crowdfunding_grants', collection: @grants, as: :grant %>
+  <%= will_paginate @grants %>
 </ul>
 
 <% if can? :create, Grant %>
