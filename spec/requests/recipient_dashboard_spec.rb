@@ -6,8 +6,8 @@ describe "The recipient dashboard" do
   subject { page }
 
   let(:recipient) { FactoryGirl.create :recipient }
-  let!(:grant1) { FactoryGirl.create :grant }
-  let!(:grant2) { FactoryGirl.create :grant }
+  let!(:grant1) { FactoryGirl.create(:grant,recipient_id: recipient.id) }
+  let!(:grant2) { FactoryGirl.create(:grant,recipient_id: recipient.id) }
 
   before do
     sign_in recipient
