@@ -11,7 +11,7 @@ describe "The recipient dashboard" do
 
   before do
     sign_in recipient
-    visit recipient_path
+    visit recipient_dashboard_path
   end
 
   it 'should list my grants' do
@@ -27,35 +27,35 @@ describe "Dashboard authorization" do
   subject { page }
 
   describe 'for non-logged in users' do
-    before { visit recipient_path }
-    it { should have_error_message 'not authorized' }
+    before { visit recipient_dashboard_path }
+    it { should have_error_message "You are not authorized to access this page." }
   end
 
   describe 'for regular users' do
     let(:user) { FactoryGirl.create :user }
     before do
       sign_in user
-      visit recipient_path
+      visit recipient_dashboard_path
     end
-    it { should have_error_message 'not authorized' }
+    it { should have_error_message "You are not authorized to access this page." }
   end
 
   describe 'for admins' do
     let(:admin) { FactoryGirl.create :admin }
     before do
       sign_in admin
-      visit recipient_path
+      visit recipient_dashboard_path
     end
-    it { should have_error_message 'not authorized' }
+    it { should have_error_message "You are not authorized to access this page." }
   end
 
   describe 'for recipients' do
     let(:recipient) { FactoryGirl.create :recipient }
     before do
       sign_in recipient
-      visit recipient_path
+      visit recipient_dashboard_path
     end
-    it { should_not have_error_message 'not authorized' }
+    it { should_not have_error_message "You are not authorized to access this page." }
     it { should have_h1 'Dashboard' }
   end
   
