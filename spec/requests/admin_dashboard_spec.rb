@@ -16,8 +16,10 @@ describe 'The admin dashboard' do
     end
 
     it { should have_content 'Pending' }
-    [grant1, grant2].each do |g|
-      page.should have_content g.title
+    it 'should list all grants' do
+      [grant1, grant2].each do |g|
+        page.should have_content g.title
+      end
     end
   end
 
