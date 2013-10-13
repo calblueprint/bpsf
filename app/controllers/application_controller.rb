@@ -6,7 +6,8 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource) 
-    return admin_dashboard_path     if resource.is_a?(Admin)
-    return recipient_dashboard_path if resource.is_a?(Recipient)
+    return admin_dashboard_path     if resource.is_a? Admin
+    return recipient_dashboard_path if resource.is_a? Recipient
+    return root_path                if resource.is_a? User
   end
 end
