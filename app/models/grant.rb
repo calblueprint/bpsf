@@ -10,7 +10,6 @@
 #  pending            :boolean          default(TRUE)
 #  complete           :boolean          default(FALSE)
 #  rejected           :boolean          default(FALSE)
-#  user_id            :integer
 #  title              :text
 #  summary            :text
 #  subject_areas      :text
@@ -28,6 +27,7 @@
 #  n_collaborators    :integer
 #  collaborators      :text
 #  comments           :text
+#  recipient_id       :integer
 #
 
 class Grant < ActiveRecord::Base
