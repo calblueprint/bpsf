@@ -1,20 +1,18 @@
 # Tests for the admin dashboard
 require 'spec_helper'
+require 'pry'
 
 describe 'The admin dashboard' do
   subject { page }
   let(:admin) { FactoryGirl.create :admin }
-  before do
-    sign_in admin
-    visit admin_dashboard_path
-  end
+  let!(:grant1) { FactoryGirl.create :grant }
+  let!(:grant2) { FactoryGirl.create :grant }
+
+  before { sign_in admin }
+
+  it { should have_content 'Admin Dashboard' }
 
   describe 'grants listing' do
-    before do
-      let!(:grant1) { FactoryGirl.create :grant }
-      let!(:grant2) { FactoryGirl.create :grant }
-    end
-
     it { should have_content 'Pending' }
     it 'should list all grants' do
       [grant1, grant2].each do |g|
@@ -23,7 +21,7 @@ describe 'The admin dashboard' do
     end
   end
 
-  describe 'toggling grant fields' do
+  pending 'toggling grant fields' do
     let!(:grant) { FactoryGirl.create :grant }
 
     describe 'the complete field' do
