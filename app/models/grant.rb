@@ -36,4 +36,18 @@ class Grant < ActiveRecord::Base
                   :requested_funds, :funds_will_pay_for, :budget_desc, :purpose, :methods,
                   :background, :n_collaborators, :collaborators, :comments
   belongs_to :recipient
+
+  state_machine initial: :pending do
+    event :reject do
+      transition [:pending, :crowdfund_pending] => :rejected
+    end
+
+    event :fund do
+      transition [:pending, :crowdfund_pending, :crowdfunding] => :complete
+    end
+
+    event :save do
+      transition :crowdfunding => :crowdfund_pending
+    end
+  end
 end
