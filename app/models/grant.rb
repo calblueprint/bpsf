@@ -5,11 +5,6 @@
 #  id                 :integer          not null, primary key
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
-#  crowdfunding       :boolean          default(FALSE)
-#  crowdfund_pending  :boolean          default(FALSE)
-#  pending            :boolean          default(TRUE)
-#  complete           :boolean          default(FALSE)
-#  rejected           :boolean          default(FALSE)
 #  title              :text
 #  summary            :text
 #  subject_areas      :text
@@ -28,6 +23,7 @@
 #  collaborators      :text
 #  comments           :text
 #  recipient_id       :integer
+#  state              :string(255)
 #
 
 class Grant < ActiveRecord::Base
