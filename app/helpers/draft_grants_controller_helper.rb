@@ -1,0 +1,2 @@
+module DraftGrantsControllerHelper
+end
