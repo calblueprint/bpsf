@@ -9,10 +9,7 @@ describe "The recipient dashboard" do
   let!(:grant1) { FactoryGirl.create(:grant,recipient_id: recipient.id) }
   let!(:grant2) { FactoryGirl.create(:grant,recipient_id: recipient.id) }
 
-  before do
-    sign_in recipient
-    visit recipient_dashboard_path
-  end
+  before { sign_in recipient }
 
   it 'should list my grants' do
     [grant1, grant2].each do |g|
