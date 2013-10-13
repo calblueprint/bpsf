@@ -19,4 +19,12 @@ describe Grant do
     grant.reject
     grant.should be_crowdfunding
   end
+
+  it "can be saved if it is pending" do
+    grant = Grant.create!
+    grant.crowdfund
+    grant.crowdfunding_failed
+    grant.fund
+    grant.should be_complete
+  end
 end
