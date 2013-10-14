@@ -48,4 +48,4 @@ parent2 = User.create! first_name: 'Heathcliff',
 teacher1.grants.create! title: "Grant 1"
 teacher2.grants.create! title: "Grant 2"
 g = teacher1.grants.create! title: "Crowdfunding Grant 1"
-g.toggle! :crowdfunding
+g.crowdfund
