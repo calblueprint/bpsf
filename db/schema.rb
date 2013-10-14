@@ -11,7 +11,8 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131014010040) do
+
+ActiveRecord::Schema.define(:version => 20131013231441) do
 
   create_table "crowdfunds", :force => true do |t|
     t.decimal  "goal"

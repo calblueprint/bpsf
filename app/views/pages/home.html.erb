@@ -8,12 +8,18 @@
 </ul>
 
 <% if can? :create, Grant %>
-  <%= link_to "Create Grant!", new_grant_path %>
+  <div class="medium primary btn">
+    <%= link_to "Create Grant!", new_draft_grant_path %>
+  </div>
 <% end %>
+
 
 <% if user_signed_in? %>
-  <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+  <div class="medium danger btn">
+    <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+  </div>
 <% else %>
-  <%= link_to "Sign In", new_user_session_path %>
+  <div class="medium success btn">
+    <%= link_to "Sign In", new_user_session_path %>
+  </div>
 <% end %>
-
