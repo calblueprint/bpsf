@@ -1,6 +1,11 @@
 <h1>Recipient Dashboard</h1>
 
-<h2>Listing my grants</h2>
+<h2>Listing my drafts</h2>
+<ul>
+  <%= render partial: 'my_draft_grants', collection: @draft_grants, as: :draft_grant %>
+</ul>
+
+<h2>Listing my submitted grants</h2>
 <ul>
   <%= render partial: 'my_grants', collection: @grants, as: :grant %>
 </ul>
