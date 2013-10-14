@@ -48,7 +48,7 @@ describe Grant do
     grant.should be_crowdfunding
   end
 
-  it "can be saved if it is pending" do
+  it "can be funded if it failed crowdfunding" do
     grant = Grant.create!
     grant.crowdfund
     grant.crowdfunding_failed
