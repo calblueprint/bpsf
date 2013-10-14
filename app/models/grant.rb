@@ -38,6 +38,10 @@ class Grant < ActiveRecord::Base
       transition [:pending, :crowdfund_pending] => :rejected
     end
 
+    event :reconsider do
+      transition [:rejected, :crowdfund_pending, :crowdfunding] => :pending
+    end
+
     event :fund do
       transition [:pending, :crowdfund_pending, :crowdfunding] => :complete
     end
