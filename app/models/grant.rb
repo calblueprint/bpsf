@@ -5,11 +5,6 @@
 #  id                 :integer          not null, primary key
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
-#  crowdfunding       :boolean          default(FALSE)
-#  crowdfund_pending  :boolean          default(FALSE)
-#  pending            :boolean          default(TRUE)
-#  complete           :boolean          default(FALSE)
-#  rejected           :boolean          default(FALSE)
 #  title              :text
 #  summary            :text
 #  subject_areas      :text
@@ -28,6 +23,7 @@
 #  collaborators      :text
 #  comments           :text
 #  recipient_id       :integer
+#  state              :string(255)
 #
 
 class Grant < ActiveRecord::Base
@@ -36,4 +32,30 @@ class Grant < ActiveRecord::Base
                   :requested_funds, :funds_will_pay_for, :budget_desc, :purpose, :methods,
                   :background, :n_collaborators, :collaborators, :comments
   belongs_to :recipient
+
+  scope :pending_grants, -> {with_state(:pending)}
+  scope :complete_grants, -> {with_state(:complete)}
+  scope :crowdfunding_grants, -> {with_state(:crowdfunding)}
+
+  state_machine initial: :pending do
+    event :reject do
+      transition [:pending, :crowdfund_pending] => :rejected
+    end
+
+    event :reconsider do
+      transition [:rejected, :crowdfund_pending, :crowdfunding, :complete] => :pending
+    end
+
+    event :fund do
+      transition [:pending, :crowdfund_pending, :crowdfunding] => :complete
+    end
+
+    event :crowdfund do
+      transition :pending => :crowdfunding
+    end
+
+    event :crowdfunding_failed do
+      transition :crowdfunding => :crowdfund_pending
+    end
+  end
 end
