@@ -9,8 +9,8 @@ class Ability
       cannot :destroy, Admin
     elsif user.type == "Recipient"
       can :create, Grant
+      can :manage, DraftGrant, recipient_id: user.id
       can :create, DraftGrant
-      can [:read, :update, :destroy], DraftGrant, recipient_id: user.id
       can :read, Recipient
     else
       can :read, Grant
