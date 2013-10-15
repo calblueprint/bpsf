@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131013231441) do
+ActiveRecord::Schema.define(:version => 20131014191026) do
+
+  create_table "crowdfunds", :force => true do |t|
+    t.datetime "deadline"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.integer  "goal"
+    t.integer  "pledged_total"
+  end
 
   create_table "draft_grants", :force => true do |t|
     t.integer  "recipient_id"
@@ -60,6 +68,12 @@ ActiveRecord::Schema.define(:version => 20131013231441) do
     t.string   "state"
   end
 
+  create_table "payments", :force => true do |t|
+    t.integer  "amount"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "schools", :force => true do |t|
     t.string   "name"
     t.integer  "donations_received"
@@ -83,6 +97,7 @@ ActiveRecord::Schema.define(:version => 20131013231441) do
     t.string   "type"
     t.string   "first_name"
     t.string   "last_name"
+    t.string   "stripe_token"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
