@@ -1,9 +1,16 @@
-<h1>Creating a Grant</h1>
-<%= form_for @draft_grant do |f| %>
-  <%= render 'shared/errors', object: f.object %>
+<div class="row">
+  <h1>Creating a Grant</h1>
+</div>
+<div class="row">
+  <%= form_for @draft_grant do |f| %>
+    <%= render 'shared/errors', object: f.object %>
+    
+    <div class="field">
+      <%= f.text_field :title, class: [:narrow, :input], placeholder: :Title %>
+    </div>
   
-  <div class="field">
-    <%= f.text_field :title, class: [:narrow, :input], placeholder: :Title %>
-  </div>
-  <%= f.submit 'Create grant!' %>
-<% end %>
+    <div class="medium default btn">
+      <%= f.submit 'Create grant!' %>
+    </div>
+  <% end %>
+</div>
