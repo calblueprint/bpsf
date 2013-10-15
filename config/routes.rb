@@ -3,7 +3,7 @@ BPSF::Application.routes.draw do
 
   resources :grants,       except: :index
   resources :draft_grants, except: [:show, :index]
-  resources :payments,     except: [:index, :show, :edit, :update]
+  resources :payment,     except: [:index, :show, :edit, :update]
 
   devise_for :users
 

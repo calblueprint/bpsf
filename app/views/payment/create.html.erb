@@ -1,2 +1,10 @@
-<h1>Payment#create</h1>
-<p>Find me in app/views/payment/create.html.erb</p>
+<h1>Create Payment</h1>
+<%= form_for @grant do |f| %>
+    <%= render 'shared/errors', object: f.object %>
+
+    <%= f.label "Amount" %>
+    <%= f.text_field :amount %>
+
+    <%= f.submit "Make Payment" %>
+<% end %>
+
