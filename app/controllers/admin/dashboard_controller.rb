@@ -1,6 +1,6 @@
 class Admin::DashboardController < ApplicationController
   authorize_resource :class => false
-  
+
   def index
     @grants = Grant.all
   end
@@ -8,18 +8,10 @@ class Admin::DashboardController < ApplicationController
   def toggle_complete
     @grant = Grant.find params[:id]
     if !@grant.complete?
-      @grant.crowdfunding = false
-      @grant.crowdfund_pending = false
-      @grant.pending = false
-      @grant.rejected = false
-      @grant.save!
-      @grant.toggle! :complete
+      @grant.fund
     else
-      @grant.pending = true
-      @grant.save!
-      @grant.toggle! :complete
+      @grant.reconsider
     end
-
     redirect_to admin_dashboard_path
   end
 end
