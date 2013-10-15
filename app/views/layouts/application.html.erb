@@ -8,7 +8,7 @@
   <%= javascript_include_tag "https://js.stripe.com/v1/", "application" %>
   <%= javascript_include_tag :modernizr %>
   <%= csrf_meta_tags %>
-  <%= tag :meta, :name => "stripe-key", &crarr;
+  <%= tag :meta, :name => "stripe-key",
           :content => STRIPE_PUBLIC_KEY %>
   <%= render 'layouts/shim' %>
 </head>
