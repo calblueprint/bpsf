@@ -1,7 +1,5 @@
 module DraftGrantsControllerHelper
-
-  def youtube_video(url)
-    render :partial => 'shared/video', :locals => { :url => url }
+  def parse_embed(grant)
+    grant.video.split('=').last if grant.video
   end
-
 end
