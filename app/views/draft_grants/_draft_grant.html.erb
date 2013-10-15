@@ -78,5 +78,7 @@
 
 <div class="row">
   <h3>Video:</h3>
-  <iframe width="560" height="349" src="http://www.youtube.com/embed/ + parse_embed(@draft_grant)"></iframe>
+  <% if !@draft_grant.video.blank? %>
+    <iframe width="560" height="349" src="http://www.youtube.com/embed/ + parse_embed(@draft_grant)"></iframe>
+  <% end %>
 </div>
