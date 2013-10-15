@@ -241,11 +241,7 @@ DEPENDENCIES
   shoulda (~> 3.5.0)
   simplecov
   spork (= 0.9.2)
-<<<<<<< HEAD
   stripe (~> 1.8.7)
-||||||| merged common ancestors
-=======
   state_machine (~> 1.2.0)
->>>>>>> master
   uglifier (>= 1.0.3)
   will_paginate (~> 3.0)
