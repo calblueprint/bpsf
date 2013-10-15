@@ -2,7 +2,7 @@
   <h1>Creating a Grant</h1>
 </div>
 <div class="row">
-  <%= form_for @draft_grant do |f| %>
+  <%= form_for @draft_grant, url: drafts_path do |f| %>
     <%= render 'shared/errors', object: f.object %>
     
     <div class="field">
