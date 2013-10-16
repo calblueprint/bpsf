@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!--***************************************NAVBAR******************************************-->
 	<div class="navbar" id="nav1">
 		<div class="row">
@@ -8,7 +9,11 @@
 			<ul class="ten columns">
 				<li><a href="#">Explore</a></li>|
 				<li><a href="#">About</a></li>|
-				<li><a href="#">Apply</a></li>
+				<li><a href="#">  
+					<% if can? :create, Grant %>
+				      <%= link_to "Apply", new_draft_path %>
+				  <% end %>
+				</a></li>
 				<li class="field"><input class="search input" type="search" placeholder="Search" /></li>
 				<li><button class="medium primary btn pointer">
 						<a href="#">Sign Up</a>
@@ -28,7 +33,6 @@
 	</div>
 
 
-<!--<div class="row" style="height:100px;"> &nbsp;</div>
 <!--***************************************SLIDESHOW******************************************-->
      
 	<div class="fluid_container">
@@ -293,8 +297,14 @@
   <%= render partial: 'crowdfunding_grants', collection: @grants, as: :grant %>
 </ul>
 
-<% if can? :create, Grant %>
-  <%= link_to "Create Grant!", new_grant_path %>
-<% end %>
+
+
+<div class="row">
+  <h2>Grant Listing</h2>
+  <ul>
+    <%= render @grants %>
+    <%= will_paginate @grants %>
+  </ul>
+</div>
 
 

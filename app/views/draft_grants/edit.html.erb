@@ -1,0 +1,38 @@
+<div class="row">
+  <h1>Editing <%= @draft_grant.title %></h1>
+</div>
+<div class="row">
+  <div class="three columns">
+    <div class="row">
+      <div class="medium default btn">
+        <%= link_to 'Edit General Info', draft_edit_general_path(@draft_grant) %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="medium default btn">
+        <%= link_to 'Edit Logistics', draft_edit_logistics_path(@draft_grant) %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="medium default btn">
+        <%= link_to 'Edit Budget', draft_edit_budget_path(@draft_grant) %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="medium default btn">
+        <%= link_to 'Edit Methods', draft_edit_methods_path(@draft_grant) %>
+      </div>
+    </div>
+  </div>
+  <div class="nine columns">
+    <%= render @draft_grant %>
+  </div>
+</div>
+
+<br>
+
+<div class="row">
+  <div class="medium warning btn">
+    <%= link_to 'Back to Dashboard', recipient_dashboard_path %>
+  </div>
+</div>

@@ -1,6 +1,23 @@
-<h1>Recipient Dashboard</h1>
+<div class="row">
+  <h1>Recipient Dashboard</h1>
+</div>
 
-<h2>Listing my grants</h2>
-<ul>
-  <%= render partial: 'my_grants', collection: @grants, as: :grant %>
-</ul>
+<div class="row">
+  <h2>Listing my drafts</h2>
+  <ul>
+    <%= render partial: 'my_draft_grants', collection: @draft_grants, as: :draft_grant %>
+  </ul>
+</div>
+
+<div class="row">
+  <div class="medium primary btn">
+    <%= link_to "Create Grant!", new_draft_path %>
+  </div>
+</div>
+
+<div class="row">
+  <h2>Listing my submitted grants</h2>
+  <ul>
+    <%= render partial: 'my_grants', collection: @grants, as: :grant %>
+  </ul>
+</div>

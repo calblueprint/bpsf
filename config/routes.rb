@@ -1,8 +1,16 @@
 BPSF::Application.routes.draw do
   root to: 'pages#home'
 
-  resources :grants, :except => [:index]
+  resources :grants, except: :index
   devise_for :users
+
+  resources :drafts, controller: 'draft_grants', except: [:show, :index]
+  scope '/drafts' do
+    get ':id/edit_general/',   to: 'draft_grants#edit_general_info', as: :draft_edit_general
+    get ':id/edit_logistics/', to: 'draft_grants#edit_logistics',    as: :draft_edit_logistics
+    get ':id/edit_budget/',    to: 'draft_grants#edit_budget',       as: :draft_edit_budget
+    get ':id/edit_methods/',   to: 'draft_grants#edit_methods',      as: :draft_edit_methods
+  end
 
   namespace :admin do
     get '', to: 'dashboard#index', as: :dashboard

@@ -1,29 +1,47 @@
 # Tests for the admin dashboard
 require 'spec_helper'
+require 'pry'
 
 describe 'The admin dashboard' do
   subject { page }
   let(:admin) { FactoryGirl.create :admin }
   let!(:grant1) { FactoryGirl.create :grant }
   let!(:grant2) { FactoryGirl.create :grant }
-  before do
-    sign_in admin
-    visit admin_dashboard_path
-  end
 
-  it 'should list all grants' do
-    [grant1, grant2].each do |g|
-      page.should have_content g.title
+  before { sign_in admin }
+
+  it { should have_content 'Admin Dashboard' }
+
+  describe 'grants listing' do
+    it { should have_content 'Pending' }
+    it 'should list all grants' do
+      [grant1, grant2].each do |g|
+        page.should have_content g.title
+      end
     end
   end
 
-  describe 'should let the admin toggle grant fields' do
+  pending 'toggling grant fields' do
+    let!(:grant) { FactoryGirl.create :grant }
+
     describe 'the complete field' do
-      before do
-        click_link 'Complete!'
-        click_link 'Complete!'
-      end
+      before { click_link 'Complete' }
+
       it { should have_content 'Complete' }
+      it { should_not have_content 'Pending' }
+    end
+
+    describe 'the crowdsource field' do
+      before { click_link 'Crowdsource' }
+
+      it { should have_content 'Crowdsourcing' }
+      it { should_not have_content 'Pending' }
+    end
+
+    describe 'the rejected field' do
+      before { click_link 'Reject' }
+
+      it { should have_content 'Reject' }
       it { should_not have_content 'Pending' }
     end
   end
