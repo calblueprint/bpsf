@@ -23,12 +23,13 @@
 #  comments           :text
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
+#  video              :string(255)
 #
 
 class DraftGrant < ActiveRecord::Base
   attr_accessible :title, :summary, :subject_areas, :grade_level, :duration, 
                   :num_classes, :num_students, :total_budget, :requested_funds, 
                   :funds_will_pay_for, :budget_desc, :purpose, :methods, :background, 
-                  :n_collaborators, :collaborators, :comments
+                  :n_collaborators, :collaborators, :comments, :video
   belongs_to :recipient
 end
