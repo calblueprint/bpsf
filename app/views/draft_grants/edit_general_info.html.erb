@@ -11,12 +11,17 @@
       
       <div class="field">
         <%= f.label :title, 'Title' %>
-        <%= f.text_field :title, class: [:input] %>
+        <%= f.text_field :title, class: :input %>
       </div>
 
       <div class="field">
         <%= f.label :summary, 'Summary' %>
         <%= f.text_area :summary, class: [:textarea, :input], rows: 5 %>
+      </div>
+
+      <div class="field">
+        <%= f.label :video, 'Video link' %>
+        <%= f.text_field :video, class: :input, :placeholder => "Video Link" %>
       </div>
 
       <div class="field">

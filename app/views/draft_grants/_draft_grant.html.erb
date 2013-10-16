@@ -8,6 +8,13 @@
 </div>
 
 <div class="row">
+  <h3>Video</h3>
+  <% if !@draft_grant.video.blank? %>
+    <iframe width="560" height="315" src= "http://www.youtube.com/embed/<%= parse_embed(@draft_grant) %>"></iframe>
+  <% end %>
+</div>
+
+<div class="row">
   <h3>Subject areas</h3>
   <%= @draft_grant.subject_areas %>
 </div>
@@ -74,11 +81,4 @@
 <div class="row">
   <h3>Comments</h3>
   <%= @draft_grant.comments %>
-</div>
-
-<div class="row">
-  <h3>Video:</h3>
-  <% if !@draft_grant.video.blank? %>
-    <iframe width="560" height="315" src= "http://www.youtube.com/embed/<%= parse_embed(@draft_grant) %>" ></iframe>
-  <% end %>
 </div>
