@@ -2,6 +2,8 @@
   <h1>Editing <%= @draft_grant.title %></h1>
 </div>
 
+<!-- This is the form for title, summary, and subject_areas. -->
+
 <div class="row">
   <div class="six columns">
     <%= form_for @draft_grant, url: draft_path do |f| %>
@@ -9,18 +11,17 @@
       
       <div class="field">
         <%= f.label :title, 'Title' %>
-        <%= f.text_field :title, class: [:input], placeholder: :Title %>
+        <%= f.text_field :title, class: [:input] %>
       </div>
 
       <div class="field">
         <%= f.label :summary, 'Summary' %>
-        <%= f.text_area :summary, class: [:textarea, :input], rows: 5, placeholder: :Summary %>
+        <%= f.text_area :summary, class: [:textarea, :input], rows: 5 %>
       </div>
 
       <div class="field">
         <%= f.label :subject_areas, 'Subject Areas' %>
-        <%= f.text_area :subject_areas, class: [:textarea, :input], 
-              rows: 5, placeholder: 'Subject areas' %>
+        <%= f.text_area :subject_areas, class: [:textarea, :input], rows: 5 %>
       </div>
     
       <div class="medium default btn">
