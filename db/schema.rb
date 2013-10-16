@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131015224032) do
+ActiveRecord::Schema.define(:version => 20131016074756) do
 
   create_table "crowdfunds", :force => true do |t|
     t.datetime "deadline"
@@ -68,12 +68,6 @@ ActiveRecord::Schema.define(:version => 20131015224032) do
     t.integer  "recipient_id"
     t.string   "state"
     t.string   "video"
-  end
-
-  create_table "payments", :force => true do |t|
-    t.integer  "amount"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
   end
 
   create_table "schools", :force => true do |t|
