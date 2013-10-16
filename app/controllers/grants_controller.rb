@@ -20,7 +20,6 @@ class GrantsController < ApplicationController
   end
 
   def update
-    # This might have to change to incorporate the Grant subclasses
     if @grant.update_attributes params[:grant]
       flash[:success] = 'Grant updated!'
       redirect_to @grant
