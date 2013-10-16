@@ -26,4 +26,9 @@ FactoryGirl.define do
     recipient
   end
 
+  factory :draft_grant do
+    sequence(:title) { |n| "Grant #{n}" }
+    recipient
+  end
+
 end
