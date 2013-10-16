@@ -2,6 +2,36 @@
   <h1>Editing <%= @draft_grant.title %></h1>
 </div>
 
+<!-- This is the form to edit the purpose, methods, background, and comments. -->
+
 <div class="row">
-  This is where the form to edit the purpose, methods, background, n_collaborators, collaborators, and comments will go.
+  <div class="six columns">
+    <%= form_for @draft_grant, url: draft_path do |f| %>
+      <%= render 'shared/errors', object: f.object %>
+      
+      <div class="field">
+        <%= f.label :purpose, 'Purpose' %>
+        <%= f.text_area :purpose, class: [:textarea, :input], rows: 5 %>
+      </div>
+
+      <div class="field">
+        <%= f.label :methods, 'Methods' %>
+        <%= f.text_area :methods, class: [:textarea, :input], rows: 5 %>
+      </div>
+
+      <div class="field">
+        <%= f.label :background, 'Background' %>
+        <%= f.text_area :background, class: [:textarea, :input], rows: 5 %>
+      </div>
+
+      <div class="field">
+        <%= f.label :comments, 'Comments' %>
+        <%= f.text_area :comments, class: [:textarea, :input], rows: 5 %>
+      </div>
+    
+      <div class="medium default btn">
+        <%= f.submit 'Save!' %>
+      </div>
+    <% end %>
+  </div>
 </div>
