@@ -7,7 +7,7 @@ class GrantsController < ApplicationController
 
   def create
     # This is going to have to change to incorporate the Grant subclasses
-    @grant = current_user.grants.build(:title => params[:title])
+    @grant = current_user.grants.build params[:grant]
     if @grant.save
       flash[:success] = 'Grant created!'
       redirect_to @grant
@@ -20,7 +20,6 @@ class GrantsController < ApplicationController
   end
 
   def update
-    # This might have to change to incorporate the Grant subclasses
     if @grant.update_attributes params[:grant]
       flash[:success] = 'Grant updated!'
       redirect_to @grant

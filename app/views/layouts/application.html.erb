@@ -29,6 +29,21 @@
     <%= yield %>
 
     <br>
+
+    <div class="row">
+      <% if user_signed_in? %>
+        <div class="medium danger btn">
+          <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+        </div>
+      <% else %>
+        <div class="medium success btn">
+          <%= link_to "Sign In", new_user_session_path %>
+        </div>
+      <% end %>
+    </div>
+
+    <br>
+    
     <div class="row">
       <hr>
       <%= debug(params) if Rails.env.development? %>
