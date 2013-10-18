@@ -10,6 +10,51 @@
   <%= render 'layouts/shim' %>
 </head>
 <body>
+  <!--***************************************HEADER********************************************-->
+  <div class="navbar" id="nav1">
+    <div class="row">
+    <span class="two columns logo">
+      <a href="#"><i class="icon-left-open-big"></i>Return to Site</a>
+    </span>
+      <a class="toggle" gumby-trigger="#nav1 > .row > ul" href="#"><i class="icon-menu"></i></a>
+      <ul class="ten columns">
+        <li><a href="#">Explore</a></li>|
+        <li><a href="#">About</a></li>|
+        <li>
+          <% if can? :create, Grant %>
+              <%= link_to "Apply", new_draft_path %>
+          <% else %>
+              <%= link_to "Apply", new_user_session_path %>
+          <% end %>
+        </li>
+        <li class="field"><input class="search input" type="search" placeholder="Search" /></li>
+        <li>
+          <% if user_signed_in? %>
+            Signed in as <%= current_user.email %>
+          <% else %>
+          <button class="medium primary btn pointer">
+            <%= link_to "Sign Up", new_user_session_path %>
+          </button>
+          <% end %>
+        </li>
+        <li>
+          <button class="medium primary btn pointer">
+            <% if user_signed_in? %>
+              <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+            <% else %>
+              <%= link_to "Sign In", new_user_session_path %>
+            <% end %>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+
+
+
+
+
   <div>
     <div class="row">
       <% flash.each do |key, value| %>
@@ -25,21 +70,26 @@
 
     <%= yield %>
 
-    <br>
+
+    <!--***************************************FOOTER********************************************-->
 
     <div class="row">
-      <% if user_signed_in? %>
-        <div class="medium danger btn">
-          <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+        <div class="eight columns">
+          <p style="font-size:12px; font-size:0.75rem;">
+              <strong>Contact Us</strong><br>
+          <a href="mailto:">bpsf@bpsf.org</a><br><br>         
+            </p>
         </div>
-      <% else %>
-        <div class="medium success btn">
-          <%= link_to "Sign In", new_user_session_path %>
+        <div>
+          <p style="font-size:12px; font-size:0.75rem;">
+              <strong>Navigate</strong><br>
+          Here we would have a sitemap<br><br><br>
+              &copy; BluePrint 2013. All rights reserved.
+            </p>
         </div>
-      <% end %>
     </div>
 
-    <br>
+
     
     <div class="row">
       <hr>
