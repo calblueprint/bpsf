@@ -16,28 +16,29 @@ class DraftGrantsController < ApplicationController
   end
 
   def edit
+    session.delete :previous
     @draft_grant = DraftGrant.find params[:id]
   end
 
   # One day, these will be replaced by AJAX.
   def edit_general_info
     @draft_grant = DraftGrant.find params[:id]
-    session[:return_to] ||= request.referer
+    session[:previous] = params[:action]
   end
 
   def edit_logistics
     @draft_grant = DraftGrant.find params[:id]
-    session[:return_to] ||= request.referer
+    session[:previous] = params[:action]
   end
 
   def edit_budget
     @draft_grant = DraftGrant.find params[:id]
-    session[:return_to] ||= request.referer
+    session[:previous] = params[:action]
   end
 
   def edit_methods
     @draft_grant = DraftGrant.find params[:id]
-    session[:return_to] ||= request.referer
+    session[:previous] = params[:action]
   end
 
   def update
@@ -45,7 +46,7 @@ class DraftGrantsController < ApplicationController
       flash[:success] = 'Grant updated!'
       redirect_to edit_draft_path @draft_grant
     else
-      redirect_to session.delete(:return_to)
+      render session[:previous]
     end
   end
   

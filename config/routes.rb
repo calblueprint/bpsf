@@ -6,7 +6,7 @@ BPSF::Application.routes.draw do
 
   resources :drafts, controller: 'draft_grants', except: [:show, :index]
   scope '/drafts' do
-    get ':id/edit_general/',   to: 'draft_grants#edit_general_info', as: :draft_edit_general
+    get ':id/edit_general_info/',   to: 'draft_grants#edit_general_info', as: :draft_edit_general
     get ':id/edit_logistics/', to: 'draft_grants#edit_logistics',    as: :draft_edit_logistics
     get ':id/edit_budget/',    to: 'draft_grants#edit_budget',       as: :draft_edit_budget
     get ':id/edit_methods/',   to: 'draft_grants#edit_methods',      as: :draft_edit_methods
