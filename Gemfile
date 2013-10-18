@@ -30,8 +30,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
   gem 'modernizr-rails', '~> 2.6.2.3'
   gem 'compass-rails', '~> 1.0.3'
-  gem "gumby2-rails", "~> 0.0.9"
-  gem "modular-scale", "~> 1.0.6"
+  gem 'gumby-framework', '~> 0.0.1'
 end
 
 group :test do
