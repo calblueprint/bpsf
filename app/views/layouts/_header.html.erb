@@ -1,0 +1,39 @@
+<!--***************************************HEADER********************************************-->
+<div class="navbar" id="nav1">
+  <div class="row">
+  <span class="two columns logo">
+    <%= link_to '<i class="icon-left-open-big"></i>Return to Site'.html_safe, root_path %>
+  </span>
+    <a class="toggle" gumby-trigger="#nav1 > .row > ul" href="#"><i class="icon-menu"></i></a>
+    <ul class="ten columns">
+      <li><%= link_to 'Explore', root_path %></li>|
+      <li><a href="#">About</a></li>|
+      <li>
+        <% if can? :create, Grant %>
+          <%= link_to "Apply", new_draft_path %>
+        <% else %>
+          <%= link_to "Apply", new_user_session_path %>
+        <% end %>
+      </li>
+      <li class="field"><input class="search input" type="search" placeholder="Search" /></li>
+      <li>
+        <% if user_signed_in? %>
+          Hello, <%= current_user.email.split('@').first %>!
+        <% else %>
+          <button class="medium primary btn pointer">
+            <%= link_to "Sign Up", new_user_session_path %>
+          </button>
+        <% end %>
+      </li>
+      <li>
+        <button class="medium primary btn pointer">
+          <% if user_signed_in? %>
+            <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+          <% else %>
+            <%= link_to "Sign In", new_user_session_path %>
+          <% end %>
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>
