@@ -5,6 +5,11 @@
 <div class="row">
   <h2>Listing all grants</h2>
   <ul>
+    <li class="row">
+      <h4 class="three columns">Name</h4>
+      <h4 class="three columns">Status</h4>
+      <h4 class="three columns">Set Status</h4>
+    </li>
     <%= render partial: 'all_grants', collection: @grants, as: :grant %>
   </ul>
 </div>
