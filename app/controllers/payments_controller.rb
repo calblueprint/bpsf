@@ -1,4 +1,4 @@
-class PaymentController < ApplicationController
+class PaymentsController < ApplicationController
   def create
     @payment = current_user.payments.build(:amount => params[:amount])
   end
