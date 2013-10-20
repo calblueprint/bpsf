@@ -70,6 +70,12 @@ ActiveRecord::Schema.define(:version => 20131016074756) do
     t.string   "video"
   end
 
+  create_table "payments", :force => true do |t|
+    t.integer  "amount"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "schools", :force => true do |t|
     t.string   "name"
     t.integer  "donations_received"
