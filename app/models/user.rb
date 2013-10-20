@@ -27,5 +27,5 @@ class User < ActiveRecord::Base
   attr_accessible :first_name, :last_name, :email, :password,
                   :password_confirmation, :remember_me
 
-  has_many :payments
+  has_many :payments, dependent: :destroy
 end
