@@ -1,5 +1,6 @@
 class PaymentsController < ApplicationController
   def create
+    puts current_user.id
     @payment = current_user.payments.build(:amount => params[:amount])
   end
 
