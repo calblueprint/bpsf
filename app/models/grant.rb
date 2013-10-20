@@ -34,9 +34,9 @@ class Grant < ActiveRecord::Base
                   :background, :n_collaborators, :collaborators, :comments, :video
   belongs_to :recipient
 
-  scope :pending_grants, -> {with_state(:pending)}
-  scope :complete_grants, -> {with_state(:complete)}
-  scope :crowdfunding_grants, -> {with_state(:crowdfunding)}
+  scope :pending_grants, -> { with_state :pending }
+  scope :complete_grants, -> { with_state :complete }
+  scope :crowdfunding_grants, -> { with_state :crowdfunding }
 
   state_machine initial: :pending do
     event :reject do

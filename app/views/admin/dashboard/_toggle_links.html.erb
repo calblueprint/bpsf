@@ -1,5 +1,5 @@
-<% if !grant.complete? %>
-  <%= link_to 'Complete!', admin_toggle_complete_path(id: grant.id), method: :post %>
-<% else %>
-  <%= link_to 'Uncomplete!', admin_toggle_complete_path(id: grant.id), method: :post %>
+<% grant.state_transitions.map { |s| s.event.to_s }.each do |state| %>
+  <%= link_to state.titleize,
+              grant_event_path(id: grant.id, state: state),
+              method: :post %>
 <% end %>
