@@ -6,6 +6,8 @@ class PaymentsController < ApplicationController
     else
       @payment = current_user.payments.build(:amount => params[:amount])
       @payment.save
+      current_user.stripe_token ||= params[:stripe_token]
+      current_user.save
       redirect_to root_url, notice: "Donation processed!"
     end
   end
