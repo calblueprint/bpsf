@@ -33,7 +33,6 @@ payment = {
 		     },
 	stripeResponseHandler: function(status, response) {
 				       if (status == 200) {
-				       	   alert(response.id)
 					       $("#stripe_token").val(response.id);
 					       return $("#new_payment")[0].submit();
 				       } else {
