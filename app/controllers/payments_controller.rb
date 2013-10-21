@@ -5,6 +5,8 @@ class PaymentsController < ApplicationController
       deny_access
     else
       @payment = current_user.payments.build(:amount => params[:amount])
+      @payment.save
+      redirect_to root_url, notice: "Donation processed!"
     end
   end
 
