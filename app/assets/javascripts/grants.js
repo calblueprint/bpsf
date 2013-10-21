@@ -33,10 +33,11 @@ payment = {
 		     },
 	stripeResponseHandler: function(status, response) {
 				       if (status == 200) {
-					       $("#payment-stripe-token").val(response.id);
-					       return $("#donate")[0].submit();
+				       	   alert(response.id)
+					       $("#stripe_token").val(response.id);
+					       return $("#new_payment")[0].submit();
 				       } else {
-					       $("#stripe-error").text(response.error.message);
+					       $("#stripe_error").text(response.error.message);
 					       return $("input[type=submit]").attr("disabled", false);
 				       }
 			       }
