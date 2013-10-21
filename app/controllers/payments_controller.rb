@@ -1,6 +1,11 @@
 class PaymentsController < ApplicationController
+
   def create
-    @payment = current_user.payments.build(:amount => params[:amount])
+    if !anyone_signed_in?
+      deny_access
+    else
+      @payment = current_user.payments.build(:amount => params[:amount])
+    end
   end
 
   def destroy
