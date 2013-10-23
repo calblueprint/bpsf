@@ -1,0 +1,152 @@
+<div class="four columns infocard">
+  <div class="cardtitle">
+    <h3><%= grant.title %></h3>
+  </div>
+  <!-- Image_tag for grant should go here -->
+  <div class="cardcontent">
+    <p>
+      Director: <%= grant.recipient.first_name + ' ' + grant.recipient.last_name %> <br>
+      School: <%# grant.school (can't do yet) %> <br>
+      Description: <%= grant.summary %>
+    </p>
+    <div class="progress"> 
+      <!-- Also can't really do - no current payment status for grants -->
+      <span style="width: 50%">50%</span>
+    </div>
+    <div class="gcdiv">
+      <span class="gctext">Goal: </span>
+      <span class="goalnum"><%= grant.requested_funds %></span>
+      &emsp;
+      <span class="gctext">Current: </span> 
+      <!-- This too -->
+      <span class="currentnum">TBD</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- <div class="row">
+  <div class="four columns infocard">
+    <div class="cardtitle">
+      <h3>Teach Flying</h3>
+    </div>
+    <img src="/assets/images/1.jpg">
+    <div class="cardcontent">
+      <p>Director: Carlos Danger<br>
+      School: US Congress<br>
+      Description: Students will learn to fly with the famous congressman</p>
+      <div class="progress">
+        <span style="width: 27%">27%</span>
+      </div>
+      <div class="gcdiv">
+        <span class="gctext">Goal: </span>
+        <span class="goalnum">$5243</span>
+        &emsp;
+        <span class="gctext">Current: </span> 
+        <span class="currentnum">$3243</span>
+      </div>
+    </div>
+  </div>
+  <div class="four columns infocard">
+    <div class="cardtitle">
+      <h3>Go Hiking</h3>
+    </div>
+    <img src="images/2.jpg">
+    <div class="cardcontent">
+      <p>Director: Carlos Danger<br>
+      School: US Congress<br>
+      Description: Students will learn to fly with the famous congressman</p>
+      <div class="progress">
+        <span style="width: 73%">73%</span>
+      </div>
+      <div class="gcdiv">
+        <span class="gctext">Goal: </span>
+        <span class="goalnum">$5243</span>
+        &emsp;
+        <span class="gctext">Current: </span> 
+        <span class="currentnum">$3243</span>
+      </div>
+    </div>
+  </div>
+  <div class="four columns infocard">
+    <div class="cardtitle">
+      <h3>Combat STDs</h3>
+    </div>
+    <img src="images/3.jpg">
+    <div class="cardcontent">
+      <p>Director: Carlos Danger<br>
+      School: US Congress<br>
+      Description: Students will learn to fly with the famous congressman</p>
+      <div class="progress">
+        <span style="width: 46%">46%</span>
+      </div>
+      <div class="gcdiv">
+        <span class="gctext">Goal: </span>
+        <span class="goalnum">$5243</span>
+        &emsp;
+        <span class="gctext">Current: </span> 
+        <span class="currentnum">$3243</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="row">
+  <div class="four columns infocard">
+    <div class="cardtitle">
+      <h3>Teach Flying</h3>
+    </div>
+    <img src="images/4.jpg">
+    <div class="cardcontent">
+      <p>Director: Carlos Danger<br>
+      School: US Congress<br>
+      Description: Students will learn to fly with the famous congressman</p>
+      <div class="gcdiv">
+        <span class="gctext">Goal: </span>
+        <span class="goalnum">$5243</span>
+        &emsp;
+        <span class="gctext">Current: </span> 
+        <span class="currentnum">$3243</span>
+      </div>
+    </div>
+  </div>
+  <div class="four columns infocard">
+    <div class="cardtitle">
+      <h3>Go Hiking</h3>
+    </div>
+    <img src="images/5.jpg">
+    <div class="cardcontent">
+      <p>Director: Carlos Danger<br>
+      School: US Congress<br>
+      Description: Students will learn to fly with the famous congressman</p>
+      <div class="gcdiv">
+        <span class="gctext">Goal: </span>
+        <span class="goalnum">$5243</span>
+        &emsp;
+        <span class="gctext">Current: </span> 
+        <span class="currentnum">$3243</span>
+      </div>
+    </div>
+  </div>
+  <div class="four columns infocard">
+    <div class="cardtitle">
+      <h3>Combat STDs</h3>
+    </div>
+    <img src="images/1.jpg">
+    <div class="cardcontent">
+      <p>Director: Carlos Danger<br>
+      School: US Congress<br>
+      Description: Students will learn to fly with the famous congressman</p>
+      <div class="gcdiv">
+        <span class="gctext">Goal: </span>
+        <span class="goalnum">$5243</span>
+        &emsp;
+        <span class="gctext">Current: </span> 
+        <span class="currentnum">$3243</span>
+      </div>
+    </div>
+  </div>
+</div>
+ -->
