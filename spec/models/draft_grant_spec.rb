@@ -23,6 +23,7 @@
 #  comments           :text
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
+#  video              :string(255)
 #
 
 require 'spec_helper'
