@@ -2,7 +2,7 @@ BPSF::Application.routes.draw do
   root to: 'pages#home'
 
   resources :grants, except: :index
-  devise_for :users
+  devise_for :users, :controllers => { :registrations => "registrations" }
 
   namespace :recipient do
     get '', to: 'dashboard#index', as: :dashboard
