@@ -41,6 +41,9 @@ class Grant < ActiveRecord::Base
   state_machine initial: :pending do
     event :reject do
       transition [:pending, :crowdfund_pending] => :rejected
+      def self.grant_rejected
+        UserMailer.grant_rejected(self).deliver
+      end
     end
 
     event :reconsider do
@@ -48,15 +51,28 @@ class Grant < ActiveRecord::Base
     end
 
     event :fund do
+      def self.admin_crowdsuccess  
+        UserMailer.admin_crowdsuccess(self).deliver :if => self.crowdfunding?
+      end
       transition [:pending, :crowdfund_pending, :crowdfunding] => :complete
+      def self.grant_funded
+        UserMailer.grant_funded(self).deliver
+      end
     end
 
     event :crowdfund do
       transition :pending => :crowdfunding
+      def self.grant_crowdfunding
+        UserMailer.grant_crowdfunding(self).deliver
+      end
     end
 
     event :crowdfunding_failed do
       transition :crowdfunding => :crowdfund_pending
+      def self.crowdfailed
+        UserMailer.admin_crowdfailed(self).deliver
+        UserMailer.grant_crowdfailed(self).deliver
+      end
     end
   end
 end
