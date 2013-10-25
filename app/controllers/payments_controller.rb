@@ -21,7 +21,4 @@ class PaymentsController < ApplicationController
     redirect_to root_url
   end
 
-  def process_payments(grant)
-     
-  end
 end
