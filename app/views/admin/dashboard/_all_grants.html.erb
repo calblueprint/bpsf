@@ -1,5 +1,5 @@
-<li class="row">
-  <div class="three columns"><%= link_to grant.title, grant %></div>
-  <div class="three columns"><%= render partial: 'grant_status', locals: { grant: grant } %></div> 
-  <div class="three columns"><%= render partial: 'toggle_links', locals: { grant: grant } %></div>
-</li>
+<tr>
+  <td><%= link_to grant.title, grant %></td>
+  <td><%= render partial: 'grant_status', locals: { grant: grant } %></td> 
+  <td><%= render partial: 'toggle_links', locals: { grant: grant } %></td>
+</tr>

@@ -1,16 +1,30 @@
 <div class="row">
-  <h1>Creating a Grant</h1>
-</div>
-<div class="row">
-  <%= form_for @draft_grant, url: drafts_path do |f| %>
-    <%= render 'shared/errors', object: f.object %>
-    
-    <div class="field">
-      <%= f.text_field :title, class: [:narrow, :input], placeholder: :Title %>
+  <div class="twelve columns">
+    <div class="wrapper light">
+
+      <div class="row">
+        <div class="twelve columns centered centalign">
+          <h2>Creating a Grant</h2>
+          <h5>Enter a title to get started!</h5>
+          <br>
+        </div>
+      </div>
+      <div class="row centalign">
+          <%= form_for @draft_grant, url: drafts_path do |f| %>
+            <%= render 'shared/errors', object: f.object %>
+            
+            <div class="field append">
+              <%= f.text_field :title, class: [:wide, :input], placeholder: :Title %>
+              <div class="medium primary btn">
+                <%= f.submit 'Go' %>
+              </div>
+            </div>
+          
+           
+          <% end %>
+          <br> 
+      </div>
+
     </div>
-  
-    <div class="medium default btn">
-      <%= f.submit 'Create grant!' %>
-    </div>
-  <% end %>
+  </div>
 </div>

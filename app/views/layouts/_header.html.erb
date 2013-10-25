@@ -9,19 +9,15 @@
       <li><%= link_to 'Explore', root_path %></li>|
       <li><a href="#">About</a></li>|
       <li>
-        <% if can? :create, Grant %>
-          <%= link_to "Apply", new_draft_path %>
-        <% else %>
-          <%= link_to "Apply", new_user_session_path %>
-        <% end %>
+        <%= link_to "Apply", new_draft_path %>
       </li>
       <li class="field"><input class="search input" type="search" placeholder="Search" /></li>
       <li>
         <% if user_signed_in? %>
-          Hello, <%= current_user.email.split('@').first %>!
+          Hello, <%= current_user.first_name %>!
         <% else %>
           <button class="medium primary btn pointer">
-            <%= link_to "Sign Up", new_user_session_path %>
+            <%= link_to "Sign Up", new_user_registration_path %>
           </button>
         <% end %>
       </li>

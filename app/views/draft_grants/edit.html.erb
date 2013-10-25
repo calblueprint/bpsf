@@ -1,38 +1,163 @@
 <div class="row">
-  <h1>Editing <%= @draft_grant.title %></h1>
-</div>
-<div class="row">
-  <div class="three columns">
-    <div class="row">
-      <div class="medium default btn">
-        <%= link_to 'Edit General Info', draft_edit_general_path(@draft_grant) %>
+  <div class="twelve columns">
+    <div class="wrapper light">
+      <div class="row">
+        <h2>
+          Editing <%= @draft_grant.title %>
+          <span class="ttip pull_right" data-tooltip="Back to Dashboard">
+            <%= link_to '<i class="icon-back"></i>'.html_safe, recipient_dashboard_path %>
+          </span>
+        </h2>
       </div>
-    </div>
-    <div class="row">
-      <div class="medium default btn">
-        <%= link_to 'Edit Logistics', draft_edit_logistics_path(@draft_grant) %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="medium default btn">
-        <%= link_to 'Edit Budget', draft_edit_budget_path(@draft_grant) %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="medium default btn">
-        <%= link_to 'Edit Methods', draft_edit_methods_path(@draft_grant) %>
-      </div>
-    </div>
-  </div>
-  <div class="nine columns">
-    <%= render @draft_grant %>
-  </div>
-</div>
 
-<br>
 
-<div class="row">
-  <div class="medium warning btn">
-    <%= link_to 'Back to Dashboard', recipient_dashboard_path %>
+
+<!--GENERAL INFO-->
+      <div class="row ultitle">
+        <h3>
+          General Information          
+          <span class="ttip" data-tooltip="Edit">
+            <%= link_to '<i class="icon-pencil"></i>'.html_safe, draft_edit_general_path(@draft_grant) %>
+          </span>
+        </h3>
+      </div>
+
+      <div class="row">
+        <div class="eleven columns push_one">
+    
+          <div class="row">
+            <h4>Title: <%= @draft_grant.title %></h4>
+          </div>
+
+          <div class="row">
+            <h4>Summary</h4>
+            <%= @draft_grant.summary %>
+          </div>
+
+          <div class="row">
+            <h4>Video</h4>
+            <% if !@draft_grant.video.blank? %>
+              <iframe width="560" height="315" src= "http://www.youtube.com/embed/<%= parse_embed(@draft_grant) %>"></iframe>
+            <% end %>
+          </div>
+
+          <div class="row">
+            <h4>Subject areas</h4>
+            <%= @draft_grant.subject_areas %>
+          </div>
+
+        </div>
+      </div>
+
+<!--LOGISTICS-->
+      <div class="row ultitle">
+        <h3>
+          Logistics        
+          <span class="ttip" data-tooltip="Edit">
+            <%= link_to '<i class="icon-pencil"></i>'.html_safe, draft_edit_logistics_path(@draft_grant) %>
+          </span>
+        </h3>
+      </div>
+
+      <div class="row">
+        <div class="eleven columns push_one">
+
+          <div class="row">
+            <h4>Grade level: <%= @draft_grant.grade_level %></h4>
+          </div>
+
+          <div class="row">
+            <h4>Duration</h4>
+            <%= @draft_grant.duration %>
+          </div>
+
+          <div class="row">
+            <h4>Number of classes: <%= @draft_grant.num_classes %></h4>
+          </div>
+
+          <div class="row">
+            <h4>Number of students: <%= @draft_grant.num_students %></h4>
+          </div>
+
+          <div class="row">
+            <h4>Num. collaborators: <%= @draft_grant.n_collaborators %></h4>
+          </div>
+
+          <div class="row">
+            <h4>Collaborators</h4>
+            <%= @draft_grant.collaborators %>
+          </div>
+        </div>
+      </div>
+
+<!--BUDGET-->
+      <div class="row ultitle">
+        <h3>
+          Budget        
+          <span class="ttip" data-tooltip="Edit">
+            <%= link_to '<i class="icon-pencil"></i>'.html_safe, draft_edit_budget_path(@draft_grant) %>
+          </span>
+        </h3>
+      </div>
+
+      <div class="row">
+        <div class="eleven columns push_one">
+          <div class="row">
+            <h4>Total budget: <%= @draft_grant.total_budget %></h4>
+          </div>
+
+          <div class="row">
+            <h4>Requested funds: <%= @draft_grant.requested_funds %></h4>
+          </div>
+
+          <div class="row">
+            <h4>Funds will pay for:</h4>
+            <%= @draft_grant.funds_will_pay_for %>
+          </div>
+
+          <div class="row">
+            <h4>Budget description</h4>
+            <%= @draft_grant.budget_desc %>
+          </div>
+        </div>
+      </div>
+
+<!--METHODS-->
+
+      <div class="row ultitle">
+        <h3>
+          Methods        
+          <span class="ttip" data-tooltip="Edit">
+            <%= link_to '<i class="icon-pencil"></i>'.html_safe, draft_edit_methods_path(@draft_grant) %>
+          </span>
+        </h3>
+      </div>
+
+      <div class="row">
+        <div class="eleven columns push_one">
+          <div class="row">
+            <h4>Purpose</h4>
+            <%= @draft_grant.purpose %>
+          </div>
+
+          <div class="row">
+            <h4>Methods</h4>
+            <%= @draft_grant.methods %>
+          </div>
+
+          <div class="row">
+            <h4>Teacher background</h4>
+            <%= @draft_grant.background %>
+          </div>
+
+          <div class="row">
+            <h4>Comments</h4>
+            <%= @draft_grant.comments %>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
   </div>
 </div>
