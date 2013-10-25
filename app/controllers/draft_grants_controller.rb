@@ -2,7 +2,12 @@ class DraftGrantsController < ApplicationController
   load_and_authorize_resource
   
   def new
-    @draft_grant = current_user.draft_grants.build
+    if current_user && current_user.type == 'Recipient'
+      @draft_grant = current_user.draft_grants.build
+    elsif
+      raise CanCan::AccessDenied.new("You are not authorized to access this page.", :index, Recipient)
+      redirect_to root_url
+    end
   end
 
   def create
