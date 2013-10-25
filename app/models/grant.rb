@@ -75,8 +75,10 @@ class Grant < ActiveRecord::Base
         :currency => "usd",
         :card => user.stripe_token,
         :description => "Donation to BPSF")
+      payment.charge_id = charge.id
+      payment.save
     end
   rescue Stripe::InvalidRequestError => e
-    logger.error "Stripe error: #(e.message)"
+    logger.error "Stripe error: #{e.message}"
   end
 end
