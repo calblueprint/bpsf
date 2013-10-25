@@ -70,11 +70,13 @@ class Grant < ActiveRecord::Base
     @payments = Payment.where(:crowdfund_id => self.id)
     for payment in @payments do
       user = User.find(payment.user_id)
-      Stripe::Charge.create(
+      charge = Stripe::Charge.create(
         :amount => payment.amount,
         :currency => "usd",
         :card => user.stripe_token,
         :description => "Donation to BPSF")
     end
+  rescue Stripe::InvalidRequestError => e
+    logger.error "Stripe error: #(e.message)"
   end
 end
