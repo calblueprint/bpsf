@@ -64,7 +64,7 @@ form {
   .input {
     position: relative;
     padding: 0 10px;
-    background: #fff;
+    background: #f2f2f2;
     //border: 1px solid darken($default-color, 10%);
     @include line-and-height(height-calc($norm));
     @include font-size($norm);
