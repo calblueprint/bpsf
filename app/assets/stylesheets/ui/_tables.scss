@@ -5,7 +5,7 @@ table {
 	border-spacing: 0;
 	margin-bottom: 20px;
 	width: 100%;
-	border: $table-border-size $table-border-style $table-border-color;
+	//border: $table-border-size $table-border-style $table-border-color;
 
 	caption {
 		text-align: center;
@@ -32,13 +32,16 @@ table {
 	}
 
 	thead {
-		background-color: $table-thead-bgcolor;
-		color: #fff;
+	//	background-color: $table-thead-bgcolor;
+	//	color: #fff;
+
 
 		tr th {
-			font-size: $norm;
-			font-weight: bold;
+			font-size: $large;
+		//	font-weight: bold;
 			vertical-align: bottom;
+			border-bottom: 3px $table-cell-border-style $primary-color;
+			border-top: none;
 		}
 	}
 
