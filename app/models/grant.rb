@@ -57,8 +57,15 @@ class Grant < ActiveRecord::Base
     end
 
     event :fund do
-      def self.admin_crowdsuccess  
-        UserMailer.admin_crowdsuccess(self).deliver :if => self.crowdfunding?
+      def self.crowdsuccess  
+        if self.crowdfunding?
+          UserMailer.admin_crowdsuccess(self).deliver
+          @payments = Payment.where(:crowdfund_id => self.id)
+          for payment in @payments do
+            user = User.find(payment.user_id)
+            UserMailer.user_crowdsuccess(user,self).deliver
+          end
+        end
       end
       transition [:pending, :crowdfund_pending, :crowdfunding] => :complete
       def self.grant_funded

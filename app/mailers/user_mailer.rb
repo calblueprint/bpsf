@@ -14,6 +14,11 @@ class UserMailer < ActionMailer::Base
     mail(to: @user.email, subject: 'Thank you for pledging a donation!')
   end
 
+  def user_crowdsuccess(user,grant)
+    @user = user
+    @grant = grant
+    mail(to: @user.email, subject: 'A grant you donated to has been successfully crowdfunded!')
+
   def grant_submitted(grant)
     @recipient = Recipient.find(grant.recipient_id)
     @grant = grant
