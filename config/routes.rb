@@ -1,7 +1,10 @@
 BPSF::Application.routes.draw do
   root to: 'pages#home'
 
-  resources :grants, except: :index
+  resources :grants,       except: :index
+  resources :draft_grants, except: [:show, :index]
+  resources :payments,     except: [:index, :show, :edit, :update, :new]
+
   devise_for :users
 
   namespace :recipient do
