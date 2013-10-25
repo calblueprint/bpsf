@@ -21,7 +21,7 @@
           Hello, <%= current_user.email.split('@').first %>!
         <% else %>
           <button class="medium primary btn pointer">
-            <%= link_to "Sign Up", new_user_session_path %>
+            <%= link_to "Sign Up", new_user_registration_path %>
           </button>
         <% end %>
       </li>
