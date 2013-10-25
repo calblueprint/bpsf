@@ -1,47 +1,54 @@
 <div class="row">
-  <h1>Editing <%= @draft_grant.title %></h1>
-</div>
-
-<!-- This is the form for the grade_level, duration, num_classes, num_students, n_collaborators, and collaborators. -->
-
-<div class="row">
-  <div class="six columns">
-    <%= form_for @draft_grant, url: draft_path do |f| %>
-      <%= render 'shared/errors', object: f.object %>
-      
-      <div class="field">
-        <%= f.label :grade_level, 'Grade Level' %>
-        <%= f.text_field :grade_level, class: :input %>
+  <div class="twelve columns">
+    <div class="wrapper light">
+      <div class="row">
+        <h2>Editing Logistics</h2>
       </div>
 
-      <div class="field">
-        <%= f.label :duration, 'Duration' %>
-        <%= f.text_field :duration, class: :input %>
+      <!-- This is the form for the grade_level, duration, num_classes, num_students, n_collaborators, and collaborators. -->
+
+      <div class="row">
+        <div class="twelve columns">
+          <%= form_for @draft_grant, url: draft_path do |f| %>
+            <%= render 'shared/errors', object: f.object %>
+            
+            <div class="field">
+              <%= f.label :grade_level, 'Grade Level' %>
+              <%= f.text_field :grade_level, class: :input %>
+            </div>
+
+            <div class="field">
+              <%= f.label :duration, 'Duration' %>
+              <%= f.text_field :duration, class: :input %>
+            </div>
+
+            <div class="field">
+              <%= f.label :num_classes, 'Number of classes affected' %>
+              <%= f.text_field :num_classes, class: :input %>
+            </div>
+
+            <div class="field">
+              <%= f.label :num_students, 'Number of students affected' %>
+              <%= f.text_field :num_students, class: :input %>
+            </div>
+
+            <div class="field">
+              <%= f.label :n_collaborators, 'Number of collaborators' %>
+              <%= f.text_field :n_collaborators, class: :input %>
+            </div>
+
+            <div class="field">
+              <%= f.label :collaborators, 'Collaborators' %>
+              <%= f.text_area :collaborators, class: [:textarea, :input], rows: 5 %>
+            </div>
+          
+            <div class="medium primary pull_right btn">
+              <%= f.submit 'Save!' %>
+            </div>
+          <% end %>
+        </div>
       </div>
 
-      <div class="field">
-        <%= f.label :num_classes, 'Number of classes affected' %>
-        <%= f.text_field :num_classes, class: :input %>
-      </div>
-
-      <div class="field">
-        <%= f.label :num_students, 'Number of students affected' %>
-        <%= f.text_field :num_students, class: :input %>
-      </div>
-
-      <div class="field">
-        <%= f.label :n_collaborators, 'Number of collaborators' %>
-        <%= f.text_field :n_collaborators, class: :input %>
-      </div>
-
-      <div class="field">
-        <%= f.label :collaborators, 'Collaborators' %>
-        <%= f.text_area :collaborators, class: [:textarea, :input], rows: 5 %>
-      </div>
-    
-      <div class="medium default btn">
-        <%= f.submit 'Save!' %>
-      </div>
-    <% end %>
+    </div>
   </div>
 </div>
