@@ -1,15 +1,24 @@
 <div class="row">
-  <h1>Admin Dashboard</h1>
-</div>
+  <div class="twelve columns">
+    <div class="wrapper light">
 
-<div class="row">
-  <h2>Listing all grants</h2>
-  <ul>
-    <li class="row">
-      <h4 class="three columns">Name</h4>
-      <h4 class="three columns">Status</h4>
-      <h4 class="three columns">Set Status</h4>
-    </li>
-    <%= render partial: 'all_grants', collection: @grants, as: :grant %>
-  </ul>
+      <div class="row">
+        <h2>Admin Dashboard</h2>
+
+        <table>
+          <thead>
+            <tr>
+              <th >Name</th>
+              <th >Status</th>
+              <th >Set Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <%= render partial: 'all_grants', collection: @grants, as: :grant %>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
 </div>
