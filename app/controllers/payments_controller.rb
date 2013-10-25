@@ -1,13 +1,13 @@
 class PaymentsController < ApplicationController
 
   def create
+    @grant = Grant.find(params[:grant_id])
     if !anyone_signed_in?
-      @grant = Grant.find(params[:grant_id])
       deny_access(url: url_for(@grant))
     else
-      @payment = current_user.payments.build(:amount => params[:amount],
-                                             :user_id => current_user.id,
-                                             :crowdfund_id => params[:grant_id])
+      @payment = current_user.payments.build(:amount => params[:amount])
+      @payment.user_id = current_user.id
+      @payment.crowdfund_id = @grant.id
       @payment.save
       current_user.stripe_token ||= params[:stripe_token]
       current_user.save
