@@ -29,7 +29,7 @@
 		
 .wrapper{
 	width:100%;
-	padding:5px 10px 5px 10px;
+	padding:10px 10px 20px 10px;
 	&.dark{
 	background-color:#000;}
 	&.light{
@@ -98,6 +98,10 @@
 }
 
 #nobullet > li {list-style:none;} 
+
+.centalign{text-align:center;}
+
+.ultitle{border-bottom:$table-cell-border-size $table-cell-border-style $default-color;}
 
 
 /////////////////////////////////////////////CAMERA STYLES///////////////////////////////////////////
