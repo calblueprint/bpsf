@@ -5,7 +5,7 @@ class DraftGrantsController < ApplicationController
     if current_user && current_user.type == 'Recipient'
       @draft_grant = current_user.draft_grants.build
     elsif
-      raise CanCan::AccessDenied.new("You are not authorized to access this page.", :index, Recipient)
+      raise CanCan::AccessDenied.new("You are not authorized to access this page.", :manage, DraftGrant)
       redirect_to root_url
     end
   end
