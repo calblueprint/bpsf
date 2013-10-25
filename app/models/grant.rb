@@ -42,6 +42,9 @@ class Grant < ActiveRecord::Base
   scope :crowdfunding_grants, -> { with_state :crowdfunding }
 
   state_machine initial: :pending do
+
+    after_transition :on => :fund, :do => :process_payments
+
     event :reject do
       transition [:pending, :crowdfund_pending] => :rejected
     end
@@ -61,5 +64,19 @@ class Grant < ActiveRecord::Base
     event :crowdfunding_failed do
       transition :crowdfunding => :crowdfund_pending
     end
+  end
+
+  def process_payments
+    @payments = Payment.where(:crowdfund_id => self.id)
+    for payment in @payments do
+      user = User.find(payment.user_id)
+      charge = Stripe::Charge.create(
+        :amount => payment.amount,
+        :currency => "usd",
+        :card => user.stripe_token,
+        :description => "Donation to BPSF")
+    end
+  rescue Stripe::InvalidRequestError => e
+    logger.error "Stripe error: #(e.message)"
   end
 end
