@@ -33,6 +33,7 @@ class Grant < ActiveRecord::Base
                   :requested_funds, :funds_will_pay_for, :budget_desc, :purpose, :methods,
                   :background, :n_collaborators, :collaborators, :comments, :video
   belongs_to :recipient
+  belongs_to :school
 
   scope :pending_grants, -> { with_state :pending }
   scope :complete_grants, -> { with_state :complete }

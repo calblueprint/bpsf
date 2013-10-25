@@ -41,6 +41,7 @@ class DraftGrant < ActiveRecord::Base
                   :funds_will_pay_for, :budget_desc, :purpose, :methods, :background, 
                   :n_collaborators, :collaborators, :comments, :video
   belongs_to :recipient
+  belongs_to :school
 
   validates :title, presence: true, length: { maximum: 40 }
   validates_length_of :summary, within: 1..200, too_short: 'cannot be blank', allow_nil: true
