@@ -20,4 +20,8 @@ class PaymentsController < ApplicationController
     flash[:success] = "Payment cancelled."
     redirect_to root_url
   end
+
+  def process_payments(grant)
+     
+  end
 end
