@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
 
-gem "ruby-graphviz"
 gem 'pg', '0.12.2'
 gem 'rb-readline', '~> 0.4.2'
 gem 'faker', '1.0.1'
