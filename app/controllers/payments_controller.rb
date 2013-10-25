@@ -2,7 +2,8 @@ class PaymentsController < ApplicationController
 
   def create
     if !anyone_signed_in?
-      deny_access
+      @grant = Grant.find(params[:grant_id])
+      deny_access(url: url_for(@grant))
     else
       @payment = current_user.payments.build(:amount => params[:amount])
       @payment.save
