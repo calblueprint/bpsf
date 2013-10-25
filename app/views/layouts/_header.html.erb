@@ -9,11 +9,7 @@
       <li><%= link_to 'Explore', root_path %></li>|
       <li><a href="#">About</a></li>|
       <li>
-        <% if can? :create, Grant %>
-          <%= link_to "Apply", new_draft_path %>
-        <% else %>
-          <%= link_to "Apply", new_user_session_path %>
-        <% end %>
+        <%= link_to "Apply", new_draft_path %>
       </li>
       <li class="field"><input class="search input" type="search" placeholder="Search" /></li>
       <li>
