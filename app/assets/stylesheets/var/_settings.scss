@@ -155,11 +155,11 @@ $table-border-radius:  4px;
 $table-stripe-bgcolor:  #e5e5e5;
 
 // Tooltips
-$tt-min-width:  130px;
-$tt-bgcolor:  $primary-color;
-$tt-position:  top;
-$tt-align:  left;
-$tt-pretty:  yes;
+$tt-min-width:  10px;
+$tt-bgcolor:  $default-color;
+$tt-position: right;
+$tt-align:  center;
+$tt-pretty:  no;
 
 // Floats
 $default-float:  left;
