@@ -34,4 +34,7 @@ BPSF::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  # Debugger level
+  config.log_level = :warn
 end
