@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131025041447) do
+ActiveRecord::Schema.define(:version => 20131025091558) do
 
   create_table "crowdfunds", :force => true do |t|
     t.datetime "deadline"
@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(:version => 20131025041447) do
     t.datetime "updated_at",   :null => false
     t.integer  "user_id"
     t.integer  "crowdfund_id"
+    t.string   "charge_id"
   end
 
   create_table "schools", :force => true do |t|
@@ -112,4 +113,3 @@ ActiveRecord::Schema.define(:version => 20131025041447) do
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
 end
-
