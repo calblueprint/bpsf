@@ -5,44 +5,48 @@ require 'pry'
 describe 'The admin dashboard' do
   subject { page }
   let(:admin) { FactoryGirl.create :admin }
-  let!(:grant1) { FactoryGirl.create :grant }
-  let!(:grant2) { FactoryGirl.create :grant }
 
   before { sign_in admin }
 
   it { should have_content 'Admin Dashboard' }
 
   describe 'grants listing' do
+    let!(:grant1) { FactoryGirl.create :grant }
+    let!(:grant2) { FactoryGirl.create :grant }
+
+    before { visit admin_dashboard_path }
+
     it { should have_content 'Pending' }
     it 'should list all grants' do
       [grant1, grant2].each do |g|
-        page.should have_content g.title
+        page.should have_link g.title
       end
     end
   end
 
-  pending 'toggling grant fields' do
+  describe 'setting grant status' do
     let!(:grant) { FactoryGirl.create :grant }
+    before { visit admin_dashboard_path }
 
-    describe 'the complete field' do
-      before { click_link 'Complete' }
+    describe 'to fund' do
+      before { click_link 'Fund' }
 
-      it { should have_content 'Complete' }
-      it { should_not have_content 'Pending' }
+      it { should have_link 'Reconsider' }
+      it { should_not have_link 'Pending' }
     end
 
-    describe 'the crowdsource field' do
-      before { click_link 'Crowdsource' }
+    describe 'to crowdfund' do
+      before { click_link 'Crowdfund' }
 
-      it { should have_content 'Crowdsourcing' }
-      it { should_not have_content 'Pending' }
+      it { should have_link 'Crowdfunding Failed' }
+      it { should_not have_link 'Pending' }
     end
 
-    describe 'the rejected field' do
+    describe 'to rejected' do
       before { click_link 'Reject' }
 
-      it { should have_content 'Reject' }
-      it { should_not have_content 'Pending' }
+      it { should have_link 'Reconsider' }
+      it { should_not have_link 'Pending' }
     end
   end
 

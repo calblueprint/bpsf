@@ -2,16 +2,13 @@ class Admin::DashboardController < ApplicationController
   authorize_resource :class => false
 
   def index
-    @grants = Grant.all
+    @grants = Grant.all.sort
   end
 
-  def toggle_complete
+  # One day, this too will be AJAX
+  def grant_event
     @grant = Grant.find params[:id]
-    if !@grant.complete?
-      @grant.fund
-    else
-      @grant.reconsider
-    end
+    @grant.send params[:state]
     redirect_to admin_dashboard_path
   end
 end

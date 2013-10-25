@@ -1,20 +1,11 @@
-<div class="row">
-  <h1>Home Page</h1>
-  <p>This is a stub home page that we will change later.</p>
-</div>
 
-<div class="row">
-  <h2>Grant Listing</h2>
-  <ul>
-    <%= render @grants %>
-    <%= will_paginate @grants %>
-  </ul>
-</div>
+<%= render 'slideshow' %>
+<%= render 'menu' %>        
 
-<div class="row">
-  <% if can? :create, Grant %>
-    <div class="medium primary btn">
-      <%= link_to "Create Grant!", new_draft_path %>
-    </div>
-  <% end %>
+<!--***************************************TILES********************************************-->
+<div class="wrapper light">
+  <div class="row">
+    <%= render partial: 'crowdfunding_grants', collection: @grants, as: :grant %>
+  </div>
+  <%= will_paginate @grants %>
 </div>
