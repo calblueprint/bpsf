@@ -25,6 +25,8 @@
 #  recipient_id       :integer
 #  state              :string(255)
 #  video              :string(255)
+#  image_url          :string(255)
+#  school_id          :string(255)
 #
 
 class Grant < ActiveRecord::Base
