@@ -43,6 +43,8 @@ ActiveRecord::Schema.define(:version => 20131025041447) do
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
     t.string   "video"
+    t.string   "image_url"
+    t.string   "school_id"
   end
 
   create_table "grants", :force => true do |t|
@@ -68,6 +70,8 @@ ActiveRecord::Schema.define(:version => 20131025041447) do
     t.integer  "recipient_id"
     t.string   "state"
     t.string   "video"
+    t.string   "image_url"
+    t.string   "school_id"
   end
 
   create_table "payments", :force => true do |t|

@@ -47,5 +47,11 @@ parent2 = User.create! first_name: 'Heathcliff',
 
 teacher1.grants.create! title: "Grant 1"
 teacher2.grants.create! title: "Grant 2"
-g = teacher1.grants.create! title: "Crowdfunding Grant 1"
-g.crowdfund
+crowdfunding_grants = []
+crowdfunding_grants << teacher1.grants.create!(title: "Crowdfunding 1")
+crowdfunding_grants << teacher2.grants.create!(title: "Crowdfunding 2")
+crowdfunding_grants << teacher1.grants.create!(title: "Crowdfunding 3")
+crowdfunding_grants << teacher2.grants.create!(title: "Crowdfunding 4")
+crowdfunding_grants << teacher1.grants.create!(title: "Crowdfunding 5")
+crowdfunding_grants << teacher2.grants.create!(title: "Crowdfunding 6")
+crowdfunding_grants.map { |grant| grant.crowdfund }

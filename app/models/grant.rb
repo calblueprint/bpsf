@@ -25,6 +25,8 @@
 #  recipient_id       :integer
 #  state              :string(255)
 #  video              :string(255)
+#  image_url          :string(255)
+#  school_id          :string(255)
 #
 
 class Grant < ActiveRecord::Base
@@ -33,10 +35,11 @@ class Grant < ActiveRecord::Base
                   :requested_funds, :funds_will_pay_for, :budget_desc, :purpose, :methods,
                   :background, :n_collaborators, :collaborators, :comments, :video
   belongs_to :recipient
+  belongs_to :school
 
-  scope :pending_grants, -> {with_state(:pending)}
-  scope :complete_grants, -> {with_state(:complete)}
-  scope :crowdfunding_grants, -> {with_state(:crowdfunding)}
+  scope :pending_grants, -> { with_state :pending }
+  scope :complete_grants, -> { with_state :complete }
+  scope :crowdfunding_grants, -> { with_state :crowdfunding }
 
   state_machine initial: :pending do
     event :reject do

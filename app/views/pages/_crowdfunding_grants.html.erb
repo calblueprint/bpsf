@@ -1,0 +1,25 @@
+<div class="four columns infocard">
+  <div class="cardtitle">
+    <h3><%= grant.title %></h3>
+  </div>
+  <!-- Image_tag for grant should go here -->
+  <div class="cardcontent">
+    <p>
+      Director: <%= grant.recipient.first_name + ' ' + grant.recipient.last_name %> <br>
+      School: <%# grant.school (can't do yet) %> <br>
+      Description: <%= grant.summary %>
+    </p>
+    <div class="progress"> 
+      <!-- Also can't really do - no current payment status for grants -->
+      <span style="width: 50%">50%</span>
+    </div>
+    <div class="gcdiv">
+      <span class="gctext">Goal: </span>
+      <span class="goalnum"><%= grant.requested_funds %></span>
+      &emsp;
+      <span class="gctext">Current: </span> 
+      <!-- This too -->
+      <span class="currentnum">TBD</span>
+    </div>
+  </div>
+</div>
