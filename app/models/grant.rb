@@ -63,7 +63,7 @@ class Grant < ActiveRecord::Base
     end
 
     after_transition :to => :fund do |transition|
-      puts "FUNDING"
+      puts "FUNDING +++++++++++++++++++++++++++++++++++++++++"
     end
   end
 end
