@@ -61,5 +61,9 @@ class Grant < ActiveRecord::Base
     event :crowdfunding_failed do
       transition :crowdfunding => :crowdfund_pending
     end
+
+    after_transition :to => :fund do |transition|
+      puts "FUNDING"
+    end
   end
 end
