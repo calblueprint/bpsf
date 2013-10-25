@@ -30,6 +30,7 @@ class GrantsController < ApplicationController
 
   def show
     @grant = Grant.find params[:id]
+    @payment = Payment.new
   end
 
   def destroy
