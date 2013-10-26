@@ -11,7 +11,7 @@
       <li>
         <%= link_to "Apply", new_draft_path %>
       </li>
-      <li class="field"><input class="search input" type="search" placeholder="Search" /></li>
+      <%= render 'layouts/search_form' %>
       <li>
         <% if user_signed_in? %>
           Hello, <%= current_user.first_name %>!
