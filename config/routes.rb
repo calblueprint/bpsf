@@ -1,5 +1,6 @@
 BPSF::Application.routes.draw do
   root to: 'pages#home'
+  get '/search', to: 'pages#search', as: :search
 
   resources :grants,       except: :index
   resources :draft_grants, except: [:show, :index]
