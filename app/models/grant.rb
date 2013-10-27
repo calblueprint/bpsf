@@ -83,4 +83,8 @@ class Grant < ActiveRecord::Base
   rescue Stripe::InvalidRequestError => e
     logger.error "Stripe error: #{e.message}"
   end
+
+  def self.search(query)
+    crowdfunding_grants.where 'title like ?', "%#{query}%"
+  end
 end
