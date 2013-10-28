@@ -10,12 +10,16 @@
 
       <div class="row">
         <div class="twelve columns">
-          <%= form_for @draft_grant, url: draft_path do |f| %>
+          <%= form_for @draft_grant, url: draft_path, :html => {:multipart => true} do |f| %>
             <%= render 'shared/errors', object: f.object %>
-            
+
             <div class="field">
               <%= f.label :title, 'Title' %>
               <%= f.text_field :title, class: :input %>
+            </div>
+
+            <div class="field">
+              <%= f.file_field :image_url %>
             </div>
 
             <div class="field">
@@ -32,7 +36,7 @@
               <%= f.label :subject_areas, 'Subject Areas' %>
               <%= f.text_area :subject_areas, class: [:textarea, :input], rows: 5 %>
             </div>
-          
+
             <div class="medium primary btn pull_right">
               <%= f.submit 'Save!' %>
             </div>
@@ -42,4 +46,4 @@
 
     </div>
   </div>
-</div>    
+</div>
