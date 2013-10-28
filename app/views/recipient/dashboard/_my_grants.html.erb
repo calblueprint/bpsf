@@ -1,8 +1,13 @@
-<li>
-  <%= link_to grant.title, grant %> |
-  <%= 'Crowdfunding' if grant.crowdfunding? %>
-  <%= 'Crowdfund pending' if grant.crowdfund_pending? %>
-  <%= 'Pending' if grant.pending? %>
-  <%= 'Complete' if grant.complete? %>
-  <%= 'Rejected' if grant.rejected? %>
-</li>
+<tr>
+    <td width='55%'>
+      <%=  grant.title %>
+    </td>
+    <td width='45%'>
+      <%= 'Crowdfunding' if grant.crowdfunding? %>
+      <%= 'Crowdfund pending' if grant.crowdfund_pending? %>
+      <%= 'Pending' if grant.pending? %>
+      <%= 'Complete' if grant.complete? %>
+      <%= 'Rejected' if grant.rejected? %>
+      <%= link_to '<span class="ttip pull_right" data-tooltip="View"><i class="icon-eye"></i></span>'.html_safe, grant %>
+    </td>
+</tr>
