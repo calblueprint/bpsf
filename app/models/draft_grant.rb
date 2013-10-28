@@ -38,10 +38,10 @@ class ValidGradeValidator < ActiveModel::EachValidator
 end
 
 class DraftGrant < ActiveRecord::Base
-  attr_accessible :title, :summary, :subject_areas, :grade_level, :duration, 
-                  :num_classes, :num_students, :total_budget, :requested_funds, 
-                  :funds_will_pay_for, :budget_desc, :purpose, :methods, :background, 
-                  :n_collaborators, :collaborators, :comments, :video
+  attr_accessible :title, :summary, :subject_areas, :grade_level, :duration,
+                  :num_classes, :num_students, :total_budget, :requested_funds,
+                  :funds_will_pay_for, :budget_desc, :purpose, :methods, :background,
+                  :n_collaborators, :collaborators, :comments, :video, :image_url
   belongs_to :recipient
   belongs_to :school
 
@@ -52,4 +52,6 @@ class DraftGrant < ActiveRecord::Base
   validates :grade_level, valid_grade: true, allow_nil: true
   validates_length_of :purpose, :methods, :background, :collaborators, :comments,
                       within: 1..1200, too_short: 'cannot be blank', allow_nil: true
+
+  mount_uploader :image_url, ImageUploader
 end
