@@ -9,7 +9,11 @@
       <li><%= link_to 'Explore', root_path %></li>|
       <li><a href="#">About</a></li>|
       <li>
-        <%= link_to "Apply", new_draft_path %>
+        <% if user_signed_in? %>
+          <%= link_to "Apply", new_draft_path %>
+        <% else %>
+          <%= link_to "Apply", new_user_session_path %>
+        <% end %>  
       </li>
       <%= render 'layouts/search_form' %>
       <li>
