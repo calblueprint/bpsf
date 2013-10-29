@@ -31,7 +31,7 @@
 class ValidGradeValidator < ActiveModel::EachValidator
   def validate_each(object, attribute, value)
     nums = value.split(/,\s*|-/)
-    unless nums.all? { |n| n =~ /^([K1-9]|1[0-2])$/ }
+    unless nums.all? { |num| num =~ /^([K1-9]|1[0-2])$/ }
       object.errors[attribute] << (options[:message] || "is not formatted properly")
     end
   end
