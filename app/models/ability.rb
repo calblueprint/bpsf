@@ -13,7 +13,7 @@ class Ability
       can :create, DraftGrant
       can :read, Recipient
     else
-      can :read, Grant
+      can :read, Grant, state: :crowdfunding
       can :read, Recipient
     end
   end

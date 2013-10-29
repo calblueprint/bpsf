@@ -29,6 +29,7 @@
 #  school_id          :string(255)
 #
 
+require 'textacular/searchable'
 class Grant < ActiveRecord::Base
   attr_accessible :title, :organization, :sum, :summary, :subject_areas,
                   :grade_level, :duration, :num_classes, :num_students, :total_budget,
@@ -110,7 +111,5 @@ class Grant < ActiveRecord::Base
     logger.error "Stripe error: #{e.message}"
   end
 
-  def self.search(query)
-    crowdfunding_grants.where 'title like ?', "%#{query}%"
-  end
+  extend Searchable :title, :summary, :subject_areas
 end
