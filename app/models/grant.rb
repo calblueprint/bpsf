@@ -72,11 +72,10 @@ class Grant < ActiveRecord::Base
     @payments = Payment.where crowdfund_id: self.id
     @payments.each do |payment|
       user = User.find payment.user_id
-      charge = Stripe::Charge.create
-                  amount: payment.amount,
-                  currency: "usd",
-                  customer: user.stripe_token,
-                  description: "Donation to BPSF"
+      charge = Stripe::Charge.create amount: payment.amount,
+                                     currency: "usd",
+                                     customer: user.stripe_token,
+                                     description: "Donation to BPSF"
       payment.charge_id = charge.id
       payment.save!
     end
