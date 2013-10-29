@@ -9,9 +9,10 @@ gem 'jquery-rails', '2.0.2'
 gem "cancan", '~> 1.6.10'
 gem 'devise', '~> 3.1.1'
 gem 'will_paginate', '~> 3.0'
-gem "stripe", "~> 1.8.7"
-gem "state_machine", "~> 1.2.0"
-gem "ruby-graphviz"
+gem 'stripe', '~> 1.8.7'
+gem 'state_machine', '~> 1.2.0'
+gem 'carrierwave', '~> 0.9.0'
+gem 'fog', '~> 1.16.0'
 
 group :development, :test do
   gem 'rspec-rails', '2.11.0'
@@ -23,6 +24,7 @@ end
 
 group :development do
   gem 'annotate', '2.5.0'
+  gem 'ruby-graphviz', '~> 1.0.9'
 end
 
 
@@ -32,8 +34,8 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
   gem 'modernizr-rails', '~> 2.6.2.3'
   gem 'compass-rails', '~> 1.0.3'
-  gem "gumby2-rails", "~> 0.0.9"
-  gem "modular-scale", "~> 1.0.6"
+  gem 'gumby2-rails', '~> 0.0.9'
+  gem 'modular-scale', '~> 1.0.6'
 end
 
 group :test do
@@ -42,5 +44,5 @@ group :test do
   gem 'database_cleaner', '~> 1.0.0.RC1'
   gem 'launchy'
   gem 'simplecov', :require => false
-  gem "shoulda", '~> 3.5.0'
+  gem 'shoulda', '~> 3.5.0'
 end

@@ -1,23 +1,32 @@
 <div class="row">
-  <h1>Recipient Dashboard</h1>
-</div>
+  <div class="twelve columns">
+    <div class="wrapper light">
+      <div class="row">
+        <h2>Welcome <%= current_user.first_name %>!</h2>
+      </div>
 
-<div class="row">
-  <h2>Listing my drafts</h2>
-  <ul>
-    <%= render partial: 'my_draft_grants', collection: @draft_grants, as: :draft_grant %>
-  </ul>
-</div>
+      <div class="row">
+        <div class="six columns">
+        <h3>
+          Draft Applications
+          <span class="ttip pull_right" data-tooltip="New Application">
+            <%= link_to '<i class="icon-plus"></i>'.html_safe, new_draft_path %>
+          </span>  
+        </h3>
+          <table>
+            <%= render partial: 'my_draft_grants', collection: @draft_grants, as: :draft_grant %>
+          </table>
 
-<div class="row">
-  <div class="medium primary btn">
-    <%= link_to "Create Grant!", new_draft_path %>
+
+        </div> 
+
+        <div class="six columns">
+          <h3>Submitted Applications</h3>
+          <table>
+              <%= render partial: 'my_grants', collection: @grants, as: :grant %>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
-
-<div class="row">
-  <h2>Listing my submitted grants</h2>
-  <ul>
-    <%= render partial: 'my_grants', collection: @grants, as: :grant %>
-  </ul>
 </div>

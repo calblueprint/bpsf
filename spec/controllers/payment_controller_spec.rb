@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe PaymentController do
+describe PaymentsController do
 
   describe "GET 'new'" do
     it "returns http success" do
