@@ -5,9 +5,8 @@ class PaymentsController < ApplicationController
     if !anyone_signed_in?
       deny_access url: url_for(@grant)
     else
-      @payment = current_user.payments.create! amount: params[:amount],
-                                               user_id: current_user.id,
-                                               crowdfund_id: @grant.id
+      @payment = Payment.make_payment! params[:amount], @grant
+
       unless current_user.stripe_token
         customer = Stripe::Customer.create! email: current_user.email,
                                             card: params[:stripe_token],
