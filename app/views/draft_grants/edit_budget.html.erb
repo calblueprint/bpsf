@@ -12,7 +12,7 @@
         <div class="twelve columns">
           <%= form_for @draft_grant, url: draft_path do |f| %>
             <%= render 'shared/errors', object: f.object %>
-            
+
             <div class="field">
               <%= f.label :total_budget, 'Total Budget' %>
               <%= f.text_field :total_budget, class: :input %>
@@ -32,7 +32,7 @@
               <%= f.label :budget_desc, 'How the funds will benefit your class:' %>
               <%= f.text_area :budget_desc, class: [:textarea, :input], rows: 5 %>
             </div>
-          
+
             <div class="medium primary btn pull_right">
               <%= f.submit 'Save!' %>
             </div>

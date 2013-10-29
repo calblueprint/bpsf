@@ -18,7 +18,7 @@ module ModularScale
   DATE = "2012-08-13"
 end
 
-# This is where any custom SassScript should be placed. The functions will be  
+# This is where any custom SassScript should be placed. The functions will be
 #  available on require of your extension without the need for users to import
 #  any partials. Uncomment below.
 
@@ -100,19 +100,23 @@ module Sass::Script::Functions
   end
 
   # Lists
+  def list_sep(list)
+    list.separator if list.is_a?(Sass::Script::List)
+  end
+
   def sort_list(list)
-    sep = list.separator if list.is_a?(Sass::Script::List)
+    sep = list_sep list
     list = list.to_a.sort
     Sass::Script::List.new(list, sep)
   end
   def reverse_list(list)
-    sep = list.separator if list.is_a?(Sass::Script::List)
+    sep = list_sep list
     list = list.to_a.reverse
     Sass::Script::List.new(list, sep)
   end
   def trim_list(list, threshold, ascending)
     # remove list items above or below a threshold
-    sep = list.separator if list.is_a?(Sass::Script::List)
+    sep = list_sep list
     list = list.to_a
     if ascending.value
       list = list.delete_if {

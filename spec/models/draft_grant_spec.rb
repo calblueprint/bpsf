@@ -25,7 +25,7 @@
 #  updated_at         :datetime         not null
 #  video              :string(255)
 #  image_url          :string(255)
-#  school_id          :string(255)
+#  school_id          :integer
 #
 
 require 'spec_helper'
