@@ -1,5 +1,5 @@
 <tr>
   <td><%= link_to grant.title, grant %></td>
-  <td><%= render partial: 'grant_status', locals: { grant: grant } %></td> 
-  <td><%= render partial: 'toggle_links', locals: { grant: grant } %></td>
+  <td><%= render 'grant_status', grant: grant %></td>
+  <td><%= render 'toggle_links', grant: grant %></td>
 </tr>

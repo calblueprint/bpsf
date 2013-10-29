@@ -18,6 +18,7 @@
 #  type                   :string(255)
 #  first_name             :string(255)
 #  last_name              :string(255)
+#  stripe_token           :string(255)
 #
 
 require 'spec_helper'
