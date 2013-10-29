@@ -3,7 +3,6 @@ BPSF::Application.routes.draw do
   get '/search', to: 'pages#search', as: :search
 
   resources :grants,       except: :index
-  resources :draft_grants, except: [:show, :index]
   resources :payments,     except: [:index, :show, :edit, :update, :new]
 
   devise_for :users
@@ -11,6 +10,7 @@ BPSF::Application.routes.draw do
   namespace :recipient do
     get '', to: 'dashboard#index', as: :dashboard
   end
+
   resources :drafts, controller: 'draft_grants', except: [:show, :index]
   scope '/drafts' do
     get ':id/edit_general_info/', to: 'draft_grants#edit_general_info', as: :draft_edit_general
