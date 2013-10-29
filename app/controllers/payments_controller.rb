@@ -5,8 +5,8 @@ class PaymentsController < ApplicationController
     if !anyone_signed_in?
       deny_access(url: url_for(@grant))
     else
-      puts params[:amount]
-      @payment = current_user.payments.build(:amount => params[:amount])
+      amount = (params[:amount].to_f * 100).to_i
+      @payment = current_user.payments.build(:amount => amount)
       @payment.user_id = current_user.id
       @payment.crowdfund_id = @grant.id
       @payment.save
