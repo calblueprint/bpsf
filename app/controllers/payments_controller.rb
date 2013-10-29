@@ -8,9 +8,9 @@ class PaymentsController < ApplicationController
       @payment = Payment.make_payment! params[:amount], @grant
 
       unless current_user.stripe_token
-        customer = Stripe::Customer.create! email: current_user.email,
-                                            card: params[:stripe_token],
-                                            description: "Donor"
+        customer = Stripe::Customer.create email: current_user.email,
+                                           card: params[:stripe_token],
+                                           description: "Donor"
         current_user.stripe_token = customer.id
         current_user.save!
       end

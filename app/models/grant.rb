@@ -68,16 +68,14 @@ class Grant < ActiveRecord::Base
   end
 
   def process_payments
-    @payments = Payment.where(:crowdfund_id => self.id)
-    for payment in @payments do
-      user = User.find(payment.user_id)
-      puts "processing"
-      puts payment.amount
-      charge = Stripe::Charge.create(
-        :amount => payment.amount,
-        :currency => "usd",
-        :customer => user.stripe_token,
-        :description => "Donation to BPSF")
+    @payments = Payment.where crowdfund_id: self.id
+    @payments.each do |payment|
+      user = User.find payment.user_id
+      charge = Stripe::Charge.create
+                  amount: payment.amount,
+                  currency: "usd",
+                  customer: user.stripe_token,
+                  description: "Donation to BPSF"
       payment.charge_id = charge.id
       payment.save
     end
