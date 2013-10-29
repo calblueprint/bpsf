@@ -6,7 +6,7 @@ BPSF::Application.routes.draw do
   resources :draft_grants, except: [:show, :index]
   resources :payments,     except: [:index, :show, :edit, :update, :new]
 
-  devise_for :users
+  devise_for :users, :controllers => { :registrations => "registrations" }
 
   namespace :recipient do
     get '', to: 'dashboard#index', as: :dashboard

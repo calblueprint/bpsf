@@ -47,6 +47,9 @@ class Grant < ActiveRecord::Base
 
     event :reject do
       transition [:pending, :crowdfund_pending] => :rejected
+      def self.grant_rejected
+        UserMailer.grant_rejected(self).deliver
+      end
     end
 
     event :reconsider do
@@ -54,15 +57,35 @@ class Grant < ActiveRecord::Base
     end
 
     event :fund do
+      def self.crowdsuccess  
+        if self.crowdfunding?
+          UserMailer.admin_crowdsuccess(self).deliver
+          @payments = Payment.where(:crowdfund_id => self.id)
+          for payment in @payments do
+            user = User.find(payment.user_id)
+            UserMailer.user_crowdsuccess(user,self).deliver
+          end
+        end
+      end
       transition [:pending, :crowdfund_pending, :crowdfunding] => :complete
+      def self.grant_funded
+        UserMailer.grant_funded(self).deliver
+      end
     end
 
     event :crowdfund do
       transition :pending => :crowdfunding
+      def self.grant_crowdfunding
+        UserMailer.grant_crowdfunding(self).deliver
+      end
     end
 
     event :crowdfunding_failed do
       transition :crowdfunding => :crowdfund_pending
+      def self.crowdfailed
+        UserMailer.admin_crowdfailed(self).deliver
+        UserMailer.grant_crowdfailed(self).deliver
+      end
     end
   end
 
@@ -79,6 +102,9 @@ class Grant < ActiveRecord::Base
         :description => "Donation to BPSF")
       payment.charge_id = charge.id
       payment.save
+      def self.user_pledge
+        UserMailer.user_pledge(user,self).deliver
+      end
     end
   rescue Stripe::InvalidRequestError => e
     logger.error "Stripe error: #{e.message}"
