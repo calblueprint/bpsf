@@ -26,6 +26,7 @@ end
 group :development do
   gem 'annotate', '2.5.0'
   gem 'ruby-graphviz', '~> 1.0.9'
+  gem 'metric_fu', '~> 4.4.4'
 end
 
 
