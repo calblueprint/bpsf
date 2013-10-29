@@ -17,8 +17,5 @@
 # Ignore database.yml
 /config/database.yml
 
-# Ignore Gemfile.lock
-Gemfile.lock
-
 # Ignore DS_Store
 .DS_Store
