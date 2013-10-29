@@ -84,7 +84,5 @@ class Grant < ActiveRecord::Base
     logger.error "Stripe error: #{e.message}"
   end
 
-  def self.search(query)
-    crowdfunding_grants.where 'title like ?', "%#{query}%"
-  end
+  
 end
