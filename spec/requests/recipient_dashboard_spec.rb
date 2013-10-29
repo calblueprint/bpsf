@@ -55,5 +55,5 @@ describe "Dashboard authorization" do
     it { should_not have_error_message "You are not authorized to access this page." }
     it { should have_h1 'Dashboard' }
   end
-  
+
 end
