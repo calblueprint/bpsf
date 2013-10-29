@@ -1,6 +1,6 @@
 class DraftGrantsController < ApplicationController
   load_and_authorize_resource
-  
+
   def new
     if current_user && current_user.type == 'Recipient'
       @draft_grant = current_user.draft_grants.build
@@ -54,5 +54,5 @@ class DraftGrantsController < ApplicationController
       render session[:previous]
     end
   end
-  
+
 end
