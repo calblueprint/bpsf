@@ -37,6 +37,7 @@ class Grant < ActiveRecord::Base
                   :background, :n_collaborators, :collaborators, :comments, :video
   belongs_to :recipient
   belongs_to :school
+  extend Searchable :title, :summary, :subject_areas
 
   scope :pending_grants, -> { with_state :pending }
   scope :complete_grants, -> { with_state :complete }
@@ -79,9 +80,8 @@ class Grant < ActiveRecord::Base
       payment.charge_id = charge.id
       payment.save!
     end
-  rescue Stripe::InvalidRequestError => e
-    logger.error "Stripe error: #{e.message}"
+  rescue Stripe::InvalidRequestError => err
+    logger.error "Stripe error: #{err.message}"
   end
 
-  extend Searchable :title, :summary, :subject_areas
 end
