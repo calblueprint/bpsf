@@ -3,89 +3,96 @@
     <div class="row">
       <h2><%= @grant.title %></h2>
     </div>
-    
+
     <div class="row">
       <h3>Summary</h3>
       <%= @grant.summary %>
     </div>
-    
+
+    <div class="row">
+      <h3>Image</h3>
+      <% if @grant.image_url %>
+        <%= image_tag @grant.image_url.to_s %>
+      <% end %>
+    </div>
+
     <div class="row">
       <h3>Video</h3>
       <% if !@grant.video.blank? %>
         <iframe width="560" height="315" src= "http://www.youtube.com/embed/<%= parse_embed(@grant) %>"></iframe>
       <% end %>
     </div>
-    
+
     <div class="row">
       <h3>Subject areas</h3>
       <%= @grant.subject_areas %>
     </div>
-    
+
     <div class="row">
       <h3>Grade level: <%= @grant.grade_level %></h3>
     </div>
-    
+
     <div class="row">
       <h3>Duration</h3>
       <%= @grant.duration %>
     </div>
-    
+
     <div class="row">
       <h3>Number of classes: <%= @grant.num_classes %></h3>
     </div>
-    
+
     <div class="row">
       <h3>Number of students: <%= @grant.num_students %></h3>
     </div>
-    
+
     <div class="row">
       <h3>Total budget: <%= @grant.total_budget %></h3>
     </div>
-    
+
     <div class="row">
       <h3>Requested funds: <%= @grant.requested_funds %></h3>
     </div>
-    
+
     <div class="row">
       <h3>Funds will pay for:</h3>
       <%= @grant.funds_will_pay_for %>
     </div>
-    
+
     <div class="row">
       <h3>Budget description</h3>
       <%= @grant.budget_desc %>
     </div>
-    
+
     <div class="row">
       <h3>Purpose</h3>
       <%= @grant.purpose %>
     </div>
-    
+
     <div class="row">
       <h3>Methods</h3>
       <%= @grant.methods %>
     </div>
-    
+
     <div class="row">
       <h3>Teacher background</h3>
       <%= @grant.background %>
     </div>
-    
+
     <div class="row">
       <h3>Num. collaborators: <%= @grant.n_collaborators %></h3>
     </div>
-    
+
     <div class="row">
       <h3>Collaborators</h3>
       <%= @grant.collaborators %>
     </div>
-    
+
     <div class="row">
       <h3>Comments</h3>
       <%= @grant.comments %>
     </div>
-    
-    
+
+
     <div class="row">
     <%= form_for @payment do |f| %>
         <% if @payment.errors.any? %>
@@ -98,17 +105,17 @@
             </ul>
           </div>
         <% end %>
-    
-    
+
+
         <%= hidden_field_tag :grant_id, @grant.id %>
-    
+
         <%= hidden_field_tag :stripe_token %>
-    
+
         <div class="field">
           <%= label_tag :amount, "Donation Total" %>
           <%= text_field_tag :amount, nil, class: :input %>
         </div>
-            
+
         <% if current_user && current_user.stripe_token.present? %>
           Credit card has already been provided.
         <% else %>

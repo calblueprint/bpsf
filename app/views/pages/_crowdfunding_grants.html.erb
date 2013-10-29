@@ -2,14 +2,18 @@
   <div class="cardtitle">
     <h3><%= link_to grant.title, grant %></h3>
   </div>
-  <!-- Image_tag for grant should go here -->
+  <% if grant.image_url %>
+    <%= image_tag grant.image_url %>
+  <% else %>
+    <%= image_tag "placeholder.png" %>
+  <% end %>
   <div class="cardcontent">
     <p>
       Director: <%= grant.recipient.first_name + ' ' + grant.recipient.last_name %> <br>
       School: <%# grant.school (can't do yet) %> <br>
       Description: <%= grant.summary %>
     </p>
-    <div class="progress"> 
+    <div class="progress">
       <!-- Also can't really do - no current payment status for grants -->
       <span style="width: 50%">50%</span>
     </div>
@@ -17,7 +21,7 @@
       <span class="gctext">Goal: </span>
       <span class="goalnum"><%= grant.requested_funds %></span>
       &emsp;
-      <span class="gctext">Current: </span> 
+      <span class="gctext">Current: </span>
       <!-- This too -->
       <span class="currentnum">TBD</span>
     </div>
