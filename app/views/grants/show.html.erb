@@ -11,7 +11,9 @@
 
     <div class="row">
       <h3>Image</h3>
-      <%= image_tag @grant.image_url.to_s %>
+      <% if @grant.image_url %>
+        <%= image_tag @grant.image_url.to_s %>
+      <% end %>
     </div>
 
     <div class="row">
