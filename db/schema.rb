@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131025091558) do
+ActiveRecord::Schema.define(:version => 20131029075542) do
 
   create_table "crowdfunds", :force => true do |t|
     t.datetime "deadline"
@@ -44,8 +44,11 @@ ActiveRecord::Schema.define(:version => 20131025091558) do
     t.datetime "updated_at",         :null => false
     t.string   "video"
     t.string   "image_url"
-    t.string   "school_id"
+    t.integer  "school_id"
   end
+
+  add_index "draft_grants", ["recipient_id"], :name => "index_draft_grants_on_recipient_id"
+  add_index "draft_grants", ["school_id"], :name => "index_draft_grants_on_school_id"
 
   create_table "grants", :force => true do |t|
     t.datetime "created_at",         :null => false
@@ -71,8 +74,11 @@ ActiveRecord::Schema.define(:version => 20131025091558) do
     t.string   "state"
     t.string   "video"
     t.string   "image_url"
-    t.string   "school_id"
+    t.integer  "school_id"
   end
+
+  add_index "grants", ["recipient_id"], :name => "index_grants_on_recipient_id"
+  add_index "grants", ["school_id"], :name => "index_grants_on_school_id"
 
   create_table "payments", :force => true do |t|
     t.integer  "amount"
@@ -82,6 +88,9 @@ ActiveRecord::Schema.define(:version => 20131025091558) do
     t.integer  "crowdfund_id"
     t.string   "charge_id"
   end
+
+  add_index "payments", ["crowdfund_id"], :name => "index_payments_on_crowdfund_id"
+  add_index "payments", ["user_id"], :name => "index_payments_on_user_id"
 
   create_table "schools", :force => true do |t|
     t.string   "name"
