@@ -22,3 +22,6 @@
 
 # Ignore test mailer
 /config/initializers/setup_mail.rb
+
+# Ignore tmp folder
+/tmp/*

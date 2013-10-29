@@ -4,6 +4,6 @@ class PagesController < ApplicationController
   end
 
   def search
-    @grants = Grant.search params[:query]
+    @grants = Grant.crowdfunding_grants.search params[:query]
   end
 end
