@@ -10,6 +10,13 @@
     </div>
 
     <div class="row">
+      <h3>Image</h3>
+      <% if @grant.image_url %>
+        <%= image_tag @grant.image_url.to_s %>
+      <% end %>
+    </div>
+
+    <div class="row">
       <h3>Video</h3>
       <% if !@grant.video.blank? %>
         <iframe width="560" height="315" src= "http://www.youtube.com/embed/<%= parse_embed(@grant) %>"></iframe>
