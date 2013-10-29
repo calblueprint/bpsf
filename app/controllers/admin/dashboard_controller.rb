@@ -1,3 +1,5 @@
+# Actions for the main admin dashboard page and setting the
+# grant status
 class Admin::DashboardController < ApplicationController
   authorize_resource :class => false
 
