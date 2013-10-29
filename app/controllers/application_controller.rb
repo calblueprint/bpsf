@@ -1,3 +1,4 @@
+# Base controller
 class ApplicationController < ActionController::Base
   protect_from_forgery
   include SessionsHelper
@@ -9,7 +10,7 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     store_location = session[:return_to]
     clear_stored_location
-    (store_location.nil?) ? default_after_sign_in_path_for(resource) : store_location.to_s
+    store_location ? default_after_sign_in_path_for(resource) : store_location.to_s
   end
 
   def default_after_sign_in_path_for(resource)
