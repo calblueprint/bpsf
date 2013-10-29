@@ -19,3 +19,6 @@
 
 # Ignore DS_Store
 .DS_Store
+
+# Ignore test mailer
+/config/initializers/setup_mail.rb
