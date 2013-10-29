@@ -7,43 +7,43 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 # Create Teachers (we refer to them as Recipients)
-teacher1 = Recipient.create! first_name: 'John',
-                             last_name: 'Keating',
-                             email: 'captain@whitman.com',
+teacher1 = Recipient.create! first_name: 'Teacher_1',
+                             last_name: 'Dev',
+                             email: 'bpsfteacher1@gmail.com',
                              password: 'password',
                              password_confirmation: 'password'
 
-teacher2 = Recipient.create! first_name: 'Severus',
-                             last_name: 'Snape',
-                             email: 'severusandlily007@gmail.com',
+teacher2 = Recipient.create! first_name: 'Teacher_2',
+                             last_name: 'Dev',
+                             email: 'bpsfteacher2@gmail.com',
                              password: 'password',
                              password_confirmation: 'password'
 
 # Create Admins
-admin1 = Admin.create! first_name: 'Brian',
-                       last_name: 'Wong',
-                       email: 'brianderp@coolguys.org',
+admin1 = Admin.create! first_name: 'Admin_1',
+                       last_name: 'Dev',
+                       email: 'bpsfadmin1@gmail.com',
                        password: 'password',
                        password_confirmation: 'password'
 
-admin2 = Admin.create! first_name: 'Maurise',
-                       last_name: 'Moss',
-                       email: 'moss@itcrowd.com',
+admin2 = Admin.create! first_name: 'Admin_2',
+                       last_name: 'Dev',
+                       email: 'bpsfadmin2@gmail.com',
                        password: 'password',
                        password_confirmation: 'password'
 
 # Create Parents (they are general Users)
-parent1 = User.create! first_name: 'Homer J',
-                       last_name: 'Simpson',
-                       email: 'chunkylover53@aol.com',
+parent1 = User.create! first_name: 'Parent_1',
+                       last_name: 'Dev',
+                       email: 'bpsfparent1@gmail.com',
                        password: 'password',
-                       password: 'password'
+                       password_confirmation: 'password'
 
-parent2 = User.create! first_name: 'Heathcliff',
-                       last_name: 'Huxtable',
-                       email: 'zipzopzoobitybop@cosby.com',
+parent2 = User.create! first_name: 'Parent_2',
+                       last_name: 'Dev',
+                       email: 'bpsfparent2@gmail.com',
                        password: 'password',
-                       password: 'password'
+                       password_confirmation: 'password'
 
 teacher1.grants.create! title: "Grant 1"
 teacher2.grants.create! title: "Grant 2"
