@@ -26,7 +26,7 @@
 #  state              :string(255)
 #  video              :string(255)
 #  image_url          :string(255)
-#  school_id          :string(255)
+#  school_id          :integer
 #
 
 require 'textacular/searchable'
@@ -37,6 +37,7 @@ class Grant < ActiveRecord::Base
                   :background, :n_collaborators, :collaborators, :comments, :video
   belongs_to :recipient
   belongs_to :school
+  extend Searchable :title, :summary, :subject_areas
 
   scope :pending_grants, -> { with_state :pending }
   scope :complete_grants, -> { with_state :complete }
@@ -91,25 +92,21 @@ class Grant < ActiveRecord::Base
   end
 
   def process_payments
-    @payments = Payment.where(:crowdfund_id => self.id)
-    for payment in @payments do
-      user = User.find(payment.user_id)
-      puts "processing"
-      puts payment.amount
-      charge = Stripe::Charge.create(
-        :amount => payment.amount,
-        :currency => "usd",
-        :customer => user.stripe_token,
-        :description => "Donation to BPSF")
+    @payments = Payment.where crowdfund_id: self.id
+    @payments.each do |payment|
+      user = User.find payment.user_id
+      charge = Stripe::Charge.create amount: payment.amount,
+                                     currency: "usd",
+                                     customer: user.stripe_token,
+                                     description: "Donation to BPSF"
       payment.charge_id = charge.id
-      payment.save
+      payment.save!
       def self.user_pledge
         UserMailer.user_pledge(user,self).deliver
       end
     end
-  rescue Stripe::InvalidRequestError => e
-    logger.error "Stripe error: #{e.message}"
+  rescue Stripe::InvalidRequestError => err
+    logger.error "Stripe error: #{err.message}"
   end
 
-  extend Searchable :title, :summary, :subject_areas
 end

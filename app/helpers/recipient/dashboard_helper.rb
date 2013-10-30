@@ -1,2 +1,0 @@
-module Recipient::DashboardHelper
-end

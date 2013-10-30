@@ -11,14 +11,14 @@
           Draft Applications
           <span class="ttip pull_right" data-tooltip="New Application">
             <%= link_to '<i class="icon-plus"></i>'.html_safe, new_draft_path %>
-          </span>  
+          </span>
         </h3>
           <table>
             <%= render partial: 'my_draft_grants', collection: @draft_grants, as: :draft_grant %>
           </table>
 
 
-        </div> 
+        </div>
 
         <div class="six columns">
           <h3>Submitted Applications</h3>
