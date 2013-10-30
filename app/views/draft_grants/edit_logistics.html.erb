@@ -11,7 +11,7 @@
         <div class="twelve columns">
           <%= form_for @draft_grant, url: draft_path do |f| %>
             <%= render 'shared/errors', object: f.object %>
-            
+
             <div class="field">
               <%= f.label :grade_level, 'Grade Level' %>
               <%= f.text_field :grade_level, class: :input %>
@@ -41,7 +41,7 @@
               <%= f.label :collaborators, 'Collaborators' %>
               <%= f.text_area :collaborators, class: [:textarea, :input], rows: 5 %>
             </div>
-          
+
             <div class="medium primary pull_right btn">
               <%= f.submit 'Save!' %>
             </div>

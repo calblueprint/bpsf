@@ -1,5 +1,5 @@
 class Recipient::DashboardController < ApplicationController
-  
+
   def index
     if current_user && current_user.type == 'Recipient'
       @draft_grants = current_user.draft_grants
