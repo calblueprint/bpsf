@@ -55,4 +55,10 @@ class DraftGrantsController < ApplicationController
     end
   end
 
+  def submit
+    @draft_grant = DraftGrant.find params[:id]
+    @draft_grant.submit_and_destroy!
+    redirect_to recipient_dashboard_path
+  end
+
 end
