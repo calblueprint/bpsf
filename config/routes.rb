@@ -9,7 +9,7 @@ BPSF::Application.routes.draw do
 
   devise_for :users
 
-  match "users/:id" => "user#show"
+  resources :user,         except: [:index, :new, :create, :destroy]
 
   namespace :recipient do
     get '', to: 'dashboard#index', as: :dashboard
