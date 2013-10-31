@@ -16,6 +16,9 @@ class Ability
       can [:create, :read], Grant
       can :manage, DraftGrant, recipient_id: user.id
       can :create, DraftGrant
+      can :manage, Recipient, id: user.id
+    else
+      can :manage, User, id: user.id
     end
   end
 
