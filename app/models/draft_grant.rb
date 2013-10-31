@@ -54,4 +54,15 @@ class DraftGrant < ActiveRecord::Base
                       within: 1..1200, too_short: 'cannot be blank', allow_nil: true
 
   mount_uploader :image_url, ImageUploader
+
+  def submit_and_destroy!
+    grant = Grant.new
+    valid_attributes = Grant.accessible_attributes.
+                             reject { |attr| attr.empty? }
+    grant.attributes = attributes.slice *valid_attributes
+    grant.recipient_id = recipient_id
+    grant.school_id = school_id
+    grant.save!
+    destroy
+  end
 end
