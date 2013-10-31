@@ -2,13 +2,13 @@ class UserController < ApplicationController
   load_and_authorize_resource
 
   def show
-    @user = User.find(params[:id])
-    @pledges = Payment.find_all_by_user_id(params[:id])
+    @user = User.find params[:id]
+    @pledges = Payment.find_all_by_user_id params[:id]
   end
 
   def edit
     @user = User.find(params[:id])
-    @pledges = Payment.find_by_user_id(params[:id])
+    @pledges = Payment.find_by_user_id params[:id]
   end
 
   def update
