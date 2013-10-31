@@ -1,4 +1,6 @@
 BPSF::Application.routes.draw do
+  get "user/show"
+
   root to: 'pages#home'
   get '/search', to: 'pages#search', as: :search
 
@@ -6,6 +8,8 @@ BPSF::Application.routes.draw do
   resources :payments,     except: [:index, :show, :edit, :update, :new]
 
   devise_for :users
+
+  match "users/:id" => "user#show"
 
   namespace :recipient do
     get '', to: 'dashboard#index', as: :dashboard
