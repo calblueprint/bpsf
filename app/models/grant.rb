@@ -41,9 +41,9 @@ end
 require 'textacular/searchable'
 class Grant < ActiveRecord::Base
   attr_accessible :title, :summary, :subject_areas, :grade_level, :duration,
-                    :num_classes, :num_students, :total_budget, :requested_funds,
-                    :funds_will_pay_for, :budget_desc, :purpose, :methods, :background,
-                    :n_collaborators, :collaborators, :comments, :video, :image_url
+                  :num_classes, :num_students, :total_budget, :requested_funds,
+                  :funds_will_pay_for, :budget_desc, :purpose, :methods, :background,
+                  :n_collaborators, :collaborators, :comments, :video, :image_url
   belongs_to :recipient
   belongs_to :school
   extend Searchable :title, :summary, :subject_areas
