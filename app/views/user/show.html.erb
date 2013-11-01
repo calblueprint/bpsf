@@ -17,10 +17,10 @@
         </tr>
       </thead>
       <tbody>
-          <% @pledges.each do |pledge| %>
+          <% @pledges.each do |pledge_hash| %>
             <tr>
-              <th><%= pledge.crowdfund_id %></th>
-              <th><%= pledge.amount %></th>
+              <th><%= pledge_hash.crowdfund_id %></th>
+              <th><%= pledge_hash. %></th>
           </tr>
           <% end %>
       </tbody>
