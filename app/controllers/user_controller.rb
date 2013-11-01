@@ -3,11 +3,17 @@ class UserController < ApplicationController
 
   def show
     @user = User.find params[:id]
-    @pledges = Payment.find_all_by_user_id params[:id]
+    pledges = Payment.find_all_by_user_id params[:id]
+    @pledges = Array.new
+    pledges.each do |pledge|
+      pledge_hash = Hash.new
+      pledge_hash[pledge] = Grant.find pledge.crowdfund_id
+      @pledges.push pledge_hash
+    end
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = User.find params[:id]
     @pledges = Payment.find_by_user_id params[:id]
   end
 
