@@ -3,10 +3,8 @@
 <%= render 'menu' %>
 
 <!--***************************************TILES********************************************-->
-<div class="wrapper light">
-  <div class="row">
+<div class="row wrapper light">
     <%= render partial: 'crowdfunding_grants', collection: @grants, as: :grant %>
-  </div>
   <%= will_paginate @grants %>
 </div>
 
