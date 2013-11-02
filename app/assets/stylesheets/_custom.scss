@@ -33,9 +33,9 @@
 	&.dark{
 	background-color:#000;}
 	&.light{
-		//@include box-shadow(0 0 3px #999);
+		@include box-shadow(0 0 3px #999);
 		background-color:#fff;
-		@include border-radius(5px);
+		//@include border-radius(5px);
 	}
 }
 
