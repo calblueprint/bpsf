@@ -57,8 +57,12 @@ class DraftGrantsController < ApplicationController
 
   def submit
     @draft_grant = DraftGrant.find params[:id]
-    @draft_grant.submit_and_destroy!
-    redirect_to recipient_dashboard_path
+    if @draft_grant.submit_and_destroy
+      redirect_to recipient_dashboard_path
+    else
+      flash[:danger] = 'Some fields were not filled in!'
+      redirect_to edit_draft_path @draft_grant
+    end
   end
 
 end
