@@ -13,6 +13,7 @@
 	margin: 0 auto;
 	max-width: 1200px;
 	width: 100%;
+	position: relative;
 		}
 		
 .wrapper{
@@ -50,20 +51,27 @@
 	position: relative; 
 	overflow: auto;
 	width: 100%; 
- ul { 
- 	list-style: none; 
- 	li { 
- 		float: left;
- 		min-height: 350px; 
+	ul { 
+	 	list-style: none; 
+	 	li { 
+	 		float: left;
+	 		min-height: 350px; 
 
- 		display:block;
- 		position:relative;
- 		@include background-size(100% 100%);
- 		@include respond(tablets) {
-			min-height: 300px; 			
- 		}
- 	}
- }
+	 		display:block;
+	 		position:relative;
+	 		@include background-size(100% 100%);
+	 	}
+	}
+}
+
+.navholder{
+	position: absolute;
+	bottom:0px;
+	right:0px;
+	.unslider-arrow{
+		z-index: 100;
+		font-size: $med;
+	}
 }
 
 .infocard{
