@@ -78,7 +78,7 @@
 .infocard{
 	overflow:none;
     //@include box-shadow(0 0 3px #999);
-    background: rgba(255,255,255,0.8);
+    background: rgba(255,255,255,0.9);
 	margin: 6px 6px 20px 6px !important;
 	& img{width:100%;
 		height:150px;
@@ -200,18 +200,19 @@ body {
 	position: relative;
 	background-color: $white;//#f3f5f6;
 	height:45px;
+	line-height:45px;
 	.icon-menu{display:none;}
 	span a {
 	text-align: left;
 	font-size: $med;
-	line-height:45px;
 	padding-left: 20px;
 	&:hover {color: #1d2d35;}
 	}
 	.loginmenu{
 		text-align: right;
-		display: none;
+		display: inline;
 		font-size: $med;
+		padding-right:10px;
 	}
 }
 
@@ -223,6 +224,9 @@ body {
 	.field{
 		padding:4px 15px 4px;
 	}
+	.homelink{
+		display: none;
+	}
 }
 .trunknav li {
 	float: left;
@@ -231,7 +235,7 @@ body {
 }
 .trunknav li a {	
 	display: block;
-	padding: 12px 20px 12px;
+	padding: 9px 20px 12px;
 }
 
 @media only screen and (max-width: 780px) {
@@ -240,8 +244,8 @@ body {
 	height: 45px;
 	z-index: 2;
 	background-color: $white;//#060a0c;
-	.icon-menu{display:inline; font-size:$large;}
-	.loginmenu{display:inline;}
+	line-height:45px;
+	.icon-menu{display:inline; font-size:$large; line-height:45px;}
 	
 	/*position: fixed;
 	top: 0;
@@ -255,6 +259,8 @@ body {
 }
 .trunkheader span a {
 	line-height:45px;
+	margin-left:-10px;
+	display:none;
 }
 .burger {display: block;}
 
@@ -265,6 +271,7 @@ body {
 	.field{
 		display: none;
 	}
+	.homelink{display:block;}
 }
 
 .trunknav ul {
@@ -286,15 +293,15 @@ body {
 }
 .trunknav li a.active {
 	color: $primary-color;
-	background-color: darken($global-bg-color, 10%);//#141e23;
+	background-color: darken($global-bg-color, 55%);//#141e23;
 }
 .trunknav li a:hover {
 	color: $primary-color;
-	background-color: darken($global-bg-color, 5%);//#19252c;
+	background-color: darken($global-bg-color, 50%);//#19252c;
 }
 .trunknav li:first-child a.active,
 .trunknav li:first-child a:hover 
-{border-radius: 10px 0 0 0;}
+{border-radius: 0 0 0 0;}
 
 .header-section {margin-top: 60px;}
 
@@ -307,8 +314,8 @@ body {
 	left: 0;
 	top: 0;
 	margin: 0;
-	background-color: darken($global-bg-color, 15%);//#1d2d35;
-	border-radius: 8px;
+	background-color: darken($global-bg-color, 60%);//#1d2d35;
+	//border-radius: 8px;
 	
 	/* starting point */
 	opacity: .3;
