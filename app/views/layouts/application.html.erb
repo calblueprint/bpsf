@@ -18,6 +18,7 @@
     <div class="content slideRight">
         <!-- Render flash -->
         <div class="row">
+          &nbsp;
           <% flash.each do |key, value| %>
             <%= content_tag :div, value, class: "#{key} alert" %>
           <% end %>
