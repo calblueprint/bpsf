@@ -13,24 +13,26 @@
   <%= render 'layouts/shim' %>
 </head>
 <body>
-  <%= render 'layouts/header' %>
+  <div class="container">
+        <%= render 'layouts/header' %>
+    <div class="content slideRight">
+        <!-- Render flash -->
+        <div class="row">
+          <% flash.each do |key, value| %>
+            <%= content_tag :div, value, class: "#{key} alert" %>
+          <% end %>
+        </div>
 
-  <!-- Render flash -->
-  <div class="row">
-    <% flash.each do |key, value| %>
-      <%= content_tag :div, value, class: "#{key} alert" %>
-    <% end %>
+        <%= yield %>
+
+        <%= render 'layouts/footer' %>
+
+        <div class="row">
+          <hr>
+          <%= debug(params) if Rails.env.development? %>
+        </div>
+      </div>
   </div>
-
-  <%= yield %>
-
-  <%= render 'layouts/footer' %>
-
-  <div class="row">
-    <hr>
-    <%= debug(params) if Rails.env.development? %>
-  </div>
-
 
 </body>
 </html>
