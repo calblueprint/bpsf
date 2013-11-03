@@ -15,7 +15,7 @@
           <%= link_to "Apply", new_user_session_path %>
         <% end %>  
       </li>
-      <li class="field"><input class="search input" type="search" placeholder="Search" /></li>
+      <%= render 'layouts/search_form' %>
 
       <% if user_signed_in? %>
         <li>
