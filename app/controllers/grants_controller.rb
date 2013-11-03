@@ -36,7 +36,7 @@ class GrantsController < ApplicationController
   end
 
   def destroy
-    Grant.find(params[:id]).destroy
+    Grant.destroy params[:id]
     flash[:success] = 'Grant deleted.'
     redirect_to grants_url
   end
