@@ -11,7 +11,6 @@
 		
 .fluid_container {
 	margin: 0 auto;
-	margin-top: 20px;
 	max-width: 1200px;
 	width: 100%;
 	position: relative;
@@ -168,6 +167,32 @@
 	}
 }
 
+.userdropdown{
+	background: #fff;
+	position:absolute;
+	right:10px;
+	top: 45px;
+	width: 150px;
+	z-index:100;
+	ul{
+		list-style:none;
+		li{
+			font-size: $med;
+			display: block;
+			padding:10px; 
+		}
+	}
+
+}
+
+.nodisplay{
+	display:none;
+}
+
+.loginmenu{
+	.nodisplay{display:inline;}
+}
+
 /****************************************Trunk.js Classes*****************************/
 body {
 	-webkit-tap-highlight-color:rgba(0,0,0,0);
@@ -199,8 +224,9 @@ body {
 .trunkheader {
 	position: relative;
 	background-color: $white;//#f3f5f6;
-	height:45px;
-	line-height:45px;
+	height:55px;
+	line-height:55px;
+	@include box-shadow(0 0 3px #999);
 	.icon-menu{display:none;}
 	span a {
 	text-align: left;
@@ -222,7 +248,7 @@ body {
 	right: 50%;
 	margin-right:-242px;
 	.field{
-		padding:4px 15px 4px;
+		padding:9px 15px 4px;
 	}
 	.homelink{
 		display: none;
@@ -235,16 +261,14 @@ body {
 }
 .trunknav li a {	
 	display: block;
-	padding: 9px 20px 12px;
+	padding: 13px 20px 12px;
 }
 
 @media only screen and (max-width: 780px) {
 
 .trunkheader {
-	height: 45px;
 	z-index: 2;
 	background-color: $white;//#060a0c;
-	line-height:45px;
 	.icon-menu{display:inline; font-size:$large; line-height:45px;}
 	
 	/*position: fixed;
