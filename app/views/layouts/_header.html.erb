@@ -5,7 +5,7 @@
   </span>
   <% if user_signed_in? %>
     <div class="loginmenu pull_right">
-      Hello, <%= current_user.first_name %><i class="icon-down-open-mini"></i>
+      <a href="#" class="toggle" gumby-trigger="#userdropdown" gumby-classname="nodisplay">Hello, <%= current_user.first_name %><i class="icon-down-open-mini"></i></a>
     </div>
   <% else %>
   <div class="loginmenu pull_right">
@@ -13,6 +13,24 @@
   </div>
   <% end %>
 </div>
+
+
+<% if user_signed_in? %>
+  <div class="userdropdown nodisplay" id="userdropdown">
+    <ul>
+      <li>Account</li>
+      <% if current_user.type=='Admin'%>
+        <li><%= link_to 'Dashboard'.html_safe, admin_dashboard_path %></li>
+      <% elsif current_user.type=='Recipient' %>
+        <li><%= link_to 'Dashboard'.html_safe, recipient_dashboard_path %></li>
+      <% else %>
+      <% end %>
+      <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+    </ul>
+  </div>
+<% else %>
+<% end %>
+
 
 <div class="trunknav slideLeft">
   <ul>
