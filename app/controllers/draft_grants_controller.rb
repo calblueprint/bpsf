@@ -66,4 +66,10 @@ class DraftGrantsController < ApplicationController
     end
   end
 
+  def destroy
+    DraftGrant.destroy params[:id]
+    flash[:success] = 'Draft deleted.'
+    redirect_to recipient_dashboard_path
+  end
+
 end
