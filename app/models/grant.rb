@@ -31,6 +31,7 @@
 
 class ValidGradeValidator < ActiveModel::EachValidator
   def validate_each(object, attribute, value)
+    return if not value
     nums = value.split(/,\s*|-/)
     unless nums.all? { |num| num =~ /^([K1-9]|1[0-2])$/ }
       object.errors[attribute] << (options[:message] || "is not formatted properly")
@@ -48,13 +49,13 @@ class Grant < ActiveRecord::Base
   belongs_to :school
   extend Searchable :title, :summary, :subject_areas
 
-  # validates :title, presence: true, length: { maximum: 40 }
-  # validates_length_of :summary, within: 1..200, too_short: 'cannot be blank'
-  # validates_length_of :subject_areas, :duration, :budget_desc,
-  #                     minimum: 1, too_short: 'cannot be blank'
-  # validates :grade_level, presence: true, valid_grade: true
-  # validates_length_of :purpose, :methods, :background, :collaborators, :comments,
-  #                     within: 1..1200, too_short: 'cannot be blank'
+  validates :title, presence: true, length: { maximum: 40 }
+  validates_length_of :summary, within: 1..200, too_short: 'cannot be blank'
+  validates_length_of :subject_areas, :duration, :budget_desc,
+                      minimum: 1, too_short: 'cannot be blank'
+  validates :grade_level, presence: true, valid_grade: true
+  validates_length_of :purpose, :methods, :background, :collaborators, :comments,
+                      within: 1..1200, too_short: 'cannot be blank'
 
   scope :pending_grants, -> { with_state :pending }
   scope :complete_grants, -> { with_state :complete }
