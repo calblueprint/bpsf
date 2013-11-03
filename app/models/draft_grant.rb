@@ -30,6 +30,7 @@
 
 class ValidGradeValidator < ActiveModel::EachValidator
   def validate_each(object, attribute, value)
+    return if not value
     nums = value.split(/,\s*|-/)
     unless nums.all? { |num| num =~ /^([K1-9]|1[0-2])$/ }
       object.errors[attribute] << (options[:message] || "is not formatted properly")
@@ -40,8 +41,9 @@ end
 class DraftGrant < ActiveRecord::Base
   attr_accessible :title, :summary, :subject_areas, :grade_level, :duration,
                   :num_classes, :num_students, :total_budget, :requested_funds,
-                  :funds_will_pay_for, :budget_desc, :purpose, :methods, :background,
-                  :n_collaborators, :collaborators, :comments, :video, :image_url
+                  :funds_will_pay_for, :budget_desc, :purpose, :methods,
+                  :background, :n_collaborators, :collaborators, :comments,
+                  :video, :image_url
   belongs_to :recipient
   belongs_to :school
 
@@ -50,15 +52,14 @@ class DraftGrant < ActiveRecord::Base
   validates_length_of :subject_areas, :duration, :budget_desc,
                       minimum: 1, too_short: 'cannot be blank', allow_nil: true
   validates :grade_level, valid_grade: true, allow_nil: true
-  validates_length_of :purpose, :methods, :background, :collaborators, :comments,
+  validates_length_of :purpose, :methods, :background, :collaborators, :comments, 
                       within: 1..1200, too_short: 'cannot be blank', allow_nil: true
 
   mount_uploader :image_url, ImageUploader
 
   def submit_and_destroy!
     grant = Grant.new
-    valid_attributes = Grant.accessible_attributes.
-                             reject { |attr| attr.empty? }
+    valid_attributes = Grant.accessible_attributes.reject { |attr| attr.empty? }
     grant.attributes = attributes.slice *valid_attributes
     grant.recipient_id = recipient_id
     grant.school_id = school_id
