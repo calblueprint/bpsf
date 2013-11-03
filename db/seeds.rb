@@ -56,14 +56,14 @@ end
 def make_grants
   t1 = Recipient.find_by_first_name 'Teacher_1'
   t2 = Recipient.find_by_first_name 'Teacher_2'
-  3.times do |n|
+  1.upto(3) do |n|
     t1.draft_grants.create! title: "Draft #{n}",
                             summary: Faker::Lorem.sentence
     t2.draft_grants.create! title: "Draft #{n + 3}",
                             summary: Faker::Lorem.sentence
   end
   crowdfunding_grants = []
-  3.times do |n|
+  1.upto(3) do |n|
     crowdfunding_grants << t1.grants.build(title: "Grant #{n}",
                                            summary: Faker::Lorem.sentence,
                                            subject_areas: 'Art Science',
