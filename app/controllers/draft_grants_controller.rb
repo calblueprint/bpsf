@@ -55,4 +55,21 @@ class DraftGrantsController < ApplicationController
     end
   end
 
+  def submit
+    @draft_grant = DraftGrant.find params[:id]
+    if @draft_grant.submit_and_destroy
+      flash[:success] = 'Grant submitted!'
+      redirect_to recipient_dashboard_path
+    else
+      flash[:danger] = 'Some fields were not filled in!'
+      redirect_to edit_draft_path @draft_grant
+    end
+  end
+
+  def destroy
+    DraftGrant.destroy params[:id]
+    flash[:success] = 'Draft deleted.'
+    redirect_to recipient_dashboard_path
+  end
+
 end

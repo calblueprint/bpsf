@@ -2,12 +2,15 @@
   <div class="twelve columns">
     <div class="wrapper light">
       <div class="row">
+        <span class="pull_left">
         <h2>
           Editing <%= @draft_grant.title %>
-          <span class="ttip pull_right" data-tooltip="Back to Dashboard">
-            <%= link_to '<i class="icon-back"></i>'.html_safe, recipient_dashboard_path %>
-          </span>
         </h2>
+      </span>
+          <span class="ttip pull_right" data-tooltip="Back to Dashboard">
+            <%= link_to 'Back<i class="icon-right-open-big"></i>'.html_safe, recipient_dashboard_path %>
+          </span>
+
       </div>
 
 
@@ -162,6 +165,12 @@
             <%= @draft_grant.comments %>
           </div>
 
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="large primary btn">
+          <%= link_to 'Submit!', draft_submit_path(@draft_grant), method: :post %>
         </div>
       </div>
 

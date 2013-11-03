@@ -13,27 +13,39 @@
           <%= link_to "Apply", new_draft_path %>
         <% else %>
           <%= link_to "Apply", new_user_session_path %>
-        <% end %>
+        <% end %>  
       </li>
       <%= render 'layouts/search_form' %>
-      <li>
-        <% if user_signed_in? %>
-          Hello, <%= current_user.first_name %>!
-        <% else %>
+
+      <% if user_signed_in? %>
+        <li>
+          <%= current_user.first_name %><i class="icon-down-open-mini"></i>
+          <div class="dropdown">
+            <ul>
+              <% if current_user.type=='Admin'%>
+                <li><%= link_to 'Dashboard'.html_safe, admin_dashboard_path %></li>
+              <% elsif current_user.type=='Recipient' %>
+                <li><%= link_to 'Dashboard'.html_safe, recipient_dashboard_path %></li>
+              <% else %>
+              <% end %>
+              <li><a href="#">Account</a></li>
+              <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+            </ul>
+          </div>
+         </li> 
+      <% else %>
+        <li>
           <button class="medium primary btn pointer">
             <%= link_to "Sign Up", new_user_registration_path %>
           </button>
-        <% end %>
-      </li>
-      <li>
-        <button class="medium primary btn pointer">
-          <% if user_signed_in? %>
-            <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
-          <% else %>
-            <%= link_to "Sign In", new_user_session_path %>
-          <% end %>
+        </li>
+        <li>
+          <button class="medium primary btn pointer">
+          <%= link_to "Sign In", new_user_session_path %>
         </button>
-      </li>
+        </li>
+      <% end %>
+
     </ul>
   </div>
 </div>
