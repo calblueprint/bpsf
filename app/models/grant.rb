@@ -101,10 +101,10 @@ class Grant < ActiveRecord::Base
     event :crowdfunding_failed do
       transition :crowdfunding => :crowdfund_pending
       def self.crowdfailed
-      @admins = Admin.all
-      @admins.each do |admin|
-        UserMailer.admin_crowdfailed(self).deliver
-      end
+        @admins = Admin.all
+        @admins.each do |admin|
+          UserMailer.admin_crowdfailed(self).deliver
+        end
         UserMailer.grant_crowdfailed(self).deliver
       end
     end
