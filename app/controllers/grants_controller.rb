@@ -9,8 +9,6 @@ class GrantsController < ApplicationController
     # This is going to have to change to incorporate the Grant subclasses
     @grant = current_user.grants.build params[:grant]
     if @grant.save
-      UserMailer.grant_submitted(@grant).deliver
-      
       flash[:success] = 'Grant created!'
       redirect_to @grant
     else
