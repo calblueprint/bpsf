@@ -5,7 +5,7 @@ class PaymentsController < ApplicationController
     if !anyone_signed_in?
       deny_access url: url_for(@grant)
     else
-      @payment = Payment.make_payment! params[:amount], @grant
+      @payment = Payment.make_payment! params[:amount], @grant, current_user
 
       unless current_user.stripe_token
         customer = Stripe::Customer.create email: current_user.email,
