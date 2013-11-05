@@ -65,5 +65,6 @@ class DraftGrant < ActiveRecord::Base
     grant.school_id = school_id
     destroy if grant.save
     UserMailer.grant_submitted(self).deliver
+    UserMailer.admin_grantsubmitted(self).deliver
   end
 end
