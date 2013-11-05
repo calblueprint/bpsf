@@ -193,6 +193,83 @@
 	.nodisplay{display:inline;}
 }
 
+$imglargereplacementhgt: 250px;
+
+.imgreplacementlrg{
+	display:block;
+	background: rgb(255,117,117);
+	text-align: center;
+	overflow:hidden;
+	font-size: $xlarge;
+	color: $white;
+	height:$imglargereplacementhgt;
+	line-height:$imglargereplacementhgt;
+	.repson{
+		margin:0 auto;
+		margin-top: 10px;
+		height: $imglargereplacementhgt - 20px;
+		width: 97%;
+		line-height: $imglargereplacementhgt - 20px;
+		font-size: $xlarge;
+		color: $white;
+		text-align: center;
+		border: 5px dashed $white;
+	}
+}
+
+.grantviewbar{
+	padding-top: 10px;
+	.progress { 
+		height: 20px; 
+		width: 100%;
+		position: relative;
+		background: #eee;
+		span {
+			display: inline-block;
+			height: 100%;
+			background-color: $secondary-color;
+			position: relative;
+			overflow: hidden;
+			text-align:right;
+			line-height:20px;
+			color:#eee;
+		}
+	}
+	.gcdiv{
+		padding-top: 8px;
+		text-align:center; 
+		line-height:$med;
+		.goalnum{
+			font-size:$large;
+			vertical-align:middle;
+			color: $primary-color;
+			@include respond(all-phones){
+				font-size: $med;
+			}
+		}
+
+		.currentnum{
+			font-size:$large;
+			vertical-align:middle;
+			color: $secondary-color;
+			@include respond(all-phones){
+				font-size: $med;
+			}
+		}
+			
+		.gctext{
+			vertical-align:middle;
+			font-size:$med;
+		}
+	}
+}
+
+.inlined{display:inline;}
+.padada{padding-top:10px;}
+.smallfont{font-size:$small;}
+.medfont{font-size:$med;}
+.largefont{font-size:$large;}
+
 /****************************************Trunk.js Classes*****************************/
 body {
 	-webkit-tap-highlight-color:rgba(0,0,0,0);
