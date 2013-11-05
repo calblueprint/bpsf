@@ -16,7 +16,7 @@ class Payment < ActiveRecord::Base
   belongs_to :user
   belongs_to :crowdfund
 
-  def self.make_payment!(amount, grant)
+  def self.make_payment!(amount, grant, current_user)
     payment = current_user.payments.build amount: amount
     payment.user_id = current_user.id
     payment.crowdfund_id = grant.id
