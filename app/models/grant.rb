@@ -83,11 +83,6 @@ class Grant < ActiveRecord::Base
           @admins.each do |admin|
             UserMailer.admin_crowdsuccess(self).deliver
           end
-          @payments = Payment.where(:crowdfund_id => self.id)
-          for payment in @payments do
-            user = User.find(payment.user_id)
-            UserMailer.user_crowdsuccess(user,self).deliver
-          end
         end
       end
       transition [:pending, :crowdfund_pending, :crowdfunding] => :complete
@@ -125,6 +120,7 @@ class Grant < ActiveRecord::Base
                                      description: "Donation to BPSF"
       payment.charge_id = charge.id
       payment.save!
+      UserMailer.user_crowdsuccess(user,self).deliver
     end
   rescue Stripe::InvalidRequestError => err
     logger.error "Stripe error: #{err.message}"
