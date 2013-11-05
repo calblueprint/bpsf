@@ -1,51 +1,49 @@
-<!--***************************************HEADER********************************************-->
-<div class="navbar" id="nav1">
-  <div class="row">
-  <span class="two columns logo">
-    <%= link_to '<i class="icon-left-open-big"></i>Return to Site'.html_safe, root_path %>
+<div class="slideRight trunkheader">     <!--  Add "slideRight" class to items that move right when viewing Nav Drawer  -->
+  <span>
+    <i id="navToggle" class="icon-menu slideRight pointer"></i>    <!-- Add "slideRight" class to items that move right when viewing Nav Drawer  -->
+    <a href="http://www.berkeleypublicschoolsfund.org"><i class="icon-left-open-big"></i>Return to BPSF</a>
   </span>
-    <a class="toggle" gumby-trigger="#nav1 > .row > ul" href="#"><i class="icon-menu"></i></a>
-    <ul class="ten columns">
-      <li><%= link_to 'Explore', root_path %></li>|
-      <li><a href="#">About</a></li>|
-      <li>
-        <% if user_signed_in? %>
-          <%= link_to "Apply", new_draft_path %>
-        <% else %>
-          <%= link_to "Apply", new_user_session_path %>
-        <% end %>  
-      </li>
-      <%= render 'layouts/search_form' %>
+  <% if user_signed_in? %>
+    <div class="loginmenu pull_right">
+      <a href="#" class="toggle" gumby-trigger="#userdropdown" gumby-classname="nodisplay">Hello, <%= current_user.first_name %><i class="icon-down-open-mini"></i></a>
+    </div>
+  <% else %>
+  <div class="loginmenu pull_right">
+    <%= link_to "Sign Up", new_user_registration_path %>  |  <%= link_to "Sign In", new_user_session_path %>
+  </div>
+  <% end %>
+</div>
 
-      <% if user_signed_in? %>
-        <li>
-          <%= current_user.first_name %><i class="icon-down-open-mini"></i>
-          <div class="dropdown">
-            <ul>
-              <% if current_user.type=='Admin'%>
-                <li><%= link_to 'Dashboard'.html_safe, admin_dashboard_path %></li>
-              <% elsif current_user.type=='Recipient' %>
-                <li><%= link_to 'Dashboard'.html_safe, recipient_dashboard_path %></li>
-              <% else %>
-              <% end %>
-              <li><a href="#">Account</a></li>
-              <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
-            </ul>
-          </div>
-         </li> 
+
+<% if user_signed_in? %>
+  <div class="userdropdown nodisplay" id="userdropdown">
+    <ul>
+      <li>Account</li>
+      <% if current_user.type=='Admin'%>
+        <li><%= link_to 'Dashboard'.html_safe, admin_dashboard_path %></li>
+      <% elsif current_user.type=='Recipient' %>
+        <li><%= link_to 'Dashboard'.html_safe, recipient_dashboard_path %></li>
       <% else %>
-        <li>
-          <button class="medium primary btn pointer">
-            <%= link_to "Sign Up", new_user_registration_path %>
-          </button>
-        </li>
-        <li>
-          <button class="medium primary btn pointer">
-          <%= link_to "Sign In", new_user_session_path %>
-        </button>
-        </li>
       <% end %>
-
+      <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
     </ul>
   </div>
+<% else %>
+<% end %>
+
+
+<div class="trunknav slideLeft">
+  <ul>
+    <li class="homelink"><a href="#">Return to BPSF</a></li>
+    <li><%= link_to 'Explore'.html_safe, root_path %></li>
+    <li><a href="#">About</a></li>
+    <li>
+      <% if user_signed_in? %>
+        <%= link_to "Apply", new_draft_path %>
+      <% else %>
+        <%= link_to "Apply", new_user_session_path %>
+      <% end %>   
+    </li>
+    <li class="field"><input class="search input" type="search" placeholder="Search" /></li>
+  </ul>
 </div>

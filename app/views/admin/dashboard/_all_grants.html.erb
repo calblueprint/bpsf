@@ -1,5 +1,3 @@
-<tr>
-  <td><%= link_to grant.title, grant %></td>
-  <td><%= render 'grant_status', grant: grant %></td>
-  <td><%= render 'toggle_links', grant: grant %></td>
+<tr id="grant<%= grant.id %>">
+  <%= render partial: 'grant_row', locals: { grant: grant } %>
 </tr>
