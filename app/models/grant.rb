@@ -64,12 +64,14 @@ class Grant < ActiveRecord::Base
   state_machine initial: :pending do
 
     after_transition :on => :fund, :do => :process_payments
+    after_transition [:pending, :crowdfund_pending] => :rejected, :do => :grant_rejected
+    after_transition :crowdfunding => :complete, :do => [:admin_crowdsuccess,:grant_funded]
+    after_transition [:pending, :crowdfund_pending] => :complete, :do => :grant_funded
+    after_transition :pending => :crowdfunding, :do => :grant_crowdfunding
+    after_transition :crowdfunding => :crowdfund_pending, :do => :crowdfailed
 
     event :reject do
       transition [:pending, :crowdfund_pending] => :rejected
-      def self.grant_rejected
-        UserMailer.grant_rejected(self).deliver
-      end
     end
 
     event :reconsider do
@@ -77,36 +79,15 @@ class Grant < ActiveRecord::Base
     end
 
     event :fund do
-      def self.crowdsuccess  
-        if self.crowdfunding?
-          @admins = Admin.all
-          @admins.each do |admin|
-            UserMailer.admin_crowdsuccess(self).deliver
-          end
-        end
-      end
       transition [:pending, :crowdfund_pending, :crowdfunding] => :complete
-      def self.grant_funded
-        UserMailer.grant_funded(self).deliver
-      end
     end
 
     event :crowdfund do
       transition :pending => :crowdfunding
-      def self.grant_crowdfunding
-        UserMailer.grant_crowdfunding(self).deliver
-      end
     end
 
     event :crowdfunding_failed do
       transition :crowdfunding => :crowdfund_pending
-      def self.crowdfailed
-        @admins = Admin.all
-        @admins.each do |admin|
-          UserMailer.admin_crowdfailed(self).deliver
-        end
-        UserMailer.grant_crowdfailed(self).deliver
-      end
     end
   end
 
@@ -124,6 +105,34 @@ class Grant < ActiveRecord::Base
     end
   rescue Stripe::InvalidRequestError => err
     logger.error "Stripe error: #{err.message}"
+  end
+
+  def grant_rejected
+    UserMailer.grant_rejected(self).deliver
+  end
+
+  def admin_crowdsuccess
+    @admins = Admin.all
+    @admins.each do |admin|
+      UserMailer.admin_crowdsuccess(self, admin).deliver
+    end
+  end
+
+  def grant_funded
+    UserMailer.grant_funded(self).deliver
+
+  end
+
+  def grant_crowdfunding
+    UserMailer.grant_crowdfunding(self).deliver
+  end
+
+  def crowdfailed
+    @admins = Admin.all
+    @admins.each do |admin|
+      UserMailer.admin_crowdfailed(self, admin).deliver
+    end
+    UserMailer.grant_crowdfailed(self).deliver
   end
 
 end
