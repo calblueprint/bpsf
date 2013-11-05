@@ -29,7 +29,7 @@ def make_users
 
   admin2 = Admin.create! first_name: 'Admin_2',
                          last_name: 'Dev',
-                         email: 'bpsfadmin2@gmail.com',
+                         email: 'bpsfsuper2@gmail.com',
                          password: 'password',
                          password_confirmation: 'password'
 
