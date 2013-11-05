@@ -60,7 +60,7 @@ class UserMailer < ActionMailer::Base
     mail(to: @admin.email, subject: 'A grant has just been submitted for review.')
   end
 
-  def admin_crowdsuccess(grant)
+  def admin_crowdsuccess(grant, admin)
     @grant = grant
     @recipient = @grant.recipient
     @admin = admin
@@ -68,11 +68,12 @@ class UserMailer < ActionMailer::Base
     mail(to: @admin.email, subject: 'A grant has reached its crowdfund goal!')
   end
 
-  def admin_crowdfailed(grant)
+  def admin_crowdfailed(grant, admin)
     @grant = grant
     @recipient = @grant.recipient
+    @admin = admin
     @url = 'http://bpsf-staging.herokuapp.com/grants/' + (@grant.id).to_s
-    mail(to: Proc.new {Admin.pluck(:email)}, subject: 'A grant has failed to reach its crowdfund goal.') 
+    mail(to: @admin.email, subject: 'A grant has failed to reach its crowdfund goal.') 
   end
 
 end
