@@ -10,7 +10,7 @@ class UserMailer < ActionMailer::Base
   def user_pledge(user,grant)
     @user = user
     @grant = grant
-    @url = 'http://bpsf-staging.herokuapp.com/grants/' + @grant.id
+    @url = 'http://bpsf-staging.herokuapp.com/grants/' + (@grant.id).to_s
     mail(to: @user.email, subject: 'Thank you for pledging a donation!')
   end
 
@@ -21,48 +21,48 @@ class UserMailer < ActionMailer::Base
   end
 
   def grant_submitted(grant)
-    @recipient = Recipient.find(grant.recipient_id)
     @grant = grant
-    @url = 'http://bpsf-staging.herokuapp.com/grants/' + @grant.id
+    @recipient = @grant.recipient
+    @url = 'http://bpsf-staging.herokuapp.com/grants/' + (@grant.id).to_s
     mail(to: @recipient.email, subject: 'Your grant has been submitted!')
   end
 
   def grant_rejected(grant)
-    @recipient = Recipient.find(grant.recipient_id)
     @grant = grant
+    @recipient = @grant.recipient
     mail(to: @recipient.email, subject: 'Your grant has been rejected.')
   end
 
   def grant_funded(grant)
-    @recipient = Recipient.find(grant.recipient_id)
     @grant = grant
+    @recipient = @grant.recipient
     mail(to: @recipient.email, subject: 'Your grant has been funded!')
   end
 
   def grant_crowdfunding(grant)
-    @recipient = Recipient.find(grant.recipient_id)
     @grant = grant
-    @url = 'http://bpsf-staging.herokuapp.com/grants/' + @grant.id
+    @recipient = @grant.recipient
+    @url = 'http://bpsf-staging.herokuapp.com/grants/' + (@grant.id).to_s
     mail(to: @recipient.email, subject: 'Your grant is crowdfunding.')
   end
 
   def grant_crowdfailed(grant)
-    @recipient = Recipient.find(grant.recipient_id)
     @grant = grant
+    @recipient = @grant.recipient
     mail(to: @recipient.email, subject: 'Your grant did not reach its crowdfund goal.')
   end
 
   def admin_crowdsuccess(grant)
-    @recipient = Recipient.find(grant.recipient_id)
     @grant = grant
-    @url = 'http://bpsf-staging.herokuapp.com/grants/' + @grant.id
+    @recipient = @grant.recipient
+    @url = 'http://bpsf-staging.herokuapp.com/grants/' + (@grant.id).to_s
     mail(to: Proc.new {Admin.pluck(:email)}, subject: 'A grant has reached its crowdfund goal!')
   end
 
   def admin_crowdfailed(grant)
-    @recipient = grant.recipient
     @grant = grant
-    @url = 'http://bpsf-staging.herokuapp.com/grants/' + @grant.id
+    @recipient = @grant.recipient
+    @url = 'http://bpsf-staging.herokuapp.com/grants/' + (@grant.id).to_s
     mail(to: Proc.new {Admin.pluck(:email)}, subject: 'A grant has failed to reach its crowdfund goal.') 
   end
 
