@@ -119,9 +119,6 @@ class Grant < ActiveRecord::Base
                                      description: "Donation to BPSF"
       payment.charge_id = charge.id
       payment.save!
-      def self.user_pledge
-        UserMailer.user_pledge(user,self).deliver
-      end
     end
   rescue Stripe::InvalidRequestError => err
     logger.error "Stripe error: #{err.message}"
