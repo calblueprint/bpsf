@@ -52,6 +52,12 @@ class UserMailer < ActionMailer::Base
     mail(to: @recipient.email, subject: 'Your grant did not reach its crowdfund goal.')
   end
 
+  def admin_grantsubmitted(grant)
+    @grant = grant
+    @recipient = @grant.recipient
+    @url = 'http://bpsf-staging.herokuapp.com/grants/' + (@grant.id).to_s
+    mail(to: Proc.new {Admin.pluck(:email), subject: 'A grant has just been submitted for review.'}
+
   def admin_crowdsuccess(grant)
     @grant = grant
     @recipient = @grant.recipient
