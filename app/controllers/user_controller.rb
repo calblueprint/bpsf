@@ -7,10 +7,14 @@ class UserController < ApplicationController
     @payments = Array.new
     total_payments.each do |payment|
       payment_hash = Hash.new
-      payment_hash[:crowdfund] = Crowdfund.find payment.crowdfund_id
-      payment_hash[:recipient] = Recipient.find payment.recipient_id
+      crowdfund = Crowdfund.find payment.crowdfund_id
+      payment_hash[:crowdfund] = crowdfund
+      payment_hash[:recipient] = Recipient.find crowdfund.recipient_id
       payment_hash[:amount] = payment.amount
     end
+    puts "CALLING FUNCTION"
+    puts @payments.length
+    puts @payments
   end
 
   def edit
