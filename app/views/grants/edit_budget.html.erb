@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="twelve columns">
+    <div class="wrapper light">
+
+      <div class="row">
+        <h2>Editing Budget</h2>
+      </div>
+
+      <!-- This is the form to edit the total_budget, requested_funds, funds_will_pay_for, and budget_desc. -->
+
+      <div class="row">
+        <div class="twelve columns">
+          <%= form_for @grant, url: grant_path do |f| %>
+            <%= render 'shared/errors', object: f.object %>
+            
+            <div class="field">
+              <%= f.label :total_budget, 'Total Budget' %>
+              <%= f.text_field :total_budget, class: :input %>
+            </div>
+
+            <div class="field">
+              <%= f.label :requested_funds, 'Funds requested from the Schools Fund' %>
+              <%= f.text_field :requested_funds, class: :input %>
+            </div>
+
+            <div class="field">
+              <%= f.label :funds_will_pay_for, 'Funds will pay for:' %>
+              <%= f.text_area :funds_will_pay_for, class: [:textarea, :input], rows: 5 %>
+            </div>
+
+            <div class="field">
+              <%= f.label :budget_desc, 'How the funds will benefit your class:' %>
+              <%= f.text_area :budget_desc, class: [:textarea, :input], rows: 5 %>
+            </div>
+          
+            <div class="medium primary btn pull_right">
+              <%= f.submit 'Save!' %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
