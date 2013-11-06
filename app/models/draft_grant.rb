@@ -64,5 +64,10 @@ class DraftGrant < ActiveRecord::Base
     grant.recipient_id = recipient_id
     grant.school_id = school_id
     destroy if grant.save
+    UserMailer.grant_submitted(self).deliver
+    @admins = Admin.all
+    @admins.each do |admin|
+      UserMailer.admin_grantsubmitted(self,admin).deliver
+    end
   end
 end

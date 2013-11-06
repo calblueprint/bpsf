@@ -23,13 +23,13 @@ def make_users
   # Create Admins
   admin1 = Admin.create! first_name: 'Admin_1',
                          last_name: 'Dev',
-                         email: 'bpsfadmin1@gmail.com',
+                         email: 'bpsfsuper1@gmail.com',
                          password: 'password',
                          password_confirmation: 'password'
 
   admin2 = Admin.create! first_name: 'Admin_2',
                          last_name: 'Dev',
-                         email: 'bpsfadmin2@gmail.com',
+                         email: 'bpsfsuper2@gmail.com',
                          password: 'password',
                          password_confirmation: 'password'
 
