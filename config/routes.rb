@@ -7,7 +7,7 @@ BPSF::Application.routes.draw do
   resources :grants,       except: :index
   resources :payments,     except: [:index, :show, :edit, :update, :new]
 
-  devise_for :users
+  devise_for :users, :controllers => { :registrations => "registrations" }
 
   resources :user,         except: [:index, :new, :create, :destroy]
 
@@ -21,6 +21,14 @@ BPSF::Application.routes.draw do
     get ':id/edit_logistics/',    to: 'draft_grants#edit_logistics',    as: :draft_edit_logistics
     get ':id/edit_budget/',       to: 'draft_grants#edit_budget',       as: :draft_edit_budget
     get ':id/edit_methods/',      to: 'draft_grants#edit_methods',      as: :draft_edit_methods
+    post ':id/submit/',           to: 'draft_grants#submit',            as: :draft_submit
+  end
+
+  scope '/grants' do
+    get ':id/edit_general_info/', to: 'grants#edit_general_info', as: :edit_general
+    get ':id/edit_logistics/',    to: 'grants#edit_logistics',    as: :edit_logistics
+    get ':id/edit_budget/',       to: 'grants#edit_budget',       as: :edit_budget
+    get ':id/edit_methods/',      to: 'grants#edit_methods',      as: :edit_methods
   end
 
   namespace :admin do

@@ -197,6 +197,7 @@ GEM
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
+    railroady (1.1.1)
     rails (3.2.13)
       actionmailer (= 3.2.13)
       actionpack (= 3.2.13)
@@ -339,6 +340,7 @@ DEPENDENCIES
   modular-scale (~> 1.0.6)
   pg (= 0.12.2)
   pry (~> 0.9.12.2)
+  railroady (~> 1.1.1)
   rails (= 3.2.13)
   rb-readline (~> 0.4.2)
   rspec-rails (= 2.11.0)
