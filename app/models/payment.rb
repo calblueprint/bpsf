@@ -21,5 +21,6 @@ class Payment < ActiveRecord::Base
     payment.user_id = current_user.id
     payment.crowdfund_id = grant.id
     payment.save!
+    UserMailer.user_pledge(current_user,grant).deliver
   end
 end
