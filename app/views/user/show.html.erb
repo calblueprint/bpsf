@@ -11,7 +11,6 @@
 
     <% if current_user.type == "User" %>
       <%= render partial: "user_profile" %>
-    <% end %>
     <% elsif current_user.type == "Recipient" %>
     <% end %>
   </div>
