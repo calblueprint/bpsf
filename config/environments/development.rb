@@ -21,6 +21,8 @@ BPSF::Application.configure do
 
   ActionMailer::Base.perform_deliveries = false
 
+  config.action_mailer.delivery_method = :test
+
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
 
