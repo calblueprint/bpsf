@@ -14,6 +14,10 @@ module SessionsHelper
     current_user.type = 'Admin' || current_user.type = 'SuperUser'
   end
 
+  def super_user?
+    current_user.type == 'SuperUser'
+  end
+
   private
 
   def store_location(options)
