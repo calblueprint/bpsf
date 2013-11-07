@@ -14,6 +14,7 @@ gem 'state_machine', '~> 1.2.0'
 gem 'carrierwave', '~> 0.9.0'
 gem 'fog', '~> 1.16.0'
 gem 'textacular', '~> 3.0', require: 'textacular/rails'
+gem 'enumerize'
 
 group :development, :test do
   gem 'rspec-rails', '2.11.0'
