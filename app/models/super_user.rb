@@ -21,5 +21,5 @@
 #  stripe_token           :string(255)
 #
 
-class Super_User < User
+class SuperUser < User
 end
