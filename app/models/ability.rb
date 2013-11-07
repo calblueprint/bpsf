@@ -13,7 +13,7 @@ class Ability
       can :manage, :all
       cannot :destroy, SuperUser
     elsif user.type == 'Admin'
-      can [:create, :read, :update], :all
+      can :read, :all
       cannot :manage, [SuperUser, Admin]
       can :manage, Admin, id: user.id
     elsif user.type == 'Recipient'
