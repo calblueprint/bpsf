@@ -1,0 +1,5 @@
+$("#grantlisting #grant<%= @grant.id %>").html(
+  "<%= escape_javascript(
+    render partial: 'grant_row', locals: { grant: @grant} ) %>");
+$("#modal-content").html("<%= escape_javascript(render(partial: "crowdfund_modal", locals: {grant: @grant}))%>")
+$("#crowdfund-modal").addClass("active");
