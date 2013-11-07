@@ -1,0 +1,21 @@
+<div class="modal" id="modal1">
+  <div class="content">
+    <a class="close switch" gumby-trigger="|#modal1"><i class="icon-cancel" /></i></a>
+    <div class="row">
+      <div class="ten columns centered text-center">
+        <%= form_tag(grant_event_path(id: grant.id, state: "crowdfunding"), method: :post, remote: true) do %>
+          <div class="field">
+            <%= label_tag :deadline, "Deadline" %>
+            <%= select_day nil, nil, {id: "deadline_day"} %>
+            <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "deadline_month"} %>
+            <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+5}, {name: nil, id: "deadline_year"} %>
+          </div>
+        <% end %>
+        <p class="btn primary medium">
+          <a href="#" class="switch" gumby-trigger="|#modal1">Close Modal</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
