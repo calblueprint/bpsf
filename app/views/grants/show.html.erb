@@ -3,7 +3,7 @@
     <div class="row centalign">
       <h2 >
         <%= @grant.title %>
-        <% if current_user && super_user? %>
+        <% if super_user? %>
           <span class="ttip" data-tooltip="Edit">
             <%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_grant_path %>
           </span>

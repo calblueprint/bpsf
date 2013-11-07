@@ -1,7 +1,7 @@
 class Recipient::DashboardController < ApplicationController
 
   def index
-    if current_user && recipient?
+    if recipient?
       @draft_grants = current_user.draft_grants
       @grants = current_user.grants
     elsif
