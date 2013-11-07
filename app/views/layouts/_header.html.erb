@@ -19,9 +19,9 @@
   <div class="userdropdown nodisplay" id="userdropdown">
     <ul>
       <li>Account</li>
-      <% if current_user.type=='Admin'%>
+      <% if current_user.type == 'Admin' || current_user.type == 'SuperUser' %>
         <li><%= link_to 'Dashboard'.html_safe, admin_dashboard_path %></li>
-      <% elsif current_user.type=='Recipient' %>
+      <% elsif current_user.type == 'Recipient' %>
         <li><%= link_to 'Dashboard'.html_safe, recipient_dashboard_path %></li>
       <% else %>
       <% end %>
