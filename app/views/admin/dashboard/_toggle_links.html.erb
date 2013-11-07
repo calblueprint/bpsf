@@ -1,4 +1,9 @@
 <% grant.state_transitions.map { |s| s.event.to_s }.each do |state| %>
+  <% if state == "crowdfund" %>
+    <%= link_to state.titleize, crowdfund_form_path(id: grant.id),
+                method: :post,
+                remote: :true %>
+  <% end %>
   <%= link_to state.titleize,
               grant_event_path(id: grant.id, state: state),
               method: :post,
