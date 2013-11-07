@@ -21,7 +21,7 @@
       <li>Account</li>
       <% if admin_user? %>
         <li><%= link_to 'Dashboard'.html_safe, admin_dashboard_path %></li>
-      <% elsif current_user.type == 'Recipient' %>
+      <% elsif recipient? %>
         <li><%= link_to 'Dashboard'.html_safe, recipient_dashboard_path %></li>
       <% else %>
       <% end %>
