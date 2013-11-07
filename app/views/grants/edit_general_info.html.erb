@@ -34,7 +34,7 @@
 
             <div class="field">
               <%= f.label :subject_areas, 'Subject Areas' %>
-              <%= f.text_area :subject_areas, class: [:textarea, :input], rows: 5 %>
+              <%= f.select :subject_areas, Grant::SUBJECTS %>
             </div>
 
             <div class="medium primary btn pull_right">

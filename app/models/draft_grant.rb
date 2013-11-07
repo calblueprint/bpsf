@@ -47,9 +47,12 @@ class DraftGrant < ActiveRecord::Base
   belongs_to :recipient
   belongs_to :school
 
+  SUBJECTS = ['Art & Music', 'Supplies', 'Reading', 'Science & Math', 'Field Trips', 'Other']
+  validates_inclusion_of :subject_areas, :in => SUBJECTS
+
   validates :title, presence: true, length: { maximum: 40 }
   validates_length_of :summary, within: 1..200, too_short: 'cannot be blank', allow_nil: true
-  validates_length_of :subject_areas, :duration, :budget_desc,
+  validates_length_of :duration, :budget_desc,
                       minimum: 1, too_short: 'cannot be blank', allow_nil: true
   validates :grade_level, valid_grade: true, allow_nil: true
   validates_length_of :purpose, :methods, :background, :collaborators, :comments, 
