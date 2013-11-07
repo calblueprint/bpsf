@@ -2,7 +2,7 @@ class DraftGrantsController < ApplicationController
   load_and_authorize_resource
 
   def new
-    if current_user && current_user.type == 'Recipient'
+    if current_user && recipient?
       @draft_grant = current_user.draft_grants.build
     elsif
       raise CanCan::AccessDenied.new("You are not authorized to access this page.", :manage, DraftGrant)
