@@ -34,7 +34,7 @@
 
             <div class="field">
               <%= f.label :subject_areas, 'Subject Areas' %>
-              <%= f.select :subject_areas, DraftGrant::SUBJECTS %>
+              <%= f.select(:subject_areas, DraftGrant::SUBJECTS, {}, {:multiple => true}) %>
             </div>
 
             <div class="medium primary btn pull_right">
