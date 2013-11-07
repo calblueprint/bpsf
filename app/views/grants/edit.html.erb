@@ -47,8 +47,7 @@
 
           <div class="row">
             <h4>Subject areas</h4>
-            <%= @grant.subject_areas.shift %>
-            <%= @grant.subject_areas.join(', ') %>
+            <%= @grant.subject_areas.values.to_a.join(', ') %>
           </div>
 
         </div>
