@@ -8,43 +8,28 @@
 
 # Create Teachers (we refer to them as Recipients)
 def make_users
-  teacher1 = Recipient.create! first_name: 'Teacher_1',
-                               last_name: 'Dev',
-                               email: 'bpsfteacher1@gmail.com',
-                               password: 'password',
-                               password_confirmation: 'password'
-
-  teacher2 = Recipient.create! first_name: 'Teacher_2',
-                               last_name: 'Dev',
-                               email: 'bpsfteacher2@gmail.com',
-                               password: 'password',
-                               password_confirmation: 'password'
-
-  # Create Admins
-  admin1 = Admin.create! first_name: 'Admin_1',
-                         last_name: 'Dev',
-                         email: 'bpsfsuper1@gmail.com',
-                         password: 'password',
-                         password_confirmation: 'password'
-
-  admin2 = Admin.create! first_name: 'Admin_2',
-                         last_name: 'Dev',
-                         email: 'bpsfsuper2@gmail.com',
-                         password: 'password',
-                         password_confirmation: 'password'
-
-  # Create Parents (they are general Users)
-  parent1 = User.create! first_name: 'Parent_1',
-                         last_name: 'Dev',
-                         email: 'bpsfparent1@gmail.com',
-                         password: 'password',
-                         password_confirmation: 'password'
-
-  parent2 = User.create! first_name: 'Parent_2',
-                         last_name: 'Dev',
-                         email: 'bpsfparent2@gmail.com',
-                         password: 'password',
-                         password_confirmation: 'password'
+  1.upto(2) do |n|
+    SuperUser.create! first_name: "SuperUser #{n}",
+                      last_name: "Dev",
+                      email: "bpsfsuper#{n}@gmail.com",
+                      password: "password",
+                      password_confirmation: "password"
+    Admin.create! first_name: "Admin #{n}",
+                  last_name: "Dev",
+                  email: "bpsfadmin#{n}@gmail.com",
+                  password: "password",
+                  password_confirmation: "password"
+    Recipient.create! first_name: "Teacher #{n}",
+                      last_name: "Dev",
+                      email: "bpsfteacher#{n}@gmail.com",
+                      password: "password",
+                      password_confirmation: "password"
+    User.create! first_name: "Parent #{n}",
+                 last_name: "Dev",
+                 email: "bpsfparent#{n}@gmail.com",
+                 password: "password",
+                 password_confirmation: "password"
+  end
 end
 
 def make_schools
@@ -54,8 +39,8 @@ def make_schools
 end
 
 def make_grants
-  t1 = Recipient.find_by_first_name 'Teacher_1'
-  t2 = Recipient.find_by_first_name 'Teacher_2'
+  t1 = Recipient.find_by_first_name 'Teacher 1'
+  t2 = Recipient.find_by_first_name 'Teacher 2'
   1.upto(3) do |n|
     t1.draft_grants.create! title: "Draft #{n}",
                             summary: Faker::Lorem.sentence
