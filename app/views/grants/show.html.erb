@@ -49,7 +49,7 @@
     <div class="row padada">
       <div class="six columns centalign">
         <h5 class="inlined"><strong>Subject areas: </strong></h5>
-        <span class="medfont"><%= @grant.subject_areas %></span>      
+        <span class="medfont"><%= @grant.subject_areas.values.to_a.join(', ') %></span>      
       </div>
       <div class="six columns centalign">
         <h5 class="inlined"><strong>Duration: </strong></h5><span class="medfont"><%= @grant.duration %></span>

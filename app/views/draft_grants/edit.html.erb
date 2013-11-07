@@ -53,8 +53,13 @@
 
           <div class="row">
             <h4>Subject areas</h4>
-            <%= @draft_grant.subject_areas.shift %>
-            <%= @draft_grant.subject_areas.join(', ') %>
+            <% if !@draft_grant.subject_areas.blank? %>
+              <% @ret = '' %>
+              <% for subject in @draft_grant.subject_areas %>
+                <% @ret += subject.value + ', ' %>
+              <% end %>
+              <%= @ret = @ret[0..-3] %>
+            <% end %>
           </div>
 
         </div>
