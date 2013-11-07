@@ -19,6 +19,10 @@ BPSF::Application.configure do
   # Mailer defaults to localhost
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 
+  ActionMailer::Base.perform_deliveries = false
+
+  config.action_mailer.delivery_method = :test
+
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
 
