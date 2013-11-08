@@ -1,5 +1,4 @@
 BPSF::Application.routes.draw do
-  post "crowdfund/create"
 
   root to: 'pages#home'
   get '/search', to: 'pages#search', as: :search
@@ -37,6 +36,7 @@ BPSF::Application.routes.draw do
     post ':id', to: 'admin/dashboard#crowdfund_form', as: :crowdfund_form
   end
 
+  post "crowdfund/create"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
