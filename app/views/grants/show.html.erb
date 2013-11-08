@@ -69,8 +69,7 @@
 
     <div class="row padada">
       <div class="six columns centalign">
-        <h5 class="inlined"><strong>Subject areas: </strong></h5>
-        <span class="medfont"><%= @grant.subject_areas.values.to_a.join(', ') %></span>
+        <h5 class="inlined"><strong>Subject areas: </strong></h5><span class="medfont"><%= @grant.subject_areas.values.to_a.join(', ') %></span>      
       </div>
       <div class="six columns centalign">
         <h5 class="inlined"><strong>Duration: </strong></h5><span class="medfont"><%= @grant.duration %></span>
@@ -93,52 +92,62 @@
       </div>
     </div>
 
+    <hr>
+    
+    <div class="row">
+      <div class="ten columns centalign centered">
+        <h3>Details</h3>
+        <h5><strong>Purpose</strong></h5>
+        <%= @grant.purpose %>
+        <h5><strong>Methods</strong></h5>
+        <%= @grant.methods %>
+      </div>
+    </div>
 
-    <div class="row centalign">
-      <% if !@grant.video.blank? %>
+
+    <% if !@grant.video.blank? %>
+    <div class="row">
+      <div class="ten columns centered">
+        <div class="video-container">
+          <iframe src= "http://www.youtube.com/embed/<%= parse_embed(@grant) %>"></iframe>
+        </div>
+      </div>
+    </div>
+    <% end %>
+
+
+    <div class="row">
+      <div class="ten columns centalign centered">
+        <h3 class="centalign">Budget</h3>
+        <h5 class="inlined"><strong>Total budget: </strong></h5><span class="largefont"><%= @grant.total_budget %></span><br>
+        <h5><strong>Description</strong></h5>
+        <%= @grant.budget_desc %> 
+        <h5><strong>Use of Funds</strong></h5>
+        <%= @grant.funds_will_pay_for %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="ten columns centalign centered">
         <br>
-        <iframe width="70%" height="300" src= "http://www.youtube.com/embed/<%= parse_embed(@grant) %>"></iframe>
-      <% end %>
+        <h3>Team</h3>
+        <h5 class="inlined"><strong>Director: </strong></h5><%= @grant.recipient.first_name + ' ' + @grant.recipient.last_name %><br>
+        <h5><strong>Director background</strong></h5>
+        <%= @grant.background %>       
+        <h5><strong>Collaborators</strong></h5>
+        <%= @grant.collaborators %>
+      </div>
     </div>
 
+    <% if !@grant.comments.blank? %>
     <div class="row">
-      <h3>Funds will pay for:</h3>
-      <%= @grant.funds_will_pay_for %>
+      <div class="twelve columns centalign">
+        <br>
+        <h3>Additional Comments</h3>
+        <%= @grant.comments %>
+      </div>
     </div>
-
-    <div class="row">
-      <h3>Budget description</h3>
-      <%= @grant.budget_desc %>
-    </div>
-
-    <div class="row">
-      <h3>Purpose</h3>
-      <%= @grant.purpose %>
-    </div>
-
-    <div class="row">
-      <h3>Methods</h3>
-      <%= @grant.methods %>
-    </div>
-
-    <div class="row">
-      <h3>Teacher background</h3>
-      <%= @grant.background %>
-    </div>
-
-    <div class="row">
-      <h3>Num. collaborators: <%= @grant.n_collaborators %></h3>
-    </div>
-
-    <div class="row">
-      <h3>Collaborators</h3>
-      <%= @grant.collaborators %>
-    </div>
-
-    <div class="row">
-      <h3>Comments</h3>
-      <%= @grant.comments %>
-    </div>
+    <% end %>
 
 
     <% if @grant.crowdfunding? %>
