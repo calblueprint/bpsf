@@ -3,21 +3,26 @@
     <a class="close switch" gumby-trigger="|#crowdfund-modal"><i class="icon-cancel" /></i></a>
     <div class="row">
       <div class="ten columns centered text-center">
-        <%= debug @grant %>
-        <%= form_tag(crowdfund_create_path, method: :post, remote: true) do %>
-          <div class="field">
-            <%= label_tag :goal, "Goal" %>
-            <%= text_field_tag :goal, nil, name: nil, class: :input %>
-          </div>
-          <div class="field">
-            <%= label_tag :deadline, "Deadline" %>
-            <%= select_day :day, nil, {id: "deadline_day"} %>
-            <%= select_month :month, {add_month_numbers: true}, {name: nil, id: "deadline_month"} %>
-            <%= select_year :year, {start_year: Date.today.year, end_year: Date.today.year+5}, {name: nil, id: "deadline_year"} %>
-          </div>
-            <%= hidden_field_tag :grant_id, grant.id %>
+        YO YOYO
+        <% if grant %>
+          <%= form_tag(crowdfund_create_path, method: :post) do %>
+            <div class="field">
+              <%= label_tag :goal, "Goal" %>
+              <%= text_field_tag :goal, nil, name: nil %>
+            </div>
+            <div class="field">
+              <%# <%= label_tag :deadline, "Deadline" %1> %>
+              <%# <%= select_day :day, {id: "deadline_day"} %1> %>
+              <%# <%= select_month :month, {add_month_numbers: true}, {name: nil, id: "deadline_month"} %1> %>
+              <%# <%= select_year :year, {start_year: Date.today.year, end_year: Date.today.year+5}, {name: nil, id: "deadline_year"} %1> %>
+            </div>
+            <%= hidden_field_tag :grant_id, @grant.id %>
+          <% end %>
+        <% else %>
+          GRANT NOT DEFINED
         <% end %>
         <p class="btn primary medium">
+        YO
           <a href="#" class="switch" gumby-trigger="|#crowdfund-modal">Close Modal</a>
         </p>
       </div>
