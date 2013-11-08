@@ -1,4 +1,6 @@
 BPSF::Application.routes.draw do
+  post "crowdfund/create"
+
   root to: 'pages#home'
   get '/search', to: 'pages#search', as: :search
 
