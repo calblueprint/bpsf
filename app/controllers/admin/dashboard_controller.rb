@@ -9,6 +9,7 @@ class Admin::DashboardController < ApplicationController
 
   def grant_event
     @grant = Grant.find params[:id]
+    puts params[:state]
     @grant.send params[:state]
     respond_to do |format|
       format.html { redirect_to admin_dashboard_path }
@@ -19,7 +20,8 @@ class Admin::DashboardController < ApplicationController
   def crowdfund_form
     puts "CALLED CROWD FUND ON SERVER"
     @grant = Grant.find params[:id]
-    @grant.send 'crowdfund'
+    @grant.state = "crowdfunding"
+    @grant.save
     respond_to do |format|
       format.html { redirect_to admin_dashboard_path }
       format.js
