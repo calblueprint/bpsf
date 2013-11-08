@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131029075542) do
+ActiveRecord::Schema.define(:version => 20131108054820) do
 
   create_table "crowdfunds", :force => true do |t|
     t.datetime "deadline"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(:version => 20131029075542) do
     t.datetime "updated_at",    :null => false
     t.integer  "goal"
     t.integer  "pledged_total"
+    t.integer  "grant_id"
   end
 
   create_table "draft_grants", :force => true do |t|
