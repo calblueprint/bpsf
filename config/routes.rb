@@ -33,8 +33,8 @@ BPSF::Application.routes.draw do
   end
   scope '/grants' do
     post ':id/:state', to: 'admin/dashboard#grant_event', as: :grant_event
+    post ':id', to: 'admin/dashboard#crowdfund_form', as: :crowdfund_form
   end
-  post 'admin/crowdfund/:id', to: 'admin/dashboard#crowdfund_form', as: :crowdfund_form
 
   post "crowdfund/create"
   # The priority is based upon order of creation:
