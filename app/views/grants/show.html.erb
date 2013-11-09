@@ -18,8 +18,10 @@
     </div>
 
     <div class="row">
-      <% if admin_user? %>
+      <% if super_user? %>
         <%= ratings_for @grant, show_user_rating: true %>
+      <% elsif %>
+        <%= ratings_for @grant %>
       <% end %>
     </div>
 
