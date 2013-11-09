@@ -20,7 +20,7 @@
     <div class="row">
       <% if super_user? %>
         <%= ratings_for @grant, show_user_rating: true %>
-      <% elsif %>
+      <% elsif admin_user? %>
         <%= ratings_for @grant %>
       <% end %>
     </div>
