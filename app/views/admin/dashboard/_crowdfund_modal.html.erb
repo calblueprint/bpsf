@@ -1,10 +1,10 @@
-<div class="modal" id="crowdfund-modal">
+<div class="modal" id="crowdfund-form">
   <div class="content">
-    <a class="close switch" gumby-trigger="|#crowdfund-modal"><i class="icon-cancel" /></i></a>
+    <a class="close switch close-crowdfund-modal" gumby-trigger="|#crowdfund-form"><i class="icon-cancel" /></i></a>
     <div class="row">
       <div class="ten columns centered text-center">
-        YO YOYO
         <% if grant %>
+          <p>Create Crowdfund for <%= grant.title %></p>
           <%= form_tag(crowdfund_create_path, method: :post) do %>
             <div class="field">
               <%= label_tag :goal, "Goal" %>
@@ -22,8 +22,7 @@
           GRANT NOT DEFINED
         <% end %>
         <p class="btn primary medium">
-        YO
-          <a href="#" class="switch" gumby-trigger="|#crowdfund-modal">Close Modal</a>
+          <a href="#" class="switch close-crowdfund-modal" gumby-trigger="|#crowdfund-form" close-crowdfund-modal">Close</a>
         </p>
       </div>
     </div>
