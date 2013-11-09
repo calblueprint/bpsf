@@ -29,6 +29,7 @@ GEM
       i18n (= 0.6.1)
       multi_json (~> 1.0)
     addressable (2.3.5)
+    ajaxful_rating (3.0.0.beta8)
     annotate (2.5.0)
       rake
     arel (3.0.2)
@@ -92,6 +93,8 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     diff-lcs (1.1.3)
+    enumerize (0.7.0)
+      activesupport (>= 3.2)
     erubis (2.7.0)
     excon (0.27.6)
     execjs (2.0.1)
@@ -319,6 +322,7 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
+  ajaxful_rating (~> 3.0.0.beta8)
   annotate (= 2.5.0)
   cancan (~> 1.6.10)
   capybara (= 1.1.2)
@@ -329,6 +333,7 @@ DEPENDENCIES
   compass-rails (~> 1.0.3)
   database_cleaner (~> 1.0.0.RC1)
   devise (~> 3.1.1)
+  enumerize
   factory_girl_rails (= 4.1.0)
   faker (= 1.0.1)
   fog (~> 1.16.0)

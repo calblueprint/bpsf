@@ -38,4 +38,13 @@ class GrantsController < ApplicationController
     flash[:success] = 'Grant deleted.'
     redirect_to grants_url
   end
+
+  def rate
+    @grant = Grant.find params[:id]
+    @grant.rate params[:stars], current_user
+    respond_to do |format|
+      format.html { redirect_to @grant }
+      format.js
+    end
+  end
 end

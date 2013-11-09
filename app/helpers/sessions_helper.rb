@@ -10,6 +10,18 @@ module SessionsHelper
     !current_user.nil?
   end
 
+  def recipient?
+    current_user && current_user.type == 'Recipient'
+  end
+
+  def admin_user?
+    current_user && current_user.type == 'Admin' || current_user.type == 'SuperUser'
+  end
+
+  def super_user?
+    current_user && current_user.type == 'SuperUser'
+  end
+
   private
 
   def store_location(options)

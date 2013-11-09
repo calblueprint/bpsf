@@ -38,7 +38,21 @@ class ValidGradeValidator < ActiveModel::EachValidator
   end
 end
 
+class ValidSubjectValidator < ActiveModel::EachValidator
+  def validate_each(object, attribute, value)
+    value = value.drop(1)
+    if value.empty?
+      object.errors[attribute] << (options[:message] || "cannot be empty")
+    end
+  end
+end
+
 class DraftGrant < ActiveRecord::Base
+  extend Enumerize
+  SUBJECTS = ['Art & Music', 'Supplies', 'Reading', 'Science & Math', 'Field Trips', 'Other']
+  serialize :subject_areas, Array
+  enumerize :subject_areas, in: SUBJECTS, multiple: true
+
   attr_accessible :title, :summary, :subject_areas, :grade_level, :duration,
                   :num_classes, :num_students, :total_budget, :requested_funds,
                   :funds_will_pay_for, :budget_desc, :purpose, :methods,
@@ -48,8 +62,9 @@ class DraftGrant < ActiveRecord::Base
   belongs_to :school
 
   validates :title, presence: true, length: { maximum: 40 }
+  validates :subject_areas, valid_subject: true, allow_blank: true
   validates_length_of :summary, within: 1..200, too_short: 'cannot be blank', allow_nil: true
-  validates_length_of :subject_areas, :duration, :budget_desc,
+  validates_length_of :duration, :budget_desc,
                       minimum: 1, too_short: 'cannot be blank', allow_nil: true
   validates :grade_level, valid_grade: true, allow_nil: true
   validates_length_of :purpose, :methods, :background, :collaborators, :comments, 
@@ -63,11 +78,13 @@ class DraftGrant < ActiveRecord::Base
     grant.attributes = attributes.slice *valid_attributes
     grant.recipient_id = recipient_id
     grant.school_id = school_id
-    destroy if grant.save
-    UserMailer.grant_submitted(self).deliver
-    @admins = Admin.all
-    @admins.each do |admin|
-      UserMailer.admin_grantsubmitted(self,admin).deliver
+    if grant.save
+      UserMailer.grant_submitted(self).deliver
+      @admins = Admin.all
+      @admins.each do |admin|
+        UserMailer.admin_grantsubmitted(self,admin).deliver
+      end
+      destroy
     end
   end
 end
