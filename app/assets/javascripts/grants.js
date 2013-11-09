@@ -7,6 +7,10 @@ var payment;
 $(document).ready(function() {
 	Stripe.setPublishableKey($("meta[name='stripe-key']").attr("content"));
 	payment.setupForm();
+
+	$(".donate").click(function(){
+		$("#payment-modal").toggleClass("active");
+	});
 });
 
 payment = {
