@@ -1,9 +1,14 @@
 class CrowdfundController < ApplicationController
   def create
-    time = Time.new params[:year] params[:month] params[:day]
-    Crowdfund.create deadline: time,
+    date = params[:date]
+    time = Time.new date[:year], date[:month], date[:day]
+    c = Crowdfund.create deadline: time,
                      goal: params[:goal],
-                     grant_id: params[:grant_id],
-                     pledged_total: params[:pledged_total]
+                     pledged_total: 0
+    c.grant_id = params[:grant_id]
+    if c.save
+      flash[:success] = "Crowfund started!"
+    end
+    redirect_to admin_dashboard_url
   end
 end
