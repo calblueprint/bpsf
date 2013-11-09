@@ -1,9 +1,11 @@
-alert("called me too ")
 $("#grantlisting #grant<%= @grant.id %>").html(
   "<%= escape_javascript(
     render partial: 'grant_row', locals: { grant: @grant} ) %>");
 alert("<%= @grant.id %>")
-$("#modal-content").html("
-    <%= escape_javascript(
-      render partial: "crowdfund_modal", locals: { grant: @grant } )%>")
-$("#crowdfund-modal").addClass("active");
+$("#crowdfund-modal-view").html(
+    "<%= escape_javascript(
+      render partial: "crowdfund_modal", locals: { grant: @grant } ) %>");
+$("#crowdfund-form").addClass("active");
+$(".close-crowdfund-modal").click(function() {
+    $("#crowdfund-form").removeClass("active");
+});
