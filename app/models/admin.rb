@@ -22,4 +22,5 @@
 #
 
 class Admin < User
+  ajaxful_rater
 end
