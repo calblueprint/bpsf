@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131029075542) do
+ActiveRecord::Schema.define(:version => 20131109005639) do
 
   create_table "crowdfunds", :force => true do |t|
     t.datetime "deadline"
@@ -51,8 +51,8 @@ ActiveRecord::Schema.define(:version => 20131029075542) do
   add_index "draft_grants", ["school_id"], :name => "index_draft_grants_on_school_id"
 
   create_table "grants", :force => true do |t|
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",                                                        :null => false
+    t.datetime "updated_at",                                                        :null => false
     t.text     "title"
     t.text     "summary"
     t.text     "subject_areas"
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(:version => 20131029075542) do
     t.string   "video"
     t.string   "image_url"
     t.integer  "school_id"
+    t.decimal  "rating_average",     :precision => 6, :scale => 2, :default => 0.0
   end
 
   add_index "grants", ["recipient_id"], :name => "index_grants_on_recipient_id"
@@ -91,6 +92,19 @@ ActiveRecord::Schema.define(:version => 20131029075542) do
 
   add_index "payments", ["crowdfund_id"], :name => "index_payments_on_crowdfund_id"
   add_index "payments", ["user_id"], :name => "index_payments_on_user_id"
+
+  create_table "rates", :force => true do |t|
+    t.integer  "rater_id"
+    t.integer  "rateable_id"
+    t.string   "rateable_type"
+    t.integer  "stars",         :null => false
+    t.string   "dimension"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "rates", ["rateable_id", "rateable_type"], :name => "index_rates_on_rateable_id_and_rateable_type"
+  add_index "rates", ["rater_id"], :name => "index_rates_on_rater_id"
 
   create_table "schools", :force => true do |t|
     t.string   "name"
