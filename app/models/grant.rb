@@ -62,6 +62,7 @@ class Grant < ActiveRecord::Base
   belongs_to :recipient
   belongs_to :school
   extend Searchable :title, :summary, :subject_areas
+  ajaxful_rateable stars: 5
 
   validates :title, presence: true, length: { maximum: 40 }
   validates :subject_areas, valid_subject: true, allow_blank: false
