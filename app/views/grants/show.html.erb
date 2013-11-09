@@ -3,7 +3,7 @@
     <div class="row centalign">
       <h2 >
         <%= @grant.title %>
-        <% if current_user && current_user.type == 'Admin' %>
+        <% if super_user? %>
           <span class="ttip" data-tooltip="Edit">
             <%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_grant_path %>
           </span>
@@ -15,6 +15,15 @@
       <h5>
         <i class="icon-facebook"></i>    <i class="icon-twitter"></i>    <i class="icon-mail"></i>
       </h5>
+    </div>
+
+    <div class="row">
+      <% if super_user? %>
+        <%= ratings_for @grant, :static %>
+        Average: <%= @grant.rating_average %>
+      <% elsif admin_user? %>
+        <%= ratings_for @grant, show_user_rating: true %>
+      <% end %>
     </div>
 
     <div class="row">
@@ -49,7 +58,7 @@
     <div class="row padada">
       <div class="six columns centalign">
         <h5 class="inlined"><strong>Subject areas: </strong></h5>
-        <span class="medfont"><%= @grant.subject_areas %></span>      
+        <span class="medfont"><%= @grant.subject_areas.values.to_a.join(', ') %></span>      
       </div>
       <div class="six columns centalign">
         <h5 class="inlined"><strong>Duration: </strong></h5><span class="medfont"><%= @grant.duration %></span>
