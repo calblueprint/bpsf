@@ -16,6 +16,7 @@ class Ability
       can :read, :all
       cannot :manage, [SuperUser, Admin]
       can :manage, Admin, id: user.id
+      can :rate, Grant
     elsif user.type == 'Recipient'
       can [:create, :read], Grant
       can :manage, DraftGrant, recipient_id: user.id
