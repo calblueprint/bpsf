@@ -6,13 +6,18 @@ class Ability
     user ||= User.new
 
     # Default abilities
-    can :read, Grant, state: "crowdfunding"
+    can :read, Grant, state: 'crowdfunding'
     can :read, Recipient
 
-    if user.type == "Admin"
+    if user.type == 'SuperUser'
       can :manage, :all
-      cannot :destroy, Admin
-    elsif user.type == "Recipient"
+      cannot :destroy, SuperUser
+    elsif user.type == 'Admin'
+      can :read, :all
+      cannot :manage, [SuperUser, Admin]
+      can :manage, Admin, id: user.id
+      can :rate, Grant
+    elsif user.type == 'Recipient'
       can [:create, :read], Grant
       can :manage, DraftGrant, recipient_id: user.id
       can :create, DraftGrant

@@ -3,12 +3,19 @@ BPSF::Application.routes.draw do
   root to: 'pages#home'
   get '/search', to: 'pages#search', as: :search
 
-  resources :grants,       except: :index
-  resources :payments,     except: [:index, :show, :edit, :update, :new]
+  resources :grants, except: :index do
+    post 'rate', on: :member
+  end
+
+  resources :payments, only: [:create, :destroy]
 
   devise_for :users, :controllers => { :registrations => "registrations" }
 
   namespace :recipient do
+    get '', to: 'dashboard#index', as: :dashboard
+  end
+
+  namespace :admin do
     get '', to: 'dashboard#index', as: :dashboard
   end
 
@@ -33,10 +40,9 @@ BPSF::Application.routes.draw do
   end
   scope '/grants' do
     post ':id/:state', to: 'admin/dashboard#grant_event', as: :grant_event
-    post ':id', to: 'admin/dashboard#crowdfund_form', as: :crowdfund_form
-  end
 
   post "crowdfund/create"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -93,4 +99,6 @@ BPSF::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
+=======
+>>>>>>> master
 end
