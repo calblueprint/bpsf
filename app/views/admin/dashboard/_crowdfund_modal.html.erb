@@ -11,19 +11,16 @@
               <%= text_field_tag :goal, nil, name: nil %>
             </div>
             <div class="field">
-              <%# <%= label_tag :deadline, "Deadline" %1> %>
-              <%# <%= select_day :day, {id: "deadline_day"} %1> %>
-              <%# <%= select_month :month, {add_month_numbers: true}, {name: nil, id: "deadline_month"} %1> %>
-              <%# <%= select_year :year, {start_year: Date.today.year, end_year: Date.today.year+5}, {name: nil, id: "deadline_year"} %1> %>
+              <%= label_tag :deadline, "Deadline" %>
+              <%= select_date Date.today, order: [:year, :month, :day] %>
+            </div>
             </div>
             <%= hidden_field_tag :grant_id, @grant.id %>
+            <%= submit_tag "Start Crowdfund!", class: "btn primary medium close-crowdfund-modal" %>
           <% end %>
         <% else %>
-          GRANT NOT DEFINED
+          <p>Grant Does not exist</p>
         <% end %>
-        <p class="btn primary medium">
-          <a href="#" class="switch close-crowdfund-modal" gumby-trigger="|#crowdfund-form" close-crowdfund-modal">Close</a>
-        </p>
       </div>
     </div>
   </div>
