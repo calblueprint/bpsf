@@ -39,8 +39,22 @@ class ValidGradeValidator < ActiveModel::EachValidator
   end
 end
 
+class ValidSubjectValidator < ActiveModel::EachValidator
+  def validate_each(object, attribute, value)
+    value = value.drop(1)
+    if value.empty?
+      object.errors[attribute] << (options[:message] || "cannot be empty")
+    end
+  end
+end
+
 require 'textacular/searchable'
 class Grant < ActiveRecord::Base
+  extend Enumerize
+  SUBJECTS = ['Art & Music', 'Supplies', 'Reading', 'Science & Math', 'Field Trips', 'Other']
+  serialize :subject_areas, Array
+  enumerize :subject_areas, in: SUBJECTS, multiple: true
+
   attr_accessible :title, :summary, :subject_areas, :grade_level, :duration,
                   :num_classes, :num_students, :total_budget, :requested_funds,
                   :funds_will_pay_for, :budget_desc, :purpose, :methods, :background,
@@ -48,10 +62,12 @@ class Grant < ActiveRecord::Base
   belongs_to :recipient
   belongs_to :school
   extend Searchable :title, :summary, :subject_areas
+  ajaxful_rateable stars: 10
 
   validates :title, presence: true, length: { maximum: 40 }
+  validates :subject_areas, valid_subject: true, allow_blank: false
   validates_length_of :summary, within: 1..200, too_short: 'cannot be blank'
-  validates_length_of :subject_areas, :duration, :budget_desc,
+  validates_length_of :duration, :budget_desc,
                       minimum: 1, too_short: 'cannot be blank'
   validates :grade_level, presence: true, valid_grade: true
   validates_length_of :purpose, :methods, :background, :collaborators, :comments,

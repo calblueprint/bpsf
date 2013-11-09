@@ -21,6 +21,5 @@
 #  stripe_token           :string(255)
 #
 
-class Admin < User
-  ajaxful_rater
+class SuperUser < User
 end
