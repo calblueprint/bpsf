@@ -1,6 +1,0 @@
-<% grant.state_transitions.map { |s| s.event.to_s }.each do |state| %>
-  <%= link_to state.titleize,
-              grant_event_path(id: grant.id, state: state),
-              method: :post,
-              remote: true %>
-<% end %>
