@@ -130,9 +130,14 @@
 
 
     <% if @grant.crowdfunding? %>
-      <div class="row">
-        <%= render partial: "payment_form", locals: { payment: @payment } %>
+      <p class="donate btn primary medium"><a href="#" class="switch">Donate</a></p>
+      <div class="modal" id="payment-modal">
+        <div class="content">
+          <a class="close switch"><i class="icon-cancel" /></i></a>
+          <%= render partial: "payment_form", locals: { payment: @payment } %>
+        </div>
       </div>
     <% end %>
   </div>
 </div>
+
