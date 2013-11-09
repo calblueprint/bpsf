@@ -25,6 +25,18 @@
         <%= ratings_for @grant, show_user_rating: true %>
       <% end %>
     </div>
+    
+    <div class="row" id="togglelinks">
+      <% if super_user? %>
+        <%= render 'toggle_links', grant: @grant %>
+      <% end %>
+    </div>
+
+    <div class="row" id="grantstatus">
+      <% if admin_user? %>
+        Status: <%= @grant.state.titleize %>
+      <% end %>
+    </div>
 
     <div class="row">
       <% if @grant.image_url %>
