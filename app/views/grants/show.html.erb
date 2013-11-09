@@ -19,9 +19,10 @@
 
     <div class="row">
       <% if super_user? %>
-        <%= ratings_for @grant, show_user_rating: true %>
+        <%= ratings_for @grant, :static %>
+        Average: <%= @grant.rating_average %>
       <% elsif admin_user? %>
-        <%= ratings_for @grant %>
+        <%= ratings_for @grant, show_user_rating: true %>
       <% end %>
     </div>
 
