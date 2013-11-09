@@ -18,6 +18,12 @@
     </div>
 
     <div class="row">
+      <% if admin_user? %>
+        <%= ratings_for @grant, show_user_rating: true %>
+      <% end %>
+    </div>
+
+    <div class="row">
       <% if @grant.image_url %>
         <%= image_tag @grant.image_url.to_s %>
       <% else %>
