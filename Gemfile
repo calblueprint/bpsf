@@ -15,6 +15,7 @@ gem 'carrierwave', '~> 0.9.0'
 gem 'fog', '~> 1.16.0'
 gem 'textacular', '~> 3.0', require: 'textacular/rails'
 gem 'enumerize'
+gem 'ajaxful_rating', '~> 3.0.0.beta8'
 
 group :development, :test do
   gem 'rspec-rails', '2.11.0'
