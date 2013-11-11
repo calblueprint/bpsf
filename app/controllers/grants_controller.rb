@@ -57,5 +57,4 @@ class GrantsController < ApplicationController
       format.js
     end
   end
-
 end
