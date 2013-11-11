@@ -66,7 +66,7 @@ class Grant < ActiveRecord::Base
   ajaxful_rateable stars: 10
 
   validates :title, presence: true, length: { maximum: 40 }
-  validates :subject_areas, valid_subject: true, allow_blank: false
+  validates :subject_areas, valid_subject: true, allow_blank: true
   validates_length_of :summary, within: 1..200, too_short: 'cannot be blank'
   validates_length_of :duration, :budget_desc,
                       minimum: 1, too_short: 'cannot be blank'
