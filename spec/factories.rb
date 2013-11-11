@@ -21,8 +21,28 @@ FactoryGirl.define do
     password 'foobar'
   end
 
+  factory :school do
+    sequence(:name) { |n| "School #{n}" }
+  end
+
   factory :grant do
     sequence(:title) { |n| "Grant #{n}" }
+    summary Faker::Lorem.sentence
+    subject_areas ["","Art & Music", "Reading"]
+    sequence(:grade_level) { |n| "#{n % 8 + 2}" }
+    sequence(:duration) { |n| "#{n} weeks" }
+    sequence(:num_classes) { |n| n }
+    sequence(:num_students) { |n| n * 10 }
+    sequence(:total_budget) { |n| n * 200 }
+    sequence(:requested_funds) { |n| n * 250 }
+    funds_will_pay_for Faker::Lorem.paragraph
+    budget_desc Faker::Lorem.paragraph
+    purpose Faker::Lorem.paragraph
+    methods Faker::Lorem.paragraph
+    background Faker::Lorem.paragraph
+    sequence(:n_collaborators) { |n| n }
+    collaborators Faker::Lorem.paragraph
+    comments Faker::Lorem.paragraph
     recipient
   end
 
