@@ -4,7 +4,7 @@ require 'pry'
 
 describe 'The admin dashboard' do
   subject { page }
-  let(:admin) { FactoryGirl.create :admin }
+  let(:admin) { FactoryGirl.create :super_user }
 
   before do
     sign_in admin
@@ -27,32 +27,17 @@ describe 'The admin dashboard' do
     end
   end
 
-  pending 'setting grant status' do
+  describe 'grant status links' do
     let!(:grant) { FactoryGirl.create :grant }
-    before { visit admin_dashboard_path }
-
-    describe 'to fund' do
-      before { click_link 'Fund' }
-
-      it { should have_link 'Reconsider' }
-      it { should_not have_link 'Pending' }
+    before do
+      visit admin_dashboard_path
+      click_link grant.title
     end
 
-    describe 'to crowdfund' do
-      before { click_link 'Crowdfund' }
-
-      it { should have_link 'Crowdfunding Failed' }
-      it { should_not have_link 'Pending' }
-    end
-
-    describe 'to rejected' do
-      before { click_link 'Reject' }
-
-      it { should have_link 'Reconsider' }
-      it { should_not have_link 'Pending' }
-    end
+    it { should have_link 'Reject' }
+    it { should have_link 'Fund' }
+    it { should have_link 'Crowdfund' }
   end
-
 end
 
 describe 'Dashboard authorization' do
