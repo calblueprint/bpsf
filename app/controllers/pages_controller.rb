@@ -6,4 +6,12 @@ class PagesController < ApplicationController
   def search
     @grants = Grant.crowdfunding_grants.search params[:query]
   end
+
+  def donors
+    @users = User.all
+  end
+
+  def recipients
+    @recipients = Recipient.all
+  end
 end
