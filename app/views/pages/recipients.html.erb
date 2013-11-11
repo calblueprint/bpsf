@@ -1,0 +1,7 @@
+<h3>Listing All Recipients</h3>
+<% @recipients.each do |user| %>
+  <% if user.is_a?(Recipient) %>
+    <%= user.first_name %> <%= user.last_name %>
+    <br>
+  <% end %>
+<% end %>
