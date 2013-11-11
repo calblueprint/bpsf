@@ -35,7 +35,8 @@ BPSF::Application.routes.draw do
     get ':id/edit_logistics/',    to: 'grants#edit_logistics',    as: :edit_logistics
     get ':id/edit_budget/',       to: 'grants#edit_budget',       as: :edit_budget
     get ':id/edit_methods/',      to: 'grants#edit_methods',      as: :edit_methods
-    post ':id/:state', to: 'admin/dashboard#grant_event', as: :grant_event
+    post ':id/crowdfund',         to: 'grants#crowdfund_form',    as: :crowdfund_form
+    post ':id/:state',            to: 'admin/dashboard#grant_event', as: :grant_event
   end
 
   namespace :admin do
