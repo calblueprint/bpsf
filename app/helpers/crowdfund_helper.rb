@@ -1,2 +1,0 @@
-module CrowdfundHelper
-end
