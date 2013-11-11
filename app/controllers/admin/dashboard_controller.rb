@@ -15,6 +15,4 @@ class Admin::DashboardController < ApplicationController
       format.js
     end
   end
-
-
 end
