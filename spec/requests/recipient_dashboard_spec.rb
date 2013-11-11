@@ -9,7 +9,10 @@ describe "The recipient dashboard" do
   let!(:grant1) { FactoryGirl.create(:grant,recipient_id: recipient.id) }
   let!(:grant2) { FactoryGirl.create(:grant,recipient_id: recipient.id) }
 
-  before { sign_in recipient }
+  before do
+    sign_in recipient
+    visit recipient_dashboard_path
+  end
 
   it 'should list my grants' do
     [grant1, grant2].each do |g|
@@ -53,7 +56,7 @@ describe "Dashboard authorization" do
       visit recipient_dashboard_path
     end
     it { should_not have_error_message "You are not authorized to access this page." }
-    it { should have_h1 'Dashboard' }
+    it { should have_h2 'Welcome' }
   end
 
 end
