@@ -1,3 +1,4 @@
-$("#grantlisting #grant<%= @grant.id %>").html(
-  "<%= escape_javascript(
-    render partial: 'grant_row', locals: { grant: @grant} ) %>");
+$('#togglelinks').html(
+  "<%= escape_javascript(render 'grants/toggle_links', grant: @grant) %>");
+$('#grantstatus').html(
+  "Status: <%= @grant.state.titleize %>")
