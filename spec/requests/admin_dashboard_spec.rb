@@ -6,7 +6,10 @@ describe 'The admin dashboard' do
   subject { page }
   let(:admin) { FactoryGirl.create :admin }
 
-  before { sign_in admin }
+  before do
+    sign_in admin
+    visit admin_dashboard_path
+  end
 
   it { should have_content 'Admin Dashboard' }
 
@@ -24,7 +27,7 @@ describe 'The admin dashboard' do
     end
   end
 
-  describe 'setting grant status' do
+  pending 'setting grant status' do
     let!(:grant) { FactoryGirl.create :grant }
     before { visit admin_dashboard_path }
 
@@ -86,6 +89,6 @@ describe 'Dashboard authorization' do
       visit admin_dashboard_path
     end
     it { should_not have_error_message 'not authorized' }
-    it { should have_h1 'Dashboard' }
+    it { should have_h2 'Dashboard' }
   end
 end
