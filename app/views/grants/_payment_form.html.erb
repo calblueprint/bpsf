@@ -1,0 +1,46 @@
+<%= form_for payment do |f| %>
+  <% if payment.errors.any? %>
+    <div class="error-messages">
+      <h2><%= pluralize(payment.errors.count, "error") %> prohibited this donation from being processed:</h2>
+      <ul>
+        <% payment.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <%= hidden_field_tag :grant_id, @grant.id %>
+
+  <%= hidden_field_tag :stripe_token %>
+
+  <div class="field">
+    <%= label_tag :amount, "Donation Total" %>
+    <%= text_field_tag :amount, nil, class: :input %>
+  </div>
+
+  <% if current_user && current_user.stripe_token.present? %>
+    Credit card has already been provided.
+  <% else %>
+    <div class="field">
+      <%= label_tag :card_number, "Credit Card Number" %>
+      <%= text_field_tag :card_number, nil, name: nil, class: :input %>
+    </div>
+    <div class="field">
+      <%= label_tag :card_code, "Card Security Code" %>
+      <%= text_field_tag :card_code, nil, name: nil, class: :input %>
+    </div>
+    <div class="field">
+      <%= label_tag :card_month, "Card Expiration" %>
+      <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
+      <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"} %>
+    </div>
+  <% end %>
+  <div id="stripe_error">
+    <noscript>Javscript is required. Please enable it in your browser settings.</noscript>
+  </div>
+  <div class="donate medium primary btn">
+    <%= f.submit "Donate!", :id => "new_payment" %>
+  </div>
+<% end %>
