@@ -21,6 +21,13 @@ FactoryGirl.define do
     password 'foobar'
   end
 
+  factory :super do
+    first_name 'SuperUser'
+    sequence(:last_name) { |n| "#{n}" }
+    sequence(:email) { |n| "super-#{n}@test.com" }
+    password 'foobar'
+  end
+
   factory :school do
     sequence(:name) { |n| "School #{n}" }
   end
