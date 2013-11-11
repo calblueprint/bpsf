@@ -16,14 +16,5 @@ class Admin::DashboardController < ApplicationController
     end
   end
 
-  def crowdfund_form
-    @grant = Grant.find params[:id]
-    @grant.state = "crowdfunding"
-    @grant.save
-    respond_to do |format|
-      format.html { redirect_to admin_dashboard_path }
-      format.js
-    end
-  end
 
 end
