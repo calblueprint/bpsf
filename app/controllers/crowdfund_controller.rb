@@ -9,6 +9,7 @@ class CrowdfundController < ApplicationController
     if c.save
       flash[:success] = "Crowfund started!"
     end
-    redirect_to admin_dashboard_url
+    @grant = Grant.find params[:grant_id]
+    redirect_to @grant
   end
 end
