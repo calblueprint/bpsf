@@ -6,15 +6,10 @@
     <div class="eight columns" id="nobullet">
       <li class="field metro">
         <div class="picker">
-          <select>
-            <option value="#" >All</option>
-            <option>Art &amp; Music</option>
-            <option>Supplies</option>
-            <option>Reading</option>
-            <option>Science &amp; Math</option>
-            <option>Field Trips</option>
-            <option>Other</option>
-          </select>
+          <%= form_tag(:action => :home, :id => 'filter_subject') do %>
+            <%= select_tag "subject", options_for_select(PagesController::MENU) %>
+            <%= submit_tag "Filter" %>
+          <% end %>
         </div>
       </li>
     </div>
@@ -22,3 +17,10 @@
       Days Left: 17
     </div>
   </div>
+
+<script>
+  $("#subject_select").change(function(){
+    alert($("#subject_select").val())
+    window.location.href="/"  
+  });
+</script>
