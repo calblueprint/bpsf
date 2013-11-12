@@ -43,9 +43,11 @@ def make_grants
   t2 = Recipient.find_by_first_name 'Teacher 2'
   1.upto(3) do |n|
     t1.draft_grants.create! title: "Draft #{n}",
-                            summary: Faker::Lorem.sentence
+                            summary: Faker::Lorem.sentence,
+                            subject_areas: ["Other"]
     t2.draft_grants.create! title: "Draft #{n + 3}",
-                            summary: Faker::Lorem.sentence
+                            summary: Faker::Lorem.sentence,
+                            subject_areas: ["Other"]
   end
   crowdfunding_grants = []
   1.upto(3) do |n|
