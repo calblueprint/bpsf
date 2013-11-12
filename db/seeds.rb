@@ -51,7 +51,7 @@ def make_grants
   1.upto(3) do |n|
     crowdfunding_grants << t1.grants.build(title: "Grant #{n}",
                                            summary: Faker::Lorem.sentence,
-                                           subject_areas: ["","Art & Music", "Reading"],
+                                           subject_areas: ["Art & Music", "Reading"],
                                            grade_level: "#{n + 2}",
                                            duration: "#{n} weeks",
                                            num_classes: n,
@@ -68,7 +68,7 @@ def make_grants
                                            comments: Faker::Lorem.paragraph)
     crowdfunding_grants << t2.grants.build(title: "Grant #{n + 3}",
                                            summary: Faker::Lorem.sentence,
-                                           subject_areas: ["","Field Trips"],
+                                           subject_areas: ["Field Trips"],
                                            grade_level: "#{n + 2}",
                                            duration: "#{n} weeks",
                                            num_classes: n,
