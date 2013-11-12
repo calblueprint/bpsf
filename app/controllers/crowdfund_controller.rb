@@ -10,6 +10,8 @@ class CrowdfundController < ApplicationController
       flash[:success] = "Crowfund started!"
     end
     @grant = Grant.find params[:grant_id]
+    @grant.state = "crowdfunding"
+    @grant.save
     redirect_to @grant
   end
 end
