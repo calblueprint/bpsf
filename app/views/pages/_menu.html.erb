@@ -6,15 +6,9 @@
     <div class="eight columns" id="nobullet">
       <li class="field metro">
         <div class="picker">
-          <select>
-            <option value="#" >All</option>
-            <option>Art &amp; Music</option>
-            <option>Supplies</option>
-            <option>Reading</option>
-            <option>Science &amp; Math</option>
-            <option>Field Trips</option>
-            <option>Other</option>
-          </select>
+          <%= form_tag(:action => :home, :id => 'filter_subject') do %>
+            <%= select_tag "subject", options_for_select(PagesController::MENU, params[:subject]), :onchange => "this.form.submit()" %>
+          <% end %>
         </div>
       </li>
     </div>
