@@ -30,3 +30,9 @@ RSpec::Matchers.define :have_h1 do |t|
     page.should have_selector('h1', text: t)
   end
 end
+
+RSpec::Matchers.define :have_h2 do |t|
+  match do |page|
+    page.should have_selector('h2', text: t)
+  end
+end
