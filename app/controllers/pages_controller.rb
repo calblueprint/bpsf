@@ -1,7 +1,13 @@
 class PagesController < ApplicationController
+  MENU = ['All', 'Art & Music', 'Supplies', 'Reading', 'Science & Math', 'Field Trips', 'Other']
 
   def home
-    @grants = Grant.crowdfunding_grants.paginate(:page => params[:page], :per_page => 6)
+    if (params[:subject] && params[:subject] != 'All')
+      @grants = Grant.crowdfunding_grants.select { |grant| grant.subject_areas.include?(params[:subject])}
+    else 
+      @grants = Grant.crowdfunding_grants
+    end
+    @grants = @grants.paginate(:page => params[:page], :per_page => 6)
   end
 
   def search

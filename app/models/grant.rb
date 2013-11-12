@@ -54,7 +54,7 @@ class Grant < ActiveRecord::Base
   extend Enumerize
   SUBJECTS = ['Art & Music', 'Supplies', 'Reading', 'Science & Math', 'Field Trips', 'Other']
   serialize :subject_areas, Array
-  enumerize :subject_areas, in: SUBJECTS, multiple: true
+  enumerize :subject_areas, in: SUBJECTS, multiple: true, scope: true
 
   attr_accessible :title, :summary, :subject_areas, :grade_level, :duration,
                   :num_classes, :num_students, :total_budget, :requested_funds,
