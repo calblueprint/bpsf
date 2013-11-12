@@ -11,6 +11,14 @@ $(document).ready(function() {
 	$(".donate").click(function(){
 		$("#payment-modal").toggleClass("active");
 	});
+
+	$(".crowdfund").click(function() {
+		$("#crowdfund-form").addClass("active");
+	});
+
+	$(".close-crowdfund-modal").click(function() {
+		$("#crowdfund-form").removeClass("active");
+	});
 });
 
 payment = {
@@ -45,3 +53,4 @@ payment = {
 				       }
 			       }
 };
+
