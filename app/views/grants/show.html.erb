@@ -46,9 +46,11 @@
       <% end %>
     </div>
 
-    <div class="row">
-      <p class="largefont centalign"><%= @grant.summary %></p>
-      <hr>
+    <div class="row  centalign">
+      <div class="eleven columns centered">
+        <p class="largefont"><%= @grant.summary %></p>
+      </div>
+      <br>
     </div>
 
     <div class="row">
@@ -89,6 +91,14 @@
         &emsp;
         <span class="gctext"><strong>Goal: </strong></span>
         <span class="goalnum">$<%= @grant.requested_funds %></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <hr>
+      <div class="three columns centered centalign">
+        <div class="large primary btn"><a href="#" class="switch" gumby-trigger="#modal1">Donate</a></div>
       </div>
     </div>
 
@@ -150,7 +160,7 @@
     <% end %>
 
 
-    <% if @grant.crowdfunding? %>
+   <% if @grant.crowdfunding? %>
       <p class="donate btn primary medium"><a href="#" class="switch">Donate</a></p>
       <div class="modal" id="payment-modal">
         <div class="content">
@@ -158,7 +168,10 @@
           <%= render partial: "payment_form", locals: { payment: @payment } %>
         </div>
       </div>
-    <% end %>
+    </div>
+  <%end%>
+
+    
   </div>
 </div>
 <div id="crowdfund-modal-view">
