@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131109005639) do
+ActiveRecord::Schema.define(:version => 20131112000919) do
 
   create_table "crowdfunds", :force => true do |t|
     t.datetime "deadline"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(:version => 20131109005639) do
     t.datetime "updated_at",    :null => false
     t.integer  "goal"
     t.integer  "pledged_total"
+    t.integer  "grant_id"
   end
 
   create_table "draft_grants", :force => true do |t|
@@ -105,6 +106,14 @@ ActiveRecord::Schema.define(:version => 20131109005639) do
 
   add_index "rates", ["rateable_id", "rateable_type"], :name => "index_rates_on_rateable_id_and_rateable_type"
   add_index "rates", ["rater_id"], :name => "index_rates_on_rater_id"
+
+  create_table "recipient_profiles", :force => true do |t|
+    t.integer  "school_id"
+    t.string   "image_url"
+    t.text     "about"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "schools", :force => true do |t|
     t.string   "name"
