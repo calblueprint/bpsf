@@ -7,8 +7,7 @@
       <li class="field metro">
         <div class="picker">
           <%= form_tag(:action => :home, :id => 'filter_subject') do %>
-            <%= select_tag "subject", options_for_select(PagesController::MENU) %>
-            <%= submit_tag "Filter" %>
+            <%= select_tag "subject", options_for_select(PagesController::MENU), :onchange => "this.form.submit()" %>
           <% end %>
         </div>
       </li>
