@@ -14,7 +14,7 @@ class DraftGrantsController < ApplicationController
     @draft_grant = current_user.draft_grants.build params[:draft_grant]
     @draft_grant.subject_areas = ["Other"]
     if @draft_grant.save
-      flash[:success] = 'Grant initialized!'
+      flash[:success] = 'Application created!'
       redirect_to edit_draft_path @draft_grant
     else
       render 'new'
@@ -49,7 +49,7 @@ class DraftGrantsController < ApplicationController
 
   def update
     if @draft_grant.update_attributes params[:draft_grant]
-      flash[:success] = 'Grant updated!'
+      flash[:success] = 'Application updated!'
       redirect_to edit_draft_path @draft_grant
     else
       render session[:previous]
@@ -59,7 +59,7 @@ class DraftGrantsController < ApplicationController
   def submit
     @draft_grant = DraftGrant.find params[:id]
     if @draft_grant.submit_and_destroy
-      flash[:success] = 'Grant submitted!'
+      flash[:success] = 'Application submitted!'
       redirect_to recipient_dashboard_path
     else
       flash[:danger] = 'Some fields were not filled in!'
@@ -69,7 +69,7 @@ class DraftGrantsController < ApplicationController
 
   def destroy
     DraftGrant.destroy params[:id]
-    flash[:success] = 'Draft deleted.'
+    flash[:success] = 'Application deleted.'
     redirect_to recipient_dashboard_path
   end
 
