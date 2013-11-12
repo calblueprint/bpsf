@@ -10,7 +10,13 @@
             <%= devise_error_messages! %>
 
             <div class="field">
+              <%= f.label :first_name %>
+              <%= f.text_field :first_name, class: :input %>
+            </div>
 
+            <div class="field">
+              <%= f.label :last_name %>
+              <%= f.text_field :last_name, class: :input %>
             </div>
 
             <div class="field">
