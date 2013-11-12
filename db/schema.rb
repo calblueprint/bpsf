@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(:version => 20131109005639) do
     t.datetime "updated_at",    :null => false
     t.integer  "goal"
     t.integer  "pledged_total"
+    t.integer  "grant_id"
   end
 
   create_table "draft_grants", :force => true do |t|
