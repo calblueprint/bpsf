@@ -24,4 +24,5 @@
 class Recipient < User
   has_many :grants, dependent: :destroy
   has_many :draft_grants, dependent: :destroy
+  has_one :recipient_profile
 end
