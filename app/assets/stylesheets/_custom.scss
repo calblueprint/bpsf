@@ -8,6 +8,7 @@
 			border: none;
 			padding: 6px 0px 6px 15px;
 		}
+.picker{height:40px;}
 		
 .fluid_container {
 	margin: 0 auto;
@@ -32,12 +33,13 @@
 	font-size:$med;
 	line-height:40px;
 	text-align:left;
+	height:40px;
 	}
 	
 .dayleft{
 	font-size:$med;
 	line-height:40px;
-	text-align: right;
+	text-align:right;
 	}
 	
 
