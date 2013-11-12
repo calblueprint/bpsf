@@ -6,7 +6,7 @@
       </div>
 
       <div class="row">
-        <div class="six columns">
+        <div class="six columns drafts">
         <h3>
           Draft Applications
           <span class="ttip pull_right" data-tooltip="New Application">
@@ -19,7 +19,7 @@
 
         </div>
 
-        <div class="six columns">
+        <div class="six columns submitted">
           <h3>Submitted Applications</h3>
           <table>
               <%= render partial: 'my_grants', collection: @grants, as: :grant %>
