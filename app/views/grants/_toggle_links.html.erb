@@ -1,7 +1,7 @@
 <% grant.state_transitions.map { |s| s.event.to_s }.each do |state| %>
   <% if state.eql? "crowdfund" %>
     <%= link_to state.titleize,
-                crowdfund_form_path(id: grant.id),
+                "#",
                 method: :post,
                 remote: true,
                 class: "crowdfund",
