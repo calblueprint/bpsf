@@ -1,7 +1,0 @@
-$("#crowdfund-modal-view").html(
-    "<%= escape_javascript(
-      render partial: "crowdfund_modal", locals: { grant: @grant } ) %>");
-$("#crowdfund-form").addClass("active");
-$(".close-crowdfund-modal").click(function() {
-    $("#crowdfund-form").removeClass("active");
-});
