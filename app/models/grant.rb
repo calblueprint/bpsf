@@ -42,10 +42,7 @@ end
 
 class ValidSubjectValidator < ActiveModel::EachValidator
   def validate_each(object, attribute, value)
-    value = value.drop(1)
-    if value.empty?
-      object.errors[attribute] << (options[:message] || "cannot be empty")
-    end
+    object.errors.add attribute, "cannot be empty" unless !value.empty?
   end
 end
 
@@ -65,8 +62,12 @@ class Grant < ActiveRecord::Base
   extend Searchable :title, :summary, :subject_areas
   ajaxful_rateable stars: 10
 
+  before_validation do |grant|
+    grant.subject_areas = grant.subject_areas.to_a.reject(&:empty?)
+  end
+
   validates :title, presence: true, length: { maximum: 40 }
-  validates :subject_areas, valid_subject: true, allow_blank: false
+  validates :subject_areas, valid_subject: true
   validates_length_of :summary, within: 1..200, too_short: 'cannot be blank'
   validates_length_of :duration, :budget_desc,
                       minimum: 1, too_short: 'cannot be blank'
