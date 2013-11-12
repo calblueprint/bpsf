@@ -2,6 +2,7 @@ class PaymentsController < ApplicationController
 
   def create
     @grant = Grant.find params[:grant_id]
+    @crowdfund = Crowdfund.find params[:crowdfund_id]
     if !anyone_signed_in?
       deny_access url: url_for(@grant)
     else
