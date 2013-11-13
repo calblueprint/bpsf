@@ -3,16 +3,18 @@
     <div class="wrapper light">
 
       <div class="row">
-        <h2>Admin Dashboard</h2>
+        <h2 class="centalign">Admin Dashboard</h2>
 
         <section class="tabs">
-
-            <ul class="tab-nav">
-                <li><a href="#">Grants</a></li>
-                <li class="active"> <a href="#">Donors</a></li>
-                <li><a href="#">Recipients</a></li>
-            </ul>
-
+          <div class="row">
+            <div class="twelve columns centered centalign">
+              <ul class="tab-nav">
+                  <li><a href="#">Grants</a></li>
+                  <li> <a href="#">Donors</a></li>
+                  <li><a href="#">Recipients</a></li>
+              </ul>
+            </div>
+          </div>
             <div class="tab-content">
               <table>
                 <thead>
@@ -26,11 +28,31 @@
                 </tbody>
               </table>
             </div>
-            <div class="tab-content active">
-              <h5> <%= render 'pages/donors' %> </h5>
+            <div class="tab-content">
+              <table>
+                <thead>
+                  <tr>
+                    <th >Name</th>
+                    <th >Email</th>
+                  </tr>
+                </thead>
+                <tbody id="grantlisting">
+                  <%= render 'pages/donors' %>
+                </tbody>
+              </table>
             </div>
             <div class="tab-content">
-              <h5> <%= link_to 'All Recipients', recipients_path %> </h5>
+              <table>
+                <thead>
+                  <tr>
+                    <th >Name</th>
+                    <th >Email</th>
+                  </tr>
+                </thead>
+                <tbody id="grantlisting">
+                  <%= render 'pages/recipients' %>
+                </tbody>
+              </table>
             </div>
 
         </section>

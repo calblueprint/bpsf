@@ -1,6 +1,0 @@
-<% @users.each do |user| %>
-  <% if !user.is_a?(Admin) && !user.is_a?(Recipient) && !user.is_a?(SuperUser) %>
-    <%= user.first_name %> <%= user.last_name %>
-    <br>
-  <% end %>
-<% end %>
