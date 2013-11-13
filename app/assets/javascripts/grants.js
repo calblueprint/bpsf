@@ -12,6 +12,10 @@ $(document).ready(function() {
 		$("#payment-modal").toggleClass("active");
 	});
 
+	$(".close-payment-form").click(function() {
+		$("#payment-modal").removeClass("active");
+	});
+
 	$(".crowdfund").click(function() {
 		$("#crowdfund-form").addClass("active");
 	});
