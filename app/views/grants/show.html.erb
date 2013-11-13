@@ -129,6 +129,7 @@
 
     <div class="row">
       <div class="ten columns centalign centered">
+        <br>
         <h3 class="centalign">Budget</h3>
         <h5 class="inlined"><strong>Total budget: </strong></h5><span class="largefont"><%= @grant.total_budget %></span><br>
         <h5><strong>Description</strong></h5>
@@ -152,7 +153,7 @@
 
     <% if !@grant.comments.blank? %>
     <div class="row">
-      <div class="twelve columns centalign">
+      <div class="ten columns centalign centered">
         <br>
         <h3>Additional Comments</h3>
         <%= @grant.comments %>
