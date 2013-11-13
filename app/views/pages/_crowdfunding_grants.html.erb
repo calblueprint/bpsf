@@ -8,10 +8,10 @@
     <%= image_tag "http://placehold.it/300x150/f14f4f" %>
   <% end %>
   <div class="cardcontent">
-    <p>
+    <p class="cardtext">
       Director: <%= grant.recipient.first_name + ' ' + grant.recipient.last_name %> <br>
-      School: <%# grant.school (can't do yet) %> <br>
-      Description: <%= grant.summary %>
+      School: <span class="schooltext"><%# grant.school (can't do yet) %></span> <br>
+      Description: <span class="destext"><%= grant.summary %></span>
     </p>
     <div class="progress">
       <!-- Also can't really do - no current payment status for grants -->
