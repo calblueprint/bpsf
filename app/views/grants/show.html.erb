@@ -25,7 +25,7 @@
         <%= ratings_for @grant, show_user_rating: true %>
       <% end %>
     </div>
-    
+
     <div class="row" id="togglelinks">
       <% if current_user && super_user? %>
         <%= render 'toggle_links', grant: @grant %>
@@ -152,4 +152,6 @@
     <% end %>
   </div>
 </div>
-
+<div id="crowdfund-modal-view">
+  <%= render partial: "crowdfund_modal", locals: { grant: @grant } %>
+</div

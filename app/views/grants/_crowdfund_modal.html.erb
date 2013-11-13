@@ -1,0 +1,28 @@
+<div class="modal" id="crowdfund-form">
+  <div class="content">
+    <a class="close switch close-crowdfund-modal" gumby-trigger="|#crowdfund-form"><i class="icon-cancel" /></i></a>
+    <div class="row">
+      <div class="ten columns centered text-center">
+        <% if grant %>
+          <p>Create Crowdfund for <%= grant.title %></p>
+          <%= form_tag(crowdfund_create_path, method: :post) do %>
+            <div class="field">
+              <%= label_tag :goal, "Goal" %>
+              <%= text_field_tag :goal, nil, name: nil %>
+            </div>
+            <div class="field">
+              <%= label_tag :deadline, "Deadline" %>
+              <%= select_date Date.today, order: [:year, :month, :day] %>
+            </div>
+            </div>
+            <%= hidden_field_tag :grant_id, @grant.id %>
+            <%= submit_tag "Start Crowdfund!", class: "btn primary medium close-crowdfund-modal" %>
+          <% end %>
+        <% else %>
+          <p>Grant Does not exist</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
