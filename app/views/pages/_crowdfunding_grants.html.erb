@@ -15,15 +15,16 @@
     </p>
     <div class="progress">
       <!-- Also can't really do - no current payment status for grants -->
-      <span style="width: 50%">50%</span>
+      <span style="width: 50%" class="progressbar" data-goal="<%= grant.requested_funds %>" data-current="224">50%</span>
     </div>
     <div class="gcdiv">
-      <span class="gctext">Goal: </span>
-      <span class="goalnum"><%= grant.requested_funds %></span>
-      &emsp;
       <span class="gctext">Current: </span>
       <!-- This too -->
-      <span class="currentnum">TBD</span>
+      <span class="currentnum">$224</span>
+      &emsp;
+
+      <span class="gctext">Goal: </span>
+      <span class="goalnum">$<%= grant.requested_funds %></span>
     </div>
   </div>
 </div>
