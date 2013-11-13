@@ -1,4 +1,8 @@
 BPSF::Application.routes.draw do
+  get "recipient_profile/update"
+
+  get "recipient_profile/edit"
+
   get "user/show"
 
   root to: 'pages#home'
