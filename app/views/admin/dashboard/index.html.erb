@@ -4,20 +4,44 @@
 
       <div class="row">
         <h2>Admin Dashboard</h2>
-        <h5> <%= link_to 'All Donors', donors_path %> </h5>
-        <h5> <%= link_to 'All Recipients', recipients_path %> </h5>
 
-        <table>
-          <thead>
-            <tr>
-              <th >Name</th>
-              <th >Status</th>
-            </tr>
-          </thead>
-          <tbody id="grantlisting">
-            <%= render partial: 'all_grants', collection: @grants, as: :grant %>
-          </tbody>
-        </table>
+        <section class="tabs">
+
+            <ul class="tab-nav">
+                <li><a href="#">Grants</a></li>
+                <li class="active"> <a href="#">Donors</a></li>
+                <li><a href="#">Recipients</a></li>
+            </ul>
+
+            <div class="tab-content">
+              <table>
+                <thead>
+                  <tr>
+                    <th >Name</th>
+                    <th >Status</th>
+                  </tr>
+                </thead>
+                <tbody id="grantlisting">
+                  <%= render partial: 'all_grants', collection: @grants, as: :grant %>
+                </tbody>
+              </table>
+            </div>
+            <div class="tab-content active">
+              <h5> <%= render 'pages/donors' %> </h5>
+            </div>
+            <div class="tab-content">
+              <h5> <%= link_to 'All Recipients', recipients_path %> </h5>
+            </div>
+
+        </section>
+
+
+
+
+
+        
+
+
       </div>
 
     </div>
