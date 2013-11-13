@@ -167,6 +167,12 @@
 	}
 }
 
+.cardtext{
+	height:$base-line-height*4;
+	overflow:hidden;
+	text-overflow:ellipsis; 
+	}
+
 .userdropdown{
 	background: #fff;
 	position:absolute;
