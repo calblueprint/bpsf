@@ -40,7 +40,7 @@ end
 
 class ValidSubjectValidator < ActiveModel::EachValidator
   def validate_each(object, attribute, value)
-    super
+    object.errors.add attribute, "cannot be empty" unless !value.empty?
   end
 end
 
