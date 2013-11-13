@@ -9,7 +9,6 @@ class UserController < ApplicationController
       payment_hash = Hash.new
       crowdfund = Crowdfund.find payment.crowdfund_id
       payment_hash[:crowdfund] = crowdfund
-      payment_hash[:recipient] = Recipient.find crowdfund.recipient_id
       payment_hash[:amount] = payment.amount
     end
     puts @payments.length
