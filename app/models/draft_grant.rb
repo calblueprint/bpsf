@@ -40,18 +40,15 @@ end
 
 class ValidSubjectValidator < ActiveModel::EachValidator
   def validate_each(object, attribute, value)
-    value = value.drop(1)
-    if value.empty?
-      object.errors[attribute] << (options[:message] || "cannot be empty")
-    end
+    object.errors.add attribute, "cannot be empty" unless !value.empty?
   end
 end
 
 class DraftGrant < ActiveRecord::Base
   extend Enumerize
   SUBJECTS = ['Art & Music', 'Supplies', 'Reading', 'Science & Math', 'Field Trips', 'Other']
-  serialize :subject_areas, Array
   enumerize :subject_areas, in: SUBJECTS, multiple: true
+  serialize :subject_areas, Array
 
   attr_accessible :title, :summary, :subject_areas, :grade_level, :duration,
                   :num_classes, :num_students, :total_budget, :requested_funds,
@@ -61,8 +58,12 @@ class DraftGrant < ActiveRecord::Base
   belongs_to :recipient
   belongs_to :school
 
+  before_validation do |grant|
+    grant.subject_areas = grant.subject_areas.to_a.reject(&:empty?)
+  end
+
   validates :title, presence: true, length: { maximum: 40 }
-  validates :subject_areas, valid_subject: true, allow_blank: true
+  validates :subject_areas, valid_subject: true
   validates_length_of :summary, within: 1..200, too_short: 'cannot be blank', allow_nil: true
   validates_length_of :duration, :budget_desc,
                       minimum: 1, too_short: 'cannot be blank', allow_nil: true
