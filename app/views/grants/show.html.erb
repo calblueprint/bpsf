@@ -161,16 +161,20 @@
     <% end %>
 
 
-   <% if @grant.crowdfunding? %>
-      <p class="donate btn primary medium"><a href="#" class="switch">Donate</a></p>
-      <div class="modal" id="payment-modal">
-        <div class="content">
-          <a class="close switch close-payment-form"><i class="icon-cancel" /></i></a>
-          <%= render partial: "payment_form", locals: { payment: @payment } %>
+  <div class="modal" id="modal1">
+    <div class="content">
+      <a class="close switch" gumby-trigger="|#modal1"><i class="icon-cancel" /></i></a>
+      <div class="row">
+        <div class="ten columns centered text-center">
+          <% if @grant.crowdfunding? %>
+            <div class="row">
+              <%= render partial: "payment_form", locals: { payment: @payment } %>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
-  <%end%>
+  </div>
 
     
   </div>
