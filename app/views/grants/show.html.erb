@@ -3,7 +3,7 @@
     <div class="row centalign">
       <h2 >
         <%= @grant.title %>
-        <% if super_user? %>
+        <% if current_user && super_user? %>
           <span class="ttip" data-tooltip="Edit">
             <%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_grant_path %>
           </span>
@@ -18,22 +18,22 @@
     </div>
 
     <div class="row">
-      <% if super_user? %>
+      <% if current_user && super_user? %>
         <%= ratings_for @grant, :static %>
         Average: <%= @grant.rating_average %>
-      <% elsif admin_user? %>
+      <% elsif current_user && admin_user? %>
         <%= ratings_for @grant, show_user_rating: true %>
       <% end %>
     </div>
-    
+
     <div class="row" id="togglelinks">
-      <% if super_user? %>
+      <% if current_user && super_user? %>
         <%= render 'toggle_links', grant: @grant %>
       <% end %>
     </div>
 
     <div class="row" id="grantstatus">
-      <% if admin_user? %>
+      <% if current_user && admin_user? %>
         Status: <%= @grant.state.titleize %>
       <% end %>
     </div>
@@ -145,11 +145,13 @@
       <p class="donate btn primary medium"><a href="#" class="switch">Donate</a></p>
       <div class="modal" id="payment-modal">
         <div class="content">
-          <a class="close switch"><i class="icon-cancel" /></i></a>
+          <a class="close switch close-payment-form"><i class="icon-cancel" /></i></a>
           <%= render partial: "payment_form", locals: { payment: @payment } %>
         </div>
       </div>
     <% end %>
   </div>
 </div>
-
+<div id="crowdfund-modal-view">
+  <%= render partial: "crowdfund_modal", locals: { grant: @grant } %>
+</div
