@@ -1,4 +1,16 @@
 
 <div class="row">
-  
+  <% if @profile.image_url %>
+    <%= image_tag @profile.image_url.to_s %>
+  <% end %>
+</div>
+
+<div class="row">
+  <% if @profile.school_id %>
+    <%= render partial: "school", locals: { school: @profile.school_id } %>
+  <% end %>
+</div>
+
+<div class="row">
+
 </div>
