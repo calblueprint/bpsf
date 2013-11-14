@@ -8,6 +8,7 @@
 			border: none;
 			padding: 6px 0px 6px 15px;
 		}
+.picker{height:40px;}
 		
 .fluid_container {
 	margin: 0 auto;
@@ -32,12 +33,13 @@
 	font-size:$med;
 	line-height:40px;
 	text-align:left;
+	height:40px;
 	}
 	
 .dayleft{
 	font-size:$med;
 	line-height:40px;
-	text-align: right;
+	text-align:right;
 	}
 	
 
@@ -275,6 +277,22 @@ $imglargereplacementhgt: 250px;
 .smallfont{font-size:$small;}
 .medfont{font-size:$med;}
 .largefont{font-size:$large;}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px; height: 0; overflow: hidden;
+}
+ 
+.video-container iframe,
+.video-container object,
+.video-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
 
 /****************************************Trunk.js Classes*****************************/
 body {
