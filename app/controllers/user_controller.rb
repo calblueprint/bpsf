@@ -14,8 +14,6 @@ class UserController < ApplicationController
     if current_user.is_a?(Recipient)
       @profile = current_user.recipient_profile
     end
-    puts @payments.length
-    puts @payments
   end
 
   def edit
