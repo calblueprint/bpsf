@@ -28,9 +28,12 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def after_sign_up_path_for(resource)
-    if resource.is_a?(Recipient)
-      resource.recipeint_profile = RecipientProfile.new
-      redirect_to resource
+    puts resource.type
+    if resource.type.eql? 'Recipient'
+      @user = Recipient.find resource.id
+      @user.recipient_profile = RecipientProfile.create recipient_id: @user.id
+      @profile = @user.recipient_profile
+      edit_user_path id: @user.id
     else
       super
     end
