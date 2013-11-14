@@ -21,14 +21,24 @@ class UserController < ApplicationController
   def edit
     @user = User.find params[:id]
     @payments = Payment.find_by_user_id params[:id]
+    if @user.is_a?(Recipient)
+      @profile = @user.recipient_profile
+    end
   end
 
   def update
-    if @user.update_attributes params[:user]
-      flash[:success] = "Profile Updated!"
-      redirect_to @user
+    if @user.is_a?(Recipient)
+      if @user.update_attributes(params[:user]) && @profile.update_attributes(params[:profile])
+        flash[:success] = "Profile Updated!"
+        redirect_to @user
+      end
     else
-      render "edit"
+      if @user.update_attributes params[:user]
+        flash[:success] = "Profile Updated!"
+        redirect_to @user
+      else
+        render "edit"
+      end
     end
   end
 end
