@@ -11,8 +11,8 @@ class UserController < ApplicationController
       payment_hash[:crowdfund] = crowdfund
       payment_hash[:amount] = payment.amount
     end
-    if current_user.is_a?(Recipient)
-      @profile = current_user.recipient_profile
+    if @user.is_a?(Recipient)
+      @profile = @user.recipient_profile
     end
   end
 
