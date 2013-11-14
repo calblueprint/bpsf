@@ -9,11 +9,11 @@
       <%= @user.email %>
     </div>
 
-    <% if @user.is_a?(Recipient) %>
-      <%= render partial: "recipient_profile", locals: { recipient: @user } %>
-    <% elsif @user.is_a?(SuperUser) or @user.is_a?(Admin) %>
+    <% if @user.type == "Recipient" %>
+      <%= render partial: "recipient_profile", locals: { recipient: @user, profile: @profile } %>
+    <% elsif @user.type == 'SuperUser' or @user.type == 'Admin' %>
       <%= render partial: "admin_profile", locals: { admin: @user } %>
-    <% elsif @user.is_a?(User) %>
+    <% elsif @user.type == 'User' %>
       <%= render partial: "user_profile", locals: { user: @user } %>
     <% end %>
   </div>
