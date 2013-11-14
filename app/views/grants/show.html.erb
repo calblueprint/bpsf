@@ -13,7 +13,7 @@
         <%= @grant.recipient.first_name + ' ' + @grant.recipient.last_name %> | <%# grant.school (can't do yet) %> Berkeley Elementary School
       </h5>
       <h5>
-        <i class="icon-facebook"></i>    <i class="icon-twitter"></i>    <i class="icon-mail"></i>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fparse.com" target="_blank"><i class="icon-facebook"></i></a>    <a expr:href='data:post.canonicalUrl' href="https://twitter.com/share"><i class="icon-twitter"></i></a>    <a href="javascript:emailCurrentPage()"><i class="icon-mail"></i></a>
       </h5>
     </div>
 
@@ -46,9 +46,11 @@
       <% end %>
     </div>
 
-    <div class="row">
-      <p class="largefont centalign"><%= @grant.summary %></p>
-      <hr>
+    <div class="row  centalign">
+      <div class="eleven columns centered">
+        <p class="largefont"><%= @grant.summary %></p>
+      </div>
+      <br>
     </div>
 
     <div class="row">
@@ -69,8 +71,7 @@
 
     <div class="row padada">
       <div class="six columns centalign">
-        <h5 class="inlined"><strong>Subject areas: </strong></h5>
-        <span class="medfont"><%= @grant.subject_areas.values.to_a.join(', ') %></span>
+        <h5 class="inlined"><strong>Subject areas: </strong></h5><span class="medfont"><%= @grant.subject_areas.values.to_a.join(', ') %></span>      
       </div>
       <div class="six columns centalign">
         <h5 class="inlined"><strong>Duration: </strong></h5><span class="medfont"><%= @grant.duration %></span>
@@ -90,66 +91,92 @@
         &emsp;
         <span class="gctext"><strong>Goal: </strong></span>
         <span class="goalnum">$<%= @grant.requested_funds %></span>
+
+      </div>
+    </div>
+
+    <div class="row">
+      <hr>
+      <div class="three columns centered centalign">
+        <div class="large primary btn"><a href="#" class="switch" gumby-trigger="#modal1">Donate</a></div>
+      </div>
+    </div>
+
+    <hr>
+    
+    <div class="row">
+      <div class="ten columns centalign centered">
+        <h3>Details</h3>
+        <h5><strong>Purpose</strong></h5>
+        <%= @grant.purpose %>
+        <h5><strong>Methods</strong></h5>
+        <%= @grant.methods %>
       </div>
     </div>
 
 
-    <div class="row centalign">
-      <% if !@grant.video.blank? %>
-        <br>
-        <iframe width="70%" height="300" src= "http://www.youtube.com/embed/<%= parse_embed(@grant) %>"></iframe>
-      <% end %>
-    </div>
-
+    <% if !@grant.video.blank? %>
     <div class="row">
-      <h3>Funds will pay for:</h3>
-      <%= @grant.funds_will_pay_for %>
-    </div>
-
-    <div class="row">
-      <h3>Budget description</h3>
-      <%= @grant.budget_desc %>
-    </div>
-
-    <div class="row">
-      <h3>Purpose</h3>
-      <%= @grant.purpose %>
-    </div>
-
-    <div class="row">
-      <h3>Methods</h3>
-      <%= @grant.methods %>
-    </div>
-
-    <div class="row">
-      <h3>Teacher background</h3>
-      <%= @grant.background %>
-    </div>
-
-    <div class="row">
-      <h3>Num. collaborators: <%= @grant.n_collaborators %></h3>
-    </div>
-
-    <div class="row">
-      <h3>Collaborators</h3>
-      <%= @grant.collaborators %>
-    </div>
-
-    <div class="row">
-      <h3>Comments</h3>
-      <%= @grant.comments %>
-    </div>
-
-
-    <% if @grant.crowdfunding? %>
-      <p class="donate btn primary medium"><a href="#" class="switch">Donate</a></p>
-      <div class="modal" id="payment-modal">
-        <div class="content">
-          <a class="close switch close-payment-form"><i class="icon-cancel" /></i></a>
-          <%= render partial: "payment_form", locals: { payment: @payment } %>
+      <div class="ten columns centered">
+        <div class="video-container">
+          <iframe src= "http://www.youtube.com/embed/<%= parse_embed(@grant) %>"></iframe>
         </div>
       </div>
+    </div>
     <% end %>
+
+
+    <div class="row">
+      <div class="ten columns centalign centered">
+        <br>
+        <h3 class="centalign">Budget</h3>
+        <h5 class="inlined"><strong>Total budget: </strong></h5><span class="largefont"><%= @grant.total_budget %></span><br>
+        <h5><strong>Description</strong></h5>
+        <%= @grant.budget_desc %> 
+        <h5><strong>Use of Funds</strong></h5>
+        <%= @grant.funds_will_pay_for %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="ten columns centalign centered">
+        <br>
+        <h3>Team</h3>
+        <h5 class="inlined"><strong>Director: </strong></h5><%= @grant.recipient.first_name + ' ' + @grant.recipient.last_name %><br>
+        <h5><strong>Director background</strong></h5>
+        <%= @grant.background %>       
+        <h5><strong>Collaborators</strong></h5>
+        <%= @grant.collaborators %>
+      </div>
+    </div>
+
+    <% if !@grant.comments.blank? %>
+    <div class="row">
+      <div class="ten columns centalign centered">
+        <br>
+        <h3>Additional Comments</h3>
+        <%= @grant.comments %>
+      </div>
+    </div>
+    <% end %>
+
+
+  <div class="modal" id="modal1">
+    <div class="content">
+      <a class="close switch" gumby-trigger="|#modal1"><i class="icon-cancel" /></i></a>
+      <div class="row">
+        <div class="ten columns centered text-center">
+          <% if @grant.crowdfunding? %>
+            <div class="row">
+              <%= render partial: "payment_form", locals: { payment: @payment } %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    
   </div>
 </div>
 <div id="crowdfund-modal-view">

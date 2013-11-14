@@ -5,6 +5,8 @@ class Admin::DashboardController < ApplicationController
 
   def index
     @grants = Grant.all.sort
+    @users = User.all
+    @recipients = Recipient.all
   end
 
   def grant_event
