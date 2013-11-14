@@ -29,4 +29,9 @@ class User < ActiveRecord::Base
                   :password_confirmation, :remember_me, :type
 
   has_many :payments, dependent: :destroy
+
+  def name
+    return "#{first_name} #{last_name}"
+  end
+  
 end
