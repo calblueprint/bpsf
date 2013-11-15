@@ -55,7 +55,7 @@ class DraftGrant < ActiveRecord::Base
   before_validation do |grant|
     grant.subject_areas = grant.subject_areas.to_a.reject(&:empty?)
   end
-1
+
   validates :title, presence: true, length: { maximum: 40 }
   validates_presence_of :recipient_id
   validates_length_of :summary, within: 1..200, too_short: 'cannot be blank', allow_nil: true
