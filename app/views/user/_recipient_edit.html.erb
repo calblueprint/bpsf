@@ -6,11 +6,21 @@
       </div>
       <div class="row">
         <div class="twelve columns">
-          <%= form_for @profile, url: recipient_profile_path(id: @profile.id) do |f| %>
+          <%= form_for @user, url: user_path(id: @user.id) do |f| %>
             <div class="field">
-              <%= f.label :about, "About" %>
-              <%= f.text_field :about, class: [:textarea, :input], rows: 3 %>
+              <%= f.label :first_name %>
+              <%= f.text_field :first_name %>
             </div>
+            <div class="field">
+              <%= f.label :last_name %>
+              <%= f.text_field :last_name %>
+            </div>
+            <%= fields_for @profile, url: recipient_profile_path(id: @profile.id) do |fo| %>
+              <div class="field">
+                <%= fo.label :about, "About" %>
+                <%= fo.text_field :about, class: [:textarea, :input], rows: 3 %>
+              </div>
+            <% end %>
             <div class="medium primary btn pull_right">
               <%= f.submit "Save!" %>
             </div>
