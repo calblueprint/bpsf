@@ -38,12 +38,6 @@ class ValidGradeValidator < ActiveModel::EachValidator
   end
 end
 
-class ValidSubjectValidator < ActiveModel::EachValidator
-  def validate_each(object, attribute, value)
-    object.errors.add attribute, "cannot be empty" unless !value.empty?
-  end
-end
-
 class DraftGrant < ActiveRecord::Base
   extend Enumerize
   SUBJECTS = ['Art & Music', 'Supplies', 'Reading', 'Science & Math', 'Field Trips', 'Other']
@@ -63,7 +57,7 @@ class DraftGrant < ActiveRecord::Base
   end
 
   validates :title, presence: true, length: { maximum: 40 }
-  validates :subject_areas, valid_subject: true
+  validates_presence_of :recipient_id
   validates_length_of :summary, within: 1..200, too_short: 'cannot be blank', allow_nil: true
   validates_length_of :duration, :budget_desc,
                       minimum: 1, too_short: 'cannot be blank', allow_nil: true
