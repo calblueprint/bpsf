@@ -33,5 +33,9 @@ class User < ActiveRecord::Base
   def name
     return "#{first_name} #{last_name}"
   end
+
+  def self.donors
+    where 'type is null'
+  end
   
 end

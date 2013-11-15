@@ -5,7 +5,7 @@ class Admin::DashboardController < ApplicationController
 
   def index
     @grants = Grant.all.sort
-    @users = User.all
+    @donors = User.donors
     @recipients = Recipient.all
   end
 

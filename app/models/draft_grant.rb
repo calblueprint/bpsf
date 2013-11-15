@@ -38,12 +38,6 @@ class ValidGradeValidator < ActiveModel::EachValidator
   end
 end
 
-class ValidSubjectValidator < ActiveModel::EachValidator
-  def validate_each(object, attribute, value)
-    object.errors.add attribute, "cannot be empty" unless !value.empty?
-  end
-end
-
 class DraftGrant < ActiveRecord::Base
   extend Enumerize
   SUBJECTS = ['Art & Music', 'Supplies', 'Reading', 'Science & Math', 'Field Trips', 'Other']
@@ -63,7 +57,7 @@ class DraftGrant < ActiveRecord::Base
   end
 
   validates :title, presence: true, length: { maximum: 40 }
-  validates :subject_areas, valid_subject: true
+  validates_presence_of :recipient_id
   validates_length_of :summary, within: 1..200, too_short: 'cannot be blank', allow_nil: true
   validates_length_of :duration, :budget_desc,
                       minimum: 1, too_short: 'cannot be blank', allow_nil: true
@@ -74,18 +68,22 @@ class DraftGrant < ActiveRecord::Base
   mount_uploader :image_url, ImageUploader
 
   def submit_and_destroy
-    grant = Grant.new
-    valid_attributes = Grant.accessible_attributes.reject { |attr| attr.empty? }
-    grant.attributes = attributes.slice *valid_attributes
-    grant.recipient_id = recipient_id
-    grant.school_id = school_id
-    if grant.save
+    if transfer_attributes_to_new_grant
       UserMailer.grant_submitted(self).deliver
-      @admins = Admin.all
-      @admins.each do |admin|
-        UserMailer.admin_grantsubmitted(self,admin).deliver
+      Admin.all.each do |admin|
+        UserMailer.admin_grantsubmitted(self, admin).deliver
       end
       destroy
     end
   end
+
+  private
+    def transfer_attributes_to_new_grant
+      grant = Grant.new
+      valid_attributes = Grant.accessible_attributes.reject { |attr| attr.empty? }
+      grant.attributes = attributes.slice *valid_attributes
+      grant.recipient_id = recipient_id
+      grant.school_id = school_id
+      grant.save
+    end
 end
