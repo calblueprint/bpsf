@@ -59,7 +59,7 @@ class Grant < ActiveRecord::Base
                   :n_collaborators, :collaborators, :comments, :video, :image_url
   belongs_to :recipient
   belongs_to :school
-  has_one :crowdfund
+  has_one :crowdfunder, class_name: 'Crowdfund'
   extend Searchable :title, :summary, :subject_areas
   ajaxful_rateable stars: 10
 
