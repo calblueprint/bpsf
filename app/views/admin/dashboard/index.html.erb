@@ -10,7 +10,7 @@
             <div class="twelve columns centered centalign">
               <ul class="tab-nav">
                   <li class="active"><a href="#">Grants</a></li>
-                  <li> <a href="#">Donors</a></li>
+                  <li><a href="#">Donors</a></li>
                   <li><a href="#">Recipients</a></li>
               </ul>
             </div>
@@ -37,7 +37,7 @@
                   </tr>
                 </thead>
                 <tbody id="grantlisting">
-                  <%= render 'pages/donors' %>
+                  <%= render partial: 'users', collection: @donors, as: :user %>
                 </tbody>
               </table>
             </div>
@@ -50,7 +50,7 @@
                   </tr>
                 </thead>
                 <tbody id="grantlisting">
-                  <%= render 'pages/recipients' %>
+                  <%= render partial: 'users', collection: @recipients, as: :user %>
                 </tbody>
               </table>
             </div>
