@@ -5,8 +5,18 @@
 
 <!--***************************************TILES********************************************-->
 <div class="row wrapper light">
+    <div class="row">
+        <div class="four columns centered centalign">
+          <%= will_paginate @grants %>
+        </div>
+    </div>
     <%= render partial: 'crowdfunding_grants', collection: @grants, as: :grant %>
-  <%= will_paginate @grants %>
+  
+    <div class="row">
+        <div class="four columns centered centalign">
+          <%= will_paginate @grants %>
+        </div>
+    </div>
 </div>
 
 
