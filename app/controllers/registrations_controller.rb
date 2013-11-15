@@ -28,7 +28,6 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def after_sign_up_path_for(resource)
-    puts resource.type
     if resource.type.eql? 'Recipient'
       @user = Recipient.find resource.id
       @user.recipient_profile = RecipientProfile.create recipient_id: @user.id
