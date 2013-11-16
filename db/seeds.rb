@@ -32,6 +32,14 @@ def make_users
   end
 end
 
+def make_profiles
+  Recipient.all.each do |recipient|
+    profile = RecipientProfile.create! recipient_id: recipient.id,
+                                       about: Faker::Lorem.sentence
+    recipient.recipient_profile = profile
+  end
+end
+
 def make_schools
   School.create! name: 'Berkeley High School'
   School.create! name: 'Washington Elementary School'
@@ -90,5 +98,6 @@ def make_grants
 end
 
 make_users
+make_profiles
 make_schools
 make_grants
