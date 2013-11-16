@@ -13,6 +13,8 @@ class UserController < ApplicationController
     end
     if @user.is_a?(Recipient)
       @profile = @user.recipient_profile
+    elsif @user.is_a?(Admin) or @user.is_a?(SuperUser)
+      @profile = @user.admin_profile
     end
   end
 
@@ -21,6 +23,8 @@ class UserController < ApplicationController
     @payments = Payment.find_by_user_id params[:id]
     if @user.is_a?(Recipient)
       @profile = @user.recipient_profile
+    elsif @user.is_a?(Admin) or @user.is_a?(SuperUser)
+      @profile = @user.admin_profile
     end
   end
 
