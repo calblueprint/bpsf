@@ -11,7 +11,6 @@
               <li> <a href="#">Donors</a></li>
               <li><a href="#">Recipients</a></li>
             </ul>
-          </div>
         </div>
         <div class="tab-content">
           <table>
@@ -52,6 +51,87 @@
             </tbody>
           </table>
         </div>
+||||||| merged common ancestors
+            <div class="tab-content">
+              <table>
+                <thead>
+                  <tr>
+                    <th >Name</th>
+                    <th >Status</th>
+                  </tr>
+                </thead>
+                <tbody id="grantlisting">
+                  <%= render partial: 'all_grants', collection: @grants, as: :grant %>
+                </tbody>
+              </table>
+            </div>
+            <div class="tab-content">
+              <table>
+                <thead>
+                  <tr>
+                    <th >Name</th>
+                    <th >Email</th>
+                  </tr>
+                </thead>
+                <tbody id="grantlisting">
+                  <%= render 'pages/donors' %>
+                </tbody>
+              </table>
+            </div>
+            <div class="tab-content">
+              <table>
+                <thead>
+                  <tr>
+                    <th >Name</th>
+                    <th >Email</th>
+                  </tr>
+                </thead>
+                <tbody id="grantlisting">
+                  <%= render 'pages/recipients' %>
+                </tbody>
+              </table>
+            </div>
+=======
+            <div class="tab-content active">
+              <table>
+                <thead>
+                  <tr>
+                    <th >Name</th>
+                    <th >Status</th>
+                  </tr>
+                </thead>
+                <tbody id="grantlisting">
+                  <%= render partial: 'all_grants', collection: @grants, as: :grant %>
+                </tbody>
+              </table>
+            </div>
+            <div class="tab-content">
+              <table>
+                <thead>
+                  <tr>
+                    <th >Name</th>
+                    <th >Email</th>
+                  </tr>
+                </thead>
+                <tbody id="grantlisting">
+                  <%= render partial: 'users', collection: @donors, as: :user %>
+                </tbody>
+              </table>
+            </div>
+            <div class="tab-content">
+              <table>
+                <thead>
+                  <tr>
+                    <th >Name</th>
+                    <th >Email</th>
+                  </tr>
+                </thead>
+                <tbody id="grantlisting">
+                  <%= render partial: 'users', collection: @recipients, as: :user %>
+                </tbody>
+              </table>
+            </div>
+>>>>>>> master
 
         </section>
       </div>

@@ -1,6 +1,5 @@
 # Tests for the admin dashboard
 require 'spec_helper'
-require 'pry'
 
 describe 'The admin dashboard' do
   subject { page }
