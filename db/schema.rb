@@ -11,13 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131115060022) do
+ActiveRecord::Schema.define(:version => 20131116204915) do
 
   create_table "admin_profiles", :force => true do |t|
     t.string   "about"
     t.string   "position"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "admin_id"
   end
 
   create_table "crowdfunds", :force => true do |t|
