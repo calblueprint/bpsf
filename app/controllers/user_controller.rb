@@ -35,6 +35,12 @@ class UserController < ApplicationController
         flash[:success] = "Profile Updated!"
         redirect_to user_path id: @user.id
       end
+    elsif @user.is_a?(Admin)
+      @profile = @user.admin_profile
+      if @user.update_attributes(params[:user]) && @profile.update_attributes(params[:admin_profile])
+        flash[:success] = "Profile Updated!"
+        redirect_to user_path id: @user.id
+      end
     else
       if @user.update_attributes params[:user]
         flash[:success] = "Profile Updated!"
