@@ -9,16 +9,28 @@
           <%= form_for @user, url: user_path(id: @user.id) do |f| %>
             <div class="field">
               <%= f.label :first_name %>
-              <%= f.text_field :first_name %>
+              <%= f.text_field :first_name, class: :input %>
             </div>
             <div class="field">
               <%= f.label :last_name %>
-              <%= f.text_field :last_name %>
+              <%= f.text_field :last_name, class: :input %>
             </div>
-            <%= fields_for @profile, url: recipient_profile_path(id: @profile.id) do |fo| %>
+            <%= fields_for @profile, url: recipient_profile_path(id: @profile.id) do |ff| %>
               <div class="field">
-                <%= fo.label :about, "About" %>
-                <%= fo.text_field :about, class: [:textarea, :input], rows: 3 %>
+                <%= ff.label :about, "About" %>
+                <%= ff.text_field :about, class: [:textarea, :input], rows: 3 %>
+              </div>
+              <div class="field">
+                <%= ff.label :started_teaching, "IDKMYBFFJILL" %>
+                <%= ff.date_select :started_teaching, order: [:year] %>
+              </div>
+              <div class="field">
+                <%= ff.label :subject, "Subject You Teach" %>
+                <%= ff.text_field :subject, class: :input %>
+              </div>
+              <div class="field">
+                <%= ff.label :grade, "Grade You Teach" %>
+                <%= ff.text_field :grade, class: :input %>
               </div>
             <% end %>
             <div class="medium primary btn pull_right">
