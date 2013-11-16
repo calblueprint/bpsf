@@ -12,6 +12,20 @@
 </div>
 
 <div class="row">
+  <% if @profile.started_teaching %>
+    <h4>Years teaching</h4>
+    <%= @profile.years_teaching %>
+  <% end %>
+</div>
+
+<div class="row">
+  <% if @profile.grade %>
+    <h4>Grade</h4>
+    <%= @profile.grade %>
+  <% end %>
+</div>
+
+<div class="row">
   <h4>About</h4>
   <% if @profile.about %>
     <%= @profile.about %>
