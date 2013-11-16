@@ -46,7 +46,9 @@ BPSF::Application.routes.draw do
 
   post "crowdfund/create"
 
-  resources :recipient_profile, except: [:destroy]
+  resources :recipient_profile, only: [:update]
+
+  resources :admin_profile, only: [:update]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
