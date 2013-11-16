@@ -3,6 +3,8 @@
     <div class="wrapper light">
       <% if @user.is_a?(Recipient) %>
         <%= render "recipient_edit", locals: { user: @user, profile: @profile } %>
+      <% elsif @user.is_a?(Admin) or @user.is_a?(SuperUser) %>
+        <%= render "admin_edit", locals: { user: @user, profile: @profile } %>
       <% elsif @user.is_a?(User) %>
         <%= render "user_edit", locals: { user: @user, profile: @profile } %>
       <% end %>
