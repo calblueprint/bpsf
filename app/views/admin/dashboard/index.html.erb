@@ -4,93 +4,15 @@
       <div class="row">
         <h2 class="centalign">Admin Dashboard</h2>
         <section class="tabs">
-        <div class="row">
-          <div class="twelve columns centered centalign">
-            <ul class="tab-nav">
-              <li><a href="#">Grants</a></li>
-              <li> <a href="#">Donors</a></li>
-              <li><a href="#">Recipients</a></li>
-            </ul>
-        </div>
-        <div class="tab-content">
-          <table>
-            <thead>
-              <tr>
-                <th >Name</th>
-                <th >Status</th>
-              </tr>
-            </thead>
-            <tbody id="grantlisting">
-              <%= render partial: 'all_grants', collection: @grants, as: :grant %>
-            </tbody>
-          </table>
-        </div>
-        <div class="tab-content">
-          <table>
-            <thead>
-              <tr>
-                <th >Name</th>
-                <th >Email</th>
-              </tr>
-            </thead>
-            <tbody id="grantlisting">
-              <%= render 'pages/donors' %>
-            </tbody>
-          </table>
-        </div>
-        <div class="tab-content">
-          <table>
-            <thead>
-              <tr>
-                <th >Name</th>
-                <th >Email</th>
-              </tr>
-            </thead>
-            <tbody id="grantlisting">
-              <%= render 'pages/recipients' %>
-            </tbody>
-          </table>
-        </div>
-||||||| merged common ancestors
-            <div class="tab-content">
-              <table>
-                <thead>
-                  <tr>
-                    <th >Name</th>
-                    <th >Status</th>
-                  </tr>
-                </thead>
-                <tbody id="grantlisting">
-                  <%= render partial: 'all_grants', collection: @grants, as: :grant %>
-                </tbody>
-              </table>
+          <div class="row">
+            <div class="twelve columns centered centalign">
+              <ul class="tab-nav">
+                  <li class="active"><a href="#">Grants</a></li>
+                  <li><a href="#">Donors</a></li>
+                  <li><a href="#">Recipients</a></li>
+              </ul>
             </div>
-            <div class="tab-content">
-              <table>
-                <thead>
-                  <tr>
-                    <th >Name</th>
-                    <th >Email</th>
-                  </tr>
-                </thead>
-                <tbody id="grantlisting">
-                  <%= render 'pages/donors' %>
-                </tbody>
-              </table>
-            </div>
-            <div class="tab-content">
-              <table>
-                <thead>
-                  <tr>
-                    <th >Name</th>
-                    <th >Email</th>
-                  </tr>
-                </thead>
-                <tbody id="grantlisting">
-                  <%= render 'pages/recipients' %>
-                </tbody>
-              </table>
-            </div>
+          </div>
             <div class="tab-content active">
               <table>
                 <thead>
