@@ -1,4 +1,3 @@
-
 module SessionsHelper
 
   def deny_access(options)
@@ -23,13 +22,12 @@ module SessionsHelper
   end
 
   private
+    def store_location(options)
+      session[:return_to] = options[:url] || request.fullpath
+    end
 
-  def store_location(options)
-    session[:return_to] = options[:url] || request.fullpath
-  end
-
-  def clear_stored_location
-    session[:return_to] = nil
-  end
+    def clear_stored_location
+      session[:return_to] = nil
+    end
 
 end
