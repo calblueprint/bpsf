@@ -26,6 +26,7 @@
 #  video              :string(255)
 #  image_url          :string(255)
 #  school_id          :integer
+#  type               :string(255)
 #
 
 class ValidGradeValidator < ActiveModel::EachValidator

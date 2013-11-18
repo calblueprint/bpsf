@@ -8,6 +8,7 @@
 #  updated_at    :datetime         not null
 #  goal          :integer
 #  pledged_total :integer
+#  grant_id      :integer
 #
 
 require 'spec_helper'
