@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   attr_accessible :first_name, :last_name, :email, :password,
-                  :password_confirmation, :remember_me
+                  :password_confirmation, :remember_me, :type
 
   has_many :payments, dependent: :destroy
 

@@ -1,0 +1,44 @@
+
+<div class="row">
+  <% if @profile.image_url %>
+    <%= image_tag @profile.image_url.to_s %>
+  <% end %>
+</div>
+
+<div class="row">
+  <% if @profile.school_id %>
+    <%= render partial: "school", locals: { school: @profile.school_id } %>
+  <% end %>
+</div>
+
+<div class="row">
+  <% if @profile.started_teaching %>
+    <h4>Years teaching</h4>
+    <%= @profile.years_teaching %>
+  <% end %>
+</div>
+
+<div class="row">
+  <% if @profile.grade %>
+    <h4>Grade</h4>
+    <%= @profile.grade %>
+  <% end %>
+</div>
+
+<div class="row">
+  <h4>About</h4>
+  <% if @profile.about %>
+    <%= @profile.about %>
+  <% end %>
+</div>
+
+<div class="row">
+  <h4>Grades Taught</h4>
+  <%= @profile.grade %>
+</div>
+
+<div class="row">
+  <h4>Subjects Taught</h4>
+  <%= @profile.subject %>
+</div>
+
