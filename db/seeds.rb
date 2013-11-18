@@ -36,7 +36,15 @@ def make_profiles
   Recipient.all.each do |recipient|
     profile = RecipientProfile.create! recipient_id: recipient.id,
                                        about: Faker::Lorem.sentence
+                                       subject: Faker::Lorem.sentence
+                                       grade: Faker::Lorem.sentence
     recipient.recipient_profile = profile
+  end
+  Admin.all.each do |admin|
+    profile = AdminProfile.create! admin_id: admin.id
+                                   about: Faker::Lorem.sentence
+                                   position: Faker::Lorem.sentence
+    admin.admin_profile = profile
   end
 end
 
