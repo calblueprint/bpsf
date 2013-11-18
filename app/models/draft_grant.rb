@@ -58,7 +58,7 @@ class DraftGrant < ActiveRecord::Base
   end
 
   validates :title, presence: true, length: { maximum: 40 }
-  validates_presence_of :recipient_id
+  validates_presence_of :recipient_id, if: 'type.nil?'
   validates_length_of :summary, within: 1..200, too_short: 'cannot be blank', allow_nil: true
   validates_length_of :duration, :budget_desc,
                       minimum: 1, too_short: 'cannot be blank', allow_nil: true
