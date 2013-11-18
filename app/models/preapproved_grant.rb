@@ -30,6 +30,5 @@
 #
 
 class PreapprovedGrant < DraftGrant
-  
-  
+    
 end
