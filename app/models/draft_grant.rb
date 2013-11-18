@@ -81,7 +81,7 @@ class DraftGrant < ActiveRecord::Base
   private
     def transfer_attributes_to_new_grant
       grant = Grant.new
-      valid_attributes = Grant.accessible_attributes.reject { |attr| attr.empty? }
+      valid_attributes = Grant.accessible_attributes.reject &:empty?
       grant.attributes = attributes.slice *valid_attributes
       grant.recipient_id = recipient_id
       grant.school_id = school_id
