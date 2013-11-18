@@ -30,6 +30,7 @@
 #  rating_average     :decimal(6, 2)    default(0.0)
 #
 
+# Validates the grade_levels format.
 class ValidGradeValidator < ActiveModel::EachValidator
   def validate_each(object, attribute, value)
     return if not value
@@ -40,6 +41,7 @@ class ValidGradeValidator < ActiveModel::EachValidator
   end
 end
 
+# Validates the subject_areas
 class ValidSubjectValidator < ActiveModel::EachValidator
   def validate_each(object, attribute, value)
     object.errors.add attribute, "cannot be empty" unless !value.empty?
@@ -110,6 +112,35 @@ class Grant < ActiveRecord::Base
     end
   end
 
+  # Grant state transition mailer callbacks
+  def grant_rejected
+    UserMailer.grant_rejected(self).deliver
+  end
+
+  def admin_crowdsuccess
+    @admins = Admin.all
+    @admins.each do |admin|
+      UserMailer.admin_crowdsuccess(self, admin).deliver
+    end
+  end
+
+  def grant_funded
+    UserMailer.grant_funded(self).deliver
+  end
+
+  def grant_crowdfunding
+    UserMailer.grant_crowdfunding(self).deliver
+  end
+
+  def crowdfailed
+    @admins = Admin.all
+    @admins.each do |admin|
+      UserMailer.admin_crowdfailed(self, admin).deliver
+    end
+    UserMailer.grant_crowdfailed(self).deliver
+  end
+
+  # Callback to process payments after a successful crowdfund
   def process_payments
     @payments = Payment.where crowdfund_id: self.id
     @payments.each do |payment|
@@ -124,34 +155,6 @@ class Grant < ActiveRecord::Base
     end
   rescue Stripe::InvalidRequestError => err
     logger.error "Stripe error: #{err.message}"
-  end
-
-  def grant_rejected
-    UserMailer.grant_rejected(self).deliver
-  end
-
-  def admin_crowdsuccess
-    @admins = Admin.all
-    @admins.each do |admin|
-      UserMailer.admin_crowdsuccess(self, admin).deliver
-    end
-  end
-
-  def grant_funded
-    UserMailer.grant_funded(self).deliver
-
-  end
-
-  def grant_crowdfunding
-    UserMailer.grant_crowdfunding(self).deliver
-  end
-
-  def crowdfailed
-    @admins = Admin.all
-    @admins.each do |admin|
-      UserMailer.admin_crowdfailed(self, admin).deliver
-    end
-    UserMailer.grant_crowdfailed(self).deliver
   end
 
 end
