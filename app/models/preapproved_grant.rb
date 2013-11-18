@@ -30,5 +30,11 @@
 #
 
 class PreapprovedGrant < DraftGrant
-    
+
+  def clone_into_draft_for(recipient_id)
+    draft = dup
+    draft.recipient_id = recipient_id
+    draft.becomes DraftGrant
+    draft.save
+  end
 end
