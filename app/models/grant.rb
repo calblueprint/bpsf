@@ -157,7 +157,7 @@ class Grant < ActiveRecord::Base
     logger.error "Stripe error: #{err.message}"
   end
 
-  def preapprove
+  def preapprove!
     transfer_attributes_to_new_preapproved_grant
   end
 
