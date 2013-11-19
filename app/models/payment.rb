@@ -19,7 +19,7 @@ class Payment < ActiveRecord::Base
   def self.make_payment!(amount, grant, current_user)
     payment = current_user.payments.build amount: amount
     payment.user_id = current_user.id
-    payment.crowdfund_id = grant.id
+    payment.crowdfund_id = grant.crowdfunder.id
     payment.save!
     UserMailer.user_pledge(current_user,grant).deliver
   end

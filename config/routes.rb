@@ -1,5 +1,4 @@
 BPSF::Application.routes.draw do
-
   root to: 'pages#home'
   get '/search', to: 'pages#search', as: :search
   match '/recipients' => 'pages#recipients'
@@ -12,6 +11,8 @@ BPSF::Application.routes.draw do
   resources :payments, only: [:create, :destroy]
 
   devise_for :users, :controllers => { :registrations => "registrations" }
+
+  resources :user,         except: [:index, :new, :create, :destroy]
 
   namespace :recipient do
     get '', to: 'dashboard#index', as: :dashboard
@@ -44,6 +45,10 @@ BPSF::Application.routes.draw do
   end
 
   post "crowdfund/create"
+
+  resources :recipient_profile, only: [:update]
+
+  resources :admin_profile, only: [:update]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

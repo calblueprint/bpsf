@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131118025912) do
+ActiveRecord::Schema.define(:version => 20131116204915) do
+
+  create_table "admin_profiles", :force => true do |t|
+    t.string   "about"
+    t.string   "position"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "admin_id"
+  end
 
   create_table "crowdfunds", :force => true do |t|
     t.datetime "deadline"
@@ -46,7 +54,6 @@ ActiveRecord::Schema.define(:version => 20131118025912) do
     t.string   "video"
     t.string   "image_url"
     t.integer  "school_id"
-    t.string   "type"
   end
 
   add_index "draft_grants", ["recipient_id"], :name => "index_draft_grants_on_recipient_id"
@@ -107,6 +114,18 @@ ActiveRecord::Schema.define(:version => 20131118025912) do
 
   add_index "rates", ["rateable_id", "rateable_type"], :name => "index_rates_on_rateable_id_and_rateable_type"
   add_index "rates", ["rater_id"], :name => "index_rates_on_rater_id"
+
+  create_table "recipient_profiles", :force => true do |t|
+    t.integer  "school_id"
+    t.string   "image_url"
+    t.text     "about"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.integer  "recipient_id"
+    t.datetime "started_teaching"
+    t.string   "subject"
+    t.string   "grade"
+  end
 
   create_table "schools", :force => true do |t|
     t.string   "name"
