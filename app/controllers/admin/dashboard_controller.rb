@@ -7,6 +7,7 @@ class Admin::DashboardController < ApplicationController
     @grants = Grant.all.sort
     @donors = User.donors
     @recipients = Recipient.all
+    @preapproved = PreapprovedGrant.all
   end
 
   def grant_event
