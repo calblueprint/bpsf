@@ -26,6 +26,8 @@ BPSF::Application.routes.draw do
     post ':id/submit/',           to: 'draft_grants#submit',            as: :draft_submit
   end
 
+  resources :preapproved_grants, only: :show
+
   devise_for :users, :controllers => { :registrations => "registrations" }
   resources :user, except: [:index, :new, :create, :destroy]
   resources :payments, only: [:create, :destroy]
@@ -43,6 +45,6 @@ BPSF::Application.routes.draw do
   end
 
   post "crowdfund/create"
-  resources :recipient_profile, only: [:update]
-  resources :admin_profile, only: [:update]
+  resources :recipient_profile, only: :update
+  resources :admin_profile, only: :update
 end
