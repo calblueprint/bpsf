@@ -39,7 +39,8 @@
             <th >Name</tr>
           </thead>
           <tbody>
-            <%= render partial: 'admin/dashboard/preapproved_grants', collection: @preapproved, as: :grant %>
+            <%= render partial: 'admin/dashboard/preapproved_grants',
+                       collection: @preapproved, as: :preapproved_grant %>
           </tbody>
         </table>
       </div>
