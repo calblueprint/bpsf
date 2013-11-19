@@ -25,6 +25,25 @@
           <br>
       </div>
 
+      <div class="row">
+        <div class="twelve columns centered centalign">
+          <h2>Or...</h2>
+          <h5>Select from preapproved grants</h5>
+          <br>
+        </div>
+      </div>
+
+      <div class="row">
+        <table>
+          <thead>
+            <th >Name</tr>
+          </thead>
+          <tbody>
+            <%= render partial: 'admin/dashboard/preapproved_grants', collection: @preapproved, as: :grant %>
+          </tbody>
+        </table>
+      </div>
+
     </div>
   </div>
 </div>
