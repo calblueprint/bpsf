@@ -79,7 +79,8 @@
 
     <div class="row padada">
       <div class="six columns centalign">
-        <h5 class="inlined"><strong>Subject areas: </strong></h5><span class="medfont"><%= @grant.subject_areas.values.to_a.join(', ') %></span>      
+        <h5 class="inlined"><strong>Subject areas: </strong></h5>
+        <span class="medfont"><%= @grant.subject_areas.values.to_a.join(', ') %></span>      
       </div>
       <div class="six columns centalign">
         <h5 class="inlined"><strong>Duration: </strong></h5><span class="medfont"><%= @grant.duration %></span>
@@ -138,7 +139,8 @@
       <div class="ten columns centalign centered">
         <br>
         <h3 class="centalign">Budget</h3>
-        <h5 class="inlined"><strong>Total budget: </strong></h5><span class="largefont"><%= @grant.total_budget %></span><br>
+        <h5 class="inlined"><strong>Total budget: </strong></h5>
+        <span class="largefont"><%= @grant.total_budget %></span><br>
         <h5><strong>Description</strong></h5>
         <%= @grant.budget_desc %> 
         <h5><strong>Use of Funds</strong></h5>
@@ -150,7 +152,8 @@
       <div class="ten columns centalign centered">
         <br>
         <h3>Team</h3>
-        <h5 class="inlined"><strong>Director: </strong></h5><%= @grant.recipient.first_name + ' ' + @grant.recipient.last_name %><br>
+        <h5 class="inlined"><strong>Director: </strong></h5>
+        <%= @grant.recipient.name %><br>
         <h5><strong>Director background</strong></h5>
         <%= @grant.background %>       
         <h5><strong>Collaborators</strong></h5>
@@ -189,4 +192,4 @@
 </div>
 <div id="crowdfund-modal-view">
   <%= render partial: "crowdfund_modal", locals: { grant: @grant } %>
-</div
+</div>
