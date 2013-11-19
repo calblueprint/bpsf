@@ -48,4 +48,11 @@ class GrantsController < ApplicationController
       format.js
     end
   end
+
+  def preapprove
+    @grant = Grant.find params[:id]
+    @grant.preapprove!
+    flash[:success] = 'Grant preapproved!'
+    redirect_to @grant
+  end
 end
