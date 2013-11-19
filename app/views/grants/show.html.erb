@@ -17,6 +17,14 @@
       </h5>
     </div>
 
+    <div class="row" id="preapprove_link">
+      <% if admin_user? %>
+        <div class="medium primary btn">
+          <%= link_to 'Preapprove', preapprove_grant_path(@grant), method: :post %>
+        </div>
+      <% end %>
+    </div>
+
     <div class="row">
       <% if super_user? %>
         <%= ratings_for @grant, :static %>
