@@ -105,7 +105,13 @@ def make_grants
   crowdfunding_grants.map { |grant| grant.crowdfund ; grant.save! }
 end
 
+def make_preapproved
+  g = Grant.first
+  g.preapprove!
+end
+
 make_users
 make_profiles
 make_schools
 make_grants
+make_preapproved
