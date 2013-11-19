@@ -6,9 +6,18 @@
         <div class="five columns centered">
           <h2>Sign up</h2>
 
-
           <%= form_for resource, :as => resource_name, :url => registration_path(resource_name) do |f| %>
             <%= devise_error_messages! %>
+
+            <div class="field">
+              <%= f.label :first_name %>
+              <%= f.text_field :first_name, class: :input %>
+            </div>
+
+            <div class="field">
+              <%= f.label :last_name %>
+              <%= f.text_field :last_name, class: :input %>
+            </div>
 
             <div class="field">
               <%= f.label :email %>
@@ -25,18 +34,20 @@
               <%= f.password_field :password_confirmation, class: :input %>
             </div>
 
+            <div>
+              <%= f.label :type %>
+              <%= f.select :type, options_for_select(%w[User Recipient Admin]) %>
+            </div>
+
             <div class="medium primary btn">
               <%= f.submit "Sign up" %>
             </div>
+
           <% end %>
 
           <%= render "devise/shared/links" %>
         </div>
-
-
-
       </div>
-
     </div>
   </div>
 </div>

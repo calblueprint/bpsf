@@ -26,4 +26,20 @@ class RegistrationsController < Devise::RegistrationsController
   def update
     super
   end
+
+  def after_sign_up_path_for(resource)
+    if resource.type.eql? 'Recipient'
+      @user = Recipient.find resource.id
+      @user.recipient_profile = RecipientProfile.create recipient_id: @user.id
+      @profile = @user.recipient_profile
+      edit_user_path id: @user.id
+    elsif resource.type.eql? 'Admin'
+      @user = Admin.find resource.id
+      @user.admin_profile = AdminProfile.create admin_id: @user.id
+      @profile = @user.admin_profile
+      edit_user_path id: @user.id
+    else
+      super
+    end
+  end
 end
