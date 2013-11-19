@@ -10,6 +10,7 @@
                   <li class="active"><a href="#">Grants</a></li>
                   <li><a href="#">Donors</a></li>
                   <li><a href="#">Recipients</a></li>
+                  <li><a href="#">Preapproved Grants</a></li>
               </ul>
             </div>
           </div>
@@ -21,7 +22,7 @@
                     <th >Status</th>
                   </tr>
                 </thead>
-                <tbody id="grantlisting">
+                <tbody>
                   <%= render partial: 'all_grants', collection: @grants, as: :grant %>
                 </tbody>
               </table>
@@ -34,7 +35,7 @@
                     <th >Email</th>
                   </tr>
                 </thead>
-                <tbody id="grantlisting">
+                <tbody>
                   <%= render partial: 'users', collection: @donors, as: :user %>
                 </tbody>
               </table>
@@ -47,8 +48,18 @@
                     <th >Email</th>
                   </tr>
                 </thead>
-                <tbody id="grantlisting">
+                <tbody>
                   <%= render partial: 'users', collection: @recipients, as: :user %>
+                </tbody>
+              </table>
+            </div>
+            <div class="tab-content">
+              <table>
+                <thead>
+                  <th >Name</tr>
+                </thead>
+                <tbody>
+                  <%= render partial: 'preapproved_grants', collection: @preapproved, as: :grant %>
                 </tbody>
               </table>
             </div>
