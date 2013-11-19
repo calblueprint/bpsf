@@ -11,14 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131118025912) do
+ActiveRecord::Schema.define(:version => 20131119074147) do
 
   create_table "admin_profiles", :force => true do |t|
     t.string   "about"
     t.string   "position"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
     t.integer  "admin_id"
+    t.integer  "super_user_id"
   end
 
   create_table "crowdfunds", :force => true do |t|
@@ -54,7 +55,6 @@ ActiveRecord::Schema.define(:version => 20131118025912) do
     t.string   "video"
     t.string   "image_url"
     t.integer  "school_id"
-    t.string   "type"
   end
 
   add_index "draft_grants", ["recipient_id"], :name => "index_draft_grants_on_recipient_id"
