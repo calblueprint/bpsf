@@ -22,4 +22,5 @@
 #
 
 class SuperUser < User
+  has_one :admin_profile
 end

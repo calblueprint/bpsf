@@ -46,6 +46,12 @@ def make_profiles
                                    position: Faker::Lorem.sentence
     admin.admin_profile = profile
   end
+  SuperUser.all.each do |user|
+    profile = AdminProfile.create! admin_id: user.id,
+                                   about: Faker::Lorem.sentence,
+                                   position: Faker::Lorem.sentence
+    user.admin_profile = profile
+  end
 end
 
 def make_schools
