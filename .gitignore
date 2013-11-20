@@ -25,3 +25,7 @@
 
 # Ignore tmp folder
 /tmp/*
+
+# Ignore rvm configuration files
+.ruby-gemset
+.ruby-version
