@@ -26,6 +26,7 @@
 #  video              :string(255)
 #  image_url          :string(255)
 #  school_id          :integer
+#  type               :string(255)
 #
 
 class ValidGradeValidator < ActiveModel::EachValidator
@@ -57,12 +58,12 @@ class DraftGrant < ActiveRecord::Base
   end
 
   validates :title, presence: true, length: { maximum: 40 }
-  validates_presence_of :recipient_id
+  validates_presence_of :recipient_id, if: 'type.nil?'
   validates_length_of :summary, within: 1..200, too_short: 'cannot be blank', allow_nil: true
   validates_length_of :duration, :budget_desc,
                       minimum: 1, too_short: 'cannot be blank', allow_nil: true
   validates :grade_level, valid_grade: true, allow_nil: true
-  validates_length_of :purpose, :methods, :background, :collaborators, :comments, 
+  validates_length_of :purpose, :methods, :background, :collaborators, :comments,
                       within: 1..1200, too_short: 'cannot be blank', allow_nil: true
 
   mount_uploader :image_url, ImageUploader
@@ -80,7 +81,7 @@ class DraftGrant < ActiveRecord::Base
   private
     def transfer_attributes_to_new_grant
       grant = Grant.new
-      valid_attributes = Grant.accessible_attributes.reject { |attr| attr.empty? }
+      valid_attributes = Grant.accessible_attributes.reject &:empty?
       grant.attributes = attributes.slice *valid_attributes
       grant.recipient_id = recipient_id
       grant.school_id = school_id
