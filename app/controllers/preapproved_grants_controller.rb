@@ -8,8 +8,4 @@ class PreapprovedGrantsController < ApplicationController
     @grant.clone_into_draft_for! current_user.id
     redirect_to recipient_dashboard_path
   end
-
-  def edit
-    
-  end
 end
