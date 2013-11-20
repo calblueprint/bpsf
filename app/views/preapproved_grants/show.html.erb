@@ -3,12 +3,6 @@
     <div class="row centalign">
       <h2 >
         <%= @grant.title %> (Preapproved)
-        <% if admin_user? %>
-          <span class="ttip" data-tooltip="Edit">
-            <%= link_to '<i class="icon-pencil"></i>'.html_safe, 
-                  edit_preapproved_grant_path(@grant) %>
-          </span>
-        <% end %>
       </h2>
       <h5>
         <%# grant.school (can't do yet) %> Berkeley Elementary School

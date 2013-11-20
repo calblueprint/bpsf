@@ -26,7 +26,7 @@ BPSF::Application.routes.draw do
     post ':id/submit/',           to: 'draft_grants#submit',            as: :draft_submit
   end
 
-  resources :preapproved_grants, only: [:show, :edit]
+  resources :preapproved_grants, only: :show
   scope '/preapproved_grants' do
     post ':id/convert', to: 'preapproved_grants#convert', as: :preapproved_convert
   end
