@@ -162,9 +162,12 @@ class Grant < ActiveRecord::Base
   end
 
   private
+    BLACKLISTED_ATTRIBUTES = %w{background n_collaborators collaborators 
+                                comments video image_url}
     def transfer_attributes_to_new_preapproved_grant
       grant = PreapprovedGrant.new
-      valid_attributes = PreapprovedGrant.accessible_attributes.reject &:empty?
+      valid_attributes = PreapprovedGrant.accessible_attributes.reject(&:empty?) -
+                         BLACKLISTED_ATTRIBUTES
       grant.attributes = attributes.slice *valid_attributes
       grant.save
     end
