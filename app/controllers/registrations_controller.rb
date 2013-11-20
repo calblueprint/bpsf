@@ -42,4 +42,8 @@ class RegistrationsController < Devise::RegistrationsController
       super
     end
   end
+
+  def use_https?
+    true
+  end
 end
