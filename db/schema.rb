@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(:version => 20131119074147) do
     t.string   "video"
     t.string   "image_url"
     t.integer  "school_id"
+    t.string   "type"
   end
 
   add_index "draft_grants", ["recipient_id"], :name => "index_draft_grants_on_recipient_id"
