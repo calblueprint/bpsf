@@ -5,7 +5,8 @@
         <%= @grant.title %> (Preapproved)
         <% if admin_user? %>
           <span class="ttip" data-tooltip="Edit">
-            <%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_grant_path %>
+            <%= link_to '<i class="icon-pencil"></i>'.html_safe, 
+                  edit_preapproved_grant_path(@grant) %>
           </span>
         <% end %>
       </h2>
@@ -14,15 +15,18 @@
       </h5>
     </div>
 
-    <div class="row">
-      <hr>
-      <div class="three columns centered centalign">
-        <div class="large primary btn">
-          <%= link_to 'Use this!', preapproved_convert_path(@grant), method: :post %>
+    <% if recipient? %>
+      <div class="row">
+        <hr>
+        <div class="three columns centered centalign">
+          <div class="large primary btn">
+            <%= link_to 'Use this!', preapproved_convert_path(@grant), method: :post %>
+          </div>
         </div>
       </div>
-    </div>
-    <hr>
+      <hr>
+    <% end %>
+    
 
     <div class="row">
       <% if !@grant.image_url.blank? %>
@@ -67,18 +71,8 @@
 
 
     <div class="row grantviewbar">
-      <div class="progress">
-        <!-- Also can't really do - no current payment status for grants -->
-        <span style="width: 50%" class="progressbar" data-goal="<%= @grant.requested_funds %>" data-current="224">87%</span>
-      </div>
       <div class="gcdiv">
-        <span class="gctext"><strong>Current: </strong></span>
-        <!-- This too -->
-        <span class="currentnum">$224</span>
-        &emsp;
-        <span class="gctext"><strong>Goal: </strong></span>
-        <span class="goalnum">$<%= @grant.requested_funds %></span>
-
+        
       </div>
     </div>
 
@@ -111,6 +105,7 @@
         <br>
         <h3 class="centalign">Budget</h3>
         <h5 class="inlined"><strong>Total budget: </strong></h5><span class="largefont"><%= @grant.total_budget %></span><br>
+        <h5 class="inlined"><strong>Goal: </strong></h5><span class="largefont"><%= @grant.requested_funds %></span><br>
         <h5><strong>Description</strong></h5>
         <%= @grant.budget_desc %> 
         <h5><strong>Use of Funds</strong></h5>
