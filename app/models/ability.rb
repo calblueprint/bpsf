@@ -8,6 +8,7 @@ class Ability
     # Default abilities
     can :read, Grant, state: 'crowdfunding'
     can :read, Recipient
+    can :manage, User, id: user.id
 
     if user.type == 'SuperUser'
       can :manage, :all
@@ -16,14 +17,14 @@ class Ability
       can :read, :all
       cannot :manage, [SuperUser, Admin]
       can :manage, Admin, id: user.id
-      can :rate, Grant
+      can [:rate, :preapprove], Grant
+      can :manage, PreapprovedGrant
     elsif user.type == 'Recipient'
       can [:create, :read], Grant
       can :manage, DraftGrant, recipient_id: user.id
       can :create, DraftGrant
+      can :read, PreapprovedGrant
       can :manage, Recipient, id: user.id
-    else
-      can :manage, User, id: user.id
     end
   end
 

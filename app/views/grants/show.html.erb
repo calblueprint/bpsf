@@ -3,37 +3,45 @@
     <div class="row centalign">
       <h2 >
         <%= @grant.title %>
-        <% if current_user && super_user? %>
+        <% if super_user? %>
           <span class="ttip" data-tooltip="Edit">
             <%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_grant_path %>
           </span>
         <% end %>
       </h2>
       <h5>
-        <%= @grant.recipient.first_name + ' ' + @grant.recipient.last_name %> | <%# grant.school (can't do yet) %> Berkeley Elementary School
+        <%= @grant.recipient.name %> | <%# grant.school (can't do yet) %> Berkeley Elementary School
       </h5>
       <h5>
         <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fparse.com" target="_blank"><i class="icon-facebook"></i></a>    <a expr:href='data:post.canonicalUrl' href="https://twitter.com/share"><i class="icon-twitter"></i></a>    <a href="javascript:emailCurrentPage()"><i class="icon-mail"></i></a>
       </h5>
     </div>
 
+    <div class="row" id="preapprove_link">
+      <% if admin_user? %>
+        <div class="medium primary btn">
+          <%= link_to 'Preapprove', preapprove_grant_path(@grant), method: :post %>
+        </div>
+      <% end %>
+    </div>
+
     <div class="row">
-      <% if current_user && super_user? %>
+      <% if super_user? %>
         <%= ratings_for @grant, :static %>
         Average: <%= @grant.rating_average %>
-      <% elsif current_user && admin_user? %>
+      <% elsif admin_user? %>
         <%= ratings_for @grant, show_user_rating: true %>
       <% end %>
     </div>
 
     <div class="row" id="togglelinks">
-      <% if current_user && super_user? %>
+      <% if super_user? %>
         <%= render 'toggle_links', grant: @grant %>
       <% end %>
     </div>
 
     <div class="row" id="grantstatus">
-      <% if current_user && admin_user? %>
+      <% if admin_user? %>
         Status: <%= @grant.state.titleize %>
       <% end %>
     </div>
@@ -71,7 +79,8 @@
 
     <div class="row padada">
       <div class="six columns centalign">
-        <h5 class="inlined"><strong>Subject areas: </strong></h5><span class="medfont"><%= @grant.subject_areas.values.to_a.join(', ') %></span>      
+        <h5 class="inlined"><strong>Subject areas: </strong></h5>
+        <span class="medfont"><%= @grant.subject_areas.values.to_a.join(', ') %></span>      
       </div>
       <div class="six columns centalign">
         <h5 class="inlined"><strong>Duration: </strong></h5><span class="medfont"><%= @grant.duration %></span>
@@ -130,7 +139,8 @@
       <div class="ten columns centalign centered">
         <br>
         <h3 class="centalign">Budget</h3>
-        <h5 class="inlined"><strong>Total budget: </strong></h5><span class="largefont"><%= @grant.total_budget %></span><br>
+        <h5 class="inlined"><strong>Total budget: </strong></h5>
+        <span class="largefont"><%= @grant.total_budget %></span><br>
         <h5><strong>Description</strong></h5>
         <%= @grant.budget_desc %> 
         <h5><strong>Use of Funds</strong></h5>
@@ -142,7 +152,8 @@
       <div class="ten columns centalign centered">
         <br>
         <h3>Team</h3>
-        <h5 class="inlined"><strong>Director: </strong></h5><%= @grant.recipient.first_name + ' ' + @grant.recipient.last_name %><br>
+        <h5 class="inlined"><strong>Director: </strong></h5>
+        <%= @grant.recipient.name %><br>
         <h5><strong>Director background</strong></h5>
         <%= @grant.background %>       
         <h5><strong>Collaborators</strong></h5>
@@ -181,4 +192,4 @@
 </div>
 <div id="crowdfund-modal-view">
   <%= render partial: "crowdfund_modal", locals: { grant: @grant } %>
-</div
+</div>
