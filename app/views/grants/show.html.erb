@@ -17,6 +17,8 @@
       </h5>
     </div>
 
+    <!-- Note: These need to be styled! -->
+
     <div class="row" id="preapprove_link">
       <% if current_user && admin_user? %>
         <div class="medium primary btn">
@@ -45,6 +47,8 @@
         Status: <%= @grant.state.titleize %>
       <% end %>
     </div>
+
+    <!-- End note -->
 
     <div class="row">
       <% if @grant.image_url %>
