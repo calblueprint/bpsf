@@ -161,6 +161,10 @@ class Grant < ActiveRecord::Base
     transfer_attributes_to_new_preapproved_grant
   end
 
+  def school_name
+    school.name
+  end
+
   private
     BLACKLISTED_ATTRIBUTES = %w{background n_collaborators collaborators 
                                 comments video image_url}
