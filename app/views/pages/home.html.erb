@@ -11,7 +11,7 @@
         </div>
     </div>
     <%= render partial: 'crowdfunding_grants', collection: @grants, as: :grant %>
-  
+
     <div class="row">
         <div class="four columns centered centalign">
           <%= will_paginate @grants %>
@@ -31,10 +31,10 @@
 
 
     var unslider = $('.banner').unslider();
-    
+
     $('.unslider-arrow').click(function() {
         var fn = this.className.split(' ')[1];
-        
+
         //  Either do unslider.data('unslider').next() or .prev() depending on the className
         unslider.data('unslider')[fn]();
     });
