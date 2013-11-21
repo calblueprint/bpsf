@@ -158,12 +158,14 @@
         <%= @grant.recipient.name %><br>
         <h5><strong>Director background</strong></h5>
         <%= @grant.background %>
-        <h5><strong>Collaborators</strong></h5>
-        <%= @grant.collaborators %>
+        <% if @grant.has_collaborators? %>
+          <h5><strong>Collaborators</strong></h5>
+          <%= @grant.collaborators %>
+        <% end %>
       </div>
     </div>
 
-    <% if !@grant.comments.blank? %>
+    <% if @grant.has_comments? %>
     <div class="row">
       <div class="ten columns centalign centered">
         <br>
