@@ -58,7 +58,7 @@ class Grant < ActiveRecord::Base
   attr_accessible :title, :summary, :subject_areas, :grade_level, :duration,
                   :num_classes, :num_students, :total_budget, :requested_funds,
                   :funds_will_pay_for, :budget_desc, :purpose, :methods, :background,
-                  :n_collaborators, :collaborators, :comments, :video, :image_url
+                  :n_collaborators, :collaborators, :comments, :video, :image_url, :school_id
   belongs_to :recipient
   belongs_to :school
   has_one :crowdfunder, class_name: 'Crowdfund'
