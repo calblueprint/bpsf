@@ -6,9 +6,7 @@ class CrowdfundController < ApplicationController
                          goal: params[:goal],
                          pledged_total: 0
     c.grant_id = params[:grant_id]
-    if c.save
-      flash[:success] = "Crowfund started!"
-    end
+    flash[:success] = "Crowdfund started!" if c.save
     @grant = Grant.find params[:grant_id]
     @grant.state = "crowdfunding"
     @grant.save
