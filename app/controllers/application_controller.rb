@@ -22,10 +22,10 @@ class ApplicationController < ActionController::Base
 
   def https_redirect
     if ENV["ENABLE_HTTPS"] == 'yes'
-      if request.ssl? && !user_https? || !request.ssl? && use_https?
+      if request.ssl? && !use_https? || !request.ssl? && use_https?
         flash.keep
-        protocol = request.ssl? "http" : "https"
-        redirect_to protocol: "#{protocol}://"
+        protocol = request.ssl? ? "http" : "https"
+        redirect_to protocol: "#{protocol}://", status: :moved_permanently
       end
     end
   end
