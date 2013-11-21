@@ -25,6 +25,6 @@ class PaymentsController < ApplicationController
   end
 
   def use_https?
-    true
+    false
   end
 end
