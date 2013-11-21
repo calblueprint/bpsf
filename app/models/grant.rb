@@ -168,6 +168,14 @@ class Grant < ActiveRecord::Base
     school.name
   end
 
+  def has_collaborators?
+    n_collaborators > 0
+  end
+
+  def has_comments?
+    !comments.blank?
+  end
+
   private
     BLACKLISTED_ATTRIBUTES = %w{background n_collaborators collaborators 
                                 comments video image_url}
