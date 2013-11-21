@@ -78,8 +78,8 @@ class Grant < ActiveRecord::Base
   validates_length_of :purpose, :methods, :background, :collaborators, :comments,
                       within: 1..1200, too_short: 'cannot be blank'
 
-  scope :pending_grants, -> { with_state :pending }
-  scope :complete_grants, -> { with_state :complete }
+  scope :pending_grants,      -> { with_state :pending }
+  scope :complete_grants,     -> { with_state :complete }
   scope :crowdfunding_grants, -> { with_state :crowdfunding }
 
   state_machine initial: :pending do
