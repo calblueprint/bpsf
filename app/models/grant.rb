@@ -75,7 +75,7 @@ class Grant < ActiveRecord::Base
   validates_length_of :duration, :budget_desc,
                       minimum: 1, too_short: 'cannot be blank'
   validates :grade_level, presence: true, valid_grade: true
-  validates_length_of :purpose, :methods, :background, :collaborators, :comments,
+  validates_length_of :purpose, :methods, :background, :comments,
                       within: 1..1200, too_short: 'cannot be blank'
 
   scope :pending_grants,      -> { with_state :pending }
