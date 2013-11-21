@@ -77,6 +77,8 @@ class Grant < ActiveRecord::Base
   validates :grade_level, presence: true, valid_grade: true
   validates_length_of :purpose, :methods, :background, :comments,
                       within: 1..1200, too_short: 'cannot be blank'
+  validates_length_of :collaborators, within: 1..1200,
+                      too_short: 'cannot be blank', allow_nil: true, if: "n_collaborators > 0"
 
   scope :pending_grants,      -> { with_state :pending }
   scope :complete_grants,     -> { with_state :complete }
