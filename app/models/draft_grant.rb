@@ -66,7 +66,8 @@ class DraftGrant < ActiveRecord::Base
   validates_length_of :purpose, :methods, :background, :comments,
                       within: 1..1200, too_short: 'cannot be blank', allow_nil: true
   validates_length_of :collaborators, within: 1..1200,
-                      too_short: 'cannot be blank', allow_nil: true, if: "n_collaborators > 0"
+                      too_short: 'cannot be blank', allow_nil: true,
+                      if: "n_collaborators && n_collaborators > 0"
 
   mount_uploader :image_url, ImageUploader
 
