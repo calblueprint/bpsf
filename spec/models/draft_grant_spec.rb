@@ -66,7 +66,7 @@ describe DraftGrant do
 
   it { should allow_value('K,3, 5-12').for :grade_level }
   it { should_not allow_value('a, 5-13').for :grade_level }
-  
+
   it { should ensure_length_of(:duration).is_at_least(1)
                                          .with_message(/cannot be blank/) }
   it { should ensure_length_of(:budget_desc).is_at_least(1)
