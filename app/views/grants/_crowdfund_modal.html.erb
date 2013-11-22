@@ -5,7 +5,7 @@
       <div class="ten columns centered text-center">
         <% if grant %>
           <p>Create Crowdfund for <%= grant.title %></p>
-          <%= form_tag(crowdfund_create_path, method: :post) do %>
+          <%= form_tag crowdfund_create_path do %>
             <div class="field">
               <%= label_tag :goal, "Goal" %>
               <%= text_field_tag :goal, nil, name: nil %>
