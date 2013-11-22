@@ -1,3 +1,33 @@
+<% if current_user && (super_user? || admin_user?) %>
+  <div class="row">
+    <div class="wrapper light">
+      <div class="row">
+        <div class="ten columns centered centalign">
+          <% if current_user && super_user? %>
+            <h4>Current Rating</h4>
+            <%= ratings_for @grant, :static %>
+            Average: <%= @grant.rating_average %>
+            <h4>Change Status</h4>
+            Current Status: <%= @grant.state.titleize %><br>
+            <%= render 'toggle_links', grant: @grant %>
+            <h4>
+              Edit Grant 
+              <span class="ttip" data-tooltip="Edit">
+                <%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_grant_path %>
+              </span>
+            </h4>
+          <% elsif current_user && admin_user? %>
+            <h4>Rate Grant</h4>
+            <%= ratings_for @grant, show_user_rating: true %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br>
+<%end%>
+
 <div class="row">
   <div class="wrapper light">
     <div class="row centalign">
@@ -8,6 +38,7 @@
             <%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_grant_path %>
           </span>
         <% end %>
+
       </h2>
       <h5>
         <%= @grant.recipient.name %> | <%= @grant.school_name %>
@@ -47,6 +78,7 @@
         Status: <%= @grant.state.titleize %>
       <% end %>
     </div>
+
 
     <!-- End note -->
 
