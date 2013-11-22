@@ -20,7 +20,7 @@
     <!-- Note: These need to be styled! -->
 
     <div class="row" id="preapprove_link">
-      <% if current_user && admin_user? %>
+      <% if current_user && admin_user? && !@grant.preapproved? %>
         <div class="medium primary btn">
           <%= link_to 'Preapprove', preapprove_grant_path(@grant), method: :post %>
         </div>
