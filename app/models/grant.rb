@@ -62,11 +62,12 @@ class Grant < ActiveRecord::Base
   belongs_to :recipient
   belongs_to :school
   has_one :crowdfunder, class_name: 'Crowdfund'
+  has_one :preapproved_grant
   extend Searchable :title, :summary, :subject_areas
   ajaxful_rateable stars: 10
 
   before_validation do |grant|
-    grant.subject_areas = grant.subject_areas.to_a.reject(&:empty?)
+    grant.subject_areas = grant.subject_areas.to_a.reject &:empty?
   end
 
   validates :title, presence: true, length: { maximum: 40 }
