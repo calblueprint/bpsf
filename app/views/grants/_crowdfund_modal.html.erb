@@ -7,13 +7,12 @@
           <p>Create Crowdfund for <%= grant.title %></p>
           <%= form_tag crowdfund_create_path do %>
             <div class="field">
-              <%= label_tag :goal, "Goal" %>
-              <%= text_field_tag :goal, nil, name: nil %>
+              <%= label_tag :goal, "Goal", class: :inlined %>
+              <%= text_field_tag :goal, nil, name: nil, class: [:input, :inlined] %>
             </div>
-            <div class="field">
-              <%= label_tag :deadline, "Deadline" %>
-              <%= select_date Date.today, order: [:year, :month, :day] %>
-            </div>
+            <li class="field metro inlined">
+              <%= select_date Date.today, {order: [:year, :month, :day]}, class: [:picker, :inlined] %>
+            </li>
             </div>
             <%= hidden_field_tag :grant_id, @grant.id %>
             <%= submit_tag "Start Crowdfund!", class: "btn primary medium close-crowdfund-modal" %>
