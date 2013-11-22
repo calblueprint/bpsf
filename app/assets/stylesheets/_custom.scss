@@ -91,7 +91,7 @@
 			height: 20px; 
 			width: 100%;
 			position: relative;
-			background: #eee;
+			background: $global-bg-color;//#eee;
 			span {
 				display: inline-block;
 				height: 100%;
@@ -100,7 +100,7 @@
 				overflow: hidden;
 				text-align:right;
 				line-height:20px;
-				color:#eee;
+				color:$white;
 			}
 		}
 		.gcdiv{
@@ -209,7 +209,7 @@ $imglargereplacementhgt: 250px;
 		height: 20px; 
 		width: 100%;
 		position: relative;
-		background: #eee;
+		background: $global-bg-color;//#eee;
 		span {
 			display: inline-block;
 			height: 100%;
@@ -218,7 +218,7 @@ $imglargereplacementhgt: 250px;
 			overflow: hidden;
 			text-align:right;
 			line-height:20px;
-			color:#eee;
+			color:$white;
 		}
 	}
 	.gcdiv{
