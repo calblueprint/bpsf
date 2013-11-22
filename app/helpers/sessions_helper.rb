@@ -21,6 +21,10 @@ module SessionsHelper
     current_user && current_user.type == 'SuperUser'
   end
 
+  def can_have_profile?(user)
+    user.type == 'Recipient' || user.type == 'Admin'
+  end
+
   private
     def store_location(options)
       session[:return_to] = options[:url] || request.fullpath
