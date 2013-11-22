@@ -24,4 +24,8 @@
 class Admin < User
   has_one :admin_profile
   ajaxful_rater
+
+  def create_profile!
+    admin_profile = AdminProfile.create admin_id: id
+  end
 end
