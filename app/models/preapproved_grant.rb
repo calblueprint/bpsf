@@ -27,6 +27,7 @@
 #  image_url          :string(255)
 #  school_id          :integer
 #  type               :string(255)
+#  grant_id           :integer
 #
 
 class PreapprovedGrant < DraftGrant
