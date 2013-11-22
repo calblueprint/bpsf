@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131119074147) do
+ActiveRecord::Schema.define(:version => 20131122012955) do
 
   create_table "admin_profiles", :force => true do |t|
     t.string   "about"
@@ -56,8 +56,10 @@ ActiveRecord::Schema.define(:version => 20131119074147) do
     t.string   "image_url"
     t.integer  "school_id"
     t.string   "type"
+    t.integer  "grant_id"
   end
 
+  add_index "draft_grants", ["grant_id"], :name => "index_draft_grants_on_grant_id"
   add_index "draft_grants", ["recipient_id"], :name => "index_draft_grants_on_recipient_id"
   add_index "draft_grants", ["school_id"], :name => "index_draft_grants_on_school_id"
 
