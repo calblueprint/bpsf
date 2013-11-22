@@ -43,11 +43,7 @@ BPSF::Application.routes.draw do
     get '', to: 'dashboard#index', as: :dashboard
   end
 
-  namespace :admin do
-    get '', to: 'dashboard#index', as: :dashboard
-  end
-
   post "crowdfund/create"
   resources :recipient_profile, only: :update
-  resources :admin_profile, only: :update
+  resources :admin_profile,     only: :update
 end

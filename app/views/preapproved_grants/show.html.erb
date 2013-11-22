@@ -5,11 +5,11 @@
         <%= @grant.title %> (Preapproved)
       </h2>
       <h5>
-        <%# grant.school (can't do yet) %> Berkeley Elementary School
+        <%= @grant.school_name %>
       </h5>
     </div>
 
-    <% if current_user && recipient? %>
+    <% if recipient? %>
       <div class="row">
         <hr>
         <div class="three columns centered centalign">
@@ -20,7 +20,7 @@
       </div>
       <hr>
     <% end %>
-    
+
 
     <div class="row">
       <% if !@grant.image_url.blank? %>
@@ -56,7 +56,7 @@
     <div class="row padada">
       <div class="six columns centalign">
         <h5 class="inlined"><strong>Subject areas: </strong></h5>
-        <span class="medfont"><%= @grant.subject_areas.values.to_a.join(', ') %></span>      
+        <span class="medfont"><%= @grant.subject_areas.values.to_a.join(', ') %></span>
       </div>
       <div class="six columns centalign">
         <h5 class="inlined"><strong>Duration: </strong></h5><span class="medfont"><%= @grant.duration %></span>
@@ -66,12 +66,12 @@
 
     <div class="row grantviewbar">
       <div class="gcdiv">
-        
+
       </div>
     </div>
 
     <hr>
-    
+
     <div class="row">
       <div class="ten columns centalign centered">
         <h3>Details</h3>
@@ -101,7 +101,7 @@
         <h5 class="inlined"><strong>Total budget: </strong></h5><span class="largefont"><%= @grant.total_budget %></span><br>
         <h5 class="inlined"><strong>Goal: </strong></h5><span class="largefont"><%= @grant.requested_funds %></span><br>
         <h5><strong>Description</strong></h5>
-        <%= @grant.budget_desc %> 
+        <%= @grant.budget_desc %>
         <h5><strong>Use of Funds</strong></h5>
         <%= @grant.funds_will_pay_for %>
       </div>
@@ -116,6 +116,6 @@
       </div>
     </div>
     <% end %>
-    
+
   </div>
 </div>
