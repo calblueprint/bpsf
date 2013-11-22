@@ -32,6 +32,7 @@
 
 class PreapprovedGrant < DraftGrant
   belongs_to :grant
+  validates_presence_of :grant_id
 
   def clone_into_draft_for!(recipient_id)
     draft = dup
