@@ -14,7 +14,7 @@ module SessionsHelper
   end
 
   def admin_user?
-    current_user && current_user.type == 'Admin' || current_user.type == 'SuperUser'
+    current_user && (current_user.type == 'Admin' || current_user.type == 'SuperUser')
   end
 
   def super_user?

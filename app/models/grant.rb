@@ -62,11 +62,12 @@ class Grant < ActiveRecord::Base
   belongs_to :recipient
   belongs_to :school
   has_one :crowdfunder, class_name: 'Crowdfund'
+  has_one :preapproved_grant
   extend Searchable :title, :summary, :subject_areas
   ajaxful_rateable stars: 10
 
   before_validation do |grant|
-    grant.subject_areas = grant.subject_areas.to_a.reject(&:empty?)
+    grant.subject_areas = grant.subject_areas.to_a.reject &:empty?
   end
 
   validates :title, presence: true, length: { maximum: 40 }
@@ -75,11 +76,14 @@ class Grant < ActiveRecord::Base
   validates_length_of :duration, :budget_desc,
                       minimum: 1, too_short: 'cannot be blank'
   validates :grade_level, presence: true, valid_grade: true
-  validates_length_of :purpose, :methods, :background, :collaborators, :comments,
+  validates_length_of :purpose, :methods, :background,
                       within: 1..1200, too_short: 'cannot be blank'
+  validates_length_of :comments, within: 1..1200, allow_blank: true
+  validates_length_of :collaborators, within: 1..1200,
+                      too_short: 'cannot be blank', if: "n_collaborators > 0"
 
-  scope :pending_grants, -> { with_state :pending }
-  scope :complete_grants, -> { with_state :complete }
+  scope :pending_grants,      -> { with_state :pending }
+  scope :complete_grants,     -> { with_state :complete }
   scope :crowdfunding_grants, -> { with_state :crowdfunding }
 
   state_machine initial: :pending do
@@ -161,19 +165,33 @@ class Grant < ActiveRecord::Base
     transfer_attributes_to_new_preapproved_grant
   end
 
+  def preapproved?
+    !preapproved_grant.nil?
+  end
+
   def school_name
     school.name
   end
 
+  def has_collaborators?
+    n_collaborators > 0
+  end
+
+  def has_comments?
+    !comments.blank?
+  end
+
   private
-    BLACKLISTED_ATTRIBUTES = %w{background n_collaborators collaborators 
+    BLACKLISTED_ATTRIBUTES = %w{background n_collaborators collaborators
                                 comments video image_url}
     def transfer_attributes_to_new_preapproved_grant
-      grant = PreapprovedGrant.new
+      return false if preapproved?
+      preapproved_grant = PreapprovedGrant.new
       valid_attributes = PreapprovedGrant.accessible_attributes.reject(&:empty?) -
                          BLACKLISTED_ATTRIBUTES
-      grant.attributes = attributes.slice *valid_attributes
-      grant.save
+      preapproved_grant.attributes = attributes.slice *valid_attributes
+      preapproved_grant.grant_id = id
+      preapproved_grant.save
     end
 
 end

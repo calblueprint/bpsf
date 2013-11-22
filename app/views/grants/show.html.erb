@@ -3,7 +3,7 @@
     <div class="row centalign">
       <h2 >
         <%= @grant.title %>
-        <% if current_user && super_user? %>
+        <% if super_user? %>
           <span class="ttip" data-tooltip="Edit">
             <%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_grant_path %>
           </span>
@@ -17,8 +17,10 @@
       </h5>
     </div>
 
+    <!-- Note: These need to be styled! -->
+
     <div class="row" id="preapprove_link">
-      <% if current_user && admin_user? %>
+      <% if admin_user? && !@grant.preapproved? %>
         <div class="medium primary btn">
           <%= link_to 'Preapprove', preapprove_grant_path(@grant), method: :post %>
         </div>
@@ -26,25 +28,27 @@
     </div>
 
     <div class="row">
-      <% if current_user && super_user? %>
+      <% if super_user? %>
         <%= ratings_for @grant, :static %>
         Average: <%= @grant.rating_average %>
-      <% elsif current_user && admin_user? %>
+      <% elsif admin_user? %>
         <%= ratings_for @grant, show_user_rating: true %>
       <% end %>
     </div>
 
     <div class="row" id="togglelinks">
-      <% if current_user && super_user? %>
+      <% if super_user? %>
         <%= render 'toggle_links', grant: @grant %>
       <% end %>
     </div>
 
     <div class="row" id="grantstatus">
-      <% if current_user && admin_user? %>
+      <% if admin_user? %>
         Status: <%= @grant.state.titleize %>
       <% end %>
     </div>
+
+    <!-- End note -->
 
     <div class="row">
       <% if @grant.image_url %>
@@ -54,7 +58,7 @@
       <% end %>
     </div>
 
-    <div class="row  centalign">
+    <div class="row centalign">
       <div class="eleven columns centered">
         <p class="largefont"><%= @grant.summary %></p>
       </div>
@@ -80,7 +84,7 @@
     <div class="row padada">
       <div class="six columns centalign">
         <h5 class="inlined"><strong>Subject areas: </strong></h5>
-        <span class="medfont"><%= @grant.subject_areas.values.to_a.join(', ') %></span>      
+        <span class="medfont"><%= @grant.subject_areas.values.to_a.join(', ') %></span>
       </div>
       <div class="six columns centalign">
         <h5 class="inlined"><strong>Duration: </strong></h5><span class="medfont"><%= @grant.duration %></span>
@@ -104,15 +108,17 @@
       </div>
     </div>
 
-    <div class="row">
-      <hr>
-      <div class="three columns centered centalign">
-        <div class="large primary btn"><a href="#" class="switch" gumby-trigger="#modal1">Donate</a></div>
+    <% if @grant.crowdfunding? %>
+      <div class="row">
+        <hr>
+        <div class="three columns centered centalign">
+          <div class="large primary btn"><a href="#" class="switch" gumby-trigger="#modal1">Donate</a></div>
+        </div>
       </div>
-    </div>
+    <% end %>
 
     <hr>
-    
+
     <div class="row">
       <div class="ten columns centalign centered">
         <h3>Details</h3>
@@ -142,7 +148,7 @@
         <h5 class="inlined"><strong>Total budget: </strong></h5>
         <span class="largefont"><%= @grant.total_budget %></span><br>
         <h5><strong>Description</strong></h5>
-        <%= @grant.budget_desc %> 
+        <%= @grant.budget_desc %>
         <h5><strong>Use of Funds</strong></h5>
         <%= @grant.funds_will_pay_for %>
       </div>
@@ -155,13 +161,15 @@
         <h5 class="inlined"><strong>Director: </strong></h5>
         <%= @grant.recipient.name %><br>
         <h5><strong>Director background</strong></h5>
-        <%= @grant.background %>       
-        <h5><strong>Collaborators</strong></h5>
-        <%= @grant.collaborators %>
+        <%= @grant.background %>
+        <% if @grant.has_collaborators? %>
+          <h5><strong>Collaborators</strong></h5>
+          <%= @grant.collaborators %>
+        <% end %>
       </div>
     </div>
 
-    <% if !@grant.comments.blank? %>
+    <% if @grant.has_comments? %>
     <div class="row">
       <div class="ten columns centalign centered">
         <br>
@@ -187,7 +195,7 @@
     </div>
   </div>
 
-    
+
   </div>
 </div>
 <div id="crowdfund-modal-view">
