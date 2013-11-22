@@ -3,7 +3,7 @@
     <div class="row centalign">
       <h2 >
         <%= @grant.title %>
-        <% if current_user && super_user? %>
+        <% if super_user? %>
           <span class="ttip" data-tooltip="Edit">
             <%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_grant_path %>
           </span>
@@ -20,7 +20,7 @@
     <!-- Note: These need to be styled! -->
 
     <div class="row" id="preapprove_link">
-      <% if current_user && admin_user? && !@grant.preapproved? %>
+      <% if admin_user? && !@grant.preapproved? %>
         <div class="medium primary btn">
           <%= link_to 'Preapprove', preapprove_grant_path(@grant), method: :post %>
         </div>
@@ -28,22 +28,22 @@
     </div>
 
     <div class="row">
-      <% if current_user && super_user? %>
+      <% if super_user? %>
         <%= ratings_for @grant, :static %>
         Average: <%= @grant.rating_average %>
-      <% elsif current_user && admin_user? %>
+      <% elsif admin_user? %>
         <%= ratings_for @grant, show_user_rating: true %>
       <% end %>
     </div>
 
     <div class="row" id="togglelinks">
-      <% if current_user && super_user? %>
+      <% if super_user? %>
         <%= render 'toggle_links', grant: @grant %>
       <% end %>
     </div>
 
     <div class="row" id="grantstatus">
-      <% if current_user && admin_user? %>
+      <% if admin_user? %>
         Status: <%= @grant.state.titleize %>
       <% end %>
     </div>
