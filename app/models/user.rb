@@ -37,5 +37,4 @@ class User < ActiveRecord::Base
   def self.donors
     where 'type is null'
   end
-  
 end
