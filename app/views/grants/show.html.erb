@@ -19,6 +19,15 @@
           <% elsif current_user && admin_user? %>
             <h4>Rate Grant</h4>
             <%= ratings_for @grant, show_user_rating: true %>
+            <h4>Status</h4>
+            <%= @grant.state.titleize %>
+          <% end %>
+          <% if admin_user? && !@grant.preapproved? %>
+            <div id="preapprove_link">
+              <div class="medium primary btn">
+                <%= link_to 'Preapprove', preapprove_grant_path(@grant), method: :post %>
+              </div>
+            </div>
           <% end %>
         </div>
       </div>
@@ -33,13 +42,8 @@
     <div class="row centalign">
       <h2 >
         <%= @grant.title %>
-        <% if super_user? %>
-          <span class="ttip" data-tooltip="Edit">
-            <%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_grant_path %>
-          </span>
-        <% end %>
-
       </h2>
+      
       <h5>
         <%= @grant.recipient.name %> | <%= @grant.school_name %>
       </h5>
@@ -47,40 +51,6 @@
         <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fparse.com" target="_blank"><i class="icon-facebook"></i></a>    <a expr:href='data:post.canonicalUrl' href="https://twitter.com/share"><i class="icon-twitter"></i></a>    <a href="javascript:emailCurrentPage()"><i class="icon-mail"></i></a>
       </h5>
     </div>
-
-    <!-- Note: These need to be styled! -->
-
-    <div class="row" id="preapprove_link">
-      <% if admin_user? && !@grant.preapproved? %>
-        <div class="medium primary btn">
-          <%= link_to 'Preapprove', preapprove_grant_path(@grant), method: :post %>
-        </div>
-      <% end %>
-    </div>
-
-    <div class="row">
-      <% if super_user? %>
-        <%= ratings_for @grant, :static %>
-        Average: <%= @grant.rating_average %>
-      <% elsif admin_user? %>
-        <%= ratings_for @grant, show_user_rating: true %>
-      <% end %>
-    </div>
-
-    <div class="row" id="togglelinks">
-      <% if super_user? %>
-        <%= render 'toggle_links', grant: @grant %>
-      <% end %>
-    </div>
-
-    <div class="row" id="grantstatus">
-      <% if admin_user? %>
-        Status: <%= @grant.state.titleize %>
-      <% end %>
-    </div>
-
-
-    <!-- End note -->
 
     <div class="row">
       <% if @grant.image_url %>
