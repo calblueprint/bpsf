@@ -30,9 +30,9 @@
 #
 
 class PreapprovedGrant < DraftGrant
+  belongs_to :grant
 
   def clone_into_draft_for!(recipient_id)
-    # Currently transfers all attributes; filter attributes later
     draft = dup
     draft.recipient_id = recipient_id
     draft.becomes DraftGrant
