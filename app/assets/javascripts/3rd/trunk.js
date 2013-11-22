@@ -1,7 +1,6 @@
 $(function() {
 
 	var items = $('.slideRight, .slideLeft');
-	var content = $('.content');
 	var dimmer = $('.dimmer');
 	
 	var open = function() {
@@ -12,11 +11,8 @@ $(function() {
 						}
 
 	$('#navToggle').click(function(){
-		if (content.hasClass('open')) {$(close)}
+		if (dimmer.hasClass('open')) {$(close)}
 		else {$(open)}
-	});
-	content.click(function(){
-		if (content.hasClass('open')) {$(close)}
 	});
 	dimmer.click(function(){
 		if (dimmer.hasClass('open')) {$(close)};
