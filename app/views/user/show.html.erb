@@ -1,18 +1,18 @@
 <div class="row">
   <div class="wrapper light">
     <div class="row">
-      <h2>
+      <h2 style="inlined">
         <%= @user.first_name %> <%= @user.last_name %>
-        <% if @user.eql? current_user %>
-          <span class="ttip" data-tooltip="Edit">
-            <%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_user_path(id: @user.id) %>
-          </span>
-        <% end %>
       </h2>
+      <% if @user.eql? current_user %>
+        <span class="ttip pull_right inlined" data-tooltip="Edit">
+          <%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_user_path(id: @user.id) %>
+        </span>
+      <% end %>
     </div>
 
     <div class="row">
-      <h4>Email</h4>
+      <h4 class="inlined">Email</h4>
       <%= @user.email %>
     </div>
 
