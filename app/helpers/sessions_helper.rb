@@ -22,7 +22,7 @@ module SessionsHelper
   end
 
   def can_have_profile?(user)
-    user.type == 'Recipient' || user.type == 'Admin'
+    %w[Recipient Admin SuperUser].include? user.type
   end
 
   private
