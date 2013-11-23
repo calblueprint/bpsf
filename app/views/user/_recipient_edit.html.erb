@@ -6,7 +6,7 @@
       </div>
       <div class="row">
         <div class="twelve columns">
-          <%= form_for @user, url: user_path(id: @user.id) do |f| %>
+          <%= form_for @user, as: :user, url: user_path(@user) do |f| %>
             <div class="field">
               <%= f.label :first_name %>
               <%= f.text_field :first_name, class: :input %>
@@ -15,7 +15,7 @@
               <%= f.label :last_name %>
               <%= f.text_field :last_name, class: :input %>
             </div>
-            <%= fields_for @profile, url: recipient_profile_path(id: @profile.id) do |ff| %>
+            <%= f.fields_for :profile do |ff| %>
               <div class="field">
                 <%= ff.label :about, "About" %>
                 <%= ff.text_field :about, class: [:textarea, :input], rows: 3 %>
