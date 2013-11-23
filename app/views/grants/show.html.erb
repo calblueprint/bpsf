@@ -1,9 +1,9 @@
-<% if current_user && (super_user? || admin_user?) %>
+<% if admin_user? %>
   <div class="row">
     <div class="wrapper light">
       <div class="row">
         <div class="ten columns centered centalign">
-          <% if current_user && super_user? %>
+          <% if super_user? %>
             <h4>Current Rating</h4>
             <%= ratings_for @grant, :static %>
             Average: <%= @grant.rating_average %>
@@ -11,18 +11,19 @@
             Current Status: <%= @grant.state.titleize %><br>
             <%= render 'toggle_links', grant: @grant %>
             <h4>
-              Edit Grant 
+              Edit Grant
               <span class="ttip" data-tooltip="Edit">
                 <%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_grant_path %>
               </span>
             </h4>
-          <% elsif current_user && admin_user? %>
+          <% elsif admin_user? %>
             <h4>Rate Grant</h4>
             <%= ratings_for @grant, show_user_rating: true %>
             <h4>Status</h4>
             <%= @grant.state.titleize %>
           <% end %>
-          <% if admin_user? && !@grant.preapproved? %>
+
+          <% if super_user? && !@grant.preapproved? %>
             <div id="preapprove_link">
               <div class="medium primary btn">
                 <%= link_to 'Preapprove', preapprove_grant_path(@grant), method: :post %>
@@ -43,7 +44,7 @@
       <h2 >
         <%= @grant.title %>
       </h2>
-      
+
       <h5>
         <%= @grant.recipient.name %> | <%= @grant.school_name %>
       </h5>
