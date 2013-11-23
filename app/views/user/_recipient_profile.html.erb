@@ -1,27 +1,38 @@
-  <% if @profile.school_id %>
-    <h5 class="inlined">School:</h5><%= render partial: "school", locals: { school: @profile.school_id } %><br>
+
+<div class="row">
+  <% if profile.image_url %>
+    <%= image_tag profile.image_url.to_s %>
   <% end %>
+</div>
 
+<div class="row">
+  <% if profile.school_id %>
+    <h5 class="inlined">School:</h5><%= render :school, school: profile.school_id %> <br>
+  <% end %>
+</div>
 
-  <% if @profile.started_teaching %>
+<div class="row">
+  <% if profile.started_teaching %>
     <h5 class="inlined">Years of Experience:</h5>
-    <%= @profile.years_teaching %><br>
+    <%= profile.years_teaching %>
   <% end %>
+</div>
 
-
-  <% if @profile.grade %>
-    <h5  class="inlined">Grade Level(s):</h5>
-    <%= @profile.grade %><br>
+<div class="row">
+  <% if profile.grade %>
+    <h5 class="inlined">Grade Level(s):</h5>
+    <%= profile.grade %>
   <% end %>
+</div>
 
+<div class="row">
+  <h5 class="inlined">Subject(s):</h5>
+  <%= profile.subject %><br>
+</div>
 
-  <h5  class="inlined">Subject(s):</h5>
-  <%= @profile.subject %><br>
-
+<div class="row">
   <h5>About</h5>
   <% if @profile.about %>
-    <%= @profile.about %>
+    <%= profile.about %>
   <% end %>
-
-
-
+</div>
