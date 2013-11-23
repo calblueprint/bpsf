@@ -58,6 +58,7 @@ def make_schools
   School.create! name: 'Berkeley High School'
   School.create! name: 'Washington Elementary School'
   School.create! name: 'Maybeck High School'
+  School.create! name: 'Whitney High School'
 end
 
 def make_grants
@@ -72,8 +73,8 @@ def make_grants
                             subject_areas: ["Other"]
   end
   crowdfunding_grants = []
-  1.upto(3) do |n|
-    crowdfunding_grants << t1.grants.build(title: "Grant #{n}",
+  1.upto(4) do |n|
+    crowdfunding_grants << t1.grants.build title: "Grant #{n}",
                                            summary: Faker::Lorem.sentence,
                                            subject_areas: ["Art & Music", "Reading"],
                                            grade_level: "#{n + 2}",
@@ -90,8 +91,8 @@ def make_grants
                                            background: Faker::Lorem.paragraph,
                                            n_collaborators: n,
                                            collaborators: Faker::Lorem.paragraph,
-                                           comments: Faker::Lorem.paragraph)
-    crowdfunding_grants << t2.grants.build(title: "Grant #{n + 3}",
+                                           comments: Faker::Lorem.paragraph
+    crowdfunding_grants << t2.grants.build title: "Grant #{n + 4}",
                                            summary: Faker::Lorem.sentence,
                                            subject_areas: ["Field Trips"],
                                            grade_level: "#{n + 2}",
@@ -108,14 +109,14 @@ def make_grants
                                            background: Faker::Lorem.paragraph,
                                            n_collaborators: n,
                                            collaborators: Faker::Lorem.paragraph,
-                                           comments: Faker::Lorem.paragraph)
+                                           comments: Faker::Lorem.paragraph
   end
   crowdfunding_grants.map do |grant|
     grant.crowdfund
-    Crowdfund.create(deadline: Time.now,
-                         pledged_total: 0,
-                         grant_id: grant.id,
-                         goal: "123")
+    Crowdfund.create deadline: Time.now,
+                     pledged_total: 0,
+                     grant_id: grant.id,
+                     goal: "123"
     grant.save!
   end
 end
