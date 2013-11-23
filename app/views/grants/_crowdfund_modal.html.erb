@@ -3,22 +3,18 @@
     <a class="close switch close-crowdfund-modal" gumby-trigger="|#crowdfund-form"><i class="icon-cancel" /></i></a>
     <div class="row">
       <div class="ten columns centered text-center">
-        <% if grant %>
-          <p>Create Crowdfund for <%= grant.title %></p>
-          <%= form_tag crowdfund_create_path do %>
-            <div class="field">
-              <%= label_tag :goal, "Goal", class: :inlined %>
-              <%= text_field_tag :goal, nil, name: nil, class: [:input, :inlined] %>
-            </div>
-            <li class="field metro inlined">
-              <%= select_date Date.today, {order: [:year, :month, :day]}, class: [:picker, :inlined] %>
-            </li>
-            </div>
-            <%= hidden_field_tag :grant_id, @grant.id %>
-            <%= submit_tag "Start Crowdfund!", class: "btn primary medium close-crowdfund-modal" %>
-          <% end %>
-        <% else %>
-          <p>Grant Does not exist</p>
+        <p>Create Crowdfund for <%= grant.title %></p>
+        <%= form_tag crowdfund_create_path do %>
+          <div class="field">
+            <%= label_tag :goal, "Goal" %>
+            <%= text_field_tag :goal, nil, name: nil %>
+          </div>
+          <li class="field metro inlined">
+            <%= select_date Date.today, order: [:year, :month, :day], class: [:picker, :inlined] %>
+          </li>
+          </div>
+          <%= hidden_field_tag :grant_id, grant.id %>
+          <%= submit_tag "Start Crowdfund!", class: "btn primary medium close-crowdfund-modal" %>
         <% end %>
       </div>
     </div>

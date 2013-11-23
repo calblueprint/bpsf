@@ -55,7 +55,7 @@ class DraftGrant < ActiveRecord::Base
   belongs_to :school
 
   before_validation do |grant|
-    grant.subject_areas = grant.subject_areas.to_a.reject(&:empty?)
+    grant.subject_areas = grant.subject_areas.to_a.reject &:empty?
   end
 
   validates :title, presence: true, length: { maximum: 40 }
@@ -71,6 +71,10 @@ class DraftGrant < ActiveRecord::Base
                       if: "n_collaborators && n_collaborators > 0"
 
   mount_uploader :image_url, ImageUploader
+
+  def school_name
+    school.name
+  end
 
   def submit_and_destroy
     if transfer_attributes_to_new_grant

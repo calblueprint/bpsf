@@ -110,7 +110,14 @@ def make_grants
                                            collaborators: Faker::Lorem.paragraph,
                                            comments: Faker::Lorem.paragraph)
   end
-  crowdfunding_grants.map { |grant| grant.crowdfund ; grant.save! }
+  crowdfunding_grants.map do |grant| 
+    grant.crowdfund
+    Crowdfund.create(deadline: Time.now,
+                         pledged_total: 0,
+                         grant_id: grant.id,
+                         goal: "123")
+    grant.save! 
+  end
 end
 
 def make_preapproved
