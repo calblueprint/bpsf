@@ -12,7 +12,10 @@
             </div>
         </div>
         <div class="row">
-            <%= render partial: 'crowdfunding_grants', collection: @grants, as: :grant %>
+            <%= render partial: 'crowdfunding_grants', collection: @grants[0..2], as: :grant %>
+        </div>
+        <div class="row">
+            <%= render partial: 'crowdfunding_grants', collection: @grants[3..5], as: :grant %>
         </div>
 
         <div class="row">
