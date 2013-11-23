@@ -4,17 +4,19 @@
 
 
 <!--***************************************TILES********************************************-->
-<div class="row wrapper light">
-    <div class="row">
-        <div class="four columns centered centalign">
-          <%= will_paginate @grants %>
+<div class="row">
+    <div class="wrapper light">
+        <div class="row">
+            <div class="four columns centered centalign">
+            <%= will_paginate @grants %>
+            </div>
         </div>
-    </div>
-    <%= render partial: 'crowdfunding_grants', collection: @grants, as: :grant %>
+        <%= render partial: 'crowdfunding_grants', collection: @grants, as: :grant %>
 
-    <div class="row">
-        <div class="four columns centered centalign">
-          <%= will_paginate @grants %>
+        <div class="row">
+            <div class="four columns centered centalign">
+              <%= will_paginate @grants %>
+            </div>
         </div>
     </div>
 </div>

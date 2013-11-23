@@ -5,41 +5,34 @@
   <% end %>
 </div>
 
-<!-- No school partial exists? -->
 <div class="row">
   <% if profile.school_id %>
-    <%= render :school, school: profile.school_id %>
+    <h5 class="inlined">School:</h5><%= render :school, school: profile.school_id %> <br>
   <% end %>
 </div>
 
 <div class="row">
   <% if profile.started_teaching %>
-    <h4>Years teaching</h4>
+    <h5 class="inlined">Years of Experience:</h5>
     <%= profile.years_teaching %>
   <% end %>
 </div>
 
 <div class="row">
   <% if profile.grade %>
-    <h4>Grade</h4>
+    <h5 class="inlined">Grade Level(s):</h5>
     <%= profile.grade %>
   <% end %>
 </div>
 
 <div class="row">
-  <h4>About</h4>
-  <% if profile.about %>
+  <h5 class="inlined">Subject(s):</h5>
+  <%= profile.subject %><br>
+</div>
+
+<div class="row">
+  <h5>About</h5>
+  <% if @profile.about %>
     <%= profile.about %>
   <% end %>
 </div>
-
-<div class="row">
-  <h4>Grades Taught</h4>
-  <%= profile.grade %>
-</div>
-
-<div class="row">
-  <h4>Subjects Taught</h4>
-  <%= profile.subject %>
-</div>
-
