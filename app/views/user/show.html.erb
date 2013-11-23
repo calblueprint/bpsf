@@ -1,23 +1,29 @@
 <div class="row">
   <div class="wrapper light">
-    <div class="row">
-      <h2>
+    <div class="row centalign">
+      <% if @user.eql? current_user %>
+        <span class="ttip pull_right inlined largefont" data-tooltip="Edit">
+          <%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_user_path(id: @user.id) %>
+        </span>
+      <% end %>
+      <h2 style="inlined ">
         <%= @user.first_name %> <%= @user.last_name %>
-        <% if @user.eql? current_user %>
-          <span class="ttip" data-tooltip="Edit">
-            <%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_user_path(id: @user.id) %>
-          </span>
-        <% end %>
       </h2>
     </div>
 
     <div class="row">
-      <h4>Email</h4>
-      <%= @user.email %>
+      <div class="eight columns">
+        <h5 class="inlined">Email:</h5>
+        <%= @user.email %><br>
+        <%= render profile_for(@user), user: @user, profile: @profile %>
+      </div>
+      <!-- Currently breaking -->
+      <!-- <div class="four columns"> -->
+        <%# if @profile.image_url %>
+          <%#= image_tag @profile.image_url.to_s %>
+        <%# end %>
+      <!-- </div> -->
+
     </div>
-
-    <%= render profile_for(@user), user: @user, profile: @profile %>
-
   </div>
 </div>
-<%= debug @payments %>
