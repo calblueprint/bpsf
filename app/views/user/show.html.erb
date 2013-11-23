@@ -16,13 +16,8 @@
       <%= @user.email %>
     </div>
 
-    <% if @user.type == "Recipient" %>
-      <%= render partial: "recipient_profile", locals: { recipient: @user, profile: @profile } %>
-    <% elsif @user.type == 'SuperUser' or @user.type == 'Admin' %>
-      <%= render partial: "admin_profile", locals: { admin: @user, profile: @profile } %>
-    <% elsif @user.type == 'User' %>
-      <%= render partial: "user_profile", locals: { user: @user } %>
-    <% end %>
+    <%= render profile_for(@user), user: @user, profile: @profile %>
+
   </div>
 </div>
 <%= debug @payments %>
