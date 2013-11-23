@@ -38,19 +38,19 @@ def make_profiles
                                        about: Faker::Lorem.sentence,
                                        subject: Faker::Lorem.sentence,
                                        grade: Faker::Lorem.sentence
-    recipient.recipient_profile = profile
+    recipient.profile = profile
   end
   Admin.all.each do |admin|
     profile = AdminProfile.create! admin_id: admin.id,
                                    about: Faker::Lorem.sentence,
                                    position: Faker::Lorem.sentence
-    admin.admin_profile = profile
+    admin.profile = profile
   end
   SuperUser.all.each do |user|
     profile = AdminProfile.create! admin_id: user.id,
                                    about: Faker::Lorem.sentence,
                                    position: Faker::Lorem.sentence
-    user.admin_profile = profile
+    user.profile = profile
   end
 end
 
