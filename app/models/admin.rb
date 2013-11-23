@@ -22,10 +22,12 @@
 #
 
 class Admin < User
-  has_one :admin_profile
   ajaxful_rater
+  has_one :profile, class_name: 'AdminProfile'
+  attr_accessible :profile_attributes
+  accepts_nested_attributes_for :profile
 
   def create_profile!
-    admin_profile = AdminProfile.create admin_id: id
+    profile = AdminProfile.create admin_id: id
   end
 end
