@@ -1,14 +1,7 @@
 <div class="row">
   <div class="twelve columns">
     <div class="wrapper light">
-      <% if @user.is_a?(Recipient) %>
-        <%= render "recipient_edit", locals: { user: @user, profile: @profile } %>
-      <% elsif @user.is_a?(Admin) or @user.is_a?(SuperUser) %>
-        <%= render "admin_edit", locals: { user: @user, profile: @profile } %>
-      <% elsif @user.is_a?(User) %>
-        <%= render "user_edit", locals: { user: @user, profile: @profile } %>
-      <% end %>
-      </div>
+      <%= render edit_profile_for(@user), user: @user %>
     </div>
   </div>
 </div>
