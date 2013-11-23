@@ -9,14 +9,14 @@
 			padding: 6px 0px 6px 15px;
 		}
 .picker{height:40px;}
-		
+
 .fluid_container {
 	margin: 0 auto;
 	max-width: 1200px;
 	width: 100%;
 	position: relative;
 		}
-		
+
 .wrapper{
 	//width:100%;
 	padding:10px 10px 20px 10px;
@@ -35,29 +35,29 @@
 	text-align:left;
 	height:40px;
 	}
-	
+
 .dayleft{
 	font-size:$med;
 	line-height:40px;
 	text-align:right;
 	}
-	
 
-#nobullet > li {list-style:none;} 
+
+#nobullet > li {list-style:none;}
 
 .centalign{text-align:center;}
 
 .ultitle{border-bottom:$table-cell-border-size $table-cell-border-style $default-color;}
 
-.banner { 
-	position: relative; 
+.banner {
+	position: relative;
 	overflow: auto;
-	width: 100%; 
-	ul { 
-	 	list-style: none; 
-	 	li { 
+	width: 100%;
+	ul {
+	 	list-style: none;
+	 	li {
 	 		float: left;
-	 		min-height: 350px; 
+	 		min-height: 350px;
 
 	 		display:block;
 	 		position:relative;
@@ -87,8 +87,8 @@
 	& .cardtitle{padding:5px 5px 0px 5px;}
 	& .cardcontent{
 		padding:2px 5px 5px 5px;
-		.progress { 
-			height: 20px; 
+		.progress {
+			height: 20px;
 			width: 100%;
 			position: relative;
 			background: $global-bg-color;//#eee;
@@ -104,7 +104,7 @@
 			}
 		}
 		.gcdiv{
-			text-align:center; 
+			text-align:center;
 			line-height:30px;
 			.goalnum{
 				font-size:$large;
@@ -123,7 +123,7 @@
 					font-size: $med;
 				}
 			}
-				
+
 			.gctext{
 				vertical-align:middle;
 				font-size:$small;
@@ -172,7 +172,7 @@
 .cardtext{
 	height:$base-line-height*4;
 	overflow:hidden;
-	text-overflow:ellipsis; 
+	text-overflow:ellipsis;
 	}
 
 .nodisplay{
@@ -205,8 +205,8 @@ $imglargereplacementhgt: 250px;
 
 .grantviewbar{
 	padding-top: 10px;
-	.progress { 
-		height: 20px; 
+	.progress {
+		height: 20px;
 		width: 100%;
 		position: relative;
 		background: $global-bg-color;//#eee;
@@ -223,7 +223,7 @@ $imglargereplacementhgt: 250px;
 	}
 	.gcdiv{
 		padding-top: 8px;
-		text-align:center; 
+		text-align:center;
 		line-height:$med;
 		.goalnum{
 			font-size:$large;
@@ -242,7 +242,7 @@ $imglargereplacementhgt: 250px;
 				font-size: $med;
 			}
 		}
-			
+
 		.gctext{
 			vertical-align:middle;
 			font-size:$med;
@@ -261,7 +261,7 @@ $imglargereplacementhgt: 250px;
     padding-bottom: 56.25%;
     padding-top: 30px; height: 0; overflow: hidden;
 }
- 
+
 .video-container iframe,
 .video-container object,
 .video-container embed {
@@ -297,7 +297,7 @@ $imglargereplacementhgt: 250px;
 		li{
 			font-size: $med;
 			display: block;
-			padding:10px; 
+			padding:10px;
 		}
 	}
 
@@ -312,12 +312,12 @@ body {
 	-webkit-tap-highlight-color:rgba(0,0,0,0);
 	-webkit-text-size-adjust: none;
 	-webkit-font-smoothing: antialiased;
-	
-	-moz-tap-highlight-color:rgba(0,0,0,0); 
+
+	-moz-tap-highlight-color:rgba(0,0,0,0);
 	-moz-text-size-adjust: none;
 	-moz-font-smoothing: antialiased;
-	
-	-ms-tap-highlight-color:rgba(0,0,0,0); 
+
+	-ms-tap-highlight-color:rgba(0,0,0,0);
 	-ms-text-size-adjust: none;
 	-ms-font-smoothing: antialiased;
 }
@@ -373,7 +373,7 @@ body {
 	display: inline-block;
 	font-size: $med;
 }
-.trunknav li a {	
+.trunknav li a {
 	display: block;
 	padding: 13px 20px 12px;
 	font-family: $font-family;
@@ -410,7 +410,7 @@ body {
 
 
 /*  Nav Drawer Layout  */
-.trunknav {	
+.trunknav {
 	position: relative;
 	.field{
 		display: none;
@@ -446,7 +446,7 @@ body {
 	background-color: darken($white, 10%);//#19252c;
 }
 .trunknav li:first-child a.active,
-.trunknav li:first-child a:hover 
+.trunknav li:first-child a:hover
 {border-radius: 0 0 0 0;}
 
 .header-section {margin-top: 60px;}
@@ -463,7 +463,7 @@ body {
 	margin: 0;
 	background-color: $white;//#1d2d35;
 	//border-radius: 8px;
-	
+
 	/* starting point */
 	z-index:999;
 	@include transition-duration(0.3s);
