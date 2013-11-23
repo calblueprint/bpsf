@@ -1,7 +1,5 @@
-<div class="row">
-  <div class="twelve columns">
-    <div class="wrapper light">
-      <div class="row">
+
+      <div class="row centalign">
         <h2>Update Your Profile</h2>
       </div>
       <div class="row">
@@ -21,12 +19,12 @@
             </div>
             <%= fields_for @profile, url: admin_profile_path(id: @profile.id) do |ff| %>
               <div class="field">
-                <%= ff.label :about, "About" %>
-                <%= ff.text_field :about, class: [:textarea, :input], rows: 3 %>
-              </div>
-              <div class="field">
                 <%= ff.label :position, "Position" %>
                 <%= ff.text_field :position, class: [:textarea, :input], rows: 3 %>
+              </div>              
+              <div class="field">
+                <%= ff.label :about, "About" %>
+                <%= ff.text_area :about, class: [:textarea, :input], rows: 3 %>
               </div>
             <% end %>
             <div class="medium primary btn pull_right">
@@ -35,6 +33,4 @@
           <% end %>
         </div>
       </div>
-    </div>
-  </div>
-</div>
+

@@ -8,8 +8,8 @@
     background: $tt-bgcolor;
     border: 1px solid $tt-bgcolor;
     border-bottom: 0;
-    @include border-radius(3px);
-    padding:  em(8) em(12);
+    //@include border-radius(3px);
+    padding:  em(4) em(4);//em(8) em(12);
     width: auto;
     min-width: $tt-min-width;
     max-width: 500px;
@@ -29,7 +29,7 @@
     } @else if $tt-position == "right" {
       left: 101%;
       top: -35%;
-      margin-left: 8px;
+      margin-left: 5px;//8px;
     }
 
     @if $tt-align == "right" {
@@ -40,7 +40,7 @@
 
     color: #fff;
     content: attr(data-tooltip);
-    line-height: 1.5;
+    line-height: 1;//1.5;
     font-size: $norm;
     font-weight: normal;
     font-style: normal;
@@ -79,11 +79,11 @@
       border-top: 9px solid transparent;
       border-bottom: 9px solid transparent;
     } @else if $tt-position == "right" {
-      top: 3px;
+      top: 0px;//3px;
       left: 101%;
-      border-right: 9px solid $tt-bgcolor !important;
-      border-top: 9px solid transparent;
-      border-bottom: 9px solid transparent;
+      border-right: 5px solid $tt-bgcolor !important;//9px solid $tt-bgcolor !important;
+      border-top: 5px solid transparent;//9px solid transparent;
+      border-bottom: 5px solid transparent;//9px solid transparent;
     }
     @include transition(opacity 0.1s ease);
     @include opacity(0);
