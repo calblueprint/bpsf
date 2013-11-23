@@ -187,7 +187,7 @@
         <div class="ten columns centered text-center">
           <% if @grant.crowdfunding? %>
             <div class="row">
-              <%= render partial: "payment_form", locals: { payment: @payment } %>
+              <%= render "payment_form", payment: @payment, id: @grant.id %>
             </div>
           <% end %>
         </div>
