@@ -11,43 +11,21 @@ class UserController < ApplicationController
       payment_hash[:crowdfund] = crowdfund
       payment_hash[:amount] = payment.amount
     end
-    if @user.is_a?(Recipient)
-      @profile = @user.recipient_profile
-    elsif @user.is_a?(Admin) or @user.is_a?(SuperUser)
-      @profile = @user.admin_profile
-    end
+    @profile = @user.profile
   end
 
   def edit
     @user = User.find params[:id]
     @payments = Payment.find_by_user_id params[:id]
-    if @user.is_a?(Recipient)
-      @profile = @user.recipient_profile
-    elsif @user.is_a?(Admin) or @user.is_a?(SuperUser)
-      @profile = @user.admin_profile
-    end
+    @profile = @user.profile
   end
 
   def update
-    if @user.is_a?(Recipient)
-      @profile = @user.recipient_profile
-      if @user.update_attributes(params[:user]) && @profile.update_attributes(params[:recipient_profile])
-        flash[:success] = "Profile Updated!"
-        redirect_to user_path id: @user.id
-      end
-    elsif @user.is_a?(Admin)
-      @profile = @user.admin_profile
-      if @user.update_attributes(params[:user]) && @profile.update_attributes(params[:admin_profile])
-        flash[:success] = "Profile Updated!"
-        redirect_to user_path id: @user.id
-      end
+    if @user.update_attributes params[:user]
+      flash[:success] = 'Profile updated!'
+      redirect_to user_path @user
     else
-      if @user.update_attributes params[:user]
-        flash[:success] = "Profile Updated!"
-        redirect_to user_path id: @user.id
-      else
-        render "edit"
-      end
+      render 'edit'
     end
   end
 end
