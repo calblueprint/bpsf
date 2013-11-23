@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131122012955) do
+ActiveRecord::Schema.define(:version => 20131122224829) do
 
   create_table "admin_profiles", :force => true do |t|
     t.string   "about"
@@ -22,6 +22,9 @@ ActiveRecord::Schema.define(:version => 20131122012955) do
     t.integer  "super_user_id"
   end
 
+  add_index "admin_profiles", ["admin_id"], :name => "index_admin_profiles_on_admin_id"
+  add_index "admin_profiles", ["super_user_id"], :name => "index_admin_profiles_on_super_user_id"
+
   create_table "crowdfunds", :force => true do |t|
     t.datetime "deadline"
     t.datetime "created_at",    :null => false
@@ -30,6 +33,8 @@ ActiveRecord::Schema.define(:version => 20131122012955) do
     t.integer  "pledged_total"
     t.integer  "grant_id"
   end
+
+  add_index "crowdfunds", ["grant_id"], :name => "index_crowdfunds_on_grant_id"
 
   create_table "draft_grants", :force => true do |t|
     t.integer  "recipient_id"
@@ -130,6 +135,8 @@ ActiveRecord::Schema.define(:version => 20131122012955) do
     t.string   "subject"
     t.string   "grade"
   end
+
+  add_index "recipient_profiles", ["school_id"], :name => "index_recipient_profiles_on_school_id"
 
   create_table "schools", :force => true do |t|
     t.string   "name"

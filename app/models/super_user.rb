@@ -22,5 +22,7 @@
 #
 
 class SuperUser < User
-  has_one :admin_profile
+  has_one :profile, class_name: 'AdminProfile'
+  attr_accessible :profile_attributes
+  accepts_nested_attributes_for :profile
 end
