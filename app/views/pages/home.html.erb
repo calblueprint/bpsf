@@ -11,7 +11,9 @@
             <%= will_paginate @grants %>
             </div>
         </div>
-        <%= render partial: 'crowdfunding_grants', collection: @grants, as: :grant %>
+        <div class="row">
+            <%= render partial: 'crowdfunding_grants', collection: @grants, as: :grant %>
+        </div>
 
         <div class="row">
             <div class="four columns centered centalign">
