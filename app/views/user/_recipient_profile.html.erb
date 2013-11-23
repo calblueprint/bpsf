@@ -8,7 +8,7 @@
 <!-- No school partial exists? -->
 <div class="row">
   <% if profile.school_id %>
-    <%= render partial: "school", locals: { school: profile.school_id } %>
+    <%= render :school, school: profile.school_id %>
   <% end %>
 </div>
 
