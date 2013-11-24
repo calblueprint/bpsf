@@ -39,6 +39,8 @@
               <%= f.select :type, options_for_select(%w[User Recipient Admin]) %>
             </div>
 
+            <%= show_simple_captcha placeholder: "", label: "Enter Captcha", error: "Invalid Captcha" %>
+
             <div class="medium primary btn">
               <%= f.submit "Sign up" %>
             </div>
