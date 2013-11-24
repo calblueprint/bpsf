@@ -2,6 +2,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   include SessionsHelper
+  include SimpleCaptcha::ControllerHelpers
 
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, flash: { danger: exception.message }
