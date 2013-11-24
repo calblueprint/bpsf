@@ -12,11 +12,15 @@ class DraftGrantsController < ApplicationController
   end
 
   def create
-    @draft_grant = current_user.draft_grants.build params[:draft_grant]
-    @draft_grant.subject_areas = ["Other"]
-    if @draft_grant.save
-      flash[:success] = 'Application created!'
-      redirect_to edit_draft_path @draft_grant
+    if simple_captcha_valid?
+      @draft_grant = current_user.draft_grants.build params[:draft_grant]
+      @draft_grant.subject_areas = ["Other"]
+      if @draft_grant.save
+        flash[:success] = 'Application created!'
+        redirect_to edit_draft_path @draft_grant
+      else
+        render 'new'
+      end
     else
       render 'new'
     end
