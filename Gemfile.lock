@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/Azdaroth/simple-captcha.git
+  revision: e99cc7e8bf6b8cf8f03878c657ae7d1e6efe7c58
+  specs:
+    simple_captcha (0.1.5)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -128,7 +134,6 @@ GEM
       unicode (~> 0.4.4)
     formatador (0.2.4)
     fssm (0.2.10)
-    galetahub-simple_captcha (0.1.5)
     gumby2-rails (0.0.9)
     hike (1.2.3)
     hirb (0.7.1)
@@ -342,7 +347,6 @@ DEPENDENCIES
   factory_girl_rails (= 4.1.0)
   faker (= 1.0.1)
   fog (~> 1.16.0)
-  galetahub-simple_captcha (~> 0.1.5)
   gumby2-rails (~> 0.0.9)
   jquery-rails (= 2.0.2)
   launchy
@@ -358,6 +362,7 @@ DEPENDENCIES
   ruby-graphviz (~> 1.0.9)
   sass-rails (~> 3.2.3)
   shoulda (~> 3.5.0)
+  simple_captcha!
   simplecov
   spork (= 0.9.2)
   state_machine (~> 1.2.0)
