@@ -7,7 +7,7 @@
         <%= form_tag crowdfund_create_path do %>
           <div class="field">
             <%= label_tag :goal, "Goal" %>
-            <%= text_field_tag :goal, nil, name: nil %>
+            <%= text_field_tag :goal, nil, placeholder: "" %>
           </div>
           <li class="field metro inlined">
             <%= select_date Date.today, order: [:year, :month, :day], class: [:picker, :inlined] %>
