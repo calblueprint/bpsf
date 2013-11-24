@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131122224829) do
+ActiveRecord::Schema.define(:version => 20131124105213) do
 
   create_table "admin_profiles", :force => true do |t|
     t.string   "about"
@@ -144,6 +144,15 @@ ActiveRecord::Schema.define(:version => 20131122224829) do
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
   end
+
+  create_table "simple_captcha_data", :force => true do |t|
+    t.string   "key",        :limit => 40
+    t.string   "value",      :limit => 6
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+  end
+
+  add_index "simple_captcha_data", ["key"], :name => "idx_key"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
