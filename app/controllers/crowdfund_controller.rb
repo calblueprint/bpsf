@@ -4,7 +4,6 @@ class CrowdfundController < ApplicationController
     # like they're being used.
     date = params[:date]
     time = Time.new date[:year], date[:month], date[:day]
-    puts params[:goal]
     c = Crowdfund.create deadline: time,
                          goal: params[:goal],
                          pledged_total: 0,
