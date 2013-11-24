@@ -15,4 +15,9 @@ class Crowdfund < ActiveRecord::Base
   attr_accessible :deadline, :goal, :pledged_total, :grant_id
   has_many :payments
   belongs_to :grant
+
+  def progress
+    puts "#{self.pledged_total/self.goal.to_f * 100}%"
+    return "#{(self.pledged_total/self.goal.to_f * 100).to_i}%"
+  end
 end
