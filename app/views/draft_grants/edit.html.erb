@@ -40,8 +40,10 @@
 
           <div class="row">
             <h4>Image</h4>
-            <% if @draft_grant.image_url %>
+            <% if !@draft_grant.image_url.to_s.eql? "" %>
               <%= image_tag @draft_grant.image_url.to_s %>
+            <% else %>
+              <%= image_tag 'http://placehold.it/140x100' %>
             <% end %>
           </div>
 
