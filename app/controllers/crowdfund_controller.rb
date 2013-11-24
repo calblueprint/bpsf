@@ -4,14 +4,15 @@ class CrowdfundController < ApplicationController
     # like they're being used.
     date = params[:date]
     time = Time.new date[:year], date[:month], date[:day]
+    puts params[:goal]
     c = Crowdfund.create deadline: time,
                          goal: params[:goal],
-                         pledged_total: 0
-    c.grant_id = params[:grant_id]
+                         pledged_total: 0,
+                         grant_id: params[:grant_id]
     flash[:success] = "Crowdfund started!" if c.save
     # Why do we allow this code to run if the crowdfund didn't save?
     @grant = Grant.find params[:grant_id]
-    @grant.state = "crowdfunding"
+    @grant.crowdfund
     @grant.save
     redirect_to @grant
   end
