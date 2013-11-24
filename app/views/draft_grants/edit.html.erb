@@ -175,6 +175,8 @@
         </div>
       </div>
 
+      <%= show_simple_captcha placeholder: "", label: "Enter Captcha", error: "Invalid Captcha" %>
+
       <div class="row">
         <div class="large primary btn">
           <%= link_to 'Submit!', draft_submit_path(@draft_grant), method: :post %>
