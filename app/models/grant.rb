@@ -142,6 +142,7 @@ class Grant < ActiveRecord::Base
       UserMailer.admin_crowdfailed(self, admin).deliver
     end
     UserMailer.grant_crowdfailed(self).deliver
+    self.crowdfunder.destroy
   end
 
   # Callback to process payments after a successful crowdfund
