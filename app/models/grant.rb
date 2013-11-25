@@ -141,6 +141,7 @@ class Grant < ActiveRecord::Base
     @admins.each do |admin|
       AdminCrowdfailedJob.new.async.perform(self, admin)
     end
+    self.crowdfunder.destroy
     GrantCrowdfailedJob.new.async.perform(self)
   end
 
