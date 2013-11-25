@@ -11,6 +11,7 @@
                   <li><a href="#">Donors</a></li>
                   <li><a href="#">Recipients</a></li>
                   <li><a href="#">Preapproved Grants</a></li>
+                  <li><a href="#">Data Distributions</a></li>
               </ul>
             </div>
           </div>
@@ -64,8 +65,62 @@
                 </tbody>
               </table>
             </div>
+            <div class="tab-content">
+              <div class="row">
+                <div class="five columns centalign">
+                  <div style="margin-top:150px">Successful Crowdfunds&emsp;<div class="colorbox green">&nbsp;</div><br>Unsuccessful Crowdfunds&emsp;<div class="colorbox red">&nbsp;</div></div>
+                </div>
+                <div class="seven columns">
+                  <canvas id="canvas" height="350" width="350"></canvas>
+                </div>
+              </div>
+              <div class="row">
+                <div class="five columns centalign">
+                  <div style="margin-top:200px;">Accepted Grants&emsp;<div class="colorbox green">&nbsp;</div><br>Rejected Grants&emsp;<div class="colorbox red">&nbsp;</div></div>
+                </div>
+                <div class="seven columns">
+                  <canvas id="canvas2" height="450" width="500"></canvas>
+                </div>
+              </div>
+            </div>
         </section>
       </div>
     </div>
   </div>
 </div>
+
+<script>
+
+  var pieData = [
+      {
+        value: 27,
+        color:"#71c637"
+      },
+      {
+        value : 32,
+        color : "#f14f4f"
+      },
+
+    ];
+
+var myPie = new Chart(document.getElementById("canvas").getContext("2d")).Pie(pieData);
+
+var data = {
+  labels : ["Franklin Preschool","Berkeley Arts Magnet","Cragmont","Jefferson","Joun Muir","Leconte","Martin Luther King Jr."],
+  datasets : [
+    {
+      fillColor : "#71c637",
+      strokeColor : "#71c637",
+      data : [35,29,10,8,16,15,4]
+    },
+    {
+      fillColor : "#f14f4f",
+      strokeColor : "#f14f4f",
+      data : [8,8,14,9,6,7,10]
+    }
+  ]
+}
+
+var myChart = new Chart(document.getElementById("canvas2").getContext("2d")).Bar(data);
+
+</script>
