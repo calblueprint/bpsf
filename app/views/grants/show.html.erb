@@ -8,7 +8,7 @@
             <%= ratings_for @grant, :static %>
             Average: <%= @grant.rating_average %>
             <h4>Change Status</h4>
-            Current Status: <%= @grant.state.titleize %><br>
+            <div id="grantstatus">Current Status: <%= @grant.state.titleize %></div><br>
             <%= render 'toggle_links', grant: @grant %>
             <h4>
               Edit Grant
