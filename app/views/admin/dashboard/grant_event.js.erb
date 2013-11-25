@@ -1,4 +1,4 @@
 $('#togglelinks').html(
   "<%= escape_javascript(render 'grants/toggle_links', grant: @grant) %>");
 $('#grantstatus').html(
-  "Status: <%= @grant.state.titleize %>")
+  "Current Status: <%= @grant.state.titleize %>")
