@@ -283,6 +283,18 @@ $imglargereplacementhgt: 250px;
 	.poofout{display:none;}
 }
 
+.colorbox{
+	display:inline-block;
+	height:15px;
+	width:15px;
+}
+.green{
+	background-color:$secondary-color;
+}
+.red{
+	background-color:$danger-hover-color;
+}
+
 /****************************************Navigation Classes*****************************/
 .userdropdown{
 	font-weight:$header-font-weight;
