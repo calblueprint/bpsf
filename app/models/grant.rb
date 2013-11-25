@@ -118,31 +118,31 @@ class Grant < ActiveRecord::Base
 
   # Grant state transition mailer callbacks
   def grant_rejected
-    UserMailer.grant_rejected(self).deliver
+    GrantRejectedJob.new.async.perform(self)
   end
 
   def admin_crowdsuccess
     @admins = Admin.all
     @admins.each do |admin|
-      UserMailer.admin_crowdsuccess(self, admin).deliver
+      AdminCrowdsuccessJob.new.async.perform(self, admin)
     end
   end
 
   def grant_funded
-    UserMailer.grant_funded(self).deliver
+    GrantFundedJob.new.async.perform(self)
   end
 
   def grant_crowdfunding
-    UserMailer.grant_crowdfunding(self).deliver
+    GrantCrowdfundingJob.new.async.perform(self)
   end
 
   def crowdfailed
     @admins = Admin.all
     @admins.each do |admin|
-      UserMailer.admin_crowdfailed(self, admin).deliver
+      AdminCrowdfailedJob.new.async.perform(self, admin)
     end
-    UserMailer.grant_crowdfailed(self).deliver
     self.crowdfunder.destroy
+    GrantCrowdfailedJob.new.async.perform(self)
   end
 
   # Callback to process payments after a successful crowdfund
@@ -156,7 +156,7 @@ class Grant < ActiveRecord::Base
                                      description: "Donation to BPSF"
       payment.charge_id = charge.id
       payment.save!
-      UserMailer.user_crowdsuccess(user,self).deliver
+      UserCrowdsuccessJob.new.async.perform(user,self)
     end
   rescue Stripe::InvalidRequestError => err
     logger.error "Stripe error: #{err.message}"
