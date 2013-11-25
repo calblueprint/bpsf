@@ -16,6 +16,7 @@ gem 'fog', '~> 1.16.0'
 gem 'textacular', '~> 3.0', require: 'textacular/rails'
 gem 'enumerize'
 gem 'ajaxful_rating', '~> 3.0.0.beta8'
+gem 'sucker_punch', '~> 1.0.1'
 
 group :development, :test do
   gem 'rspec-rails', '2.11.0'
