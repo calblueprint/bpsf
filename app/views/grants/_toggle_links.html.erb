@@ -1,15 +1,17 @@
-<% grant.state_transitions.map { |s| s.event.to_s }.each do |state| %>
-  <% if state.eql? "crowdfund" %>
-    <%= link_to state.titleize,
-                "#",
-                method: :post,
-                remote: true,
-                class: "crowdfund",
-                id: grant.id %>
-  <% else %>
-    <%= link_to state.titleize,
-                grant_event_path(id: grant.id, state: state),
-                method: :post,
-                remote: true %>
+<div id="togglelinks">
+  <% grant.state_transitions.map { |s| s.event.to_s }.each do |state| %>
+    <% if state.eql? "crowdfund" %>
+      <%= link_to state.titleize,
+                  "#",
+                  method: :post,
+                  remote: true,
+                  class: "crowdfund",
+                  id: grant.id %>
+    <% else %>
+      <%= link_to state.titleize,
+                  grant_event_path(id: grant.id, state: state),
+                  method: :post,
+                  remote: true %>
+    <% end %>
   <% end %>
-<% end %>
+</div>
