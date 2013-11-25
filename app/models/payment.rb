@@ -21,6 +21,7 @@ class Payment < ActiveRecord::Base
     payment.user_id = current_user.id
     payment.crowdfund_id = grant.crowdfunder.id
     payment.save!
+    payment.crowdfund.add_payment payment.amount
     UserPledgeJob.new.async.perform(current_user,grant)
   end
 end
