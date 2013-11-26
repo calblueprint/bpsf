@@ -33,6 +33,12 @@ BPSF::Application.routes.draw do
 
   devise_for :users, :controllers => { :registrations => "registrations" }
   resources :user, except: [:index, :new, :create, :destroy]
+
+  scope '/users' do
+    post ':id/approve', to: 'user#approve', as: :approve_user
+    post ':id/reject', to: 'user#reject', as: :reject_user
+  end
+
   resources :payments, only: [:create, :destroy]
 
   namespace :recipient do
@@ -43,7 +49,7 @@ BPSF::Application.routes.draw do
     get '', to: 'dashboard#index', as: :dashboard
   end
 
-  post "crowdfund/create"
+  post 'crowdfund/create'
   resources :recipient_profile, only: :update
   resources :admin_profile,     only: :update
 end
