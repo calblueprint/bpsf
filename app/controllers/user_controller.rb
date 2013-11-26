@@ -28,4 +28,20 @@ class UserController < ApplicationController
       render 'edit'
     end
   end
+
+  def approve
+    user = User.find params[:id]
+    user.approved = true
+    if user.save!
+      flash[:success] = "#{user.name} Approved!"
+    end
+    redirect_to admin_dashboard_path
+  end
+
+  def reject
+    user = User.find params[:id]
+    user.destroy
+    flash[:success] = 'User rejected.'
+    redirect_to admin_dashboard_path
+  end
 end
