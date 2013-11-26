@@ -31,4 +31,9 @@ class Recipient < User
   def create_profile!
     profile = RecipientProfile.create recipient_id: id
   end
+
+  def default_values
+    self.approved = false
+    super
+  end
 end
