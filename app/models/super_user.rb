@@ -25,4 +25,9 @@ class SuperUser < User
   has_one :profile, class_name: 'AdminProfile'
   attr_accessible :profile_attributes
   accepts_nested_attributes_for :profile
+
+  def default_values
+    self.approved = true
+    super
+  end
 end

@@ -22,11 +22,13 @@
 #
 
 class User < ActiveRecord::Base
+  before_create :default_values
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
   attr_accessible :first_name, :last_name, :email, :password,
-                  :password_confirmation, :remember_me, :type
+                  :password_confirmation, :remember_me, :type, :approved
 
   has_many :payments, dependent: :destroy
 
@@ -40,5 +42,9 @@ class User < ActiveRecord::Base
 
   def self.donors
     where 'type is null'
+  end
+
+  def default_values
+    self.approved = true if self.approved.nil?
   end
 end
