@@ -8,6 +8,7 @@ class Admin::DashboardController < ApplicationController
     @donors = User.donors
     @recipients = Recipient.all
     @preapproved = PreapprovedGrant.all
+    @pending_users = User.where approved: false
   end
 
   def grant_event
