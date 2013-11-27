@@ -29,7 +29,7 @@
 #  type               :string(255)
 #  grant_id           :integer
 #
-# require 'grade_validation.rb'
+
 class DraftGrant < ActiveRecord::Base
   extend Enumerize
   SUBJECTS = ['Art & Music', 'Supplies', 'Reading', 'Science & Math', 'Field Trips', 'Other']
