@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
     redirect_to root_url, flash: { danger: exception.message }
   end
 
+  # This code never gets executed.
   def after_sign_in_path_for(resource)
     store_location = session[:return_to]
     clear_stored_location
