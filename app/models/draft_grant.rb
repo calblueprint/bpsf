@@ -29,17 +29,7 @@
 #  type               :string(255)
 #  grant_id           :integer
 #
-
-class ValidGradeValidator < ActiveModel::EachValidator
-  def validate_each(object, attribute, value)
-    return if not value
-    nums = value.split(/,\s*|-/)
-    unless nums.all? { |num| num =~ /^([K1-9]|1[0-2])$/ }
-      object.errors[attribute] << (options[:message] || "is not formatted properly")
-    end
-  end
-end
-
+# require 'grade_validation.rb'
 class DraftGrant < ActiveRecord::Base
   extend Enumerize
   SUBJECTS = ['Art & Music', 'Supplies', 'Reading', 'Science & Math', 'Field Trips', 'Other']
@@ -63,7 +53,8 @@ class DraftGrant < ActiveRecord::Base
   validates_length_of :summary, within: 1..200, too_short: 'cannot be blank', allow_nil: true
   validates_length_of :duration, :budget_desc,
                       minimum: 1, too_short: 'cannot be blank', allow_nil: true
-  validates :grade_level, valid_grade: true, allow_nil: true
+  include GradeValidation
+  validate :grade_format
   validates_length_of :purpose, :methods, :background, :comments,
                       within: 1..1200, too_short: 'cannot be blank', allow_nil: true
   validates_length_of :collaborators, within: 1..1200,
