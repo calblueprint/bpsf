@@ -63,6 +63,8 @@ class Grant < ActiveRecord::Base
   belongs_to :school
   has_one :crowdfunder, class_name: 'Crowdfund'
   has_one :preapproved_grant
+  delegate :name, to: :school, prefix: true
+  delegate :goal, :pledged_total, :progress, to: :crowdfunder, prefix: true
   extend Searchable :title, :summary, :subject_areas
   ajaxful_rateable stars: 10
 
@@ -168,10 +170,6 @@ class Grant < ActiveRecord::Base
 
   def preapproved?
     !preapproved_grant.nil?
-  end
-
-  def school_name
-    school.name
   end
 
   def has_collaborators?
