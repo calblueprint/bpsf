@@ -30,24 +30,6 @@
 #  rating_average     :decimal(6, 2)    default(0.0)
 #
 
-# Validates the grade_levels format.
-class ValidGradeValidator < ActiveModel::EachValidator
-  def validate_each(object, attribute, value)
-    return if not value
-    nums = value.split(/,\s*|-/)
-    unless nums.all? { |num| num =~ /^([K1-9]|1[0-2])$/ }
-      object.errors[attribute] << (options[:message] || "is not formatted properly")
-    end
-  end
-end
-
-# Validates the subject_areas
-class ValidSubjectValidator < ActiveModel::EachValidator
-  def validate_each(object, attribute, value)
-    object.errors.add attribute, "cannot be empty" unless !value.empty?
-  end
-end
-
 require 'textacular/searchable'
 class Grant < ActiveRecord::Base
   extend Enumerize
@@ -63,6 +45,8 @@ class Grant < ActiveRecord::Base
   belongs_to :school
   has_one :crowdfunder, class_name: 'Crowdfund'
   has_one :preapproved_grant
+  delegate :name, to: :school, prefix: true
+  delegate :goal, :pledged_total, :progress, to: :crowdfunder, prefix: true
   extend Searchable :title, :summary, :subject_areas
   ajaxful_rateable stars: 10
 
@@ -71,11 +55,13 @@ class Grant < ActiveRecord::Base
   end
 
   validates :title, presence: true, length: { maximum: 40 }
-  validates :subject_areas, valid_subject: true
+  validate :valid_subject_areas
   validates_length_of :summary, within: 1..200, too_short: 'cannot be blank'
   validates_length_of :duration, :budget_desc,
                       minimum: 1, too_short: 'cannot be blank'
-  validates :grade_level, presence: true, valid_grade: true
+  include GradeValidation
+  validates_presence_of :grade_level
+  validate :grade_format
   validates_length_of :purpose, :methods, :background,
                       within: 1..1200, too_short: 'cannot be blank'
   validates_length_of :comments, within: 1..1200, allow_blank: true
@@ -170,10 +156,6 @@ class Grant < ActiveRecord::Base
     !preapproved_grant.nil?
   end
 
-  def school_name
-    school.name
-  end
-
   def has_collaborators?
     n_collaborators > 0
   end
@@ -195,4 +177,7 @@ class Grant < ActiveRecord::Base
       preapproved_grant.save
     end
 
+    def valid_subject_areas
+      errors.add :subject_areas, "can't be empty" unless !subject_areas.empty?
+    end
 end
