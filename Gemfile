@@ -31,6 +31,8 @@ group :development do
   gem 'annotate', '2.5.0'
   gem 'ruby-graphviz', '~> 1.0.9'
   gem 'metric_fu', '~> 4.4.4'
+  gem 'better_errors', '~> 1.0.1'
+  gem 'bullet', '~> 4.7.1'
 end
 
 
