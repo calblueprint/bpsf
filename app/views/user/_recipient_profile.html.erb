@@ -31,8 +31,8 @@
 </div>
 
 <div class="row">
+  <% if profile.about %>
   <h5>About</h5>
-  <% if @profile.about %>
     <%= profile.about %>
   <% end %>
 </div>
