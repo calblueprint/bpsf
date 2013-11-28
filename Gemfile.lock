@@ -38,8 +38,14 @@ GEM
     awesome_print (1.2.0)
     bcrypt-ruby (3.1.2)
     bcrypt-ruby (3.1.2-x86-mingw32)
+    better_errors (1.0.1)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
     bluff (0.1.0)
     builder (3.0.4)
+    bullet (4.7.1)
+      activesupport
+      uniform_notifier (>= 1.4.0)
     cancan (1.6.10)
     cane (2.6.1)
       parallel
@@ -318,6 +324,7 @@ GEM
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     unicode (0.4.4)
+    uniform_notifier (1.4.0)
     warden (1.2.3)
       rack (>= 1.0)
     websocket (1.0.7)
@@ -333,6 +340,8 @@ PLATFORMS
 DEPENDENCIES
   ajaxful_rating (~> 3.0.0.beta8)
   annotate (= 2.5.0)
+  better_errors (~> 1.0.1)
+  bullet (~> 4.7.1)
   cancan (~> 1.6.10)
   capybara (= 1.1.2)
   carrierwave (~> 0.9.0)
