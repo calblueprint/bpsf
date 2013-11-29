@@ -30,4 +30,9 @@ class Admin < User
   def create_profile!
     profile = AdminProfile.create admin_id: id
   end
+
+  def default_values
+    self.approved = false
+    super
+  end
 end

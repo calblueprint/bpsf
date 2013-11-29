@@ -1,0 +1,8 @@
+<tr>
+  <td><%= pending_user.name %></td>
+  <td><%= pending_user.email %></td>
+  <td>
+    <%= link_to '<i class="icon-check approve"></i>'.html_safe, approve_user_path(id: pending_user.id), method: :post %>
+    <%= link_to '<i class="icon-cancel reject"></i>'.html_safe, reject_user_path(id: pending_user.id), method: :post %>
+  </td>
+</tr>
