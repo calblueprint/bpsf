@@ -1,7 +1,10 @@
 <div class="trunkheader">     <!--  Add "slideRight" class to items that move right when viewing Nav Drawer  -->
   <span>
     <i id="navToggle" class="icon-menu pointer"></i>    <!-- Add "slideRight" class to items that move right when viewing Nav Drawer  -->
-    <a href="http://www.berkeleypublicschoolsfund.org"><i class="icon-left-open-big"></i>Return to BPSF</a>
+    <a href="http://www.berkeleypublicschoolsfund.org" class="deskhome"><img src="/assets/logowtext.png" /></a>
+  </span>
+  <span>
+    <a href="http://www.berkeleypublicschoolsfund.org" class="mobhome poofin"><img src="/assets/logo.png"/></a>
   </span>
   <% if user_signed_in? %>
     <div class="loginmenu pull_right">
@@ -34,16 +37,8 @@
 
 <div class="trunknav slideLeft">
   <ul>
-    <li class="homelink"><a href="#">Return to BPSF</a></li>
-    <li><%= link_to 'Explore'.html_safe, root_path %></li>
+    <li><%= link_to 'Browse'.html_safe, root_path %></li>
     <li><a href="#">About</a></li>
-    <li>
-      <% if user_signed_in? %>
-        <%= link_to "Apply", new_draft_path %>
-      <% else %>
-        <%= link_to "Apply", new_user_session_path %>
-      <% end %>
-    </li>
     <%= render 'layouts/search_form' %>
   </ul>
 </div>
