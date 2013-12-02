@@ -24,6 +24,8 @@ class Ability
       can :create, DraftGrant
       can :read, PreapprovedGrant
       can :manage, Recipient, id: user.id
+    elsif ['Admin', 'Recipient'].include? user.type
+      raise CanCan::AccessDenied.new("Your account must be approved by an administrator!")
     end
   end
 
