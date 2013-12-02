@@ -295,6 +295,13 @@ $imglargereplacementhgt: 250px;
 	background-color:$danger-hover-color;
 }
 
+.padless{
+	padding:0px !important;
+}
+
+.marginless{
+	margin: 0px !important;
+}
 /****************************************Navigation Classes*****************************/
 .userdropdown{
 	font-weight:$header-font-weight;
