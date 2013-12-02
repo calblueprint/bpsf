@@ -22,8 +22,6 @@
 #
 
 class User < ActiveRecord::Base
-  before_create :default_values
-
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
@@ -44,7 +42,7 @@ class User < ActiveRecord::Base
     where 'type is null'
   end
 
-  def default_values
-    self.approved = true if self.approved.nil?
+  def init_approved
+    true
   end
 end
