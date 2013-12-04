@@ -17,6 +17,9 @@ class Ability
       cannot :manage, [SuperUser, Admin]
       can :manage, Admin, id: user.id
       if user.approved
+        can :manage, :all
+        cannot :manage, SuperUser
+        cannot :destroy, Admin
         can :read, :all
         can :rate, Grant
       end
