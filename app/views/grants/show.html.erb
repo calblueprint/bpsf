@@ -97,14 +97,14 @@
     <% if @grant.crowdfunding? %>
     <div class="row grantviewbar">
       <div class="progress">
-        <span style="width: 50%" class="progressbar" data-goal="<%= @grant.crowdfunder.goal %>" data-current="<%= @grant.crowdfunder.pledged_total %>"><%= @grant.crowdfunder.progress %></span>
+        <span style="width: 50%" class="progressbar" data-goal="<%= @grant.crowdfunder_goal %>" data-current="<%= @grant.crowdfunder_pledged_total %>"><%= @grant.crowdfunder_progress %></span>
       </div>
       <div class="gcdiv">
         <span class="gctext"><strong>Current: </strong></span>
-        <span class="currentnum">$<%= @grant.crowdfunder.pledged_total %></span>
+        <span class="currentnum">$<%= @grant.crowdfunder_pledged_total %></span>
         &emsp;
         <span class="gctext"><strong>Goal: </strong></span>
-        <span class="goalnum">$<%= @grant.crowdfunder.goal %></span>
+        <span class="goalnum">$<%= @grant.crowdfunder_goal %></span>
 
         </div>
       </div>
