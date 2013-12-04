@@ -1,3 +1,5 @@
+# Controller for preapproved grant displaying, conversion into draft grant,
+# and deletion
 class PreapprovedGrantsController < ApplicationController
   def show
     @grant = PreapprovedGrant.find params[:id]
