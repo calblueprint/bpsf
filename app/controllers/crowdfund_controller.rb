@@ -1,3 +1,4 @@
+# Controller for the Crowdfund model
 class CrowdfundController < ApplicationController
   def create
     # Do we need the date/time variable? They don't look
