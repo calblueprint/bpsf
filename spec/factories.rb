@@ -51,6 +51,7 @@ FactoryGirl.define do
     collaborators              Faker::Lorem.paragraph
     comments                   Faker::Lorem.paragraph
     recipient
+    school
   end
 
   factory :draft_grant do
