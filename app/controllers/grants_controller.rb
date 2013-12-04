@@ -1,3 +1,4 @@
+# Controller for grants
 class GrantsController < ApplicationController
   load_and_authorize_resource
 

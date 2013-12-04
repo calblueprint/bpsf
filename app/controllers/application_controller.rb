@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # This code never gets executed.
   def after_sign_in_path_for(resource)
     store_location = session[:return_to]
     clear_stored_location

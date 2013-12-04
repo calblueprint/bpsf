@@ -59,7 +59,7 @@ module Sass::Script::Functions
     Sass::Script::Number.new(value)
   end
   def minor_seventh
-    value = 16 /9.0
+    value = 16 / 9.0
     Sass::Script::Number.new(value)
   end
   def major_sixth

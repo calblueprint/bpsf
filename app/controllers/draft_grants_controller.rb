@@ -1,3 +1,4 @@
+# Controller for draft grants
 class DraftGrantsController < ApplicationController
   load_and_authorize_resource
 

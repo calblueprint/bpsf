@@ -1,3 +1,4 @@
+# Handles user creation and redirects to user profile after creation
 class RegistrationsController < Devise::RegistrationsController
   def new
     super
@@ -32,7 +33,7 @@ class RegistrationsController < Devise::RegistrationsController
     user.approved = user.init_approved
     user.save!
     if can_have_profile? resource
-      profile = user.create_profile!
+      user.create_profile!
       edit_user_path id: @user.id
     else
       super
