@@ -1,10 +1,12 @@
+# Handles showing and updating users
 class UserController < ApplicationController
   load_and_authorize_resource
 
   def show
     @user = User.find params[:id]
-    total_payments = Payment.find_all_by_user_id params[:id]
+    total_payments = Payment.find_all_by_user_id @user
     @payments = Array.new
+    # What does this do?
     total_payments.each do |payment|
       payment_hash = Hash.new
       crowdfund = Crowdfund.find payment.crowdfund_id
@@ -16,7 +18,7 @@ class UserController < ApplicationController
 
   def edit
     @user = User.find params[:id]
-    @payments = Payment.find_by_user_id params[:id]
+    @payments = Payment.find_by_user_id @user
     @profile = @user.profile
   end
 
