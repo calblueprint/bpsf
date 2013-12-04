@@ -5,7 +5,7 @@ class Admin::DashboardController < ApplicationController
 
   def index
     if !current_user.approved
-      raise CanCan::AccessDenied.new("Your account is pending administrator approval!", :index, Admin)
+      raise CanCan::AccessDenied.new
     end
     @grants = Grant.all.sort
     @donors = User.donors
