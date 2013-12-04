@@ -27,8 +27,11 @@ class Recipient < User
   has_many :grants, dependent: :destroy
   has_many :draft_grants, dependent: :destroy
   has_one :profile, class_name: 'RecipientProfile'
-  attr_accessible :profile_attributes
+
+  attr_accessible :school_id, :profile_attributes
   accepts_nested_attributes_for :profile
+
+  delegate :id, to: :school, prefix: true
 
   def create_profile!
     RecipientProfile.create recipient_id: id
