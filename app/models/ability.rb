@@ -33,5 +33,6 @@ class Ability
         can :create, DraftGrant
         can :read, PreapprovedGrant
       end
+    end
   end
 end
