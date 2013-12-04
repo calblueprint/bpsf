@@ -1,10 +1,11 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+# Seed data for the app
+
+def make_schools
+  School.create! name: 'Berkeley High School'
+  School.create! name: 'Washington Elementary School'
+  School.create! name: 'Maybeck High School'
+  School.create! name: 'Whitney High School'
+end
 
 # Create Teachers (we refer to them as Recipients)
 def make_users
@@ -23,7 +24,8 @@ def make_users
                       last_name: "Dev",
                       email: "bpsfteacher#{n}@gmail.com",
                       password: "password",
-                      password_confirmation: "password"
+                      password_confirmation: "password",
+                      school_id: n
     User.create! first_name: "Parent #{n}",
                  last_name: "Dev",
                  email: "bpsfparent#{n}@gmail.com",
@@ -52,13 +54,6 @@ def make_profiles
                                    position: Faker::Lorem.sentence
     user.profile = profile
   end
-end
-
-def make_schools
-  School.create! name: 'Berkeley High School'
-  School.create! name: 'Washington Elementary School'
-  School.create! name: 'Maybeck High School'
-  School.create! name: 'Whitney High School'
 end
 
 def make_grants
@@ -126,8 +121,8 @@ def make_preapproved
   g.preapprove!
 end
 
+make_schools
 make_users
 make_profiles
-make_schools
 make_grants
 make_preapproved
