@@ -4,26 +4,28 @@ class Ability
 
   def initialize(user)
     user ||= User.new
+    id = user.id
+    type = user.type
 
     # Default abilities
     can :read, Grant, state: 'crowdfunding'
     can :read, Recipient
-    can :manage, User, id: user.id
+    can :manage, User, id: id
 
-    if user.type == 'SuperUser'
+    if type == 'SuperUser'
       can :manage, :all
       cannot :destroy, SuperUser
-    elsif user.type == 'Admin'
+    elsif type == 'Admin'
       can :read, :all
       cannot :manage, [SuperUser, Admin]
-      can :manage, Admin, id: user.id
+      can :manage, Admin, id: id
       can :rate, Grant
-    elsif user.type == 'Recipient'
+    elsif type == 'Recipient'
       can [:create, :read], Grant
-      can :manage, DraftGrant, recipient_id: user.id
+      can :manage, DraftGrant, recipient_id: id
       can :create, DraftGrant
       can :read, PreapprovedGrant
-      can :manage, Recipient, id: user.id
+      can :manage, Recipient, id: id
     end
   end
 
