@@ -5,6 +5,7 @@ class DraftGrantsController < ApplicationController
   def new
     if recipient?
       @draft_grant = current_user.draft_grants.build
+      @school_id = current_user.school_id
       @preapproved = PreapprovedGrant.all
     elsif
       raise CanCan::AccessDenied.new("You are not authorized to access this page.", :manage, DraftGrant)

@@ -19,16 +19,21 @@
 #  first_name             :string(255)
 #  last_name              :string(255)
 #  stripe_token           :string(255)
+#  school_id              :integer
 #
 
 class Recipient < User
+  belongs_to :school
   has_many :grants, dependent: :destroy
   has_many :draft_grants, dependent: :destroy
   has_one :profile, class_name: 'RecipientProfile'
-  attr_accessible :profile_attributes
+
+  attr_accessible :school_id, :profile_attributes
   accepts_nested_attributes_for :profile
 
+  delegate :id, to: :school, prefix: true
+
   def create_profile!
-    profile = RecipientProfile.create recipient_id: id
+    RecipientProfile.create recipient_id: id
   end
 end
