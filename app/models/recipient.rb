@@ -22,6 +22,7 @@
 #
 
 class Recipient < User
+  belongs_to :school
   has_many :grants, dependent: :destroy
   has_many :draft_grants, dependent: :destroy
   has_one :profile, class_name: 'RecipientProfile'
@@ -29,6 +30,6 @@ class Recipient < User
   accepts_nested_attributes_for :profile
 
   def create_profile!
-    profile = RecipientProfile.create recipient_id: id
+    RecipientProfile.create recipient_id: id
   end
 end
