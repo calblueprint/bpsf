@@ -32,16 +32,26 @@ class UserController < ApplicationController
   def approve
     user = User.find params[:id]
     user.approved = true
+    @pending_users = User.where approved: false
     if user.save!
       flash[:success] = "#{user.name} Approved!"
     end
-    redirect_to admin_dashboard_path
+    respond_to do |format|
+      format.html { redirect_to admin_dashboard_path }
+      format.js { render "update_pending_users" }
+    end
   end
 
   def reject
     user = User.find params[:id]
     user.destroy
+    @pending_users = User.where approved: false
     flash[:success] = 'User rejected.'
-    redirect_to admin_dashboard_path
+    respond_to do |format|
+      format.html { redirect_to admin_dashboard_path }
+      format.js
+      format.html { redirect_to admin_dashboard_path }
+      format.js { render "update_pending_users" }
+    end
   end
 end
