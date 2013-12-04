@@ -66,7 +66,7 @@ class Grant < ActiveRecord::Base
                       within: 1..1200, too_short: 'cannot be blank'
   validates_length_of :comments, within: 1..1200, allow_blank: true
   validates_length_of :collaborators, within: 1..1200,
-                      too_short: 'cannot be blank', if: "n_collaborators > 0"
+                      too_short: 'cannot be blank', if: "n_collaborators && n_collaborators > 0"
 
   scope :pending_grants,      -> { with_state :pending }
   scope :complete_grants,     -> { with_state :complete }
@@ -127,7 +127,7 @@ class Grant < ActiveRecord::Base
     @admins.each do |admin|
       AdminCrowdfailedJob.new.async.perform(self, admin)
     end
-    self.crowdfunder.destroy
+    self.crowdfunder.destroy if self.crowdfunder
     GrantCrowdfailedJob.new.async.perform(self)
   end
 
