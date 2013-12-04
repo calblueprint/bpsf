@@ -1,5 +1,6 @@
 module DraftGrantsControllerHelper
   def parse_embed(grant)
-    grant.video.split('=').last if grant.video
+    video = grant.video
+    video.split('=').last if video
   end
 end
