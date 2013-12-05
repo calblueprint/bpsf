@@ -11,6 +11,7 @@
                   <li><a href="#">Donors</a></li>
                   <li><a href="#">Recipients</a></li>
                   <li><a href="#">Preapproved Grants</a></li>
+                  <li><a href="#">Pending Users</a></li>
                   <li><a href="#">Data Distributions</a></li>
               </ul>
             </div>
@@ -63,6 +64,18 @@
                   <%= render partial: 'preapproved_grants',
                              collection: @preapproved, as: :preapproved_grant %>
                 </tbody>
+              </table>
+            </div>
+            <div class="tab-content">
+              <table>
+                <thead>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Status</th>
+                </thead>
+                <tbody class='pending_users'>
+                  <%= render partial: 'pending_users',
+                             collection: @pending_users, as: :pending_user %>
               </table>
             </div>
             <div class="tab-content">

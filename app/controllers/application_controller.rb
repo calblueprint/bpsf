@@ -4,7 +4,11 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
 
   rescue_from CanCan::AccessDenied do |exception|
-    redirect_to root_url, flash: { danger: exception.message }
+    if current_user.approved
+      redirect_to root_url, flash: { danger: exception.message }
+    else
+      redirect_to root_url, flash: { danger: "Your account is pending administrator approval!" }
+    end
   end
 
   # This code never gets executed.

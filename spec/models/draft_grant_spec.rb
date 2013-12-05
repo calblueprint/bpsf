@@ -52,8 +52,8 @@ describe DraftGrant do
   it { should allow_mass_assignment_of :comments }
   it { should allow_mass_assignment_of :video }
   it { should allow_mass_assignment_of :image_url }
+  it { should allow_mass_assignment_of :school_id }
   it { should_not allow_mass_assignment_of :recipient_id }
-  it { should_not allow_mass_assignment_of :school_id }
 
   it { should belong_to :recipient }
   it { should belong_to :school }
@@ -76,7 +76,6 @@ describe DraftGrant do
   it { should ensure_length_of(:purpose).is_at_most 1200 }
   it { should ensure_length_of(:methods).is_at_most 1200 }
   it { should ensure_length_of(:background).is_at_most 1200 }
-  it { should ensure_length_of(:collaborators).is_at_most 1200 }
   it { should ensure_length_of(:comments).is_at_most 1200 }
 
 end
