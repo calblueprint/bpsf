@@ -13,22 +13,26 @@ def make_users
                       last_name: "Dev",
                       email: "bpsfsuper#{n}@gmail.com",
                       password: "password",
-                      password_confirmation: "password"
+                      password_confirmation: "password",
+                      approved: true
     Admin.create! first_name: "Admin #{n}",
                   last_name: "Dev",
                   email: "bpsfadmin#{n}@gmail.com",
                   password: "password",
-                  password_confirmation: "password"
+                  password_confirmation: "password",
+                  approved: false
     Recipient.create! first_name: "Teacher #{n}",
                       last_name: "Dev",
                       email: "bpsfteacher#{n}@gmail.com",
                       password: "password",
-                      password_confirmation: "password"
+                      password_confirmation: "password",
+                      approved: false
     User.create! first_name: "Parent #{n}",
                  last_name: "Dev",
                  email: "bpsfparent#{n}@gmail.com",
                  password: "password",
-                 password_confirmation: "password"
+                 password_confirmation: "password",
+                 approved: true
   end
 end
 

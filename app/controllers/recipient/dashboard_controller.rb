@@ -1,13 +1,11 @@
 # Controller to display the recipient dashboard
 class Recipient::DashboardController < ApplicationController
-
   def index
-    if recipient?
+    if recipient? && current_user.approved
       @draft_grants = current_user.draft_grants
       @grants = current_user.grants
     else
-      raise CanCan::AccessDenied.new("You are not authorized to access this page.", :index, Recipient)
-      redirect_to root_url
+      raise CanCan::AccessDenied.new
     end
   end
 end
