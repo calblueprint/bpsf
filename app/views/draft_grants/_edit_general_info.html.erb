@@ -1,0 +1,78 @@
+<!-- This is the form for title, summary, and subject_areas. -->
+
+<div class="row">
+  <div class="twelve columns centalign">
+    <%= form_for @draft_grant, url: draft_path, :html => {:multipart => true} do |f| %>
+      <%= render 'shared/errors', object: f.object %>
+
+      <div class="medium primary btn">
+        <%= f.submit 'Save!' %>
+      </div>
+
+      <ul>
+        <li class="field">
+          <h4>Title</h4>
+          <%= f.text_field :title, class: [:text, :wide, :input], :placeholder => "Title your grant" %>
+        </li>
+
+        <li class="field">
+          <h4>Subject Areas</h4>
+          <%= f.select(:subject_areas, DraftGrant::SUBJECTS, {}, {:multiple => true}) %>
+        </li>
+
+
+        <li class="field">
+          <h4>Summary</h4>
+          <%= f.text_area :summary, class: [:textarea, :input, :wide], rows: 3, :placeholder => "Summarize your application" %>
+        </li>
+
+        <div class="row">
+          <h4><a href="#"  class="toggle" gumby-trigger="#drawerimage">Cover Image</a></h4>
+          <div class="drawer" id="drawerimage" style="text-align:center;">
+            <p>Choose a photo that will appear at the top of your application. A default photo will be used if you choose not to upload one.</p>
+          </div>
+          <div class="five columns push_one centalign">
+            <% if !@draft_grant.image_url.to_s.eql? "" %>
+              <%= image_tag @draft_grant.image_url.to_s %>
+            <% else %>
+              <%= image_tag 'http://placehold.it/300x150' %>
+            <% end %>
+          </div>
+
+          <div class="five columns">
+            <li class="field">
+              <br>
+              <%= f.file_field :image_url %>
+            </li>
+          </div>
+        </div>
+
+        <% if !@draft_grant.video.blank? %>
+          <div class="row">
+            <h4><a href="#"  class="toggle" gumby-trigger="#drawervideo">Grant Video</a></h4>
+            <div class="drawer" id="drawervideo" style="text-align:center;">
+              <p>Optional: Link a Youtube video to help explain or enhance your application.</p>
+            </div>
+            <div class="five columns push_one centalign">
+              <article class="youtube video">
+                <iframe src= "http://www.youtube.com/embed/<%= parse_embed(@draft_grant) %>"></iframe>
+              </article>
+            </div>
+
+            <div class="five columns centalign">
+              <li class="field">
+                <%= f.label :video, 'Youtube Video link' %>
+                <%= f.text_field :video, class: [:input, :xxwide, :text], :placeholder => "Youtube Video Link" %>
+              </li>
+            </div>
+          </div>
+        <% else %>
+          <li class="field">
+            <h4>Grant Video</h4>
+            <%= f.text_field :video, class: [:input, :wide, :text], :placeholder => "Youtube Video Link" %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+</div>
