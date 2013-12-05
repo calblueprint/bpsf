@@ -302,6 +302,8 @@ $imglargereplacementhgt: 250px;
 .marginless{
 	margin: 0px !important;
 }
+
+.noroundborder{@include border-radius(0px !important) ;}
 /****************************************Navigation Classes*****************************/
 .userdropdown{
 	font-weight:$header-font-weight;
@@ -523,4 +525,23 @@ body {
 }
 
 
+}
+
+/**Loading Bar**/
+.pace .pace-progress {
+  background: #ef4023;
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  left: 0;
+  height: 2px;
+
+  -webkit-transition: width 1s;
+  -moz-transition: width 1s;
+  -o-transition: width 1s;
+  transition: width 1s;
+}
+
+.pace-inactive {
+  display: none;
 }

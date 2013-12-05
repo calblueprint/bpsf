@@ -95,16 +95,16 @@
     </div>
 
     <% if @grant.crowdfunding? %>
-    <div class="row grantviewbar">
-      <div class="progress">
-        <span style="width: 50%" class="progressbar" data-goal="<%= @grant.crowdfunder_goal %>" data-current="<%= @grant.crowdfunder_pledged_total %>"><%= @grant.crowdfunder_progress %></span>
-      </div>
-      <div class="gcdiv">
-        <span class="gctext"><strong>Current: </strong></span>
-        <span class="currentnum">$<%= @grant.crowdfunder_pledged_total %></span>
-        &emsp;
-        <span class="gctext"><strong>Goal: </strong></span>
-        <span class="goalnum">$<%= @grant.crowdfunder_goal %></span>
+      <div class="row grantviewbar">
+        <div class="progress">
+          <span style="width: 50%" class="progressbar" data-goal="<%= @grant.crowdfunder_goal %>" data-current="<%= @grant.crowdfunder_pledged_total %>"><%= @grant.crowdfunder_progress %></span>
+        </div>
+        <div class="gcdiv">
+          <span class="gctext"><strong>Current: </strong></span>
+          <span class="currentnum">$<%= @grant.crowdfunder_pledged_total %></span>
+          &emsp;
+          <span class="gctext"><strong>Goal: </strong></span>
+          <span class="goalnum">$<%= @grant.crowdfunder_goal %></span>
 
         </div>
       </div>
@@ -170,34 +170,33 @@
     </div>
 
     <% if @grant.has_comments? %>
-    <div class="row">
-      <div class="ten columns centalign centered">
-        <br>
-        <h3>Additional Comments</h3>
-        <%= @grant.comments %>
-      </div>
-    </div>
-    <% end %>
-
-
-  <div class="modal" id="modal1">
-    <div class="content">
-      <a class="close switch" gumby-trigger="|#modal1"><i class="icon-cancel" /></i></a>
       <div class="row">
-        <div class="ten columns centered text-center">
-          <% if @grant.crowdfunding? %>
-            <div class="row">
-              <%= render "payment_form", payment: @payment, id: @grant.id %>
-            </div>
-          <% end %>
+        <div class="ten columns centalign centered">
+          <br>
+          <h3>Additional Comments</h3>
+          <%= @grant.comments %>
         </div>
       </div>
-    </div>
-  </div>
-
-
+    <% end %>
   </div>
 </div>
+
+<div class="modal" id="modal1">
+  <div class="content">
+    <a class="close switch" gumby-trigger="|#modal1"><i class="icon-cancel" /></i></a>
+    <div class="row">
+      <div class="ten columns centered text-center">
+        <% if @grant.crowdfunding? %>
+          <div class="row">
+            <%= render "payment_form", payment: @payment, id: @grant.id %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <div id="crowdfund-modal-view">
   <%= render "crowdfund_modal", grant: @grant %>
 </div>
