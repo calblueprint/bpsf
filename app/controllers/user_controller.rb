@@ -4,15 +4,8 @@ class UserController < ApplicationController
 
   def show
     @user = User.find params[:id]
-    total_payments = Payment.find_all_by_user_id @user
-    @payments = Array.new
-    # What does this do?
-    total_payments.each do |payment|
-      payment_hash = Hash.new
-      crowdfund = Crowdfund.find payment.crowdfund_id
-      payment_hash[:crowdfund] = crowdfund
-      payment_hash[:amount] = payment.amount
-    end
+    total_payments = Payment.find_all_by_user_id params[:id]
+    @payments = @user.payments
     @profile = @user.profile
   end
 
