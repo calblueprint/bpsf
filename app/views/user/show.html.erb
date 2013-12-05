@@ -11,18 +11,45 @@
       </h2>
     </div>
 
-    <div class="row">
-      <div class="eight columns">
-        <h5 class="inlined">Email:</h5>
-        <%= @user.email %><br>
-        <%= render profile_for(@user), user: @user, profile: @profile %>
+    <section class='tabs'>
+      <div class="row">
+        <div class="twelve columns centered centalign">
+          <ul class="tab-nav">
+            <li class="active"><a href="#">My Account</a></li>
+            <li><a href="#">My Payments</a></li>
+          </ul>
+        </div>
       </div>
-      <!-- Currently breaking -->
-      <!-- <div class="four columns"> -->
-        <%# if @profile.image_url %>
-          <%#= image_tag @profile.image_url.to_s %>
-        <%# end %>
-      <!-- </div> -->
+      <div class="tab-content active">
+        <div class="row">
+          <div class="eight columns">
+            <h5 class="inlined">Email:</h5>
+            <%= @user.email %><br>
+            <%= render profile_for(@user), user: @user, profile: @profile %>
+          </div>
+          <!-- Currently breaking -->
+          <!-- <div class="four columns"> -->
+            <%# if @profile.image_url %>
+            <%#= image_tag @profile.image_url.to_s %>
+            <%# end %>
+            <!-- </div> -->
+        </div>
+      </div>
+      <div class="tab-content">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>School</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <%= render partial: 'payments', collection: @payments, as: :payment %>
+          </tbody>
+        </table>
+      </div>
+    </section>
 
     </div>
   </div>
