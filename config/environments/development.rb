@@ -40,14 +40,13 @@ BPSF::Application.configure do
   config.assets.compress = false
 
   # Expands the lines which load the assets
-  config.assets.debug = true
+  config.assets.debug = false
 
   # Debugger level
   config.log_level = :warn
 
   config.after_initialize do
     Bullet.enable = true
-    Bullet.alert = true
     Bullet.bullet_logger = true
     Bullet.rails_logger = true
     Bullet.add_footer = true

@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   attr_accessible :first_name, :last_name, :email, :password,
-                  :password_confirmation, :remember_me, :type
+                  :password_confirmation, :remember_me, :type, :approved
 
   has_many :payments, dependent: :destroy
 
@@ -40,5 +40,9 @@ class User < ActiveRecord::Base
 
   def self.donors
     where 'type is null'
+  end
+
+  def init_approved
+    true
   end
 end

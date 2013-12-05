@@ -83,7 +83,6 @@ class DraftGrant < ActiveRecord::Base
       valid_attributes = Grant.accessible_attributes.reject &:empty?
       grant.attributes = attributes.slice *valid_attributes
       grant.recipient_id = recipient_id
-      grant.school_id = school_id
       grant.save
     end
 end

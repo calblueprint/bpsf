@@ -8,19 +8,19 @@ describe UserMailer do
     it 'renders the subject' do
       mail.subject.should == 'Thanks for registering with the Schools Fund!'
     end
- 
+
     it 'renders the receiver email' do
       mail.to.should == [user.email]
     end
- 
+
     it 'renders the sender email' do
       mail.from.should == ['notifications@bpsf-staging.herokuapp.com']
     end
- 
+
     it 'assigns first name' do
       mail.body.encoded.should match(user.first_name)
     end
- 
+
     it 'assigns sign-in url' do
       mail.body.encoded.should match("http://bpsf-staging.herokuapp.com/users/sign_in")
     end
