@@ -33,6 +33,6 @@ class Recipient < User
   end
 
   def init_approved
-    false
+    true
   end
 end
