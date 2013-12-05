@@ -1,36 +1,42 @@
 <div class="row">
   <div class="twelve columns">
-    <div class="wrapper light">
 
       <div class="row">
-        <div class="five columns centered">
-          <h2>Sign in</h2>
+        <div class="six columns">
+          <div class="wrapper light">
+            <h2 class="centalign">Sign in</h2>
 
-          <%= form_for resource, as: resource_name, url: session_path(resource_name) do |f| %>
+            <%= form_for resource, as: resource_name, url: session_path(resource_name) do |f| %>
+            <ul>
+              <li class="field">
+                <%= f.email_field :email, :autofocus => true, class: [:xxwide, :text, :input], placeholder: "Email" %>
+              </li>
 
-            <div class="field">
-              <%= f.label :email %>
-              <%= f.email_field :email, :autofocus => true, class: :input %>
-            </div>
+              <li class="field">
+                <%= f.password_field :password, class: [:input, :text, :xxwide], placeholder: "Password" %>
+              </li>
 
-            <div class="field">
-              <%= f.label :password %>
-              <%= f.password_field :password, class: :input %>
-            </div>
-
-            <% if devise_mapping.rememberable? -%>
-              <%= f.check_box :remember_me %><%= f.label :remember_me %>
-            <% end -%>
-
-            <div class="medium primary btn">
-              <%= f.submit 'Sign in' %>
-            </div>
-          <% end %>
-
-          <%= render "devise/shared/links" %>
+              <% if devise_mapping.rememberable? -%>
+              <li class="field passless marginless pull_right">
+                <label class="checkbox" for="user_remember_me">
+                  <%= f.check_box :remember_me%>
+                  <span></span>&nbsp;Remember me
+                </label>
+              </li>
+              <% end -%>
+              <li><%= render "devise/shared/links" %></li>
+              <br>
+              <div class="medium primary btn pull_right">
+                <%= f.submit 'Sign in' %>
+              </div>
+              <br>
+            </ul>
+            <% end %>
+          </div>
         </div>
+            <br class="poofin" style="display:none;">
+            <%= render "devise/registrations/new.html" %>
       </div>
 
-    </div>
   </div>
 </div>

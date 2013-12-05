@@ -4,10 +4,14 @@ class Admin::DashboardController < ApplicationController
   authorize_resource :class => false
 
   def index
+    if !current_user.approved
+      raise CanCan::AccessDenied.new
+    end
     @grants = Grant.all.sort
     @donors = User.donors
     @recipients = Recipient.all
     @preapproved = PreapprovedGrant.all
+    @pending_users = User.where approved: false
   end
 
   def grant_event
