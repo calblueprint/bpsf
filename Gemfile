@@ -24,7 +24,6 @@ group :development, :test do
   gem 'spork', '0.9.2'
   gem 'commands', '~> 0.2.1'
   gem 'pry', '~> 0.9.12.2'
-  gem 'railroady', '~> 1.1.1'
 end
 
 group :development do
