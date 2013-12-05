@@ -26,7 +26,7 @@ def make_users
                       email: "bpsfteacher#{n}@gmail.com",
                       password: "password",
                       password_confirmation: "password",
-                      approved: false
+                      approved: true
     User.create! first_name: "Parent #{n}",
                  last_name: "Dev",
                  email: "bpsfparent#{n}@gmail.com",
