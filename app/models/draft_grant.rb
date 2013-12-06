@@ -75,7 +75,8 @@ class DraftGrant < ActiveRecord::Base
   def submit_and_destroy
     if transfer_attributes_to_new_grant
       GrantSubmittedJob.new.async.perform(self)
-      Admin.all.each do |admin|
+      admins = Admin.all + SuperUser.all
+      admins.each do |admin|
         AdminGrantsubmittedJob.new.async.perform(self, admin)
       end
       destroy
