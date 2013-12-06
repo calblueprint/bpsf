@@ -6,7 +6,7 @@ class CrowdfundController < ApplicationController
     @grant = Grant.find params[:id]
     @grant.create_crowdfunder deadline: time,
                               goal: params[:goal],
-                              pledged_total: 0,
+                              pledged_total: 0
     flash[:success] = "Crowdfund started!"
     @grant.crowdfund
     redirect_to @grant
