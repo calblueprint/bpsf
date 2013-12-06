@@ -139,10 +139,10 @@ class Grant < ActiveRecord::Base
         user = User.find payment.user_id
         recipient = Recipient.find payment.crowdfund.grant.recipient_id
         amount = (payment.amount * 100).to_i
-        charge = Stripe::Charge.create amount: payment.amount,
+        charge = Stripe::Charge.create amount: amount,
           currency: "usd",
           customer: user.stripe_token,
-          description: "Grant: #{payment.crowdfund.grant.name}, Teacher: #{recipient.name}"
+          description: "Grant: #{payment.crowdfund.grant.title}, Teacher: #{recipient.name}"
         payment.charge_id = charge.id
         payment.save!
         UserCrowdsuccessJob.new.async.perform(user,self)
