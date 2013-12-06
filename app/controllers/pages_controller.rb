@@ -3,9 +3,9 @@ class PagesController < ApplicationController
   MENU = ['All','After School Program', 'Arts / Music', 'Arts / Dance', 'Arts / Drama', 
     'Arts / Visual', 'Community Service', 'Computer / Media', 'Computer Science',
     'Foreign Language / ELL / TWI','Gardening','History & Social Studies / Multi-culturalism',
-    'Mathematics','Multi-subject','Nutrition','Physical Education','Physical Education',
+    'Mathematics','Multi-subject','Nutrition','Physical Education',
     'Professional Development','Reading & Writing / Communication','Science & Ecology',
-    'Special Ed','Special Ed','Student/Family Support / Mental Health','Other']
+    'Special Ed','Student / Family Support / Mental Health','Other']
 
   def home
     @grants = Grant.crowdfunding_grants.includes :recipient, :school
