@@ -1,12 +1,17 @@
 # Controller for miscellaneous pages
 class PagesController < ApplicationController
-  MENU = ['All', 'Art & Music', 'Supplies', 'Reading', 'Science & Math', 'Field Trips', 'Other']
+  MENU = ['All','After School Program', 'Arts / Music', 'Arts / Dance', 'Arts / Drama', 
+    'Arts / Visual', 'Community Service', 'Computer / Media', 'Computer Science',
+    'Foreign Language / ELL / TWI','Gardening','History & Social Studies / Multi-culturalism',
+    'Mathematics','Multi-subject','Nutrition','Physical Education',
+    'Professional Development','Reading & Writing / Communication','Science & Ecology',
+    'Special Ed','Student / Family Support / Mental Health','Other']
 
   def home
     @grants = Grant.crowdfunding_grants.includes :recipient, :school
     subject = params[:subject]
     if subject && subject != 'All'
-      @grants.select! { |grant| grant.subject_areas.include? subject }
+      @grants = @grants.select! { |grant| grant.subject_areas.include? subject }
     end
     @grants = @grants.paginate :page => params[:page], :per_page => 6
   end
