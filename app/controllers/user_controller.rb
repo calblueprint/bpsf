@@ -4,8 +4,7 @@ class UserController < ApplicationController
 
   def show
     @user = User.find params[:id]
-    total_payments = Payment.find_all_by_user_id params[:id]
-    @payments = @user.payments
+    @payments = @user.payments.includes(:crowdfund)
     @profile = @user.profile
   end
 
