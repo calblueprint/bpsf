@@ -1,6 +1,11 @@
 # Controller for miscellaneous pages
 class PagesController < ApplicationController
-  MENU = ['All', 'Art & Music', 'Supplies', 'Reading', 'Science & Math', 'Field Trips', 'Other']
+  MENU = ['All','After School Program', 'Art / Music', 'Arts / Dance', 'Arts / Drama', 
+    'Arts / Visual', 'Community Service', 'Computer / Media', 'Computer Science',
+    'Foreign Language / ELL / TWI','Gardening','History & Social Studies / Multi-culturalism',
+    'Mathematics','Multi-subject','Nutrition','Physical Education','Physical Education',
+    'Professional Development','Reading & Writing / Communication','Science & Ecology',
+    'Special Ed','Special Ed','Student/Family Support / Mental Health','Other']
 
   def home
     @grants = Grant.crowdfunding_grants.includes :recipient, :school
