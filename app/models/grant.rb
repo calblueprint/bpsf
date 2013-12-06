@@ -113,7 +113,7 @@ class Grant < ActiveRecord::Base
   end
 
   def admin_crowdsuccess
-    @admins = Admin.all
+    @admins = Admin.all + SuperUser.all
     @admins.each do |admin|
       AdminCrowdsuccessJob.new.async.perform(self, admin)
     end
@@ -128,7 +128,7 @@ class Grant < ActiveRecord::Base
   end
 
   def crowdfailed
-    @admins = Admin.all
+    @admins = Admin.all + SuperUser.all
     @admins.each do |admin|
       AdminCrowdfailedJob.new.async.perform(self, admin)
     end
