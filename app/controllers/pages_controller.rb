@@ -1,6 +1,6 @@
 # Controller for miscellaneous pages
 class PagesController < ApplicationController
-  MENU = ['All','After School Program', 'Art / Music', 'Arts / Dance', 'Arts / Drama', 
+  MENU = ['All','After School Program', 'Arts / Music', 'Arts / Dance', 'Arts / Drama', 
     'Arts / Visual', 'Community Service', 'Computer / Media', 'Computer Science',
     'Foreign Language / ELL / TWI','Gardening','History & Social Studies / Multi-culturalism',
     'Mathematics','Multi-subject','Nutrition','Physical Education','Physical Education',
