@@ -19,7 +19,7 @@ module ModularScale
   DATE = "2012-08-13"
 end
 
-# This is where any custom SassScript should be placed. The functions will be
+# This is where any custom SassScript should be placed. The functions will be  
 #  available on require of your extension without the need for users to import
 #  any partials. Uncomment below.
 

@@ -44,8 +44,8 @@ module Sass::Script::Functions
     if number > 0
       (1..number).each do |i|
         result = result * i
-      end
-    end
+      end 
+    end 
     Sass::Script::Number.new(result)
   end
   def random(max = Sass::Script::Number.new(100)) ## shamelessly taken from here: https://gist.github.com/1561650
@@ -152,7 +152,7 @@ module Sass::Script::Functions
 end
 
 module SassyMath
-
+  
   VERSION = "1.5"
   DATE = "2012-07-29"
 
