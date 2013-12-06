@@ -6,9 +6,10 @@ class PagesController < ApplicationController
     @grants = Grant.crowdfunding_grants.includes :recipient, :school
     subject = params[:subject]
     if subject && subject != 'All'
-      @grants.select! { |grant| grant.subject_areas.include? subject }
+      @grants = @grants.select! { |grant| grant.subject_areas.include? subject }
     end
     @grants = @grants.paginate :page => params[:page], :per_page => 6
+    
   end
 
   def search
