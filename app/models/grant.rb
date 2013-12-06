@@ -33,7 +33,12 @@
 require 'textacular/searchable'
 class Grant < ActiveRecord::Base
   extend Enumerize
-  SUBJECTS = ['Art & Music', 'Supplies', 'Reading', 'Science & Math', 'Field Trips', 'Other']
+  SUBJECTS = ['After School Program', 'Art / Music', 'Arts / Dance', 'Arts / Drama', 
+    'Arts / Visual', 'Community Service', 'Computer / Media', 'Computer Science',
+    'Foreign Language / ELL / TWI','Gardening','History & Social Studies / Multi-culturalism',
+    'Mathematics','Multi-subject','Nutrition','Physical Education','Physical Education',
+    'Professional Development','Reading & Writing / Communication','Science & Ecology',
+    'Special Ed','Special Ed','Student/Family Support / Mental Health','Other']
   serialize :subject_areas, Array
   enumerize :subject_areas, in: SUBJECTS, multiple: true, scope: true
 
