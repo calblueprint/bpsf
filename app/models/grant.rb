@@ -135,14 +135,18 @@ class Grant < ActiveRecord::Base
   def process_payments
     @payments = Payment.where crowdfund_id: self.id
     @payments.each do |payment|
-      user = User.find payment.user_id
-      charge = Stripe::Charge.create amount: payment.amount,
-                                     currency: "usd",
-                                     customer: user.stripe_token,
-                                     description: "Donation to BPSF"
-      payment.charge_id = charge.id
-      payment.save!
-      UserCrowdsuccessJob.new.async.perform(user,self)
+      unless payment.charge_id
+        user = User.find payment.user_id
+        recipient = Recipient.find payment.crowdfund.grant.recipient_id
+        amount = (payment.amount * 100).to_i
+        charge = Stripe::Charge.create amount: payment.amount,
+          currency: "usd",
+          customer: user.stripe_token,
+          description: "Grant: #{payment.crowdfund.grant.name}, Teacher: #{recipient.name}"
+        payment.charge_id = charge.id
+        payment.save!
+        UserCrowdsuccessJob.new.async.perform(user,self)
+      end
     end
   rescue Stripe::InvalidRequestError => err
     logger.error "Stripe error: #{err.message}"
