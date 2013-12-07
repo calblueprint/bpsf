@@ -9,7 +9,7 @@
           &emsp;
           <%= link_to 'Back<i class="icon-right-open-big"></i>'.html_safe, recipient_dashboard_path %>
         </span>
-        <span class="ttip pull_right medium primary btn" data-tooltip="Save Your Changes"> 
+        <span class="ttip pull_right medium primary btn" data-tooltip="Save Your Changes">
           <%= f.submit 'Save!' %>
         </span>
 
@@ -118,7 +118,7 @@
     <div class="row">
       <div class="twelve columns">
         <br>
-        
+
           <div class="row">
             <div class="eight columns centered">
 
@@ -222,13 +222,13 @@
     <div class="row">
       <div class="twelve columns">
         <br>
-        
+
           <div class="row">
             <div class="eight columns centered">
 
               <div class="row">
                 <div class="nine columns">
-                  <h4><a href="#"  class="toggle" gumby-trigger="#drawertotalbudget">Total Budget</a></h4>
+                  <h4><a href="#"  class="toggle" gumby-trigger="#drawertotalbudget">Funding Goal</a></h4>
                   <div class="drawer" id="drawertotalbudget" style="text-align:center;">
                     <p>How much total funds will be used for your proposed activity? This includes other sources in addition to the Schools Fund.</p>
                   </div>
@@ -286,7 +286,7 @@
     <div class="row">
       <div class="twelve columns">
         <br>
-        
+
           <div class="row">
             <div class="eight columns centered">
 
@@ -313,7 +313,7 @@
               <div class="field">
                 <%= f.text_area :background, class: [:textarea, :input], rows: 5 %>
               </div>
- 
+
             </div>
           </div>
       </div>
@@ -324,7 +324,7 @@
     <div class="row">
       <div class="twelve columns">
         <br>
-        
+
           <div class="row">
             <div class="eight columns centered centalign">
 
@@ -340,7 +340,7 @@
               <div class="large primary btn">
                 <%= link_to 'Submit!', draft_submit_path(@draft_grant), method: :post %>
               </div>
- 
+
             </div>
           </div>
       </div>
