@@ -30,6 +30,7 @@
 #  rating_average     :decimal(6, 2)    default(0.0)
 #
 
+require 'textacular/searchable'
 class Grant < ActiveRecord::Base
   extend Enumerize
   SUBJECTS = ['Art & Music', 'Supplies', 'Reading', 'Science & Math', 'Field Trips', 'Other']
