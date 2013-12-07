@@ -119,17 +119,17 @@
 var myPie = new Chart(document.getElementById("canvas").getContext("2d")).Pie(pieData);
 
 var data = {
-  labels : ["Franklin Preschool","Berkeley Arts Magnet","Cragmont","Jefferson","Joun Muir","Leconte","Martin Luther King Jr."],
+  labels : <%= raw School.select('name').collect(&:name).to_json %>,
   datasets : [
     {
       fillColor : "#71c637",
       strokeColor : "#71c637",
-      data : [35,29,10,8,16,15,4]
+      data : <%= raw accepted_school %>
     },
     {
       fillColor : "#f14f4f",
       strokeColor : "#f14f4f",
-      data : [8,8,14,9,6,7,10]
+      data : <%= raw rejected_school %>
     }
   ]
 }
