@@ -1,4 +1,4 @@
 <tr>
-  <td><%= user.name %></td>
+  <td><%= link_to user.name, user_path(id: user.id ) %></td>
   <td><%= user.email %></td>
 </tr>
