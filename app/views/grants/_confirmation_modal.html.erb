@@ -1,0 +1,16 @@
+<div class="modal" id="confirmation-modal">
+  <div class="content">
+    <a class="close switch close-confirmation-modal" gumby-trigger="|#confirmation-modal"><i class="icon-cancel" /></i></a>
+    <div class="row">
+      <div class="ten columns centered text-center">
+        <div class="field">
+          You donated <%= payment.amount %> to <%= @grant.title %>! Thanks so much!!! <%= @grant.recipient.name %> will be very grateful.
+        </div>
+        <div class="field">
+          <%= image_tag("http://who-is-awesome.com/who-is-awesome.jpg") %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
