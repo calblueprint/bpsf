@@ -1,5 +1,5 @@
 <tr>
-  <td><%= pending_user.name %></td>
+  <td><%= link_to pending_user.name, user_path(id: pending_user.id ) %></td>
   <td><%= pending_user.email %></td>
   <td>
     <%= link_to '<i class="icon-check approve"></i>'.html_safe, approve_user_path(id: pending_user.id), method: :post, remote: true %>
