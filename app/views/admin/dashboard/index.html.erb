@@ -95,6 +95,14 @@
                   <canvas id="canvas2" height="450" width="500"></canvas>
                 </div>
               </div>
+              <div class="row">
+                <div class="five columns centalign">
+                  <div style="margin-top:200px;">Accepted Grants&emsp;<div class="colorbox green">&nbsp;</div><br>Rejected Grants&emsp;<div class="colorbox red">&nbsp;</div></div>
+                </div>
+                <div class="seven columns">
+                  <canvas id="canvas3" height="500" width="650"></canvas>
+                </div>
+              </div>
             </div>
         </section>
       </div>
@@ -135,5 +143,23 @@ var data = {
 }
 
 var myChart = new Chart(document.getElementById("canvas2").getContext("2d")).Bar(data);
+
+var data = {
+  labels : <%= raw Grant::SUBJECTS.to_json %>,
+  datasets : [
+    {
+      fillColor : "#71c637",
+      strokeColor : "#71c637",
+      data : <%= raw accepted_subject %>
+    },
+    {
+      fillColor : "#f14f4f",
+      strokeColor : "#f14f4f",
+      data : <%= raw rejected_subject %>
+    }
+  ]
+}
+
+var myChart = new Chart(document.getElementById("canvas3").getContext("2d")).Bar(data);
 
 </script>
