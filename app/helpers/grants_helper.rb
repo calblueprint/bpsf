@@ -39,4 +39,22 @@ module GrantsHelper
     end
     return @count.to_json
   end
+
+  def accepted_subject
+    @count = []
+    Grant::SUBJECTS.each do |subject|
+      @grants = Grant.complete_grants.select { |grant| grant.subject_areas.include? subject }
+      !@grants.nil? ? @count << @grants.length : @count << 0
+    end
+    return @count.to_json
+  end
+
+  def rejected_subject
+    @count = []
+    Grant::SUBJECTS.each do |subject|
+      @grants = Grant.rejected_grants.select { |grant| grant.subject_areas.include? subject }
+      !@grants.nil? ? @count << @grants.length : @count << 0
+    end
+    return @count.to_json
+  end
 end
