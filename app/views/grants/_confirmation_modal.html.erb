@@ -3,8 +3,12 @@
     <a class="close switch close-confirmation-modal" gumby-trigger="|#confirmation-modal"><i class="icon-cancel" /></i></a>
     <div class="row">
       <div class="ten columns centered text-center">
+        <h4>Thank You!</h4>
         <div class="field">
-          You donated <%= payment.amount %> to <%= @grant.title %>! Thanks so much!!! <%= @grant.recipient.name %> will be very grateful.
+          You donated $<span id='payment-amount'></span> to <%= @grant.title %>!
+        </div>
+        <div class="field">
+          <%= @grant.recipient.name %> will be very grateful. You're making a difference.
         </div>
         <div class="field">
           <%= image_tag("http://who-is-awesome.com/who-is-awesome.jpg") %>
