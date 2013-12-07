@@ -6,6 +6,10 @@ class PaymentsController < ApplicationController
     deny_access url: url_for(@grant) if !anyone_signed_in?
     @payment = Payment.make_payment! params[:amount], @grant, current_user
     create_customer_if_new_donor!
+    respond_to do |format|
+      format.html { redirect_to @grant }
+      format.js
+    end
   end
 
   def destroy
