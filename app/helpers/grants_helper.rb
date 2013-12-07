@@ -23,4 +23,20 @@ module GrantsHelper
     end
     return @grants
   end
+
+  def accepted_school
+    @count = []
+    School.all.each do |school|
+      @count << school.grants.complete_grants.length
+    end
+    return @count.to_json
+  end
+
+  def rejected_school
+    @count = []
+    School.all.each do |school|
+      @count << school.grants.rejected_grants.length
+    end
+    return @count.to_json
+  end
 end
