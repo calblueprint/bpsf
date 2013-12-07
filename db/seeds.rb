@@ -26,7 +26,8 @@ def make_users
                       last_name: "Dev",
                       email: "bpsfteacher#{n}@gmail.com",
                       password: "password",
-                      approved: true
+                      password_confirmation: "password",
+                      approved: true,
                       school_id: n
     User.create! first_name: "Parent #{n}",
                  last_name: "Dev",
@@ -65,10 +66,12 @@ def make_grants
   1.upto(3) do |n|
     t1.draft_grants.create! title: "Draft #{n}",
                             summary: Faker::Lorem.sentence,
-                            subject_areas: ["Other"]
+                            subject_areas: ["Other"],
+                            school_id: t1.school_id
     t2.draft_grants.create! title: "Draft #{n + 3}",
                             summary: Faker::Lorem.sentence,
-                            subject_areas: ["Other"]
+                            subject_areas: ["Other"],
+                            school_id: t2.school_id
   end
   crowdfunding_grants = []
   1.upto(4) do |n|
@@ -77,7 +80,7 @@ def make_grants
                                            subject_areas: ["Art & Music", "Reading"],
                                            grade_level: "#{n + 2}",
                                            duration: "#{n} weeks",
-                                           school_id: n,
+                                           school_id: t1.school_id,
                                            num_classes: n,
                                            num_students: n * 10,
                                            total_budget: n * 300,
@@ -95,7 +98,7 @@ def make_grants
                                            subject_areas: ["Field Trips"],
                                            grade_level: "#{n + 2}",
                                            duration: "#{n} weeks",
-                                           school_id: n,
+                                           school_id: t2.school_id,
                                            num_classes: n,
                                            num_students: n * 10,
                                            total_budget: n * 300,
