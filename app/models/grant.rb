@@ -76,6 +76,7 @@ class Grant < ActiveRecord::Base
 
   scope :pending_grants,      -> { with_state :pending }
   scope :complete_grants,     -> { with_state :complete }
+  scope :rejected_grants,     -> { with_state :rejected }
   scope :crowdfunding_grants, -> { with_state :crowdfunding }
   scope :crowdpending_grants, -> { with_state :crowdfund_pending }
 
