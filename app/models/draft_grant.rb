@@ -57,7 +57,6 @@ class DraftGrant < ActiveRecord::Base
   validates :purpose, :methods, :background, :comments, length: { maximum: 1200 }
   validates :n_collaborators, allow_blank: true,
             numericality: { greater_than_or_equal_to: 0 }
-  validates :n_collaborators, numericality: { greater_than_or_equal_to: 0 }
   validates :collaborators, length: { maximum: 1200 },
             if: 'n_collaborators && n_collaborators > 0'
 
