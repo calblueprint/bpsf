@@ -14,6 +14,7 @@ class PagesController < ApplicationController
       @grants = @grants.select! { |grant| grant.subject_areas.include? subject }
     end
     @grants = @grants.paginate :page => params[:page], :per_page => 6
+    @slideshow_grants = slideshow_grants
   end
 
   def search
@@ -38,5 +39,19 @@ class PagesController < ApplicationController
       raise CanCan::AccessDenied.new "You are not authorized to access this page.", :donors, Pages
       redirect_to :back
     end
+  end
+
+  def slideshow_grants
+    possible_grants = []
+    if user_signed_in?
+      payments = current_user.payments.includes :crowdfund
+      payments.each do |payment|
+        crowdfund = payment.crowdfund
+        possible_grants << crowdfund.grant
+      end
+    end
+    possible_grants.concat Grant.newest
+    possible_grants.concat Grant.close_to_goal
+    possible_grants.sample 3
   end
 end
