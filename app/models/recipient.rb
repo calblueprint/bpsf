@@ -31,12 +31,6 @@ class Recipient < User
   attr_accessible :school_id, :profile_attributes
   accepts_nested_attributes_for :profile
 
-  delegate :id, to: :school, prefix: true
-
-  def create_profile!
-    RecipientProfile.create recipient_id: id
-  end
-
   def init_approved
     true
   end
