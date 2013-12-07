@@ -13,7 +13,7 @@
           <%= form_for @draft_grant, url: drafts_path do |f| %>
             <%= render 'shared/errors', object: f.object %>
 
-            <%= f.hidden_field :school_id, @school_id %>
+            <%= f.hidden_field :school_id %>
 
             <div class="field append">
               <%= f.text_field :title, class: [:wide, :input], placeholder: :Title %>
