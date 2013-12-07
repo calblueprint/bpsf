@@ -2,8 +2,8 @@
   <div class="twelve columns">
     <div class="wrapper light">
       <div class="row">
-            <%= form_for @draft_grant, url: draft_path, :html => {:multipart => true} do |f| %>
-      <%= render 'shared/errors', object: f.object %>
+        <%= form_for @draft_grant, url: draft_path, :html => {:multipart => true} do |f| %>
+          <%= render 'shared/errors', object: f.object %>
 
         <span class="ttip pull_right" data-tooltip="Back to Dashboard" style="margin-top:5px;">
           &emsp;
@@ -21,99 +21,101 @@
       </div>
 
 <section class="tabs">
-      <div class="ten columns centered centalign">
-        <ul class="tab-nav">
-          <li class="active"><a href="#">General</a></li>
-          <li><a href="#">Logistics</a></li>
-          <li><a href="#">Budget</a></li>
-          <li><a href="#">Methods</a></li>
-          <li><a href="#">Finalize</a></li>
-        </ul>
-      </div>
-<br>
-<!--GENERAL INFO-->
+  <div class="ten columns centered centalign">
+    <ul class="tab-nav">
+      <li class="active"><a href="#">General</a></li>
+      <li><a href="#">Logistics</a></li>
+      <li><a href="#">Budget</a></li>
+      <li><a href="#">Methods</a></li>
+      <li><a href="#">Finalize</a></li>
+    </ul>
+  </div>
+  <br>
+
+  <!--GENERAL INFO-->
   <div class="tab-content active">
 
     <div class="row">
       <div class="twelve columns centalign">
-          <ul>
-            <li class="field">
-              <h4><a href="#"  class="toggle" gumby-trigger="#drawertitle">Title</a></h4>
-              <div class="drawer" id="drawertitle" style="text-align:center;">
-                <p>Name your grant. A good title summarizes the essence of the application. </p>
-              </div>
-              <%= f.text_field :title, class: [:text, :wide, :input], :placeholder => "Title your grant" %>
-            </li>
+        <ul>
+          <li class="field">
+            <h4><a href="#"  class="toggle" gumby-trigger="#drawertitle">Title</a></h4>
+            <div class="drawer" id="drawertitle" style="text-align:center;">
+              <p>Name your grant. A good title summarizes the essence of the application. </p>
+            </div>
+            <%= f.text_field :title, class: [:text, :wide, :input], :placeholder => "Title your grant" %>
+          </li>
 
-            <li class="field">
-              <h4><a href="#"  class="toggle" gumby-trigger="#drawersubject">Subject Areas</a></h4>
-              <div class="drawer" id="drawersubject" style="text-align:center;">
-                <p>Select all subjects that would apply to your application.</p>
-              </div>
-              <%= f.select(:subject_areas, DraftGrant::SUBJECTS, {}, {:multiple => true}) %>
-            </li>
+          <li class="field">
+            <h4><a href="#"  class="toggle" gumby-trigger="#drawersubject">Subject Areas</a></h4>
+            <div class="drawer" id="drawersubject" style="text-align:center;">
+              <p>Select all subjects that would apply to your application.</p>
+            </div>
+            <%= f.select(:subject_areas, DraftGrant::SUBJECTS, {}, {:multiple => true}) %>
+          </li>
 
 
-            <li class="field">
-              <h4><a href="#"  class="toggle" gumby-trigger="#drawersummary">Summary</a></h4>
-              <div class="drawer" id="drawersummary" style="text-align:center;">
-                <p>Give a brief explanation explanation of your application but limit it to ??????255?????? characters</p>
-              </div>
-              <%= f.text_area :summary, class: [:textarea, :input, :wide], rows: 3, :placeholder => "Summarize your application" %>
-            </li>
+          <li class="field">
+            <h4><a href="#"  class="toggle" gumby-trigger="#drawersummary">Summary</a></h4>
+            <div class="drawer" id="drawersummary" style="text-align:center;">
+              <p>Give a brief explanation explanation of your application but limit it to ??????255?????? characters</p>
+            </div>
+            <%= f.text_area :summary, class: [:textarea, :input, :wide], rows: 3, :placeholder => "Summarize your application" %>
+          </li>
 
+          <div class="row">
+            <h4><a href="#"  class="toggle" gumby-trigger="#drawerimage">Cover Image</a></h4>
+            <div class="drawer" id="drawerimage" style="text-align:center;">
+              <p>Optional: Choose a photo that will appear at the top of your application. A default photo will be used if you choose not to upload one.</p>
+            </div>
+            <div class="five columns push_one centalign">
+              <% if !@draft_grant.image_url.to_s.eql? "" %>
+                <%= image_tag @draft_grant.image_url.to_s %>
+              <% else %>
+                <%= image_tag 'http://placehold.it/300x150' %>
+              <% end %>
+            </div>
+
+            <div class="five columns">
+              <li class="field">
+                <br>
+                <%= f.file_field :image_url %>
+              </li>
+            </div>
+          </div>
+
+          <% if !@draft_grant.video.blank? %>
             <div class="row">
-              <h4><a href="#"  class="toggle" gumby-trigger="#drawerimage">Cover Image</a></h4>
-              <div class="drawer" id="drawerimage" style="text-align:center;">
-                <p>Optional: Choose a photo that will appear at the top of your application. A default photo will be used if you choose not to upload one.</p>
+              <h4><a href="#"  class="toggle" gumby-trigger="#drawervideo">Grant Video</a></h4>
+              <div class="drawer" id="drawervideo" style="text-align:center;">
+                <p>Optional: Link a Youtube video to help explain or enhance your application.</p>
               </div>
               <div class="five columns push_one centalign">
-                <% if !@draft_grant.image_url.to_s.eql? "" %>
-                  <%= image_tag @draft_grant.image_url.to_s %>
-                <% else %>
-                  <%= image_tag 'http://placehold.it/300x150' %>
-                <% end %>
+                <article class="youtube video">
+                  <iframe src= "http://www.youtube.com/embed/<%= parse_embed(@draft_grant) %>"></iframe>
+                </article>
               </div>
 
-              <div class="five columns">
+              <div class="five columns centalign">
                 <li class="field">
-                  <br>
-                  <%= f.file_field :image_url %>
+                  <%= f.label :video, 'Youtube Video link' %>
+                  <%= f.text_field :video, class: [:input, :xxwide, :text], :placeholder => "Youtube Video Link" %>
                 </li>
               </div>
             </div>
-
-            <% if !@draft_grant.video.blank? %>
-              <div class="row">
-                <h4><a href="#"  class="toggle" gumby-trigger="#drawervideo">Grant Video</a></h4>
-                <div class="drawer" id="drawervideo" style="text-align:center;">
-                  <p>Optional: Link a Youtube video to help explain or enhance your application.</p>
-                </div>
-                <div class="five columns push_one centalign">
-                  <article class="youtube video">
-                    <iframe src= "http://www.youtube.com/embed/<%= parse_embed(@draft_grant) %>"></iframe>
-                  </article>
-                </div>
-
-                <div class="five columns centalign">
-                  <li class="field">
-                    <%= f.label :video, 'Youtube Video link' %>
-                    <%= f.text_field :video, class: [:input, :xxwide, :text], :placeholder => "Youtube Video Link" %>
-                  </li>
-                </div>
-              </div>
-            <% else %>
-              <li class="field">
-                <h4>Grant Video</h4>
-                <%= f.text_field :video, class: [:input, :wide, :text], :placeholder => "Youtube Video Link" %>
-              </li>
-            <% end %>
-          </ul>
+          <% else %>
+            <li class="field">
+              <h4>Grant Video</h4>
+              <%= f.text_field :video, class: [:input, :wide, :text], :placeholder => "Youtube Video Link" %>
+            </li>
+          <% end %>
+        </ul>
       </div>
     </div>
 
   </div>
-<!--LOGISTICS-->
+
+  <!--LOGISTICS-->
   <div class="tab-content">
     <div class="row">
       <div class="twelve columns">
@@ -217,7 +219,8 @@
       </div>
     </div>
   </div>
-<!--BUDGET-->
+  
+  <!--BUDGET-->
   <div class="tab-content">
     <div class="row">
       <div class="twelve columns">
@@ -281,7 +284,8 @@
       </div>
     </div>
   </div>
-<!--METHODS-->
+  
+  <!--METHODS-->
   <div class="tab-content">
     <div class="row">
       <div class="twelve columns">
@@ -319,7 +323,8 @@
       </div>
     </div>
   </div>
-<!--Finalize-->
+  
+  <!--Finalize-->
   <div class="tab-content">
     <div class="row">
       <div class="twelve columns">
