@@ -29,6 +29,7 @@ class DraftGrantsController < ApplicationController
 
   def update
     if @draft_grant.update_attributes params[:draft_grant]
+      submit and return if params[:save_and_submit]
       flash[:success] = 'Application updated!'
       redirect_to edit_draft_path @draft_grant
     else
@@ -37,7 +38,6 @@ class DraftGrantsController < ApplicationController
   end
 
   def submit
-    @draft_grant = DraftGrant.find params[:id]
     if @draft_grant.submit_and_destroy
       flash[:success] = 'Application submitted!'
       redirect_to recipient_dashboard_path
