@@ -11,11 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20131204232429) do
-=======
-ActiveRecord::Schema.define(:version => 20131125213657) do
->>>>>>> d0c30dc3870dbe546c0d8053ad8055d04116227f
 
   create_table "admin_profiles", :force => true do |t|
     t.string   "about"
