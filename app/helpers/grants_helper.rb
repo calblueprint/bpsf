@@ -27,7 +27,7 @@ module GrantsHelper
   def accepted_school
     @count = []
     School.all.each do |school|
-      @count << school.grants.complete_grants.length
+      @count << school.grants.accepted_grants.length
     end
     return @count.to_json
   end
@@ -43,7 +43,7 @@ module GrantsHelper
   def accepted_subject
     @count = []
     Grant::SUBJECTS.each do |subject|
-      @grants = Grant.complete_grants.select { |grant| grant.subject_areas.include? subject }
+      @grants = Grant.accepted_grants.select { |grant| grant.subject_areas.include? subject }
       !@grants.nil? ? @count << @grants.length : @count << 0
     end
     return @count.to_json
