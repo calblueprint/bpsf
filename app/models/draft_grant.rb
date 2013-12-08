@@ -48,29 +48,24 @@ class DraftGrant < ActiveRecord::Base
                   :video, :image_url, :school_id
   belongs_to :recipient
   belongs_to :school
+  delegate :name, to: :school, prefix: true
 
   before_validation do |grant|
     grant.subject_areas = grant.subject_areas.to_a.reject &:empty?
   end
 
   validates :title, presence: true, length: { maximum: 40 }
-  validates_presence_of :recipient_id, if: 'type.nil?'
-  validates_length_of :summary, within: 1..200, too_short: 'cannot be blank', allow_nil: true
-  validates_length_of :duration, :budget_desc,
-                      minimum: 1, too_short: 'cannot be blank', allow_nil: true
+  validates :recipient_id, presence: true
+  validates :summary, length: { maximum: 200 }
   include GradeValidation
   validate :grade_format
-  validates_length_of :purpose, :methods, :background, :comments,
-                      within: 1..1200, too_short: 'cannot be blank', allow_nil: true
-  validates_length_of :collaborators, within: 1..1200,
-                      too_short: 'cannot be blank', allow_nil: true,
-                      if: "n_collaborators && n_collaborators > 0"
+  validates :purpose, :methods, :background, :comments, length: { maximum: 1200 }
+  validates :n_collaborators, allow_blank: true,
+            numericality: { greater_than_or_equal_to: 0 }
+  validates :collaborators, length: { maximum: 1200 },
+            if: 'n_collaborators && n_collaborators > 0'
 
   mount_uploader :image_url, ImageUploader
-
-  def school_name
-    school.name
-  end
 
   def submit_and_destroy
     if transfer_attributes_to_new_grant
