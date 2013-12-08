@@ -62,17 +62,16 @@ class Grant < ActiveRecord::Base
 
   validates :title, presence: true, length: { maximum: 40 }
   validate :valid_subject_areas
-  validates_length_of :summary, within: 1..200, too_short: 'cannot be blank'
-  validates_length_of :duration, :budget_desc,
-                      minimum: 1, too_short: 'cannot be blank'
+  validates :summary, presence: true, length: { maximum: 200 }
   include GradeValidation
-  validates_presence_of :grade_level
+  validates :grade_level, presence: true
   validate :grade_format
-  validates_length_of :purpose, :methods, :background,
-                      within: 1..1200, too_short: 'cannot be blank'
-  validates_length_of :comments, within: 1..1200, allow_blank: true
-  validates_length_of :collaborators, within: 1..1200,
-                      too_short: 'cannot be blank', if: "n_collaborators && n_collaborators > 0"
+  validates :purpose, :methods, :background,
+            presence: true, length: { maximum: 1200 }
+  validates :comments, length: { maximum: 1200 }
+  validates :n_collaborators, numericality: { greater_than_or_equal_to: 0 }
+  validates :collaborators, length: { maximum: 1200 },
+            presence: true, if: 'n_collaborators && n_collaborators > 0'
 
   scope :pending_grants,      -> { with_state :pending }
   scope :complete_grants,     -> { with_state :complete }
