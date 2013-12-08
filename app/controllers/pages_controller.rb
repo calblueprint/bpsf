@@ -52,7 +52,7 @@ class PagesController < ApplicationController
         possible_grants << crowdfund.grant
       end
     end
-    possible_grants.concat Grant.newest
+    possible_grants.concat Grant.crowdfunding_grants.newest
     possible_grants.concat Grant.close_to_goal
     possible_grants.sample 3
   end

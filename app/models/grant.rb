@@ -187,7 +187,7 @@ class Grant < ActiveRecord::Base
 
   def self.close_to_goal
     close = []
-    Grant.all.each do |grant|
+    Grant.crowdfunding_grants.each do |grant|
       cf = grant.crowdfunder
       if cf.pledged_total >= cf.goal * 0.9
         close << grant
