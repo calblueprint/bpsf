@@ -36,13 +36,6 @@
 	height:40px;
 	}
 
-.dayleft{
-	font-size:$med;
-	line-height:40px;
-	text-align:right;
-	}
-
-
 #nobullet > li {list-style:none;}
 
 .centalign{text-align:center;}
@@ -277,6 +270,7 @@ $imglargereplacementhgt: 250px;
 	margin: 0 auto;
 }
 
+.poofin{display:none;}
 @include respond(all-phones){
 
 	.poofin{display:inline-block !important;}
@@ -304,6 +298,8 @@ $imglargereplacementhgt: 250px;
 }
 
 .noroundborder{@include border-radius(0px !important) ;}
+
+.helppane{}
 /****************************************Navigation Classes*****************************/
 .userdropdown{
 	font-weight:$header-font-weight;
@@ -362,20 +358,10 @@ body {
 	font-weight:$header-font-weight;
 	@include box-shadow(0 0 3px #999);
 	.icon-menu{display:none;}
-	span .deskhome {
+	.homelogo {
 	text-align: left;
 	font-size: $med;
 	padding-left: 10px;
-	//&:hover {color: #1d2d35;}
-	}
-	span .mobhome{
-		display: none;
-		height: 50px;
-		margin: 3px, 0px, 2px, 0px;
-		text-align: center;
-		position: absolute;
-		right: 50%;
-		margin-right: -15px;
 	}
 	.loginmenu{
 		text-align: right;
@@ -393,12 +379,9 @@ body {
 
 .trunknav {
 	position: absolute;
-	top: 0;
-	right: 50%;
-	margin-right:-230px;
-	.homelink{
-		display: none;
-	}
+	left: 50%;
+	margin-left:-230px;
+	height:55px;
 	.search{
 		width: 300px;
 	}
@@ -406,128 +389,36 @@ body {
 		height:55px;
 		margin: 0px !important;
 		padding: 0px !important;
-		padding-top: 5px !important;
+		margin-top:-5px !important; 
 	}
 }
-.trunknav li {
-	float: left;
+
+.trunknav li a {
 	display: inline-block;
-	font-size: $med;
-	width: auto;
-}
-.trunknav li a {
-	display: block;
-	padding: 13px 20px 12px;
+	padding: 0px 20px 12px;
 	font-family: $font-family;
 	font-weight:$header-font-weight;
 }
 
-.dimmer{
-	height:100%;
-	width:100%;
-	position:absolute;
-	top: 0px;
-	left: 0px;
-	background-color:#000;
-	opacity:0;
-	z-index:500;
-	display:none;
-	@include transition-duration(0.5s);
-}
-
-@include respond(all-phones) {
-
-.trunkheader {
-	z-index: 2;
-	background-color: $white;//#060a0c;
-	.icon-menu{display:inline; font-size:$larger; line-height:55px;}
-}
-
-.trunkheader span .deskhome {
-	line-height:45px;
-	margin-left:-10px;
-	display:none;
-}
-.burger {display: block;}
-
-
-/*  Nav Drawer Layout  */
-.trunknav {
-	position: relative;
-	.field{
-		display: none;
+@include respond(all-phones){
+	.trunknav {
+	position: static;
+	margin-left:0px;
+	left:0;
+	display:inline-block;
+	.search{
+		width: 100%;
+		}
 	}
-	.homelink{display:block;}
+	.trunknav li a{
+		padding-left:5px;
+		padding-right:5px;
+	}
+	.trunkheader .loginmenu{
+		padding-right:5px;
+	}
 }
-
-.trunknav ul {
-	height: 100%;
-	overflow-y: auto;
-}
-.trunknav li {
-	display: block;
-	float: none;
-}
-.trunknav li a {
-	padding: 22px 25px;
-	letter-spacing: 3px;
-	font-size: $med;//14px;
-	font-family: $font-family;
-	font-weight:$header-font-weight;
-}
-
-.trunknav li a.logo {
-	display: none;
-}
-.trunknav li a.active {
-	color: $primary-color;
-	background-color: darken($white, 5%);//#141e23;
-}
-.trunknav li a:hover {
-	color: $primary-color;
-	background-color: darken($white, 10%);//#19252c;
-}
-.trunknav li:first-child a.active,
-.trunknav li:first-child a:hover
-{border-radius: 0 0 0 0;}
-
-.header-section {margin-top: 60px;}
-
-
-/* NAVIGATION ANNIMATION */
-.trunknav {
-	//width: 93%;
-	height: 100%;
-	position: fixed;
-	width: 240px;
-	left: -240px;//0;
-	top: 0;
-	margin: 0;
-	background-color: $white;//#1d2d35;
-	//border-radius: 8px;
-
-	/* starting point */
-	z-index:999;
-	@include transition-duration(0.3s);
-
-}
-
-/*Nav Expanding Open Effect*/
-.trunknav.open {
-	opacity: 1;
-	@include box-shadow(0 0 3px #999);
-	left:0px;
-}
-
-.dimmer.open{
-	opacity:0.3;
-	display:block;
-}
-
-
-}
-
-/**Loading Bar**/
+/*********  Loading Bar  **********/
 .pace .pace-progress {
   background: #ef4023;
   position: fixed;
