@@ -314,7 +314,9 @@
                 <p>Explain in specific detail what the funds will be used to pay for.</p>
               </div>
               <div class="field">
-                <%= f.text_area :funds_will_pay_for, class: [:textarea, :input], rows: 5, :placeholder => "Funds will be used to pay for..." %>
+                <div class="picker">
+                  <%= f.collection_select :funds_will_pay_for, DraftGrant::FUNDS, :to_s, :to_s, prompt: 'Funds will be paying for...' %>
+                </div>
               </div>
 
             </div>
