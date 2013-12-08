@@ -299,7 +299,51 @@ $imglargereplacementhgt: 250px;
 
 .noroundborder{@include border-radius(0px !important) ;}
 
-.helppane{}
+.helppanel{
+	position:fixed;
+	top:0px;
+	left:-250px;
+	width:250px;
+	height:100%;
+	z-index:1000;
+	overflow:auto;
+	background-color:$white;
+	@include box-shadow(0 0 3px #999);
+	@include transition-duration(.3s);
+	.xbox{
+		position:relative;
+		top:10px;
+		right:10px;
+		font-size: $large;
+	}
+}
+
+	.open{
+		left:0px !important;
+	}
+.helppanelbutton{
+	position:fixed;
+	top:50%;
+	margin-top:-50px; 
+	left:-30px;
+	height:45px;
+	width:70px;
+	line-height:30px;
+	text-align:center;
+	padding-top:15px;
+	color:$white;
+	font-size:$med;
+	z-index:999;
+	background-color:$primary-color;
+	cursor:pointer;
+	@include rotate(-90deg);
+	@include box-shadow(0 0 3px #999);
+	@include transition-duration(.3s);
+	&:hover{
+		left: -25px;
+	}
+
+}
 /****************************************Navigation Classes*****************************/
 .userdropdown{
 	font-weight:$header-font-weight;
