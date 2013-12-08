@@ -34,7 +34,7 @@ require 'textacular/searchable'
 class Grant < ActiveRecord::Base
   has_paper_trail :only => [:state]
   extend Enumerize
-  SUBJECTS = ['After School Program', 'Arts / Music', 'Arts / Dance', 'Arts / Drama', 
+  SUBJECTS = ['After School Program', 'Arts / Music', 'Arts / Dance', 'Arts / Drama',
     'Arts / Visual', 'Community Service', 'Computer / Media', 'Computer Science',
     'Foreign Language / ELL / TWI','Gardening','History & Social Studies / Multi-culturalism',
     'Mathematics','Multi-subject','Nutrition','Physical Education',
@@ -80,6 +80,7 @@ class Grant < ActiveRecord::Base
   scope :rejected_grants,     -> { with_state :rejected }
   scope :crowdfunding_grants, -> { with_state :crowdfunding }
   scope :crowdpending_grants, -> { with_state :crowdfund_pending }
+  scope :newest, limit: 5, order: 'created_at DESC'
 
   state_machine initial: :pending do
 
@@ -179,6 +180,17 @@ class Grant < ActiveRecord::Base
 
   def has_comments?
     !comments.blank?
+  end
+
+  def self.close_to_goal
+    close = []
+    Grant.all.each do |grant|
+      cf = grant.crowdfunder
+      if cf.pledged_total >= cf.goal * 0.9
+        close << grant
+      end
+    end
+    close
   end
 
   private
