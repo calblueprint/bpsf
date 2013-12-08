@@ -171,7 +171,7 @@ var myChart = new Chart(document.getElementById("canvas3").getContext("2d")).Bar
 
 
 var data = {
-  labels : <%= Grant.uniq.pluck(:total_budget).sort_by(&:to_i) %>,
+  labels : ["0-99","100-199","200-299","300-399","400-499","500-599","600-699","700-799","800-899","900-999","1000+"],
   datasets : [
     {
       fillColor : "#71c637",
