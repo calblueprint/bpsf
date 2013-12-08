@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131204232429) do
+ActiveRecord::Schema.define(:version => 20131207204629) do
 
   create_table "admin_profiles", :force => true do |t|
     t.string   "about"
@@ -162,8 +162,8 @@ ActiveRecord::Schema.define(:version => 20131204232429) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "stripe_token"
-    t.integer  "school_id"
     t.boolean  "approved"
+    t.integer  "school_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
