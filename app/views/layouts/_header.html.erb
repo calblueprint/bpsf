@@ -1,18 +1,23 @@
 <div class="trunkheader">     <!--  Add "slideRight" class to items that move right when viewing Nav Drawer  -->
   <span>
-    <i id="navToggle" class="icon-menu pointer"></i>    <!-- Add "slideRight" class to items that move right when viewing Nav Drawer  -->
-    <a href="http://www.berkeleypublicschoolsfund.org" class="deskhome"><img src="/assets/logowtext.png" /></a>
+    <a href="http://www.berkeleypublicschoolsfund.org" class="homelogo poofout"><img src="/assets/logowtext.png" /></a>
+    <a href="http://www.berkeleypublicschoolsfund.org" class="homelogo poofin"><img src="/assets/logo.png"/></a>
   </span>
-  <span>
-    <a href="http://www.berkeleypublicschoolsfund.org" class="mobhome poofin"><img src="/assets/logo.png"/></a>
-  </span>
+
+  <div class="trunknav">
+    <ul>
+      <li><%= link_to 'Browse'.html_safe, root_path %></li>
+      <%= render 'layouts/search_form' %>
+    </ul>
+  </div>
+
   <% if user_signed_in? %>
     <div class="loginmenu pull_right">
-      <a href="#" class="toggle" gumby-trigger="#userdropdown" gumby-classname="nodisplay">Hello, <%= current_user.first_name %><i class="icon-down-open-mini"></i></a>
+      <a href="#" class="toggle" gumby-trigger="#userdropdown" gumby-classname="nodisplay"><span class="poofout">Hello, <%= current_user.first_name %></span><span class="poofin"><i class="icon-user"></i></span><i class="icon-down-open-mini"></i></a>
     </div>
   <% else %>
   <div class="loginmenu pull_right">
-    <%= link_to "Sign Up", new_user_session_path %>  |  <%= link_to "Sign In", new_user_session_path %>
+    <span class="poofout"><%= link_to "Sign Up", new_user_session_path %>  |</span>  <%= link_to "Sign In", new_user_session_path %>
   </div>
   <% end %>
 </div>
@@ -33,13 +38,4 @@
   </div>
 <% else %>
 <% end %>
-
-
-<div class="trunknav slideLeft">
-  <ul>
-    <li><%= link_to 'Browse'.html_safe, root_path %></li>
-    <li><a href="#">About</a></li>
-    <%= render 'layouts/search_form' %>
-  </ul>
-</div>
 

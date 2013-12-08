@@ -1,8 +1,9 @@
 $(function() {
 
-	var items = $('.slideRight, .slideLeft');
-	var dimmer = $('.dimmer');
-	
+	var items = $('.helppanel, .helppanelbutton, .xbox');
+	var hp = $('.helppanelbutton');
+	var xbox = $('.xbox')
+
 	var open = function() {
 							$(items).removeClass('close').addClass('open');
 						}
@@ -10,12 +11,12 @@ $(function() {
 							$(items).removeClass('open').addClass('close');
 						}
 
-	$('#navToggle').click(function(){
-		if (dimmer.hasClass('open')) {$(close)}
+	hp.click(function(){
+		if (hp.hasClass('open')) {$(close)}
 		else {$(open)}
 	});
-	dimmer.click(function(){
-		if (dimmer.hasClass('open')) {$(close)};
+	xbox.click(function(){
+		if (hp.hasClass('open')) {$(close)};
 	});
 
 });
