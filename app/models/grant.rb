@@ -40,6 +40,10 @@ class Grant < ActiveRecord::Base
     'Mathematics','Multi-subject','Nutrition','Physical Education',
     'Professional Development','Reading & Writing / Communication','Science & Ecology',
     'Special Ed','Student / Family Support / Mental Health','Other']
+  FUNDS = ['Supplies','Books','Equipment','Technology / Media',
+    'Professional Guest (Consultant, Speaker, Artist, etc.)','Professional Development',
+    'Field Trips / Transportation','Assembly','Other']
+  enumerize :funds_will_pay_for, in: FUNDS
   serialize :subject_areas, Array
   enumerize :subject_areas, in: SUBJECTS, multiple: true, scope: true
 
@@ -165,8 +169,8 @@ class Grant < ActiveRecord::Base
         UserCrowdsuccessJob.new.async.perform(user,self)
       end
     end
-  rescue Stripe::InvalidRequestError => err
-    logger.error "Stripe error: #{err.message}"
+    rescue Stripe::InvalidRequestError => err
+      logger.error "Stripe error: #{err.message}"
   end
 
   def preapprove!
