@@ -32,6 +32,7 @@ group :development do
   gem 'ruby-graphviz', '~> 1.0.9'
   gem 'metric_fu', '~> 4.4.4'
   gem 'better_errors', '~> 1.0.1'
+  gem 'binding_of_caller', '~> 0.7.2'
   gem 'bullet', '~> 4.7.1'
 end
 
