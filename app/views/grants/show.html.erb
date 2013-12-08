@@ -70,64 +70,46 @@
       <br>
     </div>
 
-    <div class="row">
-      <div class="three columns centalign">
-        <h5 class="inlined"><strong>Grade level: </strong></h5><span class="largefont"><%= @grant.grade_level %></span>
-      </div>
-      <div class="three columns centalign">
-        <h5 class="inlined"><strong># of classes: </strong></h5><span class="largefont"><%= @grant.num_classes %></span>
-      </div>
-      <div class="three columns centalign">
-        <h5 class="inlined"><strong># of students: </strong></h5><span class="largefont"><%= @grant.num_students %></span>
-      </div>
-      <div class="three columns centalign">
-        <h5 class="inlined"><strong>Funding Goal: </strong></h5><span class="largefont"><%= @grant.total_budget %></span>
-      </div>
-    </div>
-
-
     <div class="row padada">
-      <div class="six columns centalign">
-        <h5 class="inlined"><strong>Subject areas: </strong></h5>
-        <span class="medfont"><%= @grant.subject_areas.values.to_a.join(', ') %></span>
-      </div>
-      <div class="six columns centalign">
-        <h5 class="inlined"><strong>Duration: </strong></h5><span class="medfont"><%= @grant.duration %></span>
+      <div class="six columns centered centalign">
+        <h4 class="inlined">Subject Areas: </h4>
+        <span class="largefont"><%= @grant.subject_areas.values.to_a.join(', ') %></span>
       </div>
     </div>
 
     <% if @grant.crowdfunding? %>
-      <div class="row grantviewbar">
-        <div class="progress">
-          <span style="width: 50%" class="progressbar" data-goal="<%= @grant.crowdfunder_goal %>" data-current="<%= @grant.crowdfunder_pledged_total %>"><%= @grant.crowdfunder_progress %></span>
-        </div>
-        <div class="gcdiv">
-          <span class="gctext"><strong>Current: </strong></span>
-          <span class="currentnum">$<%= @grant.crowdfunder_pledged_total %></span>
-          &emsp;
-          <span class="gctext"><strong>Goal: </strong></span>
-          <span class="goalnum">$<%= @grant.crowdfunder_goal %></span>
-
-        </div>
+    <div class="row grantviewbar">
+      <div class="progress">
+        <span style="width: 50%" class="progressbar" data-goal="<%= @grant.crowdfunder_goal %>" data-current="<%= @grant.crowdfunder_pledged_total %>"><%= @grant.crowdfunder_progress %></span>
       </div>
+      <div class="gcdiv">
+        <span class="gctext"><strong>Current: </strong></span>
+        <span class="currentnum">$<%= @grant.crowdfunder_pledged_total %></span>
+        &emsp;
+        <span class="gctext"><strong>Goal: </strong></span>
+        <span class="goalnum">$<%= @grant.crowdfunder_goal %></span>
 
-      <div class="row">
-        <hr>
-        <div class="three columns centered centalign">
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="three columns centered centalign">
           <div class="large primary btn"><a href="#" class="switch" gumby-trigger="#modal1">Donate</a></div>
-        </div>
       </div>
+    </div>
     <% end %>
 
     <hr>
 
     <div class="row">
       <div class="ten columns centalign centered">
-        <h3>Details</h3>
+        <h3>Logistics</h3>
         <h5><strong>Purpose</strong></h5>
         <%= @grant.purpose %>
         <h5><strong>Methods</strong></h5>
         <%= @grant.methods %>
+        <h5><strong>Teacher Background</strong></h5>
+        <%= @grant.background %>
       </div>
     </div>
 
@@ -142,13 +124,27 @@
     </div>
     <% end %>
 
+    <div class="row">
+      <div class="ten columns centalign centered">
+        <br>
+        <h3>Details</h3>
+          <h5 class="inlined"><strong>Grade level: </strong></h5><span class="medfont"><%= @grant.grade_level %></span>&emsp;
+          <h5 class="inlined"><strong>Duration: </strong></h5><span class="medfont"><%= @grant.duration %></span>&emsp;
+          <h5 class="inlined"><strong># of classes: </strong></h5><span class="medfont"><%= @grant.num_classes %></span>&emsp;
+          <h5 class="inlined"><strong># of students: </strong></h5><span class="medfont"><%= @grant.num_students %></span><br>
+        <% if @grant.has_collaborators? %>
+          <h5><strong>Collaborators</strong></h5>
+          <%= @grant.collaborators %>
+        <% end %>
+      </div>
+    </div>
 
     <div class="row">
       <div class="ten columns centalign centered">
         <br>
         <h3 class="centalign">Budget</h3>
         <h5 class="inlined"><strong>Total budget: </strong></h5>
-        <span class="largefont"><%= @grant.total_budget %></span><br>
+        <span class="medfont">$<%= @grant.total_budget %></span><br>
         <h5><strong>Description</strong></h5>
         <%= @grant.budget_desc %>
         <h5><strong>Use of Funds</strong></h5>
@@ -156,20 +152,6 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="ten columns centalign centered">
-        <br>
-        <h3>Team</h3>
-        <h5 class="inlined"><strong>Director: </strong></h5>
-        <%= @grant.recipient.name %><br>
-        <h5><strong>Director background</strong></h5>
-        <%= @grant.background %>
-        <% if @grant.has_collaborators? %>
-          <h5><strong>Collaborators</strong></h5>
-          <%= @grant.collaborators %>
-        <% end %>
-      </div>
-    </div>
 
     <% if @grant.has_comments? %>
       <div class="row">
