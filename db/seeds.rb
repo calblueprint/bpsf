@@ -36,6 +36,8 @@ def make_users
                  password_confirmation: "password",
                  approved: true
   end
+  a = Admin.first
+  a.approved = true ; a.save!
 end
 
 def make_profiles
