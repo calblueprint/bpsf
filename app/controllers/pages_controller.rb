@@ -8,7 +8,7 @@ class PagesController < ApplicationController
     'Special Ed','Student / Family Support / Mental Health','Other']
 
   def home
-    @grants = Grant.crowdfunding_grants.includes :recipient, :school
+    @grants = Grant.crowdfunding_grants.includes :recipient, :school, :crowdfunder
     subject = params[:subject]
     if subject && subject != 'All'
       @grants = @grants.select! { |grant| grant.subject_areas.include? subject }
