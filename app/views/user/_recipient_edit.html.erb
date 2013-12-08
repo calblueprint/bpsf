@@ -15,7 +15,7 @@
       <%= f.fields_for :profile do |ff| %>
         <div class="field">
           <%= ff.label :started_teaching, "Started Teaching:" %>
-          <%= ff.date_select :started_teaching, order: [:year] %>
+          <%= ff.date_select :started_teaching, start_year: Time.now.year - 40, order: [:year] %>
         </div>
         <div class="field">
           <%= ff.label :subject, "Subject You Teach" %>
