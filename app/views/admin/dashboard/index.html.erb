@@ -122,11 +122,11 @@
 
   var pieData = [
       {
-        value: <%= successful.length %>,
+        value: <%= (successful.length==0 && unsuccessful.length==0) ? 1 : successful.length %>,
         color:"#71c637"
       },
       {
-        value : <%= unsuccessful.length %>,
+        value : <%= (successful.length==0 && unsuccessful.length==0) ? 1 : unsuccessful.length %>,
         color : "#f14f4f"
       },
     ];
