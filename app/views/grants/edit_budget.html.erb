@@ -25,7 +25,9 @@
 
             <div class="field">
               <%= f.label :funds_will_pay_for, 'Funds will pay for:' %>
-              <%= f.text_area :funds_will_pay_for, class: [:textarea, :input], rows: 5 %>
+              <div class="picker">
+                <%= f.collection_select :funds_will_pay_for, DraftGrant::FUNDS, :to_s, :to_s, prompt: 'Funds will be paying for...' %>
+              </div>
             </div>
 
             <div class="field">
