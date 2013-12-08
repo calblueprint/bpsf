@@ -88,7 +88,7 @@
 			span {
 				display: inline-block;
 				height: 100%;
-				background-color: $secondary-color;
+				background-color: $primary-color;
 				position: relative;
 				overflow: hidden;
 				text-align:right;
@@ -102,7 +102,7 @@
 			.goalnum{
 				font-size:$large;
 				vertical-align:middle;
-				color: $primary-color;
+				color: #222;//$primary-color;
 				@include respond(all-phones){
 					font-size: $med;
 				}
@@ -111,7 +111,7 @@
 			.currentnum{
 				font-size:$large;
 				vertical-align:middle;
-				color: $secondary-color;
+				color: $primary-color;
 				@include respond(all-phones){
 					font-size: $med;
 				}
@@ -206,7 +206,7 @@ $imglargereplacementhgt: 250px;
 		span {
 			display: inline-block;
 			height: 100%;
-			background-color: $secondary-color;
+			background-color: $primary-color;
 			position: relative;
 			overflow: hidden;
 			text-align:right;
@@ -221,7 +221,7 @@ $imglargereplacementhgt: 250px;
 		.goalnum{
 			font-size:$large;
 			vertical-align:middle;
-			color: $primary-color;
+			color: #222;//$primary-color;
 			@include respond(all-phones){
 				font-size: $med;
 			}
@@ -230,7 +230,7 @@ $imglargereplacementhgt: 250px;
 		.currentnum{
 			font-size:$large;
 			vertical-align:middle;
-			color: $secondary-color;
+			color: $primary-color;
 			@include respond(all-phones){
 				font-size: $med;
 			}
