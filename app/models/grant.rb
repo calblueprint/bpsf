@@ -66,6 +66,10 @@ class Grant < ActiveRecord::Base
   include GradeValidation
   validates :grade_level, presence: true
   validate :grade_format
+  validate :duration, presence: true
+  validates :num_classes, :num_students, numericality: { only_integer: true }
+  validates :goal, :total_budget, numericality: true
+  validates :budget_desc, :funds_will_pay_for, presence: true
   validates :purpose, :methods, :background,
             presence: true, length: { maximum: 1200 }
   validates :comments, length: { maximum: 1200 }
