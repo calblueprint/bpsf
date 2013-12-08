@@ -2,16 +2,16 @@
   <div class="twelve columns">
     <div class="wrapper light">
       <div class="row">
-        <%= form_for @draft_grant, url: draft_path, :html => {:multipart => true} do |f| %>
-          <%= render 'shared/errors', object: f.object %>
-
-        <span class="ttip pull_right" data-tooltip="Back to Dashboard" style="margin-top:5px;">
-          &emsp;
-          <%= link_to 'Back<i class="icon-right-open-big"></i>'.html_safe, recipient_dashboard_path %>
-        </span>
-        <span class="ttip pull_right medium primary btn" data-tooltip="Save Your Changes">
+            <%= form_for @draft_grant, url: draft_path, :html => {:multipart => true} do |f| %>
+      <%= render 'shared/errors', object: f.object %>
+        &nbsp;
+        <span class="ttip medium primary btn" data-tooltip="Save Your Changes"> 
           <%= f.submit 'Save!' %>
         </span>
+        <span class="ttip largefont pull_left" data-tooltip="Back to Dashboard" style="margin-top:5px;">
+          <%= link_to '<i class="icon-back"></i>'.html_safe, recipient_dashboard_path %>
+        </span>
+
 
         <br>
         <h2 class="centalign">
@@ -21,30 +21,30 @@
       </div>
 
 <section class="tabs">
-  <div class="ten columns centered centalign">
-    <ul class="tab-nav">
-      <li class="active"><a href="#">General</a></li>
-      <li><a href="#">Logistics</a></li>
-      <li><a href="#">Budget</a></li>
-      <li><a href="#">Methods</a></li>
-      <li><a href="#">Finalize</a></li>
-    </ul>
-  </div>
-  <br>
-
-  <!--GENERAL INFO-->
+      <div class="ten columns centered centalign">
+        <ul class="tab-nav">
+          <li class="active"><a href="#">General</a></li>
+          <li><a href="#">Logistics</a></li>
+          <li><a href="#">Details</a></li>
+          <li><a href="#">Budget</a></li>
+          <li><a href="#">Finalize</a></li>
+        </ul>
+      </div>
+<br>
+<!--GENERAL INFO-->
   <div class="tab-content active">
 
     <div class="row">
       <div class="twelve columns centalign">
-        <ul>
-          <li class="field">
-            <h4><a href="#"  class="toggle" gumby-trigger="#drawertitle">Title</a></h4>
-            <div class="drawer" id="drawertitle" style="text-align:center;">
-              <p>Name your grant. A good title summarizes the essence of the application. </p>
-            </div>
-            <%= f.text_field :title, class: [:text, :wide, :input], :placeholder => "Title your grant" %>
-          </li>
+          <span class="hinttext">Hint: Click on the field titles for more information</span>
+          <ul>
+            <li class="field">
+              <h4><a href="#"  class="toggle" gumby-trigger="#drawertitle">Title</a></h4>
+              <div class="drawer" id="drawertitle" style="text-align:center;">
+                <p>Name your grant. A good title summarizes the essence of the application. </p>
+              </div>
+              <%= f.text_field :title, class: [:text, :wide, :input], :placeholder => "Title your grant" %>
+            </li>
 
           <li class="field">
             <h4><a href="#"  class="toggle" gumby-trigger="#drawersubject">Subject Areas</a></h4>
@@ -121,6 +121,44 @@
       <div class="twelve columns">
         <br>
 
+          <div class="row">
+            <div class="eight columns centered">
+
+              <h4 class="centalign"><a href="#"  class="toggle" gumby-trigger="#drawerpurpose">Purpose</a></h4>
+              <div class="drawer" id="drawerpurpose" style="text-align:center;">
+                <p>What is the purpose of this grant request and proposal?</p>
+              </div>
+              <div class="field">
+                <%= f.text_area :purpose, class: [:textarea, :input], rows: 5 %>
+              </div>
+
+              <h4 class="centalign"><a href="#"  class="toggle" gumby-trigger="#drawermethods">Methods</a></h4>
+              <div class="drawer" id="drawermethods" style="text-align:center;">
+                <p>What methods will you employ in the implementation of this plan? Basically, what is your implementation strategy?</p>
+              </div>
+              <div class="field">
+                <%= f.text_area :methods, class: [:textarea, :input], rows: 5 %>
+              </div>
+
+              <h4 class="centalign"><a href="#"  class="toggle" gumby-trigger="#drawerbackground">Teacher Background</a></h4>
+              <div class="drawer" id="drawerbackground" style="text-align:center;">
+                <p>What is your own background? Please explain any relevant details to yourself and the project.</p>
+              </div>
+              <div class="field">
+                <%= f.text_area :background, class: [:textarea, :input], rows: 5 %>
+              </div>
+ 
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+<!--DETAILS-->
+  <div class="tab-content">
+    <div class="row">
+      <div class="twelve columns">
+        <br>
+        
           <div class="row">
             <div class="eight columns centered">
 
@@ -284,47 +322,7 @@
       </div>
     </div>
   </div>
-  
-  <!--METHODS-->
-  <div class="tab-content">
-    <div class="row">
-      <div class="twelve columns">
-        <br>
-
-          <div class="row">
-            <div class="eight columns centered">
-
-              <h4 class="centalign"><a href="#"  class="toggle" gumby-trigger="#drawerpurpose">Purpose</a></h4>
-              <div class="drawer" id="drawerpurpose" style="text-align:center;">
-                <p>What is the purpose of this grant request and proposal?</p>
-              </div>
-              <div class="field">
-                <%= f.text_area :purpose, class: [:textarea, :input], rows: 5 %>
-              </div>
-
-              <h4 class="centalign"><a href="#"  class="toggle" gumby-trigger="#drawermethods">Methods</a></h4>
-              <div class="drawer" id="drawermethods" style="text-align:center;">
-                <p>What methods will you employ in the implementation of this plan? Basically, what is your implementation strategy?</p>
-              </div>
-              <div class="field">
-                <%= f.text_area :methods, class: [:textarea, :input], rows: 5 %>
-              </div>
-
-              <h4 class="centalign"><a href="#"  class="toggle" gumby-trigger="#drawerbackground">Teacher Background</a></h4>
-              <div class="drawer" id="drawerbackground" style="text-align:center;">
-                <p>What is your own background? Please explain any relevant details to yourself and the project.</p>
-              </div>
-              <div class="field">
-                <%= f.text_area :background, class: [:textarea, :input], rows: 5 %>
-              </div>
-
-            </div>
-          </div>
-      </div>
-    </div>
-  </div>
-  
-  <!--Finalize-->
+<!--Finalize-->
   <div class="tab-content">
     <div class="row">
       <div class="twelve columns">
