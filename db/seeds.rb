@@ -1,10 +1,11 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+# Seed data for the app
+
+def make_schools
+  School.create! name: 'Berkeley High School'
+  School.create! name: 'Washington Elementary School'
+  School.create! name: 'Maybeck High School'
+  School.create! name: 'Whitney High School'
+end
 
 # Create Teachers (we refer to them as Recipients)
 def make_users
@@ -26,7 +27,8 @@ def make_users
                       email: "bpsfteacher#{n}@gmail.com",
                       password: "password",
                       password_confirmation: "password",
-                      approved: true
+                      approved: true,
+                      school_id: n
     User.create! first_name: "Parent #{n}",
                  last_name: "Dev",
                  email: "bpsfparent#{n}@gmail.com",
@@ -58,23 +60,18 @@ def make_profiles
   end
 end
 
-def make_schools
-  School.create! name: 'Berkeley High School'
-  School.create! name: 'Washington Elementary School'
-  School.create! name: 'Maybeck High School'
-  School.create! name: 'Whitney High School'
-end
-
 def make_grants
   t1 = Recipient.find_by_first_name 'Teacher 1'
   t2 = Recipient.find_by_first_name 'Teacher 2'
   1.upto(3) do |n|
     t1.draft_grants.create! title: "Draft #{n}",
                             summary: Faker::Lorem.sentence,
-                            subject_areas: ["Other"]
+                            subject_areas: ["Other"],
+                            school_id: t1.school_id
     t2.draft_grants.create! title: "Draft #{n + 3}",
                             summary: Faker::Lorem.sentence,
-                            subject_areas: ["Other"]
+                            subject_areas: ["Other"],
+                            school_id: t2.school_id
   end
   crowdfunding_grants = []
   1.upto(4) do |n|
@@ -83,7 +80,7 @@ def make_grants
                                            subject_areas: ["Arts / Music", "Multi-subject"],
                                            grade_level: "#{n + 2}",
                                            duration: "#{n} weeks",
-                                           school_id: n,
+                                           school_id: t1.school_id,
                                            num_classes: n,
                                            num_students: n * 10,
                                            total_budget: n * 300,
@@ -101,7 +98,7 @@ def make_grants
                                            subject_areas: ["Mathematics"],
                                            grade_level: "#{n + 2}",
                                            duration: "#{n} weeks",
-                                           school_id: n,
+                                           school_id: t2.school_id,
                                            num_classes: n,
                                            num_students: n * 10,
                                            total_budget: n * 300,
@@ -130,8 +127,8 @@ def make_preapproved
   g.preapprove!
 end
 
+make_schools
 make_users
 make_profiles
-make_schools
 make_grants
 make_preapproved
