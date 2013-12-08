@@ -5,8 +5,10 @@
         <div class="ten columns centered centalign">
           <% if super_user? %>
             <h4>Current Rating</h4>
-            <%= ratings_for @grant, :static %>
-            Average: <%= @grant.rating_average %>
+            <%= ratings_for @grant, show_user_rating: true %>
+            <div class="grant-avg">
+              Average: <%= @grant.rating_average %>
+            </div>
             <h4>Change Status</h4>
             <div id="grantstatus">Current Status: <%= @grant.state.titleize %></div><br>
             <%= render 'toggle_links', grant: @grant %>
@@ -16,7 +18,7 @@
                 <%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_grant_path %>
               </span>
             </h4>
-          <% elsif admin_user? %>
+          <% else %>
             <h4>Rate Grant</h4>
             <%= ratings_for @grant, show_user_rating: true %>
             <h4>Status</h4>
