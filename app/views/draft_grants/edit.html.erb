@@ -17,6 +17,7 @@
         <h2 class="centalign">
           Editing <%= @draft_grant.title %>
         </h2>
+        <div class="centalign">(*) marked fields are required.</div>
 
       </div>
 
@@ -39,7 +40,7 @@
       <div class="twelve columns centalign">
         <ul>
           <li class="field">
-            <h4><a href="#"  class="toggle" gumby-trigger="#drawertitle">Title</a></h4>
+            <h4><a href="#"  class="toggle" gumby-trigger="#drawertitle">*Title</a></h4>
             <div class="drawer" id="drawertitle" style="text-align:center;">
               <p>Name your grant. A good title summarizes the essence of the application. </p>
             </div>
@@ -47,7 +48,7 @@
           </li>
 
           <li class="field">
-            <h4><a href="#"  class="toggle" gumby-trigger="#drawersubject">Subject Areas</a></h4>
+            <h4><a href="#"  class="toggle" gumby-trigger="#drawersubject">*Subject Areas</a></h4>
             <div class="drawer" id="drawersubject" style="text-align:center;">
               <p>Select all subjects that would apply to your application.</p>
             </div>
@@ -56,7 +57,7 @@
 
 
           <li class="field">
-            <h4><a href="#"  class="toggle" gumby-trigger="#drawersummary">Summary</a></h4>
+            <h4><a href="#"  class="toggle" gumby-trigger="#drawersummary">*Summary</a></h4>
             <div class="drawer" id="drawersummary" style="text-align:center;">
               <p>Give a brief explanation explanation of your application but limit it to ??????255?????? characters</p>
             </div>
@@ -126,7 +127,7 @@
 
               <div class="row">
                 <div class="nine columns">
-                  <h4><a href="#"  class="toggle" gumby-trigger="#drawergradelevel">Grade Level</a></h4>
+                  <h4><a href="#"  class="toggle" gumby-trigger="#drawergradelevel">*Grade Level</a></h4>
                   <div class="drawer" id="drawergradelevel" style="text-align:center;">
                     <p>List the grade levels that will be affected. Please separate different grades by commas.</p>
                   </div>
@@ -142,7 +143,7 @@
 
               <div class="row">
                 <div class="nine columns">
-                  <h4><a href="#"  class="toggle" gumby-trigger="#drawerduration">Duration</a></h4>
+                  <h4><a href="#"  class="toggle" gumby-trigger="#drawerduration">*Duration</a></h4>
                   <div class="drawer" id="drawerduration" style="text-align:center;">
                     <p>How long will the proposed activity last? Please entire a number followed by a time period. If this is not applicable then please put 'n/a'. </p>
                   </div>
@@ -158,7 +159,7 @@
 
               <div class="row">
                 <div class="ten columns">
-                  <h4><a href="#"  class="toggle" gumby-trigger="#drawernumclasses">Num. of Classes Affected</a></h4>
+                  <h4><a href="#"  class="toggle" gumby-trigger="#drawernumclasses">*Num. of Classes Affected</a></h4>
                   <div class="drawer" id="drawernumclasses" style="text-align:center;">
                     <p>How many different classes will be affected by the application?</p>
                   </div>
@@ -174,7 +175,7 @@
 
               <div class="row">
                 <div class="ten columns">
-                  <h4><a href="#"  class="toggle" gumby-trigger="#drawernumstudents">Num. of Students Affected</a></h4>
+                  <h4><a href="#"  class="toggle" gumby-trigger="#drawernumstudents">*Num. of Students Affected</a></h4>
                   <div class="drawer" id="drawernumstudents" style="text-align:center;">
                     <p>How many students will be affected by the application?</p>
                   </div>
@@ -190,7 +191,7 @@
 
               <div class="row">
                 <div class="ten columns">
-                  <h4><a href="#"  class="toggle" gumby-trigger="#drawernumcollaborators">Num. of Collaborators</a></h4>
+                  <h4><a href="#"  class="toggle" gumby-trigger="#drawernumcollaborators">*Num. of Collaborators</a></h4>
                   <div class="drawer" id="drawernumcollaborators" style="text-align:center;">
                     <p>How many people will you collaborate on this application?</p>
                   </div>
@@ -219,7 +220,7 @@
       </div>
     </div>
   </div>
-  
+
   <!--BUDGET-->
   <div class="tab-content">
     <div class="row">
@@ -231,7 +232,7 @@
 
               <div class="row">
                 <div class="nine columns">
-                  <h4><a href="#"  class="toggle" gumby-trigger="#drawertotalbudget">Funding Goal</a></h4>
+                  <h4><a href="#"  class="toggle" gumby-trigger="#drawertotalbudget">*Funding Goal</a></h4>
                   <div class="drawer" id="drawertotalbudget" style="text-align:center;">
                     <p>How much total funds will be used for your proposed activity? This includes other sources in addition to the Schools Fund.</p>
                   </div>
@@ -246,7 +247,7 @@
                 </div>
               </div>
 
-              <h4 class="centalign"><a href="#"  class="toggle" gumby-trigger="#drawerbudgetdescription">Budget Description</a></h4>
+              <h4 class="centalign"><a href="#"  class="toggle" gumby-trigger="#drawerbudgetdescription">*Budget Description</a></h4>
               <div class="drawer" id="drawerbudgetdescription" style="text-align:center;">
                 <p>Explain in specific detail how the budget will be allotted and used.</p>
               </div>
@@ -256,7 +257,7 @@
 
               <div class="row">
                 <div class="nine columns">
-                  <h4><a href="#"  class="toggle" gumby-trigger="#drawerfundsrequested">Total Funds Requested</a></h4>
+                  <h4><a href="#"  class="toggle" gumby-trigger="#drawerfundsrequested">*Total Funds Requested</a></h4>
                   <div class="drawer" id="drawerfundsrequested" style="text-align:center;">
                     <p>How much total funds are you requesting from the Schools Fund?</p>
                   </div>
@@ -271,7 +272,7 @@
                 </div>
               </div>
 
-              <h4 class="centalign"><a href="#"  class="toggle" gumby-trigger="#drawerfundswillpayfor">Use of Funds</a></h4>
+              <h4 class="centalign"><a href="#"  class="toggle" gumby-trigger="#drawerfundswillpayfor">*Use of Funds</a></h4>
               <div class="drawer" id="drawerfundswillpayfor" style="text-align:center;">
                 <p>Explain in specific detail what the funds will be used to pay for.</p>
               </div>
@@ -284,7 +285,7 @@
       </div>
     </div>
   </div>
-  
+
   <!--METHODS-->
   <div class="tab-content">
     <div class="row">
@@ -294,7 +295,7 @@
           <div class="row">
             <div class="eight columns centered">
 
-              <h4 class="centalign"><a href="#"  class="toggle" gumby-trigger="#drawerpurpose">Purpose</a></h4>
+              <h4 class="centalign"><a href="#"  class="toggle" gumby-trigger="#drawerpurpose">*Purpose</a></h4>
               <div class="drawer" id="drawerpurpose" style="text-align:center;">
                 <p>What is the purpose of this grant request and proposal?</p>
               </div>
@@ -302,7 +303,7 @@
                 <%= f.text_area :purpose, class: [:textarea, :input], rows: 5 %>
               </div>
 
-              <h4 class="centalign"><a href="#"  class="toggle" gumby-trigger="#drawermethods">Methods</a></h4>
+              <h4 class="centalign"><a href="#"  class="toggle" gumby-trigger="#drawermethods">*Methods</a></h4>
               <div class="drawer" id="drawermethods" style="text-align:center;">
                 <p>What methods will you employ in the implementation of this plan? Basically, what is your implementation strategy?</p>
               </div>
@@ -310,7 +311,7 @@
                 <%= f.text_area :methods, class: [:textarea, :input], rows: 5 %>
               </div>
 
-              <h4 class="centalign"><a href="#"  class="toggle" gumby-trigger="#drawerbackground">Teacher Background</a></h4>
+              <h4 class="centalign"><a href="#"  class="toggle" gumby-trigger="#drawerbackground">*Teacher Background</a></h4>
               <div class="drawer" id="drawerbackground" style="text-align:center;">
                 <p>What is your own background? Please explain any relevant details to yourself and the project.</p>
               </div>
@@ -323,7 +324,7 @@
       </div>
     </div>
   </div>
-  
+
   <!--Finalize-->
   <div class="tab-content">
     <div class="row">
