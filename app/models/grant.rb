@@ -33,7 +33,7 @@
 require 'textacular/searchable'
 class Grant < ActiveRecord::Base
   extend Enumerize
-  SUBJECTS = ['After School Program', 'Arts / Music', 'Arts / Dance', 'Arts / Drama', 
+  SUBJECTS = ['After School Program', 'Arts / Music', 'Arts / Dance', 'Arts / Drama',
     'Arts / Visual', 'Community Service', 'Computer / Media', 'Computer Science',
     'Foreign Language / ELL / TWI','Gardening','History & Social Studies / Multi-culturalism',
     'Mathematics','Multi-subject','Nutrition','Physical Education',
@@ -76,6 +76,7 @@ class Grant < ActiveRecord::Base
   scope :pending_grants,      -> { with_state :pending }
   scope :complete_grants,     -> { with_state :complete }
   scope :crowdfunding_grants, -> { with_state :crowdfunding }
+  scope :newest, limit: 5, order: 'created_at DESC'
 
   state_machine initial: :pending do
 
@@ -171,6 +172,17 @@ class Grant < ActiveRecord::Base
 
   def has_comments?
     !comments.blank?
+  end
+
+  def self.close_to_goal
+    close = []
+    Grant.all.each do |grant|
+      cf = grant.crowdfunder
+      if cf.pledged_total >= cf.goal * 0.9
+        close << grant
+      end
+    end
+    close
   end
 
   private
