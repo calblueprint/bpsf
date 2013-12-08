@@ -32,6 +32,7 @@
 
 require 'textacular/searchable'
 class Grant < ActiveRecord::Base
+  has_paper_trail :only => [:state]
   extend Enumerize
   SUBJECTS = ['After School Program', 'Arts / Music', 'Arts / Dance', 'Arts / Drama', 
     'Arts / Visual', 'Community Service', 'Computer / Media', 'Computer Science',
@@ -75,13 +76,16 @@ class Grant < ActiveRecord::Base
 
   scope :pending_grants,      -> { with_state :pending }
   scope :complete_grants,     -> { with_state :complete }
+  scope :accepted_grants,     -> { (with_state :complete) | (with_state :crowdfunding) | (with_state :crowdfund_pending) }
+  scope :rejected_grants,     -> { with_state :rejected }
   scope :crowdfunding_grants, -> { with_state :crowdfunding }
+  scope :crowdpending_grants, -> { with_state :crowdfund_pending }
 
   state_machine initial: :pending do
 
     after_transition :on => :fund, :do => :process_payments
     after_transition [:pending, :crowdfund_pending] => :rejected, :do => :grant_rejected
-    after_transition :crowdfunding => :complete, :do => [:admin_crowdsuccess,:grant_funded]
+    after_transition :crowdfunding => :complete, :do => [:crowdsuccess,:grant_funded]
     after_transition [:pending, :crowdfund_pending] => :complete, :do => :grant_funded
     after_transition :pending => :crowdfunding, :do => :grant_crowdfunding
     after_transition :crowdfunding => :crowdfund_pending, :do => :crowdfailed
@@ -107,12 +111,16 @@ class Grant < ActiveRecord::Base
     end
   end
 
+  def prev_state
+    return self.previous_version.state
+  end
+
   # Grant state transition mailer callbacks
   def grant_rejected
     GrantRejectedJob.new.async.perform(self)
   end
 
-  def admin_crowdsuccess
+  def crowdsuccess
     @admins = Admin.all + SuperUser.all
     @admins.each do |admin|
       AdminCrowdsuccessJob.new.async.perform(self, admin)
