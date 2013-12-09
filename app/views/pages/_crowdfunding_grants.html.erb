@@ -14,14 +14,14 @@
       <span class="darken">Description:</span> <span class="destext"><%= grant.summary %></span>
     </p>
     <div class="progress">
-      <span style="width: 50%" class="progressbar" data-goal="<%= grant.requested_funds %>" data-current="<%= grant.crowdfunder.pledged_total %>">50%</span>
+      <span style="width: 50%" class="progressbar" data-goal="<%= grant.crowdfunder_goal %>" data-current="<%= grant.crowdfunder.pledged_total %>">50%</span>
     </div>
     <div class="gcdiv">
       <span class="gctext">Current: </span>
       <span class="currentnum">$<%= grant.crowdfunder.pledged_total %></span>
       &emsp;
       <span class="gctext">Goal: </span>
-      <span class="goalnum">$<%= grant.requested_funds %></span>
+      <span class="goalnum">$<%= grant.crowdfunder_goal %></span>
     </div>
   </div>
 </div>
