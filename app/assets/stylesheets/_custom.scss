@@ -356,8 +356,21 @@ $imglargereplacementhgt: 250px;
 	overflow:hidden;
 	text-align: center;
 	img {
-		max-width:100%;
-		max-height: 100%;
+		min-width:100%;
+		min-height: 100%;
+		width: auto;
+		height: auto;
+	}
+}
+
+.coverholder{
+	width:100%;
+	max-height:470px;
+	overflow:hidden;
+	text-align: center;
+	img {
+		min-width:100%;
+		min-height: 100%;
 		width: auto;
 		height: auto;
 	}

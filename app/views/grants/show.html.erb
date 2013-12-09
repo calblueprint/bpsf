@@ -57,7 +57,9 @@
 
     <div class="row" align="center">
       <% if @grant.image_url %>
-        <%= image_tag @grant.image_url.to_s %>
+        <div class="coverholder">
+          <%= image_tag @grant.image_url.to_s %>
+        </div>
       <% else %>
         <div class="imgreplacementlrg"><div class="repson"><%= @grant.title %></div></div>
       <% end %>
