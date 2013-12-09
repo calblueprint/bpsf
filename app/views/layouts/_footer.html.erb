@@ -33,9 +33,8 @@ $('span.progressbar').each(function(value) {
     width = width + 1
   }
   var text = width + "%";
-  if (width<12){width=10;}
+  if (width<12 && width!=0){width=10;}
   if (width>100){width=100;}
-  if (width=0){width=0;}
   var wideness = "width:" + width + "%";
   $(this).text(text);
   $(this).attr('style', wideness);

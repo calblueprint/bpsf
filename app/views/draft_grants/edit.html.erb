@@ -20,14 +20,14 @@
 
       </div>
 
-<section class="tabs">
+<section class="tabs" id="tabs">
       <div class="ten columns centered centalign">
         <ul class="tab-nav">
-          <li class="active"><a href="#">General</a></li>
-          <li><a href="#">Logistics</a></li>
-          <li><a href="#">Details</a></li>
-          <li><a href="#">Budget</a></li>
-          <li><a href="#">Finalize</a></li>
+          <li class="active" id="general" onClick="setCookie('drafttab',this.id,1)"><a href="#">General</a></li>
+          <li id="logistics" onClick="setCookie('drafttab',this.id,1)"><a href="#">Logistics</a></li>
+          <li id="details" onClick="setCookie('drafttab',this.id,1)"><a href="#">Details</a></li>
+          <li id="budget" onClick="setCookie('drafttab',this.id,1)"><a href="#">Budget</a></li>
+          <li id="finalize" onClick="setCookie('drafttab',this.id,1)"><a href="#">Finalize</a></li>
         </ul>
       </div>
 <br>
@@ -311,9 +311,9 @@
 
               <h4 class="centalign"><a href="#"  class="toggle" gumby-trigger="#drawerfundswillpayfor">*Use of Funds</a></h4>
               <div class="drawer" id="drawerfundswillpayfor" style="text-align:center;">
-                <p>Explain in specific detail what the funds will be used to pay for.</p>
+                <p>Choose how the funds will be spent.</p>
               </div>
-              <div class="field">
+              <div class="field centalign">
                 <div class="picker">
                   <%= f.collection_select :funds_will_pay_for, DraftGrant::FUNDS, :to_s, :to_s, prompt: 'Funds will be paying for...' %>
                 </div>
@@ -358,3 +358,20 @@
     </div>
   </div>
 </div>
+
+<script>
+$(document).ready(function(){
+    var prevtab=getCookie("drafttab");
+      if (prevtab!=null && prevtab!="")
+      {
+      var $tabs = $('#tabs')
+      $target = $tabs.find('.tab-nav li#'+prevtab);
+      // if target exists trigger the set event
+      if($target.length) {
+          $tabs.trigger('gumby.set', $target.index());
+
+        }
+      }
+
+  });
+</script>

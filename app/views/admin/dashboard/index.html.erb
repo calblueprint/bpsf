@@ -7,12 +7,12 @@
           <div class="row">
             <div class="twelve columns centered centalign">
               <ul class="tab-nav">
-                  <li id="grants" onClick="setCookie('tabval',this.id,365)"><a href="#">Grants</a></li>
-                  <li id="donors" onClick="setCookie('tabval',this.id,365)"><a href="#">Donors</a></li>
-                  <li id="recipients" onClick="setCookie('tabval',this.id,365)"><a href="#">Recipients</a></li>
-                  <li id="preapproved" onClick="setCookie('tabval',this.id,365)"><a href="#">Preapproved Grants</a></li>
-                  <li id="pending" onClick="setCookie('tabval',this.id,365)"><a href="#">Pending Users</a></li>
-                  <li id="distributions" onClick="setCookie('tabval',this.id,365)"><a href="#">Data Distributions</a></li>
+                  <li id="grants" onClick="setCookie('tabval',this.id,1)"><a href="#">Grants</a></li>
+                  <li id="donors" onClick="setCookie('tabval',this.id,1)"><a href="#">Donors</a></li>
+                  <li id="recipients" onClick="setCookie('tabval',this.id,1)"><a href="#">Recipients</a></li>
+                  <li id="preapproved" onClick="setCookie('tabval',this.id,1)"><a href="#">Preapproved Grants</a></li>
+                  <li id="pending" onClick="setCookie('tabval',this.id,1)"><a href="#">Pending Users</a></li>
+                  <li id="distributions" onClick="setCookie('tabval',this.id,1)"><a href="#">Data Distributions</a></li>
               </ul>
             </div>
           </div>
@@ -30,6 +30,7 @@
               </table>
             </div>
             <div class="tab-content">
+              <%= render 'donated' %>
               <table>
                 <thead>
                   <tr>
@@ -38,12 +39,12 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <%= render 'donated' %>
                   <%= render partial: 'users', collection: @donors, as: :user %>
                 </tbody>
               </table>
             </div>
             <div class="tab-content">
+              <%= render 'school' %>
               <table>
                 <thead>
                   <tr>
@@ -52,7 +53,6 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <%= render 'school' %>
                   <%= render partial: 'users', collection: @recipients, as: :user %>
                 </tbody>
               </table>
