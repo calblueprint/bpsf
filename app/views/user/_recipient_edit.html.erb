@@ -4,6 +4,7 @@
 <div class="row">
   <div class="twelve columns">
     <%= form_for user, as: :user, url: user_path(user) do |f| %>
+      <%= render 'shared/errors', object: f.object %>
       <div class="field">
         <%= f.label :first_name %>
         <%= f.text_field :first_name, class: :input %>
