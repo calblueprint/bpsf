@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="twelve columns">
+    <span class="category pull_left">School:&emsp;</span>
+    <li class="field metro inlined">
+      <div class="picker">
+        <%= form_tag(:action => :index, :id => 'filter_school') do %>
+          <%= select_tag "school", options_for_select(School.pluck(:name).unshift('All'), params[:school]), :onchange => "this.form.submit()" %>
+        <% end %>
+      </div>
+    </li>
+  </div>
+</div>
