@@ -32,7 +32,7 @@
 
 class DraftGrant < ActiveRecord::Base
   extend Enumerize
-  SUBJECTS = ['After School Program', 'Arts / Music', 'Arts / Dance', 'Arts / Drama', 
+  SUBJECTS = ['After School Program', 'Arts / Music', 'Arts / Dance', 'Arts / Drama',
     'Arts / Visual', 'Community Service', 'Computer / Media', 'Computer Science',
     'Foreign Language / ELL / TWI','Gardening','History & Social Studies / Multi-culturalism',
     'Mathematics','Multi-subject','Nutrition','Physical Education',
@@ -59,7 +59,7 @@ class DraftGrant < ActiveRecord::Base
   end
 
   validates :title, presence: true, length: { maximum: 40 }
-  validates :recipient_id, presence: true
+  validates :recipient_id, :school_id, presence: true
   validates :summary, length: { maximum: 200 }
   include GradeValidation
   validate :grade_format
