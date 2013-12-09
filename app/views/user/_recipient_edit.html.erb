@@ -29,6 +29,10 @@
           <%= ff.label :about, "About" %>
           <%= ff.text_area :about, class: [:textarea, :input], rows: 3 %>
         </div>
+        <div class="field">
+          <%= ff.label :image_url, "Profile Image" %>
+          <%= ff.file_field :image_url %>
+        </div>
       <% end %>
       <div class="medium primary btn pull_right">
         <%= f.submit "Save!" %>
