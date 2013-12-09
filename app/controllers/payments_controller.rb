@@ -5,9 +5,12 @@ class PaymentsController < ApplicationController
     @grant = Grant.find params[:grant_id]
     deny_access url: url_for(@grant) if !anyone_signed_in?
     @payment = Payment.make_payment! params[:amount], @grant, current_user
+    @grant.reload
     create_customer_if_new_donor!
-
-    redirect_to root_url, notice: "Donation processed!"
+    respond_to do |format|
+      format.html { redirect_to @grant }
+      format.js
+    end
   end
 
   def destroy

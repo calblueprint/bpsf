@@ -1,0 +1,7 @@
+$('#confirmation-modal').addClass('active');
+$('#payment-modal').removeClass('active');
+$('#payment-amount').html("<%= @payment.amount %>");
+$('.progressbar').html("<%= @grant.crowdfunder_progress %>");
+$('.progressboar').attr('data-current', <%= @grant.crowdfunder_pledged_total + @payment.amount %>);
+$('.currentnum').html('$<%= @grant.crowdfunder_pledged_total + @payment.amount %>');
+$("input[type=submit]").attr("disabled", false);

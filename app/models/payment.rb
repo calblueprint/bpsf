@@ -23,6 +23,7 @@ class Payment < ActiveRecord::Base
     payment.save!
     payment.crowdfund.add_payment payment.amount
     UserPledgeJob.new.async.perform(current_user,grant)
+    payment
   end
 
   def dollars_amount

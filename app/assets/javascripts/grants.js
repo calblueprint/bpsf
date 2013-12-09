@@ -24,6 +24,11 @@ $(document).ready(function() {
 		$("#crowdfund-form").removeClass("active");
 	});
 
+	$(".close-confirmation-modal").click(function() {
+		$("#confirmation-form").removeClass("active");
+		$("#payment-form").removeClass("active");
+	});
+
 	$(document).keyup(function(e) {
 		if (e.keyCode == 27) {
 			if ($("#crowdfund-form").hasClass("active")) {
@@ -31,6 +36,9 @@ $(document).ready(function() {
 			}
 			if ($("#payment-modal").hasClass("active")) {
 				$("#payment-modal").removeClass("active");
+			}
+			if ($("#confirmation-modal").hasClass("active")) {
+				$("#confirmation-modal").removeClass("active");
 			}
 		}
 	});
