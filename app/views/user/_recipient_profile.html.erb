@@ -43,3 +43,17 @@
     <%= profile.address %>, <%= profile.city %> <%= profile.zipcode %>
   <% end %>
 </div>
+
+<div class="row">
+  <% if profile.work_phone %>
+    <h5>Work Phone</h5>
+    <%= profile.work_phone %>
+  <% end %>
+</div>
+
+<div class="row">
+  <% if profile.home_phone %>
+    <h5>Home Phone</h5>
+    <%= profile.home_phone %>
+  <% end %>
+</div>
