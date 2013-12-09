@@ -119,9 +119,9 @@
     <% if !@grant.video.blank? %>
     <div class="row">
       <div class="ten columns centered">
-        <div class="video-container">
+        <article class="youtube video">
           <iframe src= "http://www.youtube.com/embed/<%= parse_embed(@grant) %>"></iframe>
-        </div>
+        </article>
       </div>
     </div>
     <% end %>
