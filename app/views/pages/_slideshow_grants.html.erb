@@ -5,9 +5,9 @@
       <h3><%= grant.title %></h3>
     </div>
     <div class="cardcontent">
-      <p>Director: <%= grant.recipient.name %><br>
-      School: <%= grant.school.name %><br>
-      Description: <%= grant.summary %></p>
+      <p><span class="darken">Director:</span> <%= grant.recipient.name %><br>
+      <span class="darken">School:</span> <%= grant.school.name %><br>
+      <span class="darken">Description:</span> <%= grant.summary %></p>
       <div class="progress">
         <span style="width: <%= grant.crowdfunder.progress %>"><%= grant.crowdfunder.progress %></span>
       </div>
