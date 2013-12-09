@@ -46,6 +46,8 @@ BPSF::Application.routes.draw do
 
   namespace :admin do
     get '', to: 'dashboard#index', as: :dashboard
+    post '', to: 'dashboard#index', as: :filter_school
+    post '', to: 'dashboard#index', as: :filter_donated
   end
 
   post 'crowdfund/create'
