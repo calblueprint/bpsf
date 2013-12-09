@@ -30,6 +30,7 @@
               </table>
             </div>
             <div class="tab-content">
+              <%= render 'donated' %>
               <table>
                 <thead>
                   <tr>
@@ -38,12 +39,12 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <%= render 'donated' %>
                   <%= render partial: 'users', collection: @donors, as: :user %>
                 </tbody>
               </table>
             </div>
             <div class="tab-content">
+              <%= render 'school' %>
               <table>
                 <thead>
                   <tr>
@@ -52,7 +53,6 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <%= render 'school' %>
                   <%= render partial: 'users', collection: @recipients, as: :user %>
                 </tbody>
               </table>
