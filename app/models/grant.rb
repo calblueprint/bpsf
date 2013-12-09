@@ -81,6 +81,8 @@ class Grant < ActiveRecord::Base
   validates :collaborators, length: { maximum: 1200 },
             presence: true, if: 'n_collaborators && n_collaborators > 0'
 
+  mount_uploader :image_url, ImageUploader
+
   scope :pending_grants,      -> { with_state :pending }
   scope :complete_grants,     -> { with_state :complete }
   scope :accepted_grants,     -> { (with_state :complete) | (with_state :crowdfunding) | (with_state :crowdfund_pending) }
