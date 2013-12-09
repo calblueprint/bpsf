@@ -2,11 +2,13 @@
   <div class="cardtitle">
     <h3><%= link_to grant.title, grant %></h3>
   </div>
+  <div class="imgholder">
   <% if grant.image_url %>
     <%= image_tag grant.image_url.to_s %>
   <% else %>
     <%= image_tag "/assets/default/Other.jpg" %>
   <% end %>
+</div>
   <div class="cardcontent">
     <p class="cardtext">
       <span class="darken">Director:</span> <%= grant.recipient.first_name + ' ' + grant.recipient.last_name %> <br>

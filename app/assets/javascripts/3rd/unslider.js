@@ -12,8 +12,8 @@
 
                 //  Set some options
                 _.o = {
-                        speed: 5000,     // animation speed, false for no transition (integer or boolean)
-                        delay: 30000,    // delay between slides, false for no autoplay (integer or boolean)
+                        speed: 500,     // animation speed, false for no transition (integer or boolean)
+                        delay: 10000,    // delay between slides, false for no autoplay (integer or boolean)
                         init: 0,        // init delay, false for no delay (integer or boolean)
                         pause: !f,      // pause on hover (boolean)
                         loop: !f,       // infinitely looping (boolean)
