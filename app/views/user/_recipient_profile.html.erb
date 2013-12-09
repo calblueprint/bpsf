@@ -7,7 +7,7 @@
 
 <div class="row">
   <% if profile.school_id %>
-    <h5 class="inlined">School:</h5><%= render :school, school: profile.school_id %> <br>
+    <h5 class="inlined">School: </h5><%= School.find(profile.school_id).name %> <br>
   <% end %>
 </div>
 
@@ -34,5 +34,12 @@
   <% if profile.about %>
   <h5>About</h5>
     <%= profile.about %>
+  <% end %>
+</div>
+
+<div class="row">
+  <% if profile.address %>
+    <h5>Address</h5>
+    <%= profile.address %>, <%= profile.city %> <%= profile.zipcode %>
   <% end %>
 </div>
