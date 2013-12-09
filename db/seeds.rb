@@ -119,7 +119,7 @@ def make_grants
     Crowdfund.create deadline: Time.now,
                      pledged_total: 0,
                      grant_id: grant.id,
-                     goal: "123"
+                     goal: grant.requested_funds
     grant.save!
   end
 end
