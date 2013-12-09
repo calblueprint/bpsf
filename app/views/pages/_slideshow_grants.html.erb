@@ -1,8 +1,8 @@
 
-  <li style="background-image:url(/assets/default/Other.jpg); background-size:cover;">
+  <li style="background-image:url(/assets/default/Other.jpg); background-size:cover;" onclick='window.location.href="<%= url_for grant %>"'>
   <div class="infocard slidecard">
     <div class="cardtitle">
-      <%= link_to grant do %><h3><%= grant.title %></h3><% end %>
+      <h3><%= grant.title %></h3>
     </div>
     <div class="cardcontent">
       <p><span class="darken">Director:</span> <%= grant.recipient.name %><br>
