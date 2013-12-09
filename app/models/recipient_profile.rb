@@ -15,8 +15,9 @@
 #
 
 class RecipientProfile < ActiveRecord::Base
-  attr_accessible :about, :image_url, :school_id, :recipient_id, :grade, :subject, :started_teaching
+  attr_accessible :about, :image_url, :school_id, :recipient_id, :grade, :subject, :started_teaching, :zipcode, :city, :address
   belongs_to :recipient
+
 
   def years_teaching
     Date.today.year - self.started_teaching.year
