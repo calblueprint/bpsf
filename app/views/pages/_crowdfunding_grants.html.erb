@@ -3,7 +3,7 @@
     <h3><%= link_to grant.title, grant %></h3>
   </div>
   <% if grant.image_url %>
-    <%= image_tag grant.image_url %>
+    <%= image_tag grant.image_url.to_s %>
   <% else %>
     <%= image_tag "/assets/default/Other.jpg" %>
   <% end %>
