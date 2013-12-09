@@ -12,11 +12,11 @@
         <span style="width: <%= grant.crowdfunder.progress %>"><%= grant.crowdfunder.progress %></span>
       </div>
       <div class="gcdiv">
+        <span class="gctext">Current: </span>
+        <span class="currentnum">$<%= grant.crowdfunder.pledged_total %></span>  
+        &emsp;      
         <span class="gctext">Goal: </span>
         <span class="goalnum">$<%= grant.crowdfunder.goal %></span>
-        &emsp;
-        <span class="gctext">Current: </span>
-        <span class="currentnum">$<%= grant.crowdfunder.pledged_total %></span>
       </div>
     </div>
   </div>
