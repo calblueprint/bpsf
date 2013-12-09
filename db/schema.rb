@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131207204629) do
+ActiveRecord::Schema.define(:version => 20131209103150) do
 
   create_table "admin_profiles", :force => true do |t|
     t.string   "about"
@@ -134,6 +134,11 @@ ActiveRecord::Schema.define(:version => 20131207204629) do
     t.datetime "started_teaching"
     t.string   "subject"
     t.string   "grade"
+    t.string   "address"
+    t.string   "city"
+    t.integer  "zipcode"
+    t.string   "work_phone"
+    t.string   "home_phone"
   end
 
   add_index "recipient_profiles", ["school_id"], :name => "index_recipient_profiles_on_school_id"
