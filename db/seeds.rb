@@ -94,7 +94,8 @@ def make_grants
                                            background: Faker::Lorem.paragraph,
                                            n_collaborators: n,
                                            collaborators: Faker::Lorem.paragraph,
-                                           comments: Faker::Lorem.paragraph)
+                                           comments: Faker::Lorem.paragraph,
+                                           image_url: "/assets/default/Art & Music.jpg")
     crowdfunding_grants << t2.grants.build(title: "Grant #{n + 4}",
                                            summary: Faker::Lorem.sentence,
                                            subject_areas: ["Mathematics"],
@@ -112,7 +113,8 @@ def make_grants
                                            background: Faker::Lorem.paragraph,
                                            n_collaborators: n,
                                            collaborators: Faker::Lorem.paragraph,
-                                           comments: Faker::Lorem.paragraph)
+                                           comments: Faker::Lorem.paragraph,
+                                           image_url: "/assets/default/Science & Math.jpg")
   end
   crowdfunding_grants.map do |grant|
     grant.crowdfund
