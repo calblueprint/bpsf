@@ -70,6 +70,10 @@ class Grant < ActiveRecord::Base
   include GradeValidation
   validates :grade_level, presence: true
   validate :grade_format
+  validate :duration, presence: true
+  validates :num_classes, :num_students, numericality: { only_integer: true }
+  validates :requested_funds, :total_budget, numericality: true
+  validates :budget_desc, :funds_will_pay_for, presence: true
   validates :purpose, :methods, :background,
             presence: true, length: { maximum: 1200 }
   validates :comments, length: { maximum: 1200 }
@@ -165,8 +169,8 @@ class Grant < ActiveRecord::Base
         UserCrowdsuccessJob.new.async.perform(user,self)
       end
     end
-  rescue Stripe::InvalidRequestError => err
-    logger.error "Stripe error: #{err.message}"
+    rescue Stripe::InvalidRequestError => err
+      logger.error "Stripe error: #{err.message}"
   end
 
   def preapprove!
@@ -187,7 +191,7 @@ class Grant < ActiveRecord::Base
 
   def self.close_to_goal
     close = []
-    Grant.all.each do |grant|
+    Grant.crowdfunding_grants.each do |grant|
       cf = grant.crowdfunder
       if cf.pledged_total >= cf.goal * 0.9
         close << grant
