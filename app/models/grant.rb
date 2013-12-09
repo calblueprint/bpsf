@@ -32,13 +32,18 @@
 
 require 'textacular/searchable'
 class Grant < ActiveRecord::Base
+  has_paper_trail :only => [:state]
   extend Enumerize
-  SUBJECTS = ['After School Program', 'Arts / Music', 'Arts / Dance', 'Arts / Drama', 
+  SUBJECTS = ['After School Program', 'Arts / Music', 'Arts / Dance', 'Arts / Drama',
     'Arts / Visual', 'Community Service', 'Computer / Media', 'Computer Science',
     'Foreign Language / ELL / TWI','Gardening','History & Social Studies / Multi-culturalism',
     'Mathematics','Multi-subject','Nutrition','Physical Education',
     'Professional Development','Reading & Writing / Communication','Science & Ecology',
     'Special Ed','Student / Family Support / Mental Health','Other']
+  FUNDS = ['Supplies','Books','Equipment','Technology / Media',
+    'Professional Guest (Consultant, Speaker, Artist, etc.)','Professional Development',
+    'Field Trips / Transportation','Assembly','Other']
+  enumerize :funds_will_pay_for, in: FUNDS
   serialize :subject_areas, Array
   enumerize :subject_areas, in: SUBJECTS, multiple: true, scope: true
 
@@ -61,27 +66,34 @@ class Grant < ActiveRecord::Base
 
   validates :title, presence: true, length: { maximum: 40 }
   validate :valid_subject_areas
-  validates_length_of :summary, within: 1..200, too_short: 'cannot be blank'
-  validates_length_of :duration, :budget_desc,
-                      minimum: 1, too_short: 'cannot be blank'
+  validates :summary, presence: true, length: { maximum: 200 }
   include GradeValidation
-  validates_presence_of :grade_level
+  validates :grade_level, presence: true
   validate :grade_format
-  validates_length_of :purpose, :methods, :background,
-                      within: 1..1200, too_short: 'cannot be blank'
-  validates_length_of :comments, within: 1..1200, allow_blank: true
-  validates_length_of :collaborators, within: 1..1200,
-                      too_short: 'cannot be blank', if: "n_collaborators && n_collaborators > 0"
+  validate :duration, presence: true
+  validates :num_classes, :num_students, numericality: { only_integer: true }
+  validates :requested_funds, :total_budget, numericality: true
+  validates :budget_desc, :funds_will_pay_for, presence: true
+  validates :purpose, :methods, :background,
+            presence: true, length: { maximum: 1200 }
+  validates :comments, length: { maximum: 1200 }
+  validates :n_collaborators, numericality: { greater_than_or_equal_to: 0 }
+  validates :collaborators, length: { maximum: 1200 },
+            presence: true, if: 'n_collaborators && n_collaborators > 0'
 
   scope :pending_grants,      -> { with_state :pending }
   scope :complete_grants,     -> { with_state :complete }
+  scope :accepted_grants,     -> { (with_state :complete) | (with_state :crowdfunding) | (with_state :crowdfund_pending) }
+  scope :rejected_grants,     -> { with_state :rejected }
   scope :crowdfunding_grants, -> { with_state :crowdfunding }
+  scope :crowdpending_grants, -> { with_state :crowdfund_pending }
+  scope :newest, limit: 5, order: 'created_at DESC'
 
   state_machine initial: :pending do
 
     after_transition :on => :fund, :do => :process_payments
     after_transition [:pending, :crowdfund_pending] => :rejected, :do => :grant_rejected
-    after_transition :crowdfunding => :complete, :do => [:admin_crowdsuccess,:grant_funded]
+    after_transition :crowdfunding => :complete, :do => [:crowdsuccess,:grant_funded]
     after_transition [:pending, :crowdfund_pending] => :complete, :do => :grant_funded
     after_transition :pending => :crowdfunding, :do => :grant_crowdfunding
     after_transition :crowdfunding => :crowdfund_pending, :do => :crowdfailed
@@ -107,12 +119,16 @@ class Grant < ActiveRecord::Base
     end
   end
 
+  def prev_state
+    return self.previous_version.state
+  end
+
   # Grant state transition mailer callbacks
   def grant_rejected
     GrantRejectedJob.new.async.perform(self)
   end
 
-  def admin_crowdsuccess
+  def crowdsuccess
     @admins = Admin.all + SuperUser.all
     @admins.each do |admin|
       AdminCrowdsuccessJob.new.async.perform(self, admin)
@@ -153,8 +169,8 @@ class Grant < ActiveRecord::Base
         UserCrowdsuccessJob.new.async.perform(user,self)
       end
     end
-  rescue Stripe::InvalidRequestError => err
-    logger.error "Stripe error: #{err.message}"
+    rescue Stripe::InvalidRequestError => err
+      logger.error "Stripe error: #{err.message}"
   end
 
   def preapprove!
@@ -171,6 +187,17 @@ class Grant < ActiveRecord::Base
 
   def has_comments?
     !comments.blank?
+  end
+
+  def self.close_to_goal
+    close = []
+    Grant.crowdfunding_grants.each do |grant|
+      cf = grant.crowdfunder
+      if cf.pledged_total >= cf.goal * 0.9
+        close << grant
+      end
+    end
+    close
   end
 
   private

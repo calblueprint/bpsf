@@ -8,8 +8,22 @@ class Admin::DashboardController < ApplicationController
       raise CanCan::AccessDenied.new
     end
     @grants = Grant.all.sort
+
     @donors = User.donors
+    donated = params[:donated]
+    if donated && donated == 'Donated'
+      @donors = User.donors.select {|user| user.payments.length > 0}
+    elsif donated && donated == 'Have Not Donated'
+      @donors = User.donors.select {|user| user.payments.length == 0}
+    end
+
     @recipients = Recipient.all
+    school = params[:school]
+    if school && school != 'All'
+      schoolId = School.find_by_name(school).id
+      @recipients = Recipient.select {|recip| recip.school_id == schoolId }
+    end
+    
     @preapproved = PreapprovedGrant.all
     @pending_users = User.where approved: false
   end

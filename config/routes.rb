@@ -23,7 +23,6 @@ BPSF::Application.routes.draw do
     get ':id/edit_logistics/',    to: 'draft_grants#edit_logistics',    as: :draft_edit_logistics
     get ':id/edit_budget/',       to: 'draft_grants#edit_budget',       as: :draft_edit_budget
     get ':id/edit_methods/',      to: 'draft_grants#edit_methods',      as: :draft_edit_methods
-    post ':id/submit/',           to: 'draft_grants#submit',            as: :draft_submit
   end
 
   resources :preapproved_grants, only: [:show, :destroy]
@@ -47,6 +46,8 @@ BPSF::Application.routes.draw do
 
   namespace :admin do
     get '', to: 'dashboard#index', as: :dashboard
+    post '', to: 'dashboard#index', as: :filter_school
+    post '', to: 'dashboard#index', as: :filter_donated
   end
 
   post 'crowdfund/create'

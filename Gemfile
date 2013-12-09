@@ -11,6 +11,7 @@ gem 'devise', '~> 3.1.1'
 gem 'will_paginate', '~> 3.0'
 gem 'stripe', '~> 1.8.7'
 gem 'state_machine', '~> 1.2.0'
+gem 'paper_trail', '>= 3.0.0.rc2'
 gem 'carrierwave', '~> 0.9.0'
 gem 'fog', '~> 1.16.0'
 gem 'textacular', '~> 3.0', require: 'textacular/rails'
@@ -31,6 +32,7 @@ group :development do
   gem 'ruby-graphviz', '~> 1.0.9'
   gem 'metric_fu', '~> 4.4.4'
   gem 'better_errors', '~> 1.0.1'
+  gem 'binding_of_caller', '~> 0.7.2'
   gem 'bullet', '~> 4.7.1'
 end
 

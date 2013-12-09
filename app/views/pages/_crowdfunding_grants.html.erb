@@ -9,20 +9,17 @@
   <% end %>
   <div class="cardcontent">
     <p class="cardtext">
-      Director: <%= grant.recipient.first_name + ' ' + grant.recipient.last_name %> <br>
-      School: <span class="schooltext"><%= grant.school_name %></span> <br>
-      Description: <span class="destext"><%= grant.summary %></span>
+      <span class="darken">Director:</span> <%= grant.recipient.first_name + ' ' + grant.recipient.last_name %> <br>
+      <span class="darken">School:</span> <span class="schooltext"><%= grant.school_name %></span> <br>
+      <span class="darken">Description:</span> <span class="destext"><%= grant.summary %></span>
     </p>
     <div class="progress">
-      <!-- Also can't really do - no current payment status for grants -->
-      <span style="width: 50%" class="progressbar" data-goal="<%= grant.requested_funds %>" data-current="224">50%</span>
+      <span style="width: 50%" class="progressbar" data-goal="<%= grant.requested_funds %>" data-current="<%= grant.crowdfunder.pledged_total %>">50%</span>
     </div>
     <div class="gcdiv">
       <span class="gctext">Current: </span>
-      <!-- This too -->
-      <span class="currentnum">$224</span>
+      <span class="currentnum">$<%= grant.crowdfunder.pledged_total %></span>
       &emsp;
-
       <span class="gctext">Goal: </span>
       <span class="goalnum">$<%= grant.requested_funds %></span>
     </div>
