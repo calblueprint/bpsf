@@ -7,6 +7,18 @@ class UserMailer < ActionMailer::Base
     mail(to: @user.email, subject: 'Thanks for registering with the Schools Fund!')
   end
 
+  def welcome_admin(user)
+    @user = user
+    @url = 'http://bpsf-staging.herokuapp.com/users/sign_in'
+    mail(to: @user.email, subject: 'Thanks for registering with the Schools Fund!')
+  end
+
+  def approve_admin(user)
+    @user = user
+    @url = 'http://bpsf-staging.herokuapp.com/users/sign_in'
+    mail(to: @user.email, subject: 'Your account with the Schools Fund has been approved!')
+  end
+
   def user_pledge(user,grant)
     @user = user
     @grant = grant
