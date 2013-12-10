@@ -68,9 +68,16 @@ end
 def make_profiles
   Recipient.all.each do |recipient|
     profile = RecipientProfile.create! recipient_id: recipient.id,
-                                       about: Faker::Lorem.sentence,
+                                       school_id: recipient.school_id,
+                                       about: Faker::Lorem.characters,
+                                       started_teaching: 2.years.ago,
                                        subject: Faker::Lorem.sentence,
-                                       grade: Faker::Lorem.sentence
+                                       grade: Faker::Lorem.sentence,
+                                       address: Faker::Address.street_address,
+                                       city: 'Berkeley',
+                                       zipcode: 94720,
+                                       work_phone: Faker::PhoneNumber.phone_number,
+                                       home_phone: Faker::PhoneNumber.phone_number
     recipient.profile = profile
   end
   Admin.all.each do |admin|
