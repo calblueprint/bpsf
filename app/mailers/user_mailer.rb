@@ -88,4 +88,18 @@ class UserMailer < ActionMailer::Base
     mail(to: @admin.email, subject: 'A grant has failed to reach its crowdfund goal.')
   end
 
+  def admin_newuser(user,admin)
+    @user = user
+    @admin = admin
+    @url = 'http://bpsf-staging.herokuapp.com/user/' + (@user.id).to_s
+    mail(to: @admin.email, subject: 'A new user has registered an account!')
+  end
+
+  def admin_newadmin(user,admin)
+    @user = user
+    @admin = admin
+    @url = 'http://bpsf-staging.herokuapp.com/admin'
+    mail(to: @admin.email, subject: 'A new administrator account needs your approval')
+  end
+
 end
