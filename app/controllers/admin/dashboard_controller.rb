@@ -7,7 +7,7 @@ class Admin::DashboardController < ApplicationController
     if !current_user.approved
       raise CanCan::AccessDenied.new
     end
-    @grants = Grant.all.sort
+    @grants = Grant.all.sort.paginate :page => params[:page], :per_page => 6
 
     @donors = User.donors
     donated = params[:donated]
@@ -16,6 +16,7 @@ class Admin::DashboardController < ApplicationController
     elsif donated && donated == 'Have Not Donated'
       @donors = User.donors.select {|user| user.payments.length == 0}
     end
+    @donors = @donors.paginate :page => params[:page], :per_page => 6
 
     @recipients = Recipient.all
     school = params[:school]
@@ -23,9 +24,11 @@ class Admin::DashboardController < ApplicationController
       schoolId = School.find_by_name(school).id
       @recipients = Recipient.select {|recip| recip.school_id == schoolId }
     end
+    @recipients = @recipients.paginate :page => params[:page], :per_page => 6
     
-    @preapproved = PreapprovedGrant.all
+    @preapproved = PreapprovedGrant.all.paginate :page => params[:page], :per_page => 6
     @pending_users = User.where approved: false
+    @pending_users = @pending_users.paginate :page => params[:page], :per_page => 6
   end
 
   def grant_event

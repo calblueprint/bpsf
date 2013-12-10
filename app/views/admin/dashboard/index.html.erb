@@ -28,6 +28,9 @@
                   <%= render partial: 'all_grants', collection: @grants, as: :grant %>
                 </tbody>
               </table>
+              <div class="four columns centered centalign">
+              <%= will_paginate @grants %>
+              </div>
             </div>
             <div class="tab-content">
               <%= render 'donated' %>
@@ -42,6 +45,9 @@
                   <%= render partial: 'users', collection: @donors, as: :user %>
                 </tbody>
               </table>
+              <div class="four columns centered centalign">
+              <%= will_paginate @donors %>
+              </div>
             </div>
             <div class="tab-content">
               <%= render 'school' %>
@@ -56,6 +62,9 @@
                   <%= render partial: 'users', collection: @recipients, as: :user %>
                 </tbody>
               </table>
+              <div class="four columns centered centalign">
+              <%= will_paginate @recipients %>
+              </div>
             </div>
             <div class="tab-content">
               <table>
@@ -67,6 +76,9 @@
                              collection: @preapproved, as: :preapproved_grant %>
                 </tbody>
               </table>
+              <div class="four columns centered centalign">
+              <%= will_paginate @preapproved %>
+              </div>
             </div>
             <div class="tab-content">
               <table>
@@ -79,6 +91,9 @@
                   <%= render partial: 'pending_users',
                              collection: @pending_users, as: :pending_user %>
               </table>
+              <div class="four columns centered centalign">
+              <%= will_paginate @pending_users %>
+              </div>
             </div>
             <div class="tab-content">
               <div class="row">
