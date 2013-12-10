@@ -9,7 +9,7 @@
       <span class="darken">School:</span> <%= grant.school.name %><br>
       <span class="darken">Description:</span> <%= grant.summary %></p>
       <div class="progress">
-        <span style="width: <%= grant.crowdfunder.progress %>"><%= grant.crowdfunder.progress %></span>
+        <span class="progressbar" data-goal="<%= grant.crowdfunder_goal %>" data-current="<%= grant.crowdfunder.pledged_total %>">50%</span>
       </div>
       <div class="gcdiv">
         <span class="gctext">Current: </span>

@@ -41,7 +41,9 @@
             <div class="drawer" id="drawersubject" style="text-align:center;">
               <p>Select all subjects that would apply to your application (Hold control to select multiple subjects).</p>
             </div>
-            <%= f.select(:subject_areas, DraftGrant::SUBJECTS, {}, {:multiple => true}) %>
+            <div class="eight columns centered">
+              <%= f.select(:subject_areas, DraftGrant::SUBJECTS, {}, {:multiple => true}) %>
+            </div>
           </li>
 
 
@@ -50,7 +52,8 @@
             <div class="drawer" id="drawersummary" style="text-align:center;">
               <p>Give a brief explanation explanation of your application (200 character limit)</p>
             </div>
-            <%= f.text_area :summary, class: [:textarea, :input, :wide], rows: 3, :placeholder => "Summarize your application" %>
+            <span id="summarycount">200 left</span><br>
+            <%= f.text_area :summary, class: [:textarea, :input, :wide, :validateThis], rows: 3, :placeholder => "Summarize your application", :data => {:length => '200', :id => "#summarycount"} %>
           </li>
 
           <div class="row">
@@ -124,7 +127,8 @@
                 <p>What is the purpose of this grant request and proposal? (1200 characters limit)</p>
               </div>
               <div class="field">
-                <%= f.text_area :purpose, class: [:textarea, :input], rows: 5 %>
+                <span id="purposecount">1200 left</span><br>
+                <%= f.text_area :purpose, class: [:textarea, :input, :validateThis], rows: 5, :data => {:length => '1200', :id => "#purposecount"} %>
               </div>
 
               <h4 class="centalign"><a href="#"  class="toggle" gumby-trigger="#drawermethods">*Methods</a></h4>
@@ -132,7 +136,8 @@
                 <p>What methods will you employ in the implementation of this plan? Basically, what is your implementation strategy? (1200 character limit)</p>
               </div>
               <div class="field">
-                <%= f.text_area :methods, class: [:textarea, :input], rows: 5 %>
+                <span id="methodscount">1200 left</span><br>
+                <%= f.text_area :methods, class: [:textarea, :input, :validateThis], rows: 5, :data => {:length => '1200', :id => "#methodscount"} %>
               </div>
 
               <h4 class="centalign"><a href="#"  class="toggle" gumby-trigger="#drawerbackground">*Teacher Background</a></h4>
@@ -140,7 +145,8 @@
                 <p>What is your own background? Please explain any relevant details to yourself and the project. (1200 character limit)</p>
               </div>
               <div class="field">
-                <%= f.text_area :background, class: [:textarea, :input], rows: 5 %>
+                <span id="backgroundcount">1200 left</span><br>
+                <%= f.text_area :background, class: [:textarea, :input, :validateThis], rows: 5, :data => {:length => '1200', :id => "#backgroundcount"} %>
               </div>
 
               <div class="ttip large primary btn" data-tooltip="Save Your Progress">
@@ -246,7 +252,8 @@
               </div>
               <ul>
                 <li class="field">
-                  <%= f.text_area :collaborators, class: [:textarea, :input, :xxwide], rows: 3, :placeholder => "Ex. Elvis Presley - Entertainment Advising, Neil Armstrong - Transportation, John F. Kennedy - Coordination and Advising" %>
+                  <span id="collabcount">1200 left</span><br>
+                  <%= f.text_area :collaborators, class: [:textarea, :input, :xxwide, :validateThis], rows: 3, :placeholder => "Ex. Elvis Presley - Entertainment Advising, Neil Armstrong - Transportation, John F. Kennedy - Coordination and Advising", :data => {:length => '1200', :id => '#collabcount'} %>
                 </li>
               </ul>
             </div>
@@ -348,7 +355,8 @@
                 <p>Please state any additional information that may contribute to your application. (1200 character limit)</p>
               </div>
               <div class="field">
-                <%= f.text_area :comments, class: [:textarea, :input], rows: 5 %>
+                <span id="commentscount">1200 left</span><br>
+                <%= f.text_area :comments, class: [:textarea, :input, :validateThis], rows: 5, :data => {:length => '1200', :id => '#commentscount'} %>
               </div>
 
               <div class="ttip large primary btn" data-tooltip="Save Your Progress">
@@ -375,6 +383,10 @@
 </div>
 
 <script>
+jQuery(function($) {
+    $("select[multiple]").bsmSelect();
+});
+
 $(document).ready(function(){
     var prevtab=getCookie("drafttab");
       if (prevtab!=null && prevtab!="")
@@ -389,4 +401,25 @@ $(document).ready(function(){
       }
 
   });
+
+function validateLength(el) {
+    console.log('hit');
+    var $this = $(el);
+    var value = $this.val(),
+        valueLength = value.length;
+        textId = $this.attr('data-id');
+        set = parseInt($this.attr('data-length'));
+        remain = parseInt(set - valueLength);
+
+    $(textId).html(remain + ' left');
+}
+
+$(document).on( 'keypress','textarea.validateThis',function(e){
+     validateLength(this);
+});
+
+$(document).on( 'keyup', 'textarea.validateThis',function(e){
+     validateLength(this);
+});
+
 </script>
