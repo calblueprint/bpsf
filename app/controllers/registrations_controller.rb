@@ -29,16 +29,18 @@ class RegistrationsController < Devise::RegistrationsController
 
   def after_sign_up_path_for(resource)
     user = User.find resource.id
-    @admins = Admin.all + SuperUser.all
+    admins = Admin.all + SuperUser.all
     if user.type != "Admin"
       WelcomeEmailJob.new.async.perform(resource)
-      @admins.each do |admin|
-        AdminNewUserJob.new.async.perform(self, admin)
+      admins.each do |admin|
+        AdminNewuserJob.new.async.perform(user, admin)
       end
     else
       WelcomeAdminJob.new.async.perform(resource)
-      @admins.each do |admin|
-        AdminNewAdminJob.new.async.perform(self, admin)
+      admins.each do |admin|
+        if admin.id != resource.id
+          AdminNewadminJob.new.async.perform(user, admin)
+        end
       end
     end
     user.approved = user.init_approved
