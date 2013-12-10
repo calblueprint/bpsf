@@ -49,7 +49,7 @@ class DraftGrant < ActiveRecord::Base
                   :num_classes, :num_students, :total_budget, :requested_funds,
                   :funds_will_pay_for, :budget_desc, :purpose, :methods,
                   :background, :n_collaborators, :collaborators, :comments,
-                  :video, :image_url, :school_id
+                  :video, :image_url, :school_id, :recipient_id
   belongs_to :recipient
   belongs_to :school
   delegate :name, to: :school, prefix: true
@@ -91,10 +91,10 @@ class DraftGrant < ActiveRecord::Base
 
   private
     def transfer_attributes_to_new_grant
-      grant = Grant.new
+      grant = recipient.grants.build
       valid_attributes = Grant.accessible_attributes.reject &:empty?
       grant.attributes = attributes.slice *valid_attributes
-      grant.recipient_id = recipient_id
+      grant.update_attribute(:image_url,image_url)
       grant.save
     end
 end
