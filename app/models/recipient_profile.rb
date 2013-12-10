@@ -12,6 +12,11 @@
 #  started_teaching :datetime
 #  subject          :string(255)
 #  grade            :string(255)
+#  address          :string(255)
+#  city             :string(255)
+#  zipcode          :integer
+#  work_phone       :string(255)
+#  home_phone       :string(255)
 #
 
 class RecipientProfile < ActiveRecord::Base
