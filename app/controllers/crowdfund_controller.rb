@@ -3,7 +3,7 @@ class CrowdfundController < ApplicationController
   def create
     date = params[:date]
     time = Time.new date[:year], date[:month], date[:day]
-    @grant = Grant.find params[:id]
+    @grant = Grant.find params[:grant_id]
     @grant.create_crowdfunder deadline: time,
                               goal: params[:goal],
                               pledged_total: 0
