@@ -59,7 +59,7 @@ class DraftGrant < ActiveRecord::Base
   end
 
   validates :title, presence: true, length: { maximum: 40 }
-  validates :recipient_id, :school_id, presence: true
+  validates :recipient_id, :school_id, presence: true, if: 'type.nil?'
   validates :summary, length: { maximum: 200 }
   include GradeValidation
   validate :grade_format
