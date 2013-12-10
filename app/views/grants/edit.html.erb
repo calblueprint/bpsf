@@ -34,7 +34,7 @@
 
           <div class="row">
             <h4>Image</h4>
-            <% if @grant.image_url %>
+            <% if !@grant.image_url.to_s.eql? "" %>
               <%= image_tag @grant.image_url.to_s %>
             <% end %>
           </div>
