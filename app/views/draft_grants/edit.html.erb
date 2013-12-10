@@ -51,7 +51,9 @@
             <div class="drawer" id="drawersubject" style="text-align:center;">
               <p>Select all subjects that would apply to your application (Hold control to select multiple subjects).</p>
             </div>
-            <%= f.select(:subject_areas, DraftGrant::SUBJECTS, {}, {:multiple => true}) %>
+            <div class="eight columns centered">
+              <%= f.select(:subject_areas, DraftGrant::SUBJECTS, {}, {:multiple => true}) %>
+            </div>
           </li>
 
 
@@ -364,6 +366,10 @@
 </div>
 
 <script>
+jQuery(function($) {
+    $("select[multiple]").bsmSelect();
+});
+
 $(document).ready(function(){
     var prevtab=getCookie("drafttab");
       if (prevtab!=null && prevtab!="")
