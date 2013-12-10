@@ -48,6 +48,9 @@
             <%= render partial: 'payments', collection: @payments, as: :payment %>
           </tbody>
         </table>
+        <div class="four columns centered centalign">
+        <%= will_paginate @payments %>
+        </div>
       </div>
     </section>
 
