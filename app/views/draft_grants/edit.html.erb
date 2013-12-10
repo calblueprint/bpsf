@@ -69,11 +69,13 @@
               <p>Optional: Choose a photo that will appear at the top of your application. A default photo will be used if you choose not to upload one.</p>
             </div>
             <div class="five columns push_one centalign">
+              <div class="imgholder" style="width:300px;">
               <% if !@draft_grant.image_url.to_s.eql? "" %>
                 <%= image_tag @draft_grant.image_url.to_s %>
               <% else %>
-                <%= image_tag 'http://placehold.it/300x150' %>
+                <%= image_tag 'http://placehold.it/880x450' %>
               <% end %>
+              </div>
             </div>
 
             <div class="five columns">

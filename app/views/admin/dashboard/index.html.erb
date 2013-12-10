@@ -82,35 +82,44 @@
             </div>
             <div class="tab-content">
               <div class="row">
-                <div class="five columns centalign">
+                <div class="four columns centalign">
                   <div style="margin-top:150px">Successful Crowdfunds&emsp;<div class="colorbox green">&nbsp;</div><br>Unsuccessful Crowdfunds&emsp;<div class="colorbox red">&nbsp;</div></div>
                 </div>
-                <div class="seven columns">
-                  <canvas id="canvas" height="350" width="350"></canvas>
+                <div class="eight columns">
+                  <canvas id="canvas1" height="350" width="350"></canvas>
                 </div>
               </div>
               <div class="row">
-                <div class="five columns centalign">
-                  <div style="margin-top:200px;">Accepted Grants&emsp;<div class="colorbox green">&nbsp;</div><br>Rejected Grants&emsp;<div class="colorbox red">&nbsp;</div></div>
-                </div>
-                <div class="seven columns">
-                  <canvas id="canvas2" height="450" width="500"></canvas>
+                <div class="centalign">
+                  <div style="margin-top:200px;">Accepted Grants&emsp;<div class="colorbox green">&nbsp;</div>&emsp;&emsp;Rejected Grants&emsp;<div class="colorbox red">&nbsp;</div></div>
                 </div>
               </div>
               <div class="row">
-                <div class="five columns centalign">
-                  <div style="margin-top:200px;">Accepted Grants&emsp;<div class="colorbox green">&nbsp;</div><br>Rejected Grants&emsp;<div class="colorbox red">&nbsp;</div></div>
-                </div>
-                <div class="seven columns">
-                  <canvas id="canvas3" height="600" width="600"></canvas>
+                <div class="centalign">
+                  <canvas id="canvas2" height="450" width="700"></canvas>
+                  <h5>School</h5>
                 </div>
               </div>
               <div class="row">
-                <div class="five columns centalign">
-                  <div style="margin-top:150px">Successful Crowdfunds&emsp;<div class="colorbox green">&nbsp;</div><br>Unsuccessful Crowdfunds&emsp;<div class="colorbox red">&nbsp;</div></div>
+                <div class="centalign">
+                  <div style="margin-top:200px;">Accepted Grants&emsp;<div class="colorbox green">&nbsp;</div>&emsp;&emsp;Rejected Grants&emsp;<div class="colorbox red">&nbsp;</div></div>
                 </div>
-                <div class="seven columns">
-                  <canvas id="canvas4" height="450" width="500"></canvas>
+              </div>
+              <div class="row">
+                <div class="centalign">
+                  <canvas id="canvas3" height="600" width="900"></canvas>
+                  <h5>Subject Area</h5>
+                </div>
+              </div>
+              <div class="row">
+                <div class="centalign">
+                  <div style="margin-top:150px">Successful Crowdfunds&emsp;<div class="colorbox green">&nbsp;</div>&emsp;&emsp;Unsuccessful Crowdfunds&emsp;<div class="colorbox red">&nbsp;</div></div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="centalign">
+                  <canvas id="canvas4" height="600" width="800" class="inlined"></canvas>
+                  <h5>Crowdfund Goal</h5>
                 </div>
               </div>
             </div>
@@ -122,7 +131,28 @@
 
 <script>
 
-  var pieData = [
+function Maximize(maxOne, maxTwo){
+  var maxVal = Math.max.apply( Math, maxOne );
+  var maxValTwo = Math.max.apply( Math, maxTwo );
+  var maxxest;
+  if(maxVal>maxValTwo){
+    maxxest = maxVal;
+  } else {maxxest = maxValTwo}
+
+  var smallScale = {
+  scaleOverride : true,
+  //Number - The number of steps in a hard coded scale
+  scaleSteps : maxxest,
+  //Number - The value jump in the hard coded scale
+  scaleStepWidth : 1,
+  //Number - The scale starting value
+  scaleStartValue : 0,
+  }
+
+  return smallScale
+};
+
+  var dataOne = [
       {
         value: <%= (successful.length==0 && unsuccessful.length==0) ? 1 : successful.length %>,
         color:"#71c637"
@@ -133,9 +163,9 @@
       },
     ];
 
-var myPie = new Chart(document.getElementById("canvas").getContext("2d")).Pie(pieData);
+var PieOne = new Chart(document.getElementById("canvas1").getContext("2d")).Pie(dataOne);
 
-var data = {
+var dataTwo = {
   labels : <%= raw School.uniq.pluck(:name).to_json %>,
   datasets : [
     {
@@ -151,9 +181,9 @@ var data = {
   ]
 }
 
-var myChart = new Chart(document.getElementById("canvas2").getContext("2d")).Bar(data);
+var ChartTwo = new Chart(document.getElementById("canvas2").getContext("2d")).Bar(dataTwo, Maximize(<%= raw accepted_school %>, <%= raw rejected_school %>));
 
-var data = {
+var dataThree = {
   labels : <%= raw Grant::SUBJECTS.to_json %>,
   datasets : [
     {
@@ -169,11 +199,11 @@ var data = {
   ]
 }
 
-var myChart = new Chart(document.getElementById("canvas3").getContext("2d")).Bar(data);
+var ChartThree = new Chart(document.getElementById("canvas3").getContext("2d")).Bar(dataThree, Maximize(<%= raw accepted_subject %>, <%= raw rejected_subject %>));
 
 
-var data = {
-  labels : ["0-99","100-199","200-299","300-399","400-499","500-599","600-699","700-799","800-899","900-999","1000+"],
+var dataFour = {
+  labels : ["$0-99","$100-199","$200-299","$300-399","$400-499","$500-599","$600-699","$700-799","$800-899","$900-999","$1000+"],
   datasets : [
     {
       fillColor : "#71c637",
@@ -188,7 +218,7 @@ var data = {
   ]
 }
 
-var myChart = new Chart(document.getElementById("canvas4").getContext("2d")).Bar(data);
+var ChartFour = new Chart(document.getElementById("canvas4").getContext("2d")).Bar(dataFour, Maximize(<%= raw successful_goal %>, <%= raw unsuccessful_goal %>));
 
 $(document).ready(function(){
     var prevtab=getCookie("tabval");
@@ -204,4 +234,5 @@ $(document).ready(function(){
       }
 
   });
+
 </script>
