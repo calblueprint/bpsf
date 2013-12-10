@@ -17,82 +17,35 @@
             </div>
           </div>
             <div class="tab-content">
-              <table>
-                <thead>
-                  <tr>
-                    <th >Name</th>
-                    <th >Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <%= render partial: 'all_grants', collection: @grants, as: :grant %>
-                </tbody>
-              </table>
+              <%= render partial: 'shared/table', locals: { heads: %w[Name Status], partials: [['all_grants', @grants, :grant, "There are no grants"]] } %>
               <div class="four columns centered centalign">
               <%= will_paginate @grants %>
               </div>
             </div>
             <div class="tab-content">
               <%= render 'donated' %>
-              <table>
-                <thead>
-                  <tr>
-                    <th >Name</th>
-                    <th >Email</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <%= render partial: 'users', collection: @donors, as: :user %>
-                </tbody>
-              </table>
+              <%= render partial: 'shared/table', locals: { heads: %w[Name Email], partials: [['users', @donors, :user, "There are no users"]] } %>
               <div class="four columns centered centalign">
               <%= will_paginate @donors %>
               </div>
             </div>
             <div class="tab-content">
               <%= render 'school' %>
-              <table>
-                <thead>
-                  <tr>
-                    <th >Name</th>
-                    <th >Email</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <%= render partial: 'users', collection: @recipients, as: :user %>
-                </tbody>
-              </table>
+              <%= render partial: 'shared/table', locals: { heads: %w[Name Email], partials: [['users', @recipients, :user, "There are no recipients"]] } %>
               <div class="four columns centered centalign">
               <%= will_paginate @recipients %>
               </div>
             </div>
             <div class="tab-content">
-              <table>
-                <thead>
-                  <th >Name</tr>
-                </thead>
-                <tbody>
-                  <%= render partial: 'preapproved_grants',
-                             collection: @preapproved, as: :preapproved_grant %>
-                </tbody>
-              </table>
+              <%= render partial: 'shared/table', locals: { heads: %w[Name], partials: [['preapproved_grants', @preapproved, :preapproved_grant, "There are no preapproved grants"]] } %>
               <div class="four columns centered centalign">
               <%= will_paginate @preapproved %>
               </div>
             </div>
             <div class="tab-content">
-              <table>
-                <thead>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Status</th>
-                </thead>
-                <tbody class='pending_users'>
-                  <%= render partial: 'pending_users',
-                             collection: @pending_users, as: :pending_user %>
-              </table>
+              <%= render partial: 'shared/table', locals: { heads: %w[Name Email Status], partials: [['pending_users', @pending_users, :pending_user, "There are no pending users"]] } %>
               <div class="four columns centered centalign">
-              <%= will_paginate @pending_users %>
+                <%= will_paginate @pending_users %>
               </div>
             </div>
             <div class="tab-content">
