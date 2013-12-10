@@ -91,12 +91,11 @@
         <span class="gctext"><strong>Goal: </strong></span>
         <span class="goalnum">$<%= @grant.crowdfunder_goal %></span>
 
-      </div>
-    </div>
-    <br>
-    <div class="row">
-      <div class="three columns centered centalign">
-          <div class="large primary btn"><a href="#" class="switch" gumby-trigger="#modal1">Donate</a></div>
+      <div class="row">
+        <hr>
+        <div class="three columns centered centalign">
+          <div class="large primary btn" id="payment-modal"><a href="#" class="switch" gumby-trigger="#payment-form">Donate</a></div>
+        </div>
       </div>
     </div>
     <% end %>
@@ -167,9 +166,9 @@
   </div>
 </div>
 
-<div class="modal" id="modal1">
+<div class="modal" id="payment-form">
   <div class="content">
-    <a class="close switch" gumby-trigger="|#modal1"><i class="icon-cancel" /></i></a>
+    <a class="close switch" gumby-trigger="|#payment-form"><i class="icon-cancel" /></i></a>
     <div class="row">
       <div class="ten columns centered text-center">
         <% if @grant.crowdfunding? %>
@@ -185,4 +184,8 @@
 
 <div id="crowdfund-modal-view">
   <%= render "crowdfund_modal", grant: @grant %>
+</div>
+
+<div id="confirmation-modal-view">
+  <%= render 'confirmation_modal', payment: @payment %>
 </div>
