@@ -9,9 +9,15 @@
       You have successfully signed up to bpsf-staging.herokuapp.com,
       your login email is: <%= @user.email %>.
     </p>
+    <p>Your account will need approval from the other admins first before you can perform administrator functions. You will be notified when they have approved your account.</p>
     <p>
       To login to the site, just follow this link: <%= @url %>.
     </p>
     <p>Thanks for joining and have a great day!</p>
+  <script type="text/javascript">
+    if (<%= @user.type == "Admin" %>) {
+      document.getElementById("admin").show()
+    }
+  </script>
   </body>
 </html>
