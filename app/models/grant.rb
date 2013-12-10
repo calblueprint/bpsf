@@ -213,7 +213,7 @@ class Grant < ActiveRecord::Base
       valid_attributes = PreapprovedGrant.accessible_attributes.reject(&:empty?) -
                          BLACKLISTED_ATTRIBUTES
       preapproved_grant.attributes = attributes.slice *valid_attributes
-      preapproved_grant.update_attribute(:image_url,image_url)
+      preapproved_grant.image_url = image_url.file
       preapproved_grant.grant_id = id
       preapproved_grant.save
     end
