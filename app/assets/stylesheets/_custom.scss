@@ -324,7 +324,7 @@ $imglargereplacementhgt: 250px;
 .helppanelbutton{
 	position:fixed;
 	top:50%;
-	margin-top:-50px; 
+	margin-top:-50px;
 	left:-30px;
 	height:45px;
 	width:70px;
@@ -467,7 +467,7 @@ body {
 		height:55px;
 		margin: 0px !important;
 		padding: 0px !important;
-		margin-top:-5px !important; 
+		margin-top:-5px !important;
 	}
 }
 
@@ -504,7 +504,7 @@ body {
 		padding-right:5px;
 	}
 }
-/*********  Loading Bar  **********/
+/*********************  Loading Bar  ***********************/
 .pace .pace-progress {
   background: #ef4023;
   position: fixed;
@@ -521,4 +521,76 @@ body {
 
 .pace-inactive {
   display: none;
+}
+
+/************************ ASM Select ************************/
+.bsmContainer {
+  /* container that surrounds entire bsmSelect widget */
+}
+
+.bsmSelect {
+  /* the newly created regular 'select' */
+  display: inline;
+}
+
+.bsmOptionDisabled {
+  /* disabled options in new select */
+  color: #999;
+}
+
+.bsmHighlight {
+  /* the highlight span */
+  float: right;
+  padding: 0;
+  margin: 0 0 0 1em;
+}
+
+.bsmList {
+  /* html list that contains selected items */
+  margin: 0.25em 0 1em 0;
+  position: relative;
+  display: block;
+  padding-left: 0;
+  list-style: none;
+}
+
+.bsmListItem {
+  /* li item from the html list above */
+  position: relative;
+  margin-left: 0;
+  padding-left: 0;
+  list-style: none;
+  background: #ddd;
+  border: 1px solid #bbb;
+  width: auto;
+  margin: 0 0 -1px 0;
+  line-height: 1em;
+}
+
+.bsmListItem:hover {
+  background-color: #e5e5e5;
+}
+
+.bsmListItemLabel {
+  /* this is a span that surrounds the text in the item, except for the remove link */
+  padding: 5px;
+  display: block;
+}
+
+.bsmListSortable .bsmListItemLabel {
+  cursor: move;
+}
+
+.bsmListItemRemove {
+  /* the remove link in each list item */
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 5px;
+}
+
+.bsmScrollWorkaround {
+  /* Fix a bug when the 'html' element has an overflow set to either 'scroll' or 'auto' on FF. */
+   padding-bottom: 1px;
+   overflow: auto;
 }
