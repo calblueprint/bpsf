@@ -153,13 +153,21 @@ function Maximize(maxOne, maxTwo){
   if(maxVal>maxValTwo){
     maxxest = maxVal;
   } else {maxxest = maxValTwo}
+  if(maxxest>20){
+    if(maxxest/20 - parseInt(maxxest/20) >= 0.5){
+      var step = parseInt(maxxest/20) +1;
+    } else{
+      var step = parseInt(maxxest/20);
+    }
+    maxxest=20;
+  }else{var step=1}
 
   var smallScale = {
   scaleOverride : true,
   //Number - The number of steps in a hard coded scale
   scaleSteps : maxxest,
   //Number - The value jump in the hard coded scale
-  scaleStepWidth : 1,
+  scaleStepWidth : step,
   //Number - The scale starting value
   scaleStartValue : 0,
   }
@@ -197,6 +205,7 @@ var dataTwo = {
 }
 
 var ChartTwo = new Chart(document.getElementById("canvas2").getContext("2d")).Bar(dataTwo, Maximize(<%= raw accepted_school %>, <%= raw rejected_school %>));
+
 
 var dataThree = {
   labels : <%= raw Grant::SUBJECTS.to_json %>,
