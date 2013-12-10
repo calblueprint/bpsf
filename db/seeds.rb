@@ -42,7 +42,7 @@ def make_users
                       password_confirmation: "password",
                       approved: true
   end
-  1.upto(50) do |n|
+  1.upto(2) do |n|
     Admin.create! first_name: "Admin #{n}",
                   last_name: "Dev",
                   email: "bpsfadmin#{n}@gmail.com",
@@ -50,7 +50,7 @@ def make_users
                   password_confirmation: "password",
                   approved: false
   end
-  1.upto(200) do |n|
+  1.upto(4) do |n|
     Recipient.create! first_name: "Teacher #{n}",
                       last_name: "Dev",
                       email: "bpsfteacher#{n}@gmail.com",
@@ -59,7 +59,7 @@ def make_users
                       approved: true,
                       school_id: rand(1..School.count)
   end
-  1.upto(800) do |n|
+  1.upto(8) do |n|
     User.create! first_name: "Parent #{n}",
                  last_name: "Dev",
                  email: "bpsfparent#{n}@gmail.com",
