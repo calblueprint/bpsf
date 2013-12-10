@@ -39,6 +39,7 @@ BPSF::Application.routes.draw do
   end
 
   resources :payments, only: [:create, :destroy]
+  get 'payments/success/:grant_id/:payment_id/', to: 'payments#success', as: :payment_success
 
   namespace :recipient do
     get '', to: 'dashboard#index', as: :dashboard
