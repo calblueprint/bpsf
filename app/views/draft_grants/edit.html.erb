@@ -4,16 +4,6 @@
       <div class="row">
             <%= form_for @draft_grant, url: draft_path, :html => {:multipart => true} do |f| %>
       <%= render 'shared/errors', object: f.object %>
-        &nbsp;
-        <span class="ttip medium primary btn" data-tooltip="Save Your Changes">
-          <%= f.submit 'Save!' %>
-        </span>
-        <span class="ttip largefont pull_left" data-tooltip="Back to Dashboard" style="margin-top:5px;">
-          <%= link_to '<i class="icon-back"></i>'.html_safe, recipient_dashboard_path %>
-        </span>
-
-
-        <br>
         <h2 class="centalign">
           Editing <%= @draft_grant.title %>
         </h2>
@@ -112,6 +102,9 @@
             </li>
           <% end %>
         </ul>
+        <div class="ttip large primary btn" data-tooltip="Save Your Progress">
+          <%= f.submit 'Save!' %>
+        </div>
       </div>
     </div>
 
@@ -124,7 +117,7 @@
         <br>
 
           <div class="row">
-            <div class="eight columns centered">
+            <div class="eight columns centered centalign">
 
               <h4 class="centalign"><a href="#"  class="toggle" gumby-trigger="#drawerpurpose">*Purpose</a></h4>
               <div class="drawer" id="drawerpurpose" style="text-align:center;">
@@ -150,6 +143,9 @@
                 <%= f.text_area :background, class: [:textarea, :input], rows: 5 %>
               </div>
 
+              <div class="ttip large primary btn" data-tooltip="Save Your Progress">
+                <%= f.submit 'Save!' %>
+              </div>
             </div>
           </div>
       </div>
@@ -255,6 +251,11 @@
               </ul>
             </div>
           </div>
+          <div class="row centalign">
+              <div class="ttip large primary btn" data-tooltip="Save Your Progress">
+                <%= f.submit 'Save!' %>
+              </div>
+          </div>
         </ul>
       </div>
     </div>
@@ -321,6 +322,12 @@
                 </div>
               </div>
 
+
+            </div>
+          </div>
+          <div class="row centalign">
+            <div class="ttip large primary btn" data-tooltip="Save Your Progress">
+              <%= f.submit 'Save!' %>
             </div>
           </div>
       </div>
@@ -342,6 +349,10 @@
               </div>
               <div class="field">
                 <%= f.text_area :comments, class: [:textarea, :input], rows: 5 %>
+              </div>
+
+              <div class="ttip large primary btn" data-tooltip="Save Your Progress">
+                <%= f.submit 'Save!' %>
               </div>
 
               <%= render 'grant_preview', grant: @draft_grant %>
