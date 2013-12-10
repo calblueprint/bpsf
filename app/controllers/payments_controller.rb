@@ -8,7 +8,7 @@ class PaymentsController < ApplicationController
     @grant.reload
     create_customer_if_new_donor!
     respond_to do |format|
-      format.html { redirect_to @grant }
+      format.html { redirect_to payment_success_path(grant_id: @grant.id, payment_id: @payment.id) }
       format.js
     end
   end
@@ -17,6 +17,11 @@ class PaymentsController < ApplicationController
     Payment.destroy params[:id]
     flash[:success] = "Payment cancelled."
     redirect_to root_url
+  end
+
+  def success
+    @grant = Grant.find params[:grant_id]
+    @payment = Payment.find params[:payment_id]
   end
 
   private
