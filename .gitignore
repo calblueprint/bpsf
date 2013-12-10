@@ -32,3 +32,6 @@
 # Ignore rvm configuration files
 .ruby-gemset
 .ruby-version
+
+# Ignore local config
+/config/local_env.yml
