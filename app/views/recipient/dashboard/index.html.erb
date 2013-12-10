@@ -24,6 +24,9 @@
           <table>
               <%= render partial: 'my_grants', collection: @grants, as: :grant %>
           </table>
+          <div align="center">
+          <%= will_paginate @grants %>
+          </div>
         </div>
       </div>
     </div>
