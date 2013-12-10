@@ -36,18 +36,7 @@
         </div>
       </div>
       <div class="tab-content">
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>School</th>
-              <th>Amount</th>
-            </tr>
-          </thead>
-          <tbody>
-            <%= render partial: 'payments', collection: @payments, as: :payment %>
-          </tbody>
-        </table>
+        <%= render partial: 'shared/table', locals: { heads: %w[Name School Amount], partials: [['payments', @payments, :payment, "There are no payments"]] } %>
         <div class="four columns centered centalign">
         <%= will_paginate @payments %>
         </div>
