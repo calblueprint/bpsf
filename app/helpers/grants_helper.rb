@@ -75,7 +75,7 @@ module GrantsHelper
   def unsuccessful_goal
     @count = [0,0,0,0,0,0,0,0,0,0,0]
     unsuccessful.each do |grant|
-      @count[in_bucket(grant.crowdfunder.goal)] += 1
+      @count[in_bucket(grant.requested_funds)] += 1
     end 
     return @count.to_json
   end

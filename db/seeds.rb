@@ -107,7 +107,7 @@ def make_grants
                            summary: Faker::Lorem.sentence,
                            subject_areas: ["Other"],
                            school_id: r.school_id
-    crowdfunding_grants << r.grants.build(title: "Grant #{r.id}",
+    crowdfunding_grants << r.grants.build(title: "Grant #{r.id-4}",
                                           summary: Faker::Lorem.sentence,
                                           subject_areas: ["Arts / Music", "Multi-subject"],
                                           grade_level: "#{rand(1..11)}",

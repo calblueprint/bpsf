@@ -3,17 +3,24 @@
     <a class="close switch close-crowdfund-modal" gumby-trigger="|#crowdfund-form"><i class="icon-cancel" /></i></a>
     <div class="row">
       <div class="ten columns centered text-center">
-        <p>Create Crowdfund for <%= grant.title %></p>
+        <h3>Create Crowdfund for <%= grant.title %></h3>
+        <br>
         <%= form_tag crowdfund_create_path do %>
-          <div class="field">
-            <%= label_tag :goal, "Goal" %>
-            <%= text_field_tag :goal, nil, placeholder: "" %>
-          </div>
-          <li class="field metro inlined">
-            <%= select_date Date.today, order: [:year, :month, :day], class: [:picker, :inlined] %>
-          </li>
+          <h4 class="inlined">Goal:</h4>
+          <div class="field prepend noroundborder inlined">
+            <span class="adjoined noroundborder">$</span>
+            <%= text_field_tag :goal, nil, class: [:input, :text, :narrow, :noroundborder] %>
+          </div><br><br>
+          <h4>End Date</h4>
+          <ul>
+            <li class="field metro">
+              <%= select_date Date.today, order: [:year, :month, :day], class: [:picker, :inlined] %>
+            </li>
+          </ul>
           <%= hidden_field_tag :grant_id, grant.id %>
-          <%= submit_tag "Start Crowdfund!", class: "btn primary medium close-crowdfund-modal" %>
+          <div class="primary medium btn">
+            <%= submit_tag "Start Crowdfund!", class: "close-crowdfund-modal" %>
+          </div>
         <% end %>
       </div>
     </div>
