@@ -71,6 +71,13 @@ class DraftGrant < ActiveRecord::Base
 
   mount_uploader :image_url, ImageUploader
 
+  def has_collaborators?
+    n_collaborators && n_collaborators > 0
+  end
+
+  def has_comments?
+    comments
+  end
   def submit_and_destroy
     if transfer_attributes_to_new_grant
       GrantSubmittedJob.new.async.perform(self)
