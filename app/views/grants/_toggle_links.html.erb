@@ -7,6 +7,12 @@
                   remote: true,
                   class: "crowdfund",
                   id: grant.id %>
+    <% elsif state.eql? "fund" %>
+      <%= link_to state.titleize,
+                  grant_event_path(id: grant.id, state: state),
+                  method: :post,
+                  confirm: "Are you sure?",
+                  remote: true %>
     <% else %>
       <%= link_to state.titleize,
                   grant_event_path(id: grant.id, state: state),
