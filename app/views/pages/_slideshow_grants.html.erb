@@ -1,5 +1,5 @@
 
-  <li style="background-image:url(/assets/default/Other.jpg); background-size:cover;" onclick='window.location.href="<%= url_for grant %>"'>
+<li style="background-image:url(<%= grant.image_url.to_s%>); background-size:cover;" onclick='window.location.href="<%= url_for grant %>"'>
   <div class="infocard slidecard">
     <div class="cardtitle">
       <h3><%= grant.title %></h3>
