@@ -57,13 +57,17 @@ class Grant < ActiveRecord::Base
   belongs_to :school
   has_one :crowdfunder, class_name: 'Crowdfund'
   has_one :preapproved_grant
-  delegate :name, to: :school, prefix: true
   delegate :goal, :pledged_total, :progress, to: :crowdfunder, prefix: true
-  extend Searchable :title, :summary, :subject_areas
+  extend Searchable :title, :summary, :subject_areas, :school_name, :teacher_name
   ajaxful_rateable stars: 10
 
   before_validation do |grant|
     grant.subject_areas = grant.subject_areas.to_a.reject &:empty?
+  end
+
+  before_save do |grant|
+    self.school_name = school.name
+    self.teacher_name = recipient.name
   end
 
   validates :title, presence: true, length: { maximum: 40 }
