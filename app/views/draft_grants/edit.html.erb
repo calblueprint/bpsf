@@ -39,12 +39,12 @@
           <li class="field">
             <h4><a href="#"  class="toggle" gumby-trigger="#drawersubject">*Subject Areas</a></h4>
             <div class="drawer" id="drawersubject" style="text-align:center;">
-              <p>Select all subjects that would apply to your application (Hold control to select multiple subjects).</p>
+              <p>Select all subjects that would apply to your application.</p>
             </div>
             <div class="eight columns centered">
               <%= f.select(:subject_areas, DraftGrant::SUBJECTS, {}, {:multiple => true}) %>
             </div>
-          </li>
+          </li> 
 
 
           <li class="field">
