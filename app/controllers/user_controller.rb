@@ -29,6 +29,7 @@ class UserController < ApplicationController
     @pending_users = User.where approved: false
     if user.save!
       flash[:success] = "#{user.name} Approved!"
+      ApproveAdminJob.new.async.perform(user)
     end
     respond_to do |format|
       format.html { redirect_to admin_dashboard_path }
