@@ -406,7 +406,6 @@ body {
 	line-height:55px;
 	font-weight:$header-font-weight;
 	@include box-shadow(0 0 3px #999);
-	.icon-menu{display:none;}
 	.homelogo {
 	text-align: left;
 	font-size: $med;
@@ -431,6 +430,7 @@ body {
 	left: 50%;
 	margin-left:-230px;
 	height:55px;
+	top:0;
 	.search{
 		width: 300px;
 	}
@@ -442,8 +442,16 @@ body {
 	}
 }
 
+
+.trunknav li {
+    float: left;
+    display: inline-block;
+    font-size: $med;
+    width: auto;
+}
+
 .trunknav li a {
-	display: inline-block;
+	display: block;
 	padding: 0px 20px 12px;
 	font-family: $font-family;
 	font-weight:$header-font-weight;
