@@ -19,6 +19,7 @@
 #  first_name             :string(255)
 #  last_name              :string(255)
 #  stripe_token           :string(255)
+#  approved               :boolean
 #  school_id              :integer
 #
 
