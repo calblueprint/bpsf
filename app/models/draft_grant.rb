@@ -94,7 +94,7 @@ class DraftGrant < ActiveRecord::Base
       grant = recipient.grants.build
       valid_attributes = Grant.accessible_attributes.reject &:empty?
       grant.attributes = attributes.slice *valid_attributes
-      grant.update_attribute(:image_url,image_url)
+      grant.image_url = image_url.file
       grant.save
     end
 end
