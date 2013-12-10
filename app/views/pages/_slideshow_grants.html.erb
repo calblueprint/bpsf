@@ -1,5 +1,5 @@
 
-<li style="background-image:url(<%= grant.image_url.to_s%>); background-size:cover;">
+<li style="background-image:url(<%= grant.image_url.to_s%>); background-size:cover;" onclick='window.location.href="<%= url_for grant %>"'>
   <div class="infocard slidecard">
     <div class="cardtitle">
       <h3><%= grant.title %></h3>
@@ -13,11 +13,11 @@
       </div>
       <div class="gcdiv">
         <span class="gctext">Current: </span>
-        <span class="currentnum">$<%= grant.crowdfunder.pledged_total %></span>  
-        &emsp;      
+        <span class="currentnum">$<%= grant.crowdfunder.pledged_total %></span>
+        &emsp;
         <span class="gctext">Goal: </span>
         <span class="goalnum">$<%= grant.crowdfunder.goal %></span>
       </div>
     </div>
   </div>
-</li>
+  </li>
