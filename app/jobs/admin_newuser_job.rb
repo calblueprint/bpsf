@@ -1,4 +1,4 @@
-class AdminNewUserJob
+class AdminNewuserJob
   include SuckerPunch::Job
 
   def perform(user,admin)
