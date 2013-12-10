@@ -41,19 +41,25 @@ def make_users
                       password: "password",
                       password_confirmation: "password",
                       approved: true
+  end
+  1.upto(50) do |n|
     Admin.create! first_name: "Admin #{n}",
                   last_name: "Dev",
                   email: "bpsfadmin#{n}@gmail.com",
                   password: "password",
                   password_confirmation: "password",
                   approved: false
+  end
+  1.upto(200) do |n|
     Recipient.create! first_name: "Teacher #{n}",
                       last_name: "Dev",
                       email: "bpsfteacher#{n}@gmail.com",
                       password: "password",
                       password_confirmation: "password",
                       approved: true,
-                      school_id: n
+                      school_id: rand(1..School.count)
+  end
+  1.upto(800) do |n|
     User.create! first_name: "Parent #{n}",
                  last_name: "Dev",
                  email: "bpsfparent#{n}@gmail.com",
@@ -95,56 +101,30 @@ def make_profiles
 end
 
 def make_grants
-  t1 = Recipient.find_by_first_name 'Teacher 1'
-  t2 = Recipient.find_by_first_name 'Teacher 2'
-  1.upto(3) do |n|
-    t1.draft_grants.create! title: "Draft #{n}",
-                            summary: Faker::Lorem.sentence,
-                            subject_areas: ["Other"],
-                            school_id: t1.school_id
-    t2.draft_grants.create! title: "Draft #{n + 3}",
-                            summary: Faker::Lorem.sentence,
-                            subject_areas: ["Other"],
-                            school_id: t2.school_id
-  end
   crowdfunding_grants = []
-  1.upto(4) do |n|
-    crowdfunding_grants << t1.grants.build(title: "Grant #{n}",
-                                           summary: Faker::Lorem.sentence,
-                                           subject_areas: ["Arts / Music", "Multi-subject"],
-                                           grade_level: "#{n + 2}",
-                                           duration: "#{n} weeks",
-                                           school_id: t1.school_id,
-                                           num_classes: n,
-                                           num_students: n * 10,
-                                           total_budget: n * 300,
-                                           requested_funds: n * 250,
-                                           funds_will_pay_for: "Supplies",
-                                           budget_desc: Faker::Lorem.paragraph,
-                                           purpose: Faker::Lorem.paragraph,
-                                           methods: Faker::Lorem.paragraph,
-                                           background: Faker::Lorem.paragraph,
-                                           n_collaborators: n,
-                                           collaborators: Faker::Lorem.paragraph,
-                                           comments: Faker::Lorem.paragraph)
-    crowdfunding_grants << t2.grants.build(title: "Grant #{n + 4}",
-                                           summary: Faker::Lorem.sentence,
-                                           subject_areas: ["Mathematics"],
-                                           grade_level: "#{n + 2}",
-                                           duration: "#{n} weeks",
-                                           school_id: t2.school_id,
-                                           num_classes: n,
-                                           num_students: n * 10,
-                                           total_budget: n * 300,
-                                           requested_funds: n * 250,
-                                           funds_will_pay_for: "Equipment",
-                                           budget_desc: Faker::Lorem.paragraph,
-                                           purpose: Faker::Lorem.paragraph,
-                                           methods: Faker::Lorem.paragraph,
-                                           background: Faker::Lorem.paragraph,
-                                           n_collaborators: n,
-                                           collaborators: Faker::Lorem.paragraph,
-                                           comments: Faker::Lorem.paragraph)
+  Recipient.all.each do |r|
+    r.draft_grants.create! title: "Draft #{r.id}",
+                           summary: Faker::Lorem.sentence,
+                           subject_areas: ["Other"],
+                           school_id: r.school_id
+    crowdfunding_grants << r.grants.build(title: "Grant #{r.id}",
+                                          summary: Faker::Lorem.sentence,
+                                          subject_areas: ["Arts / Music", "Multi-subject"],
+                                          grade_level: "#{rand(1..11)}",
+                                          duration: "#{rand(1..4)} weeks",
+                                          school_id: r.school_id,
+                                          num_classes: rand(1..5),
+                                          num_students: rand(1..5) * 10,
+                                          total_budget: rand(8..12) * 100,
+                                          requested_funds: rand(1..3) * 250,
+                                          funds_will_pay_for: "Supplies",
+                                          budget_desc: Faker::Lorem.paragraph,
+                                          purpose: Faker::Lorem.paragraph,
+                                          methods: Faker::Lorem.paragraph,
+                                          background: Faker::Lorem.paragraph,
+                                          n_collaborators: rand(1..4),
+                                          collaborators: Faker::Lorem.paragraph,
+                                          comments: Faker::Lorem.paragraph)
   end
   crowdfunding_grants.map do |grant|
     grant.crowdfund
@@ -157,8 +137,8 @@ def make_grants
 end
 
 def make_preapproved
-  g = Grant.first
-  g.preapprove!
+  grants = Grant.all[1..10]
+  grants.map &:preapprove!
 end
 
 make_schools
