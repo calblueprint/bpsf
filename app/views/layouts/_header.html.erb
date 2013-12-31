@@ -7,6 +7,9 @@
   <div class="trunknav">
     <ul>
       <li class="darken"><%= link_to 'Browse'.html_safe, root_path, class: :darken %></li>
+      <% if recipient? %>
+        <li class="darken"><%= link_to 'Apply For Grant'.html_safe, new_draft_path, class: :darken %></li>
+      <% end %>
       <%= render 'layouts/search_form' %>
     </ul>
   </div>
