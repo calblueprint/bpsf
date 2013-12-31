@@ -25,13 +25,15 @@
             <%= @grant.state.titleize %>
           <% end %>
 
-          <% if super_user? && !@grant.preapproved? %>
-            <div id="preapprove_link">
-              <div class="medium primary btn">
-                <%= link_to 'Preapprove', preapprove_grant_path(@grant), method: :post %>
+          <div class="one-click-hidden">
+            <% if super_user? && !@grant.preapproved? %>
+              <div id="preapprove_link">
+                <div class="medium primary btn">
+                  <%= link_to 'Preapprove', preapprove_grant_path(@grant), method: :post %>
+                </div>
               </div>
-            </div>
-          <% end %>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
