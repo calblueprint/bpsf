@@ -10,7 +10,7 @@
                   <li id="grants" onClick="setCookie('tabval',this.id,1)"><a href="#">Grants</a></li>
                   <li id="donors" onClick="setCookie('tabval',this.id,1)"><a href="#">Donors</a></li>
                   <li id="recipients" onClick="setCookie('tabval',this.id,1)"><a href="#">Recipients</a></li>
-                  <li id="preapproved" onClick="setCookie('tabval',this.id,1)"><a href="#">Preapproved Grants</a></li>
+                  <li class="one-click-hidden" id="preapproved" onClick="setCookie('tabval',this.id,1)"><a href="#">Preapproved Grants</a></li>
                   <li id="pending" onClick="setCookie('tabval',this.id,1)"><a href="#">Pending Users</a></li>
                   <li id="distributions" onClick="setCookie('tabval',this.id,1)"><a href="#">Data Distributions</a></li>
               </ul>
@@ -36,7 +36,7 @@
               <%= will_paginate @recipients %>
               </div>
             </div>
-            <div class="tab-content">
+            <div class="tab-content one-click-hidden">
               <%= render partial: 'shared/table', locals: { heads: %w[Name], partials: [['preapproved_grants', @preapproved, :preapproved_grant, "There are no preapproved grants"]] } %>
               <div class="four columns centered centalign">
               <%= will_paginate @preapproved %>
