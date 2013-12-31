@@ -301,9 +301,10 @@ $imglargereplacementhgt: 250px;
 
 .helppanel{
 	position:fixed;
+	padding: 0px 5px 0px 5px;
 	top:0px;
-	left:-250px;
-	width:250px;
+	left:-300px;
+	width:300px;
 	height:100%;
 	z-index:1000;
 	overflow:auto;
