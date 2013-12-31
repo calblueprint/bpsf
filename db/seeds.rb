@@ -50,7 +50,7 @@ def make_users
                   password_confirmation: "password",
                   approved: false
   end
-  1.upto(4) do |n|
+  1.upto(10) do |n|
     Recipient.create! first_name: "Teacher #{n}",
                       last_name: "Dev",
                       email: "bpsfteacher#{n}@gmail.com",
