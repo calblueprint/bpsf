@@ -34,7 +34,7 @@
 
             <div class="field">
               <%= f.label :subject_areas, 'Subject Areas' %>
-              <%= f.select(:subject_areas, Grant::SUBJECTS, {}, {:multiple => true}) %>
+              <%= f.select(:subject_areas, DraftGrant::SUBJECTS, {}, {:multiple => true, class: :chosenselect}) %>
             </div>
 
             <div class="medium primary btn pull_right">
@@ -47,3 +47,7 @@
     </div>
   </div>
 </div>
+
+<script>
+$(".chosenselect").chosen({width:'100%'});
+</script>
