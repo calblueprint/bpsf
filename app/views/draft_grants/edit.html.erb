@@ -323,11 +323,10 @@
               <div class="drawer" id="drawerfundswillpayfor" style="text-align:center;">
                 <p>Choose how the funds will be spent.</p>
               </div>
-              <div class="field centalign">
-                <div class="picker">
-                  <%= f.collection_select :funds_will_pay_for, DraftGrant::FUNDS, :to_s, :to_s, prompt: 'Funds will be paying for...' %>
-                </div>
+              <div>
+                  <%= f.select(:funds_will_pay_for, DraftGrant::FUNDS, {}, {:multiple => true, class: :chosenselect}) %>
               </div>
+              <br>
 
 
             </div>
