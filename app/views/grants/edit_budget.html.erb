@@ -25,8 +25,8 @@
 
             <div class="field">
               <%= f.label :funds_will_pay_for, 'Funds will pay for:' %>
-              <div class="picker">
-                <%= f.collection_select :funds_will_pay_for, DraftGrant::FUNDS, :to_s, :to_s, prompt: 'Funds will be paying for...' %>
+              <div>
+                <%= f.select(:funds_will_pay_for, Grant::FUNDS, {}, {:multiple => true, class: :chosenselect}) %>
               </div>
             </div>
 
@@ -45,3 +45,7 @@
     </div>
   </div>
 </div>
+
+<script>
+$(".chosenselect").chosen({width:'100%'});
+</script>
