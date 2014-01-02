@@ -61,21 +61,23 @@
             <div class="drawer" id="drawerimage" style="text-align:center;">
               <p>Optional: Choose a photo that will appear at the top of your application. A default photo will be used if you choose not to upload one.</p>
             </div>
-            <div class="five columns push_one centalign">
-              <div class="imgholder" style="width:300px;">
-              <% if !@draft_grant.image_url.to_s.eql? "" %>
-                <%= image_tag @draft_grant.image_url.to_s %>
-              <% else %>
-                <%= image_tag 'http://placehold.it/880x450' %>
-              <% end %>
+            <div class="eight columns centered">
+              <div class="five columns centalign">
+                <div class="imgholder" style="width:300px;">
+                <% if !@draft_grant.image_url.to_s.eql? "" %>
+                  <%= image_tag @draft_grant.image_url.to_s %>
+                <% else %>
+                  <%= image_tag 'http://placehold.it/880x450' %>
+                <% end %>
+                </div>
               </div>
-            </div>
 
-            <div class="five columns">
-              <li class="field">
-                <br>
-                <%= f.file_field :image_url %>
-              </li>
+              <div class="five columns push_two centalign">
+                <li class="field">
+                  <br>
+                  <%= f.file_field :image_url %>
+                </li>
+              </div>
             </div>
           </div>
 
@@ -323,11 +325,10 @@
               <div class="drawer" id="drawerfundswillpayfor" style="text-align:center;">
                 <p>Choose how the funds will be spent.</p>
               </div>
-              <div class="field centalign">
-                <div class="picker">
-                  <%= f.collection_select :funds_will_pay_for, DraftGrant::FUNDS, :to_s, :to_s, prompt: 'Funds will be paying for...' %>
-                </div>
+              <div>
+                  <%= f.select(:funds_will_pay_for, DraftGrant::FUNDS, {}, {:multiple => true, class: :chosenselect}) %>
               </div>
+              <br>
 
 
             </div>
