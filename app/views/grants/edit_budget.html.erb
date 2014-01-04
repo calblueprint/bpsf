@@ -14,7 +14,7 @@
             <%= render 'shared/errors', object: f.object %>
 
             <div class="field">
-              <%= f.label :total_budget, 'Total Budget' %>
+              <%= f.label :total_budget, 'Funding Goal' %>
               <%= f.text_field :total_budget, class: :input %>
             </div>
 
@@ -25,7 +25,9 @@
 
             <div class="field">
               <%= f.label :funds_will_pay_for, 'Funds will pay for:' %>
-              <%= f.text_area :funds_will_pay_for, class: [:textarea, :input], rows: 5 %>
+              <div>
+                <%= f.select(:funds_will_pay_for, Grant::FUNDS, {}, {:multiple => true, class: :chosenselect}) %>
+              </div>
             </div>
 
             <div class="field">
@@ -43,3 +45,7 @@
     </div>
   </div>
 </div>
+
+<script>
+$(".chosenselect").chosen({width:'100%'});
+</script>

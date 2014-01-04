@@ -19,6 +19,8 @@
 #  first_name             :string(255)
 #  last_name              :string(255)
 #  stripe_token           :string(255)
+#  approved               :boolean
+#  school_id              :integer
 #
 
 class Admin < User
@@ -29,5 +31,9 @@ class Admin < User
 
   def create_profile!
     profile = AdminProfile.create admin_id: id
+  end
+
+  def init_approved
+    false
   end
 end

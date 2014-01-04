@@ -12,3 +12,8 @@
  *= require ajaxful_rating
  *= require gumby
  */
+
+/* Temporary - hide one-click grants */
+.one-click-hidden {
+  display: none !important;
+}
