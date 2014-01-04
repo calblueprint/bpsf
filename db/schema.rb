@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131124105213) do
+ActiveRecord::Schema.define(:version => 20131209233839) do
 
   create_table "admin_profiles", :force => true do |t|
     t.string   "about"
@@ -94,6 +94,8 @@ ActiveRecord::Schema.define(:version => 20131124105213) do
     t.string   "image_url"
     t.integer  "school_id"
     t.decimal  "rating_average",     :precision => 6, :scale => 2, :default => 0.0
+    t.string   "school_name"
+    t.string   "teacher_name"
   end
 
   add_index "grants", ["recipient_id"], :name => "index_grants_on_recipient_id"
@@ -134,6 +136,11 @@ ActiveRecord::Schema.define(:version => 20131124105213) do
     t.datetime "started_teaching"
     t.string   "subject"
     t.string   "grade"
+    t.string   "address"
+    t.string   "city"
+    t.integer  "zipcode"
+    t.string   "work_phone"
+    t.string   "home_phone"
   end
 
   add_index "recipient_profiles", ["school_id"], :name => "index_recipient_profiles_on_school_id"
@@ -171,9 +178,23 @@ ActiveRecord::Schema.define(:version => 20131124105213) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "stripe_token"
+    t.boolean  "approved"
+    t.integer  "school_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+  add_index "users", ["school_id"], :name => "index_users_on_school_id"
+
+  create_table "versions", :force => true do |t|
+    t.string   "item_type",  :null => false
+    t.integer  "item_id",    :null => false
+    t.string   "event",      :null => false
+    t.string   "whodunnit"
+    t.text     "object"
+    t.datetime "created_at"
+  end
+
+  add_index "versions", ["item_type", "item_id"], :name => "index_versions_on_item_type_and_item_id"
 
 end

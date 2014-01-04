@@ -4,10 +4,31 @@ class Admin::DashboardController < ApplicationController
   authorize_resource :class => false
 
   def index
-    @grants = Grant.all.sort
+    if !current_user.approved
+      raise CanCan::AccessDenied.new
+    end
+    @grants = Grant.all.sort.paginate :page => params[:page], :per_page => 6
+
     @donors = User.donors
+    donated = params[:donated]
+    if donated && donated == 'Donated'
+      @donors = User.donors.select {|user| user.payments.length > 0}
+    elsif donated && donated == 'Have Not Donated'
+      @donors = User.donors.select {|user| user.payments.length == 0}
+    end
+    @donors = @donors.paginate :page => params[:page], :per_page => 6
+
     @recipients = Recipient.all
-    @preapproved = PreapprovedGrant.all
+    school = params[:school]
+    if school && school != 'All'
+      schoolId = School.find_by_name(school).id
+      @recipients = Recipient.select {|recip| recip.school_id == schoolId }
+    end
+    @recipients = @recipients.paginate :page => params[:page], :per_page => 6
+    
+    @preapproved = PreapprovedGrant.all.paginate :page => params[:page], :per_page => 6
+    @pending_users = User.where approved: false
+    @pending_users = @pending_users.paginate :page => params[:page], :per_page => 6
   end
 
   def grant_event

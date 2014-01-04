@@ -18,19 +18,20 @@ $max-device-width:  2880px;
 $nav-distance:  0;
 
 // Typography
-$font-family: "Open Sans";
+$font-family: "museosans-webfont";//"Open Sans";
 $font-style-italic:  italic;
 $icons:  entypo;
+$museo:  museosans-webfont;
 $font-smoothing:  antialiased;
 
 // Font Weights
-$font-weight-bold:  700;
-$font-weight-semibold:  600;
-$font-weight-medium:  400;
-$font-weight-regular:  400;
-$font-weight-light:  300;
-$font-weight-thin:  300;
-$header-font-weight: 400;
+$font-weight-bold:  500;//700;
+$font-weight-semibold:  500;//600;
+$font-weight-medium:  500;//400;
+$font-weight-regular:  500;//400;
+$font-weight-light:  500;//300;
+$font-weight-thin:  500;//300;
+$header-font-weight: 500;//400;
 $body-font-weight:  $font-weight-light;
 $type-font-weight:  $font-weight-light;
 $link-font-weight:  $font-weight-light;
@@ -66,8 +67,8 @@ $tremendous:  ms(9);
 $absurd:  ms(10);
 
 // Typography Colors
-$header-font-color: #444444 !default;
-$header-link-color:  #555555 !default;
+$header-font-color: #000;//#444444 !default;
+$header-link-color:  #000;//#555555 !default;
 $header-link-hover-color:  #ef4023 !default;
 $body-font-color: #555555 !default;
 $body-link-color: #555555 !default;
@@ -131,11 +132,11 @@ $navcontain-height:  80px;
 // Drawers & Modals
 $modal-overlay-color:  rgba(0, 0, 0, 0.8);
 $modal-window-color:  $white;
-$drawer-background-color:  #3e4144;
+$drawer-background-color:  #fff;//#3e4144;
 $drawer-inner-shadow-x-offset:  0;
 $drawer-inner-shadow-y-offset:  2px;
 $drawer-inner-shadow-blur:  5px;
-$drawer-inner-shadow-color:  #313436;
+$drawer-inner-shadow-color:  #fff;//#313436;
 
 // Tables
 $table-bgcolor:  #fff;

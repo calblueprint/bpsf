@@ -1,11 +1,12 @@
+# Controller for draft grants
 class DraftGrantsController < ApplicationController
   load_and_authorize_resource
 
   def new
     if recipient?
-      @draft_grant = current_user.draft_grants.build
+      @draft_grant = current_user.draft_grants.build school_id: current_user.school_id
       @preapproved = PreapprovedGrant.all
-    elsif
+    else
       raise CanCan::AccessDenied.new("You are not authorized to access this page.", :manage, DraftGrant)
       redirect_to root_url
     end
@@ -27,42 +28,20 @@ class DraftGrantsController < ApplicationController
   end
 
   def edit
-    session.delete :previous
     @draft_grant = DraftGrant.find params[:id]
-  end
-
-  # One day, these will be replaced by AJAX.
-  def edit_general_info
-    @draft_grant = DraftGrant.find params[:id]
-    session[:previous] = params[:action]
-  end
-
-  def edit_logistics
-    @draft_grant = DraftGrant.find params[:id]
-    session[:previous] = params[:action]
-  end
-
-  def edit_budget
-    @draft_grant = DraftGrant.find params[:id]
-    session[:previous] = params[:action]
-  end
-
-  def edit_methods
-    @draft_grant = DraftGrant.find params[:id]
-    session[:previous] = params[:action]
   end
 
   def update
     if @draft_grant.update_attributes params[:draft_grant]
+      submit and return if params[:save_and_submit]
       flash[:success] = 'Application updated!'
       redirect_to edit_draft_path @draft_grant
     else
-      render session[:previous]
+      render 'edit'
     end
   end
 
   def submit
-    @draft_grant = DraftGrant.find params[:id]
     if @draft_grant.submit_and_destroy
       flash[:success] = 'Application submitted!'
       redirect_to recipient_dashboard_path

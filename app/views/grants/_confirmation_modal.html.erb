@@ -1,0 +1,17 @@
+<div class="modal" id="confirmation-modal">
+  <div class="content">
+    <a class="close switch close-confirmation-modal" gumby-trigger="|#confirmation-modal"><i class="icon-cancel" /></i></a>
+    <div class="row centalign">
+      <div class="ten columns centered text-center centalign">
+        <h4>Thank You!</h4>
+        <div class="field largefont">
+          You donated $<span id='payment-amount'></span> to <%= @grant.title %>!
+        </div>
+        <div class="field">
+          <%= @grant.recipient.name %> will be very grateful. You're making a difference.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

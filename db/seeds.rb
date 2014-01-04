@@ -1,10 +1,36 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+# Seed data for the app
+
+def make_schools
+  School.create! name: 'Arts Magnet Elementary School'
+  School.create! name: 'Cragmont Elementary School'
+  School.create! name: 'Emerson Elementary School'
+  School.create! name: 'Jefferson Elementary School'
+  School.create! name: 'John Muir Elementary School'
+  School.create! name: 'LeConte Elementary School'
+  School.create! name: 'Malcolm X Elementary School'
+  School.create! name: 'Oxford Elementary School'
+  School.create! name: 'Rosa Parks Elementary School'
+  School.create! name: 'Thousand Oaks Elementary School'
+  School.create! name: 'Washington Elementary School'
+  School.create! name: 'King Middle Middle School'
+  School.create! name: 'Longfellow Middle School'
+  School.create! name: 'Willard Middle School'
+  School.create! name: 'Franklin District Preschool'
+  School.create! name: 'Hopkins District Preschool'
+  School.create! name: 'King District Preschool'
+  School.create! name: 'Berkeley High School - AC'
+  School.create! name: 'Berkeley High School - AHA'
+  School.create! name: 'Berkeley High School - CAS'
+  School.create! name: 'Berkeley High School - CPA'
+  School.create! name: 'Berkeley High School - GA'
+  School.create! name: 'Berkeley High School - IB'
+  School.create! name: 'Berkeley High School - All'
+  School.create! name: 'B-Tech'
+  School.create! name: 'Independent Study'
+  School.create! name: 'Districtwide'
+  School.create! name: 'Herrick Hospital'
+  School.create! name: 'Other BUSD'
+end
 
 # Create Teachers (we refer to them as Recipients)
 def make_users
@@ -13,31 +39,51 @@ def make_users
                       last_name: "Dev",
                       email: "bpsfsuper#{n}@gmail.com",
                       password: "password",
-                      password_confirmation: "password"
+                      password_confirmation: "password",
+                      approved: true
+  end
+  1.upto(2) do |n|
     Admin.create! first_name: "Admin #{n}",
                   last_name: "Dev",
                   email: "bpsfadmin#{n}@gmail.com",
                   password: "password",
-                  password_confirmation: "password"
+                  password_confirmation: "password",
+                  approved: false
+  end
+  1.upto(10) do |n|
     Recipient.create! first_name: "Teacher #{n}",
                       last_name: "Dev",
                       email: "bpsfteacher#{n}@gmail.com",
                       password: "password",
-                      password_confirmation: "password"
+                      password_confirmation: "password",
+                      approved: true,
+                      school_id: rand(1..School.count)
+  end
+  1.upto(8) do |n|
     User.create! first_name: "Parent #{n}",
                  last_name: "Dev",
                  email: "bpsfparent#{n}@gmail.com",
                  password: "password",
-                 password_confirmation: "password"
+                 password_confirmation: "password",
+                 approved: true
   end
+  a = Admin.first
+  a.approved = true ; a.save!
 end
 
 def make_profiles
   Recipient.all.each do |recipient|
     profile = RecipientProfile.create! recipient_id: recipient.id,
-                                       about: Faker::Lorem.sentence,
+                                       school_id: recipient.school_id,
+                                       about: Faker::Lorem.characters,
+                                       started_teaching: 2.years.ago,
                                        subject: Faker::Lorem.sentence,
-                                       grade: Faker::Lorem.sentence
+                                       grade: Faker::Lorem.sentence,
+                                       address: Faker::Address.street_address,
+                                       city: 'Berkeley',
+                                       zipcode: 94720,
+                                       work_phone: Faker::PhoneNumber.phone_number,
+                                       home_phone: Faker::PhoneNumber.phone_number
     recipient.profile = profile
   end
   Admin.all.each do |admin|
@@ -54,80 +100,50 @@ def make_profiles
   end
 end
 
-def make_schools
-  School.create! name: 'Berkeley High School'
-  School.create! name: 'Washington Elementary School'
-  School.create! name: 'Maybeck High School'
-  School.create! name: 'Whitney High School'
-end
-
 def make_grants
-  t1 = Recipient.find_by_first_name 'Teacher 1'
-  t2 = Recipient.find_by_first_name 'Teacher 2'
-  1.upto(3) do |n|
-    t1.draft_grants.create! title: "Draft #{n}",
-                            summary: Faker::Lorem.sentence,
-                            subject_areas: ["Other"]
-    t2.draft_grants.create! title: "Draft #{n + 3}",
-                            summary: Faker::Lorem.sentence,
-                            subject_areas: ["Other"]
-  end
   crowdfunding_grants = []
-  1.upto(4) do |n|
-    crowdfunding_grants << t1.grants.build(title: "Grant #{n}",
-                                           summary: Faker::Lorem.sentence,
-                                           subject_areas: ["Art & Music", "Reading"],
-                                           grade_level: "#{n + 2}",
-                                           duration: "#{n} weeks",
-                                           school_id: n,
-                                           num_classes: n,
-                                           num_students: n * 10,
-                                           total_budget: n * 300,
-                                           requested_funds: n * 250,
-                                           funds_will_pay_for: Faker::Lorem.paragraph,
-                                           budget_desc: Faker::Lorem.paragraph,
-                                           purpose: Faker::Lorem.paragraph,
-                                           methods: Faker::Lorem.paragraph,
-                                           background: Faker::Lorem.paragraph,
-                                           n_collaborators: n,
-                                           collaborators: Faker::Lorem.paragraph,
-                                           comments: Faker::Lorem.paragraph)
-    crowdfunding_grants << t2.grants.build(title: "Grant #{n + 4}",
-                                           summary: Faker::Lorem.sentence,
-                                           subject_areas: ["Field Trips"],
-                                           grade_level: "#{n + 2}",
-                                           duration: "#{n} weeks",
-                                           school_id: n,
-                                           num_classes: n,
-                                           num_students: n * 10,
-                                           total_budget: n * 300,
-                                           requested_funds: n * 250,
-                                           funds_will_pay_for: Faker::Lorem.paragraph,
-                                           budget_desc: Faker::Lorem.paragraph,
-                                           purpose: Faker::Lorem.paragraph,
-                                           methods: Faker::Lorem.paragraph,
-                                           background: Faker::Lorem.paragraph,
-                                           n_collaborators: n,
-                                           collaborators: Faker::Lorem.paragraph,
-                                           comments: Faker::Lorem.paragraph)
+  Recipient.all.each do |r|
+    r.draft_grants.create! title: "Draft #{r.id}",
+                           summary: Faker::Lorem.sentence,
+                           subject_areas: ["Other"],
+                           school_id: r.school_id
+    crowdfunding_grants << r.grants.build(title: "Grant #{r.id-4}",
+                                          summary: Faker::Lorem.sentence,
+                                          subject_areas: ["Arts / Music", "Multi-subject"],
+                                          grade_level: "#{rand(1..11)}",
+                                          duration: "#{rand(1..4)} weeks",
+                                          school_id: r.school_id,
+                                          num_classes: rand(1..5),
+                                          num_students: rand(1..5) * 10,
+                                          total_budget: rand(8..12) * 100,
+                                          requested_funds: rand(1..3) * 250,
+                                          funds_will_pay_for: "Supplies",
+                                          budget_desc: Faker::Lorem.paragraph,
+                                          purpose: Faker::Lorem.paragraph,
+                                          methods: Faker::Lorem.paragraph,
+                                          background: Faker::Lorem.paragraph,
+                                          n_collaborators: rand(1..4),
+                                          collaborators: Faker::Lorem.paragraph,
+                                          comments: Faker::Lorem.paragraph,
+                                          image_url: File.open(File.join(Rails.root, "app/assets/images/default/Art and Music.jpg")))
   end
   crowdfunding_grants.map do |grant|
     grant.crowdfund
     Crowdfund.create deadline: Time.now,
                      pledged_total: 0,
                      grant_id: grant.id,
-                     goal: "123"
+                     goal: grant.requested_funds
     grant.save!
   end
 end
 
 def make_preapproved
-  g = Grant.first
-  g.preapprove!
+  grants = Grant.all[1..10]
+  grants.map &:preapprove!
 end
 
+make_schools
 make_users
 make_profiles
-make_schools
 make_grants
 make_preapproved

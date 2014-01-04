@@ -1,7 +1,7 @@
 /* Fonts */
 
 // Import Google Web Fonts
-@import url(//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700);
+//@import url(//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700);
 
 
 // Set local icon font
@@ -13,6 +13,16 @@
   src: url('fonts/icons/#{$icons}.eot?#iefix') format('ie9-skip-eot'),
        url('fonts/icons/#{$icons}.woff') format('woff'),
        url('fonts/icons/#{$icons}.ttf')  format('truetype');
+}
+
+@font-face {
+  font-family: '#{$museo}';
+  font-style: normal;
+  font-weight: 500;
+  src: url(fonts/museo/#{$museo}.eot);
+  src: url('fonts/museo/#{$museo}.eot?#iefix') format('ie9-skip-eot'),
+       url('fonts/museo/#{$museo}.woff') format('woff'),
+       url('fonts/museo/#{$museo}.ttf')  format('truetype');
 }
 
 // To include your own, local copies of fonts, use the following template

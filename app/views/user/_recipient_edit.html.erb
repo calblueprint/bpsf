@@ -4,6 +4,7 @@
 <div class="row">
   <div class="twelve columns">
     <%= form_for user, as: :user, url: user_path(user) do |f| %>
+      <%= render 'shared/errors', object: f.object %>
       <div class="field">
         <%= f.label :first_name %>
         <%= f.text_field :first_name, class: :input %>
@@ -14,8 +15,16 @@
       </div>
       <%= f.fields_for :profile do |ff| %>
         <div class="field">
+          <%= ff.label :school, "School" %>
+          <div class="picker">
+            <%= ff.collection_select :school_id, School.all, :id, :name %>
+          </div>
+        </div>
+        <div class="field">
           <%= ff.label :started_teaching, "Started Teaching:" %>
-          <%= ff.date_select :started_teaching, order: [:year] %>
+          <div class="picker">
+            <%= ff.date_select :started_teaching, start_year: Time.now.year - 40, order: [:year] %>
+          </div>
         </div>
         <div class="field">
           <%= ff.label :subject, "Subject You Teach" %>
@@ -29,6 +38,27 @@
           <%= ff.label :about, "About" %>
           <%= ff.text_area :about, class: [:textarea, :input], rows: 3 %>
         </div>
+        <div class="field">
+          <%= ff.label :address, "Address" %>
+          <%= ff.text_field :address, class: :input %>
+        </div>
+        <div class="field">
+          <%= ff.label :city, "City" %>
+          <%= ff.text_field :city, class: :input %>
+        </div>
+        <div class="field">
+          <%= ff.label :zipcode, "Zip Code" %>
+          <%= ff.text_field :zipcode, class: :input %>
+        </div>
+        <div class="field">
+          <%= ff.label :work_phone, "Work Phone" %>
+          <%= ff.text_field :work_phone, class: :input %>
+        </div>
+        <div class="field">
+          <%= ff.label :home_phone, "Home Phone" %>
+          <%= ff.text_field :home_phone, class: :input %>
+        </div>
+
       <% end %>
       <div class="medium primary btn pull_right">
         <%= f.submit "Save!" %>

@@ -1,13 +1,24 @@
 <div class="row">
   <div class="wrapper light">
     <div class="row centalign">
-      <h2 >
+      <h2>
         <%= @grant.title %> (Preapproved)
       </h2>
       <h5>
         <%= @grant.school_name %>
       </h5>
     </div>
+
+    <% if super_user? %>
+      <div class="row">
+        <div class="three columns centered centalign">
+          <div class="medium primary btn">
+            <%= link_to 'Delete', preapproved_grant_path(@grant),
+                method: :delete, confirm: 'Are you sure?' %>
+          </div>
+        </div>
+      </div>
+    <% end %>
 
     <% if recipient? %>
       <div class="row">
@@ -23,7 +34,7 @@
 
 
     <div class="row">
-      <% if !@grant.image_url.blank? %>
+      <% if !@grant.image_url.to_s.eql? ""%>
         <%= image_tag @grant.image_url.to_s %>
       <% else %>
         <div class="imgreplacementlrg"><div class="repson"><%= @grant.title %></div></div>
