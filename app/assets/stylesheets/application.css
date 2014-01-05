@@ -17,3 +17,8 @@
 .one-click-hidden {
   display: none !important;
 }
+
+.table-message {
+  display: block;
+  text-align: center;
+}
