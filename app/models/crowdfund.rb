@@ -17,7 +17,7 @@ class Crowdfund < ActiveRecord::Base
   belongs_to :grant
 
   def progress
-    "#{(self.pledged_total/self.goal.to_f * 100).to_i}%"
+    "#{([self.pledged_total/self.goal.to_f, 1].min * 100).to_i}%"
   end
 
   def add_payment(amount)
