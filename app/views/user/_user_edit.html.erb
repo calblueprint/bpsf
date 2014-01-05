@@ -1,21 +1,22 @@
 
-      <div class="row centalign">
-        <h2>Update Your Profile</h2>
+<div class="row centalign">
+      <h2>Update Your Profile</h2>
+</div>
+<div class="row">
+      <div class="twelve columns">
+      <%= form_for user, url: user_path(user) do |f| %>
+      <div class="field">
+            <%= f.label :first_name %>
+            <%= f.text_field :first_name, class: :input %>
       </div>
-      <div class="row">
-        <div class="twelve columns">
-          <%= form_for user, url: user_path(user) do |f| %>
-            <div class="field">
-              <%= f.label :first_name %>
-              <%= f.text_field :first_name, class: :input %>
-            </div>
-            <div class="field">
-              <%= f.label :last_name %>
-              <%= f.text_field :last_name, class: :input %>
-            </div>
-            <div class="medium primary btn pull_right">
-              <%= f.submit "Save!" %>
-            </div>
-          <% end %>
-        </div>
+      <div class="field">
+            <%= f.label :last_name %>
+            <%= f.text_field :last_name, class: :input %>
       </div>
+      <%= render 'credit_card_edit' %>
+      <div class="medium primary btn pull_right">
+            <%= f.submit "Save!", id: 'update-profile' %>
+      </div>
+      <% end %>
+      </div>
+</div>
