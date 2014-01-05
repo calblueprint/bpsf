@@ -27,17 +27,16 @@ class RecipientProfile < ActiveRecord::Base
 
   before_save :set_phone_numbers
 
-  validates :about, presence: true,
-    length: { minimum: 40, message: "is too shoort" }
-  validates :school_id, presence: true
-  validates :subject, presence: true
-  validates :started_teaching, presence: true
-  validates :address, presence: true
-  validates :city, presence: true
-  validates :zipcode, presence: true,
-    length: { minimum: 5, message: 'is an invalid zipcode' }
-  validates :work_phone, presence: true
-  validates :home_phone, presence: true
+  validates :about, length: { minimum: 40, message: "is too short" }, presence: true, on: :update
+  validates :school_id, presence: true, on: :update
+  validates :subject, presence: true, on: :update
+  validates :started_teaching, presence: true, on: :update
+  validates :address, presence: true, on: :update
+  validates :city, presence: true, on: :update
+  validates :zipcode, length: { minimum: 5, message: 'is an invalid zipcode' }, presence: true, on: :update
+  validates :work_phone, presence: true, on: :update
+  validates :home_phone, presence: true, on: :update
+
 
   def years_teaching
     Date.today.year - self.started_teaching.year
