@@ -1,0 +1,16 @@
+<div class="row">
+    <div class="twelve columns">
+        <div class="wrapper light">
+            <div class="row centalign">
+                <h2 class='centalign'>Congratulations!</h2>
+                You just made your first donation!
+                <div class="field largefont">
+                    You donated $<span id='payment-amount'><%= @payment.amount %></span> to <%= @grant.title %>!
+                </div>
+                <div class="field">
+                    <%= @grant.recipient.name %> will be very grateful. You're making a difference.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

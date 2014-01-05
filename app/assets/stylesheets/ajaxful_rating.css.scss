@@ -7,11 +7,12 @@
 .ajaxful-rating a:active,
 .ajaxful-rating a:focus,
 .ajaxful-rating .show-value{
-    background: image-url("ajaxful_rating/star.png") left -1000px repeat-x;
+    background: image-url("ajaxful_rating/starlong.png") left -1000px;
 }
 .ajaxful-rating{
     position: relative;
     /*width: 125px; this is setted dynamically */
+    width: 250px;
     height: 25px;
     overflow: hidden;
     list-style: none;

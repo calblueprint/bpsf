@@ -11,12 +11,13 @@ gem 'devise', '~> 3.1.1'
 gem 'will_paginate', '~> 3.0'
 gem 'stripe', '~> 1.8.7'
 gem 'state_machine', '~> 1.2.0'
+gem 'paper_trail', '>= 3.0.0.rc2'
 gem 'carrierwave', '~> 0.9.0'
-gem 'fog', '~> 1.16.0'
+gem 'fog', :git => 'https://github.com/fog/fog.git'
 gem 'textacular', '~> 3.0', require: 'textacular/rails'
 gem 'enumerize'
 gem 'ajaxful_rating', '~> 3.0.0.beta8'
-gem 'rack'
+gem 'sucker_punch', '~> 1.0.1'
 
 group :development, :test do
   gem 'rspec-rails', '2.11.0'
@@ -24,13 +25,15 @@ group :development, :test do
   gem 'spork', '0.9.2'
   gem 'commands', '~> 0.2.1'
   gem 'pry', '~> 0.9.12.2'
-  gem 'railroady', '~> 1.1.1'
 end
 
 group :development do
   gem 'annotate', '2.5.0'
   gem 'ruby-graphviz', '~> 1.0.9'
   gem 'metric_fu', '~> 4.4.4'
+  gem 'better_errors', '~> 1.0.1'
+  gem 'binding_of_caller', '~> 0.7.2'
+  gem 'bullet', '~> 4.7.1'
 end
 
 

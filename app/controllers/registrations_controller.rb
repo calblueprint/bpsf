@@ -1,21 +1,21 @@
+# Handles user creation and redirects to user profile after creation
 class RegistrationsController < Devise::RegistrationsController
   def new
     super
   end
 
   def create
-    build_resource(sign_up_params)
+    build_resource sign_up_params
 
     if resource.save
       if resource.active_for_authentication?
         set_flash_message :notice, :signed_up if is_navigational_format?
-        UserMailer.welcome_email(resource).deliver
         sign_up(resource_name, resource)
-        respond_with resource, :location => after_sign_up_path_for(resource)
+        respond_with resource, location: after_sign_up_path_for(resource)
       else
         set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_navigational_format?
         expire_session_data_after_sign_in!
-        respond_with resource, :location => after_inactive_sign_up_path_for(resource)
+        respond_with resource, location: after_inactive_sign_up_path_for(resource)
       end
     else
       clean_up_passwords resource
@@ -28,22 +28,28 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def after_sign_up_path_for(resource)
-    if resource.type.eql? 'Recipient'
-      @user = Recipient.find resource.id
-      @user.recipient_profile = RecipientProfile.create recipient_id: @user.id
-      @profile = @user.recipient_profile
-      edit_user_path id: @user.id
-    elsif resource.type.eql? 'Admin'
-      @user = Admin.find resource.id
-      @user.admin_profile = AdminProfile.create admin_id: @user.id
-      @profile = @user.admin_profile
+    user = User.find resource.id
+    admins = Admin.all + SuperUser.all
+    if user.type != "Admin"
+      WelcomeEmailJob.new.async.perform(resource)
+      admins.each do |admin|
+        AdminNewuserJob.new.async.perform(user, admin)
+      end
+    else
+      WelcomeAdminJob.new.async.perform(resource)
+      admins.each do |admin|
+        if admin.id != resource.id
+          AdminNewadminJob.new.async.perform(user, admin)
+        end
+      end
+    end
+    user.approved = user.init_approved
+    user.save!
+    if can_have_profile? resource
+      user.create_profile!
       edit_user_path id: @user.id
     else
       super
     end
-  end
-
-  def use_https?
-    true
   end
 end

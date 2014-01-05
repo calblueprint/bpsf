@@ -13,4 +13,5 @@ class School < ActiveRecord::Base
   attr_accessible :district, :donations_received, :name
   has_many :grants
   has_many :draft_grants
+  has_many :recipients
 end

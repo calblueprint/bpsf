@@ -19,8 +19,17 @@
 #  first_name             :string(255)
 #  last_name              :string(255)
 #  stripe_token           :string(255)
+#  approved               :boolean
+#  school_id              :integer
 #
 
 class SuperUser < User
-  has_one :admin_profile
+  ajaxful_rater
+  has_one :profile, class_name: 'AdminProfile'
+  attr_accessible :profile_attributes
+  accepts_nested_attributes_for :profile
+
+  def init_approved
+    true
+  end
 end

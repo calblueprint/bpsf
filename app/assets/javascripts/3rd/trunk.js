@@ -1,8 +1,9 @@
 $(function() {
 
-	var items = $('.slideRight, .slideLeft');
-	var content = $('.content');
-	
+	var items = $('.helppanel, .helppanelbutton, .xbox');
+	var hp = $('.helppanelbutton');
+	var xbox = $('.xbox')
+
 	var open = function() {
 							$(items).removeClass('close').addClass('open');
 						}
@@ -10,12 +11,12 @@ $(function() {
 							$(items).removeClass('open').addClass('close');
 						}
 
-	$('#navToggle').click(function(){
-		if (content.hasClass('open')) {$(close)}
+	hp.click(function(){
+		if (hp.hasClass('open')) {$(close)}
 		else {$(open)}
 	});
-	content.click(function(){
-		if (content.hasClass('open')) {$(close)}
+	xbox.click(function(){
+		if (hp.hasClass('open')) {$(close)};
 	});
 
 });

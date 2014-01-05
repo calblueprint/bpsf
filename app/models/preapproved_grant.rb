@@ -27,12 +27,14 @@
 #  image_url          :string(255)
 #  school_id          :integer
 #  type               :string(255)
+#  grant_id           :integer
 #
 
 class PreapprovedGrant < DraftGrant
+  belongs_to :grant
+  validates :grant_id, presence: true
 
   def clone_into_draft_for!(recipient_id)
-    # Currently transfers all attributes; filter attributes later
     draft = dup
     draft.recipient_id = recipient_id
     draft.becomes DraftGrant

@@ -1,9 +1,9 @@
-<%= form_for @payment do |f| %>
-  <% if @payment.errors.any? %>
+<%= form_for(payment, remote: true) do |f| %>
+  <% if payment.errors.any? %>
     <div class="error-messages">
-      <h2><%= plurlalize(@payment.errors.count, "error") %> prohibited this donation from being processed:</h2>
+      <h2><%= pluralize(payment.errors.count, "error") %> prohibited this donation from being processed:</h2>
       <ul>
-        <% @payment.errors.full_messages.each do |msg| %>
+        <% payment.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
         <% end %>
       </ul>
@@ -11,7 +11,7 @@
   <% end %>
 
 
-  <%= hidden_field_tag :grant_id, @grant.id %>
+  <%= hidden_field_tag :grant_id, id %>
 
   <%= hidden_field_tag :stripe_token %>
 
@@ -41,6 +41,6 @@
     <noscript>Javscript is required. Please enable it in your browser settings.</noscript>
   </div>
   <div class="donate large primary btn">
-    <%= f.submit "Donate!", :id => "new_payment" %>
+    <%= f.submit "Donate!", :id => "new_payment", :confirm => "Are you sure?" %>
   </div>
 <% end %>

@@ -1,18 +1,10 @@
 <!--***************************************FOOTER********************************************-->
 
 <div class="row">
-  <div class="eight columns">
+  <div class="eight columns centered centalign">
     <p style="font-size:12px; font-size:0.75rem;">
-      <strong>Contact Us</strong><br>
-      <a href="mailto:">bpsf@bpsf.org</a><br><br>
-    </p>
-  </div>
-  <div>
-    <p style="font-size:12px; font-size:0.75rem;">
-        <strong>Navigate</strong><br>
-    Here we would have a sitemap<br><br><br>
         &copy; BluePrint 2013. All rights reserved.
-      </p>
+    </p>
   </div>
 </div>
 
@@ -39,9 +31,10 @@ $('span.progressbar').each(function(value) {
   var width = parseInt(currentnum/goalnum*100);
   if (currentnum/goalnum*100 - parseInt(currentnum/goalnum*100) >= 0.5){
     width = width + 1
-  } 
+  }
   var text = width + "%";
-  if (width<12){width=10;}
+  if (width<12 && width!=0){width=10;}
+  if (width>100){width=100;}
   var wideness = "width:" + width + "%";
   $(this).text(text);
   $(this).attr('style', wideness);

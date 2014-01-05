@@ -1,3 +1,4 @@
+# Controller for grants
 class GrantsController < ApplicationController
   load_and_authorize_resource
 
@@ -17,6 +18,7 @@ class GrantsController < ApplicationController
   end
 
   def edit
+    @grant = Grant.find params[:id]
   end
 
   def update
@@ -24,6 +26,7 @@ class GrantsController < ApplicationController
       flash[:success] = 'Grant updated!'
       redirect_to @grant
     else
+      @grant.reload
       render 'edit'
     end
   end
