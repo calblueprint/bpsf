@@ -11,7 +11,7 @@
         <div class="twelve columns">
           <%= form_for @grant, url: grant_path do |f| %>
             <%= render 'shared/errors', object: f.object %>
-            
+
             <div class="field">
               <%= f.label :purpose, 'Purpose' %>
               <%= f.text_area :purpose, class: [:textarea, :input], rows: 5 %>
@@ -31,7 +31,7 @@
               <%= f.label :comments, 'Comments' %>
               <%= f.text_area :comments, class: [:textarea, :input], rows: 5 %>
             </div>
-          
+
             <div class="medium primary pull_right btn">
               <%= f.submit 'Save!' %>
             </div>

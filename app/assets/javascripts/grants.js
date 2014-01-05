@@ -23,7 +23,27 @@ $(document).ready(function() {
 	$(".close-crowdfund-modal").click(function() {
 		$("#crowdfund-form").removeClass("active");
 	});
+
+	$(".close-confirmation-modal").click(function() {
+		$("#confirmation-form").removeClass("active");
+		$("#payment-form").removeClass("active");
+	});
+
+	$(document).keyup(function(e) {
+		if (e.keyCode == 27) {
+			if ($("#crowdfund-form").hasClass("active")) {
+				$("#crowdfund-form").removeClass("active")
+			}
+			if ($("#payment-modal").hasClass("active")) {
+				$("#payment-modal").removeClass("active");
+			}
+			if ($("#confirmation-modal").hasClass("active")) {
+				$("#confirmation-modal").removeClass("active");
+			}
+		}
+	});
 });
+
 
 payment = {
 	setupForm: function() {

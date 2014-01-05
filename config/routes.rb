@@ -23,17 +23,23 @@ BPSF::Application.routes.draw do
     get ':id/edit_logistics/',    to: 'draft_grants#edit_logistics',    as: :draft_edit_logistics
     get ':id/edit_budget/',       to: 'draft_grants#edit_budget',       as: :draft_edit_budget
     get ':id/edit_methods/',      to: 'draft_grants#edit_methods',      as: :draft_edit_methods
-    post ':id/submit/',           to: 'draft_grants#submit',            as: :draft_submit
   end
 
-  resources :preapproved_grants, only: :show
+  resources :preapproved_grants, only: [:show, :destroy]
   scope '/preapproved_grants' do
     post ':id/convert', to: 'preapproved_grants#convert', as: :preapproved_convert
   end
 
   devise_for :users, :controllers => { :registrations => "registrations" }
   resources :user, except: [:index, :new, :create, :destroy]
+
+  scope '/users' do
+    post ':id/approve', to: 'user#approve', as: :approve_user
+    post ':id/reject', to: 'user#reject', as: :reject_user
+  end
+
   resources :payments, only: [:create, :destroy]
+  get 'payments/success/:grant_id/:payment_id/', to: 'payments#success', as: :payment_success
 
   namespace :recipient do
     get '', to: 'dashboard#index', as: :dashboard
@@ -41,13 +47,11 @@ BPSF::Application.routes.draw do
 
   namespace :admin do
     get '', to: 'dashboard#index', as: :dashboard
+    post '', to: 'dashboard#index', as: :filter_school
+    post '', to: 'dashboard#index', as: :filter_donated
   end
 
-  namespace :admin do
-    get '', to: 'dashboard#index', as: :dashboard
-  end
-
-  post "crowdfund/create"
+  post 'crowdfund/create'
   resources :recipient_profile, only: :update
-  resources :admin_profile, only: :update
+  resources :admin_profile,     only: :update
 end

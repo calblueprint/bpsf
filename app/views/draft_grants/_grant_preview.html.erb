@@ -1,0 +1,101 @@
+<h2 class="ultitle">Preview</h2>
+
+<div class="row centalign">
+  <h2>
+    <%= grant.title %>
+  </h2>
+
+  <h5>
+    <%= grant.recipient.name %> | <%= grant.school_name %>
+  </h5>
+  <h5>
+    <a href="https://www.facebook.com/sharer/sharer.php?" target="_blank"><i class="icon-facebook"></i></a>    <a expr:href='data:post.canonicalUrl' href="https://twitter.com/share"><i class="icon-twitter"></i></a>    <a href="javascript:emailCurrentPage()"><i class="icon-mail"></i></a>
+  </h5>
+</div>
+
+<div class="row">
+  <% if !grant.image_url.to_s.eql? "" %>
+    <%= image_tag grant.image_url.to_s %>
+  <% else %>
+    <div class="imgreplacementlrg"><div class="repson"><%= grant.title %></div></div>
+  <% end %>
+</div>
+
+<div class="row centalign">
+  <div class="eleven columns centered">
+    <p class="largefont"><%= grant.summary %></p>
+  </div>
+  <br>
+</div>
+
+<div class="row padada">
+  <div class="ten columns centered centalign">
+    <h4 class="inlined">Subject Areas: </h4>
+    <span class="largefont"><%= grant.subject_areas.values.to_a.join(', ') %></span>
+  </div>
+</div>
+
+<hr>
+
+<div class="row">
+  <div class="ten columns centalign centered">
+    <h3>Logistics</h3>
+    <h5><strong>Purpose</strong></h5>
+    <%= grant.purpose %>
+    <h5><strong>Methods</strong></h5>
+    <%= grant.methods %>
+    <h5><strong>Teacher Background</strong></h5>
+    <%= grant.background %>
+  </div>
+</div>
+
+
+<% if !grant.video.blank? %>
+  <div class="row">
+    <div class="ten columns centered">
+      <div class="video-container">
+        <iframe src= "http://www.youtube.com/embed/<%= parse_embed(grant) %>"></iframe>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<div class="row">
+  <div class="ten columns centalign centered">
+    <br>
+    <h3>Details</h3>
+    <h5 class="inlined"><strong>Grade level: </strong></h5><span class="medfont"><%= grant.grade_level %></span>&emsp;
+    <h5 class="inlined"><strong>Duration: </strong></h5><span class="medfont"><%= grant.duration %></span>&emsp;
+    <h5 class="inlined"><strong># of classes: </strong></h5><span class="medfont"><%= grant.num_classes %></span>&emsp;
+    <h5 class="inlined"><strong># of students: </strong></h5><span class="medfont"><%= grant.num_students %></span><br>
+    <% if grant.has_collaborators? %>
+      <h5><strong>Collaborators</strong></h5>
+      <%= grant.collaborators %>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="ten columns centalign centered">
+    <br>
+    <h3 class="centalign">Budget</h3>
+    <h5 class="inlined"><strong>Total budget: </strong></h5>
+    <span class="medfont">$<%= grant.total_budget %></span><br>
+    <h5><strong>Description</strong></h5>
+    <%= grant.budget_desc %>
+    <h5><strong>Use of Funds</strong></h5>
+    <%= grant.funds_will_pay_for %>
+  </div>
+</div>
+
+
+<% if grant.has_comments? %>
+  <div class="row">
+    <div class="ten columns centalign centered">
+      <br>
+      <h3>Additional Comments</h3>
+      <%= grant.comments %>
+    </div>
+  </div>
+<% end %>
+

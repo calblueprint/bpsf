@@ -7,6 +7,7 @@
         </h2>
       </div>
 
+      <%= render 'shared/errors', object: @grant %>
 
 
 <!--GENERAL INFO-->
@@ -33,7 +34,7 @@
 
           <div class="row">
             <h4>Image</h4>
-            <% if @grant.image_url %>
+            <% if !@grant.image_url.to_s.eql? "" %>
               <%= image_tag @grant.image_url.to_s %>
             <% end %>
           </div>
@@ -107,7 +108,7 @@
       <div class="row">
         <div class="eleven columns push_one">
           <div class="row">
-            <h4>Total budget: <%= @grant.total_budget %></h4>
+            <h4>Funding Goal: <%= @grant.total_budget %></h4>
           </div>
 
           <div class="row">

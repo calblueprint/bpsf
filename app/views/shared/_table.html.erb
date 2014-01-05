@@ -1,0 +1,22 @@
+<% partials.each do |p, collection, val, message| %>
+  <% if collection.eql?(true) || collection.length > 0 %>
+    <table>
+      <thead>
+        <tr>
+          <% heads.each do |header| %>
+            <th><%= header %></th>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+        <% if !collection.eql?(true) %>
+          <%= render partial: p, collection: collection, as: val %>
+        <% else %>
+          <%= render p %>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <em><%= message %></em>
+  <% end %>
+<% end %>

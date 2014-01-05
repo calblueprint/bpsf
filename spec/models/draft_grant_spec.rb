@@ -27,6 +27,7 @@
 #  image_url          :string(255)
 #  school_id          :integer
 #  type               :string(255)
+#  grant_id           :integer
 #
 
 require 'spec_helper'
@@ -51,8 +52,8 @@ describe DraftGrant do
   it { should allow_mass_assignment_of :comments }
   it { should allow_mass_assignment_of :video }
   it { should allow_mass_assignment_of :image_url }
+  it { should allow_mass_assignment_of :school_id }
   it { should_not allow_mass_assignment_of :recipient_id }
-  it { should_not allow_mass_assignment_of :school_id }
 
   it { should belong_to :recipient }
   it { should belong_to :school }
@@ -66,7 +67,7 @@ describe DraftGrant do
 
   it { should allow_value('K,3, 5-12').for :grade_level }
   it { should_not allow_value('a, 5-13').for :grade_level }
-  
+
   it { should ensure_length_of(:duration).is_at_least(1)
                                          .with_message(/cannot be blank/) }
   it { should ensure_length_of(:budget_desc).is_at_least(1)
@@ -75,7 +76,6 @@ describe DraftGrant do
   it { should ensure_length_of(:purpose).is_at_most 1200 }
   it { should ensure_length_of(:methods).is_at_most 1200 }
   it { should ensure_length_of(:background).is_at_most 1200 }
-  it { should ensure_length_of(:collaborators).is_at_most 1200 }
   it { should ensure_length_of(:comments).is_at_most 1200 }
 
 end

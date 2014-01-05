@@ -1,15 +1,26 @@
-<div class="slideRight trunkheader">     <!--  Add "slideRight" class to items that move right when viewing Nav Drawer  -->
+<div class="trunkheader">     <!--  Add "slideRight" class to items that move right when viewing Nav Drawer  -->
   <span>
-    <i id="navToggle" class="icon-menu slideRight pointer"></i>    <!-- Add "slideRight" class to items that move right when viewing Nav Drawer  -->
-    <a href="https://www.berkeleypublicschoolsfund.org"><i class="icon-left-open-big"></i>Return to BPSF</a>
+    <a href="https://www.berkeleypublicschoolsfund.org" class="homelogo poofout"><img src="/assets/logovert.png" /></a>
+    <a href="https://www.berkeleypublicschoolsfund.org" class="homelogo poofin"><img src="/assets/logovert.png"/></a>
   </span>
+
+  <div class="trunknav">
+    <ul>
+      <li class="darken"><%= link_to 'Browse'.html_safe, root_path, class: :darken %></li>
+      <% if recipient? %>
+        <li class="darken"><%= link_to 'Apply For Grant'.html_safe, new_draft_path, class: :darken %></li>
+      <% end %>
+      <%= render 'layouts/search_form' %>
+    </ul>
+  </div>
+
   <% if user_signed_in? %>
     <div class="loginmenu pull_right">
-      <a href="#" class="toggle" gumby-trigger="#userdropdown" gumby-classname="nodisplay">Hello, <%= current_user.first_name %><i class="icon-down-open-mini"></i></a>
+      <a href="#" class="toggle darken" gumby-trigger="#userdropdown" gumby-classname="nodisplay"><span class="poofout">Hello, <%= current_user.first_name %></span><span class="poofin"><i class="icon-user"></i></span><i class="icon-down-open-mini"></i></a>
     </div>
   <% else %>
   <div class="loginmenu pull_right">
-    <%= link_to "Sign Up", new_user_registration_path %>  |  <%= link_to "Sign In", new_user_session_path %>
+    <span class="poofout"><%= link_to "Sign Up", new_user_session_path %>  |</span>  <%= link_to "Sign In", new_user_session_path %>
   </div>
   <% end %>
 </div>
@@ -18,32 +29,16 @@
 <% if user_signed_in? %>
   <div class="userdropdown nodisplay" id="userdropdown">
     <ul>
-      <li><%= link_to "Account", user_path(id: current_user.id) %></li>
+      <li><%= link_to "Account", user_path(id: current_user.id), class: :darken %></li>
       <% if admin_user? %>
-        <li><%= link_to 'Dashboard'.html_safe, admin_dashboard_path %></li>
+        <li><%= link_to 'Dashboard'.html_safe, admin_dashboard_path, class: :darken %></li>
       <% elsif recipient? %>
-        <li><%= link_to 'Dashboard'.html_safe, recipient_dashboard_path %></li>
+        <li><%= link_to 'Dashboard'.html_safe, recipient_dashboard_path, class: :darken %></li>
       <% else %>
       <% end %>
-      <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+      <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: :darken %></li>
     </ul>
   </div>
 <% else %>
 <% end %>
 
-
-<div class="trunknav slideLeft">
-  <ul>
-    <li class="homelink"><a href="#">Return to BPSF</a></li>
-    <li><%= link_to 'Explore'.html_safe, root_path %></li>
-    <li><a href="#">About</a></li>
-    <li>
-      <% if user_signed_in? %>
-        <%= link_to "Apply", new_draft_path %>
-      <% else %>
-        <%= link_to "Apply", new_user_session_path %>
-      <% end %>
-    </li>
-    <%= render 'layouts/search_form' %>
-  </ul>
-</div>

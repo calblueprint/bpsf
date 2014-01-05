@@ -15,25 +15,20 @@
 </head>
 <body>
   <div class="container">
-        <%= render 'layouts/header' %>
-    <div class="content slideRight">
-        <!-- Render flash -->
-        <div class="row">
-          &nbsp;
-          <% flash.each do |key, value| %>
-            <%= content_tag :div, value, class: "#{key} alert" %>
-          <% end %>
-        </div>
+    <%= render 'layouts/header' %>
+    <!-- Render flash -->
+    <div class="row">
+      &nbsp;
+      <% flash.each do |key, value| %>
+        <%= content_tag :div, value, class: "#{key} alert" %>
+      <% end %>
+    </div>
 
-        <%= yield %>
+    <%= render 'layouts/helppanel' %>
 
-        <%= render 'layouts/footer' %>
+    <%= yield %>
 
-        <div class="row">
-          <hr>
-          <%= debug(params) if Rails.env.development? %>
-        </div>
-      </div>
+    <%= render 'layouts/footer' %>
   </div>
 
 </body>

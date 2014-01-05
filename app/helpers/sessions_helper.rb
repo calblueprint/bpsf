@@ -14,11 +14,15 @@ module SessionsHelper
   end
 
   def admin_user?
-    current_user && current_user.type == 'Admin' || current_user.type == 'SuperUser'
+    current_user && (current_user.type == 'Admin' || current_user.type == 'SuperUser')
   end
 
   def super_user?
     current_user && current_user.type == 'SuperUser'
+  end
+
+  def can_have_profile?(user)
+    %w[Recipient Admin SuperUser].include? user.type
   end
 
   private
