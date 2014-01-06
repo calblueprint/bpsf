@@ -38,7 +38,6 @@ class DraftGrantsController < ApplicationController
   end
 
   def submit
-    puts params
     if simple_captcha_valid?
       if @draft_grant.submit_and_destroy
         flash[:success] = 'Application submitted!'
