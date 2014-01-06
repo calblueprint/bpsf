@@ -17,3 +17,8 @@
 .one-click-hidden {
   display: none !important;
 }
+
+.simple_captcha {
+  margin-left: auto;
+  margin-right: auto;
+}
