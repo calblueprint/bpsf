@@ -13,15 +13,11 @@ class DraftGrantsController < ApplicationController
   end
 
   def create
-    if simple_captcha_valid?
-      @draft_grant = current_user.draft_grants.build params[:draft_grant]
-      @draft_grant.subject_areas = ["Other"]
-      if @draft_grant.save
-        flash[:success] = 'Application created!'
-        redirect_to edit_draft_path @draft_grant
-      else
-        render 'new'
-      end
+    @draft_grant = current_user.draft_grants.build params[:draft_grant]
+    @draft_grant.subject_areas = ["Other"]
+    if @draft_grant.save
+      flash[:success] = 'Application created!'
+      redirect_to edit_draft_path @draft_grant
     else
       render 'new'
     end
@@ -42,11 +38,17 @@ class DraftGrantsController < ApplicationController
   end
 
   def submit
-    if @draft_grant.submit_and_destroy
-      flash[:success] = 'Application submitted!'
-      redirect_to recipient_dashboard_path
+    puts params
+    if simple_captcha_valid?
+      if @draft_grant.submit_and_destroy
+        flash[:success] = 'Application submitted!'
+        redirect_to recipient_dashboard_path
+      else
+        flash[:danger] = 'Some fields were not filled in!'
+        redirect_to edit_draft_path @draft_grant
+      end
     else
-      flash[:danger] = 'Some fields were not filled in!'
+      flash[:danger] = 'Invalid Captcha'
       redirect_to edit_draft_path @draft_grant
     end
   end
