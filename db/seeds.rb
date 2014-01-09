@@ -32,7 +32,6 @@ def make_schools
   School.create! name: 'Other BUSD'
 end
 
-# Create Teachers (we refer to them as Recipients)
 def make_users
   1.upto(2) do |n|
     SuperUser.create! first_name: "SuperUser #{n}",
