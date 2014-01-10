@@ -50,7 +50,8 @@ class DraftGrant < ActiveRecord::Base
                   :num_classes, :num_students, :total_budget, :requested_funds,
                   :funds_will_pay_for, :budget_desc, :purpose, :methods,
                   :background, :n_collaborators, :collaborators, :comments,
-                  :video, :image_url, :school_id, :recipient_id
+                  :video, :image_url, :school_id, :recipient_id,
+                  :crop_x, :crop_y, :crop_w, :crop_h
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
   belongs_to :recipient
   belongs_to :school
@@ -60,7 +61,7 @@ class DraftGrant < ActiveRecord::Base
     grant.subject_areas = grant.subject_areas.to_a.reject &:empty?
   end
 
-  after_update :crop_avatar
+  after_update :crop_image
 
   validates :title, presence: true, length: { maximum: 40 }
   validates :recipient_id, :school_id, presence: true, if: 'type.nil?'
@@ -75,8 +76,8 @@ class DraftGrant < ActiveRecord::Base
 
   mount_uploader :image_url, ImageUploader
 
-  def crop_avatar
-    avatar.recreate_versions! if crop_x.present?
+  def crop_image
+    image_url.recreate_versions! if crop_x.present?
   end
 
   def has_collaborators?
