@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="twelve columns">
+    <div class="wrapper light">
+      <div class="row">
+        <h2 class="centalign">Cropping Image</h2>
+        <p class="centalign">Select a region of your image to use as the thumbnail.</p>
+      </div>
+
+      <div class="row centalign">
+        <%= image_tag @draft_grant.image_url.url(:banner), id: 'cropbox' %>
+      </div>
+
+      <br>
+
+      <div class="row">
+        <h4>Preview</h4>
+        <div style="width:294px; height:150px; overflow:hidden">
+          <%= image_tag @draft_grant.image_url.url(:banner), id: 'preview', style: 'max-width:none;' %>
+        </div>
+      </div>
+
+      <div class="row">
+        <%= form_for @draft_grant, url: draft_path do |f| -%>
+          <% %w[x y w h].each do |attribute| %>
+            <%= f.hidden_field "crop_#{attribute}" %>
+          <% end %>
+
+          <div class="large primary btn">
+            <%= f.submit 'Save!' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
