@@ -10,6 +10,7 @@
  *
  *= require_self
  *= require ajaxful_rating
+ *= require jquery.Jcrop
  *= require gumby
  */
 
