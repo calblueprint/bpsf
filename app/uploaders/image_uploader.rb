@@ -59,7 +59,8 @@ class ImageUploader < CarrierWave::Uploader::Base
         y = model.crop_y.to_i
         w = model.crop_w.to_i
         h = model.crop_h.to_i
-        img.crop! x, y, w, h
+        img.crop "#{w}x#{h}+#{x}+#{y}"
+        img
       end
     end
   end
