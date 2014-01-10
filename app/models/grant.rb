@@ -53,7 +53,10 @@ class Grant < ActiveRecord::Base
   attr_accessible :title, :summary, :subject_areas, :grade_level, :duration,
                   :num_classes, :num_students, :total_budget, :requested_funds,
                   :funds_will_pay_for, :budget_desc, :purpose, :methods, :background,
-                  :n_collaborators, :collaborators, :comments, :video, :image, :school_id
+                  :n_collaborators, :collaborators, :comments, :video, :image, :school_id,
+                  :crop_x, :crop_y, :crop_w, :crop_h
+  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
+
   belongs_to :recipient
   belongs_to :school
   has_one :crowdfunder, class_name: 'Crowdfund'
@@ -70,6 +73,8 @@ class Grant < ActiveRecord::Base
     self.school_name = school.name
     self.teacher_name = recipient.name
   end
+
+  after_update :crop_image
 
   validates :title, presence: true, length: { maximum: 40 }
   validate :valid_subject_areas
@@ -89,6 +94,10 @@ class Grant < ActiveRecord::Base
             presence: true, if: 'n_collaborators && n_collaborators > 0'
 
   mount_uploader :image, ImageUploader
+
+  def crop_image
+    image.recreate_versions! if crop_x.present?
+  end
 
   scope :pending_grants,      -> { with_state :pending }
   scope :complete_grants,     -> { with_state :complete }
