@@ -45,7 +45,8 @@ class Grant < ActiveRecord::Base
   FUNDS = ['Supplies','Books','Equipment','Technology / Media',
     'Professional Guest (Consultant, Speaker, Artist, etc.)','Professional Development',
     'Field Trips / Transportation','Assembly','Other']
-  enumerize :funds_will_pay_for, in: FUNDS
+  enumerize :funds_will_pay_for, in: FUNDS, multiple: true
+  serialize :funds_will_pay_for, Array
   serialize :subject_areas, Array
   enumerize :subject_areas, in: SUBJECTS, multiple: true, scope: true
 
