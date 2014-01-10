@@ -25,7 +25,7 @@
 #  recipient_id       :integer
 #  state              :string(255)
 #  video              :string(255)
-#  image_url          :string(255)
+#  image              :string(255)
 #  school_id          :integer
 #  rating_average     :decimal(6, 2)    default(0.0)
 #  school_name        :string(255)
@@ -45,14 +45,18 @@ class Grant < ActiveRecord::Base
   FUNDS = ['Supplies','Books','Equipment','Technology / Media',
     'Professional Guest (Consultant, Speaker, Artist, etc.)','Professional Development',
     'Field Trips / Transportation','Assembly','Other']
-  enumerize :funds_will_pay_for, in: FUNDS
+  enumerize :funds_will_pay_for, in: FUNDS, multiple: true
+  serialize :funds_will_pay_for, Array
   serialize :subject_areas, Array
   enumerize :subject_areas, in: SUBJECTS, multiple: true, scope: true
 
   attr_accessible :title, :summary, :subject_areas, :grade_level, :duration,
                   :num_classes, :num_students, :total_budget, :requested_funds,
                   :funds_will_pay_for, :budget_desc, :purpose, :methods, :background,
-                  :n_collaborators, :collaborators, :comments, :video, :image_url, :school_id
+                  :n_collaborators, :collaborators, :comments, :video, :image, :school_id,
+                  :crop_x, :crop_y, :crop_w, :crop_h
+  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
+
   belongs_to :recipient
   belongs_to :school
   has_one :crowdfunder, class_name: 'Crowdfund'
@@ -69,6 +73,8 @@ class Grant < ActiveRecord::Base
     self.school_name = school.name
     self.teacher_name = recipient.name
   end
+
+  after_update :crop_image
 
   validates :title, presence: true, length: { maximum: 40 }
   validate :valid_subject_areas
@@ -87,7 +93,11 @@ class Grant < ActiveRecord::Base
   validates :collaborators, length: { maximum: 1200 },
             presence: true, if: 'n_collaborators && n_collaborators > 0'
 
-  mount_uploader :image_url, ImageUploader
+  mount_uploader :image, ImageUploader
+
+  def crop_image
+    image.recreate_versions! if crop_x.present?
+  end
 
   scope :pending_grants,      -> { with_state :pending }
   scope :complete_grants,     -> { with_state :complete }
@@ -206,14 +216,14 @@ class Grant < ActiveRecord::Base
 
   private
     BLACKLISTED_ATTRIBUTES = %w{background n_collaborators collaborators
-                                comments video image_url}
+                                comments video image}
     def transfer_attributes_to_new_preapproved_grant
       return false if preapproved?
       preapproved_grant = PreapprovedGrant.new
       valid_attributes = PreapprovedGrant.accessible_attributes.reject(&:empty?) -
                          BLACKLISTED_ATTRIBUTES
       preapproved_grant.attributes = attributes.slice *valid_attributes
-      preapproved_grant.image_url = image_url.file
+      preapproved_grant.image = image.file
       preapproved_grant.grant_id = id
       preapproved_grant.save
     end
