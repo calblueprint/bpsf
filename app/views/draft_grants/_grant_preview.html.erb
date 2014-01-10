@@ -84,7 +84,7 @@
     <h5><strong>Description</strong></h5>
     <%= grant.budget_desc %>
     <h5><strong>Use of Funds</strong></h5>
-    <%= grant.funds_will_pay_for %>
+    <%= grant.funds_will_pay_for.values.to_a.join(', ') %>
   </div>
 </div>
 
