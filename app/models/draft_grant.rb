@@ -50,7 +50,7 @@ class DraftGrant < ActiveRecord::Base
                   :num_classes, :num_students, :total_budget, :requested_funds,
                   :funds_will_pay_for, :budget_desc, :purpose, :methods,
                   :background, :n_collaborators, :collaborators, :comments,
-                  :video, :image_url, :school_id, :recipient_id,
+                  :video, :image, :school_id, :recipient_id,
                   :crop_x, :crop_y, :crop_w, :crop_h
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
   belongs_to :recipient
@@ -74,10 +74,10 @@ class DraftGrant < ActiveRecord::Base
   validates :collaborators, length: { maximum: 1200 },
             if: 'n_collaborators && n_collaborators > 0'
 
-  mount_uploader :image_url, ImageUploader
+  mount_uploader :image, ImageUploader
 
   def crop_image
-    image_url.recreate_versions! if crop_x.present?
+    image.recreate_versions! if crop_x.present?
   end
 
   def has_collaborators?
@@ -103,7 +103,7 @@ class DraftGrant < ActiveRecord::Base
       grant = recipient.grants.build
       valid_attributes = Grant.accessible_attributes.reject &:empty?
       grant.attributes = attributes.slice *valid_attributes
-      grant.image_url = image_url.file
+      grant.image = image.file
       grant.save
     end
 end

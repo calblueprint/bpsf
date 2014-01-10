@@ -53,7 +53,7 @@ class Grant < ActiveRecord::Base
   attr_accessible :title, :summary, :subject_areas, :grade_level, :duration,
                   :num_classes, :num_students, :total_budget, :requested_funds,
                   :funds_will_pay_for, :budget_desc, :purpose, :methods, :background,
-                  :n_collaborators, :collaborators, :comments, :video, :image_url, :school_id
+                  :n_collaborators, :collaborators, :comments, :video, :image, :school_id
   belongs_to :recipient
   belongs_to :school
   has_one :crowdfunder, class_name: 'Crowdfund'
@@ -88,7 +88,7 @@ class Grant < ActiveRecord::Base
   validates :collaborators, length: { maximum: 1200 },
             presence: true, if: 'n_collaborators && n_collaborators > 0'
 
-  mount_uploader :image_url, ImageUploader
+  mount_uploader :image, ImageUploader
 
   scope :pending_grants,      -> { with_state :pending }
   scope :complete_grants,     -> { with_state :complete }
@@ -207,14 +207,14 @@ class Grant < ActiveRecord::Base
 
   private
     BLACKLISTED_ATTRIBUTES = %w{background n_collaborators collaborators
-                                comments video image_url}
+                                comments video image}
     def transfer_attributes_to_new_preapproved_grant
       return false if preapproved?
       preapproved_grant = PreapprovedGrant.new
       valid_attributes = PreapprovedGrant.accessible_attributes.reject(&:empty?) -
                          BLACKLISTED_ATTRIBUTES
       preapproved_grant.attributes = attributes.slice *valid_attributes
-      preapproved_grant.image_url = image_url.file
+      preapproved_grant.image = image.file
       preapproved_grant.grant_id = id
       preapproved_grant.save
     end

@@ -58,9 +58,9 @@
     </div>
 
     <div class="row" align="center">
-      <% if !@grant.image_url.to_s.eql? "" %>
+      <% if !@grant.image_url.blank? %>
         <div class="coverholder">
-          <%= image_tag @grant.image_url.to_s %>
+          <%= image_tag @grant.image_url :banner %>
         </div>
       <% else %>
         <div class="imgreplacementlrg"><div class="repson"><%= @grant.title %></div></div>

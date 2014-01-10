@@ -7,7 +7,7 @@
       </div>
 
       <div class="row centalign">
-        <%= image_tag @draft_grant.image_url.url(:banner), id: 'cropbox' %>
+        <%= image_tag @draft_grant.image_url(:banner), id: 'cropbox' %>
       </div>
 
       <br>
@@ -15,7 +15,7 @@
       <div class="row">
         <h4>Preview</h4>
         <div style="width:294px; height:150px; overflow:hidden">
-          <%= image_tag @draft_grant.image_url.url(:banner), id: 'preview', style: 'max-width:none;' %>
+          <%= image_tag @draft_grant.image_url(:banner), id: 'preview', style: 'max-width:none;' %>
         </div>
       </div>
 
