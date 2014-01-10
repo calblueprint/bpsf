@@ -124,7 +124,7 @@ def make_grants
                                           n_collaborators: rand(1..4),
                                           collaborators: Faker::Lorem.paragraph,
                                           comments: Faker::Lorem.paragraph,
-                                          image_url: File.open(File.join(Rails.root, "app/assets/images/default/Art and Music.jpg")))
+                                          image: File.open(File.join(Rails.root, "app/assets/images/default/Art and Music.jpg")))
   end
   crowdfunding_grants.map do |grant|
     grant.crowdfund
