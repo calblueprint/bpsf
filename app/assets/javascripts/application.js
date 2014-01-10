@@ -11,4 +11,5 @@
 // GO AFTER THE REQUIRES BELOW.
 //= require_self
 //= require_tree .
+//= require jquery.Jcrop
 //= require jquery_ujs
