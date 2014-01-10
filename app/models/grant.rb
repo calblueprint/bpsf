@@ -25,7 +25,7 @@
 #  recipient_id       :integer
 #  state              :string(255)
 #  video              :string(255)
-#  image_url          :string(255)
+#  image              :string(255)
 #  school_id          :integer
 #  rating_average     :decimal(6, 2)    default(0.0)
 #  school_name        :string(255)
