@@ -1,5 +1,6 @@
 <div id="togglelinks">
   <% grant.state_transitions.map { |s| s.event.to_s }.each do |state| %>
+    <div class="toggle_<%= state %>">
     <% if state.eql? "crowdfund" %>
       <%= link_to state.titleize,
                   "#",
@@ -19,5 +20,6 @@
                   method: :post,
                   remote: true %>
     <% end %>
+    </div>
   <% end %>
 </div>
