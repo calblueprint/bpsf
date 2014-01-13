@@ -9,8 +9,12 @@
 </div>
 <div class="field">
   <%= label_tag :card_month, "Card Expiration" %>
-  <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
-  <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"} %>
+  <div class="picker">
+    <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
+  </div>
+  <div class="picker">
+    <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"} %>
+  </div>
 </div>
 <div id="stripe-error">
   <noscript>Javascript is required. Please enable it in your browser settings.</noscript>
