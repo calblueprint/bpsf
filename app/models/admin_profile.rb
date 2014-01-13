@@ -14,4 +14,7 @@
 class AdminProfile < ActiveRecord::Base
   attr_accessible :about, :position, :admin_id
   belongs_to :admin
+
+  validates :about, presence: true, on: :update
+  validates :position, presence: true, on: :update
 end

@@ -381,6 +381,36 @@ $imglargereplacementhgt: 250px;
 }
 
 .elevate{z-index: 2000;}
+
+.toggle_reject{
+	@extend .medium;
+	@extend .danger;
+	@extend .btn;
+}
+
+.toggle_crowdfund{
+	@extend .medium;
+	@extend .primary;
+	@extend .btn;
+}
+
+.toggle_reconsider{
+	@extend .medium;
+	@extend .default;
+	@extend .btn;
+}
+
+.toggle_fund{
+	@extend .medium;
+	@extend .secondary;
+	@extend .btn;
+}
+
+.toggle_crowdfunding_failed{
+	@extend .medium;
+	@extend .danger;
+	@extend .btn;
+}
 /****************************************Navigation Classes*****************************/
 .userdropdown{
 	font-weight:$header-font-weight;
