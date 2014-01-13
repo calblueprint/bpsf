@@ -32,7 +32,6 @@ def make_schools
   School.create! name: 'Other BUSD'
 end
 
-# Create Teachers (we refer to them as Recipients)
 def make_users
   1.upto(2) do |n|
     SuperUser.create! first_name: "SuperUser #{n}",
@@ -117,7 +116,7 @@ def make_grants
                                           num_students: rand(1..5) * 10,
                                           total_budget: rand(8..12) * 100,
                                           requested_funds: rand(1..3) * 250,
-                                          funds_will_pay_for: "Supplies",
+                                          funds_will_pay_for: ["Supplies"],
                                           budget_desc: Faker::Lorem.paragraph,
                                           purpose: Faker::Lorem.paragraph,
                                           methods: Faker::Lorem.paragraph,
@@ -125,7 +124,7 @@ def make_grants
                                           n_collaborators: rand(1..4),
                                           collaborators: Faker::Lorem.paragraph,
                                           comments: Faker::Lorem.paragraph,
-                                          image_url: File.open(File.join(Rails.root, "app/assets/images/default/Art and Music.jpg")))
+                                          image: File.open(File.join(Rails.root, "app/assets/images/default/Art and Music.jpg")))
   end
   crowdfunding_grants.map do |grant|
     grant.crowdfund

@@ -47,4 +47,15 @@ class User < ActiveRecord::Base
   def init_approved
     true
   end
+
+  def default_card
+    if self.stripe_token
+      customer = Stripe::Customer.retrieve(self.stripe_token)
+      customer.cards.retrieve(customer[:default_card])
+    end
+  end
+
+  def last4
+    default_card[:last4]
+  end
 end

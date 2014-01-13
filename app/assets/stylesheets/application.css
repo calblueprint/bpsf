@@ -10,6 +10,7 @@
  *
  *= require_self
  *= require ajaxful_rating
+ *= require jquery.Jcrop
  *= require gumby
  */
 
@@ -21,4 +22,9 @@
 .simple_captcha {
   margin-left: auto;
   margin-right: auto;
+}
+
+.table-message {
+  display: block;
+  text-align: center;
 }
