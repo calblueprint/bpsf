@@ -14,8 +14,8 @@
 </div>
 
 <div class="row">
-  <% if !grant.image_url.to_s.eql? "" %>
-    <%= image_tag grant.image_url.to_s %>
+  <% if !grant.image_url.blank? %>
+    <%= image_tag grant.image_url :banner %>
   <% else %>
     <div class="imgreplacementlrg"><div class="repson"><%= grant.title %></div></div>
   <% end %>
@@ -84,7 +84,7 @@
     <h5><strong>Description</strong></h5>
     <%= grant.budget_desc %>
     <h5><strong>Use of Funds</strong></h5>
-    <%= grant.funds_will_pay_for %>
+    <%= grant.funds_will_pay_for.values.to_a.join(', ') %>
   </div>
 </div>
 
