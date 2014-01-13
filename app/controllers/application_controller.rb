@@ -36,6 +36,6 @@ class ApplicationController < ActionController::Base
   end
 
   def use_https?
-    true
+    false
   end
 end
