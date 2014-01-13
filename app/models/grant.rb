@@ -45,7 +45,8 @@ class Grant < ActiveRecord::Base
   FUNDS = ['Supplies','Books','Equipment','Technology / Media',
     'Professional Guest (Consultant, Speaker, Artist, etc.)','Professional Development',
     'Field Trips / Transportation','Assembly','Other']
-  enumerize :funds_will_pay_for, in: FUNDS
+  serialize :funds_will_pay_for, Array
+  enumerize :funds_will_pay_for, in: FUNDS, multiple: true
   serialize :subject_areas, Array
   enumerize :subject_areas, in: SUBJECTS, multiple: true, scope: true
 
@@ -79,7 +80,6 @@ class Grant < ActiveRecord::Base
   validate :duration, presence: true
   validates :num_classes, :num_students, numericality: { only_integer: true }
   validates :requested_funds, :total_budget, numericality: true
-  validates :budget_desc, :funds_will_pay_for, presence: true
   validates :purpose, :methods, :background,
             presence: true, length: { maximum: 1200 }
   validates :comments, length: { maximum: 1200 }
