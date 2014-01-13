@@ -5,11 +5,23 @@ class PaymentsController < ApplicationController
     @grant = Grant.find params[:grant_id]
     deny_access url: url_for(@grant) if !anyone_signed_in?
     @payment = Payment.make_payment! params[:amount], @grant, current_user
-    @grant.reload
-    create_customer_if_new_donor!
-    respond_to do |format|
-      format.html { redirect_to payment_success_path(grant_id: @grant.id, payment_id: @payment.id) }
-      format.js
+    @message = nil
+    if @payment.save
+      @grant.reload
+      create_customer_if_new_donor!
+      respond_to do |format|
+        format.html { redirect_to payment_success_path(grant_id: @grant.id, payment_id: @payment.id) }
+        format.js
+      end
+    else
+      @message = "There was an error in processing your payment."
+      respond_to do |format|
+        format.html {
+          flash[:danger] = @message
+          redirect_to @grant
+        }
+        format.js
+      end
     end
   end
 
