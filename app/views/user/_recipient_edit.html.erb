@@ -58,10 +58,10 @@
           <%= ff.label :home_phone, "Home Phone" %>
           <%= ff.text_field :home_phone, class: :input %>
         </div>
-
       <% end %>
+      <%= render 'credit_card_edit' %>
       <div class="medium primary btn pull_right">
-        <%= f.submit "Save!" %>
+        <%= f.submit "Save!", id: 'update-profile' %>
       </div>
     <% end %>
   </div>
