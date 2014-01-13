@@ -18,8 +18,14 @@ class UserController < ApplicationController
   def update
     if @user.update_attributes params[:user]
       flash[:success] = 'Profile updated!'
+      if params[:stripe_token]
+        create_customer!
+      end
       redirect_to user_path @user
     else
+      if params[:stripe_token]
+        create_customer!
+      end
       render 'edit'
     end
   end
@@ -49,5 +55,14 @@ class UserController < ApplicationController
       format.html { redirect_to admin_dashboard_path }
       format.js { render "update_pending_users" }
     end
+  end
+
+  private
+  def create_customer!
+    customer = Stripe::Customer.create email: current_user.email,
+                                       card: params[:stripe_token],
+                                       description: "Donor"
+    current_user.stripe_token = customer.id
+    current_user.save!
   end
 end

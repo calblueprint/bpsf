@@ -21,7 +21,7 @@
   </div>
 
   <% if current_user && current_user.stripe_token.present? %>
-    Credit card has already been provided.
+    Credit card (ending in <%= current_user.last4 %>) has already been provided. You can update this on your profile.
   <% else %>
     <div class="field">
       <%= label_tag :card_number, "Credit Card Number", class: :largefont  %>

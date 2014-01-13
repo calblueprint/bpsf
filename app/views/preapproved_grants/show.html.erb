@@ -34,8 +34,8 @@
 
 
     <div class="row">
-      <% if !@grant.image_url.to_s.eql? ""%>
-        <%= image_tag @grant.image_url.to_s %>
+      <% if !@grant.image_url.blank? %>
+        <%= image_tag @grant.image_url :banner %>
       <% else %>
         <div class="imgreplacementlrg"><div class="repson"><%= @grant.title %></div></div>
       <% end %>
