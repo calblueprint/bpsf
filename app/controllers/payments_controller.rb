@@ -16,8 +16,10 @@ class PaymentsController < ApplicationController
     else
       @message = "There was an error in processing your payment."
       respond_to do |format|
-        flash[:danger] = @message
-        format.html { redirect_to @grant }
+        format.html {
+          flash[:danger] = @message
+          redirect_to @grant
+        }
         format.js
       end
     end
