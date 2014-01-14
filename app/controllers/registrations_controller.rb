@@ -53,6 +53,8 @@ class RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  private
+
   def use_https?
     true
   end
