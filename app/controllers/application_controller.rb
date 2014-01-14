@@ -25,13 +25,14 @@ class ApplicationController < ActionController::Base
     return root_path                if resource.is_a? User
   end
 
+  private
+
   def https_redirect
-    if ENV["ENABLE_HTTPS"] == 'yes'
-      if request.ssl? && !use_https? || !request.ssl? && use_https?
-        flash.keep
-        protocol = request.ssl? ? "http" : "https"
-        redirect_to protocol: "#{protocol}://", status: :moved_permanently
-      end
+    puts use_https?
+    if request.ssl? && !use_https? || !request.ssl? && use_https?
+      flash.keep
+      protocol = request.ssl? ? "http" : "https"
+      redirect_to protocol: "#{protocol}://", status: :moved_permanently
     end
   end
 
