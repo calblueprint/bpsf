@@ -18,6 +18,7 @@ gem 'mini_magick', '~> 3.7.0'
 gem 'textacular', '~> 3.0', require: 'textacular/rails'
 gem 'enumerize'
 gem 'ajaxful_rating', '~> 3.0.0.beta8'
+gem 'simple_captcha', :git => 'git://github.com/Azdaroth/simple-captcha.git'
 gem 'sucker_punch', '~> 1.0.1'
 
 group :development, :test do
