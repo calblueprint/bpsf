@@ -39,8 +39,7 @@ class DraftGrant < ActiveRecord::Base
     'Professional Development','Reading & Writing / Communication','Science & Ecology',
     'Special Ed','Student / Family Support / Mental Health','Other']
   FUNDS = ['Supplies','Books','Equipment','Technology / Media',
-    'Professional Guest (Consultant, Speaker, Artist, etc.)','Professional Development',
-    'Field Trips / Transportation','Assembly','Other']
+    'Professional Development','Field Trips / Transportation','Assembly','Other']
   enumerize :funds_will_pay_for, in: FUNDS, multiple: true
   enumerize :subject_areas, in: SUBJECTS, multiple: true
   serialize :subject_areas, Array
