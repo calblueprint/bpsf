@@ -366,6 +366,8 @@
 
               <%= render 'grant_preview', grant: @draft_grant %>
 
+              <%= show_simple_captcha placeholder: "", label: "Enter Captcha", error: "Invalid Captcha", class: :captcha, required: false %>
+
               <div class="large primary btn">
                 <%= f.submit 'Submit!', name: 'save_and_submit' %>
               </div>
@@ -375,9 +377,8 @@
       </div>
     </div>
   </div>
-
-</section>
-    <% end %>
+  </section>
+<% end %>
 
     </div>
   </div>
@@ -398,7 +399,7 @@ $(document).ready(function(){
 
         }
       }
-
+      $('#captcha').prop("required", false)
   });
 
 function validateLength(el) {

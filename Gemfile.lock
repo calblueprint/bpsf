@@ -1,17 +1,22 @@
 GIT
-  remote: https://github.com/fog/fog.git
-  revision: 8085a59f8612c009369f2c077ff03762734a4f3c
+  remote: git://github.com/Azdaroth/simple-captcha.git
+  revision: e99cc7e8bf6b8cf8f03878c657ae7d1e6efe7c58
   specs:
-    fog (1.18.0)
+    simple_captcha (0.1.5)
+
+GIT
+  remote: https://github.com/fog/fog.git
+  revision: 86bf2d8fad7a037f7ea8e88a5a65dc55889522d4
+  specs:
+    fog (1.19.0)
       builder
-      excon (~> 0.30.0)
+      excon (~> 0.31.0)
       formatador (~> 0.2.0)
       mime-types
       multi_json (~> 1.0)
       net-scp (~> 1.1)
       net-ssh (>= 2.1.3)
       nokogiri (~> 1.5)
-      ruby-hmac
 
 GEM
   remote: https://rubygems.org/
@@ -47,12 +52,11 @@ GEM
     ajaxful_rating (3.0.0.beta8)
     annotate (2.5.0)
       rake
-    arel (3.0.2)
+    arel (3.0.3)
     arrayfields (4.9.0)
     atomic (1.1.14)
     awesome_print (1.2.0)
     bcrypt-ruby (3.1.2)
-    bcrypt-ruby (3.1.2-x86-mingw32)
     better_errors (1.0.1)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
@@ -92,7 +96,7 @@ GEM
       sexp_processor (~> 4.1)
     code_analyzer (0.4.3)
       sexp_processor
-    code_metrics (0.1.2)
+    code_metrics (0.1.3)
     coderay (1.1.0)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -119,11 +123,11 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     diff-lcs (1.1.3)
-    docile (1.1.0)
+    docile (1.1.1)
     enumerize (0.7.0)
       activesupport (>= 3.2)
     erubis (2.7.0)
-    excon (0.30.0)
+    excon (0.31.0)
     execjs (2.0.2)
     factory_girl (4.1.0)
       activesupport (>= 3.0.0)
@@ -134,7 +138,6 @@ GEM
       i18n (~> 0.4)
     fattr (2.2.1)
     ffi (1.9.3)
-    ffi (1.9.3-x86-mingw32)
     flay (2.4.0)
       ruby_parser (~> 3.0)
       sexp_processor (~> 4.0)
@@ -153,9 +156,8 @@ GEM
       thor (~> 0.14)
     json (1.8.1)
     json_pure (1.8.1)
-    launchy (2.4.0)
+    launchy (2.4.2)
       addressable (~> 2.3)
-    lockfile (2.1.0)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -194,27 +196,19 @@ GEM
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
     net-ssh (2.7.0)
-    nokogiri (1.6.0)
-      mini_portile (~> 0.5.0)
-    nokogiri (1.6.0-x86-mingw32)
+    nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
     orm_adapter (0.5.0)
-    paper_trail (3.0.0.rc2)
+    paper_trail (3.0.0)
       activerecord (>= 3.0, < 5.0)
       activesupport (>= 3.0, < 5.0)
-    parallel (0.9.0)
+    parallel (0.9.1)
     pg (0.12.2)
-    pg (0.12.2-x86-mingw32)
     polyglot (0.3.3)
-    pry (0.9.12.3)
+    pry (0.9.12.4)
       coderay (~> 1.0)
       method_source (~> 0.8)
       slop (~> 3.4)
-    pry (0.9.12.3-x86-mingw32)
-      coderay (~> 1.0)
-      method_source (~> 0.8)
-      slop (~> 3.4)
-      win32console (~> 1.3)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -246,13 +240,13 @@ GEM
       rake (>= 0.8.7)
       rdoc (~> 3.4)
       thor (>= 0.14.6, < 2.0)
-    rake (10.1.0)
+    rake (10.1.1)
     rb-readline (0.4.2)
     rdoc (3.12.2)
       json (~> 1.4)
     redcard (1.1.0)
-    reek (1.3.4)
-      ruby2ruby (~> 2.0.2)
+    reek (1.3.6)
+      ruby2ruby (~> 2.0.7)
       ruby_parser (~> 3.2)
       sexp_processor
     require_all (1.3.2)
@@ -274,36 +268,34 @@ GEM
       railties (>= 3.0)
       rspec (~> 2.11.0)
     ruby-graphviz (1.0.9)
-    ruby-hmac (0.4.0)
-    ruby-progressbar (1.2.0)
-    ruby2ruby (2.0.6)
+    ruby-progressbar (1.4.0)
+    ruby2ruby (2.0.7)
       ruby_parser (~> 3.1)
       sexp_processor (~> 4.0)
     ruby_parser (3.2.2)
       sexp_processor (~> 4.1)
-    rubyzip (1.0.0)
-    sass (3.2.12)
+    rubyzip (1.1.0)
+    sass (3.2.13)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
     sassy-math (1.5)
       compass (~> 0.11)
-    selenium-webdriver (2.37.0)
+    selenium-webdriver (2.39.0)
       childprocess (>= 0.2.5)
       multi_json (~> 1.0)
-      rubyzip (~> 1.0.0)
+      rubyzip (~> 1.0)
       websocket (~> 1.0.4)
-    sexp_processor (4.4.0)
+    sexp_processor (4.4.1)
     shoulda (3.5.0)
       shoulda-context (~> 1.0, >= 1.0.1)
       shoulda-matchers (>= 1.4.1, < 3.0)
     shoulda-context (1.1.6)
     shoulda-matchers (2.4.0)
       activesupport (>= 3.0.0)
-    simplecov (0.8.1)
+    simplecov (0.8.2)
       docile (~> 1.1.0)
-      lockfile (>= 2.1.0)
       multi_json
       simplecov-html (~> 0.8.0)
     simplecov-html (0.8.0)
@@ -332,7 +324,7 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     tzinfo (0.3.38)
-    uglifier (2.3.1)
+    uglifier (2.4.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     uniform_notifier (1.4.0)
@@ -340,13 +332,11 @@ GEM
       rack (>= 1.0)
     websocket (1.0.7)
     will_paginate (3.0.5)
-    win32console (1.3.2-x86-mingw32)
     xpath (0.1.4)
       nokogiri (~> 1.3)
 
 PLATFORMS
   ruby
-  x86-mingw32
 
 DEPENDENCIES
   ajaxful_rating (~> 3.0.0.beta8)
@@ -383,6 +373,7 @@ DEPENDENCIES
   ruby-graphviz (~> 1.0.9)
   sass-rails (~> 3.2.3)
   shoulda (~> 3.5.0)
+  simple_captcha!
   simplecov
   spork (= 0.9.2)
   state_machine (~> 1.2.0)

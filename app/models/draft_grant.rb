@@ -87,6 +87,7 @@ class DraftGrant < ActiveRecord::Base
   def has_comments?
     comments
   end
+
   def submit_and_destroy
     if transfer_attributes_to_new_grant
       GrantSubmittedJob.new.async.perform(self)
