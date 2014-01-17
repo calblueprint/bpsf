@@ -1,8 +1,7 @@
 BPSF::Application.routes.draw do
   root to: 'pages#home'
   get '/search', to: 'pages#search', as: :search
-  match '/recipients' => 'pages#recipients'
-  match '/donors' => 'pages#donors'
+  get '/successful', to: 'pages#successful', as: :successful
 
   resources :grants, except: :index do
     post 'rate', on: :member
