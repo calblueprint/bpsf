@@ -8,11 +8,15 @@ class PagesController < ApplicationController
     'Special Ed','Student / Family Support / Mental Health','Other']
 
   def home
-    if params[:successful]
+    if params[:successful] || Grant.crowdfunding_grants.empty?
       @grants = Grant.complete_grants
       @grants = @grants.select { |grant| grant.previous_version.state == 'crowdfunding'}
-      @grants = @grants.paginate :page => params[:page], :per_page => 6
       @slideshow_grants = @grants.sample 3
+      subject = params[:subject]
+      if subject && subject != 'All'
+        @grants = @grants.select { |grant| grant.subject_areas.include? subject }
+      end
+      @grants = @grants.paginate :page => params[:page], :per_page => 6
     else
       @grants = Grant.crowdfunding_grants.includes :recipient, :school, :crowdfunder
       subject = params[:subject]
