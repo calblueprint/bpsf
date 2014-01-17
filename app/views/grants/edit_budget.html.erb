@@ -23,7 +23,7 @@
               <%= f.text_field :requested_funds, class: :input %>
             </div>
 
-            <div class="field">
+            <div>
               <%= f.label :funds_will_pay_for, 'Funds will pay for:' %>
               <div>
                 <%= f.select(:funds_will_pay_for, Grant::FUNDS, {}, {:multiple => true, class: :chosenselect}) %>
