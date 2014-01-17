@@ -8,28 +8,26 @@ class PagesController < ApplicationController
     'Special Ed','Student / Family Support / Mental Health','Other']
 
   def home
-    @grants = Grant.crowdfunding_grants.includes :recipient, :school, :crowdfunder
-    subject = params[:subject]
-    if subject && subject != 'All'
-      @grants = @grants.select { |grant| grant.subject_areas.include? subject }
+    if params[:successful]
+      @grants = Grant.complete_grants
+      @grants = @grants.select { |grant| grant.previous_version.state == 'crowdfunding'}
+      @grants = @grants.paginate :page => params[:page], :per_page => 6
+      @slideshow_grants = @grants.sample 3
+    else
+      @grants = Grant.crowdfunding_grants.includes :recipient, :school, :crowdfunder
+      subject = params[:subject]
+      if subject && subject != 'All'
+        @grants = @grants.select { |grant| grant.subject_areas.include? subject }
+      end
+      @grants = @grants.paginate :page => params[:page], :per_page => 6
+      @slideshow_grants = slideshow_grants
     end
-    @grants = @grants.paginate :page => params[:page], :per_page => 6
-    @slideshow_grants = slideshow_grants
   end
 
   def search
     @grants = Grant.crowdfunding_grants
                    .search(params[:query])
                    .includes :recipient, :school
-  end
-
-  def successful
-    @successful_grants = []
-    Grant.complete_grants.each do |grant|
-      if grant.previous_version.state == 'crowdfunding'
-        @successful_grants << grant
-      end
-    end
   end
 
   def slideshow_grants
