@@ -23,23 +23,12 @@ class PagesController < ApplicationController
                    .includes :recipient, :school
   end
 
-  def donors
-    @user = current_user
-    if admin_user? @user
-      @users = User.all
-    else
-      raise CanCan::AccessDenied.new "You are not authorized to access this page.", :donors, Pages
-      redirect_to :back
-    end
-  end
-
-  def recipients
-    @user = current_user
-    if admin_user? @user
-      @recipients = Recipient.all
-    else
-      raise CanCan::AccessDenied.new "You are not authorized to access this page.", :donors, Pages
-      redirect_to :back
+  def successful
+    @successful_grants = []
+    Grant.complete_grants.each do |grant|
+      if grant.previous_version.state == 'crowdfunding'
+        @successful_grants << grant
+      end
     end
   end
 
