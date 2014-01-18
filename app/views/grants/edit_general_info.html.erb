@@ -32,7 +32,7 @@
               <%= f.text_field :video, class: :input, :placeholder => "Video Link" %>
             </div>
 
-            <div class="field">
+            <div>
               <%= f.label :subject_areas, 'Subject Areas' %>
               <%= f.select(:subject_areas, Grant::SUBJECTS, {}, {:multiple => true, class: :chosenselect}) %>
             </div>
