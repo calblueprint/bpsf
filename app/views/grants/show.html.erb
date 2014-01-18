@@ -12,14 +12,15 @@
             <h4>Change Status</h4>
             <div id="grantstatus">Current Status: <%= @grant.state.titleize %></div>
             <%= render 'toggle_links', grant: @grant %>
-            <% if super_user? && !@grant.preapproved? %>
-              <div id="preapprove_link">
-                <div class="medium primary btn" style="margin-top:5px">
-                  <%= link_to 'Preapprove', preapprove_grant_path(@grant), method: :post %>
+            <div class="one-click-hidden">
+              <% if super_user? && !@grant.preapproved? %>
+                <div id="preapprove_link">
+                  <div class="medium primary btn" style="margin-top:5px">
+                    <%= link_to 'Preapprove', preapprove_grant_path(@grant), method: :post %>
+                  </div>
                 </div>
-              </div>
-            <% end %>
-
+              <% end %>
+            </div>
             <h4>
               Edit Grant
               <span class="ttip" data-tooltip="Edit">
