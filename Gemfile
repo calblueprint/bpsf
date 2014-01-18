@@ -15,7 +15,8 @@ gem 'paper_trail', '>= 3.0.0.rc2'
 gem 'carrierwave', '~> 0.9.0'
 gem 'fog', :git => 'https://github.com/fog/fog.git'
 gem 'mini_magick', '~> 3.7.0'
-gem 'turbolinks'
+gem 'turbolinks', '~> 2.2.0'
+gem 'jquery-turbolinks', '~> 2.0.1'
 gem 'textacular', '~> 3.0', require: 'textacular/rails'
 gem 'enumerize'
 gem 'ajaxful_rating', '~> 3.0.0.beta8'
@@ -57,4 +58,9 @@ group :test do
   gem 'launchy'
   gem 'simplecov', :require => false
   gem 'shoulda', '~> 3.5.0'
+end
+
+group :production do
+  gem 'rails_12factor'
+  gem 'heroku-deflater'
 end
