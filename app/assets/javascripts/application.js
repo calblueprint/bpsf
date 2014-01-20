@@ -10,8 +10,12 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //= require_self
-//= require_tree .
+//= require_tree ./1st
+//= require_tree ./2nd
 //= require jquery.Jcrop
 //= require jquery_ujs
-//= require jquery.turbolinks
 //= require turbolinks
+//= require jquery.turbolinks
+//= require_tree ./3rd
+//= require_tree ./4th
+//= require_tree .
