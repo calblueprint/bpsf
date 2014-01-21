@@ -411,6 +411,47 @@ $imglargereplacementhgt: 250px;
 	@extend .danger;
 	@extend .btn;
 }
+
+.footwrapper{
+	padding:10px 40px 20px 40px;
+	@include box-shadow(0 3px 3px #999);
+	background-color:#fff;
+	margin-top:0px;
+	top: 0px;
+}
+
+.hr-primary{
+	display: block;
+	height: 1px;
+    border: 0;
+    border-top: 2px solid $primary-color;
+    margin: 1em 0;
+    padding: 0;
+}
+
+.lmorefoot{
+	float:left;
+	li {
+		line-height: 18px;
+		font-size: 14px;
+	}
+	h4{
+		font-size: 22px;
+		line-height:32px;
+	}
+}
+
+.donfoot{
+	float:right;
+	text-align:right;
+	.large{
+		line-height: 44px;
+		height:42px;
+		width: 224px;
+		font-size: 20px;
+		padding: 15px 30px 15px 30px;
+	}
+}
 /****************************************Navigation Classes*****************************/
 .userdropdown{
 	font-weight:$header-font-weight;
