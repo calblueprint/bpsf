@@ -14,7 +14,7 @@ gem 'state_machine', '~> 1.2.0'
 gem 'paper_trail', '>= 3.0.0.rc2'
 gem 'carrierwave', '~> 0.9.0'
 gem 'fog', :git => 'https://github.com/fog/fog.git'
-gem 'mini_magick', '~> 3.7.0'
+gem 'mini_magick', '~> 3.5.0'
 gem 'turbolinks', '~> 2.2.0'
 gem 'jquery-turbolinks', '~> 2.0.1'
 gem 'textacular', '~> 3.0', require: 'textacular/rails'
@@ -22,6 +22,7 @@ gem 'enumerize'
 gem 'ajaxful_rating', '~> 3.0.0.beta8'
 gem 'simple_captcha', :git => 'git://github.com/Azdaroth/simple-captcha.git'
 gem 'sucker_punch', '~> 1.0.1'
+gem "rmagick", "~> 2.13.2"
 
 group :development, :test do
   gem 'rspec-rails', '2.11.0'
