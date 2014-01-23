@@ -417,7 +417,8 @@ $imglargereplacementhgt: 250px;
 	@include box-shadow(0 3px 3px #999);
 	background-color:#fff;
 	margin-top:0px;
-	top: 0px;
+	top: -1px;
+	position:relative;
 }
 
 .hr-primary{
@@ -452,6 +453,7 @@ $imglargereplacementhgt: 250px;
 		padding: 15px 30px 15px 30px;
 	}
 }
+
 /****************************************Navigation Classes*****************************/
 .userdropdown{
 	font-weight:$header-font-weight;
