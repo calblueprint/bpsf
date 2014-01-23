@@ -9,7 +9,7 @@ $(window).load(function(){
 		var botoomoffset = winheight - footoffset;
 		var newelemheight = elemheight + botoomoffset - 217;
 		if (newelemheight > elemheight){
-			$('.wrapper').css("height", newelemheight );
+			$('.wrapper').css("minHeight", newelemheight );
 		}
 	}
 });
