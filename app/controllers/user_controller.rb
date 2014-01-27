@@ -57,6 +57,14 @@ class UserController < ApplicationController
     end
   end
 
+  def credit_card
+    if current_user.default_card
+      @card_number = "XXXX XXXX XXXX #{current_user.last4}"
+      @year = current_user.default_card.exp_year
+      @month = current_user.default_card.exp_month
+    end
+  end
+
   private
   def create_customer!
     customer = Stripe::Customer.create email: current_user.email,
