@@ -28,6 +28,7 @@
 
 # Ignore local_env.yml
 /config/local_env.yml
+.env
 
 # Ignore rvm configuration files
 .ruby-gemset
@@ -38,3 +39,4 @@
 
 # Ignore image uploads
 /public/uploads/tmp/*
+
