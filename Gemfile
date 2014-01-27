@@ -22,7 +22,6 @@ gem 'enumerize'
 gem 'ajaxful_rating', '~> 3.0.0.beta8'
 gem 'simple_captcha', :git => 'git://github.com/Azdaroth/simple-captcha.git'
 gem 'sucker_punch', '~> 1.0.1'
-gem "rmagick", "~> 2.13.2"
 gem 'recaptcha', :require => 'recaptcha/rails'
 
 group :development, :test do
