@@ -1,6 +1,7 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
+require 'net/http'
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
@@ -58,7 +59,7 @@ module BPSF
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
-    
+
     # Config the local_env.yml
     config.before_configuration do
       env_file = File.join(Rails.root, 'config', 'local_env.yml')
