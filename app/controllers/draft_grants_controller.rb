@@ -40,11 +40,16 @@ class DraftGrantsController < ApplicationController
   end
 
   def submit
-    if @draft_grant.submit_and_destroy
-      flash[:success] = 'Application submitted!'
-      redirect_to recipient_dashboard_path
+    if simple_captcha_valid?
+      if @draft_grant.submit_and_destroy
+        flash[:success] = 'Application submitted!'
+        redirect_to recipient_dashboard_path
+      else
+        flash[:danger] = 'Some fields were not filled in!'
+        redirect_to edit_draft_path @draft_grant
+      end
     else
-      flash[:danger] = 'Some fields were not filled in!'
+      flash[:danger] = 'Invalid Captcha'
       redirect_to edit_draft_path @draft_grant
     end
   end
