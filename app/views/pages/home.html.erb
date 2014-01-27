@@ -1,10 +1,13 @@
-<%= render 'slideshow' %>
-<%= render 'menu' %>
+<div class="row">
+    <div class="wrapper light homewrap">
+
+        <img src="/assets/masthead.png"/>
+        <%= render 'slideshow' %>
+        <%= render 'menu' %>
 
 
 <!--***************************************TILES********************************************-->
-<div class="row">
-    <div class="wrapper light">
+
         <div class="row">
             <div class="twelve columns centered centalign">
             <%= will_paginate @grants %>
@@ -27,6 +30,8 @@
               <%= will_paginate @grants %>
             </div>
         </div>
+
+
     </div>
 </div>
 
