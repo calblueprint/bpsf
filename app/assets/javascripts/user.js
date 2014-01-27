@@ -28,7 +28,6 @@ customer = {
                         },
        stripeResponseHandler: function(status, response) {
                                      if (status == 200) {
-                                            alert(response.id)
                                             $("#stripe_token").val(response.id);
                                             $("input[type=submit]").attr("disabled", false);
                                             return $("#edit_user")[0].submit();
