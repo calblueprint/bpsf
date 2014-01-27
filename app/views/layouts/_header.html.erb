@@ -36,7 +36,7 @@
         <li><%= link_to 'Dashboard'.html_safe, recipient_dashboard_path, class: :darken %></li>
       <% else %>
       <% end %>
-      <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: :darken %></li>
+      <li><%= link_to "Sign Out", destroy_user_session_path, class: :darken %></li>
     </ul>
   </div>
 <% else %>
