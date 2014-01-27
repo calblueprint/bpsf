@@ -73,4 +73,8 @@ class UserController < ApplicationController
     current_user.stripe_token = customer.id
     current_user.save!
   end
+
+  def use_https?
+    true
+  end
 end
