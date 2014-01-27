@@ -43,9 +43,11 @@
               </div>
             </div>
             <div class="tab-content">
+              <div class="pending_users">
               <%= render partial: 'shared/table', locals: { heads: %w[Name Email Status], partials: [['pending_users', @pending_users, :pending_user, "There are no pending users"]] } %>
               <div class="four columns centered centalign">
-                <%= will_paginate @pending_users %>
+              </div>
+              <%= will_paginate @pending_users %>
               </div>
             </div>
             <div class="tab-content">

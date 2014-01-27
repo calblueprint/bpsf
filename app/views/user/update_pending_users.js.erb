@@ -1,2 +1,2 @@
 $('.pending_users').html(
-    "<%= escape_javascript(render partial: 'admin/dashboard/pending_users', collection: @pending_users, as: :pending_user ) %>");
+    "<%= escape_javascript(render partial: 'shared/table', locals: { heads: %w[Name Email Status], partials: [['pending_users', @pending_users, :pending_user, 'There are no pending users']] }) %>");

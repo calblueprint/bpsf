@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
     if request.ssl? && !use_https? || !request.ssl? && use_https?
       flash.keep
       protocol = request.ssl? ? "http" : "https"
-      redirect_to protocol: "#{protocol}://", status: :moved_permanently
+      redirect_to protocol: "#{protocol}://", status: 301
     end
   end
 
