@@ -4,7 +4,7 @@
 </div>
 <div class="row">
       <div class="twelve columns">
-      <%= form_for user, url: user_path(user) do |f| %>
+            <%= form_for user, url: user_path(user), html: { id: "edit_profile" } do |f| %>
       <div class="field">
             <%= f.label :first_name %>
             <%= f.text_field :first_name, class: :input %>
@@ -13,7 +13,6 @@
             <%= f.label :last_name %>
             <%= f.text_field :last_name, class: :input %>
       </div>
-      <%= render 'credit_card_edit' %>
       <div class="medium primary btn pull_right">
             <%= f.submit "Save!", id: 'update-profile' %>
       </div>

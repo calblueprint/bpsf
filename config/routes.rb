@@ -34,6 +34,7 @@ BPSF::Application.routes.draw do
   scope '/users' do
     post ':id/approve', to: 'user#approve', as: :approve_user
     post ':id/reject', to: 'user#reject', as: :reject_user
+    get ':id/update_credit_card', to: 'user#credit_card', as: :update_credit_card_info
   end
 
   resources :payments, only: [:create, :destroy]
