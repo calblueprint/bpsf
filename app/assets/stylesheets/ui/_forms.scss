@@ -363,7 +363,7 @@ form {
   font-weight: $font-weight-regular;
   height: auto;
   background-color: #fff;
-  @include box-shadow(0 0 3px #999);
+  @include box-shadow(0 0 1px #999);
   //@include background-image(linear-gradient(darken($white, 2%), darken($white, 1%)));
   &:after {
     content: "\25BE";
