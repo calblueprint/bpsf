@@ -3,7 +3,7 @@
 </div>
 <div class="row">
   <div class="twelve columns">
-    <%= form_for user, as: :user, url: user_path(user) do |f| %>
+    <%= form_for user, as: :user, url: user_path(user), html: { id: "edit_profile" } do |f| %>
       <%= render 'shared/errors', object: f.object %>
       <div class="field">
         <%= f.label :first_name %>
@@ -59,7 +59,6 @@
           <%= ff.text_field :home_phone, class: :input %>
         </div>
       <% end %>
-      <%= render 'credit_card_edit' %>
       <div class="medium primary btn pull_right">
         <%= f.submit "Save!", id: 'update-profile' %>
       </div>
