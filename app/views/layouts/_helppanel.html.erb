@@ -1,28 +1,74 @@
-<% if recipient? %>
-	<div class="helppanel close"><span class="xbox pull_right"><i class="icon-cancel"></i></span>
-		<h4>ITEMS NEEDED FOR APPLICATION</h4>
-		<p>
-			- Applicant’s basic contact information<br>
-			- Basic information about project (e.g., total project budget, amount requested, brief summary of project, what funds will pay for, grade level(s) served)<br>
-			- Budget detail<br>
-			- Statement of Purpose<br>
-			- Activities and Anticipated Outcomes<br>
-			- Background of Project Director<br>
-			- Number and names of additional collaborators and how they will participate ∞ Additional comments (e.g., timing constraints)
-		</p>
-		<h4>TIPS FOR SUCCESSFUL APPLICATIONS</h4>
-		<p>
-			1. The application states clearly what is to be done and why this is important to your teaching, program, and the students you serve. The application reflects time, thought, and purpose.<br>
-			2. The budget is clearly itemized, detailing all expenses and giving specific items costs where relevant.<br>
-			3. Budget and/or narrative convincingly explains that equipment or materials could be compatible with other school purchases and supported by BUSD Technology.<br>
-			4. Expenses are reasonable<br>
-			5. The proposed project is framed within a broader context (e.g., goals for classroom or school, enhancements that link to the curriculum)<br>
-			6. Collaboration among teachers is incorporated with an explicit plan and purpose<br>
-			7. The grant applicant has complied with all the requirements of any grant received in the prior year, especially filing a final report and communicating any changes in project plans.<br>
-			8. Grant funds awarded in November are intended to benefit students in the current school year and be spent as soon as possible in the case of equipment and materials.<br>
-			9. Only BUSD personnel working in classrooms or schools programs can apply. Applicants must be actively engaged in the proposed project.<br>
-			10. Application convinces readers that the project is substantive and that the applicant is fully capable of carrying it out and reporting outcomes in a timely fashion.
-		</p>
-	</div>
-	<div class="helppanelbutton close"><span>Help</span></div>
-<% end %>
+<div class="helppanel close">
+	<span class="xbox pull_right pointer"><i class="icon-cancel"></i></span>
+	<br>
+	<ul>
+		<a href="#" class="switch" gumby-trigger="#teacher-about"><li>Teachers</li></a>
+		<a href="#" class="switch" gumby-trigger="#donor-about"><li>Donors</li></a>
+		<a href="#" class="switch" gumby-trigger="#about-about"><li>About</li></a>
+	</ul>
+</div>
+<div class="helppanelbutton close"><span>Help</span></div>
+
+<div class="modal" id="teacher-about">
+  <div class="content">
+    <a class="close switch" gumby-trigger="|#teacher-about"><i class="icon-cancel" /></i></a>
+    <div class="row">
+      <div class="eleven columns centered">
+	    <div class="row">
+			<h4 class="centalign">FOR TEACHERS</h4>
+			1.	Create an account.<br>
+			2.	Receive account approval from the Schools Fund<br>
+			3.	Log in and click “Apply for Grant”<br>
+			4.	Complete our easy online application. You can save and return to application at any time.<br>
+			5.	Receive approval and project link from the Schools Fund. Friends & Family grants must be under $1,000 (exceptions may be made for overnight field trips), and can funds cannot be used to pay an independent consultant (non-profit organizations are okay). Funds must be used in the current school year.<br>
+			6.	Email the grant link to classroom parents<br>
+			7.	The Schools Fund will help promote your project through our Newsletter and Facebook page<br>
+			8.	Once you have received full funding for your grant, the Schools Fund will send you a check.<br>
+			9.	Please send all receipts to the Schools Fund within 90 days of receiving funding. Failure to provide receipts may affect your ability to receive future grants.
+	    </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="donor-about">
+  <div class="content">
+    <a class="close switch" gumby-trigger="|#donor-about"><i class="icon-cancel" /></i></a>
+    <div class="row">
+      <div class="eleven columns centered">
+	    <div class="row">
+			<h4 class="centalign">FOR FRIENDS & FAMILY</h4>
+			1.	Receive a project link from your child’s teacher or visit: schoolsfund.friendsandfamilygrants.herokuapp.com (this is the address for the pilot site) and donate online directly to the project.
+			<br>
+			2.	Create an account and donate to your teacher’s project. You will also have the opportunity to make an additional donation to the Schools Fund, supporting our school volunteers program and our larger project and districtwide grants.  (This donation is a “pledge”. Your credit card will not be charged until the project is fully “pledged”. The application holds an encrypted token that is sent to the credit card processing service. Your credit card number is not held in an accessible format or location.)
+			<br>
+			3.	Share this project with your friends, family, and social networks to increase funding for your classroom project.
+	    </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="about-about">
+  <div class="content">
+    <a class="close switch" gumby-trigger="|#about-about"><i class="icon-cancel" /></i></a>
+    <div class="row">
+      <div class="eleven columns centered">
+	    <div class="row">
+			<h4 class="centalign">About the Berkeley Public Schools Fund</h4>
+
+			Our mission is to inspire and empower an extraordinary public education for every child. The Berkeley Public Schools Fund invests directly in teachers’ ideas and creativity with classroom and districtwide program grants and volunteer support in the classroom.
+			<br><br>
+			Every year the Schools Fund awards approximately 300 classroom and districtwide grants, serving 9,000 students, 19 schools, and 550 teachers and totaling $500,000. This, coupled with our volunteer program, means every year we’re contributing $1.5 million in grants and in-kind donations.
+			<br><br>
+
+			<h4 class="centalign">About Friends and Family Grants</h4>
+
+			The Schools Fund Friends & Family Grants Platform is a “crowdfunding” site separate from any current Schools Fund grant-making process. Grants are funded by community donations.
+			<br><br>
+			The purpose of the platform is to offer teachers a year-round opportunity to have classroom materials and projects funded.
+	    </div>
+      </div>
+    </div>
+  </div>
+</div>
