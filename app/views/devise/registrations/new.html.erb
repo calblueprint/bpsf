@@ -36,7 +36,7 @@
 
             <div>
               <%= f.label :type %>
-              <%= f.select :type, options_for_select(%w[User Recipient Admin]) %>
+              <%= f.select :type, options_for_select([['Friend/Family', 'User'], ['Teacher', 'Recipient'], 'Admin']) %>
             </div>
 
             <%= recaptcha_tags %>
