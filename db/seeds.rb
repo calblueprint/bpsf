@@ -74,7 +74,7 @@ def make_profiles
   Recipient.all.each do |recipient|
     profile = RecipientProfile.create! recipient_id: recipient.id,
                                        school_id: recipient.school_id,
-                                       about: Faker::Lorem.characters,
+                                       about: Faker::Lorem.sentence,
                                        started_teaching: 2.years.ago,
                                        subject: Faker::Lorem.sentence,
                                        grade: Faker::Lorem.sentence,

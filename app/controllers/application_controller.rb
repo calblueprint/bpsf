@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :https_redirect
   include SessionsHelper
+  include SimpleCaptcha::ControllerHelpers
 
   rescue_from CanCan::AccessDenied do |exception|
     if !current_user || current_user.approved

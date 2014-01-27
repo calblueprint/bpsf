@@ -37,4 +37,4 @@
 /config/local_env.yml
 
 # Ignore image uploads
-/public/uploads/tmp/* 
+/public/uploads/tmp/*
