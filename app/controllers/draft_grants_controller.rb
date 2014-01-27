@@ -40,7 +40,7 @@ class DraftGrantsController < ApplicationController
   end
 
   def submit
-    if simple_captcha_valid?
+    if verify_recaptcha
       if @draft_grant.submit_and_destroy
         flash[:success] = 'Application submitted!'
         redirect_to recipient_dashboard_path
@@ -50,6 +50,7 @@ class DraftGrantsController < ApplicationController
       end
     else
       flash[:danger] = 'Invalid Captcha'
+      flash.delete :recaptcha_error
       redirect_to edit_draft_path @draft_grant
     end
   end
