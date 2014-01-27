@@ -1,9 +1,9 @@
 <div class="row">
+        <%= form_for @draft_grant, url: draft_path, :html => {:multipart => true} do |f| %>
   <div class="twelve columns">
     <div class="wrapper light">
       <div class="row">
-            <%= form_for @draft_grant, url: draft_path, :html => {:multipart => true} do |f| %>
-      <%= render 'shared/errors', object: f.object %>
+          <%= render 'shared/errors', object: f.object %>
         <h2 class="centalign">
           Editing <%= @draft_grant.title %>
         </h2>
@@ -366,7 +366,9 @@
 
               <%= render 'grant_preview', grant: @draft_grant %>
 
-              <%= show_simple_captcha placeholder: "", label: "Enter Captcha", error: "Invalid Captcha", class: :captcha, required: false %>
+              <div align="center">
+                <%= recaptcha_tags %>
+              </div>
 
               <div class="large primary btn">
                 <%= f.submit 'Submit!', name: 'save_and_submit' %>
@@ -399,7 +401,6 @@ $(document).ready(function(){
 
         }
       }
-      $('#captcha').prop("required", false)
   });
 
 function validateLength(el) {
