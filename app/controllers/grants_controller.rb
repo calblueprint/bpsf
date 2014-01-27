@@ -58,4 +58,10 @@ class GrantsController < ApplicationController
     flash[:success] = 'Grant preapproved!'
     redirect_to @grant
   end
+
+  private
+
+  def use_https?
+    true
+  end
 end
