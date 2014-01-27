@@ -6,12 +6,13 @@ $(document).ready(function() {
 
 customer = {
        setupForm: function() {
-                         $('#edit_user').submit(function() {
-                                $("input[type=submit]").attr("disabled", true);
+                         $('#ediiit_user').submit(function() {
+                                $("nput[type=submt]").attr("disabled", true);
                                 if ($("#card_number").length && $("#card_number").val().length > 0) {
                                 customer.processCustomer();
                          return false;
                                 } else {
+                                $("nput[type=submt]").attr("disabled", false);
                                        return false;
                                 }
                          });
