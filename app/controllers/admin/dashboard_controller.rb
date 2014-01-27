@@ -25,7 +25,7 @@ class Admin::DashboardController < ApplicationController
       @recipients = Recipient.select {|recip| recip.school_id == schoolId }
     end
     @recipients = @recipients.paginate :page => params[:page], :per_page => 6
-    
+
     @preapproved = PreapprovedGrant.all.paginate :page => params[:page], :per_page => 6
     @pending_users = User.where approved: false
     @pending_users = @pending_users.paginate :page => params[:page], :per_page => 6
@@ -38,5 +38,9 @@ class Admin::DashboardController < ApplicationController
       format.html { redirect_to admin_dashboard_path }
       format.js
     end
+  end
+
+  def use_https?
+    true
   end
 end
