@@ -29,7 +29,7 @@
                 <span class="category pull_left">Type:&emsp;</span>
                 <li class="field metro inlined">
                   <div class="picker">
-                    <%= f.select :type, options_for_select(%w[User Recipient Admin]) %>
+                    <%= f.select :type, options_for_select([['Friend/Family', 'User'], ['Teacher', 'Recipient'], 'Admin']) %>
                   </div>
                 </li>
               </li>
