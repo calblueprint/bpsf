@@ -3,7 +3,7 @@
 </div>
 <div class="row">
   <div class="twelve columns">
-    <%= form_for user, as: :user, url: user_path(user) do |f| %>
+    <%= form_for user, as: :user, url: user_path(user), html: {id: "edit_profile"} do |f| %>
       <div class="field">
         <%= f.label :first_name %>
         <%= f.text_field :first_name, class: :input %>
