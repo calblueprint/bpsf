@@ -7,7 +7,7 @@ class RegistrationsController < Devise::RegistrationsController
   def create
     build_resource sign_up_params
 
-    if simple_captcha_valid?
+    if verify_recaptcha
       if resource.save
         if resource.active_for_authentication?
           set_flash_message :notice, :signed_up if is_navigational_format?
@@ -24,6 +24,7 @@ class RegistrationsController < Devise::RegistrationsController
       end
       else
         set_flash_message :error, "invalid_captcha"
+        flash.delete :recaptcha_error
         redirect_to new_user_session_path
       end
   end
