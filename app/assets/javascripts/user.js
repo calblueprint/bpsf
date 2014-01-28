@@ -12,6 +12,7 @@ customer = {
                                 customer.processCustomer();
                          return false;
                                 } else {
+                                $("input[type=submit]").attr("disabled", false);
                                        return false;
                                 }
                          });

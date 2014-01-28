@@ -11,4 +11,8 @@ class CrowdfundController < ApplicationController
     @grant.crowdfund
     redirect_to @grant
   end
+
+  def use_https?
+    true
+  end
 end
