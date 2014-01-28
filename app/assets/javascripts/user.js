@@ -7,12 +7,12 @@ $(document).ready(function() {
 customer = {
        setupForm: function() {
                          $('#ediiit_user').submit(function() {
-                                $("nput[type=submt]").attr("disabled", true);
+                                $("input[type=submit]").attr("disabled", true);
                                 if ($("#card_number").length && $("#card_number").val().length > 0) {
                                 customer.processCustomer();
                          return false;
                                 } else {
-                                $("nput[type=submt]").attr("disabled", false);
+                                $("input[type=submit]").attr("disabled", false);
                                        return false;
                                 }
                          });
@@ -33,6 +33,7 @@ customer = {
                                             $("input[type=submit]").attr("disabled", false);
                                             return $("#edit_user")[0].submit();
                                      } else {
+                                            alert('error')
                                             $("#stripe-error").text(response.error.message);
                                             return $("input[type=submit]").attr("disabled", false);
                                      }
