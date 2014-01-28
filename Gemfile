@@ -40,6 +40,7 @@ group :development do
   gem 'better_errors', '~> 1.0.1'
   gem 'binding_of_caller', '~> 0.7.2'
   gem 'bullet', '~> 4.7.1'
+  gem 'thin', '~> 1.6.1'
 end
 
 

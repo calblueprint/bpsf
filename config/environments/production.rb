@@ -23,6 +23,9 @@ BPSF::Application.configure do
   # Mailer defaults to bpsf-staging
   config.action_mailer.default_url_options = { :host => 'bpsf-staging.herokuapp.com' }
 
+  # Use ssl
+  config.use_ssl = true
+
   # Defaults to nil and saved in location specified by config.assets.prefix
   # config.assets.manifest = YOUR_PATH
 
