@@ -23,6 +23,7 @@ gem 'ajaxful_rating', '~> 3.0.0.beta8'
 gem 'simple_captcha', :git => 'git://github.com/Azdaroth/simple-captcha.git'
 gem 'sucker_punch', '~> 1.0.1'
 gem 'recaptcha', :require => 'recaptcha/rails'
+gem 'newrelic_rpm'
 
 group :development, :test do
   gem 'rspec-rails', '2.11.0'
