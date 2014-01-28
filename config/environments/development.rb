@@ -11,7 +11,7 @@ BPSF::Application.configure do
 
   # Use ssl
   config.use_ssl = false
-  config.ssl_port = 3001
+  # config.ssl_port = 3001
 
   # Show full error reports and disable caching
   config.consider_all_requests_local       = true
