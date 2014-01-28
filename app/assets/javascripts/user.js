@@ -6,7 +6,7 @@ $(document).ready(function() {
 
 customer = {
        setupForm: function() {
-                         $('#ediiit_user').submit(function() {
+                         $('#edit_user').submit(function() {
                                 $("input[type=submit]").attr("disabled", true);
                                 if ($("#card_number").length && $("#card_number").val().length > 0) {
                                 customer.processCustomer();
