@@ -33,7 +33,6 @@ customer = {
                                             $("input[type=submit]").attr("disabled", false);
                                             return $("#edit_user")[0].submit();
                                      } else {
-                                            alert('error')
                                             $("#stripe-error").text(response.error.message);
                                             return $("input[type=submit]").attr("disabled", false);
                                      }
