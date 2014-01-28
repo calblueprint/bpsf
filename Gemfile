@@ -24,6 +24,7 @@ gem 'simple_captcha', :git => 'git://github.com/Azdaroth/simple-captcha.git'
 gem 'sucker_punch', '~> 1.0.1'
 gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'newrelic_rpm'
+gem 'thin', '~> 1.6.1'
 
 group :development, :test do
   gem 'rspec-rails', '2.11.0'
@@ -40,7 +41,6 @@ group :development do
   gem 'better_errors', '~> 1.0.1'
   gem 'binding_of_caller', '~> 0.7.2'
   gem 'bullet', '~> 4.7.1'
-  gem 'thin', '~> 1.6.1'
 end
 
 
