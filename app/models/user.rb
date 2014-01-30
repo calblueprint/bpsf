@@ -56,8 +56,6 @@ class User < ActiveRecord::Base
   end
 
   def last4
-    if default_card
-      default_card[:last4]
-    end
+    default_card[:last4] if default_card
   end
 end
