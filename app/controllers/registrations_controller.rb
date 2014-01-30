@@ -22,11 +22,11 @@ class RegistrationsController < Devise::RegistrationsController
         clean_up_passwords resource
         respond_with resource
       end
-      else
-        set_flash_message :error, "invalid_captcha"
-        flash.delete :recaptcha_error
-        redirect_to new_user_session_path
-      end
+    else
+      set_flash_message :error, "invalid_captcha"
+      flash.delete :recaptcha_error
+      redirect_to new_user_session_path
+    end
   end
 
   def update
