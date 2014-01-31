@@ -71,6 +71,13 @@ def make_users
 end
 
 def make_profiles
+  User.donors.each do |user|
+    user.create_profile! address: Faker::Address.street_address,
+                         city: 'Berkeley',
+                         zipcode: 94720,
+                         phone: Faker::PhoneNumber.phone_number,
+                         relationship: 'Alum'
+  end
   Recipient.all.each do |recipient|
     profile = RecipientProfile.create! recipient_id: recipient.id,
                                        school_id: recipient.school_id,
