@@ -12,6 +12,20 @@
             <h4>Change Status</h4>
             <div id="grantstatus">Current Status: <%= @grant.state.titleize %></div>
             <%= render 'toggle_links', grant: @grant %>
+            <% if super_user? %>
+              <%= form_tag crowdfund_update_path do %>            
+                <%= hidden_field_tag :crowdfund_id, @grant.crowdfunder.id %>
+                <h4>End Date</h4>
+                <ul>
+                  <li class="field metro">
+                    <%= select_date @grant.crowdfunder.deadline, order: [:year, :month, :day], class: [:picker, :inlined] %>
+                  </li>
+                </ul>
+                <div class="primary medium btn">
+                  <%= submit_tag 'Update deadline' %>
+                </div>
+              <% end %>
+            <% end %>
             <div class="one-click-hidden">
               <% if super_user? && !@grant.preapproved? %>
                 <div id="preapprove_link">
