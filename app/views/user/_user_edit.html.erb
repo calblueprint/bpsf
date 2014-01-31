@@ -1,21 +1,21 @@
 
 <div class="row centalign">
-      <h2>Update Your Profile</h2>
+  <h2>Update Your Profile</h2>
 </div>
 <div class="row">
-      <div class="twelve columns">
-            <%= form_for user, url: user_path(user), html: { id: "edit_profile" } do |f| %>
-      <div class="field">
-            <%= f.label :first_name %>
-            <%= f.text_field :first_name, class: :input %>
-      </div>
-      <div class="field">
-            <%= f.label :last_name %>
-            <%= f.text_field :last_name, class: :input %>
-      </div>
-      <div class="medium primary btn pull_right">
-            <%= f.submit "Save!", id: 'update-profile' %>
-      </div>
-      <% end %>
-      </div>
+  <div class="twelve columns">
+    <%= form_for user, url: user_path(user), html: { id: "edit_profile" } do |f| %>
+  <div class="field">
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name, class: :input %>
+  </div>
+  <div class="field">
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name, class: :input %>
+  </div>
+  <div class="medium primary btn pull_right">
+    <%= f.submit "Save!", id: 'update-profile' %>
+  </div>
+  <% end %>
+  </div>
 </div>
