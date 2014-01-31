@@ -33,12 +33,10 @@ class User < ActiveRecord::Base
   has_many :payments, dependent: :destroy
   has_one :profile, class_name: 'UserProfile'
 
+  scope :donors, -> { where type: nil }
+
   def name
     return "#{first_name} #{last_name}"
-  end
-
-  def self.donors
-    where 'type is null'
   end
 
   def init_approved

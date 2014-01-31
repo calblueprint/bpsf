@@ -4,6 +4,8 @@
 #
 #  id           :integer          not null, primary key
 #  address      :text
+#  city         :text
+#  zipcode      :integer
 #  phone        :text
 #  relationship :text
 #  user_id      :integer
@@ -12,5 +14,10 @@
 #
 
 class UserProfile < ActiveRecord::Base
-  attr_accessible :address, :phone, :relationship, :user_id
+  RELATIONSHIPS = ['Parent of Student','Parent of Alum', 'Alum',
+                   'Grandparent of Student', 'Grandparent of Alum']
+  attr_accessible :address, :city, :zipcode, :phone, :relationship, :user_id
+
+  extend Enumerize
+  enumerize :relationship, in: RELATIONSHIPS
 end
