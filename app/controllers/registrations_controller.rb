@@ -57,6 +57,7 @@ class RegistrationsController < Devise::RegistrationsController
     else
       super
     end
+    user_url(resource)
   end
 
   private
