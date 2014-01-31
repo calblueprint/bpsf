@@ -18,6 +18,8 @@ class UserProfile < ActiveRecord::Base
                    'Grandparent of Student', 'Grandparent of Alum']
   attr_accessible :address, :city, :zipcode, :phone, :relationship, :user_id
 
+  belongs_to :user
+
   extend Enumerize
   enumerize :relationship, in: RELATIONSHIPS
 end
