@@ -28,10 +28,12 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   attr_accessible :first_name, :last_name, :email, :password,
-                  :password_confirmation, :remember_me, :type, :approved
+                  :password_confirmation, :remember_me, :type,
+                  :approved, :profile_attributes
 
   has_many :payments, dependent: :destroy
   has_one :profile, class_name: 'UserProfile'
+  accepts_nested_attributes_for :profile
 
   scope :donors, -> { where type: nil }
 
