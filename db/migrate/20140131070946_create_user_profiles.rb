@@ -2,6 +2,8 @@ class CreateUserProfiles < ActiveRecord::Migration
   def change
     create_table :user_profiles do |t|
       t.text :address
+      t.text :city
+      t.integer :zipcode
       t.text :phone
       t.text :relationship
       t.integer :user_id
