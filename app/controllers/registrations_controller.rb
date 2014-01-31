@@ -22,11 +22,11 @@ class RegistrationsController < Devise::RegistrationsController
         clean_up_passwords resource
         respond_with resource
       end
-      else
-        set_flash_message :error, "invalid_captcha"
-        flash.delete :recaptcha_error
-        redirect_to new_user_session_path
-      end
+    else
+      set_flash_message :error, "invalid_captcha"
+      flash.delete :recaptcha_error
+      redirect_to new_user_session_path
+    end
   end
 
   def update
@@ -51,13 +51,8 @@ class RegistrationsController < Devise::RegistrationsController
     end
     user.approved = user.init_approved
     user.save!
-    if can_have_profile? resource
-      user.create_profile!
-      edit_user_path id: @user.id
-    else
-      super
-    end
-    user_url(resource)
+    user.create_profile!
+    edit_user_path id: @user.id
   end
 
   private
