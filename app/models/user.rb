@@ -31,13 +31,10 @@ class User < ActiveRecord::Base
                   :password_confirmation, :remember_me, :type, :approved
 
   has_many :payments, dependent: :destroy
+  has_one :profile, class_name: 'UserProfile'
 
   def name
     return "#{first_name} #{last_name}"
-  end
-
-  def profile
-    nil
   end
 
   def self.donors
