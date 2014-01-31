@@ -7,7 +7,6 @@
                   method: :post,
                   remote: true,
                   class: "crowdfund",
-                  confirm: "Are you sure?",
                   id: grant.id %>
     <% elsif state.eql? "fund" %>
       <%= link_to state.titleize,

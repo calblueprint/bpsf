@@ -19,7 +19,7 @@
           </ul>
           <%= hidden_field_tag :grant_id, grant.id %>
           <div class="primary medium btn">
-            <%= submit_tag "Start Crowdfund!", class: "close-crowdfund-modal" %>
+            <%= submit_tag "Start Crowdfund!", class: "close-crowdfund-modal", confirm: "Are you sure?" %>
           </div>
         <% end %>
       </div>
