@@ -25,7 +25,7 @@ class RecipientProfile < ActiveRecord::Base
     :started_teaching, :zipcode, :city, :address, :work_phone, :home_phone
   belongs_to :recipient
 
-  before_save :set_phone_numbers
+  before_save :format_phone_numbers
 
   validates :about, length: { minimum: 40, message: "is too short" }, presence: true, on: :update
   validates :school_id, presence: true, on: :update
@@ -43,8 +43,8 @@ class RecipientProfile < ActiveRecord::Base
   end
 
   private
-  def set_phone_numbers
-    self.work_phone = number_to_phone(self.work_phone, area_code: true)
-    self.home_phone = number_to_phone(self.home_phone, area_code: true)
-  end
+    def format_phone_numbers
+      self.work_phone = number_to_phone(self.work_phone, area_code: true)
+      self.home_phone = number_to_phone(self.home_phone, area_code: true)
+    end
 end
