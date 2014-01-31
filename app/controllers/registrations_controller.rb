@@ -54,6 +54,7 @@ class RegistrationsController < Devise::RegistrationsController
     if can_have_profile? resource
       user.create_profile!
       edit_user_path id: @user.id
+      user_url(resource)
     else
       super
     end
