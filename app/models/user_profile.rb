@@ -20,6 +20,14 @@ class UserProfile < ActiveRecord::Base
 
   belongs_to :user
 
+  before_save :format_phone_numbers
+
   extend Enumerize
   enumerize :relationship, in: RELATIONSHIPS
+
+  private
+    def format_phone_numbers
+      self.work_phone = number_to_phone(self.work_phone, area_code: true)
+      self.home_phone = number_to_phone(self.home_phone, area_code: true)
+    end
 end
