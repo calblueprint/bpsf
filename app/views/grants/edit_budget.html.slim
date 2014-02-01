@@ -1,0 +1,27 @@
+.row
+  .twelve.columns
+    .wrapper.light
+      .row
+        h2 Editing Budget
+      /! This is the form to edit the total_budget, requested_funds, funds_will_pay_for, and budget_desc.
+      .row
+        .twelve.columns
+          = form_for @grant, url: grant_path do |f|
+            = render 'shared/errors', object: f.object
+            .field
+              = f.label :total_budget, 'Funding Goal'
+              = f.text_field :total_budget, class: :input
+            .field
+              = f.label :requested_funds, 'Funds requested from the Schools Fund'
+              = f.text_field :requested_funds, class: :input
+            div
+              = f.label :funds_will_pay_for, 'Funds will pay for:'
+              div
+                = f.select(:funds_will_pay_for, Grant::FUNDS, {}, {:multiple => true, class: :chosenselect})
+            .field
+              = f.label :budget_desc, 'How the funds will benefit your class:'
+              = f.text_area :budget_desc, class: [:textarea, :input], rows: 5
+            .medium.primary.btn.pull_right
+              = f.submit 'Save!'
+javascript:
+  $(".chosenselect").chosen({width:'100%'});

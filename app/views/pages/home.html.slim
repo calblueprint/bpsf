@@ -1,0 +1,38 @@
+.row
+  .wrapper.light.homewrap
+    .nine.columns.centered.centalign
+      img src="/assets/masthead.png" /
+    = render 'slideshow'
+    = render 'menu'
+    /! ***************************************TILES********************************************
+    .row
+      .twelve.columns.centered.centalign
+        = will_paginate @grants
+    - if @grants[0]
+      .row
+        = render partial: 'crowdfunding_grants', collection: @grants[0..2], as: :grant
+      .row
+        = render partial: 'crowdfunding_grants', collection: @grants[3..5], as: :grant
+    - else
+      .row
+        h2.centalign Sorry, there are no such grants currently available
+    .row
+      .twelve.columns.centered.centalign
+        = will_paginate @grants
+javascript:
+  $('.banner').unslider({
+      speed: 500,               //  The speed to animate each slide (in milliseconds)
+      delay: 30000,              //  The delay between slide animations (in milliseconds)
+      fluid: true              //  Support responsive design. May break non-responsive designs
+  });
+
+
+  var unslider = $('.banner').unslider();
+
+  $('.unslider-arrow').click(function() {
+      var fn = this.className.split(' ')[1];
+
+      unslider.data('unslider')[fn]();
+  });
+
+  var easter_egg = new Konami('http://www.vivekraghuram.com/bpsf.html');

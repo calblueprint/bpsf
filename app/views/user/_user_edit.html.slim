@@ -1,0 +1,27 @@
+.row.centalign
+  h2 Update Your Profile
+.row
+  .twelve.columns
+    = form_for user, url: user_path(user), html: { id: "edit_profile" } do |f|
+      = render 'shared/errors', object: f.object
+      .field
+        = f.label :first_name
+        = f.text_field :first_name, class: :input
+      .field
+        = f.label :last_name
+        = f.text_field :last_name, class: :input
+      = f.fields_for :profile do |ff|
+        .field
+          = ff.label :address, 'Address'
+          = ff.text_field :address, class: :input
+        .field
+          = ff.label :city, "City"
+          = ff.text_field :city, class: :input
+        .field
+          = ff.label :zipcode, "Zip Code"
+          = ff.text_field :zipcode, class: :input
+        .field
+          = ff.label :phone, "Phone Number"
+          = ff.text_field :phone, class: :input
+      .medium.primary.btn.pull_right
+        = f.submit "Save!", id: 'update-profile'
