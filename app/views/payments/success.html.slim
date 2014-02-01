@@ -1,0 +1,13 @@
+.row
+  .twelve.columns
+    .wrapper.light
+      .row.centalign
+        h2.centalign Congratulations!
+        | You just made your first donation!
+        .field.largefont
+          | You donated $
+          span#payment-amount= @payment.amount
+          | to #{@grant.title}!
+        .field
+          = @grant.recipient.name
+          | will be very grateful. You're making a difference.

@@ -1,0 +1,12 @@
+doctype html
+html
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+  body
+    h1
+      | Your account has been approved, #{@user.first_name}!
+    p
+      | Your administrator status for the Berkeley Public Schools Fund has been approved! You may now perform administrative functions with your account.
+    p
+      | To login to the site, just follow this link: #{@url}.
+    p Thanks for joining and have a great day!

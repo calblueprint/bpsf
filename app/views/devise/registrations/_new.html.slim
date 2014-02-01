@@ -1,0 +1,24 @@
+.six.columns
+  .wrapper.light
+    h2.centalign Sign up
+    = form_for resource, :as => resource_name, :url => registration_path(resource_name) do |f|
+      = devise_error_messages!
+      ul
+        li.field
+          = f.text_field :first_name, class: [:xxwide, :text, :input], placeholder: "First Name"
+        li.field
+          = f.text_field :last_name, class: [:xxwide, :text, :input], placeholder: "Last Name"
+        li.field
+          = f.email_field :email, class: [:xxwide, :text, :input], placeholder: "Email"
+        li.field
+          = f.password_field :password, class: [:xxwide, :text, :input], placeholder: "Password"
+        li.field
+          = f.password_field :password_confirmation, class: [:xxwide, :text, :input], placeholder: "Re-enter Password"
+        li
+          span.category.pull_left Type:&emsp;
+        li.field.metro.inlined
+          .picker
+            = f.select :type, options_for_select([['Friend/Family', 'User'], ['Teacher', 'Recipient'], 'Admin'])
+        = recaptcha_tags
+      .medium.primary.btn.pull_right
+        = f.submit "Sign up"

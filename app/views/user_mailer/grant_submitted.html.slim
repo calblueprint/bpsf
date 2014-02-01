@@ -1,0 +1,12 @@
+doctype html
+html
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+  body
+    h1
+      | Your grant, #{@grant.title}, has been submitted!
+    p
+      | You have successfully submitted your grant to bpsf-staging.herokuapp.com.
+      br/
+    p
+      | To view your grant's page, just follow this link: #{@url}.

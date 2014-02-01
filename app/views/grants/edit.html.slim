@@ -1,0 +1,98 @@
+.row
+  .twelve.columns
+    .wrapper.light
+      .row
+        h2
+          | Editing #{@grant.title}
+      = render 'shared/errors', object: @grant
+      /! GENERAL INFO
+      .row.ultitle
+        h3
+          | General Information
+          span.ttip data-tooltip="Edit" 
+            = link_to '<i class="icon-pencil"></i>'.html_safe, edit_general_path(@grant)
+      .row
+        .eleven.columns.push_one
+          .row
+            h4
+              | Title: #{@grant.title}
+          .row
+            h4 Summary
+            = @grant.summary
+          .row
+            h4 Image
+            - if !@grant.image_url.blank?
+              = image_tag @grant.image_url :banner
+          .row
+            h4 Video
+            - if !@grant.video.blank?
+              iframe height="315" src="http://www.youtube.com/embed/#{parse_embed(@grant)}" width="560" 
+          .row
+            h4 Subject areas
+            = @grant.subject_areas.values.to_a.join(', ')
+      /! LOGISTICS
+      .row.ultitle
+        h3
+          | Logistics
+          span.ttip data-tooltip="Edit" 
+            = link_to '<i class="icon-pencil"></i>'.html_safe, edit_logistics_path(@grant)
+      .row
+        .eleven.columns.push_one
+          .row
+            h4
+              | Grade level: #{@grant.grade_level}
+          .row
+            h4 Duration
+            = @grant.duration
+          .row
+            h4
+              | Number of classes: #{@grant.num_classes}
+          .row
+            h4
+              | Number of students: #{@grant.num_students}
+          .row
+            h4
+              | Num. collaborators: #{@grant.n_collaborators}
+          .row
+            h4 Collaborators
+            = @grant.collaborators
+      /! BUDGET
+      .row.ultitle
+        h3
+          | Budget
+          span.ttip data-tooltip="Edit" 
+            = link_to '<i class="icon-pencil"></i>'.html_safe, edit_budget_path(@grant)
+      .row
+        .eleven.columns.push_one
+          .row
+            h4
+              | Funding Goal: #{@grant.total_budget}
+          .row
+            h4
+              | Requested funds: #{@grant.requested_funds}
+          .row
+            h4 Funds will pay for:
+            = @grant.funds_will_pay_for.values.to_a.join(', ')
+          .row
+            h4 Budget description
+            = @grant.budget_desc
+      /! METHODS
+      .row.ultitle
+        h3
+          | Methods
+          span.ttip data-tooltip="Edit" 
+            = link_to '<i class="icon-pencil"></i>'.html_safe, edit_methods_path(@grant)
+      .row
+        .eleven.columns.push_one
+          .row
+            h4 Purpose
+            = @grant.purpose
+          .row
+            h4 Methods
+            = @grant.methods
+          .row
+            h4 Teacher background
+            = @grant.background
+          .row
+            h4 Comments
+            = @grant.comments

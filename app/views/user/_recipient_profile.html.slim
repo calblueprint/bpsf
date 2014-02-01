@@ -1,0 +1,40 @@
+.row
+  - if profile.image_url
+    = image_tag profile.image_url.to_s
+.row
+  - if profile.school_id
+    h5.inlined School:
+    = School.find(profile.school_id).name
+    br/
+.row
+  - if profile.started_teaching
+    h5.inlined Years of Experience:
+    = profile.years_teaching
+.row
+  - if profile.grade
+    h5.inlined Grade Level(s):
+    = profile.grade
+.row
+  h5.inlined Subject(s):
+  = profile.subject
+  br/
+.row
+  - if profile.about
+    h5 About
+    = profile.about
+.row
+  - if profile.address
+    h5 Address
+    = profile.address
+    | , #{profile.city} #{profile.zipcode}
+.row
+  - if profile.work_phone
+    h5 Work Phone
+    = profile.work_phone
+.row
+  - if profile.home_phone
+    h5 Home Phone
+    = profile.home_phone
+br/
+.primary.btn
+  = link_to "Update Credit Card Info", update_credit_card_info_path

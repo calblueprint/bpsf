@@ -1,0 +1,14 @@
+#confirmation-modal.modal
+  .content
+    a.close.switch.close-confirmation-modal gumby-trigger="|#confirmation-modal" 
+      i.icon-cancel
+    .row.centalign
+      #confirmation-body.ten.columns.centered.text-center.centalign
+        h4 Thank You!
+        .field.largefont
+          | You donated $
+          span#payment-amount
+          | to #{@grant.title}!
+        .field
+          = @grant.recipient.name
+          | will be very grateful. You're making a difference.

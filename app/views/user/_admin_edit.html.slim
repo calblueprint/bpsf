@@ -1,0 +1,23 @@
+.row.centalign
+  h2 Update Your Profile
+.row
+  .twelve.columns
+    = form_for user, as: :user, url: user_path(user), html: {id: "edit_profile"} do |f|
+      .field
+        = f.label :first_name
+        = f.text_field :first_name, class: :input
+      .field
+        = f.label :last_name
+        = f.text_field :last_name, class: :input
+      .field
+        = f.label :email
+        = f.text_field :email, class: :input
+      = f.fields_for :profile do |ff|
+        .field
+          = ff.label :position, "Position"
+          = ff.text_field :position, class: [:textarea, :input], rows: 3
+        .field
+          = ff.label :about, "About"
+          = ff.text_area :about, class: [:textarea, :input], rows: 3
+      .medium.primary.btn.pull_right
+        = f.submit "Save!", id: 'update-profile'

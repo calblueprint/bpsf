@@ -1,0 +1,38 @@
+.trunkheader
+  /! Add "slideRight" class to items that move right when viewing Nav Drawer
+  span
+    a.homelogo.poofout href="http://www.berkeleypublicschoolsfund.org" 
+      img src="/assets/logohoriz.png" /
+    a.homelogo.poofin href="http://www.berkeleypublicschoolsfund.org" 
+      img src="/assets/logohoriz.png" /
+  .trunknav
+    ul
+      li.darken= link_to 'Home'.html_safe, root_path, class: :darken
+      - if recipient?
+        li.darken= link_to 'Apply For Grant'.html_safe, new_draft_path, class: :darken
+      = render 'layouts/search_form'
+  - if user_signed_in?
+    .loginmenu.pull_right
+      a.toggle.darken gumby-classname="nodisplay" gumby-trigger="#userdropdown" href="#" 
+        span.poofout
+          | Hello, #{current_user.first_name}
+        span.poofin
+          i.icon-user
+        i.icon-down-open-mini
+  - else
+    .loginmenu.pull_right
+      span.poofout
+        = link_to "Sign Up", new_user_session_path
+        | \
+      = link_to "Sign In", new_user_session_path
+- if user_signed_in?
+  #userdropdown.userdropdown.nodisplay
+    ul
+      li= link_to "Account", user_path(id: current_user.id), class: :darken
+      - if admin_user?
+        li= link_to 'Dashboard'.html_safe, admin_dashboard_path, class: :darken
+      - elsif recipient?
+        li= link_to 'Dashboard'.html_safe, recipient_dashboard_path, class: :darken
+      - else
+      li= link_to "Sign Out", destroy_user_session_path, class: :darken
+- else

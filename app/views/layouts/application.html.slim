@@ -1,0 +1,27 @@
+doctype html
+html
+  head
+    title BPSF
+    meta content="width=device-width, initial-scale=1.0, user-scalable=no" name="viewport" /
+    = stylesheet_link_tag    "application", :media => "all", "data-turbolinks-track" => true
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = javascript_include_tag "https://js.stripe.com/v1/"
+    = ajaxful_rating_style
+    = csrf_meta_tags
+    = tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY
+    = render 'layouts/shim'
+  body
+    .container
+      = render 'layouts/header'
+      /! Render flash
+      .row
+        | \&nbsp;
+        - flash.each do |key, value|
+          = content_tag :div, value, class: "#{key} alert"
+      = render 'layouts/helppanel'
+      = yield
+      = render 'layouts/footer'
+  script language="javascript" 
+    | function emailCurrentPage(){
+    | window.location.href="mailto:?subject="+document.title+"&body="+escape(window.location.href);
+    | }
