@@ -1,0 +1,9 @@
+/! *****************************************MENU**********************************************
+.row
+  .twelve.columns
+    span.category.pull_left Category:&emsp;
+    li.field.metro.inlined
+      .picker
+        = form_tag(:action => :home, :id => 'filter_subject') do
+          = select_tag "subject", options_for_select(PagesController::MENU, params[:subject]), :onchange => "this.form.submit()"
+    span.category.pull_right= link_to "Successful Grants", root_path(:successful=>true)

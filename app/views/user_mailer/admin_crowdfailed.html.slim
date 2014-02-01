@@ -1,0 +1,12 @@
+doctype html
+html
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+  body
+    h1
+      = @recipient.first_name
+      = @recipient.last_name
+      | 's grant, #{@grant.title}, has not met its crowdfund goal in time.
+    p
+      | To decide whether or not to continue funding the grant, please view the grant page at the following link: #{@url}.
+      br/
