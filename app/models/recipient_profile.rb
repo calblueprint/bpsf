@@ -27,7 +27,7 @@ class RecipientProfile < ActiveRecord::Base
 
   before_save :format_phone_numbers
 
-  validates :about, length: { minimum: 40, message: "is too short" }, presence: true, on: :update
+  validates :about, presence: true, on: :update
   validates :school_id, presence: true, on: :update
   validates :subject, presence: true, on: :update
   validates :started_teaching, presence: true, on: :update
