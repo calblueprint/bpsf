@@ -55,8 +55,7 @@ def make_users
                       email: "bpsfteacher#{n}@gmail.com",
                       password: "password",
                       password_confirmation: "password",
-                      approved: true,
-                      school_id: rand(1..School.count)
+                      approved: true
   end
   1.upto(8) do |n|
     User.create! first_name: "Parent #{n}",
@@ -80,7 +79,7 @@ def make_profiles
   end
   Recipient.all.each do |recipient|
     profile = RecipientProfile.create! recipient_id: recipient.id,
-                                       school_id: recipient.school_id,
+                                       school_id: rand(1..School.count),
                                        about: Faker::Lorem.sentence,
                                        started_teaching: 2.years.ago,
                                        subject: Faker::Lorem.sentence,
@@ -112,13 +111,13 @@ def make_grants
     r.draft_grants.create! title: "Draft #{r.id}",
                            summary: Faker::Lorem.sentence,
                            subject_areas: ["Other"],
-                           school_id: r.school_id
+                           school_id: r.profile.school_id
     crowdfunding_grants << r.grants.build(title: "Grant #{r.id-4}",
                                           summary: Faker::Lorem.sentence,
                                           subject_areas: ["Arts / Music", "Multi-subject"],
                                           grade_level: "#{rand(1..11)}",
                                           duration: "#{rand(1..4)} weeks",
-                                          school_id: r.school_id,
+                                          school_id: r.profile.school_id,
                                           num_classes: rand(1..5),
                                           num_students: rand(1..5) * 10,
                                           total_budget: rand(8..12) * 100,
