@@ -13,6 +13,6 @@ html
       | To login to the site, just follow this link: #{@url}.
     p Thanks for joining and have a great day!
     javascript:
-      | if (#{@user.type == "Admin"}) {
-        | document.getElementById("admin").show()
-      | }
+      if (#{@user.type == "Admin"}) {
+        document.getElementById("admin").show()
+      }

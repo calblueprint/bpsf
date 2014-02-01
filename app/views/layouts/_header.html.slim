@@ -34,5 +34,4 @@
       - elsif recipient?
         li= link_to 'Dashboard'.html_safe, recipient_dashboard_path, class: :darken
       - else
-      li= link_to "Sign Out", destroy_user_session_path, class: :darken
-- else
+        li= link_to "Sign Out", destroy_user_session_path, class: :darken
