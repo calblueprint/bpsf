@@ -1,4 +1,4 @@
-li onclick=("window.location.href="#{url_for grant}"") style=("background-image:url(#{grant.image_url :banner}); background-size:cover;") 
+li onclick="window.location.href=#{url_for grant}" style="background-image:url(#{grant.image_url :banner}); background-size:cover;" 
   .infocard.slidecard
     .cardtitle
       h3= link_to grant.title, grant
@@ -18,7 +18,7 @@ li onclick=("window.location.href="#{url_for grant}"") style=("background-image:
         span.gctext Current:
         span.currentnum
           | $#{grant.crowdfunder.pledged_total}
-        | \&emsp;
+        | &emsp;
         span.gctext Goal:
         span.goalnum
           | $#{grant.crowdfunder.goal}

@@ -234,38 +234,38 @@
           .large.primary.btn
             = f.submit 'Submit!', name: 'save_and_submit'
 javascript:
-  | $(".chosenselect").chosen({width:'100%'});
+  $(".chosenselect").chosen({width:'100%'});
   
-  | $(document).ready(function(){
-      | var prevtab=getCookie("drafttab");
-        | if (prevtab!=null && prevtab!="")
-        | {
-        | var $tabs = $('#tabs')
-        | $target = $tabs.find('.tab-nav li#'+prevtab);
+  $(document).ready(function(){
+      var prevtab=getCookie("drafttab");
+        if (prevtab!=null && prevtab!="")
+        {
+        var $tabs = $('#tabs')
+        $target = $tabs.find('.tab-nav li#'+prevtab);
         /!/ if target exists trigger the set event
-        | if($target.length) {
-            | $tabs.trigger('gumby.set', $target.index());
+        if($target.length) {
+            $tabs.trigger('gumby.set', $target.index());
   
-          | }
-        | }
-    | });
+          }
+        }
+    });
   
-  | function validateLength(el) {
-      | console.log('hit');
-      | var $this = $(el);
-      | var value = $this.val(),
-          | valueLength = value.length;
-          | textId = $this.attr('data-id');
-          | set = parseInt($this.attr('data-length'));
-          | remain = parseInt(set - valueLength);
+  function validateLength(el) {
+      console.log('hit');
+      var $this = $(el);
+      var value = $this.val(),
+          valueLength = value.length;
+          textId = $this.attr('data-id');
+          set = parseInt($this.attr('data-length'));
+          remain = parseInt(set - valueLength);
   
-      | $(textId).html(remain + ' left');
-  | }
+      $(textId).html(remain + ' left');
+  }
   
-  | $(document).on( 'keypress','textarea.validateThis',function(e){
-       | validateLength(this);
-  | });
+  $(document).on( 'keypress','textarea.validateThis',function(e){
+       validateLength(this);
+  });
   
-  | $(document).on( 'keyup', 'textarea.validateThis',function(e){
-       | validateLength(this);
-  | });
+  $(document).on( 'keyup', 'textarea.validateThis',function(e){
+       validateLength(this);
+  });
