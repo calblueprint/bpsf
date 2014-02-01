@@ -1,0 +1,23 @@
+#crowdfund-form.modal
+  .content
+    a.close.switch.close-crowdfund-modal gumby-trigger="|#crowdfund-form" 
+      i.icon-cancel
+    .row
+      .ten.columns.centered.text-center
+        h3
+          | Create Crowdfund for #{grant.title}
+        br/
+        = form_tag crowdfund_create_path do
+          h4.inlined Goal:
+          .field.prepend.noroundborder.inlined
+            span.adjoined.noroundborder $
+            = text_field_tag :goal, nil, class: [:input, :text, :narrow, :noroundborder]
+          br/
+          br/
+          h4 End Date
+          ul
+            li.field.metro
+              = select_date Date.today, order: [:year, :month, :day], class: [:picker, :inlined]
+          = hidden_field_tag :grant_id, grant.id
+          .primary.medium.btn
+            = submit_tag "Start Crowdfund!", class: "close-crowdfund-modal", confirm: "Are you sure?"

@@ -1,0 +1,28 @@
+.row
+  .twelve.columns
+    .wrapper.light
+      .row
+        h2 Editing General Info
+      /! This is the form for title, summary, and subject_areas.
+      .row
+        .twelve.columns
+          = form_for @grant, url: grant_path, :html => {:multipart => true} do |f|
+            = render 'shared/errors', object: f.object
+            .field
+              = f.label :title, 'Title'
+              = f.text_field :title, class: :input
+            .field
+              = f.file_field :image
+            .field
+              = f.label :summary, 'Summary'
+              = f.text_area :summary, class: [:textarea, :input], rows: 5
+            .field
+              = f.label :video, 'Video link'
+              = f.text_field :video, class: :input, :placeholder => "Video Link"
+            div
+              = f.label :subject_areas, 'Subject Areas'
+              = f.select(:subject_areas, Grant::SUBJECTS, {}, {:multiple => true, class: :chosenselect})
+            .medium.primary.btn.pull_right
+              = f.submit 'Save!'
+javascript:
+  | $(".chosenselect").chosen({width:'100%'});

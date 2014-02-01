@@ -1,0 +1,28 @@
+.four.columns.infocard
+  .cardtitle
+    h3= link_to grant.title, grant
+  .imgholder
+    - if grant.image
+      = image_tag grant.image_url :thumb
+    - else
+      = image_tag "/assets/default/Other.jpg"
+  .cardcontent
+    p.cardtext
+      span.darken Director:
+      = grant.recipient.first_name + ' ' + grant.recipient.last_name
+      br/
+      span.darken School:
+      span.schooltext= grant.school_name
+      br/
+      span.darken Description:
+      span.destext= grant.summary
+    .progress
+      span.progressbar data-current=grant.crowdfunder.pledged_total data-goal=grant.crowdfunder_goal style=("width: 50%")  50%
+    .gcdiv
+      span.gctext Current:
+      span.currentnum
+        | $#{grant.crowdfunder.pledged_total}
+      | \&emsp;
+      span.gctext Goal:
+      span.goalnum
+        | $#{grant.crowdfunder_goal}

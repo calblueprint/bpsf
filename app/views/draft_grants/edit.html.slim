@@ -1,0 +1,271 @@
+.row
+  = form_for @draft_grant, url: draft_path, :html => {:multipart => true} do |f|
+    .twelve.columns
+      .wrapper.light
+        .row
+          = render 'shared/errors', object: f.object
+          h2.centalign
+            | Editing #{@draft_grant.title}
+        section#tabs.tabs
+          .ten.columns.centered.centalign
+            ul.tab-nav
+              li#general.active onclick="setCookie('drafttab',this.id,1)" 
+                a href="#"  General
+              li#logistics onclick="setCookie('drafttab',this.id,1)" 
+                a href="#"  Logistics
+              li#details onclick="setCookie('drafttab',this.id,1)" 
+                a href="#"  Details
+              li#budget onclick="setCookie('drafttab',this.id,1)" 
+                a href="#"  Budget
+              li#finalize onclick="setCookie('drafttab',this.id,1)" 
+                a href="#"  Finalize
+          br/
+          /! GENERAL INFO
+          .tab-content.active
+            .row
+              .twelve.columns.centalign
+                span.hinttext Hint: Click on the field titles for more information
+                ul
+                  li.field
+                    h4 *Title
+                    #drawertitle style="text-align:center;" 
+                      p Name your grant. A good title summarizes the essence of the application.
+                    = f.text_field :title, class: [:text, :wide, :input], :placeholder => "Title your grant"
+                  li
+                    h4 *Subject Areas
+                    #drawersubject style="text-align:center;" 
+                      p Select all subjects that would apply to your application.
+                    .eight.columns.centered
+                      = f.select(:subject_areas, DraftGrant::SUBJECTS, {}, {:multiple => true, class: :chosenselect})
+                br/
+          li.field
+            h4 *Summary
+            #drawersummary style="text-align:center;" 
+              p Give a brief explanation explanation of your application (200 character limit)
+            span#summarycount 200 left
+            br/
+            = f.text_area :summary, class: [:textarea, :input, :wide, :validateThis], rows: 3, :placeholder => "Summarize your application", :data => {:length => '200', :id => "#summarycount"}
+          .row
+            h4 Cover Image
+            #drawerimage style="text-align:center;" 
+              p Optional: Choose a photo that will appear at the top of your application. A default photo will be used if you choose not to upload one.
+            .eight.columns.centered
+              .five.columns.centalign
+                .imgholder style="width:300px;" 
+                  - if !@draft_grant.image_url.blank?
+                    = image_tag @draft_grant.image_url :banner
+                  - else
+                    = image_tag 'http://placehold.it/880x450'
+              .five.columns.push_two.centalign
+          li.field
+            br/
+            = f.file_field :image
+- if !@draft_grant.video.blank?
+  .row
+    h4 Grant Video
+    #drawervideo style="text-align:center;" 
+      p Optional: Link a Youtube video to help explain or enhance your application.
+    .five.columns.push_one.centalign
+      article.youtube.video
+        iframe src="http://www.youtube.com/embed/#{parse_embed(@draft_grant)}" 
+    .five.columns.centalign
+  li.field
+    = f.label :video, 'Youtube Video link'
+    = f.text_field :video, class: [:input, :xxwide, :text], :placeholder => "Youtube Video Link"
+- else
+  li.field
+    h4 Grant Video
+    = f.text_field :video, class: [:input, :wide, :text], :placeholder => "Youtube Video Link"
+.ttip.large.primary.btn data-tooltip=("Save Your Progress") 
+  = f.submit 'Save!'
+/! LOGISTICS
+.tab-content
+  .row
+    .twelve.columns
+      br/
+      .row
+        .eight.columns.centered.centalign
+          h4.centalign *Purpose
+          #drawerpurpose style="text-align:center;" 
+            p What is the purpose of this grant request and proposal? (1200 characters limit)
+          .field
+            span#purposecount 1200 left
+            br/
+            = f.text_area :purpose, class: [:textarea, :input, :validateThis], rows: 5, :data => {:length => '1200', :id => "#purposecount"}
+          h4.centalign *Methods
+          #drawermethods style="text-align:center;" 
+            p What methods will you employ in the implementation of this plan? Basically, what is your implementation strategy? (1200 character limit)
+          .field
+            span#methodscount 1200 left
+            br/
+            = f.text_area :methods, class: [:textarea, :input, :validateThis], rows: 5, :data => {:length => '1200', :id => "#methodscount"}
+          h4.centalign *Teacher Background
+          #drawerbackground style="text-align:center;" 
+            p What is your own background? Please explain any relevant details to yourself and the project. (1200 character limit)
+          .field
+            span#backgroundcount 1200 left
+            br/
+            = f.text_area :background, class: [:textarea, :input, :validateThis], rows: 5, :data => {:length => '1200', :id => "#backgroundcount"}
+          .ttip.large.primary.btn data-tooltip=("Save Your Progress") 
+            = f.submit 'Save!'
+/! DETAILS
+.tab-content
+  .row
+    .twelve.columns
+      br/
+      .row
+        .eight.columns.centered
+          .row
+            .nine.columns
+              h4 *Grade Level
+              #drawergradelevel style="text-align:center;" 
+                p List the grade levels that will be affected. Please separate different grades by commas.
+            .three.columns
+              ul
+                li.field
+                  = f.text_field :grade_level, class: [:input, :xxwide, :text], :placeholder => "Ex. 7, 8, 10"
+          .row
+            .nine.columns
+              h4 *Duration
+              #drawerduration style="text-align:center;" 
+                p How long will the proposed activity last? Please enter a number followed by a time period (ex. 1 day, 2 weeks, 3 months). If this is not applicable then please put 'n/a'.
+            .three.columns
+              ul
+                li.field
+                  = f.text_field :duration, class: [:input, :xxwide, :text], :placeholder => "Ex. 2 weeks"
+          .row
+            .ten.columns
+              h4 *Num. of Classes Affected
+              #drawernumclasses style="text-align:center;" 
+                p How many different classes will be affected by the application?
+            .two.columns
+              ul
+                li.field
+                  = f.number_field :num_classes, class: [:input, :xxwide, :text]
+          .row
+            .ten.columns
+              h4 *Num. of Students Affected
+              #drawernumstudents style="text-align:center;" 
+                p How many students will be affected by the application?
+            .two.columns
+              ul
+                li.field
+                  = f.number_field :num_students, class: [:input, :xxwide, :text]
+          .row
+            .ten.columns
+              h4 *Num. of Collaborators
+              #drawernumcollaborators style="text-align:center;" 
+                p How many people will you collaborate on this application?
+            .two.columns
+              ul
+                li.field
+                  = f.number_field :n_collaborators, class: [:input, :xxwide, :text]
+          h4.centalign *Collaborators & Role
+          #drawercollaborators style="text-align:center;" 
+            p Please list all the people with whom you will collaborate, if any, and what role they will play. (1200 character limit)
+          ul
+            li.field
+              span#collabcount 1200 left
+              br/
+              = f.text_area :collaborators, class: [:textarea, :input, :xxwide, :validateThis], rows: 3, :placeholder => "Ex. Elvis Presley - Entertainment Advising, Neil Armstrong - Transportation, John F. Kennedy - Coordination and Advising", :data => {:length => '1200', :id => '#collabcount'}
+      .row.centalign
+        .ttip.large.primary.btn data-tooltip=("Save Your Progress") 
+          = f.submit 'Save!'
+/! BUDGET
+.tab-content
+  .row
+    .twelve.columns
+      br/
+      .row
+        .eight.columns.centered
+          .row
+            .nine.columns
+              h4 *Funding Goal
+              #drawertotalbudget style="text-align:center;" 
+                p How much total funds will be used for your proposed activity? This includes other sources in addition to the Schools Fund.
+            .three.columns
+              ul
+                li.field.prepend.noroundborder
+                  span.adjoined.noroundborder $
+                  = f.number_field :total_budget, class: [:input, :xwide, :text, :noroundborder]
+          h4.centalign *Budget Description
+          #drawerbudgetdescription style="text-align:center;" 
+            p Explain in specific detail how the budget will be allotted and used.
+          .field
+            = f.text_area :budget_desc, class: [:textarea, :input], rows: 5, :placeholder => "The budget will be used to..."
+          .row
+            .nine.columns
+              h4 *Total Funds Requested
+              #drawerfundsrequested style="text-align:center;" 
+                p How much total funds are you requesting from the Schools Fund?
+            .three.columns
+              ul
+                li.field.prepend.noroundborder
+                  span.adjoined.noroundborder $
+                  = f.number_field :requested_funds, class: [:input, :xwide, :text, :noroundborder], type: :number
+          h4.centalign *Use of Funds
+          #drawerfundswillpayfor style="text-align:center;" 
+            p Choose how the funds will be spent.
+          div
+            = f.select(:funds_will_pay_for, DraftGrant::FUNDS, {}, {:multiple => true, class: :chosenselect})
+          br/
+      .row.centalign
+        .ttip.large.primary.btn data-tooltip=("Save Your Progress") 
+          = f.submit 'Save!'
+/! Finalize
+.tab-content
+  .row
+    .twelve.columns
+      br/
+      .row
+        .eight.columns.centered.centalign
+          h4.centalign Additional Comments
+          #drawercomments style="text-align:center;" 
+            p Please state any additional information that may contribute to your application. (1200 character limit)
+          .field
+            span#commentscount 1200 left
+            br/
+            = f.text_area :comments, class: [:textarea, :input, :validateThis], rows: 5, :data => {:length => '1200', :id => '#commentscount'}
+          .ttip.large.primary.btn data-tooltip=("Save Your Progress") 
+            = f.submit 'Save!'
+          = render 'grant_preview', grant: @draft_grant
+          div align="center" 
+            = recaptcha_tags
+          .large.primary.btn
+            = f.submit 'Submit!', name: 'save_and_submit'
+javascript:
+  | $(".chosenselect").chosen({width:'100%'});
+  
+  | $(document).ready(function(){
+      | var prevtab=getCookie("drafttab");
+        | if (prevtab!=null && prevtab!="")
+        | {
+        | var $tabs = $('#tabs')
+        | $target = $tabs.find('.tab-nav li#'+prevtab);
+        /!/ if target exists trigger the set event
+        | if($target.length) {
+            | $tabs.trigger('gumby.set', $target.index());
+  
+          | }
+        | }
+    | });
+  
+  | function validateLength(el) {
+      | console.log('hit');
+      | var $this = $(el);
+      | var value = $this.val(),
+          | valueLength = value.length;
+          | textId = $this.attr('data-id');
+          | set = parseInt($this.attr('data-length'));
+          | remain = parseInt(set - valueLength);
+  
+      | $(textId).html(remain + ' left');
+  | }
+  
+  | $(document).on( 'keypress','textarea.validateThis',function(e){
+       | validateLength(this);
+  | });
+  
+  | $(document).on( 'keyup', 'textarea.validateThis',function(e){
+       | validateLength(this);
+  | });
