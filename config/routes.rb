@@ -6,10 +6,6 @@ BPSF::Application.routes.draw do
     post 'rate', on: :member
   end
   scope '/grants' do
-    get ':id/edit_general_info/', to: 'grants#edit_general_info',    as: :edit_general
-    get ':id/edit_logistics/',    to: 'grants#edit_logistics',       as: :edit_logistics
-    get ':id/edit_budget/',       to: 'grants#edit_budget',          as: :edit_budget
-    get ':id/edit_methods/',      to: 'grants#edit_methods',         as: :edit_methods
     post ':id/crowdfund',         to: 'grants#crowdfund_form',       as: :crowdfund_form
     post ':id/preapprove',        to: 'grants#preapprove',           as: :preapprove_grant
     post ':id/:state',            to: 'admin/dashboard#grant_event', as: :grant_event
@@ -51,6 +47,7 @@ BPSF::Application.routes.draw do
   end
 
   post 'crowdfund/create'
+  post 'crowdfund/update'
   resources :recipient_profile, only: :update
   resources :admin_profile,     only: :update
 end

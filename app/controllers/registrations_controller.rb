@@ -51,13 +51,8 @@ class RegistrationsController < Devise::RegistrationsController
     end
     user.approved = user.init_approved
     user.save!
-    if can_have_profile? resource
-      user.create_profile!
-      edit_user_path id: @user.id
-    else
-      super
-    end
-    user_url(resource)
+    user.create_profile!
+    edit_user_path id: @user.id
   end
 
   private
