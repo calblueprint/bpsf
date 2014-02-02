@@ -80,7 +80,7 @@
             strong Current:
           span.currentnum
             | $#{@grant.crowdfunder_pledged_total}
-          | \&emsp;
+          | &emsp;
           span.gctext
             strong Goal:
           span.goalnum
@@ -114,19 +114,27 @@
         h3 Details
         h5.inlined
           strong Grade level:
-        = succeed "&amp;emsp;" do
-          span.medfont= @grant.grade_level
+        span.medfont
+          |&nbsp;
+          = @grant.grade_level
+        |&emsp;
         h5.inlined
           strong Duration:
-        = succeed "&amp;emsp;" do
-          span.medfont= @grant.duration
+        span.medfont
+          |&nbsp;
+          = @grant.duration
+        |&emsp;
         h5.inlined
           strong # of classes:
-        = succeed "&amp;emsp;" do
-          span.medfont= @grant.num_classes
+        span.medfont
+          |&nbsp;
+          = @grant.num_classes
+        |&emsp;
         h5.inlined
           strong # of students:
-        span.medfont= @grant.num_students
+        span.medfont
+          |&nbsp;
+          = @grant.num_students
         br/
         - if @grant.has_collaborators?
           h5
