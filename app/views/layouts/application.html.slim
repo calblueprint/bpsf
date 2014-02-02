@@ -15,7 +15,7 @@ html
       = render 'layouts/header'
       /! Render flash
       .row
-        | \&nbsp;
+        | &nbsp;
         - flash.each do |key, value|
           = content_tag :div, value, class: "#{key} alert"
       = render 'layouts/helppanel'
