@@ -29,10 +29,6 @@ class Admin < User
   attr_accessible :profile_attributes
   accepts_nested_attributes_for :profile
 
-  def create_profile!
-    profile = AdminProfile.create admin_id: id
-  end
-
   def init_approved
     false
   end
