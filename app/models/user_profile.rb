@@ -14,6 +14,7 @@
 #
 
 class UserProfile < ActiveRecord::Base
+  include ActionView::Helpers::NumberHelper
   RELATIONSHIPS = ['Parent of Student','Parent of Alum', 'Alum',
                    'Grandparent of Student', 'Grandparent of Alum']
   attr_accessible :address, :city, :zipcode, :phone, :relationship, :user_id
@@ -27,7 +28,6 @@ class UserProfile < ActiveRecord::Base
 
   private
     def format_phone_numbers
-      self.work_phone = number_to_phone(self.work_phone, area_code: true)
-      self.home_phone = number_to_phone(self.home_phone, area_code: true)
+      self.phone = number_to_phone(self.phone, area_code: true)
     end
 end

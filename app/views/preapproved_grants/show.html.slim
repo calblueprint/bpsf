@@ -1,0 +1,98 @@
+.row
+  .wrapper.light
+    .row.centalign
+      h2
+        = @grant.title
+        | (Preapproved)
+      h5
+        = @grant.school_name
+    - if super_user?
+      .row
+        .three.columns.centered.centalign
+          .medium.primary.btn
+            = link_to 'Delete', preapproved_grant_path(@grant), \
+              method: :delete, confirm: 'Are you sure?'         \
+    - if recipient?
+      .row
+        hr/
+        .three.columns.centered.centalign
+          .large.primary.btn
+            = link_to 'Use this!', preapproved_convert_path(@grant), method: :post
+      hr/
+    .row
+      - if !@grant.image_url.blank?
+        = image_tag @grant.image_url :banner
+      - else
+        .imgreplacementlrg
+          .repson= @grant.title
+    .row.centalign
+      .eleven.columns.centered
+        p.largefont= @grant.summary
+      br/
+    .row
+      .three.columns.centalign
+        h5.inlined
+          strong Grade level:
+        span.largefont= @grant.grade_level
+      .three.columns.centalign
+        h5.inlined
+          strong # of classes:
+        span.largefont= @grant.num_classes
+      .three.columns.centalign
+        h5.inlined
+          strong # of students:
+        span.largefont= @grant.num_students
+      .three.columns.centalign
+        h5.inlined
+          strong Total budget:
+        span.largefont= @grant.total_budget
+    .row.padada
+      .six.columns.centalign
+        h5.inlined
+          strong Subject areas:
+        span.medfont= @grant.subject_areas.values.to_a.join(', ')
+      .six.columns.centalign
+        h5.inlined
+          strong Duration:
+        span.medfont= @grant.duration
+    .row.grantviewbar
+      .gcdiv
+    hr/
+    .row
+      .ten.columns.centalign.centered
+        h3 Details
+        h5
+          strong Purpose
+        = @grant.purpose
+        h5
+          strong Methods
+        = @grant.methods
+    - if !@grant.video.blank?
+      .row
+        .ten.columns.centered
+          .video-container
+            iframe src="http://www.youtube.com/embed/#{parse_embed(@grant)}" 
+    .row
+      .ten.columns.centalign.centered
+        br/
+        h3.centalign Budget
+        h5.inlined
+          strong Total budget:
+        span.largefont= @grant.total_budget
+        br/
+        h5.inlined
+          strong Goal:
+        span.largefont= @grant.requested_funds
+        br/
+        h5
+          strong Description
+        = @grant.budget_desc
+        h5
+          strong Use of Funds
+        = @grant.funds_will_pay_for
+    - if !@grant.comments.blank?
+      .row
+        .ten.columns.centalign.centered
+          br/
+          h3 Additional Comments
+          = @grant.comments

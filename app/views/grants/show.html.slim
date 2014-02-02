@@ -1,0 +1,176 @@
+- if admin_user?
+  .row
+    .wrapper.light
+      .row
+        .ten.columns.centered.centalign
+          - if super_user?
+            h4 Current Rating
+            = ratings_for @grant, show_user_rating: true
+            .grant-avg
+              | Average: #{@grant.rating_average}
+            h4 Change Status
+            #grantstatus
+              | Current Status: #{@grant.state.titleize}
+            = render 'toggle_links', grant: @grant
+            - if super_user?
+              = form_tag crowdfund_update_path do
+                = hidden_field_tag :crowdfund_id, @grant.crowdfunder.id
+                h4 End Date
+                ul
+                  li.field.metro
+                    = select_date @grant.crowdfunder.deadline, order: [:year, :month, :day], class: [:picker, :inlined]
+                .primary.medium.btn
+                  = submit_tag 'Update deadline'
+            .one-click-hidden
+              - if super_user? && !@grant.preapproved?
+                #preapprove_link
+                  .medium.primary.btn style="margin-top:5px" 
+                    = link_to 'Preapprove', preapprove_grant_path(@grant), method: :post
+            h4
+              | Edit Grant
+              span.ttip data-tooltip="Edit" 
+                = link_to '<i class="icon-pencil"></i>'.html_safe, edit_grant_path
+          - else
+            h4 Rate Grant
+            = ratings_for @grant, show_user_rating: true
+            h4 Status
+            = @grant.state.titleize
+          .one-click-hidden
+            - if super_user? && !@grant.preapproved?
+              #preapprove_link
+                .medium.primary.btn
+                  = link_to 'Preapprove', preapprove_grant_path(@grant), method: :post
+  br/
+.row
+  .wrapper.light
+    .row.centalign
+      h2
+        = @grant.title
+      h5
+        = @grant.recipient.name
+        | | #{@grant.school_name}
+      h5
+        a href="https://www.facebook.com/sharer/sharer.php?" target="_blank" 
+          i.icon-facebook
+        a expr:href="data:post.canonicalUrl" href="https://twitter.com/share" 
+          i.icon-twitter
+        a href="javascript:emailCurrentPage()" 
+          i.icon-mail
+    .row align="center" 
+      - if !@grant.image_url.blank?
+        .coverholder
+          = image_tag @grant.image_url :banner
+      - else
+        .imgreplacementlrg
+          .repson= @grant.title
+    .row.centalign
+      .eleven.columns.centered
+        p.largefont= @grant.summary
+      br/
+    .row.padada
+      .ten.columns.centered.centalign
+        h4.inlined Subject Areas:
+        span.largefont= @grant.subject_areas.values.to_a.join(', ')
+    - if @grant.crowdfunding?
+      .row.grantviewbar
+        .progress
+          span.progressbar data-current=@grant.crowdfunder_pledged_total data-goal=@grant.crowdfunder_goal style=("width: 50%") = @grant.crowdfunder_progress
+        .gcdiv
+          span.gctext
+            strong Current:
+          span.currentnum
+            | $#{@grant.crowdfunder_pledged_total}
+          | &emsp;
+          span.gctext
+            strong Goal:
+          span.goalnum
+            | $#{@grant.crowdfunder_goal}
+          .row
+            hr/
+            .three.columns.centered.centalign
+              #payment-modal.large.primary.btn
+                a.switch gumby-trigger="#payment-form" href="#"  Donate
+    hr/
+    .row
+      .ten.columns.centalign.centered
+        h3 Logistics
+        h5
+          strong Purpose
+        = @grant.purpose
+        h5
+          strong Methods
+        = @grant.methods
+        h5
+          strong Teacher Background
+        = @grant.background
+    - if !@grant.video.blank?
+      .row
+        .ten.columns.centered
+          article.youtube.video
+            iframe src="http://www.youtube.com/embed/#{parse_embed(@grant)}" 
+    .row
+      .ten.columns.centalign.centered
+        br/
+        h3 Details
+        h5.inlined
+          strong Grade level:
+        span.medfont
+          |&nbsp;
+          = @grant.grade_level
+        |&emsp;
+        h5.inlined
+          strong Duration:
+        span.medfont
+          |&nbsp;
+          = @grant.duration
+        |&emsp;
+        h5.inlined
+          strong # of classes:
+        span.medfont
+          |&nbsp;
+          = @grant.num_classes
+        |&emsp;
+        h5.inlined
+          strong # of students:
+        span.medfont
+          |&nbsp;
+          = @grant.num_students
+        br/
+        - if @grant.has_collaborators?
+          h5
+            strong Collaborators
+          = @grant.collaborators
+    .row
+      .ten.columns.centalign.centered
+        br/
+        h3.centalign Budget
+        h5.inlined
+          strong Total budget:
+        span.medfont
+          | $#{@grant.total_budget}
+        br/
+        h5
+          strong Description
+        = @grant.budget_desc
+        h5
+          strong Use of Funds
+        = @grant.funds_will_pay_for.values.to_a.join(', ')
+    - if @grant.has_comments?
+      .row
+        .ten.columns.centalign.centered
+          br/
+          h3 Additional Comments
+          = @grant.comments
+#payment-form.modal
+  .content
+    a.close.switch gumby-trigger="|#payment-form" 
+      i.icon-cancel
+    .row
+      .ten.columns.centered.text-center
+        - if @grant.crowdfunding?
+          .row
+            = render "payment_form", payment: @payment, id: @grant.id
+#crowdfund-modal-view
+  = render "crowdfund_modal", grant: @grant
+#confirmation-modal-view
+  = render 'confirmation_modal', payment: @payment

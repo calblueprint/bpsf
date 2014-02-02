@@ -79,30 +79,24 @@ def make_profiles
                          relationship: 'Alum'
   end
   Recipient.all.each do |recipient|
-    profile = RecipientProfile.create! recipient_id: recipient.id,
-                                       school_id: recipient.school_id,
-                                       about: Faker::Lorem.sentence,
-                                       started_teaching: 2.years.ago,
-                                       subject: Faker::Lorem.sentence,
-                                       grade: Faker::Lorem.sentence,
-                                       address: Faker::Address.street_address,
-                                       city: 'Berkeley',
-                                       zipcode: 94720,
-                                       work_phone: Faker::PhoneNumber.phone_number,
-                                       home_phone: Faker::PhoneNumber.phone_number
-    recipient.profile = profile
+    recipient.create_profile! school_id: recipient.school_id,
+                              about: Faker::Lorem.sentence,
+                              started_teaching: 2.years.ago,
+                              subject: Faker::Lorem.sentence,
+                              grade: Faker::Lorem.sentence,
+                              address: Faker::Address.street_address,
+                              city: 'Berkeley',
+                              zipcode: 94720,
+                              work_phone: Faker::PhoneNumber.phone_number,
+                              home_phone: Faker::PhoneNumber.phone_number
   end
   Admin.all.each do |admin|
-    profile = AdminProfile.create! admin_id: admin.id,
-                                   about: Faker::Lorem.sentence,
-                                   position: Faker::Lorem.sentence
-    admin.profile = profile
+    admin.create_profile! about: Faker::Lorem.sentence, 
+                          position: Faker::Lorem.sentence
   end
   SuperUser.all.each do |user|
-    profile = AdminProfile.create! admin_id: user.id,
-                                   about: Faker::Lorem.sentence,
-                                   position: Faker::Lorem.sentence
-    user.profile = profile
+    user.create_profile! about: Faker::Lorem.sentence,
+                         position: Faker::Lorem.sentence
   end
 end
 
@@ -143,13 +137,7 @@ def make_grants
   end
 end
 
-def make_preapproved
-  grants = Grant.all[1..10]
-  grants.map &:preapprove!
-end
-
 make_schools
 make_users
 make_profiles
 make_grants
-make_preapproved

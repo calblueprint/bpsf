@@ -24,12 +24,11 @@
 #
 
 class Recipient < User
-  belongs_to :school
   has_many :grants, dependent: :destroy
   has_many :draft_grants, dependent: :destroy
   has_one :profile, class_name: 'RecipientProfile'
 
-  attr_accessible :school_id, :profile_attributes
+  attr_accessible :profile_attributes
   accepts_nested_attributes_for :profile
 
   def init_approved
