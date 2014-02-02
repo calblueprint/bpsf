@@ -36,7 +36,7 @@ FactoryGirl.define do
   factory :grant do
     sequence(:title)           { |n| "Grant #{n}" }
     summary                    Faker::Lorem.sentence
-    subject_areas              ["Art & Music", "Reading"]
+    subject_areas              ['Other']
     sequence(:grade_level)     { |n| "#{n % 8 + 2}" }
     sequence(:duration)        { |n| "#{n} weeks" }
     sequence(:num_classes)     { |n| n }
@@ -62,7 +62,7 @@ FactoryGirl.define do
 
     factory :filled_in_draft_grant do
       summary                    Faker::Lorem.sentence
-      subject_areas              ["Art & Music", "Reading"]
+      subject_areas              ['Other']
       sequence(:grade_level)     { |n| "#{n % 8 + 2}" }
       sequence(:duration)        { |n| "#{n} weeks" }
       sequence(:num_classes)     { |n| n }
