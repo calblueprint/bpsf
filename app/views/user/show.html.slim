@@ -1,0 +1,32 @@
+.row
+  .wrapper.light
+    .row.centalign
+      - if @user.eql? current_user
+        span.ttip.pull_right.inlined.largefont data-tooltip="Edit" 
+          = link_to '<i class="icon-pencil"></i>'.html_safe, edit_user_path(id: @user.id)
+      h2 style=("inlined ") 
+        = @user.name
+    section.tabs
+      .row
+        .twelve.columns.centered.centalign
+          ul.tab-nav
+            li.active
+              a href="#"  My Account
+            li
+              a href="#"  Payment History
+      .tab-content.active
+        .row
+          .eight.columns
+            h5.inlined Email:
+            = @user.email
+            br/
+            = render profile_for(@user), user: @user, profile: @profile
+          /! Currently breaking
+          /! <div class="four columns"
+          /! </div
+      .tab-content
+        - if @user.default_card
+          | You are currently using a credit card ending in #{@user.last4}.
+        = render partial: 'shared/table', locals: { heads: %w[Name School Amount], partials: [['payments', @payments, :payment, "There are no payments"]] }
+        .four.columns.centered.centalign
+          = will_paginate @payments

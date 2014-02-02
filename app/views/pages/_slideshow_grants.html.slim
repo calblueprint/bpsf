@@ -1,0 +1,24 @@
+li onclick="window.location.href=#{url_for grant}" style="background-image:url(#{grant.image_url :banner}); background-size:cover;" 
+  .infocard.slidecard
+    .cardtitle
+      h3= link_to grant.title, grant
+    .cardcontent
+      p
+        span.darken Director:
+        = grant.recipient.name
+        br/
+        span.darken School:
+        = grant.school.name
+        br/
+        span.darken Description:
+        = grant.summary
+      .progress
+        span.progressbar data-current=grant.crowdfunder.pledged_total data-goal=grant.crowdfunder_goal  50%
+      .gcdiv
+        span.gctext Current:
+        span.currentnum
+          | $#{grant.crowdfunder.pledged_total}
+        | &emsp;
+        span.gctext Goal:
+        span.goalnum
+          | $#{grant.crowdfunder.goal}

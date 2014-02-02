@@ -1,0 +1,30 @@
+.row
+  .twelve.columns
+    .wrapper.light
+      .row
+        .five.columns.centered
+          h2 Sign up
+          = form_for resource, :as => resource_name, :url => registration_path(resource_name) do |f|
+            = devise_error_messages!
+            .field
+              = f.label :first_name
+              = f.text_field :first_name, class: :input
+            .field
+              = f.label :last_name
+              = f.text_field :last_name, class: :input
+            .field
+              = f.label :email
+              = f.email_field :email, class: :input
+            .field
+              = f.label :password
+              = f.password_field :password, class: :input
+            .field
+              = f.label :password_confirmation
+              = f.password_field :password_confirmation, class: :input
+            div
+              = f.label :type
+              = f.select :type, options_for_select([['Friend/Family', 'User'], ['Teacher', 'Recipient'], 'Admin'])
+            = recaptcha_tags
+            .medium.primary.btn
+              = f.submit "Sign up"
+          = render "devise/shared/links"

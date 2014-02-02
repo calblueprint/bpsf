@@ -1,0 +1,11 @@
+doctype html
+html
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+  body
+    h1
+      | A new user, #{@user.first_name} #{@user.last_name}, has registered an account!
+    p
+      = @user.first_name
+      = @user.last_name
+      | has registered an account with Berkeley Public Schools Fund! To view this user's profile, just follow this link: #{@url}.
