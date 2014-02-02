@@ -34,6 +34,14 @@
                     = f.text_field :title, class: [:text, :wide, :input], :placeholder => "Title your grant"
                   li
                     h4 
+                      | *Crowdfund End Date
+                    #drawersubject style="text-align:center;" 
+                      p When will your crowdfunding period end?
+                    .eight.columns.centered
+                      = select_date Date.today, order: [:year, :month, :day], class: [:picker, :inlined]
+                  br/
+                  li
+                    h4 
                       | *Subject Areas
                     #drawersubject style="text-align:center;" 
                       p Select all subjects that would apply to your application.
@@ -51,7 +59,10 @@
                   .row
                     h4 Cover Image
                     #drawerimage style="text-align:center;" 
-                      p Optional: Choose a photo that will appear at the top of your application. A default photo will be used if you choose not to upload one.
+                      p 
+                        | Optional: Choose a photo that will appear at the top of your application. 
+                        br/ 
+                        | A default photo will be used if you choose not to upload one.
                     .eight.columns.centered
                       .five.columns.centalign
                         .imgholder style="width:300px;" 
@@ -141,7 +152,6 @@
                       .three.columns
                         ul
                           li.field
-                            = select_date Date.today, order: [:year, :month, :day], class: [:picker, :inlined]
                             = f.text_field :duration, class: [:input, :xxwide, :text], :placeholder => "Ex. 2 weeks"
                     .row
                       .ten.columns
