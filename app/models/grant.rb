@@ -63,7 +63,7 @@ class Grant < ActiveRecord::Base
   has_one :preapproved_grant
   delegate :goal, :pledged_total, :progress, to: :crowdfunder, prefix: true
   delegate :name, to: :school, prefix: true
-  
+
   extend Searchable :title, :summary, :subject_areas, :school_name, :teacher_name
   ajaxful_rateable stars: 10
 
@@ -81,7 +81,6 @@ class Grant < ActiveRecord::Base
   validates :title, presence: true, length: { maximum: 40 }
   validate :valid_subject_areas
   validates :summary, presence: true, length: { maximum: 200 }
-  include GradeValidation
   validates :grade_level, presence: true
   validate :grade_format
   validate :duration, presence: true
@@ -232,5 +231,13 @@ class Grant < ActiveRecord::Base
 
     def valid_subject_areas
       errors.add :subject_areas, "can't be empty" unless !subject_areas.empty?
+    end
+
+    def grade_format
+      return if not grade_level
+      nums = grade_level.split(/,\s*|-/)
+      unless nums.all? { |num| num =~ /^([K1-9]|1[0-2])$/ }
+        errors.add :grade_level, "is not formatted properly"
+      end
     end
 end
