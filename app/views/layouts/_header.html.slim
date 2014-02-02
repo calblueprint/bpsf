@@ -23,7 +23,7 @@
     .loginmenu.pull_right
       span.poofout
         = link_to "Sign Up", new_user_session_path
-        | \
+        |&nbsp;&nbsp;|&nbsp;&nbsp;
       = link_to "Sign In", new_user_session_path
 - if user_signed_in?
   #userdropdown.userdropdown.nodisplay
@@ -33,5 +33,4 @@
         li= link_to 'Dashboard'.html_safe, admin_dashboard_path, class: :darken
       - elsif recipient?
         li= link_to 'Dashboard'.html_safe, recipient_dashboard_path, class: :darken
-      - else
-        li= link_to "Sign Out", destroy_user_session_path, class: :darken
+      li= link_to "Sign Out", destroy_user_session_path, class: :darken
