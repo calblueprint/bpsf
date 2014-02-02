@@ -56,7 +56,6 @@ def make_users
                       password: "password",
                       password_confirmation: "password",
                       approved: true,
-                      school_id: rand(1..School.count)
   end
   1.upto(8) do |n|
     User.create! first_name: "Parent #{n}",
