@@ -14,9 +14,8 @@
                 li.field.passless.marginless.pull_right
                   label.checkbox for="user_remember_me" 
                     = f.check_box :remember_me
-                    = succeed "&amp;nbsp;Remember" do
-                      span
-                    | me
+                    span
+                    | &nbsp; Remember me
               li= render "devise/shared/links"
             br/
             .medium.primary.btn.pull_right
