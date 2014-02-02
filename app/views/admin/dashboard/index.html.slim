@@ -47,10 +47,8 @@
               .four.columns.centalign
                 div style="margin-top:150px" 
                   | Successful Crowdfunds&emsp;
-                  .colorbox.green &nbsp;
-                  = succeed "Unsuccessful" do
-                    br/
-                  | Crowdfunds&emsp;
+                  .colorbox.green> &nbsp;
+                  | &emsp;&emsp;Unsuccessful Crowdfunds&emsp;
                   .colorbox.red &nbsp;
               .eight.columns
                 canvas#canvas1 height="350" width="350" 
@@ -59,7 +57,7 @@
                 div style="margin-top:200px;" 
                   | Accepted Grants&emsp;
                   .colorbox.green> &nbsp;
-                  | \&emsp;&emsp;Rejected Grants&emsp;
+                  | &emsp;&emsp;Rejected Grants&emsp;
                   .colorbox.red &nbsp;
             .row
               .centalign
@@ -70,7 +68,7 @@
                 div style="margin-top:200px;" 
                   | Accepted Grants&emsp;
                   .colorbox.green> &nbsp;
-                  | \&emsp;&emsp;Rejected Grants&emsp;
+                  | &emsp;&emsp;Rejected Grants&emsp;
                   .colorbox.red &nbsp;
             .row
               .centalign
@@ -81,7 +79,7 @@
                 div style="margin-top:150px" 
                   | Successful Crowdfunds&emsp;
                   .colorbox.green> &nbsp;
-                  | \&emsp;&emsp;Unsuccessful Crowdfunds&emsp;
+                  | &emsp;&emsp;Unsuccessful Crowdfunds&emsp;
                   .colorbox.red &nbsp;
             .row
               .centalign
@@ -106,11 +104,11 @@ javascript:
   
     var smallScale = {
     scaleOverride : true,
-    /!/Number - The number of steps in a hard coded scale
+    //Number - The number of steps in a hard coded scale
     scaleSteps : maxxest,
-    /!/Number - The value jump in the hard coded scale
+    //Number - The value jump in the hard coded scale
     scaleStepWidth : step,
-    /!/Number - The scale starting value
+    //Number - The scale starting value
     scaleStartValue : 0,
     }
   
@@ -192,7 +190,7 @@ javascript:
         {
         var $tabs = $('#tabs')
         $target = $tabs.find('.tab-nav li#'+prevtab);
-        /!/ if target exists trigger the set event
+        // if target exists trigger the set event
         if($target.length) {
             $tabs.trigger('gumby.set', $target.index());
   
