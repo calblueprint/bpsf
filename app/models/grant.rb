@@ -195,6 +195,14 @@ class Grant < ActiveRecord::Base
     !preapproved_grant.nil?
   end
 
+  def crowdfunding?
+    state == "crowdfunding"
+  end
+
+  def with_admin_cost
+    requested_funds * 1.029 + 0.3
+  end
+
   def has_collaborators?
     n_collaborators > 0
   end

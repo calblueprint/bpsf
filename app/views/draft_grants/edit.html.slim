@@ -141,6 +141,7 @@
                       .three.columns
                         ul
                           li.field
+                            = select_date Date.today, order: [:year, :month, :day], class: [:picker, :inlined]
                             = f.text_field :duration, class: [:input, :xxwide, :text], :placeholder => "Ex. 2 weeks"
                     .row
                       .ten.columns
