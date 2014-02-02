@@ -34,7 +34,6 @@ class DraftGrant < Grant
   validates :title, presence: true, length: { maximum: 40 }
   validates :recipient_id, :school_id, presence: true, if: 'type.nil?'
   validates :summary, length: { maximum: 200 }
-  include GradeValidation
   validate :grade_format
   validates :purpose, :methods, :background, :comments, length: { maximum: 1200 }
   validates :n_collaborators, allow_blank: true,
