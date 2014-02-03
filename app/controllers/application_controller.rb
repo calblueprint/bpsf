@@ -1,7 +1,7 @@
 # Base controller
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  before_filter :https_redirect
+  #before_filter :https_redirect
   include SessionsHelper
   include SimpleCaptcha::ControllerHelpers
   after_filter :store_location
@@ -15,18 +15,19 @@ class ApplicationController < ActionController::Base
   end
 
   def store_location
-    if (request.fullpath != "/users/sign_in" &&
-        request.fullpath != "/users/sign_up" &&
-        request.fullpath != "/users/password" &&
-        request.fullpath != "/users/sign_out" &&
-        request.fullpath != "/" &&
-        !request.xhr?)
+    if (request.fullpath.include? "grants")
       session[:previous_url] = request.fullpath 
     end
   end
 
   def after_sign_in_path_for(resource)
-    session[:previous_url] || root_path
+    session[:previous_url] || default_after_sign_in_path_for(resource)
+  end
+
+  def default_after_sign_in_path_for(resource)
+    return admin_dashboard_path     if ((resource.is_a? Admin) | (resource.is_a? SuperUser))
+    return recipient_dashboard_path if resource.is_a? Recipient
+    return root_path                if resource.is_a? User
   end
 
   private
