@@ -1,7 +1,7 @@
 .row
-  = form_for @draft_grant, url: draft_path, :html => {:multipart => true} do |f|
-    .twelve.columns
-      .wrapper.light
+  .twelve.columns
+    .wrapper.light
+      = form_for @draft_grant, url: draft_path, :html => {:multipart => true} do |f|
         .row
           = render 'shared/errors', object: f.object
           h2.centalign
