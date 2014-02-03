@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   before_filter :https_redirect
   include SessionsHelper
   include SimpleCaptcha::ControllerHelpers
+  after_filter :store_location
 
   rescue_from CanCan::AccessDenied do |exception|
     if !current_user || current_user.approved
@@ -13,22 +14,25 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  # This code never gets executed.
-  def after_sign_in_path_for(resource)
-    store_location = session[:return_to]
-    clear_stored_location
-    store_location ? default_after_sign_in_path_for(resource) : store_location.to_s
+  def store_location
+    if (request.fullpath != "/users/sign_in" &&
+        request.fullpath != "/users/sign_up" &&
+        request.fullpath != "/users/password" &&
+        request.fullpath != "/users/sign_out" &&
+        request.fullpath != "/" &&
+        !request.xhr?)
+      session[:previous_url] = request.fullpath 
+    end
   end
 
-  def default_after_sign_in_path_for(resource)
-    return admin_dashboard_path     if resource.is_a? Admin
-    return recipient_dashboard_path if resource.is_a? Recipient
-    return root_path                if resource.is_a? User
+  def after_sign_in_path_for(resource)
+    session[:previous_url] || root_path
   end
 
   private
 
   def https_redirect
+    puts use_https?
     if request.ssl? && !use_https? || !request.ssl? && use_https?
       flash.keep
       protocol = request.ssl? ? "http" : "https"
