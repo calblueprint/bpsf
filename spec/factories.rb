@@ -12,6 +12,7 @@ FactoryGirl.define do
     sequence(:last_name) { |n| "#{n}" }
     sequence(:email) { |n| "recipient-#{n}@test.com" }
     password 'foobar'
+    approved true
   end
 
   factory :admin do
@@ -35,7 +36,7 @@ FactoryGirl.define do
   factory :grant do
     sequence(:title)           { |n| "Grant #{n}" }
     summary                    Faker::Lorem.sentence
-    subject_areas              ["Art & Music", "Reading"]
+    subject_areas              ['Other']
     sequence(:grade_level)     { |n| "#{n % 8 + 2}" }
     sequence(:duration)        { |n| "#{n} weeks" }
     sequence(:num_classes)     { |n| n }
@@ -43,7 +44,6 @@ FactoryGirl.define do
     sequence(:total_budget)    { |n| n * 200 }
     sequence(:requested_funds) { |n| n * 250 }
     funds_will_pay_for         ['Other']
-    subject_areas              ['Other']
     budget_desc                Faker::Lorem.paragraph
     purpose                    Faker::Lorem.paragraph
     methods                    Faker::Lorem.paragraph
@@ -62,7 +62,7 @@ FactoryGirl.define do
 
     factory :filled_in_draft_grant do
       summary                    Faker::Lorem.sentence
-      subject_areas              ["Art & Music", "Reading"]
+      subject_areas              ['Other']
       sequence(:grade_level)     { |n| "#{n % 8 + 2}" }
       sequence(:duration)        { |n| "#{n} weeks" }
       sequence(:num_classes)     { |n| n }
@@ -70,7 +70,6 @@ FactoryGirl.define do
       sequence(:total_budget)    { |n| n * 200 }
       sequence(:requested_funds) { |n| n * 250 }
       funds_will_pay_for         ['Other']
-      subject_areas              ['Other']
       budget_desc                Faker::Lorem.paragraph
       purpose                    Faker::Lorem.paragraph
       methods                    Faker::Lorem.paragraph
