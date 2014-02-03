@@ -21,11 +21,6 @@
                     = select_date @grant.crowdfunder.deadline, order: [:year, :month, :day], class: [:picker, :inlined]
                 .primary.medium.btn
                   = submit_tag 'Update deadline'
-            .one-click-hidden
-              - if super_user? && !@grant.preapproved?
-                #preapprove_link
-                  .medium.primary.btn style="margin-top:5px" 
-                    = link_to 'Preapprove', preapprove_grant_path(@grant), method: :post
             h4
               | Edit Grant
               span.ttip data-tooltip="Edit" 
@@ -35,11 +30,6 @@
             = ratings_for @grant, show_user_rating: true
             h4 Status
             = @grant.state.titleize
-          .one-click-hidden
-            - if super_user? && !@grant.preapproved?
-              #preapprove_link
-                .medium.primary.btn
-                  = link_to 'Preapprove', preapprove_grant_path(@grant), method: :post
   br/
 .row
   .wrapper.light
