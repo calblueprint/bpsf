@@ -1,8 +1,10 @@
 $(function() {
 
-	var items = $('.helppanel, .helppanelbutton, .xbox');
+	var items = $('.helppanel, .helppanelbutton, .xbox, .screen');
 	var hp = $('.helppanelbutton');
-	var xbox = $('.xbox')
+	var xbox = $('.xbox');
+	var screen = $('.screen');
+	var closeclick = $('.closeclick');
 
 	var open = function() {
 							$(items).removeClass('close').addClass('open');
@@ -16,6 +18,12 @@ $(function() {
 		else {$(open)}
 	});
 	xbox.click(function(){
+		if (hp.hasClass('open')) {$(close)};
+	});
+	screen.click(function(){
+		if (hp.hasClass('open')) {$(close)};
+	});
+	closeclick.click(function(){
 		if (hp.hasClass('open')) {$(close)};
 	});
 
