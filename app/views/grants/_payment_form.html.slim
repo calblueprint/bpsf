@@ -31,7 +31,7 @@
     .donate.large.primary.btn
       = f.submit "Donate!", :id => "new_payment", :confirm => "Are you sure?"
 - else
-  h2
+  h2 style="margin-top:60px"
     | Sign up or sign in to donate!
-  .large.primary.btn
+  .large.primary.btn style="margin-top:25px"
     = link_to "Sign Up | Sign In", new_user_session_path
