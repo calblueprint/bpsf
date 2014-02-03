@@ -7,7 +7,7 @@ class Admin::DashboardController < ApplicationController
     if !current_user.approved
       raise CanCan::AccessDenied.new
     end
-    @grants = Grant.all.sort.paginate :page => params[:page], :per_page => 6
+    @grants = (Grant.all-DraftGrant.all).sort.paginate :page => params[:page], :per_page => 6
 
     @donors = User.donors
     donated = params[:donated]
