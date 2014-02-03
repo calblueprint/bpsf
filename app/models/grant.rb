@@ -191,14 +191,6 @@ class Grant < ActiveRecord::Base
       logger.error "Stripe error: #{err.message}"
   end
 
-  def preapprove!
-    transfer_attributes_to_new_preapproved_grant
-  end
-
-  def preapproved?
-    !preapproved_grant.nil?
-  end
-
   def has_collaborators?
     n_collaborators > 0
   end
