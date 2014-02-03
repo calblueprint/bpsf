@@ -20,7 +20,6 @@
 #  last_name              :string(255)
 #  stripe_token           :string(255)
 #  approved               :boolean
-#  school_id              :integer
 #
 
 class Admin < User
@@ -28,10 +27,6 @@ class Admin < User
   has_one :profile, class_name: 'AdminProfile'
   attr_accessible :profile_attributes
   accepts_nested_attributes_for :profile
-
-  def create_profile!
-    profile = AdminProfile.create admin_id: id
-  end
 
   def init_approved
     false
