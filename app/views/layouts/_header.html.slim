@@ -9,7 +9,7 @@
     ul
       li.darken= link_to 'Home'.html_safe, root_path, class: :darken
       - if recipient?
-        li.darken= link_to 'Apply For Grant'.html_safe, new_draft_path, class: :darken
+        li.darken= link_to 'Apply'.html_safe, new_draft_path, class: :darken
       = render 'layouts/search_form'
   - if user_signed_in?
     .loginmenu.pull_right
