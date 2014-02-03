@@ -29,11 +29,11 @@ class ApplicationController < ActionController::Base
   private
 
   def https_redirect
-    if request.ssl? && !use_https? || !request.ssl? && use_https?
-      flash.keep
-      protocol = request.ssl? ? "http" : "https"
-      redirect_to protocol: "#{protocol}://", status: 301
-    end
+    # if request.ssl? && !use_https? || !request.ssl? && use_https?
+    #   flash.keep
+    #   protocol = request.ssl? ? "http" : "https"
+    #   redirect_to protocol: "#{protocol}://", status: 301
+    # end
   end
 
   def use_https?
