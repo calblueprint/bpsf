@@ -30,6 +30,7 @@
 #  rating_average     :decimal(6, 2)    default(0.0)
 #  school_name        :string(255)
 #  teacher_name       :string(255)
+#  type               :string(255)
 #
 
 require 'textacular/searchable'
@@ -78,21 +79,23 @@ class Grant < ActiveRecord::Base
 
   after_update :crop_image
 
-  validates :title, presence: true, length: { maximum: 40 }
-  validate :valid_subject_areas
-  validates :summary, presence: true, length: { maximum: 200 }
-  validates :grade_level, presence: true
-  validate :grade_format
-  validate :duration, presence: true
-  validates :num_classes, :num_students, numericality: { only_integer: true }
-  validates :requested_funds, :total_budget, numericality: true
-  validates :budget_desc, :funds_will_pay_for, presence: true
-  validates :purpose, :methods, :background,
-            presence: true, length: { maximum: 1200 }
-  validates :comments, length: { maximum: 1200 }
-  validates :n_collaborators, numericality: { greater_than_or_equal_to: 0 }
-  validates :collaborators, length: { maximum: 1200 },
-            presence: true, if: 'n_collaborators && n_collaborators > 0'
+  with_options if: :parent? do |grant|
+    grant.validates :title, presence: true, length: { maximum: 40 }
+    grant.validate :valid_subject_areas
+    grant.validates :summary, presence: true, length: { maximum: 200 }
+    grant.validates :grade_level, presence: true
+    grant.validate :grade_format
+    grant.validate :duration, presence: true
+    grant.validates :num_classes, :num_students, numericality: { only_integer: true }
+    grant.validates :requested_funds, :total_budget, numericality: true
+    grant.validates :budget_desc, :funds_will_pay_for, presence: true
+    grant.validates :purpose, :methods, :background,
+                    presence: true, length: { maximum: 1200 }
+    grant.validates :comments, length: { maximum: 1200 }
+    grant.validates :n_collaborators, numericality: { greater_than_or_equal_to: 0 }
+    grant.validates :collaborators, length: { maximum: 1200 },
+                    presence: true, if: 'n_collaborators && n_collaborators > 0'
+  end
 
   mount_uploader :image, ImageUploader
 
@@ -239,5 +242,9 @@ class Grant < ActiveRecord::Base
       unless nums.all? { |num| num =~ /^([K1-9]|1[0-2])$/ }
         errors.add :grade_level, "is not formatted properly"
       end
+    end
+
+    def parent?
+      type.nil?
     end
 end
