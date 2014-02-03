@@ -340,14 +340,14 @@ $imglargereplacementhgt: 250px;
 	position:fixed;
 	top:50%;
 	margin-top:-50px;
-	left:-30px;
-	height:45px;
-	width:70px;
-	line-height:30px;
+	left:-45px;
+	height:55px;
+	width:110px;
+	line-height:35px;
 	text-align:center;
-	padding-top:15px;
+	padding-top:20px;
 	color:$white;
-	font-size:$med;
+	font-size:$large;
 	z-index:999;
 	background-color:$primary-color;
 	cursor:pointer;
@@ -355,7 +355,20 @@ $imglargereplacementhgt: 250px;
 	@include box-shadow(0 0 3px #999);
 	@include transition-duration(.3s);
 	&:hover{
+		left: -40px;
+	}
+	@include respond(all-phones){
+		left:-30px;
+		height:45px;
+		width:70px;
+		line-height:30px;
+		text-align:center;
+		padding-top:15px;
+		color:$white;
+		font-size:$med;
+		&:hover{
 		left: -25px;
+		}
 	}
 
 }
