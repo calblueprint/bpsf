@@ -312,7 +312,7 @@ $imglargereplacementhgt: 250px;
 	z-index:1000;
 	background-color:$white;
 	text-align:center;
-	@include box-shadow(0 0 3px #999);
+	@include box-shadow(0 0 5px #999);
 	@include transition-duration(.3s);
 	.xbox{
 		position:relative;
@@ -327,8 +327,7 @@ $imglargereplacementhgt: 250px;
 		margin: 0 auto;
 	}
 	li{
-		display:inline;
-		float:left;
+		display:inline-block;
 		height:60px;
 		width:100px;
 		line-height:60px;
@@ -341,8 +340,18 @@ $imglargereplacementhgt: 250px;
 	}
 }
 
+.screen{
+	position:fixed;
+	height:100%;
+	width:100%;
+	left:-100%;
+	background-color:#000;
+	opacity:0.7;
+	z-index: 999;
+}
+
 	.open{
-		left:0px !important;
+		left:0px;
 	}
 .helppanelbutton{
 	position:fixed;
@@ -356,7 +365,7 @@ $imglargereplacementhgt: 250px;
 	padding-top:20px;
 	color:$white;
 	font-size:$large;
-	z-index:999;
+	z-index:998;
 	background-color:$primary-color;
 	cursor:pointer;
 	@include rotate(-90deg);
@@ -377,6 +386,9 @@ $imglargereplacementhgt: 250px;
 		&:hover{
 		left: -25px;
 		}
+	}
+	&.open{
+		left:-100px !important;
 	}
 
 }

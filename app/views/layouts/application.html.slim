@@ -11,6 +11,7 @@ html
     = tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY
     = render 'layouts/shim'
   body
+    .screen.close
     .container
       = render 'layouts/header'
       /! Render flash
