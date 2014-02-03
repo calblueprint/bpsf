@@ -1,9 +1,10 @@
 # == Schema Information
 #
-# Table name: draft_grants
+# Table name: grants
 #
 #  id                 :integer          not null, primary key
-#  recipient_id       :integer
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
 #  title              :text
 #  summary            :text
 #  subject_areas      :text
@@ -21,13 +22,15 @@
 #  n_collaborators    :integer
 #  collaborators      :text
 #  comments           :text
-#  created_at         :datetime         not null
-#  updated_at         :datetime         not null
+#  recipient_id       :integer
+#  state              :string(255)
 #  video              :string(255)
 #  image              :string(255)
 #  school_id          :integer
+#  rating_average     :decimal(6, 2)    default(0.0)
+#  school_name        :string(255)
+#  teacher_name       :string(255)
 #  type               :string(255)
-#  grant_id           :integer
 #
 
 require 'spec_helper'
