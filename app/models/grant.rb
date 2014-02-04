@@ -191,6 +191,14 @@ class Grant < ActiveRecord::Base
       logger.error "Stripe error: #{err.message}"
   end
 
+  def crowdfunding?
+    state == "crowdfunding"
+  end
+
+  def with_admin_cost
+    requested_funds * 1.029 + 0.3
+  end
+
   def has_collaborators?
     n_collaborators > 0
   end

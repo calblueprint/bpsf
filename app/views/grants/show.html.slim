@@ -12,7 +12,7 @@
             #grantstatus
               | Current Status: #{@grant.state.titleize}
             = render 'toggle_links', grant: @grant
-            - if super_user?
+            - if @grant.crowdfunding? && super_user?
               = form_tag crowdfund_update_path do
                 = hidden_field_tag :crowdfund_id, @grant.crowdfunder.id
                 h4 End Date
