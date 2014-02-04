@@ -304,25 +304,32 @@ $imglargereplacementhgt: 250px;
 
 .helppanel{
 	position:fixed;
-	top:0px;
-	left:-200px;
-	width:200px;
-	height:100%;
+	top:50%;
+	margin-top:-30px;
+	left:-100%;
+	width:100%;
+	height:60px;//100%;
 	z-index:1000;
-	overflow:auto;
 	background-color:$white;
-	@include box-shadow(0 0 3px #999);
+	text-align:center;
+	@include box-shadow(0 0 5px #999);
 	@include transition-duration(.3s);
 	.xbox{
 		position:relative;
 		top:10px;
 		right:10px;
 		font-size: $large;
+		display:none;
+	}
+	ul{
+		list-style: none;
+		height: 60px;
+		margin: 0 auto;
 	}
 	li{
-		display:block;
+		display:inline-block;
 		height:60px;
-		width:100%;
+		width:100px;
 		line-height:60px;
 		font-size: $med;
 		text-align: center;
@@ -333,29 +340,55 @@ $imglargereplacementhgt: 250px;
 	}
 }
 
+.screen{
+	position:fixed;
+	height:100%;
+	width:100%;
+	left:-100%;
+	background-color:#000;
+	opacity:0.7;
+	z-index: 999;
+}
+
 	.open{
-		left:0px !important;
+		left:0px;
 	}
 .helppanelbutton{
 	position:fixed;
 	top:50%;
 	margin-top:-50px;
-	left:-30px;
-	height:45px;
-	width:70px;
-	line-height:30px;
+	left:-45px;
+	height:55px;
+	width:110px;
+	line-height:35px;
 	text-align:center;
-	padding-top:15px;
+	padding-top:20px;
 	color:$white;
-	font-size:$med;
-	z-index:999;
+	font-size:$large;
+	z-index:998;
 	background-color:$primary-color;
 	cursor:pointer;
 	@include rotate(-90deg);
 	@include box-shadow(0 0 3px #999);
 	@include transition-duration(.3s);
 	&:hover{
+		left: -40px;
+	}
+	@include respond(all-phones){
+		left:-30px;
+		height:45px;
+		width:70px;
+		line-height:30px;
+		text-align:center;
+		padding-top:15px;
+		color:$white;
+		font-size:$med;
+		&:hover{
 		left: -25px;
+		}
+	}
+	&.open{
+		left:-100px !important;
 	}
 
 }
