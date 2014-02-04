@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :https_redirect
   include SessionsHelper
-  include SimpleCaptcha::ControllerHelpers
   after_filter :store_location
 
   rescue_from CanCan::AccessDenied do |exception|
