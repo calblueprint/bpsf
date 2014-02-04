@@ -19,6 +19,5 @@
         li.field.metro.inlined
           .picker
             = f.select :type, options_for_select([['Friend/Family', 'User'], ['Teacher', 'Recipient'], 'Admin'])
-        = recaptcha_tags
       .medium.primary.btn.pull_right
         = f.submit "Sign up"
