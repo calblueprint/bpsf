@@ -246,8 +246,6 @@
                     .ttip.large.primary.btn data-tooltip="Save Your Progress" 
                       = f.submit 'Save!'
                     = render 'grant_preview', grant: @draft_grant
-                    div align="center" 
-                      = recaptcha_tags
                     .large.primary.btn
                       = f.submit 'Submit!', name: 'save_and_submit'
 javascript:
