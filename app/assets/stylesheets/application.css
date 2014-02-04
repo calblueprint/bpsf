@@ -19,11 +19,6 @@
   display: none !important;
 }
 
-.recaptcha {
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .table-message {
   display: block;
   text-align: center;

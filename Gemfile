@@ -20,9 +20,7 @@ gem 'jquery-turbolinks', '~> 2.0.1'
 gem 'textacular', '~> 3.0', require: 'textacular/rails'
 gem 'enumerize'
 gem 'ajaxful_rating', '~> 3.0.0.beta8'
-gem 'simple_captcha', :git => 'git://github.com/Azdaroth/simple-captcha.git'
 gem 'sucker_punch', '~> 1.0.1'
-gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'newrelic_rpm'
 gem 'thin', '~> 1.6.1'
 
@@ -46,14 +44,15 @@ end
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'slim', '~> 2.0.2'
-  gem 'uglifier', '>= 1.0.3'
   gem 'modernizr-rails', '~> 2.6.2.3'
   gem 'compass-rails', '~> 1.0.3'
   gem 'gumby2-rails', '~> 0.0.9'
   gem 'modular-scale', '~> 1.0.6'
 end
+
+gem 'coffee-rails', '~> 3.2.1'
+gem 'slim', '~> 2.0.2'
+gem 'uglifier', '>= 1.0.3'
 
 group :test do
   gem 'capybara', '1.1.2'
