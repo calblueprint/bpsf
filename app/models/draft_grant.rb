@@ -69,13 +69,12 @@ class DraftGrant < Grant
       temp.subject_areas = subject_areas
       temp.funds_will_pay_for = funds_will_pay_for
       temp.type = nil
-      
-      if temp.valid?
-        true
-      else
-        errors = temp.errors.messages
-        temp.destroy
-        false
-      end
+
+      true if temp.valid? else get_errors_and_destroy(temp)
+    end
+
+    def get_errors_and_destroy(temp)
+      temp.errors.messages.each { |attr, e| errors.add(attr, e) }
+      false
     end
 end
