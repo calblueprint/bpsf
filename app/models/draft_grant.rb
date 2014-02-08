@@ -65,6 +65,17 @@ class DraftGrant < Grant
 
   private
     def transfer_attributes_to_new_grant
-      becomes(Grant)
+      temp = dup.becomes Grant
+      temp.subject_areas = subject_areas
+      temp.funds_will_pay_for = funds_will_pay_for
+      temp.type = nil
+      
+      if temp.valid?
+        true
+      else
+        errors = temp.errors.messages
+        temp.destroy
+        false
+      end
     end
 end
