@@ -74,7 +74,7 @@ class DraftGrant < Grant
     end
 
     def get_errors_and_destroy(temp)
-      temp.errors.messages.each { |attr, e| errors.add(attr, e) }
+      temp.errors.messages.each { |attr, e| errors.add(attr, e[0]) }
       false
     end
 end
