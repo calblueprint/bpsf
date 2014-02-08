@@ -44,7 +44,6 @@ class DraftGrantsController < ApplicationController
       flash[:success] = 'Application submitted!'
       redirect_to recipient_dashboard_path
     else
-      flash[:danger] = 'Some fields were not filled in correctly!'
       redirect_to edit_draft_path @draft_grant
     end
   end
