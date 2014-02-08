@@ -15,6 +15,6 @@ class SessionsController < Devise::SessionsController
   private
 
   def use_https?
-    false
+    true
   end
 end
