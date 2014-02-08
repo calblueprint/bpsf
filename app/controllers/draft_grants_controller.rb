@@ -44,7 +44,7 @@ class DraftGrantsController < ApplicationController
       flash[:success] = 'Application submitted!'
       redirect_to recipient_dashboard_path
     else
-      redirect_to edit_draft_path @draft_grant
+      render 'edit'
     end
   end
 
