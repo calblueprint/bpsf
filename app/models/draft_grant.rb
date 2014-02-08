@@ -70,7 +70,7 @@ class DraftGrant < Grant
       temp.funds_will_pay_for = funds_will_pay_for
       temp.type = nil
 
-      true if temp.valid? else get_errors_and_destroy(temp)
+      if temp.valid? then temp.save else get_errors_and_destroy(temp) end
     end
 
     def get_errors_and_destroy(temp)
