@@ -34,11 +34,11 @@
                     = f.text_field :title, class: [:text, :wide, :input], :placeholder => "Title your grant"
                   li
                     h4
-                      | *Crowdfund End Date
+                      | *Crowdfund Deadline
                     #drawersubject style="text-align:center;"
                       p When will your crowdfunding period end?
                     .eight.columns.centered
-                      = select_date Date.today, order: [:year, :month, :day], class: [:picker, :inlined]
+                      = f.date_select :deadline, order: [:year, :month, :day], class: [:picker, :inlined]
                   br/
                   li
                     h4
