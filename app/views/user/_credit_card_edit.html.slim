@@ -1,15 +1,19 @@
-.field
+
+= form_for @user, as: :user, url: user_path(@user) do |f|
   = hidden_field_tag :stripe_token
-  = label_tag :card_number, "Credit Card Number"
-  = text_field_tag :card_number, nil, name: nil, class: :input
-.field
-  = label_tag :card_code, "Card Security Code"
-  = text_field_tag :card_code, nil, name: nil, class: :input
-.field
-  = label_tag :card_month, "Card Expiration"
-  .picker
-    = select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"}
-  .picker
-    = select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"}
-#stripe-error
-  noscript Javascript is required. Please enable it in your browser settings.
+  .field
+    = label_tag :card_number, "Credit Card Number"
+    = text_field_tag :card_number, nil, name: nil, placeholder: @card_number, class: :input
+  .field
+    = label_tag :card_code, "Card Security Code"
+    = text_field_tag :card_code, nil, name: nil, class: :input
+  .field
+    = label_tag :card_month, "Card Expiration"
+    .picker
+      = select_month @month, {add_month_numbers: true}, {name: nil, id: "card_month"}
+    .picker
+      = select_year @year, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"}
+  #stripe-error
+    noscript Javascript is required. Please enable it in your browser settings.
+  .medium.primary.btn.pull_right
+    = f.submit "Save!", id: 'update-cc'

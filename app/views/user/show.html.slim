@@ -1,10 +1,7 @@
 .row
   .wrapper.light
     .row.centalign
-      - if @user.eql? current_user
-        span.ttip.pull_right.inlined.largefont data-tooltip="Edit" 
-          = link_to '<i class="icon-pencil"></i>'.html_safe, edit_user_path(id: @user.id)
-      h2 style=("inlined ") 
+      h2 style=("inlined")
         = @user.name
     section.tabs
       .row
@@ -23,6 +20,10 @@
             = @user.email
             br/
             = render profile_for(@user), user: @user, profile: @profile
+            br/
+            - if @user.eql? current_user
+              .medium.primary.btn
+                = link_to 'Edit Info'.html_safe, edit_user_path(id: @user.id)
           /! Currently breaking
           /! <div class="four columns"
           /! </div
