@@ -18,7 +18,7 @@
                 h4 End Date
                 ul
                   li.field.metro
-                    = select_date @grant.crowdfunder.deadline, order: [:year, :month, :day], class: [:picker, :inlined]
+                    = select_date @grant.deadline, order: [:year, :month, :day], class: [:picker, :inlined]
                 .primary.medium.btn
                   = submit_tag 'Update deadline'
             h4
@@ -38,7 +38,8 @@
         = @grant.title
       h5
         = @grant.recipient.name
-        | | #{@grant.school_name}
+        | &nbsp;| #{@grant.school_name}
+        | &nbsp;| #{@grant.days_left} Days Left!
       h5
         a href="https://www.facebook.com/sharer/sharer.php?" target="_blank" 
           i.icon-facebook

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140204033448) do
+ActiveRecord::Schema.define(:version => 20140214053822) do
 
   create_table "admin_profiles", :force => true do |t|
     t.string   "about"
@@ -26,7 +26,6 @@ ActiveRecord::Schema.define(:version => 20140204033448) do
   add_index "admin_profiles", ["super_user_id"], :name => "index_admin_profiles_on_super_user_id"
 
   create_table "crowdfunds", :force => true do |t|
-    t.datetime "deadline"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
     t.integer  "goal"
@@ -97,6 +96,7 @@ ActiveRecord::Schema.define(:version => 20140204033448) do
     t.string   "school_name"
     t.string   "teacher_name"
     t.string   "type"
+    t.date     "deadline"
   end
 
   add_index "grants", ["recipient_id"], :name => "index_grants_on_recipient_id"
@@ -152,6 +152,15 @@ ActiveRecord::Schema.define(:version => 20140204033448) do
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
   end
+
+  create_table "simple_captcha_data", :force => true do |t|
+    t.string   "key",        :limit => 40
+    t.string   "value",      :limit => 6
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+  end
+
+  add_index "simple_captcha_data", ["key"], :name => "idx_key"
 
   create_table "user_profiles", :force => true do |t|
     t.text     "address"
