@@ -105,8 +105,7 @@ def make_grants
     r.draft_grants.create!  title: "Draft #{r.id}",
                             summary: Faker::Lorem.sentence,
                             subject_areas: ["Other"],
-                            school_id: r.profile.school_id,
-                            deadline: 30.days.from_now
+                            school_id: r.profile.school_id
     crowdfunding_grants << r.grants.build(title: "Grant #{r.id-4}",
                                           deadline: 30.days.from_now,
                                           summary: Faker::Lorem.sentence,
@@ -130,8 +129,7 @@ def make_grants
   end
   crowdfunding_grants.map do |grant|
     grant.crowdfund
-    Crowdfund.create deadline: Time.now,
-                     pledged_total: 0,
+    Crowdfund.create pledged_total: 0,
                      grant_id: grant.id,
                      goal: grant.requested_funds
     grant.save!
