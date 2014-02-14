@@ -1,7 +1,6 @@
 # Base controller
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  before_filter :https_redirect
   include SessionsHelper
   after_filter :store_location
 
@@ -27,19 +26,5 @@ class ApplicationController < ActionController::Base
     return admin_dashboard_path     if ((resource.is_a? Admin) | (resource.is_a? SuperUser))
     return recipient_dashboard_path if resource.is_a? Recipient
     return root_path                if resource.is_a? User
-  end
-
-  private
-
-  def https_redirect
-    if request.ssl? && !use_https? || !request.ssl? && use_https?
-      flash.keep
-      protocol = request.ssl? ? "http" : "https"
-      redirect_to protocol: "#{protocol}://", status: 301
-    end
-  end
-
-  def use_https?
-    false
   end
 end
