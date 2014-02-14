@@ -13,5 +13,4 @@
 //= require_tree .
 //= require jquery.Jcrop
 //= require jquery_ujs
-//= require jquery.turbolinks
 //= require turbolinks
