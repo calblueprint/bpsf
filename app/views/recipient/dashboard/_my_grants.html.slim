@@ -7,4 +7,4 @@ tr
     = 'Pending' if grant.pending?
     = 'Complete' if grant.complete?
     = 'Rejected' if grant.rejected?
-    = link_to '<span class="ttip pull_right" data-tooltip="View"><i class="icon-eye"></i></span>'.html_safe, draft_path(grant)
+    = link_to '<span class="ttip pull_right" data-tooltip="View"><i class="icon-eye"></i></span>'.html_safe, grant_path(grant)
