@@ -505,11 +505,14 @@ $imglargereplacementhgt: 250px;
 .userdropdown{
 	font-weight:$header-font-weight;
 	background: #fff;
-	position:absolute;
+	position:fixed;
 	right:10px;
-	top: 55px;
+	top: -300px;
 	width: 150px;
-	z-index:801;
+	z-index:700;
+	@include box-shadow(0 0 3px #999);
+	@include transition-duration(.3s);
+
 	ul{
 		list-style:none;
 		li{
@@ -518,7 +521,21 @@ $imglargereplacementhgt: 250px;
 			padding:10px;
 		}
 	}
-
+	&:before {
+    content: " ";
+    width: 0;
+    height: 0;
+    position: absolute;
+	top: -9px;
+	right: 8px;
+	border-bottom: 9px solid $white !important;
+	border-left: 9px solid transparent;
+	border-right: 9px solid transparent;
+	}
+	&.dropper{
+		top:70px !important;
+		right: 10px !important;
+	}
 }
 
 .loginmenu{
