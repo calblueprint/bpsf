@@ -51,7 +51,7 @@ class Grant < ActiveRecord::Base
   serialize :subject_areas, Array
   enumerize :subject_areas, in: SUBJECTS, multiple: true, scope: true
 
-  attr_accessible :title, :summary, :subject_areas, :grade_level, :duration,
+  attr_accessible :title, :summary, :subject_areas, :grade_level, :deadline, :duration,
                   :num_classes, :num_students, :total_budget, :requested_funds,
                   :funds_will_pay_for, :budget_desc, :purpose, :methods, :background,
                   :n_collaborators, :collaborators, :comments, :video, :image, :school_id,
@@ -82,6 +82,7 @@ class Grant < ActiveRecord::Base
   with_options if: :parent? do |grant|
     grant.validates :title, presence: true, length: { maximum: 40 }
     grant.validate :valid_subject_areas
+    grant.validate :valid_deadline
     grant.validates :summary, presence: true, length: { maximum: 200 }
     grant.validates :grade_level, presence: true
     grant.validate :grade_format
@@ -152,6 +153,10 @@ class Grant < ActiveRecord::Base
     @admins.each do |admin|
       AdminCrowdsuccessJob.new.async.perform(self, admin)
     end
+  end
+
+  def days_left
+    (deadline - Date.today).to_i
   end
 
   def grant_funded
@@ -235,6 +240,11 @@ class Grant < ActiveRecord::Base
 
     def valid_subject_areas
       errors.add :subject_areas, "can't be empty" unless !subject_areas.empty?
+    end
+
+    def valid_deadline
+      errors.add(:deadline, "should be later than today") if
+        !deadline.blank? and deadline <= Date.today
     end
 
     def grade_format
