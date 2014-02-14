@@ -12,7 +12,7 @@
       = render 'layouts/search_form'
   - if user_signed_in?
     .loginmenu.pull_right
-      a.toggle.darken gumby-classname="nodisplay" gumby-trigger="#userdropdown" href="#" 
+      a.toggle.darken href="#"
         span.poofout
           | Hello, #{current_user.first_name}
         span.poofin
@@ -25,7 +25,7 @@
         |&nbsp;&nbsp;|&nbsp;&nbsp;
       = link_to "Sign In", new_user_session_path
 - if user_signed_in?
-  #userdropdown.userdropdown.nodisplay
+  #userdropdown.userdropdown
     ul
       li= link_to "Account", user_path(id: current_user.id), class: :darken
       - if admin_user?
