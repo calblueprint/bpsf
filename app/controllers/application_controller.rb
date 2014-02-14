@@ -1,7 +1,7 @@
 # Base controller
 class ApplicationController < ActionController::Base
   protect_from_forgery
-#  before_filter :https_redirect
+  before_filter :https_redirect
   include SessionsHelper
   after_filter :store_location
 
