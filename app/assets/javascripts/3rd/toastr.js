@@ -28,7 +28,7 @@
         error: error,
         getContainer: getContainer,
         info: info,
-        options: {},
+        options: { "positionClass": "toast-top-left" },
         subscribe: subscribe,
         success: success,
         version: version,
