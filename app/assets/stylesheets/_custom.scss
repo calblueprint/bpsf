@@ -543,6 +543,7 @@ body {
 .container {
 	overflow: hidden;
 	background-color: $global-bg-color;
+	padding-top:55px;
 
 /*  Prevents Flickering  */
 	-webkit-backface-visibility: hidden;
@@ -552,8 +553,11 @@ body {
 
 
 .trunkheader {
-	position: relative;
+	position: fixed;
+	top:0px;
+	z-index: 800;
 	background-color: $white;//#f3f5f6;
+	width: 100%;
 	height:55px;
 	line-height:55px;
 	font-weight:$header-font-weight;
