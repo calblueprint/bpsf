@@ -102,11 +102,13 @@ end
 def make_grants
   crowdfunding_grants = []
   Recipient.all.each do |r|
-    r.draft_grants.create! title: "Draft #{r.id}",
-                           summary: Faker::Lorem.sentence,
-                           subject_areas: ["Other"],
-                           school_id: r.profile.school_id
+    r.draft_grants.create!  title: "Draft #{r.id}",
+                            summary: Faker::Lorem.sentence,
+                            subject_areas: ["Other"],
+                            school_id: r.profile.school_id,
+                            deadline: 30.days.from_now
     crowdfunding_grants << r.grants.build(title: "Grant #{r.id-4}",
+                                          deadline: 30.days.from_now,
                                           summary: Faker::Lorem.sentence,
                                           subject_areas: ["Arts / Music", "Multi-subject"],
                                           grade_level: "#{rand(1..11)}",
