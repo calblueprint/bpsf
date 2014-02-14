@@ -305,15 +305,15 @@ $imglargereplacementhgt: 250px;
 .helppanel{
 	position:fixed;
 	top:50%;
-	margin-top:-30px;
+	margin-top:-72px;
 	left:-100%;
 	width:100%;
-	height:60px;//100%;
+	height:100px;//100%;
 	z-index:1000;
 	background-color:$white;
 	text-align:center;
 	@include box-shadow(0 0 5px #999);
-	@include transition-duration(.3s);
+	@include transition-duration(.5s);
 	.xbox{
 		position:relative;
 		top:10px;
@@ -323,15 +323,15 @@ $imglargereplacementhgt: 250px;
 	}
 	ul{
 		list-style: none;
-		height: 60px;
+		height: 100px;
 		margin: 0 auto;
 	}
 	li{
 		display:inline-block;
-		height:60px;
-		width:100px;
-		line-height:60px;
-		font-size: $med;
+		height:100px;
+		width:120px;
+		line-height:100px;
+		font-size: $med+1;
 		text-align: center;
 		&:hover{
 			background-color: $global-bg-color;
@@ -359,7 +359,7 @@ $imglargereplacementhgt: 250px;
 	margin-top:-50px;
 	left:-45px;
 	height:55px;
-	width:110px;
+	width:100px;
 	line-height:35px;
 	text-align:center;
 	padding-top:20px;
@@ -370,7 +370,7 @@ $imglargereplacementhgt: 250px;
 	cursor:pointer;
 	@include rotate(-90deg);
 	@include box-shadow(0 0 3px #999);
-	@include transition-duration(.3s);
+	@include transition-duration(.5s);
 	&:hover{
 		left: -40px;
 	}
@@ -388,7 +388,7 @@ $imglargereplacementhgt: 250px;
 		}
 	}
 	&.open{
-		left:-100px !important;
+		left:100% !important;
 	}
 
 }
