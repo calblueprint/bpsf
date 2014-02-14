@@ -277,7 +277,7 @@ $imglargereplacementhgt: 250px;
 @include respond(all-phones){
 
 	.poofin{display:inline-block !important;}
-	.poofout{display:none;}
+	.poofout{display:none !important;}
 }
 
 .colorbox{
@@ -560,7 +560,7 @@ body {
 .container {
 	overflow: hidden;
 	background-color: $global-bg-color;
-	padding-top:55px;
+	padding-top:80px;
 
 /*  Prevents Flickering  */
 	-webkit-backface-visibility: hidden;
@@ -600,8 +600,8 @@ body {
 
 .trunknav {
 	position: absolute;
-	left: 50%;
-	margin-left:-230px;
+	right: 50%;
+	margin-right:-230px;
 	height:55px;
 	top:0;
 	.search{
