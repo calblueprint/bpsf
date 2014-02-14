@@ -3,12 +3,10 @@
     a.homelogo.poofout href="http://www.berkeleypublicschoolsfund.org" 
       img src="/assets/logohoriz.png" /
     a.homelogo.poofin href="http://www.berkeleypublicschoolsfund.org" 
-      img src="/assets/logohoriz.png" /
+      img src="/assets/logovert.png" /
   .trunknav.poofin
     ul
       li.darken= link_to 'Home'.html_safe, root_path, class: :darken
-      - if recipient?
-        li.darken= link_to 'Apply'.html_safe, new_draft_path, class: :darken
       = render 'layouts/search_form'
   .trunknav.poofout
     ul
