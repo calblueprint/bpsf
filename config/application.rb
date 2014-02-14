@@ -26,6 +26,7 @@ module BPSF
 
     # Use SSL
     config.use_ssl = false
+    config.force_ssl = false
 
     # Activate observers that should always be running.
     # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
