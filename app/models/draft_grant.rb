@@ -64,10 +64,10 @@ class DraftGrant < Grant
   end
 
   private
+    ATTRS_TO_COPY = ['subject_areas', 'funds_will_pay_for', 'image']
     def transfer_attributes_to_new_grant
       temp = dup.becomes Grant
-      temp.subject_areas = subject_areas
-      temp.funds_will_pay_for = funds_will_pay_for
+      ATTRS_TO_COPY.map { |a| temp.send("#{a}=", attributes[a]) }
       temp.type = nil
 
       if temp.valid? then temp.save else get_errors_and_destroy(temp) end
