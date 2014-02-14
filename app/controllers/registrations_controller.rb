@@ -47,10 +47,4 @@ class RegistrationsController < Devise::RegistrationsController
     user.create_profile!
     edit_user_path id: @user.id
   end
-
-  private
-
-  def use_https?
-    true
-  end
 end

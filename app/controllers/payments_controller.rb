@@ -46,8 +46,4 @@ class PaymentsController < ApplicationController
         current_user.save!
       end
     end
-
-  def use_https?
-    true
-  end
 end
