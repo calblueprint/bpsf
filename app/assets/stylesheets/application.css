@@ -12,6 +12,7 @@
  *= require ajaxful_rating
  *= require jquery.Jcrop
  *= require gumby
+ *= require toastr
  */
 
 /* Temporary - hide one-click grants */

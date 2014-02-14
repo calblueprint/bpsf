@@ -14,15 +14,13 @@ html
     .screen.close
     .container
       = render 'layouts/header'
-      /! Render flash
-      .row
-        | &nbsp;
-        - flash.each do |key, value|
-          = content_tag :div, value, class: "#{key} alert"
+
       = render 'layouts/helppanel'
       = yield
       = render 'layouts/footer'
-  script language="javascript" 
-    | function emailCurrentPage(){
-    | window.location.href="mailto:?subject="+document.title+"&body="+escape(window.location.href);
-    | }
+
+    = render 'shared/flash', flash: flash
+    javascript:
+      function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+escape(window.location.href);
+      }
