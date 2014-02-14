@@ -51,8 +51,6 @@ class Grant < ActiveRecord::Base
   serialize :subject_areas, Array
   enumerize :subject_areas, in: SUBJECTS, multiple: true, scope: true
 
-  scope :submitted, -> { where type: nil }
-
   attr_accessible :title, :summary, :subject_areas, :grade_level, :duration,
                   :num_classes, :num_students, :total_budget, :requested_funds,
                   :funds_will_pay_for, :budget_desc, :purpose, :methods, :background,
@@ -105,6 +103,7 @@ class Grant < ActiveRecord::Base
     image.recreate_versions! if crop_x.present?
   end
 
+  scope :submitted,           -> { where type: nil }
   scope :pending_grants,      -> { with_state :pending }
   scope :complete_grants,     -> { with_state :complete }
   scope :accepted_grants,     -> { (with_state :complete) | (with_state :crowdfunding) | (with_state :crowdfund_pending) }
