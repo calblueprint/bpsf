@@ -277,7 +277,7 @@ $imglargereplacementhgt: 250px;
 @include respond(all-phones){
 
 	.poofin{display:inline-block !important;}
-	.poofout{display:none;}
+	.poofout{display:none !important;}
 }
 
 .colorbox{
@@ -305,15 +305,15 @@ $imglargereplacementhgt: 250px;
 .helppanel{
 	position:fixed;
 	top:50%;
-	margin-top:-30px;
+	margin-top:-72px;
 	left:-100%;
 	width:100%;
-	height:60px;//100%;
+	height:100px;//100%;
 	z-index:1000;
 	background-color:$white;
 	text-align:center;
 	@include box-shadow(0 0 5px #999);
-	@include transition-duration(.3s);
+	@include transition-duration(.5s);
 	.xbox{
 		position:relative;
 		top:10px;
@@ -323,15 +323,15 @@ $imglargereplacementhgt: 250px;
 	}
 	ul{
 		list-style: none;
-		height: 60px;
+		height: 100px;
 		margin: 0 auto;
 	}
 	li{
 		display:inline-block;
-		height:60px;
-		width:100px;
-		line-height:60px;
-		font-size: $med;
+		height:100px;
+		width:120px;
+		line-height:100px;
+		font-size: $med+1;
 		text-align: center;
 		&:hover{
 			background-color: $global-bg-color;
@@ -359,7 +359,7 @@ $imglargereplacementhgt: 250px;
 	margin-top:-50px;
 	left:-45px;
 	height:55px;
-	width:110px;
+	width:100px;
 	line-height:35px;
 	text-align:center;
 	padding-top:20px;
@@ -370,7 +370,7 @@ $imglargereplacementhgt: 250px;
 	cursor:pointer;
 	@include rotate(-90deg);
 	@include box-shadow(0 0 3px #999);
-	@include transition-duration(.3s);
+	@include transition-duration(.5s);
 	&:hover{
 		left: -40px;
 	}
@@ -388,7 +388,7 @@ $imglargereplacementhgt: 250px;
 		}
 	}
 	&.open{
-		left:-100px !important;
+		left:100% !important;
 	}
 
 }
@@ -505,11 +505,14 @@ $imglargereplacementhgt: 250px;
 .userdropdown{
 	font-weight:$header-font-weight;
 	background: #fff;
-	position:absolute;
+	position:fixed;
 	right:10px;
-	top: 55px;
+	top: -300px;
 	width: 150px;
-	z-index:100;
+	z-index:700;
+	@include box-shadow(0 0 3px #999);
+	@include transition-duration(.3s);
+
 	ul{
 		list-style:none;
 		li{
@@ -518,7 +521,21 @@ $imglargereplacementhgt: 250px;
 			padding:10px;
 		}
 	}
-
+	&:before {
+    content: " ";
+    width: 0;
+    height: 0;
+    position: absolute;
+	top: -9px;
+	right: 8px;
+	border-bottom: 9px solid $white !important;
+	border-left: 9px solid transparent;
+	border-right: 9px solid transparent;
+	}
+	&.dropper{
+		top:70px !important;
+		right: 10px !important;
+	}
 }
 
 .loginmenu{
@@ -543,6 +560,7 @@ body {
 .container {
 	overflow: hidden;
 	background-color: $global-bg-color;
+	padding-top:80px;
 
 /*  Prevents Flickering  */
 	-webkit-backface-visibility: hidden;
@@ -552,8 +570,11 @@ body {
 
 
 .trunkheader {
-	position: relative;
+	position: fixed;
+	top:0px;
+	z-index: 800;
 	background-color: $white;//#f3f5f6;
+	width: 100%;
 	height:55px;
 	line-height:55px;
 	font-weight:$header-font-weight;
@@ -579,8 +600,8 @@ body {
 
 .trunknav {
 	position: absolute;
-	left: 50%;
-	margin-left:-230px;
+	right: 50%;
+	margin-right:-230px;
 	height:55px;
 	top:0;
 	.search{
