@@ -41,13 +41,13 @@
         | &nbsp;| #{@grant.school_name}
         | &nbsp;| #{@grant.days_left} Days Left!
       h5
-        a href="https://www.facebook.com/sharer/sharer.php?" target="_blank" 
+        a href="https://www.facebook.com/sharer/sharer.php?" target="_blank"
           i.icon-facebook
-        a expr:href="data:post.canonicalUrl" href="https://twitter.com/share" 
+        a expr:href="data:post.canonicalUrl" href="https://twitter.com/share"
           i.icon-twitter
-        a href="javascript:emailCurrentPage()" 
+        a href="javascript:emailCurrentPage()"
           i.icon-mail
-    .row align="center" 
+    .row align="center"
       - if !@grant.image_url.blank?
         .coverholder
           = image_tag @grant.image_url :banner
