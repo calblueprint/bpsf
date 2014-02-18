@@ -157,6 +157,9 @@ class Grant < ActiveRecord::Base
 
   def days_left
     (deadline - Date.today).to_i
+    if (deadline - Date.today).to_i == 3
+      GrantEndingJob.new.async.perform(self)
+    end
   end
 
   def grant_funded
