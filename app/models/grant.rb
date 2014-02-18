@@ -159,6 +159,10 @@ class Grant < ActiveRecord::Base
     (deadline - Date.today).to_i
     if (deadline - Date.today).to_i == 3
       GrantEndingJob.new.async.perform(self)
+      @supers = SuperUser.all
+      @supers.each do |admin|
+        SuperCrowdEndingJob.new.async.perform(self, admin)
+      end
     end
   end
 
