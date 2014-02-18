@@ -1,4 +1,4 @@
-class SuperCrowdEndingJob
+class SuperCrowdendingJob
   include SuckerPunch::Job
 
   def perform(grant,admin)
