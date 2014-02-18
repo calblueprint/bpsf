@@ -1,0 +1,12 @@
+doctype html
+html
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+  body
+    h1
+      | Your grant, #{@grant.title}, will finish crowdfunding in three days.
+    p
+      | You have three days left to crowdfund your grant! Your grant is currently #{@grant.crowdfunder.progress} funded.
+      br/
+    p
+      | To help reach your goal in the next three days, make sure to share your grant's page using this link: #{@url}.
