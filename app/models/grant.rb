@@ -238,12 +238,13 @@ class Grant < ActiveRecord::Base
     close
   end
 
-  def clone_into_draft_for!(recipient)
-    draft = dup
-    draft.becomes DraftGrant
+  def clone_into_draft!
+    draft = dup.becomes DraftGrant
     draft.type = 'DraftGrant'
     draft.state = 'pending'
+    draft.image = image
     draft.save
+    draft
   end
 
   private
