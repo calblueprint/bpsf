@@ -53,7 +53,7 @@ class GrantsController < ApplicationController
   end
 
   def previous_show
-    @grant = Grant.first
+    @grant = Grant.find params[:id]
   end
 
 end
