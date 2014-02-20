@@ -1,7 +1,4 @@
 .row
-  - if profile.image_url
-    = image_tag profile.image_url.to_s
-.row
   - if profile.school_id
     h5.inlined School:
     = School.find(profile.school_id).name

@@ -15,16 +15,11 @@
 
 class UserProfile < ActiveRecord::Base
   include ActionView::Helpers::NumberHelper
-  RELATIONSHIPS = ['Parent of Student','Parent of Alum', 'Alum',
-                   'Grandparent of Student', 'Grandparent of Alum']
   attr_accessible :address, :city, :zipcode, :phone, :relationship, :user_id
 
   belongs_to :user
 
   before_save :format_phone_numbers
-
-  extend Enumerize
-  enumerize :relationship, in: RELATIONSHIPS
 
   private
     def format_phone_numbers

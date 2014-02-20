@@ -20,4 +20,13 @@ module ProfilesHelper
       "#{user.type.downcase}_edit"
     end
   end
+
+  def incomplete_profile(user)
+    profile = user.profile
+    profile.attributes.each_pair do |name, value|
+      return true if value.nil?
+    end
+    false
+  end
+
 end
