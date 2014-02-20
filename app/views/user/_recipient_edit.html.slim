@@ -18,7 +18,7 @@
         .field
           = ff.label :started_teaching, "Started Teaching:"
           .picker
-            = ff.date_select :started_teaching, start_year: Time.now.year - 40, order: [:year]
+            = ff.date_select :started_teaching, start_year: Time.now.year - 40, end_year: Time.now.year, order: [:year]
         .field
           = ff.label :subject, "Subject You Teach"
           = ff.text_field :subject, class: :input
