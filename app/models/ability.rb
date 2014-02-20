@@ -27,11 +27,9 @@ class Ability
       end
     elsif type == 'Recipient'
       can :manage, Recipient, id: id
-      if user.approved
-        can [:create, :read], Grant
-        can :manage, DraftGrant, recipient_id: id
-        can :create, DraftGrant
-      end
+      can [:create, :read, :previous_show], Grant
+      can :manage, DraftGrant, recipient_id: id
+      can :create, DraftGrant
     end
   end
 end
