@@ -13,7 +13,7 @@
                   a href="#"  Donors
                 li#recipients onclick="setCookie('tabval',this.id,1)"
                   a href="#"  Recipients
-                li#pending onclick="setCookie('tabval',this.id,1)" 
+                li#pending onclick="setCookie('tabval',this.id,1)"
                   a href="#"  Pending Users
                 li#distributions onclick="setCookie('tabval',this.id,1)"
                   a href="#"  Data Distributions
@@ -31,6 +31,10 @@
             = render partial: 'shared/table', locals: { heads: %w[Name Email], partials: [['users', @recipients, :user, "There are no recipients"]] }
             .four.columns.centered.centalign
               = will_paginate @recipients
+          .tab-content.one-click-hidden
+            = render partial: 'shared/table', locals: { heads: %w[Name], partials: [['preapproved_grants', @preapproved, :preapproved_grant, "There are no preapproved grants"]] }
+            .four.columns.centered.centalign
+              = will_paginate @preapproved
           .tab-content
             .pending_users
               = render partial: 'shared/table', locals: { heads: %w[Name Email Status], partials: [['pending_users', @pending_users, :pending_user, "There are no pending users"]] }

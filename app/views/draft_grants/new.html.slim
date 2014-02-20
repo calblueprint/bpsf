@@ -1,7 +1,7 @@
 .row
   .twelve.columns
     .wrapper.light
-      / - if !incomplete_profile current_user
+      / - if !incomplete_profile(current_user)
       .row
         .twelve.columns.centered.centalign
           h2 Creating a Grant
@@ -16,6 +16,7 @@
             .medium.primary.btn
               = f.submit 'Go'
         br/
+
         .row
           .twelve.columns.centered.centalign
             h2 Or...
@@ -23,8 +24,9 @@
             br/
         .row
           = render 'shared/table', heads: %w[Name],
-            partials: [['previous_grant', @previous_grants,
-              :grant, "You don't have any completed grants."]]
+                   partials: [['previous_grant', @previous_grants,
+                    :grant, "You don't have any completed grants."]]
+
       / - else
         / .row
           / .twelve.columns.centered.centalign
