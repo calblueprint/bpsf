@@ -24,6 +24,7 @@ gem 'sucker_punch', '~> 1.0.1'
 gem 'newrelic_rpm'
 gem 'thin', '~> 1.6.1'
 gem 'unf'
+gem 'whenever', :require => false
 
 group :development, :test do
   gem 'rspec-rails', '2.11.0'
