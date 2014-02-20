@@ -1,39 +1,36 @@
 .row
   .twelve.columns
     .wrapper.light
-      - if !incomplete_profile(current_user)
-        .row
-          .twelve.columns.centered.centalign
-            h2 Creating a Grant
-            h5 Enter a title to get started!
-            br/
-        .row.centalign
-          = form_for @draft_grant, url: drafts_path do |f|
-            = render 'shared/errors', object: f.object
-            = f.hidden_field :school_id
-            .field.append
-              = f.text_field :title, class: [:wide, :input], placeholder: :Title
-              .medium.primary.btn
-                = f.submit 'Go'
+      / - if !incomplete_profile(current_user)
+      .row
+        .twelve.columns.centered.centalign
+          h2 Creating a Grant
+          h5 Enter a title to get started!
           br/
-      - else
-        .row
-          .twelve.columns.centered.centalign
-            h3 style="margin-top:60px"
-              | In order to create a grant, please fill out your profile first!
-            .large.primary.btn style="margin-top:25px"
-              = link_to "Edit Profile", edit_user_path(id: current_user.id)
-      .one-click-hidden
+      .row.centalign
+        = form_for @draft_grant, url: drafts_path do |f|
+          = render 'shared/errors', object: f.object
+          = f.hidden_field :school_id
+          .field.append
+            = f.text_field :title, class: [:wide, :input], placeholder: :Title
+            .medium.primary.btn
+              = f.submit 'Go'
+        br/
+
         .row
           .twelve.columns.centered.centalign
             h2 Or...
-            h5 Select from our one-click grants
+            h5 Select from your previously completed grants
             br/
         .row
-          table
-            thead
-              th
-                | Name
-            tbody
-              = render partial: 'admin/dashboard/preapproved_grants',
-                collection: @preapproved, as: :preapproved_grant
+          = render 'shared/table', heads: %w[Name],
+                   partials: [['previous_grant', @previous_grants,
+                    :grant, "You don't have any completed grants."]]
+
+      / - else
+        / .row
+          / .twelve.columns.centered.centalign
+            / h3 style="margin-top:60px"
+              / | In order to create a grant, please fill out your profile first!
+            / .large.primary.btn style="margin-top:25px"
+              / = link_to "Edit Profile", edit_user_path(id: current_user.id)

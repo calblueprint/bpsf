@@ -238,6 +238,14 @@ class Grant < ActiveRecord::Base
     close
   end
 
+  def clone_into_draft_for!(recipient)
+    draft = dup
+    draft.becomes DraftGrant
+    draft.type = 'DraftGrant'
+    draft.state = 'pending'
+    draft.save
+  end
+
   private
     BLACKLISTED_ATTRIBUTES = %w{background n_collaborators collaborators
                                 comments video image}
