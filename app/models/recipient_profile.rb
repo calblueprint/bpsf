@@ -21,7 +21,7 @@
 
 class RecipientProfile < ActiveRecord::Base
   include ActionView::Helpers::NumberHelper
-  attr_accessible :about, :image_url, :school_id, :recipient_id, :grade, :subject,
+  attr_accessible :about, :school_id, :recipient_id, :grade, :subject,
     :started_teaching, :zipcode, :city, :address, :work_phone, :home_phone
   belongs_to :recipient
 

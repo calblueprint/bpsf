@@ -1,4 +1,8 @@
 .row
+  - if profile.relationship
+    h5 Relationship:
+    .row = profile.relationship
+.row
   - if profile.address
     h5 Address:
     .row= profile.address
