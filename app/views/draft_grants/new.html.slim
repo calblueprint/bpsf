@@ -21,5 +21,6 @@
             h5 Select from your previously completed grants
             br/
         .row
-          = render 'shared/table', heads: %w[Name], partials: [['all_grants',
-            @previous_grants, :grant, "You don't have any completed grants."]]
+          = render 'shared/table', heads: %w[Name],
+            partials: [['previous_grant', @previous_grants,
+              :grant, "You don't have any completed grants."]]
