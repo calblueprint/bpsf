@@ -33,4 +33,8 @@ class Recipient < User
   def init_approved
     true
   end
+
+  def previous_grants
+    grants.complete_grants
+  end
 end
