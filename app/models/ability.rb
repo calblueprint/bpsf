@@ -31,7 +31,6 @@ class Ability
         can [:create, :read], Grant
         can :manage, DraftGrant, recipient_id: id
         can :create, DraftGrant
-        can :read, PreapprovedGrant
       end
     end
   end
