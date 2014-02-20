@@ -28,7 +28,7 @@ class Ability
     elsif type == 'Recipient'
       can :manage, Recipient, id: id
       can [:create, :read], Grant
-      can :previous_show, Grant, recipient_id: id
+      can [:previous_show, :to_draft], Grant, recipient_id: id
       can :manage, DraftGrant, recipient_id: id
       can :create, DraftGrant
     end
