@@ -52,10 +52,8 @@ class GrantsController < ApplicationController
     end
   end
 
-  def preapprove
-    @grant = Grant.find params[:id]
-    @grant.preapprove!
-    flash[:success] = 'Grant preapproved!'
-    redirect_to @grant
+  def previous_show
+    @grant = Grant.first
   end
+
 end
