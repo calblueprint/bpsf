@@ -156,13 +156,6 @@ class Grant < ActiveRecord::Base
   end
 
   def days_left
-    if (deadline - Date.today).to_i == 3
-      GrantEndingJob.new.async.perform(self)
-      @supers = SuperUser.all
-      @supers.each do |admin|
-        SuperCrowdendingJob.new.async.perform(self, admin)
-      end
-    end
     (deadline - Date.today).to_i
   end
 
@@ -218,6 +211,20 @@ class Grant < ActiveRecord::Base
 
   def has_comments?
     !comments.blank?
+  end
+
+  def self.grant_ending
+    @grants = Grant.crowdfunding_grants
+    @grants.each do |grant|
+      if grant.days_left == 3
+        GrantEndingJob.new.async.perform(self)
+        @supers = SuperUser.all
+        @supers.each do |admin|
+          SuperCrowdendingJob.new.async.perform(self, admin)
+        end
+      end
+    end
+    false
   end
 
   def self.close_to_goal
