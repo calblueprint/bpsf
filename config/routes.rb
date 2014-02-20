@@ -8,9 +8,9 @@ BPSF::Application.routes.draw do
   scope '/grants' do
     post ':id/crowdfund',     to: 'grants#crowdfund_form',       as: :crowdfund_form
     post ':id/preapprove',    to: 'grants#preapprove',           as: :preapprove_grant
-    post ':id/:state',        to: 'admin/dashboard#grant_event', as: :grant_event
-    get  ':id/previous_show', to: 'grants#previous_show',        as: :previous_show
     post ':id/to_draft',      to: 'grants#to_draft',             as: :to_draft
+    get  ':id/previous_show', to: 'grants#previous_show',        as: :previous_show
+    post ':id/:state',        to: 'admin/dashboard#grant_event', as: :grant_event
   end
 
   resources :drafts, controller: 'draft_grants', except: [:show, :index]
