@@ -26,7 +26,6 @@ class Admin::DashboardController < ApplicationController
     end
     @recipients = @recipients.paginate :page => params[:page], :per_page => 6
 
-    @preapproved = PreapprovedGrant.all.paginate :page => params[:page], :per_page => 6
     @pending_users = User.where approved: false
     @pending_users = @pending_users.paginate :page => params[:page], :per_page => 6
   end
