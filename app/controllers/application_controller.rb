@@ -6,9 +6,9 @@ class ApplicationController < ActionController::Base
 
   rescue_from CanCan::AccessDenied do |exception|
     if !current_user || current_user.approved
-      redirect_to root_path, flash: { danger: exception.message }
+      redirect_to root_path, flash: { error: exception.message }
     else
-      redirect_to root_path, flash: { danger: "Your account is pending administrator approval!" }
+      redirect_to root_path, flash: { error: "Your account is pending administrator approval!" }
     end
   end
 
