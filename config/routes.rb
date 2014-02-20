@@ -6,13 +6,14 @@ BPSF::Application.routes.draw do
     post 'rate', on: :member
   end
   scope '/grants' do
-    post ':id/crowdfund',  to: 'grants#crowdfund_form',       as: :crowdfund_form
-    post ':id/preapprove', to: 'grants#preapprove',           as: :preapprove_grant
-    post ':id/:state',     to: 'admin/dashboard#grant_event', as: :grant_event
+    post ':id/crowdfund',     to: 'grants#crowdfund_form',       as: :crowdfund_form
+    post ':id/preapprove',    to: 'grants#preapprove',           as: :preapprove_grant
+    post ':id/:state',        to: 'admin/dashboard#grant_event', as: :grant_event
+    get  ':id/previous_show', to: 'grants#previous_show',        as: :previous_show
+    post ':id/to_draft',      to: 'grants#to_draft',             as: :to_draft
   end
 
   resources :drafts, controller: 'draft_grants', except: [:show, :index]
-  get '/grants/:id/previous_show', to: 'grants#previous_show', as: :previous_show
 
   devise_for :users, :controllers => { :registrations => "registrations" }
   resources :user, except: [:index, :new, :create, :destroy]
