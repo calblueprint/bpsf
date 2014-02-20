@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140214053822) do
+ActiveRecord::Schema.define(:version => 20140220045232) do
 
   create_table "admin_profiles", :force => true do |t|
     t.string   "about"
@@ -129,7 +129,6 @@ ActiveRecord::Schema.define(:version => 20140214053822) do
 
   create_table "recipient_profiles", :force => true do |t|
     t.integer  "school_id"
-    t.string   "image_url"
     t.text     "about"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
