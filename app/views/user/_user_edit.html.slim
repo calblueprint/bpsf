@@ -12,6 +12,10 @@
         = f.text_field :last_name, class: :input
       = f.fields_for :profile do |ff|
         .field
+          = ff.label :relationship, 'Relationship'
+          = ff.select :relationship, options_for_select(['Parent of Student', 'Parent of Alum', 'Alum',
+                   'Grandparent of Student', 'Grandparent of Alum', 'Relative', 'Family Friend', 'Other'])
+        .field
           = ff.label :address, 'Address'
           = ff.text_field :address, class: :input
         .field
