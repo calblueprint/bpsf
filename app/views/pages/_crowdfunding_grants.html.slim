@@ -3,9 +3,9 @@
     h3= link_to grant.title, grant
   .imgholder
     - if grant.image
-      = image_tag grant.image_url :thumb
+      = link_to (image_tag grant.image_url :thumb), grant
     - else
-      = image_tag "/assets/default/Other.jpg"
+      = link_to (image_tag "/assets/default/Other.jpg"), grant
   .cardcontent
     p.cardtext
       span.darken Director:
