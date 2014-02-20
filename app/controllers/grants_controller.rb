@@ -52,10 +52,14 @@ class GrantsController < ApplicationController
     end
   end
 
-  def preapprove
+  def previous_show
     @grant = Grant.find params[:id]
-    @grant.preapprove!
-    flash[:success] = 'Grant preapproved!'
-    redirect_to @grant
   end
+
+  def to_draft
+    grant = Grant.find params[:id]
+    draft = grant.clone_into_draft!
+    redirect_to edit_draft_path draft
+  end
+
 end
