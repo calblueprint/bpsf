@@ -56,4 +56,10 @@ class GrantsController < ApplicationController
     @grant = Grant.find params[:id]
   end
 
+  def to_draft
+    grant = Grant.find params[:id]
+    grant.clone_into_draft_for! current_user
+    redirect_to recipient_dashboard_path
+  end
+
 end
