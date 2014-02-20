@@ -77,7 +77,7 @@
 
                   - if !@draft_grant.video.blank?
                     .row
-                      h4 Grant Video
+                      h4 Grant Video (Optional)
                       #drawervideo style="text-align:center;"
                         p Optional: Link a Youtube video to help explain or enhance your application.
                       .five.columns.push_one.centalign
@@ -89,7 +89,7 @@
                       = f.text_field :video, class: [:input, :xxwide, :text], :placeholder => "Youtube Video Link"
                   - else
                     li.field
-                      h4 Grant Video
+                      h4 Grant Video (Optional)
                       = f.text_field :video, class: [:input, :wide, :text], :placeholder => "Youtube Video Link"
                   .ttip.large.primary.btn data-tooltip="Save Your Progress"
                     = f.submit 'Save!'
@@ -178,7 +178,7 @@
                         h4
                           | *Num. of Collaborators
                         #drawernumcollaborators style="text-align:center;"
-                          p How many people will you collaborate on this application?
+                          p Including yourself, how many people are collaborating on this application?
                       .two.columns
                         ul
                           li.field
