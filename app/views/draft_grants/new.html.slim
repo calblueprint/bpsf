@@ -15,17 +15,3 @@
             .medium.primary.btn
               = f.submit 'Go'
         br/
-      .one-click-hidden
-        .row
-          .twelve.columns.centered.centalign
-            h2 Or...
-            h5 Select from our one-click grants
-            br/
-        .row
-          table
-            thead
-              th
-                | Name
-            tbody
-              = render partial: 'admin/dashboard/preapproved_grants',
-                collection: @preapproved, as: :preapproved_grant

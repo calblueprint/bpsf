@@ -5,7 +5,6 @@ class DraftGrantsController < ApplicationController
   def new
     if recipient?
       @draft_grant = current_user.draft_grants.build school_id: current_user.profile.school_id
-      @preapproved = PreapprovedGrant.all
     else
       raise CanCan::AccessDenied.new("You are not authorized to access this page.", :manage, DraftGrant)
       redirect_to root_url
