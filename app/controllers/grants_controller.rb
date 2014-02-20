@@ -58,8 +58,9 @@ class GrantsController < ApplicationController
 
   def to_draft
     grant = Grant.find params[:id]
-    grant.clone_into_draft_for! current_user
-    redirect_to recipient_dashboard_path
+    draft = grant.clone_into_draft_for! current_user
+    flash[:success] = 'Successfully created draft!'
+    redirect_to edit_draft_path draft
   end
 
 end
