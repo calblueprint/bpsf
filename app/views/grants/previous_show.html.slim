@@ -1,0 +1,103 @@
+.row
+  .wrapper.light
+    .row.centalign
+      h2
+        = @grant.title
+      h5
+        = @grant.recipient.name
+        | &nbsp;| #{@grant.school_name}
+    .row align="center"
+      - if !@grant.image_url.blank?
+        .coverholder
+          = image_tag @grant.image_url :banner
+      - else
+        .imgreplacementlrg
+          .repson= @grant.title
+    .row.centalign
+      .eleven.columns.centered
+        p.largefont= @grant.summary
+      br/
+    .row.padada
+      .ten.columns.centered.centalign
+        h4.inlined Subject Areas:
+        span.largefont= @grant.subject_areas.values.to_a.join(', ')
+
+    hr/
+
+    .row
+      .three.columns.centered.centalign
+        .large.primary.btn
+          = link_to 'Use This!', create_draft_from_grant_path(@grant)
+
+    hr/
+
+    .row
+      .ten.columns.centalign.centered
+        h3 Logistics
+        h5
+          strong Purpose
+        = @grant.purpose
+        h5
+          strong Methods
+        = @grant.methods
+        h5
+          strong Teacher Background
+        = @grant.background
+    - if !@grant.video.blank?
+      .row
+        .ten.columns.centered
+          article.youtube.video
+            iframe src="http://www.youtube.com/embed/#{parse_embed(@grant)}" 
+    .row
+      .ten.columns.centalign.centered
+        br/
+        h3 Details
+        h5.inlined
+          strong Grade level:
+        span.medfont
+          |&nbsp;
+          = @grant.grade_level
+        |&emsp;
+        h5.inlined
+          strong Duration:
+        span.medfont
+          |&nbsp;
+          = @grant.duration
+        |&emsp;
+        h5.inlined
+          strong # of classes:
+        span.medfont
+          |&nbsp;
+          = @grant.num_classes
+        |&emsp;
+        h5.inlined
+          strong # of students:
+        span.medfont
+          |&nbsp;
+          = @grant.num_students
+        br/
+        - if @grant.has_collaborators?
+          h5
+            strong Collaborators
+          = @grant.collaborators
+    .row
+      .ten.columns.centalign.centered
+        br/
+        h3.centalign Budget
+        h5.inlined
+          strong Total budget:
+        span.medfont
+          | $#{@grant.total_budget}
+        br/
+        h5
+          strong Description
+        = @grant.budget_desc
+        h5
+          strong Use of Funds
+        = @grant.funds_will_pay_for.values.to_a.join(', ')
+    - if @grant.has_comments?
+      .row
+        .ten.columns.centalign.centered
+          br/
+          h3 Additional Comments
+          = @grant.comments
