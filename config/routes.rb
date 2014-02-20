@@ -12,9 +12,7 @@ BPSF::Application.routes.draw do
   end
 
   resources :drafts, controller: 'draft_grants', except: [:show, :index]
-  scope '/drafts' do
-    get ':id/previous_show', to: 'draft_grants#previous_show', as: :previous_show
-  end
+  get '/grants/:id/previous_show', to: 'grants#previous_show', as: :previous_show
 
   devise_for :users, :controllers => { :registrations => "registrations" }
   resources :user, except: [:index, :new, :create, :destroy]
