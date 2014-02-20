@@ -7,17 +7,17 @@
           .row
             .twelve.columns.centered.centalign
               ul.tab-nav
-                li#grants onclick="setCookie('tabval',this.id,1)" 
+                li#grants onclick="setCookie('tabval',this.id,1)"
                   a href="#"  Grants
-                li#donors onclick="setCookie('tabval',this.id,1)" 
+                li#donors onclick="setCookie('tabval',this.id,1)"
                   a href="#"  Donors
-                li#recipients onclick="setCookie('tabval',this.id,1)" 
+                li#recipients onclick="setCookie('tabval',this.id,1)"
                   a href="#"  Recipients
-                li#preapproved.one-click-hidden onclick="setCookie('tabval',this.id,1)" 
+                li#preapproved.one-click-hidden onclick="setCookie('tabval',this.id,1)"
                   a href="#"  Preapproved Grants
-                li#pending onclick="setCookie('tabval',this.id,1)" 
+                li#pending onclick="setCookie('tabval',this.id,1)"
                   a href="#"  Pending Users
-                li#distributions onclick="setCookie('tabval',this.id,1)" 
+                li#distributions onclick="setCookie('tabval',this.id,1)"
                   a href="#"  Data Distributions
           .tab-content
             = render partial: 'shared/table', locals: { heads: %w[Name Status], partials: [['all_grants', @grants, :grant, "There are no grants"]] }
@@ -45,45 +45,45 @@
           .tab-content
             .row
               .four.columns.centalign
-                div style="margin-top:150px" 
+                div style="margin-top:150px"
                   | Successful Crowdfunds&emsp;
                   .colorbox.green> &nbsp;
                   | &emsp;&emsp;Unsuccessful Crowdfunds&emsp;
                   .colorbox.red &nbsp;
               .eight.columns
-                canvas#canvas1 height="350" width="350" 
+                canvas#canvas1 height="350" width="350"
             .row
               .centalign
-                div style="margin-top:200px;" 
+                div style="margin-top:200px;"
                   | Accepted Grants&emsp;
                   .colorbox.green> &nbsp;
                   | &emsp;&emsp;Rejected Grants&emsp;
                   .colorbox.red &nbsp;
             .row
               .centalign
-                canvas#canvas2 height="450" width="700" 
+                canvas#canvas2 height="450" width="700"
                 h5 School
             .row
               .centalign
-                div style="margin-top:200px;" 
+                div style="margin-top:200px;"
                   | Accepted Grants&emsp;
                   .colorbox.green> &nbsp;
                   | &emsp;&emsp;Rejected Grants&emsp;
                   .colorbox.red &nbsp;
             .row
               .centalign
-                canvas#canvas3 height="600" width="900" 
+                canvas#canvas3 height="600" width="900"
                 h5 Subject Area
             .row
               .centalign
-                div style="margin-top:150px" 
+                div style="margin-top:150px"
                   | Successful Crowdfunds&emsp;
                   .colorbox.green> &nbsp;
                   | &emsp;&emsp;Unsuccessful Crowdfunds&emsp;
                   .colorbox.red &nbsp;
             .row
               .centalign
-                canvas#canvas4.inlined height="600" width="800" 
+                canvas#canvas4.inlined height="600" width="800"
                 h5 Crowdfund Goal
 javascript:
   function Maximize(maxOne, maxTwo){
@@ -101,7 +101,7 @@ javascript:
       }
       maxxest=20;
     }else{var step=1}
-  
+
     var smallScale = {
     scaleOverride : true,
     //Number - The number of steps in a hard coded scale
@@ -111,10 +111,10 @@ javascript:
     //Number - The scale starting value
     scaleStartValue : 0,
     }
-  
+
     return smallScale
   };
-  
+
     var dataOne = [
         {
           value: #{(successful.length==0 && unsuccessful.length==0) ? 1 : successful.length},
@@ -125,9 +125,9 @@ javascript:
           color : "#f14f4f"
         },
       ];
-  
+
   var PieOne = new Chart(document.getElementById("canvas1").getContext("2d")).Pie(dataOne);
-  
+
   var dataTwo = {
     labels : #{raw School.uniq.pluck(:name).to_json},
     datasets : [
@@ -143,10 +143,10 @@ javascript:
       }
     ]
   }
-  
+
   var ChartTwo = new Chart(document.getElementById("canvas2").getContext("2d")).Bar(dataTwo, Maximize(#{raw accepted_school}, #{raw rejected_school}));
-  
-  
+
+
   var dataThree = {
     labels : #{raw Grant::SUBJECTS.to_json},
     datasets : [
@@ -162,10 +162,10 @@ javascript:
       }
     ]
   }
-  
+
   var ChartThree = new Chart(document.getElementById("canvas3").getContext("2d")).Bar(dataThree, Maximize(#{raw accepted_subject}, #{raw rejected_subject}));
-  
-  
+
+
   var dataFour = {
     labels : ["$0-99","$100-199","$200-299","$300-399","$400-499","$500-599","$600-699","$700-799","$800-899","$900-999","$1000+"],
     datasets : [
@@ -181,9 +181,9 @@ javascript:
       }
     ]
   }
-  
+
   var ChartFour = new Chart(document.getElementById("canvas4").getContext("2d")).Bar(dataFour, Maximize(#{raw successful_goal}, #{raw unsuccessful_goal}));
-  
+
   $(document).ready(function(){
       var prevtab=getCookie("tabval");
         if (prevtab!=null && prevtab!="")
@@ -193,8 +193,11 @@ javascript:
         // if target exists trigger the set event
         if($target.length) {
             $tabs.trigger('gumby.set', $target.index());
-  
+
+          }
+          else{
+            $('#tabs').trigger('gumby.set', $tab.find('.tab-nav li#grants').index());
           }
         }
-  
+
     });
