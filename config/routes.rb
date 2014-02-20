@@ -12,10 +12,8 @@ BPSF::Application.routes.draw do
   end
 
   resources :drafts, controller: 'draft_grants', except: [:show, :index]
-
-  resources :preapproved_grants, only: [:show, :destroy]
-  scope '/preapproved_grants' do
-    post ':id/convert', to: 'preapproved_grants#convert', as: :preapproved_convert
+  scope '/drafts' do
+    get ':id/previous_show', to: 'draft_grants#previous_show', as: :previous_show
   end
 
   devise_for :users, :controllers => { :registrations => "registrations" }
