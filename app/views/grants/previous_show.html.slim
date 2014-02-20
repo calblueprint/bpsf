@@ -27,7 +27,8 @@
     .row
       .three.columns.centered.centalign
         .large.primary.btn
-          = link_to 'Use This!', create_draft_from_grant_path(@grant)
+          = link_to 'Use This!',
+                    create_draft_from_grant_path(@grant), method: :post
 
     hr/
 
