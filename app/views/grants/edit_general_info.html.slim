@@ -21,7 +21,7 @@
               = f.text_field :video, class: :input, :placeholder => "Video Link"
             .field
               = f.label :subject_areas, 'Subject Areas'
-              = f.select :subject_areas, DraftGrant::SUBJECTS, {}, {:multiple => true, class: :chosenselect}
+              = f.select :subject_areas, Grant::SUBJECTS, {}, {:multiple => true, class: :chosenselect}
             .medium.primary.btn.pull_right
               = f.submit 'Save!'
 javascript:
