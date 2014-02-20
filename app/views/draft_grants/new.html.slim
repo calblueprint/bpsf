@@ -1,6 +1,7 @@
 .row
   .twelve.columns
     .wrapper.light
+      / - if !incomplete_profile current_user
       .row
         .twelve.columns.centered.centalign
           h2 Creating a Grant
@@ -24,3 +25,10 @@
           = render 'shared/table', heads: %w[Name],
             partials: [['previous_grant', @previous_grants,
               :grant, "You don't have any completed grants."]]
+      / - else
+        / .row
+          / .twelve.columns.centered.centalign
+            / h3 style="margin-top:60px"
+              / | In order to create a grant, please fill out your profile first!
+            / .large.primary.btn style="margin-top:25px"
+              / = link_to "Edit Profile", edit_user_path(id: current_user.id)
