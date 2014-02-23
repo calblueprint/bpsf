@@ -1,216 +1,109 @@
-// Your custom SCSS should be written here...
+// Trival Styles
+	// Color Styles
+	.green{background-color:$secondary-color;}
+	.red{background-color:$danger-hover-color;}
+	.darken{color:#000;}
+	.primary-color{color:$primary-color;}
 
-.pointer{cursor:pointer;}
+	//Position Styles
+	.centalign{text-align:center;}
+	.inlined{display:inline;}
+	.padada{padding-top:10px;}
+	.padless{padding:0px !important;}
+	.marginless{margin: 0px !important;}
+	.elevate{z-index: 2000;}
 
-.picker option{height:30px;
-			background-color: rgb(255,255,255);
-			line-height:36px;
-			border: none;
-			padding: 6px 0px 6px 15px;
-		}
-.picker{height:40px;}
-
-.fluid_container {
-	margin: 0 auto;
-	max-width: 1200px;
-	width: 100%;
-	position: relative;
-		}
-
-.wrapper{
-	//width:100%;
-	padding:10px 10px 20px 10px;
-	&.dark{
-	background-color:#000;}
-	&.light{
-		@include box-shadow(0 0 3px #999);
-		background-color:#fff;
-		//@include border-radius(5px);
-	}
-	&.homewrap{
-		padding: 25px;
-	}
-}
-
-.category{
-	font-size:$med;
-	line-height:40px;
-	text-align:left;
-	height:40px;
-	}
-
-#nobullet > li {list-style:none;}
-
-.centalign{text-align:center;}
-
-.ultitle{border-bottom:$table-cell-border-size $table-cell-border-style $default-color;}
-
-.banner {
-	position: relative;
-	overflow: auto;
-	width: 100%;
-	ul {
-	 	list-style: none;
-	 	li {
-	 		float: left;
-	 		min-height: 350px;
-
-	 		display:block;
-	 		position:relative;
-	 		@include background-size(100% 100%);
-	 	}
-	}
-}
-
-.navholder{
-	position: absolute;
-	bottom:0px;
-	right:0px;
-	.unslider-arrow{
-		z-index: 100;
-		font-size: $med;
-	}
-}
-
-.infocard{
-	overflow:none;
-    //@include box-shadow(0 0 3px #999);
-    background: rgba(255,255,255,0.9);
-	margin: 6px 6px 20px 6px !important;
-	text-align: left;
-	& img{width:100%;
-		height:150px;
-		}
-	& .cardtitle{padding:5px 5px 0px 5px;}
-	& .cardcontent{
-		padding:2px 5px 5px 5px;
-		.progress {
-			height: 20px;
-			width: 100%;
-			position: relative;
-			background: $global-bg-color;//#eee;
-			span {
-				display: inline-block;
-				height: 100%;
-				background-color: $primary-color;
-				position: relative;
-				overflow: hidden;
-				text-align:right;
-				line-height:20px;
-				color:$white;
-			}
-		}
-		.gcdiv{
-			text-align:center;
-			line-height:30px;
-			.goalnum{
-				font-size:$large;
-				vertical-align:middle;
-				color: #222;//$primary-color;
-				@include respond(all-phones){
-					font-size: $med;
-				}
-			}
-
-			.currentnum{
-				font-size:$large;
-				vertical-align:middle;
-				color: $primary-color;
-				@include respond(all-phones){
-					font-size: $med;
-				}
-			}
-
-			.gctext{
-				vertical-align:middle;
-				font-size:$small;
-			}
-		}
-	}
-}
-
-.progressbar{
-	float: left;
-}
-
-.slidecard {
-	position:absolute;
-	top:5%;
-	left:5%;
-	width:35%;
-	.cardcontent{
-		.progress{
-			background: $global-bg-color !important;
-		}
-	}
-	@include respond(tablets){
-		top:0px;
-		left: 0px;
-		width: 40%;
-		height: 100%;
-		margin: 0px 0px 0px 0px !important;
-	}
+	//Display Styles
+	.poofin{display:none;}
 	@include respond(all-phones){
-		top:0px;
-		left: 0px;
+		.poofin{display:inline-block !important;}
+		.poofout{display:none !important;}
+	}
+	.nodisplay{display:none;}
+
+	//Font Styles
+	.ultitle{border-bottom:$table-cell-border-size $table-cell-border-style $default-color;}
+	.smallfont{font-size:$small;}
+	.medfont{font-size:$med;}
+	.largefont{font-size:$large;}
+
+	//Miscellaneous Styles
+	.pointer{cursor:pointer;}
+	.noroundborder{@include border-radius(0px !important) ;}
+	#nobullet > li {list-style:none;}
+
+
+//Dropdown Menu Styles
+	.picker option{
+		height:30px;
+		background-color: rgb(255,255,255);
+		line-height:36px;
+		border: none;
+		padding: 6px 0px 6px 15px;
+		}
+	.picker{height:40px;}
+
+
+//Containers
+	.wrapper{
+		padding:10px 10px 20px 10px;
+		&.dark{
+		background-color:#000;}
+		&.light{
+			@include box-shadow(0 0 3px #999);
+			background-color:#fff;
+		}
+		&.homewrap{
+			padding: 25px;
+		}
+	}//Page wrapper
+
+	.fluid_container {
+		margin: 0 auto;
+		max-width: 1200px;
 		width: 100%;
-		height: auto;
-		margin: 0px 0px 0px 0px !important;
-		.cardtitle{
-			text-align: center;
+		position: relative;
+	} // Used for slideshow
+
+	.container {
+		overflow: hidden;
+		background-color: $global-bg-color;
+		padding-top:80px;
+
+	/*  Prevents Flickering  */
+		-webkit-backface-visibility: hidden;
+		-ms-backface-visibility: hidden;
+	}
+
+//Progress Bar Styles
+	.gcdiv{
+		text-align:center;
+		line-height:$med;
+		.goalnum{
+			font-size:$large;
+			vertical-align:middle;
+			color: #222;
+			@include respond(all-phones){font-size: $med;}
 		}
-		.cardcontent{
-			& p {
-				display:none;
-			}
-			.progress{
-				background: $global-bg-color !important;
-			}
+		.currentnum{
+			font-size:$large;
+			vertical-align:middle;
+			color: $primary-color;
+			@include respond(all-phones){font-size: $med;}
+		}
+		.gctext{
+			vertical-align:middle;
+			font-size:$small;
 		}
 	}
-}
 
-.cardtext{
-	height:$base-line-height*4;
-	overflow:hidden;
-	text-overflow:ellipsis;
-	}
+	.progressbar{float: left;}
 
-.nodisplay{
-	display:none;
-}
-
-$imglargereplacementhgt: 250px;
-
-.imgreplacementlrg{
-	display:block;
-	background: rgb(255,117,117);
-	text-align: center;
-	overflow:hidden;
-	font-size: $xlarge;
-	color: $white;
-	height:$imglargereplacementhgt;
-	line-height:$imglargereplacementhgt;
-	.repson{
-		margin:0 auto;
-		margin-top: 10px;
-		height: $imglargereplacementhgt - 20px;
-		width: 97%;
-		line-height: $imglargereplacementhgt - 20px;
-		font-size: $xlarge;
-		color: $white;
-		text-align: center;
-		border: 5px dashed $white;
-	}
-}
-
-.grantviewbar{
-	padding-top: 10px;
 	.progress {
 		height: 20px;
 		width: 100%;
 		position: relative;
-		background: $global-bg-color;//#eee;
+		background: $global-bg-color;
 		span {
 			display: inline-block;
 			height: 100%;
@@ -222,248 +115,320 @@ $imglargereplacementhgt: 250px;
 			color:$white;
 		}
 	}
-	.gcdiv{
-		padding-top: 8px;
+
+
+//Home Page Styles
+	//Slideshow Styles
+	.banner {
+		position: relative;
+		overflow: auto;
+		width: 100%;
+		ul {
+		 	list-style: none;
+		 	li {
+		 		float: left;
+		 		min-height: 350px;
+		 		display:block;
+		 		position:relative;
+		 		@include background-size(100% 100%);
+		 	}
+		}
+	}
+
+	.navholder{
+		position: absolute;
+		bottom:0px;
+		right:0px;
+		.unslider-arrow{
+			z-index: 100;
+			font-size: $med;
+		}
+	}
+
+	.slidecard {
+		position:absolute;
+		top:5%;
+		left:5%;
+		width:35%;
+		.cardcontent{
+			.progress{background: $global-bg-color !important;}
+		}
+		@include respond(tablets){
+			top:0px;
+			left: 0px;
+			width: 40%;
+			height: 100%;
+			margin: 0px 0px 0px 0px !important;
+		}
+		@include respond(all-phones){
+			top:0px;
+			left: 0px;
+			width: 100%;
+			height: auto;
+			margin: 0px 0px 0px 0px !important;
+			.cardtitle{text-align: center;}
+			.cardcontent{
+				& p {display:none;}
+				.progress{background: $global-bg-color !important;}
+			}
+		}
+	}
+
+
+	//Grant Cards
+	.infocard{
+		overflow:none;
+	    background: rgba(255,255,255,0.9);
+		margin: 6px 6px 20px 6px !important;
+		text-align: left;
+		& img{width:100%;
+			height:150px;
+			}
+		& .cardtitle{padding:5px 5px 0px 5px;}
+		& .cardcontent{
+			padding:2px 5px 5px 5px;
+			.gcdiv{line-height:30px;}
+		}
+	}
+
+	.imgholder{
+		width:100%;
+		height:150px;
+		line-height:150px;
+		overflow:hidden;
+		text-align: center;
+		img {
+			vertical-align: middle;
+			min-width:100%;
+			min-height: 100%;
+			width: auto;
+			height: auto;
+		}
+	}
+
+	.cardtext{
+		height:$base-line-height*4;
+		overflow:hidden;
+		text-overflow:ellipsis;
+		}
+
+	//Other
+	.category{
+	font-size:$med;
+	line-height:40px;
+	text-align:left;
+	height:40px;
+	}
+
+
+//Grant View Page
+	.coverholder{
+		width:100%;
+		max-height:470px;
+		overflow:hidden;
+		text-align: center;
+		img {
+			vertical-align: middle;
+			min-width:100%;
+			min-height: 100%;
+			width: auto;
+			height: auto;
+		}
+	}
+
+	$imglargereplacementhgt: 250px;
+
+	.imgreplacementlrg{
+		display:block;
+		background: rgb(255,117,117);
+		text-align: center;
+		overflow:hidden;
+		font-size: $xlarge;
+		color: $white;
+		height:$imglargereplacementhgt;
+		line-height:$imglargereplacementhgt;
+		.repson{
+			margin:0 auto;
+			margin-top: 10px;
+			height: $imglargereplacementhgt - 20px;
+			width: 97%;
+			line-height: $imglargereplacementhgt - 20px;
+			font-size: $xlarge;
+			color: $white;
+			text-align: center;
+			border: 5px dashed $white;
+		}
+	}//Only used when there is no image available
+
+	.grantviewbar{
+		padding-top: 10px;
+		.gcdiv{
+			padding-top: 8px;
+			.gctext{font-size:$med;}
+		}
+	}
+
+	//Video Styles
+	.video-container {
+	    position: relative;
+	    padding-bottom: 56.25%;
+	    padding-top: 30px; height: 0; overflow: hidden;
+	}
+
+	.video-container iframe,
+	.video-container object,
+	.video-container embed {
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    width: 100%;
+	    height: 100%;
+	}
+
+	//Admin Rating styles
+	.ajaxful-rating{
 		text-align:center;
-		line-height:$med;
-		.goalnum{
-			font-size:$large;
-			vertical-align:middle;
-			color: #222;//$primary-color;
-			@include respond(all-phones){
-				font-size: $med;
-			}
-		}
-
-		.currentnum{
-			font-size:$large;
-			vertical-align:middle;
-			color: $primary-color;
-			@include respond(all-phones){
-				font-size: $med;
-			}
-		}
-
-		.gctext{
-			vertical-align:middle;
-			font-size:$med;
-		}
-	}
-}
-
-.inlined{display:inline;}
-.padada{padding-top:10px;}
-.smallfont{font-size:$small;}
-.medfont{font-size:$med;}
-.largefont{font-size:$large;}
-
-.video-container {
-    position: relative;
-    padding-bottom: 56.25%;
-    padding-top: 30px; height: 0; overflow: hidden;
-}
-
-.video-container iframe,
-.video-container object,
-.video-container embed {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-.ajaxful-rating{
-	text-align:center;
-	margin: 0 auto;
-}
-
-.poofin{display:none;}
-@include respond(all-phones){
-
-	.poofin{display:inline-block !important;}
-	.poofout{display:none !important;}
-}
-
-.colorbox{
-	display:inline-block;
-	height:15px;
-	width:15px;
-}
-.green{
-	background-color:$secondary-color;
-}
-.red{
-	background-color:$danger-hover-color;
-}
-
-.padless{
-	padding:0px !important;
-}
-
-.marginless{
-	margin: 0px !important;
-}
-
-.noroundborder{@include border-radius(0px !important) ;}
-
-.helppanel{
-	position:fixed;
-	top:50%;
-	margin-top:-72px;
-	left:-100%;
-	width:100%;
-	height:100px;//100%;
-	z-index:1000;
-	background-color:$white;
-	text-align:center;
-	@include box-shadow(0 0 5px #999);
-	@include transition-duration(.5s);
-	.xbox{
-		position:relative;
-		top:10px;
-		right:10px;
-		font-size: $large;
-		display:none;
-	}
-	ul{
-		list-style: none;
-		height: 100px;
 		margin: 0 auto;
 	}
-	li{
+
+	//Superadmin Grant Status Buttons
+	.toggle_reject{
+		@extend .medium;
+		@extend .danger;
+		@extend .btn;
+	}
+
+	.toggle_crowdfund{
+		@extend .medium;
+		@extend .primary;
+		@extend .btn;
+	}
+
+	.toggle_reconsider{
+		@extend .medium;
+		@extend .default;
+		@extend .btn;
+	}
+
+	.toggle_fund{
+		@extend .medium;
+		@extend .secondary;
+		@extend .btn;
+	}
+
+	.toggle_crowdfunding_failed{
+		@extend .medium;
+		@extend .danger;
+		@extend .btn;
+	}
+
+
+//Admin Dashboard
+	.colorbox{
 		display:inline-block;
+		height:15px;
+		width:15px;
+	}
+
+//Help Panel
+	.helppanel{
+		position:fixed;
+		top:50%;
+		margin-top:-72px;
+		left:-100%;
+		width:100%;
 		height:100px;
-		width:120px;
-		line-height:100px;
-		font-size: $med+1;
-		text-align: center;
-		&:hover{
-			background-color: $global-bg-color;
-			color:$primary-color;
+		z-index:1000;
+		background-color:$white;
+		text-align:center;
+		@include box-shadow(0 0 5px #999);
+		@include transition-duration(.5s);
+		.xbox{
+			position:relative;
+			top:10px;
+			right:10px;
+			font-size: $large;
+			display:none;
+		}
+		ul{
+			list-style: none;
+			height: 100px;
+			margin: 0 auto;
+		}
+		li{
+			display:inline-block;
+			height:100px;
+			width:120px;
+			line-height:100px;
+			font-size: $med+1;
+			text-align: center;
+			&:hover{
+				background-color: $global-bg-color;
+				color:$primary-color;
+			}
 		}
 	}
-}
 
-.screen{
-	position:fixed;
-	height:100%;
-	width:100%;
-	left:-100%;
-	background-color:#000;
-	opacity:0.7;
-	z-index: 999;
-}
+	.helppanelbutton{
+		position:fixed;
+		top:50%;
+		margin-top:-50px;
+		left:-45px;
+		height:55px;
+		width:100px;
+		line-height:35px;
+		text-align:center;
+		padding-top:20px;
+		color:$white;
+		font-size:$large;
+		z-index:998;
+		background-color:$primary-color;
+		cursor:pointer;
+		@include rotate(-90deg);
+		@include box-shadow(0 0 3px #999);
+		@include transition-duration(.5s);
+		&:hover{
+			left: -40px;
+		}
+		@include respond(all-phones){
+			left:-30px;
+			height:45px;
+			width:70px;
+			line-height:30px;
+			text-align:center;
+			padding-top:15px;
+			color:$white;
+			font-size:$med;
+			&:hover{
+			left: -25px;
+			}
+		}
+		&.open{
+			left:100% !important;
+		}
+	}
+
+//Javascript Hover/Modal Classes
+	.screen{
+		position:fixed;
+		height:100%;
+		width:100%;
+		left:-100%;
+		background-color:#000;
+		opacity:0.7;
+		z-index: 999;
+	}
 
 	.open{
 		left:0px;
 	}
-.helppanelbutton{
-	position:fixed;
-	top:50%;
-	margin-top:-50px;
-	left:-45px;
-	height:55px;
-	width:100px;
-	line-height:35px;
-	text-align:center;
-	padding-top:20px;
-	color:$white;
-	font-size:$large;
-	z-index:998;
-	background-color:$primary-color;
-	cursor:pointer;
-	@include rotate(-90deg);
-	@include box-shadow(0 0 3px #999);
-	@include transition-duration(.5s);
-	&:hover{
-		left: -40px;
-	}
-	@include respond(all-phones){
-		left:-30px;
-		height:45px;
-		width:70px;
-		line-height:30px;
-		text-align:center;
-		padding-top:15px;
-		color:$white;
-		font-size:$med;
-		&:hover{
-		left: -25px;
-		}
-	}
-	&.open{
-		left:100% !important;
-	}
 
-}
+//Edit Grant Page
+	.hinttext{color:darken($global-bg-color, 25%);}
 
-.hinttext{color:darken($global-bg-color, 25%);}
 
-.darken{color:#000;}
-.primary-color{color:$primary-color;}
 
-.imgholder{
-	width:100%;
-	height:150px;
-	line-height:150px;
-	overflow:hidden;
-	text-align: center;
-	img {
-		vertical-align: middle;
-		min-width:100%;
-		min-height: 100%;
-		width: auto;
-		height: auto;
-	}
-}
-
-.coverholder{
-	width:100%;
-	max-height:470px;
-	overflow:hidden;
-	text-align: center;
-	img {
-		vertical-align: middle;
-		min-width:100%;
-		min-height: 100%;
-		width: auto;
-		height: auto;
-	}
-}
-
-.elevate{z-index: 2000;}
-
-.toggle_reject{
-	@extend .medium;
-	@extend .danger;
-	@extend .btn;
-}
-
-.toggle_crowdfund{
-	@extend .medium;
-	@extend .primary;
-	@extend .btn;
-}
-
-.toggle_reconsider{
-	@extend .medium;
-	@extend .default;
-	@extend .btn;
-}
-
-.toggle_fund{
-	@extend .medium;
-	@extend .secondary;
-	@extend .btn;
-}
-
-.toggle_crowdfunding_failed{
-	@extend .medium;
-	@extend .danger;
-	@extend .btn;
-}
-
+/*********************************Footer Classes******************************************/
 .footwrapper{
 	padding:10px 40px 20px 40px;
 	@include box-shadow(0 3px 3px #999);
@@ -517,7 +482,6 @@ $imglargereplacementhgt: 250px;
 	z-index:700;
 	@include box-shadow(0 0 3px #999);
 	@include transition-duration(.3s);
-
 	ul{
 		list-style:none;
 		li{
@@ -543,37 +507,9 @@ $imglargereplacementhgt: 250px;
 	}
 }
 
-.loginmenu{
-	.nodisplay{display:inline;}
-}
 
 
-body {
-	-webkit-tap-highlight-color:rgba(0,0,0,0);
-	-webkit-text-size-adjust: none;
-	-webkit-font-smoothing: antialiased;
-
-	-moz-tap-highlight-color:rgba(0,0,0,0);
-	-moz-text-size-adjust: none;
-	-moz-font-smoothing: antialiased;
-
-	-ms-tap-highlight-color:rgba(0,0,0,0);
-	-ms-text-size-adjust: none;
-	-ms-font-smoothing: antialiased;
-}
-
-.container {
-	overflow: hidden;
-	background-color: $global-bg-color;
-	padding-top:80px;
-
-/*  Prevents Flickering  */
-	-webkit-backface-visibility: hidden;
-	-ms-backface-visibility: hidden;
-}
-
-
-.trunkheader {
+.navigationbar {
 	position: fixed;
 	top:0px;
 	z-index: 800;
@@ -602,55 +538,47 @@ body {
 	}
 }
 
-.trunknav {
+.navbuttons {
 	position: absolute;
-	right: 50%;
-	margin-right:-230px;
+	left: 50%;
+	margin-left:-230px;
 	height:55px;
 	top:0;
-	.search{
-		width: 300px;
-	}
+	.search{width: 300px;}
 	.field{
 		height:55px;
 		margin: 0px !important;
 		padding: 0px !important;
 		margin-top:-5px !important;
 	}
-}
-
-
-.trunknav li {
-    float: left;
-    display: inline-block;
-    font-size: $med;
-    width: auto;
-}
-
-.trunknav li a {
-	display: block;
-	padding: 0px 20px 12px;
-	font-family: $font-family;
-	font-weight:$header-font-weight;
-}
-
-@include respond(all-phones){
-	.trunknav {
-	position: static;
-	margin-left:0px;
-	left:0;
-	display:inline-block;
-	.search{
-		width: 100%;
+	li {
+	    float: left;
+	    display: inline-block;
+	    font-size: $med;
+	    width: auto;
+		a {
+			display: block;
+			padding: 0px 20px 12px;
+			font-family: $font-family;
+			font-weight:$header-font-weight;
 		}
 	}
-	.trunknav li a{
-		padding-left:5px;
-		padding-right:5px;
+}
+
+
+@include respond(all-phones){
+	.navbuttons {
+		position: static;
+		margin-left:0px;
+		left:0;
+		display:inline-block;
+		.search{width: 100%;}
+		li a{
+			padding-left:5px;
+			padding-right:5px;
+		}
 	}
-	.trunkheader .loginmenu{
-		padding-right:5px;
-	}
+	.navigationbar .loginmenu{padding-right:5px;}
 }
 /*********************  Loading Bar  ***********************/
 .pace .pace-progress {
