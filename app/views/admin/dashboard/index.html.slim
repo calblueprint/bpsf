@@ -180,18 +180,14 @@ javascript:
 
   $(document).ready(function(){
       var prevtab=getCookie("tabval");
-        if (prevtab!=null && prevtab!="")
-        {
-        var $tabs = $('#tabs')
-        $target = $tabs.find('.tab-nav li#'+prevtab);
-        // if target exists trigger the set event
-        if($target.length) {
-            $tabs.trigger('gumby.set', $target.index());
-
+        if (prevtab!=null && prevtab!=""){
+          var $tabs = $('#tabs')
+          $target = $tabs.find('.tab-nav li#'+prevtab);
+          if($target.length) {
+              $tabs.trigger('gumby.set', $target.index());
           }
-          else{
-            $('#tabs').trigger('gumby.set', $tab.find('.tab-nav li#grants').index());
-          }
+        } else{
+            $('#tabs').trigger('gumby.set', $('#tabs').find('.tab-nav li#grants').index());
         }
 
     });
