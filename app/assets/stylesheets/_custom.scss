@@ -50,13 +50,18 @@
 		&.dark{
 		background-color:#000;}
 		&.light{
-			@include box-shadow(0 0 3px #999);
+			//@include box-shadow(0px 0 10px rgb(170, 170, 170));
 			background-color:#fff;
 		}
 		&.homewrap{
 			padding: 25px;
 		}
-	}//Page wrapper
+	} //Page wrapper
+
+	.page-wrapper{
+		@include box-shadow(0px 0 10px rgb(170, 170, 170));
+		background-color:#fff;
+	}
 
 	.fluid_container {
 		margin: 0 auto;
@@ -386,12 +391,12 @@
 		cursor:pointer;
 		@include rotate(-90deg);
 		@include box-shadow(0 0 3px #999);
-		@include transition-duration(0.5s);
+		@include transition-duration(0.3s);
 		&:hover{
 			left: -40px;
 		}
 		@include respond(all-phones){
-			left:-30px;
+			left:-25px;
 			height:45px;
 			width:70px;
 			line-height:30px;
@@ -439,7 +444,7 @@
 /*********************************Footer Classes******************************************/
 .footwrapper{
 	padding:10px 40px 20px 40px;
-	@include box-shadow(0 3px 3px #999);
+	//@include box-shadow(-5px 8px 10px -2px rgb(170,170,170), 5px 8px 10px -2px rgb(170,170,170));
 	background-color:#fff;
 	margin-top:0px;
 	top: -1px;
@@ -489,7 +494,7 @@
 	width: 150px;
 	z-index:700;
 	@include box-shadow(0 0 3px #999);
-	@include transition-duration(.6s);
+	@include transition-duration(.4s);
 	@include transition-timing-function(ease);
 	ul{
 		list-style:none;
@@ -527,7 +532,7 @@
 	height:55px;
 	line-height:55px;
 	font-weight:$header-font-weight;
-	@include box-shadow(0 0 3px #999);
+	@include box-shadow(0px 0 10px rgb(170, 170, 170));//0 0 3px #999);
 	.homelogo {
 	text-align: left;
 	font-size: $med;
@@ -607,20 +612,14 @@
   right: -300px;
   width: 300px;
   height: 300px;
-  background: $primary-color;//#29d;
+  background: $primary-color;
   @include rotate(45deg);
-  //-webkit-transition: -webkit-transform 0.3s;
-  //transition: transform 0.3s;
-  //-webkit-transform: translateX(100%) translateY(-100%) rotate(45deg);
-  //transform: translateX(100%) translateY(-100%) rotate(45deg);
   pointer-events: none;
   @include transition-duration(0.3s);
 }
 
 .pace.pace-active .pace-activity {
   @include rotate(45deg);
-  //-webkit-transform: translateX(50%) translateY(-50%) rotate(45deg);
-  //transform: translateX(50%) translateY(-50%) rotate(45deg);
   top:-150px;
   right:-150px;
   @include transition-duration(0.3s);
