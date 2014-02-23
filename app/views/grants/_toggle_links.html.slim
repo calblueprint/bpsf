@@ -1,22 +1,22 @@
 #togglelinks
   - grant.state_transitions.map { |s| s.event.to_s }.each do |state|
-    div class="toggle_#{state}" 
+    div class="toggle_#{state}"
       - if state.eql? "crowdfund"
-        = link_to state.titleize, 
-          "#",                   
-          method: :post,          
-          remote: true,           
-          class: "crowdfund",     
-          id: grant.id            
+        = link_to state.titleize,
+          "#",
+          method: :post,
+          remote: true,
+          class: "crowdfund",
+          id: grant.id
       - elsif state.eql? "fund"
-        = link_to state.titleize,                       
-          grant_event_path(id: grant.id, state: state), 
-          method: :post,                                
-          confirm: "Are you sure?",                     
-          remote: true                                  
+        = link_to state.titleize,
+          grant_event_path(id: grant.id, state: state),
+          method: :post,
+          confirm: "Are you sure?",
+          remote: true
       - else
-        = link_to state.titleize,                       
-          grant_event_path(id: grant.id, state: state), 
-          method: :post,                                
-          confirm: "Are you sure?",                     
-          remote: true                                  
+        = link_to state.titleize,
+          grant_event_path(id: grant.id, state: state),
+          method: :post,
+          confirm: "Are you sure?",
+          remote: true
