@@ -23,10 +23,12 @@ html
         .row
           .danger.alert This website is built to take advantage of javascript. Please enable it in your browser settings.
 
-      = render 'layouts/helppanel'
-      = yield
-      = render 'layouts/footer'
-
+      .row
+        .page-wrapper
+          = render 'layouts/helppanel'
+          = yield
+          = render 'layouts/footer'
+      br
     = render 'shared/flash', flash: flash
     javascript:
       function emailCurrentPage(){
