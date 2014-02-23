@@ -41,7 +41,7 @@
         | &nbsp;| #{@grant.school_name}
         | &nbsp;| #{@grant.days_left} Days Left
       h5
-        a href="https://www.facebook.com/sharer/sharer.php?" target="_blank"
+        a href="http://www.facebook.com/sharer.php?u=" target="_blank" rel="nofollow" onmouseover="this.href='http://www.facebook.com/sharer.php?u='+encodeURIComponent(location.href);"
           i.icon-facebook
         a expr:href="data:post.canonicalUrl" href="https://twitter.com/share"
           i.icon-twitter
