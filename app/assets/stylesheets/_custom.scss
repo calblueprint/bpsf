@@ -517,8 +517,7 @@
 	border-right: 9px solid transparent;
 	}
 	&.dropper{
-		top:70px !important;
-		right: 10px !important;
+		@include translate3d(0, 370px, 0)
 	}
 }
 
