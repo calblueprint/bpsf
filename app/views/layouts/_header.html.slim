@@ -1,14 +1,14 @@
-.trunkheader
+.navigationbar
   span
     a.homelogo.poofout href="http://www.berkeleypublicschoolsfund.org" 
       img src="/assets/logohoriz.png" /
     a.homelogo.poofin href="http://www.berkeleypublicschoolsfund.org" 
       img src="/assets/logovert.png" /
-  .trunknav.poofin
+  .navbuttons.poofin
     ul
       li.darken= link_to 'Home'.html_safe, root_path, class: :darken
       = render 'layouts/search_form'
-  .trunknav.poofout
+  .navbuttons.poofout
     ul
       li.darken= link_to 'Home'.html_safe, root_path, class: :darken
       - if recipient?
@@ -18,7 +18,7 @@
     .loginmenu.pull_right
       a.toggle.darken href="#"
         span.poofout
-          | Hello, #{current_user.first_name}
+          i.icon-user &nbsp; #{current_user.first_name}
         span.poofin
           i.icon-user
         i.icon-down-open-mini

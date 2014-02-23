@@ -15,6 +15,9 @@ html
     .screen.close
     .container
       = render 'layouts/header'
+      noscript
+        .row
+          .danger.alert This website is built to take advantage of javascript. Please enable it in your browser settings.
 
       = render 'layouts/helppanel'
       = yield
