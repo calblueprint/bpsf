@@ -1,16 +1,17 @@
 .helppanel.close
   ul
-    a.switch.closeclick gumby-trigger="#teacher-about" href="#" 
+    a.switch.closeclick#teacherbutton  href="#"
       li Teachers
-    a.switch.closeclick gumby-trigger="#donor-about" href="#" 
+    a.switch.closeclick#donorbutton href="#"
       li Donors
-    a.switch.closeclick gumby-trigger="#about-about" href="#" 
+    a.switch.closeclick#aboutbutton href="#"
       li About
 .helppanelbutton.close
   span Help
 #teacher-about.modal
+  .modalscreen
   .content
-    a.close.switch gumby-trigger="|#teacher-about" 
+    a.close.xbox
       i.icon-cancel
     .row
       .eleven.columns.centered
@@ -34,8 +35,9 @@
           br/
           | 9.	Please send all receipts to the Schools Fund within 90 days of receiving funding. Failure to provide receipts may affect your ability to receive future grants.
 #donor-about.modal
+  .modalscreen
   .content
-    a.close.switch gumby-trigger="|#donor-about" 
+    a.close.xbox
       i.icon-cancel
     .row
       .eleven.columns.centered
@@ -47,8 +49,9 @@
           br/
           | 3.	Share this project with your friends, family, and social networks to increase funding for your classroom project.
 #about-about.modal
+  .modalscreen
   .content
-    a.close.switch gumby-trigger="|#about-about" 
+    a.close.xbox
       i.icon-cancel
     .row
       .eleven.columns.centered

@@ -419,14 +419,17 @@
 		z-index: 999;
 		@include transition-duration(0.2s);
 		@include transition-property(opacity);
-		&.open{
-			opacity: 0.7
-		}
+		&.open{opacity: 0.8}
+	}
+
+	.modal{
+		@include transition-duration(0.5s)
 	}
 
 	.open{
 		left:0px;
 	}
+
 
 //Edit Grant Page
 	.hinttext{color:darken($global-bg-color, 25%);}

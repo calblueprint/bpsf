@@ -79,8 +79,8 @@
           .row
             hr/
             .three.columns.centered.centalign
-              #payment-modal.large.primary.btn
-                a.switch gumby-trigger="#payment-form" href="#"  Donate
+              .large.primary.btn
+                a.switch#paymentbutton href="#"  Donate
     hr/
     .row
       .ten.columns.centalign.centered
@@ -153,8 +153,9 @@
           h3 Additional Comments
           = @grant.comments
 #payment-form.modal
+  .modalscreen
   .content
-    a.close.switch gumby-trigger="|#payment-form" 
+    a.close.xbox
       i.icon-cancel
     .row
       .ten.columns.centered.text-center

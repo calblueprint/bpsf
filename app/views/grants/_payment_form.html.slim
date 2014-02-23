@@ -11,8 +11,9 @@
               li= msg
       = hidden_field_tag :grant_id, id
       = hidden_field_tag :stripe_token
-      .field
+      .field.prepend
         = label_tag :amount, "Donation Total", class: :largefont
+        span.adjoined $
         = text_field_tag :amount, nil, class: :input
       - if current_user && current_user.stripe_token.present?
         | Credit card (ending in #{current_user.last4}) has already been provided. You can update this on your profile.
