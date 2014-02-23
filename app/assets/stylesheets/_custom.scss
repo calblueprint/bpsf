@@ -481,7 +481,8 @@
 	width: 150px;
 	z-index:700;
 	@include box-shadow(0 0 3px #999);
-	@include transition-duration(.3s);
+	@include transition-duration(.6s);
+	@include transition-timing-function(ease);
 	ul{
 		list-style:none;
 		li{
@@ -513,7 +514,7 @@
 	position: fixed;
 	top:0px;
 	z-index: 800;
-	background-color: $white;//#f3f5f6;
+	background-color: $white;
 	width: 100%;
 	height:55px;
 	line-height:55px;
