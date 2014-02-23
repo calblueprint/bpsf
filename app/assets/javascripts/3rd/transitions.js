@@ -5,8 +5,6 @@ $(function() {
 	var helpPanelButton = $('.helppanelbutton');
 	var xbox = $('.xbox');
 	var screen = $('.screen, .modalscreen');
-	var closeclick = $('.closeclick');
-	var loginmenu = $('.loginmenu')
 	var userdropdown = $('.userdropdown')
 
 //Modal Variables
@@ -42,14 +40,20 @@ $(function() {
 		if (helpPanelButton.hasClass('open')) {$(close(items,'open','close'))}
 		else {$(open(items, 'open', 'close'))}
 	});
-	closeclick.click(function(){
+	$('.closeclick').click(function(){
 		if (helpPanelButton.hasClass('open')) {$(close(helpitems,'open','close'))};
 	});
 
 //Login Menu
-	loginmenu.click(function(){
-		if (userdropdown.hasClass('dropper')){$(close(userdropdown,'dropper','close'))}
-		else {$(open(userdropdown,'dropper','close'))}
+	$('.loginmenu').click(function(){
+		if (userdropdown.hasClass('dropper')){
+			$(close(userdropdown,'dropper','close'))
+			$(close('.loginmenu', 'primary-color', 'close'))
+		}
+		else {
+			$(open(userdropdown,'dropper','close'))
+			$(open('.loginmenu', 'primary-color', 'close'))
+		}
 	});
 
 //Modal Boxes

@@ -15,14 +15,13 @@
         li.darken= link_to 'Apply For Grant'.html_safe, new_draft_path, class: :darken
       = render 'layouts/search_form'
   - if user_signed_in?
-    .loginmenu.pull_right
-      a.toggle.darken href="#"
-        span.poofout
-          i.icon-user
-        | #{current_user.first_name}
-        span.poofin
-          i.icon-user
-        i.icon-down-open-mini
+    .loginmenu.pull_right.darken.pointer.linkeffect
+      span.poofout
+        i.icon-user
+      | #{current_user.first_name}
+      span.poofin
+        i.icon-user
+      i.icon-down-open-mini
   - else
     .loginmenu.pull_right
       span.poofout
