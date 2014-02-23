@@ -31,6 +31,7 @@
 	.pointer{cursor:pointer;}
 	.noroundborder{@include border-radius(0px !important) ;}
 	#nobullet > li {list-style:none;}
+	.linkeffect{&:hover{color: $primary-color}}
 
 
 //Dropdown Menu Styles
@@ -184,7 +185,6 @@
 	.infocard{
 		overflow:none;
 	    background: rgba(255,255,255,0.9);
-	    padding-bottom:20px;
 		//margin: 6px 6px 20px 6px !important;
 		text-align: left;
 		& img{width:100%;
@@ -391,7 +391,7 @@
 		background-color:$primary-color;
 		cursor:pointer;
 		@include rotate(-90deg);
-		@include box-shadow(0 0 3px #999);
+		@include box-shadow(0 0 10px rgb(170,170,170));
 		@include transition-duration(0.3s);
 		&:hover{
 			left: -40px;
