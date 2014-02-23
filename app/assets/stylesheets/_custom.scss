@@ -143,11 +143,21 @@
 
 	.navholder{
 		position: absolute;
-		bottom:0px;
-		right:0px;
+		bottom:50%;
+		background-color:rgba(0,0,0,0.6);
+		height: 50px;
+		&.rightarrow{
+			right:0px;
+		}
+		&.leftarrow{left:0px}
 		.unslider-arrow{
 			z-index: 100;
-			font-size: $med;
+			font-size: $med+1;
+			color: $white;
+			line-height: 50px;
+			&:hover{
+				color: $primary-color;
+			}
 		}
 	}
 
