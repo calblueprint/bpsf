@@ -431,12 +431,12 @@
 		height:100%;
 		width:100%;
 		left:-100%;
-		background-color:#000;
-		opacity:0;
+		background-color: rgba(0,0,0,0.0);//#000;
+		//opacity:0;
 		z-index: 999;
 		@include transition-duration(0.2s);
 		@include transition-property(opacity);
-		&.open{opacity: 0.8}
+		&.open{background-color:rgba(0,0,0,0.8)}//opacity: 0.8}
 	}
 
 	.modal{
