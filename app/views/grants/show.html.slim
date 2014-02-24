@@ -30,7 +30,7 @@
             = ratings_for @grant, show_user_rating: true
             h4 Status
             = @grant.state.titleize
-  br/
+      hr.hr-primary/
 .row
   .wrapper.light
     .row.centalign
@@ -39,9 +39,9 @@
       h5
         = @grant.recipient.name
         | &nbsp;| #{@grant.school_name}
-        | &nbsp;| #{@grant.days_left} Days Left!
+        | &nbsp;| #{@grant.days_left} Days Left
       h5
-        a href="https://www.facebook.com/sharer/sharer.php?" target="_blank"
+        a href="http://www.facebook.com/sharer.php?u=" target="_blank" rel="nofollow" onmouseover="this.href='http://www.facebook.com/sharer.php?u='+encodeURIComponent(location.href);"
           i.icon-facebook
         a expr:href="data:post.canonicalUrl" href="https://twitter.com/share"
           i.icon-twitter
@@ -79,8 +79,8 @@
           .row
             hr/
             .three.columns.centered.centalign
-              #payment-modal.large.primary.btn
-                a.switch gumby-trigger="#payment-form" href="#"  Donate
+              .large.primary.btn
+                a.switch#paymentbutton href="#"  Donate
     hr/
     .row
       .ten.columns.centalign.centered
@@ -153,8 +153,9 @@
           h3 Additional Comments
           = @grant.comments
 #payment-form.modal
+  .modalscreen
   .content
-    a.close.switch gumby-trigger="|#payment-form" 
+    a.close.xbox
       i.icon-cancel
     .row
       .ten.columns.centered.text-center
