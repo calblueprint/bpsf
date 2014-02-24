@@ -1,6 +1,6 @@
 tr
   td width="55%" 
-    = grant.title
+    = link_to grant.title, grant_path(grant)
   td width="45%" 
     = 'Crowdfunding' if grant.crowdfunding?
     = 'Crowdfund pending' if grant.crowdfund_pending?

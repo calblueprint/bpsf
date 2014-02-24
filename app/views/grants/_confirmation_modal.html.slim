@@ -1,6 +1,7 @@
 #confirmation-modal.modal
+  .modalscreen
   .content
-    a.close.switch.close-confirmation-modal gumby-trigger="|#confirmation-modal" 
+    a.close.switch.xbox
       i.icon-cancel
     .row.centalign
       #confirmation-body.ten.columns.centered.text-center.centalign
@@ -13,7 +14,8 @@
           = @grant.recipient.name
           |  will be very grateful. You're making a difference.
         br
-        .field.largefont
+        .medfont
           | If you would like to make a general donation to Berkeley Public Schools Fund, please click the button below!
+        br
         .primary.btn.large
           a#footer-donate href="https://www.berkeleypublicschoolsfund.org/donate/online-donation/"  Donate Now!

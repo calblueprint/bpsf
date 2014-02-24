@@ -1,33 +1,33 @@
-.trunkheader
+.navigationbar
   span
     a.homelogo.poofout href="http://www.berkeleypublicschoolsfund.org" 
       img src="/assets/logohoriz.png" /
     a.homelogo.poofin href="http://www.berkeleypublicschoolsfund.org" 
       img src="/assets/logovert.png" /
-  .trunknav.poofin
+  .navbuttons.poofin
     ul
       li.darken= link_to 'Home'.html_safe, root_path, class: :darken
       = render 'layouts/search_form'
-  .trunknav.poofout
+  .navbuttons.poofout
     ul
       li.darken= link_to 'Home'.html_safe, root_path, class: :darken
       - if recipient?
         li.darken= link_to 'Apply For Grant'.html_safe, new_draft_path, class: :darken
       = render 'layouts/search_form'
   - if user_signed_in?
-    .loginmenu.pull_right
-      a.toggle.darken href="#"
-        span.poofout
-          | Hello, #{current_user.first_name}
-        span.poofin
-          i.icon-user
-        i.icon-down-open-mini
+    .loginmenu.pull_right.darken.pointer.linkeffect
+      span.poofout
+        i.icon-user
+      | #{current_user.first_name}
+      span.poofin
+        i.icon-user
+      i.icon-down-open-mini
   - else
     .loginmenu.pull_right
       span.poofout
-        = link_to "Sign Up", new_user_session_path
+        = link_to "Sign Up", new_user_session_path, class: :darken
         |&nbsp;&nbsp;|&nbsp;&nbsp;
-      = link_to "Sign In", new_user_session_path
+      = link_to "Sign In", new_user_session_path, class: :darken
 - if user_signed_in?
   #userdropdown.userdropdown
     ul
