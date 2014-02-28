@@ -1,0 +1,5 @@
+| $('#grantcards').append('#{j render(@infinite_grants)}');
+- if @infinite_grants.next_page
+  | $('.pagination').replaceWith('#{j will_paginate(@infinite_grants)}');
+- else
+  | $('.pagination').remove();
