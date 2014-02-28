@@ -31,7 +31,7 @@
 	.pointer{cursor:pointer;}
 	.noroundborder{@include border-radius(0px !important) ;}
 	#nobullet > li {list-style:none;}
-	.linkeffect{&:hover{color: $primary-color}}
+	.linkeffect{&:hover, &:active, &:focus{color: $primary-color}}
 
 
 //Dropdown Menu Styles
@@ -48,15 +48,9 @@
 //Containers
 	.wrapper{
 		padding:10px 10px 20px 10px;
-		&.dark{
-		background-color:#000;}
-		&.light{
-			//@include box-shadow(0px 0 10px rgb(170, 170, 170));
-			background-color:#fff;
-		}
-		&.homewrap{
-			padding: 25px;
-		}
+		&.dark{background-color:#000;}
+		&.light{background-color:#fff;}
+		&.homewrap{padding: 25px;}
 	}//Page wrapper
 
 	.page-wrapper{
@@ -156,7 +150,7 @@
 			font-size: $med+1;
 			color: #000;//$white;
 			line-height: 50px;
-			&:hover{
+			&:hover, &:active, &:focus{
 				color: $primary-color;
 			}
 		}
@@ -379,7 +373,7 @@
 			line-height:100px;
 			font-size: $med+1;
 			text-align: center;
-			&:hover{
+			&:hover, &:active, &:focus{
 				background-color: $global-bg-color;
 				color:$primary-color;
 			}
@@ -404,7 +398,7 @@
 		@include rotate(-90deg);
 		@include box-shadow(0 0 10px rgb(170,170,170));
 		@include transition-duration(0.3s);
-		&:hover{
+		&:hover, &:active, &:focus{
 			left: -40px;
 		}
 		@include respond(all-phones){
@@ -416,7 +410,7 @@
 			padding-top:15px;
 			color:$white;
 			font-size:$med;
-			&:hover{
+			&:hover, &:active, &:focus{
 			left: -25px;
 			}
 		}
