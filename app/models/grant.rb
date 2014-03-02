@@ -32,7 +32,6 @@
 #  teacher_name       :string(255)
 #  type               :string(255)
 #
-include Rails.application.routes.url_helpers
 require 'textacular/searchable'
 class Grant < ActiveRecord::Base
   has_paper_trail :only => [:state]
@@ -186,7 +185,9 @@ class Grant < ActiveRecord::Base
         charge = Stripe::Charge.create amount: amount,
           currency: "usd",
           customer: user.stripe_token,
-          description: "User Profile: #{root_url}#{user_path(user)}"
+          # This should get updated depending on the environment.
+          # TODO: Refactor so this logic happens in the controller
+          description: "User Profile: http://localhost:3000#{Rails.application.routes.url_helpers.user_path(user)}"
         payment.charge_id = charge.id
         payment.save!
         UserCrowdsuccessJob.new.async.perform(user,self)
