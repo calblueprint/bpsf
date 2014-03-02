@@ -32,7 +32,6 @@
 #  teacher_name       :string(255)
 #  type               :string(255)
 #
-
 require 'textacular/searchable'
 class Grant < ActiveRecord::Base
   has_paper_trail :only => [:state]
@@ -178,16 +177,17 @@ class Grant < ActiveRecord::Base
 
   # Callback to process payments after a successful crowdfund
   def process_payments
-    @payments = Payment.where crowdfund_id: self.id
+    @payments = Payment.where crowdfund_id: crowdfunder
     @payments.each do |payment|
       unless payment.charge_id
         user = User.find payment.user_id
-        recipient = Recipient.find payment.crowdfund.grant.recipient_id
         amount = (payment.amount * 100).to_i
         charge = Stripe::Charge.create amount: amount,
           currency: "usd",
           customer: user.stripe_token,
-          description: "Grant: #{payment.crowdfund.grant.title}, Teacher: #{recipient.name}"
+          # This should get updated depending on the environment.
+          # TODO: Refactor so this logic happens in the controller
+          description: "User Profile: http://localhost:3000#{Rails.application.routes.url_helpers.user_path(user)}"
         payment.charge_id = charge.id
         payment.save!
         UserCrowdsuccessJob.new.async.perform(user,self)
