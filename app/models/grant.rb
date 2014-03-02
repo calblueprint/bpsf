@@ -202,7 +202,8 @@ class Grant < ActiveRecord::Base
   end
 
   def with_admin_cost
-    requested_funds * 1.029 + 0.3
+    # 3% + $3 assuming an average of 10 transactions.
+    (requested_funds * 1.029 + 3).to_i
   end
 
   def has_collaborators?
