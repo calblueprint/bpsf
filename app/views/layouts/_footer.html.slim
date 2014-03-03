@@ -24,37 +24,4 @@
       p
         | Developed by
         a href="http://www.calblueprint.org"  Blueprint
-    div style="clear:both" 
-  /! #footer-1
-
-javascript:
-  $('span.schooltext').each(function(index, value) {
-      var text = $(this).text();
-      if (text.length > 25){
-          text = text.substr(0,22) + '...';
-          $(this).text(text);
-      }
-  });
-  
-  $('span.destext').each(function(index, value) {
-      var text = $(this).text();
-      if (text.length > 62){
-          text = text.substr(0,60) + '...';
-          $(this).text(text);
-      }
-  });
-  
-  $('span.progressbar').each(function(value) {
-    var goalnum = $(this).attr('data-goal');
-    var currentnum = $(this).attr('data-current');
-    var width = parseInt(currentnum/goalnum*100);
-    if (currentnum/goalnum*100 - parseInt(currentnum/goalnum*100) >= 0.5){
-      width = width + 1
-    }
-    var text = width + "%";
-    if (width<12 && width!=0){width=10;}
-    if (width>100){width=100;}
-    var wideness = "width:" + width + "%";
-    $(this).text(text);
-    $(this).attr('style', wideness);
-  });
+    div style="clear:both"
