@@ -1,6 +1,6 @@
 tr
   td
     = draft_grant.title
-  td
-    = link_to '<span data-tooltip="Delete" class="ttip pull_right"><i class="icon-cancel"></i></span>'.html_safe, draft_path(draft_grant), :confirm => "Are you sure?", method: :delete
-    = link_to '<span data-tooltip="Edit" class="ttip pull_right"><i class="icon-pencil"></i></span>'.html_safe, edit_draft_path(draft_grant)
+  td style="text-align:right;"
+    .toggle_crowdfund style="padding:0px;"= link_to 'Edit'.html_safe, edit_draft_path(draft_grant)
+    .toggle_reject style="padding:0px" = link_to 'Delete'.html_safe, draft_path(draft_grant), :confirm => "Are you sure?", method: :delete

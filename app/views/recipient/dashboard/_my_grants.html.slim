@@ -1,10 +1,9 @@
-tr
-  td width="55%" 
+tr.hoverrow onclick="window.location.href = '../#{url_for grant}'"
+  td
     = link_to grant.title, grant_path(grant)
-  td width="45%" 
+  td style="text-align:right"
     = 'Crowdfunding' if grant.crowdfunding?
     = 'Crowdfund pending' if grant.crowdfund_pending?
     = 'Pending' if grant.pending?
     = 'Complete' if grant.complete?
     = 'Rejected' if grant.rejected?
-    = link_to '<span class="ttip pull_right" data-tooltip="View"><i class="icon-eye"></i></span>'.html_safe, grant_path(grant)
