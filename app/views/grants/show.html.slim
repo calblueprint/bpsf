@@ -7,20 +7,21 @@
           /= ratings_for @grant, show_user_rating: true
           /.grant-avg
           /  | Average: #{@grant.rating_average}
-          .seven.columns.centalign
+          .three.columns.centalign
+            - if @grant.crowdfunding? && super_user?
+                = form_tag crowdfund_update_path do
+                  = hidden_field_tag :crowdfund_id, @grant.crowdfunder.id
+                  h4 End Date
+                  ul
+                    li.field.metro
+                      = select_date @grant.deadline, order: [:year, :month, :day], class: [:picker, :inlined]
+                  .primary.medium.btn
+                    = submit_tag 'Update deadline'
+          .six.columns.centalign
             h4 Change Status
             #grantstatus
               | Current Status: #{@grant.state.titleize}
             = render 'toggle_links', grant: @grant
-            - if @grant.crowdfunding? && super_user?
-              = form_tag crowdfund_update_path do
-                = hidden_field_tag :crowdfund_id, @grant.crowdfunder.id
-                h4 End Date
-                ul
-                  li.field.metro
-                    = select_date @grant.deadline, order: [:year, :month, :day], class: [:picker, :inlined]
-                .primary.medium.btn
-                  = submit_tag 'Update deadline'
           .three.columns.centalign
             h4
               | Edit Grant
