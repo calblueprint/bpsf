@@ -676,21 +676,21 @@ color:$primary-color;
 .pace .pace-activity {
   display: block;
   position: fixed;
-  z-index: 2000;
+  z-index: 10;
   top: -300px;
-  right: -300px;
+  left: -300px;
   width: 300px;
   height: 300px;
-  background: $primary-color;
-  @include rotate(45deg);
+  background: $global-bg-color;//$primary-color;
+  @include rotate(-45deg);
   pointer-events: none;
   @include transition-duration(0.3s);
 }
 
 .pace.pace-active .pace-activity {
-  @include rotate(45deg);
-  top:-150px;
-  right:-150px;
+  @include rotate(-45deg);
+  top:-95px;
+  left:-150px;
   @include transition-duration(0.3s);
 }
 
@@ -700,7 +700,7 @@ color:$primary-color;
     bottom: 30px;
     left: 50%;
     display: block;
-    border: 5px solid lighten($primary-color,40%);//#fff;
+    border: 5px solid lighten($global-bg-color, 7%);//$primary-color,10%);//#fff;
     border-radius: 50%;
     content: '';
 }
@@ -709,8 +709,8 @@ color:$primary-color;
     margin-left: -40px;
     width: 80px;
     height: 80px;
-    border-right-color: darken($primary-color, 10%);//rgba(0, 0, 0, .2);
-    border-left-color: darken($primary-color, 10%);//rgba(0, 0, 0, .2);
+    border-right-color: darken($global-bg-color, 7%);//$primary-color,10%);//rgba(0, 0, 0, .2);
+    border-left-color: darken($global-bg-color, 7%);//$primary-color,10%);//rgba(0, 0, 0, .2);
     -webkit-animation: pace-rotation 3s linear infinite;
     animation: pace-rotation 3s linear infinite;
 }
@@ -720,8 +720,8 @@ color:$primary-color;
     margin-left: -20px;
     width: 40px;
     height: 40px;
-    border-top-color: rgba(0, 0, 0, .2);
-    border-bottom-color: rgba(0, 0, 0, .2);
+    border-top-color: lighten($global-bg-color, 7%);//$primary-color,10%);//rgba(0, 0, 0, .2);
+    border-bottom-color: lighten($global-bg-color, 7%);//$primary-color,10%);//rgba(0, 0, 0, .2);
     -webkit-animation: pace-rotation 1s linear infinite;
     animation: pace-rotation 1s linear infinite;
 }
