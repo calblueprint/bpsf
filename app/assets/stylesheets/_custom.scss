@@ -63,6 +63,9 @@
 		max-width: 1200px;
 		width: 100%;
 		position: relative;
+		&:hover, &:active, &:focus{
+			.slidecard{ a{color:$primary-color !important;}}
+		}
 	} // Used for slideshow
 
 	.container {
@@ -100,19 +103,25 @@
 	.progressbar{float: left;}
 
 	.progress {
-		height: 20px;
+		height: 6px;
 		width: 100%;
 		position: relative;
 		background: $global-bg-color;
+		@include border-radius(3px);
 		span {
 			display: inline-block;
 			height: 100%;
 			background-color: $primary-color;
+			@include border-radius(3px);
 			position: relative;
 			overflow: hidden;
 			text-align:right;
-			line-height:20px;
+			line-height:6px;
 			color:$white;
+			@include transition-duration(0.5s);
+			&:hover{
+				@include box-shadow(0px 0px 8px $primary-color);
+			}
 		}
 	}
 
@@ -161,8 +170,13 @@
 		top:5%;
 		left:5%;
 		width:35%;
-		.cardcontent{
-			.progress{background: $global-bg-color !important;}
+		text-align: left;
+		background: rgba(255,255,255,0.9);
+		padding: (5px 5px 5px 5px);
+		& .cardtitle{padding:5px 5px 0px 5px; margin-bottom:-10px;}
+		& .cardcontent{
+			padding:2px 5px 5px 5px;
+			.gcdiv{line-height:30px;}
 		}
 		@include respond(tablets){
 			top:0px;
@@ -189,16 +203,31 @@
 	//Grant Cards
 	.infocard{
 		overflow:none;
-	    background: rgba(255,255,255,0.9);
-		//margin: 6px 6px 20px 6px !important;
+	    background-color: $white;
 		text-align: left;
+		padding:(25px 0px 25px 0px);
+		border-bottom:1px solid $global-bg-color;
+		cursor: pointer;
 		& img{width:100%;
 			height:150px;
 			}
-		& .cardtitle{padding:5px 5px 0px 5px;}
-		& .cardcontent{
-			padding:2px 5px 5px 5px;
-			.gcdiv{line-height:30px;}
+		& .cardtitle{
+			margin-bottom:-15px;
+			margin-top:-15px;
+			a {@include transition-duration(0.3s)}
+		}
+		& .infocardimg{width: 33%; max-width: 4*$row-max-width/$cols; display:inline-block; padding:(0px 10px 0px 20px); float: left;}
+		& .infocardcontent{width: 66%; max-width: 8*$row-max-width/$cols; display:inline-block; padding:(0px 20px 0px 10px); float: right;}
+		@include respond(all-phones){
+			.progressvalues{
+				h3{font-size: $med}
+				span{font-size: $small}
+			}
+		}
+		@include transition-duration(0.3s);
+		&:hover, &:active, &:focus{
+			background-color: lighten($global-bg-color, 10%);
+			& .cardtitle{ h3{ a{color:$primary-color !important;} } }
 		}
 	}
 
@@ -210,15 +239,13 @@
 		text-align: center;
 		img {
 			vertical-align: middle;
-			min-width:100%;
-			min-height: 100%;
+			height: 100%;
 			width: auto;
-			height: auto;
 		}
 	}
 
 	.cardtext{
-		height:$base-line-height*4;
+		height:$base-line-height*3;
 		overflow:hidden;
 		text-overflow:ellipsis;
 		}

@@ -90,7 +90,7 @@ def make_profiles
                               home_phone: Faker::PhoneNumber.phone_number
   end
   Admin.all.each do |admin|
-    admin.create_profile! about: Faker::Lorem.sentence, 
+    admin.create_profile! about: Faker::Lorem.sentence,
                           position: Faker::Lorem.sentence
   end
   SuperUser.all.each do |user|

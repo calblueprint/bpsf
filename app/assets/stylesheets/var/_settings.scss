@@ -18,24 +18,24 @@ $max-device-width:  2880px;
 $nav-distance:  0;
 
 // Typography
-$font-family: "museosans-webfont";//"Open Sans";
+$font-family:  "Helvetica Neue", "HelveticaNeue-Light", "Helvetica Neue Light", Helvetica, Arial, "Lucida Grande", sans-serif; //"museosans-webfont";//"Open Sans";
 $font-style-italic:  italic;
 $icons:  entypo;
 $museo:  museosans-webfont;
 $font-smoothing:  antialiased;
 
 // Font Weights
-$font-weight-bold:  500;//700;
+$font-weight-bold:  600;//700;
 $font-weight-semibold:  500;//600;
-$font-weight-medium:  500;//400;
-$font-weight-regular:  500;//400;
-$font-weight-light:  500;//300;
-$font-weight-thin:  500;//300;
-$header-font-weight: 500;//400;
-$body-font-weight:  $font-weight-light;
-$type-font-weight:  $font-weight-light;
-$link-font-weight:  $font-weight-light;
-$button-font-weight:  $font-weight-light;
+$font-weight-medium:  400;//400;
+$font-weight-regular:  400;//400;
+$font-weight-light:  300;//300;
+$font-weight-thin:  200;//300;
+$header-font-weight: 300;//400;
+$body-font-weight:  $font-weight-regular;
+$type-font-weight:  $font-weight-regular;
+$link-font-weight:  $font-weight-regular;
+$button-font-weight:  $font-weight-regular;
 $tabs-font-weight:  $font-weight-regular;
 
 // Vertical Rhythm Spacing
@@ -70,8 +70,8 @@ $absurd:  ms(10);
 $header-font-color: #000;//#444444 !default;
 $header-link-color:  #000;//#555555 !default;
 $header-link-hover-color:  #ef4023 !default;
-$body-font-color: #555555 !default;
-$body-link-color: #555555 !default;
+$body-font-color: #444444 !default;
+$body-link-color: #333333 !default;
 $body-link-hover-color:  #ef4023 !default;
 
 // User Interface Colors
