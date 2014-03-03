@@ -373,6 +373,15 @@
 		width:15px;
 	}
 
+	.hoverrow{
+		cursor:pointer;
+		@include transition-duration(0.2s);
+		&:hover, &:active, &:focus{
+			background-color: lighten($global-bg-color, 10%);
+			a{color: $primary-color !important}
+		}
+	}
+
 //Help Panel
 	.helppanel{
 /*		position:fixed;
