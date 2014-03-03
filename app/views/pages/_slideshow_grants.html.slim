@@ -12,7 +12,7 @@ li onclick="window.location.href='../#{url_for grant}'" style="background-image:
           = '$' + grant.crowdfunder.pledged_total.to_s
         span &nbsp;&nbsp;of&nbsp;&nbsp;
         h3.inlined.darken
-          = grant.crowdfunder_goal.to_s
+          = '$' + grant.crowdfunder_goal.to_s
         span &nbsp;&nbsp;with&nbsp;&nbsp;
         h3.inlined.darken
           = grant.days_left.to_s
