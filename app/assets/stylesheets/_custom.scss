@@ -370,7 +370,7 @@
 
 //Help Panel
 	.helppanel{
-		position:fixed;
+/*		position:fixed;
 		top:50%;
 		margin-top:-72px;
 		left:-100%;
@@ -388,16 +388,22 @@
 			font-size: $large;
 			display:none;
 		}
-		ul{
+*/		ul{
 			list-style: none;
-			height: 100px;
+			height: 200px;//100px;
+			width: 100%; //
 			margin: 0 auto;
+			display: block; //
+			position: absolute; //
+			top: 50%; //
+			left: 0px;
+			margin-top: -100px;//
 		}
 		li{
 			display:inline-block;
-			height:100px;
-			width:120px;
-			line-height:100px;
+			height:200px;//100px;
+			width:33.333333%;//120px;
+			line-height:200px;//100px;
 			font-size: $med+1;
 			text-align: center;
 			&:hover, &:active, &:focus{
@@ -408,7 +414,7 @@
 	}
 
 	.helppanelbutton{
-		position:fixed;
+/*		position:fixed;
 		top:50%;
 		margin-top:-50px;
 		left:-45px;
@@ -420,15 +426,16 @@
 		color:$white;
 		font-size:$large;
 		z-index:998;
-		background-color:$primary-color;
+		background-color:$primary-color;*/
 		cursor:pointer;
-		@include rotate(-90deg);
+/*		@include rotate(-90deg);
 		@include box-shadow(0 0 10px rgb(170,170,170));
 		@include transition-duration(0.3s);
-		&:hover, &:active, &:focus{
-			left: -40px;
+*/		&:hover, &:active, &:focus{
+//			left: -40px;
+color:$primary-color;
 		}
-		@include respond(all-phones){
+/*		@include respond(all-phones){
 			left:-25px;
 			height:45px;
 			width:70px;
@@ -444,7 +451,7 @@
 		&.open{
 			left:100% !important;
 		}
-	}
+*/	}
 
 //Javascript Hover/Modal Classes
 	.screen{
