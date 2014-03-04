@@ -6,20 +6,15 @@
       = render 'slideshow'
       = render 'menu'
     /! ***************************************TILES********************************************
+  = will_paginate @grants
+  - if @grants[0]
+    = render partial: 'crowdfunding_grants', collection: @grants[0..2], as: :grant
+    = render partial: 'crowdfunding_grants', collection: @grants[3..5], as: :grant
+  - else
     .row
-      .twelve.columns.centered.centalign
-        = will_paginate @grants
-    - if @grants[0]
-      .row
-        = render partial: 'crowdfunding_grants', collection: @grants[0..2], as: :grant
-      .row
-        = render partial: 'crowdfunding_grants', collection: @grants[3..5], as: :grant
-    - else
-      .row
-        h2.centalign Sorry, there are no such grants currently available
-    .row
-      .twelve.columns.centered.centalign
-        = will_paginate @grants
+      h2.centalign Sorry, there are no such grants currently available
+  .row
+      = will_paginate @grants
 javascript:
   $('.banner').unslider({
       speed: 500,               //  The speed to animate each slide (in milliseconds)
