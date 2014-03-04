@@ -3,10 +3,9 @@ li onclick="window.location.href='../#{url_for grant}'" style="background-image:
     .cardtitle
       h3= link_to grant.title, grant
     p.cardcontent
-      span.darken = grant.recipient.name + ' | ' + grant.school.name
-      br/
-      span.darken
-      = grant.summary
+      span.darken.poofout = grant.recipient.name + ' | ' + grant.school.name
+      br.poofout/
+      span.poofout = grant.summary
       span.progressvalues
         h3.inlined.primary-color
           = '$' + grant.crowdfunder.pledged_total.to_s
