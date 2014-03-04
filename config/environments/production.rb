@@ -21,7 +21,7 @@ BPSF::Application.configure do
   config.assets.digest = true
 
   # Mailer defaults to bpsf-staging
-  config.action_mailer.default_url_options = { :host => 'bpsf-staging.herokuapp.com' }
+  config.action_mailer.default_url_options = { :host => 'schoolsfund-friendsandfamily.herokuapp.com' }
 
   # Use ssl
   config.use_ssl = true
