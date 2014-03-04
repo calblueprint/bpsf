@@ -8,7 +8,7 @@ class Ability
     type = user.type
 
     # Default abilities
-    can :read, Grant, state: 'crowdfunding'
+    can :read, Grant, state: ['crowdfunding','complete']
     can :read, Recipient
     can :manage, User, id: id
 
@@ -27,8 +27,8 @@ class Ability
       end
     elsif type == 'Recipient'
       can :manage, Recipient, id: id
-      can [:create, :read], Grant
-      can [:previous_show, :to_draft], Grant, recipient_id: id
+      can :create, Grant
+      can [:read, :previous_show, :to_draft], Grant, recipient_id: id
       can :manage, DraftGrant, recipient_id: id
       can :create, DraftGrant
     end
