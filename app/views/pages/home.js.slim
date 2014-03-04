@@ -1,5 +1,5 @@
-| $('#grantcards').append('#{j render(@infinite_grants)}');
-- if @infinite_grants.next_page
-  | $('.pagination').replaceWith('#{j will_paginate(@infinite_grants)}');
+| $('#grantcards').append('#{ j render(partial: 'crowdfunding_grants', collection: @grants, as: :grant)}');
+- if @grants.next_page
+  | $('.pagination').replaceWith('#{j will_paginate(@grants)}');
 - else
   | $('.pagination').remove();
