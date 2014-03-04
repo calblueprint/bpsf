@@ -137,7 +137,7 @@
                       .nine.columns
                         h4
                           | *Grade Level
-                        #drawergradelevel style="text-align:center;"
+                        #drawergradelevel
                           p List the grade levels that will be affected. Please separate different grades by commas.
                       .three.columns
                         ul
@@ -146,8 +146,8 @@
                     .row
                       .nine.columns
                         h4
-                          | *Duration
-                        #drawerduration style="text-align:center;"
+                          | *Project Duration
+                        #drawerduration
                           p How long will the proposed activity last? Please enter a number followed by a time period (ex. 1 day, 2 weeks, 3 months). If this is not applicable then please put 'n/a'.
                       .three.columns
                         ul
@@ -157,7 +157,7 @@
                       .ten.columns
                         h4
                           | *Num. of Classes Affected
-                        #drawernumclasses style="text-align:center;"
+                        #drawernumclasses
                           p How many different classes will be affected by the application?
                       .two.columns
                         ul
@@ -167,7 +167,7 @@
                       .ten.columns
                         h4
                           | *Num. of Students Affected
-                        #drawernumstudents style="text-align:center;"
+                        #drawernumstudents
                           p How many students will be affected by the application?
                       .two.columns
                         ul
@@ -177,7 +177,7 @@
                       .ten.columns
                         h4
                           | *Num. of Collaborators
-                        #drawernumcollaborators style="text-align:center;"
+                        #drawernumcollaborators
                           p Including yourself, how many people are collaborating on this application?
                       .two.columns
                         ul
@@ -188,7 +188,7 @@
                     #drawercollaborators style="text-align:center;"
                       p Please list all the people with whom you will collaborate, if any, and what role they will play. (1200 character limit)
                     ul
-                      li.field
+                      li.field style="text-align:center"
                         span#collabcount 1200 left
                         br/
                         = f.text_area :collaborators, class: [:textarea, :input, :xxwide, :validateThis], rows: 3, :placeholder => "Ex. Elvis Presley - Entertainment Advising, Neil Armstrong - Transportation, John F. Kennedy - Coordination and Advising", :data => {:length => '1200', :id => '#collabcount'}
@@ -206,7 +206,7 @@
                       .nine.columns
                         h4
                           | *Funding Goal
-                        #drawertotalbudget style="text-align:center;"
+                        #drawertotalbudget
                           p How much total funds will be used for your proposed activity? This includes other sources in addition to the Schools Fund.
                       .three.columns
                         ul
@@ -223,7 +223,7 @@
                       .nine.columns
                         h4
                           | *Total Funds Requested
-                        #drawerfundsrequested style="text-align:center;"
+                        #drawerfundsrequested
                           p How much total funds are you requesting from the Schools Fund?
                       .three.columns
                         ul
@@ -235,7 +235,7 @@
                     #drawerfundswillpayfor style="text-align:center;"
                       p Choose how the funds will be spent.
                     div
-                      = f.select(:funds_will_pay_for, DraftGrant::FUNDS, {}, {:multiple => true, class: :chosenselect})
+                      = f.select(:funds_will_pay_for, DraftGrant::FUNDS, {}, {:multiple => true, class: :chosenselect, data:{placeholder: "Choose what funds pay for..." }})
                     br/
                 .row.centalign
                   .ttip.large.primary.btn data-tooltip="Save Your Progress"
