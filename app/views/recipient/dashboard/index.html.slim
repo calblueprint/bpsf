@@ -6,14 +6,14 @@
           | Welcome #{current_user.first_name}!
       .row
         .six.columns.drafts
-          h3
+          h3.inlined
             | Draft Applications
-            span.ttip.pull_right data-tooltip=("New Application")
-              = link_to '<i class="icon-plus"></i>'.html_safe, new_draft_path
+          ul.tab-nav.pull_right
+            li = link_to 'Apply'.html_safe, new_draft_path
           table
             = render partial: 'my_draft_grants', collection: @draft_grants, as: :draft_grant
         .six.columns.submitted
-          h3 Submitted Applications
+          h3.inlined Submitted Applications
           table
             = render partial: 'my_grants', collection: @grants, as: :grant
           div align="center"

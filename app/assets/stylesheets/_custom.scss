@@ -31,7 +31,7 @@
 	.pointer{cursor:pointer;}
 	.noroundborder{@include border-radius(0px !important) ;}
 	#nobullet > li {list-style:none;}
-	.linkeffect{&:hover{color: $primary-color}}
+	.linkeffect{&:hover, &:active, &:focus{color: $primary-color}}
 
 
 //Dropdown Menu Styles
@@ -48,15 +48,9 @@
 //Containers
 	.wrapper{
 		padding:10px 10px 20px 10px;
-		&.dark{
-		background-color:#000;}
-		&.light{
-			//@include box-shadow(0px 0 10px rgb(170, 170, 170));
-			background-color:#fff;
-		}
-		&.homewrap{
-			padding: 25px;
-		}
+		&.dark{background-color:#000;}
+		&.light{background-color:#fff;}
+		&.homewrap{padding: 25px;}
 	}//Page wrapper
 
 	.page-wrapper{
@@ -69,6 +63,9 @@
 		max-width: 1200px;
 		width: 100%;
 		position: relative;
+		&:hover, &:active, &:focus{
+			.slidecard{ a{color:$primary-color !important;}}
+		}
 	} // Used for slideshow
 
 	.container {
@@ -106,19 +103,25 @@
 	.progressbar{float: left;}
 
 	.progress {
-		height: 20px;
+		height: 6px;
 		width: 100%;
 		position: relative;
 		background: $global-bg-color;
+		@include border-radius(3px);
 		span {
 			display: inline-block;
 			height: 100%;
 			background-color: $primary-color;
+			@include border-radius(3px);
 			position: relative;
 			overflow: hidden;
 			text-align:right;
-			line-height:20px;
+			line-height:6px;
 			color:$white;
+			@include transition-duration(0.5s);
+			&:hover{
+				@include box-shadow(0px 0px 8px $primary-color);
+			}
 		}
 	}
 
@@ -156,7 +159,7 @@
 			font-size: $med+1;
 			color: #000;//$white;
 			line-height: 50px;
-			&:hover{
+			&:hover, &:active, &:focus{
 				color: $primary-color;
 			}
 		}
@@ -167,8 +170,13 @@
 		top:5%;
 		left:5%;
 		width:35%;
-		.cardcontent{
-			.progress{background: $global-bg-color !important;}
+		text-align: left;
+		background: rgba(255,255,255,0.9);
+		padding: (5px 5px 5px 5px);
+		& .cardtitle{padding:5px 5px 0px 5px; margin-bottom:-10px;}
+		& .cardcontent{
+			padding:2px 5px 5px 5px;
+			.gcdiv{line-height:30px;}
 		}
 		@include respond(tablets){
 			top:0px;
@@ -195,16 +203,31 @@
 	//Grant Cards
 	.infocard{
 		overflow:none;
-	    background: rgba(255,255,255,0.9);
-		//margin: 6px 6px 20px 6px !important;
+	    background-color: $white;
 		text-align: left;
+		padding:(25px 0px 25px 0px);
+		border-bottom:1px solid $global-bg-color;
+		cursor: pointer;
 		& img{width:100%;
 			height:150px;
 			}
-		& .cardtitle{padding:5px 5px 0px 5px;}
-		& .cardcontent{
-			padding:2px 5px 5px 5px;
-			.gcdiv{line-height:30px;}
+		& .cardtitle{
+			margin-bottom:-15px;
+			margin-top:-15px;
+			a {@include transition-duration(0.3s)}
+		}
+		& .infocardimg{width: 33%; max-width: 4*$row-max-width/$cols; display:inline-block; padding:(0px 10px 0px 20px); float: left;}
+		& .infocardcontent{width: 66%; max-width: 8*$row-max-width/$cols; display:inline-block; padding:(0px 20px 0px 10px); float: right;}
+		@include respond(all-phones){
+			.progressvalues{
+				h3{font-size: $med}
+				span{font-size: $small}
+			}
+		}
+		@include transition-duration(0.3s);
+		&:hover, &:active, &:focus{
+			background-color: lighten($global-bg-color, 10%);
+			& .cardtitle{ h3{ a{color:$primary-color !important;} } }
 		}
 	}
 
@@ -216,15 +239,13 @@
 		text-align: center;
 		img {
 			vertical-align: middle;
-			min-width:100%;
-			min-height: 100%;
+			height: 100%;
 			width: auto;
-			height: auto;
 		}
 	}
 
 	.cardtext{
-		height:$base-line-height*4;
+		height:$base-line-height*3;
 		overflow:hidden;
 		text-overflow:ellipsis;
 		}
@@ -313,30 +334,35 @@
 		@extend .medium;
 		@extend .danger;
 		@extend .btn;
+		margin:(0px 5px 0px 5px);
 	}
 
 	.toggle_crowdfund{
 		@extend .medium;
 		@extend .primary;
 		@extend .btn;
+		margin:(0px 5px 0px 5px);
 	}
 
 	.toggle_reconsider{
 		@extend .medium;
 		@extend .default;
 		@extend .btn;
+		margin:(0px 5px 0px 5px);
 	}
 
 	.toggle_fund{
 		@extend .medium;
 		@extend .secondary;
 		@extend .btn;
+		margin:(0px 5px 0px 5px);
 	}
 
 	.toggle_crowdfunding_failed{
 		@extend .medium;
 		@extend .danger;
 		@extend .btn;
+		margin:(0px 5px 0px 5px);
 	}
 
 
@@ -347,9 +373,18 @@
 		width:15px;
 	}
 
+	.hoverrow{
+		cursor:pointer;
+		@include transition-duration(0.2s);
+		&:hover, &:active, &:focus{
+			background-color: lighten($global-bg-color, 10%);
+			a{color: $primary-color !important}
+		}
+	}
+
 //Help Panel
 	.helppanel{
-		position:fixed;
+/*		position:fixed;
 		top:50%;
 		margin-top:-72px;
 		left:-100%;
@@ -367,19 +402,25 @@
 			font-size: $large;
 			display:none;
 		}
-		ul{
+*/		ul{
 			list-style: none;
-			height: 100px;
+			height: 200px;//100px;
+			width: 100%; //
 			margin: 0 auto;
+			display: block; //
+			position: absolute; //
+			top: 50%; //
+			left: 0px;
+			margin-top: -100px;//
 		}
 		li{
 			display:inline-block;
-			height:100px;
-			width:120px;
-			line-height:100px;
+			height:200px;//100px;
+			width:33.333333%;//120px;
+			line-height:200px;//100px;
 			font-size: $med+1;
 			text-align: center;
-			&:hover{
+			&:hover, &:active, &:focus{
 				background-color: $global-bg-color;
 				color:$primary-color;
 			}
@@ -387,7 +428,7 @@
 	}
 
 	.helppanelbutton{
-		position:fixed;
+/*		position:fixed;
 		top:50%;
 		margin-top:-50px;
 		left:-45px;
@@ -399,15 +440,16 @@
 		color:$white;
 		font-size:$large;
 		z-index:998;
-		background-color:$primary-color;
+		background-color:$primary-color;*/
 		cursor:pointer;
-		@include rotate(-90deg);
+/*		@include rotate(-90deg);
 		@include box-shadow(0 0 10px rgb(170,170,170));
 		@include transition-duration(0.3s);
-		&:hover{
-			left: -40px;
+*/		&:hover, &:active, &:focus{
+//			left: -40px;
+color:$primary-color;
 		}
-		@include respond(all-phones){
+/*		@include respond(all-phones){
 			left:-25px;
 			height:45px;
 			width:70px;
@@ -416,14 +458,14 @@
 			padding-top:15px;
 			color:$white;
 			font-size:$med;
-			&:hover{
+			&:hover, &:active, &:focus{
 			left: -25px;
 			}
 		}
 		&.open{
 			left:100% !important;
 		}
-	}
+*/	}
 
 //Javascript Hover/Modal Classes
 	.screen{
@@ -502,12 +544,15 @@
 	background: #fff;
 	position:fixed;
 	right:10px;
-	top: -300px;
+	top: 70px;//-300px;
 	width: 150px;
-	z-index:700;
+	z-index:-10;//700;
+	opacity: 0;
+	//display: none;
 	@include box-shadow(0 0 3px #999);
 	@include transition-duration(.4s);
-	@include transition-timing-function(ease);
+	@include transition-property(opacity);//
+	//@include transition-timing-function(ease);
 	ul{
 		list-style:none;
 		li{
@@ -528,7 +573,10 @@
 	border-right: 9px solid transparent;
 	}
 	&.dropper{
-		@include translate3d(0, 370px, 0)
+		//@include translate3d(0, 370px, 0)
+		opacity: 1;
+		z-index: 700;
+		//display: block;
 	}
 }
 
@@ -648,21 +696,21 @@
 .pace .pace-activity {
   display: block;
   position: fixed;
-  z-index: 2000;
+  z-index: 10;
   top: -300px;
-  right: -300px;
+  left: -300px;
   width: 300px;
   height: 300px;
-  background: $primary-color;
-  @include rotate(45deg);
+  background: $global-bg-color;//$primary-color;
+  @include rotate(-45deg);
   pointer-events: none;
   @include transition-duration(0.3s);
 }
 
 .pace.pace-active .pace-activity {
-  @include rotate(45deg);
-  top:-150px;
-  right:-150px;
+  @include rotate(-45deg);
+  top:-95px;
+  left:-150px;
   @include transition-duration(0.3s);
 }
 
@@ -672,7 +720,7 @@
     bottom: 30px;
     left: 50%;
     display: block;
-    border: 5px solid lighten($primary-color,40%);//#fff;
+    border: 5px solid lighten($global-bg-color, 7%);//$primary-color,10%);//#fff;
     border-radius: 50%;
     content: '';
 }
@@ -681,8 +729,8 @@
     margin-left: -40px;
     width: 80px;
     height: 80px;
-    border-right-color: darken($primary-color, 10%);//rgba(0, 0, 0, .2);
-    border-left-color: darken($primary-color, 10%);//rgba(0, 0, 0, .2);
+    border-right-color: darken($global-bg-color, 7%);//$primary-color,10%);//rgba(0, 0, 0, .2);
+    border-left-color: darken($global-bg-color, 7%);//$primary-color,10%);//rgba(0, 0, 0, .2);
     -webkit-animation: pace-rotation 3s linear infinite;
     animation: pace-rotation 3s linear infinite;
 }
@@ -692,8 +740,8 @@
     margin-left: -20px;
     width: 40px;
     height: 40px;
-    border-top-color: rgba(0, 0, 0, .2);
-    border-bottom-color: rgba(0, 0, 0, .2);
+    border-top-color: lighten($global-bg-color, 7%);//$primary-color,10%);//rgba(0, 0, 0, .2);
+    border-bottom-color: lighten($global-bg-color, 7%);//$primary-color,10%);//rgba(0, 0, 0, .2);
     -webkit-animation: pace-rotation 1s linear infinite;
     animation: pace-rotation 1s linear infinite;
 }

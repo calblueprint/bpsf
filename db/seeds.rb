@@ -90,7 +90,7 @@ def make_profiles
                               home_phone: Faker::PhoneNumber.phone_number
   end
   Admin.all.each do |admin|
-    admin.create_profile! about: Faker::Lorem.sentence, 
+    admin.create_profile! about: Faker::Lorem.sentence,
                           position: Faker::Lorem.sentence
   end
   SuperUser.all.each do |user|
@@ -125,7 +125,7 @@ def make_grants
                                           n_collaborators: rand(1..4),
                                           collaborators: Faker::Lorem.paragraph,
                                           comments: Faker::Lorem.paragraph,
-                                          image: File.open(File.join(Rails.root, "app/assets/images/default/Art and Music.jpg")))
+                                          image: File.open(File.join(Rails.root, "app/assets/images/default/Other.jpg")))
   end
   crowdfunding_grants.map do |grant|
     grant.crowdfund
