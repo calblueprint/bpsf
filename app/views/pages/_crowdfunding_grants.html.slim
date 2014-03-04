@@ -1,29 +1,27 @@
-.four.columns.infocard
-  .cardtitle
-    h3= link_to grant.title, grant
-  .imgholder
-    - if grant.image
-      = link_to (image_tag grant.image_url :thumb), grant
-    - else
-      = link_to (image_tag "/assets/default/Other.jpg"), grant
-  .cardcontent
+.row.infocard onclick="window.location.href = '../#{url_for grant}'"
+  .infocardimg
+    .imgholder
+      - if grant.image
+        = link_to (image_tag grant.image_url :thumb), grant
+      - else
+        = link_to (image_tag "/assets/default/Other.jpg"), grant
+  .infocardcontent
+    .cardtitle
+      h3= link_to grant.title, grant
     p.cardtext
-      span.darken Director:
-      = grant.recipient.first_name + ' ' + grant.recipient.last_name
+      span.darken
+      = grant.recipient.first_name + ' ' + grant.recipient.last_name + ' | ' + grant.school_name
       br/
-      span.darken School:
-      span.schooltext= grant.school_name
-      br/
-      span.darken Description:
       span.destext= grant.summary
+    span.progressvalues
+      h3.inlined.primary-color
+        = '$' + grant.crowdfunder.pledged_total.to_s
+      span &nbsp;&nbsp;of&nbsp;&nbsp;
+      h3.inlined.darken
+        = '$' + grant.crowdfunder_goal.to_s
+      span &nbsp;&nbsp;with&nbsp;&nbsp;
+      h3.inlined.darken
+        = grant.days_left.to_s
+      span &nbsp;days left
     .progress
-      span.progressbar data-current=grant.crowdfunder.pledged_total data-goal=grant.crowdfunder_goal style=("width: 50%")  50%
-    .gcdiv
-      span.gctext Current:
-      span.currentnum
-        | $#{grant.crowdfunder.pledged_total}
-      | &emsp;
-      span.gctext Goal:
-      span.goalnum
-        | $#{grant.crowdfunder_goal}
-  br
+      span.progressbar data-current=grant.crowdfunder.pledged_total data-goal=grant.crowdfunder_goal style=("width: 0%")

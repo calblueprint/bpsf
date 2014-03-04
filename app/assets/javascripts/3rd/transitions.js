@@ -37,8 +37,8 @@ $(function() {
 
 //Help Panel
 	helpPanelButton.click(function(){
-		if (helpPanelButton.hasClass('open')) {$(close(items,'open','close'))}
-		else {$(open(items, 'open', 'close'))}
+		if (helpPanelButton.hasClass('active open')) {$(close(items,'active open','close'))}
+		else {$(open(items, 'active open', 'close'))}
 	});
 	$('.closeclick').click(function(){
 		if (helpPanelButton.hasClass('open')) {$(close(helpitems,'open','close'))};

@@ -2,18 +2,22 @@
   .twelve.columns
     .wrapper.light
       .row
-        h2.centalign Cropping Image
-        p.centalign Select a region of your image to use as the thumbnail.
-      .row.centalign
-        = image_tag @draft_grant.image_url(:banner), id: 'cropbox'
+        .eight.columns.centered.centalign
+          h2.centalign Cropping Image
+          p.centalign Select a region of your image to use as the thumbnail.
+      .row
+        .eight.columns.centered.centalign
+          = image_tag @draft_grant.image_url(:banner), id: 'cropbox'
       br/
       .row
-        h4 Preview
-        div style=("width:294px; height:150px; overflow:hidden") 
-          = image_tag @draft_grant.image_url(:banner), id: 'preview', style: 'max-width:none;'
+        .eight.columns.centered.centalign
+          h4 Preview
+          div style=("width:294px; height:150px; overflow:hidden") 
+            = image_tag @draft_grant.image_url(:banner), id: 'preview', style: 'max-width:none;'
       .row
-        = form_for @draft_grant, url: draft_path do |f|
-          - %w[x y w h].each do |attribute|
-            = f.hidden_field "crop_#{attribute}"
-          .large.primary.btn
-            = f.submit 'Save!'
+        .eight.columns.centered.centalign
+          = form_for @draft_grant, url: draft_path do |f|
+            - %w[x y w h].each do |attribute|
+              = f.hidden_field "crop_#{attribute}"
+            .large.primary.btn
+              = f.submit 'Save!'
