@@ -17,16 +17,22 @@ class UserController < ApplicationController
 
   def update
     if @user.update_attributes params[:user]
-      flash[:success] = 'Profile updated!'
       if params[:stripe_token]
         create_customer!
       end
+      flash[:success] = 'Profile updated!'
       redirect_to user_path @user
     else
       if params[:stripe_token]
         create_customer!
       end
       render 'edit'
+    end
+  rescue Stripe::CardError => e
+    flash[:error] = e.message
+    respond_to do |format|
+      format.html { redirect_to user_path @user }
+      format.js
     end
   end
 
