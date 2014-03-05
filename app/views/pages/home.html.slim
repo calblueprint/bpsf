@@ -6,7 +6,6 @@
       = render 'slideshow'
       = render 'menu'
     /! ***************************************TILES********************************************
-  = will_paginate @grants
   - if @grants[0]
     = render partial: 'crowdfunding_grants', collection: @grants[0..2], as: :grant
     = render partial: 'crowdfunding_grants', collection: @grants[3..5], as: :grant
