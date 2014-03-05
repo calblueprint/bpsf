@@ -653,6 +653,10 @@ color:$primary-color;
 	}
 	.navigationbar .loginmenu{padding-right:5px;}
 }
+
+@include respond(portrait-phones){
+	.homelogo{display: none !important;}
+}
 /********************* Paginate Styles *******************/
 .pagination{
   text-align: center;
