@@ -4,11 +4,11 @@ class PaymentsController < ApplicationController
   def create
     @grant = Grant.find params[:grant_id]
     deny_access url: url_for(@grant) if !anyone_signed_in?
+    create_customer_if_new_donor!
     @payment = Payment.make_payment! params[:amount], @grant, current_user
     @message = nil
     if @payment.save
       @grant.reload
-      create_customer_if_new_donor!
       respond_to do |format|
         format.html { redirect_to payment_success_path(grant_id: @grant.id, payment_id: @payment.id) }
         format.js
@@ -22,6 +22,12 @@ class PaymentsController < ApplicationController
         }
         format.js
       end
+    end
+  rescue Stripe::CardError => e
+    flash[:error] = e.message
+    respond_to do |format|
+      format.html { redirect_to @grant }
+      format.js
     end
   end
 
