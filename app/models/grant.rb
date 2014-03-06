@@ -214,7 +214,7 @@ class Grant < ActiveRecord::Base
     !comments.blank?
   end
 
-  def self.grant_ending
+  def self.grant_check
     @grants = Grant.crowdfunding_grants
     @grants.each do |grant|
       if grant.days_left == 3
