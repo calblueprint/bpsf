@@ -19,9 +19,13 @@
       span &nbsp;&nbsp;of&nbsp;&nbsp;
       h3.inlined.darken
         = '$' + grant.crowdfunder_goal.to_s
-      span &nbsp;&nbsp;with&nbsp;&nbsp;
-      h3.inlined.darken
-        = grant.days_left.to_s
-      span &nbsp;days left
+      - if grant.crowdfunding?
+        span &nbsp;&nbsp;with&nbsp;&nbsp;
+        h3.inlined.darken
+          = grant.days_left.to_s
+        span &nbsp;days left
+      - else
+        h3.inlined.darken
+          span &nbsp;&nbsp;Complete
     .progress
       span.progressbar data-current=grant.crowdfunder.pledged_total data-goal=grant.crowdfunder_goal style=("width: 0%")
