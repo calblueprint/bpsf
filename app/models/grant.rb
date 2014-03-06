@@ -218,10 +218,16 @@ class Grant < ActiveRecord::Base
     @grants = Grant.crowdfunding_grants
     @grants.each do |grant|
       if grant.days_left == 3
-        GrantEndingJob.new.async.perform(self)
+        GrantEndingJob.new.async.perform(grant)
         @supers = SuperUser.all
         @supers.each do |admin|
-          SuperCrowdendingJob.new.async.perform(self, admin)
+          SuperCrowdendingJob.new.async.perform(grant, admin)
+        end
+      end
+      if grant.crowdfunder.progress == "80%"
+        @payments = grant.crowdfunder.payments
+        @payments.each do |payment|
+          DonorNearendJob.new.async.perform(grant,payment.user)
         end
       end
     end
