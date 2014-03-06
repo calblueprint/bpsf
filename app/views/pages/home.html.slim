@@ -1,4 +1,4 @@
-.row#grantcards
+.row
   .wrapper.light.homewrap
     .twelve.columns.centered.centalign
       .row
@@ -6,6 +6,7 @@
       = render 'slideshow'
       = render 'menu'
     /! ***************************************TILES********************************************
+.row#grantcards
   - if @grants[0]
     = render partial: 'crowdfunding_grants', collection: @grants[0..2], as: :grant
     = render partial: 'crowdfunding_grants', collection: @grants[3..5], as: :grant
