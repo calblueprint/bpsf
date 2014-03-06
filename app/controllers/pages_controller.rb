@@ -8,7 +8,7 @@ class PagesController < ApplicationController
     'Special Ed','Student / Family Support / Mental Health','Other']
 
   def home
-    if params[:successful] || Grant.crowdfunding_grants.empty?
+    if params[:successful]
       @grants = Grant.complete_grants
       @grants = @grants.select { |grant| grant.previous_version.state == 'crowdfunding'}
       @slideshow_grants = @grants.sample 3
