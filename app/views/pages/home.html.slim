@@ -1,4 +1,4 @@
-.row
+.row#grantcards
   .wrapper.light.homewrap
     .twelve.columns.centered.centalign
       .row
@@ -6,15 +6,13 @@
       = render 'slideshow'
       = render 'menu'
     /! ***************************************TILES********************************************
-  = will_paginate @grants
   - if @grants[0]
     = render partial: 'crowdfunding_grants', collection: @grants[0..2], as: :grant
     = render partial: 'crowdfunding_grants', collection: @grants[3..5], as: :grant
   - else
     .row
       h2.centalign Sorry, there are no such grants currently available
-  .row
-      = will_paginate @grants
+  = will_paginate @grants
 javascript:
   $('.banner').unslider({
       speed: 500,               //  The speed to animate each slide (in milliseconds)
@@ -29,6 +27,14 @@ javascript:
       var fn = this.className.split(' ')[1];
 
       unslider.data('unslider')[fn]();
+  });
+
+  $(window).scroll(function(){
+    var url = $('.pagination .next_page').attr('href');
+    if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 150) {
+        $('.pagination').text('Fetching more grants...')
+        $.getScript(url);
+    }
   });
 
   var easter_egg = new Konami('http://www.vivekraghuram.com/bpsf.html');
