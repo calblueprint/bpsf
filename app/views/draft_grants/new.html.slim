@@ -5,7 +5,11 @@
       .row
         .twelve.columns.centered.centalign
           h2 Creating a Grant
-          h5 Enter a title to get started!
+          h5
+            | (Must be a BUSD Employee to apply)
+          br/
+          h5
+            | Enter a title to get started!
           br/
       .row.centalign
         = form_for @draft_grant, url: drafts_path do |f|
