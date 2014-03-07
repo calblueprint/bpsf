@@ -11,6 +11,7 @@ What We Are Doing
 ----
 The Schools Fund believed in a mission to encourage a stronger and more involved relationship between teachers and the parents of students. This grant platform is designed to crowdfund donations towards teacher projects while targeting a specific audience. In the future, the Schools Fund will use this application to replace their entire grant application system.
 The application is currently in Beta **[here.](https://schoolsfund-friendsandfamily.herokuapp.com/)**
+View the demo **[here.](https://bpsf-production.herokuapp.com/)**
 
 Who We Are
 ----
