@@ -1,4 +1,4 @@
-Berkeley Public Schools Fund Grant Platform
+Berkeley Public Schools Fund <br> Grant Platform
 ====
 
 What is Berkeley Public Schools Fund?
@@ -10,7 +10,7 @@ Every year the Schools Fund awards approximately 300 classroom and districtwide 
 What We Are Doing
 ----
 The Schools Fund believed in a mission to encourage a stronger and more involved relationship between teachers and the parents of students. This grant platform is designed to crowdfund donations towards teacher projects while targeting a specific audience. In the future, the Schools Fund will use this application to replace their entire grant application system.
-The application is currently in Beta. **[here.](https://schoolsfund-friendsandfamily.herokuapp.com/)**
+The application is currently in Beta **[here.](https://schoolsfund-friendsandfamily.herokuapp.com/)**
 
 Who We Are
 ----
