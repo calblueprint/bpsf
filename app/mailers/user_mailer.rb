@@ -55,7 +55,8 @@ class UserMailer < ActionMailer::Base
     @grant = grant
     @recipient = @grant.recipient
     @url = 'http://schoolsfund-friendsandfamily.herokuapp.com/grants/' + (@grant.id).to_s
-    mail(to: @recipient.email, subject: 'Your grant is crowdfunding.')
+    @subject = 'Your grant, '+@grant.title+', has been approved for crowdfunding by the Schools Fund. Read this email for next steps...'
+    mail(to: @recipient.email, subject: @subject)
   end
 
   def grant_ending(grant)
