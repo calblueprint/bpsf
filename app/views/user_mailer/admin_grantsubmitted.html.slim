@@ -4,9 +4,9 @@ html
     meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
   body
     h1
-      | #{@@recipient.first_name} #{@recipient.last_name} has just submitted a new grant!
+      | #{@recipient.first_name} #{@recipient.last_name} has just submitted a new grant!
     p
-      | #{@@recipient.first_name} #{@recipient.last_name} has just submitted a new grant called #{@grant.title}.
+      | #{@recipient.first_name} #{@recipient.last_name} has just submitted a new grant called #{@grant.title}.
       br/
     p
       | To view the grant's page, just follow this link: #{@url}.
