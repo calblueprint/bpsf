@@ -110,10 +110,14 @@ def make_grants
                      grant_id: grant.id,
                      goal: grant.requested_funds
     grant.save!
+
+def make_profiles
+  SuperUser.all.each do |user|
+    user.create_profile! about: "Fill this out!",
+                         position: "Fill this out!"
   end
 end
 
 make_schools
 make_users
 make_profiles
-make_grants
