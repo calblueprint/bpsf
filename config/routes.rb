@@ -27,6 +27,10 @@ BPSF::Application.routes.draw do
   devise_for :users, :controllers => { :registrations => "registrations" }
   resources :user, except: [:index, :new, :create, :destroy]
 
+  scope '/user' do
+    put ':id/update_password', to: 'user#update_password', as: :update_password
+  end
+
   scope '/users' do
     post ':id/approve', to: 'user#approve', as: :approve_user
     post ':id/reject', to: 'user#reject', as: :reject_user
