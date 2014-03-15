@@ -13,17 +13,21 @@
               a href="#"  Payment History
             li
               a href="#"  Update Credit Card Info.
+            li
+              a href="#"  Change Password
       .tab-content.active
         .row
           .eight.columns
-            h5.inlined Email:
-            = @user.email
-            br/
-            = render profile_for(@user), user: @user, profile: @profile
             br/
             - if @user.eql? current_user
               .medium.primary.btn
                 = link_to 'Edit Info'.html_safe, edit_user_path(id: @user.id)
+            br/
+            h5 Email:
+            = @user.email
+            br/
+            = render profile_for(@user), user: @user, profile: @profile
+            br/
           /! Currently breaking
           /! <div class="four columns"
           /! </div
@@ -37,3 +41,5 @@
         br/
         br/
         = render 'user/credit_card_edit'
+      .tab-content
+        = render 'user/update_password'
