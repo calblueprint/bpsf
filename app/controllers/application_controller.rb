@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
 
   def store_location
     if (request.fullpath.include? "grants")
-      session[:previous_url] = request.fullpath 
+      session[:previous_url] = request.fullpath
     end
   end
 
