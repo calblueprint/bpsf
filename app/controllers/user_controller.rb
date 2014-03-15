@@ -71,6 +71,18 @@ class UserController < ApplicationController
     end
   end
 
+  def update_password
+    @user = User.find(current_user.id)
+    if @user.update_attributes params[:user]
+      # Sign in the user by passing validation in case his password changed
+      flash[:success] = "Password Succesfully Changed"
+      sign_in @user, :bypass => true
+    else
+      flash[:error] = "Mistyped password"
+    end
+    redirect_to user_path @user
+  end
+
   private
   def create_customer!
     customer = Stripe::Customer.create email: current_user.email,
