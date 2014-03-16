@@ -1,11 +1,11 @@
 module ApplicationHelper
     def us_states
       [
+        ['CA', 'CA'],
         ['AK', 'AK'],
         ['AL', 'AL'],
         ['AR', 'AR'],
         ['AZ', 'AZ'],
-        ['CA', 'CA'],
         ['CO', 'CO'],
         ['CT', 'CT'],
         ['DC', 'DC'],
