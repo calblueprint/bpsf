@@ -34,6 +34,7 @@ class User < ActiveRecord::Base
   has_one :profile, class_name: 'UserProfile'
   accepts_nested_attributes_for :profile
 
+  validates :type, :presence => { :message => "must be selected" }
   scope :donors, -> { where type: nil }
 
   def name
