@@ -187,7 +187,7 @@ class Grant < ActiveRecord::Base
           customer: user.stripe_token,
           # This should get updated depending on the environment.
           # TODO: Refactor so this logic happens in the controller
-          description: "User Profile: http://localhost:3000#{Rails.application.routes.url_helpers.user_path(user)}"
+          description: "Grant Donated to: #{payment.crowdfund.grant.title}, Grant ID: #{payment.crowdfund.grant.id}"
         payment.charge_id = charge.id
         payment.save!
         UserCrowdsuccessJob.new.async.perform(user,self)
