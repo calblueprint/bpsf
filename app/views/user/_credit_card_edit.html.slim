@@ -1,19 +1,53 @@
-
 = form_for @user, as: :user, url: user_path(@user) do |f|
   = hidden_field_tag :stripe_token
-  .field
-    = label_tag :card_number, "Credit Card Number"
-    = text_field_tag :card_number, nil, name: nil, placeholder: @card_number, class: :input
-  .field
-    = label_tag :card_code, "Card Security Code"
-    = text_field_tag :card_code, nil, name: nil, class: :input
-  .field
-    = label_tag :card_month, "Card Expiration"
-    .picker
-      = select_month @month, {add_month_numbers: true}, {name: nil, id: "card_month"}
-    .picker
-      = select_year @year, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"}
-  #stripe-error
+  .row
+    .six.columns
+      .field
+        = label_tag :card_name, "Cardholder", class: :largefont
+        = text_field_tag :card_name, current_user.name, name: nil, class: :input
+  .row
+    .six.columns
+      .field
+        = label_tag :card_number, "Credit Card Number", class: :largefont
+        = text_field_tag :card_number, nil, name: nil, class: :input
+    .two.columns
+      .field
+        = label_tag :card_code, "CVC", class: :largefont
+        = text_field_tag :card_code, nil, name: nil, class: :input
+    .four.columns
+      .field
+        = label_tag :card_month, "Card Expiration", class: :largefont
+        = select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"}
+        = select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"}
+  - if !super_user?
+    h4
+      br/
+      | Billing Address (Make changes as required):
+      hr/
+    .field
+      = label_tag :address_line1, "Address Line 1", class: :largefont
+      = text_field_tag :address_line1, current_user.profile.address, name: nil, class: :input
+    .field
+      = label_tag :address_line2, "Address Line 2", class: :largefont
+      = text_field_tag :address_line2, nil, name: nil, class: :input
+    .row
+      .six.columns
+        .field
+          = label_tag :address_city, "City", class: :largefont
+          = text_field_tag :address_city, current_user.profile.city, name: nil, class: :input
+      .two.columns
+        .field
+          = label_tag :address_zip, "Zip", class: :largefont
+          = text_field_tag :address_zip, current_user.profile.zipcode, name: nil, class: :input
+      .two.columns
+        .field
+          = label_tag :address_state, "State", class: :largefont
+          = select_tag 'State', options_for_select(us_states),:name=>"state",:id=>"address_state"
+      .two.columns
+        .field
+          = label_tag :address_country, "Country", class: :largefont
+          = text_field_tag :address_country, "USA", name: nil, class: :input
     noscript Javascript is required. Please enable it in your browser settings.
-  .medium.primary.btn.pull_right
+  br/
+  .medium.primary.btn.pull_left
     = f.submit "Save!", id: 'update-cc'

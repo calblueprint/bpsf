@@ -11,23 +11,67 @@
               li= msg
       = hidden_field_tag :grant_id, id
       = hidden_field_tag :stripe_token
-      .field.prepend
-        = label_tag :amount, "Donation Total", class: :largefont
-        span.adjoined $
-        = text_field_tag :amount, nil, class: :input
       - if current_user && current_user.stripe_token.present?
+        .field.prepend
+          = label_tag :amount, "Donation Total", class: :largefont
+          span.adjoined $
+          = text_field_tag :amount, nil, class: :input
         | Credit card (ending in #{current_user.last4}) has already been provided. You can update this on your profile.
       - else
-        .field
-          = label_tag :card_number, "Credit Card Number", class: :largefont
-          = text_field_tag :card_number, nil, name: nil, class: :input
-        .field
-          = label_tag :card_code, "Card Security Code", class: :largefont
-          = text_field_tag :card_code, nil, name: nil, class: :input
-        .field
-          = label_tag :card_month, "Card Expiration", class: :largefont
-          = select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"}
-          = select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"}
+        h3 Welcome to your first donation!
+        hr/
+        .row
+          .six.columns
+            .field
+              = label_tag :card_name, "Your Name", class: :largefont
+              = text_field_tag :card_name, current_user.name, name: nil, class: :input
+          .six.columns
+            .field.prepend
+              = label_tag :amount, "Donation Total", class: :largefont
+              span.adjoined $
+              = text_field_tag :amount, nil, class: :input
+        .row
+          .six.columns
+            .field
+              = label_tag :card_number, "Credit Card Number", class: :largefont
+              = text_field_tag :card_number, nil, name: nil, class: :input
+          .two.columns
+            .field
+              = label_tag :card_code, "CVC", class: :largefont
+              = text_field_tag :card_code, nil, name: nil, class: :input
+          .four.clumns
+            .field
+              = label_tag :card_month, "Card Expiration", class: :largefont
+              = select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"}
+              = select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"}
+        - if !super_user?
+          h4
+            br/
+            | Billing Address (Make changes as required):
+            hr/
+          .field
+            = label_tag :address_line1, "Address Line 1", class: :largefont
+            = text_field_tag :address_line1, current_user.profile.address, name: nil, class: :input
+          .field
+            = label_tag :address_line2, "Address Line 2", class: :largefont
+            = text_field_tag :address_line2, nil, name: nil, class: :input
+          .row
+            .six.columns
+              .field
+                = label_tag :address_city, "City", class: :largefont
+                = text_field_tag :address_city, current_user.profile.city, name: nil, class: :input
+            .two.columns
+              .field
+                = label_tag :address_zip, "Zip", class: :largefont
+                = text_field_tag :address_zip, current_user.profile.zipcode, name: nil, class: :input
+            .two.columns
+              .field
+                = label_tag :address_state, "State", class: :largefont
+                = select_tag 'State', options_for_select(us_states),:name=>"state",:id=>"address_state"
+            .two.columns
+              .field
+                = label_tag :address_country, "Country", class: :largefont
+                = text_field_tag :address_country, "USA", name: nil, class: :input
       #stripe_error
         noscript Javscript is required. Please enable it in your browser settings.
       .donate.large.primary.btn
