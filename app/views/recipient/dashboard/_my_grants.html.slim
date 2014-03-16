@@ -2,8 +2,11 @@ tr.hoverrow onclick="window.location.href = '../#{url_for grant}'"
   td
     = link_to grant.title, grant_path(grant)
   td style="text-align:right"
-    = 'Crowdfunding: ' + grant.crowdfunder.progress if grant.crowdfunding?
-    = 'Crowdfund pending' if grant.crowdfund_pending?
-    = 'Pending' if grant.pending?
-    = 'Complete' if grant.complete?
-    = 'Rejected' if grant.rejected?
+    - if (grant.days_left <= 0)
+        = 'Past Deadline'
+    - else
+        = 'Crowdfunding' if grant.crowdfunding?
+        = 'Crowdfund pending' if grant.crowdfund_pending?
+        = 'Pending' if grant.pending?
+        = 'Complete' if grant.complete?
+        = 'Rejected' if grant.rejected?
