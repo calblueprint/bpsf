@@ -63,7 +63,8 @@ def make_users
                  email: "bpsfparent#{n}@gmail.com",
                  password: "password",
                  password_confirmation: "password",
-                 approved: true
+                 approved: true,
+                 type: "User"
   end
   a = Admin.first
   a.approved = true ; a.save!
