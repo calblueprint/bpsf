@@ -4,7 +4,6 @@
 #
 #  id               :integer          not null, primary key
 #  school_id        :integer
-#  image_url        :string(255)
 #  about            :text
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
