@@ -160,6 +160,10 @@ class Grant < ActiveRecord::Base
     (deadline - Date.today).to_i
   end
 
+  def past_deadline?
+    days_left <= 0
+  end
+
   def grant_funded
     GrantFundedJob.new.async.perform(self)
   end
@@ -197,6 +201,22 @@ class Grant < ActiveRecord::Base
     end
     rescue Stripe::InvalidRequestError => err
       logger.error "Stripe error: #{err.message}"
+  end
+
+  def status
+    if complete?
+      "Complete"
+    elsif rejected?
+      "Rejected"
+    elsif pending?
+      "Pending"
+    else
+      if past_deadline?
+        "Past Deadline"
+      else
+        "Crowdfunding"
+      end
+    end
   end
 
   def crowdfunding?
