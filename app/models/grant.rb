@@ -269,8 +269,8 @@ class Grant < ActiveRecord::Base
     end
 
     def valid_deadline
-      errors.add(:deadline, "should be later than today") unless
-        !deadline.blank? and deadline >= Date.today
+      errors.add(:deadline, "should be later than today") if
+        deadline.blank? || deadline <= Date.today
     end
 
     def grade_format
