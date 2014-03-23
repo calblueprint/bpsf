@@ -18,7 +18,7 @@
                 li#distributions onclick="setCookie('tabval',this.id,1)"
                   a href="#"  Data Distributions
           .tab-content
-            = render partial: 'shared/table', locals: { heads: %w[Name Status], partials: [['all_grants', @grants, :grant, "There are no grants"]] }
+            = render partial: 'shared/table', locals: { heads: ["Name", "Status", "Teacher, School"], partials: [['all_grants', @grants, :grant, "There are no grants"]] }
             .four.columns.centered.centalig1n
               = will_paginate @grants
           .tab-content

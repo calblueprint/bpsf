@@ -31,6 +31,7 @@
 #  school_name        :string(255)
 #  teacher_name       :string(255)
 #  type               :string(255)
+#  deadline           :date
 #
 
 class DraftGrant < Grant
@@ -59,11 +60,12 @@ class DraftGrant < Grant
   end
 
   def submit_and_destroy
-    if transfer_attributes_to_new_grant
-      GrantSubmittedJob.new.async.perform(self)
+    new_grant = transfer_attributes_to_new_grant
+    if new_grant
+      GrantSubmittedJob.new.async.perform(new_grant)
       admins = Admin.all + SuperUser.all
       admins.each do |admin|
-        AdminGrantsubmittedJob.new.async.perform(self, admin)
+        AdminGrantsubmittedJob.new.async.perform(new_grant, admin)
       end
       destroy
     end
@@ -77,7 +79,12 @@ class DraftGrant < Grant
       temp.image = image
       temp.type = nil
 
-      if temp.valid? then temp.save else get_errors_and_destroy(temp) end
+      if temp.valid? then
+        temp.save
+        return temp
+      else
+        get_errors_and_destroy(temp)
+      end
     end
 
     def get_errors_and_destroy(temp)

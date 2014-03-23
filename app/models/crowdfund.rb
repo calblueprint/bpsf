@@ -3,7 +3,6 @@
 # Table name: crowdfunds
 #
 #  id            :integer          not null, primary key
-#  deadline      :datetime
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  goal          :integer

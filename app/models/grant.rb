@@ -31,7 +31,9 @@
 #  school_name        :string(255)
 #  teacher_name       :string(255)
 #  type               :string(255)
+#  deadline           :date
 #
+
 require 'textacular/searchable'
 class Grant < ActiveRecord::Base
   has_paper_trail :only => [:state]
@@ -106,7 +108,7 @@ class Grant < ActiveRecord::Base
   scope :submitted,           -> { where type: nil }
   scope :pending_grants,      -> { with_state :pending }
   scope :complete_grants,     -> { with_state :complete }
-  scope :accepted_grants,     -> { (with_state :complete) | (with_state :crowdfunding) | (with_state :crowdfund_pending) }
+  scope :accepted_grants,     -> { with_state [:complete, :crowdfunding, :crowdfund_pending]}
   scope :rejected_grants,     -> { with_state :rejected }
   scope :crowdfunding_grants, -> { with_state :crowdfunding }
   scope :crowdpending_grants, -> { with_state :crowdfund_pending }
@@ -158,6 +160,10 @@ class Grant < ActiveRecord::Base
     (deadline - Date.today).to_i
   end
 
+  def past_deadline?
+    days_left <= 0
+  end
+
   def grant_funded
     GrantFundedJob.new.async.perform(self)
   end
@@ -181,20 +187,38 @@ class Grant < ActiveRecord::Base
     @payments.each do |payment|
       unless payment.charge_id
         user = User.find payment.user_id
+        grant = payment.crowdfund.grant
         amount = (payment.amount * 100).to_i
         charge = Stripe::Charge.create amount: amount,
           currency: "usd",
           customer: user.stripe_token,
           # This should get updated depending on the environment.
           # TODO: Refactor so this logic happens in the controller
-          description: "Grant Donated to: #{payment.crowdfund.grant.title}, Grant ID: #{payment.crowdfund.grant.id}"
+          description: "F&F Grant - Teacher: #{grant.teacher_name}, Grant: #{grant.title}, Grant ID: #{payment.crowdfund.grant.id}"
         payment.charge_id = charge.id
+        payment.status = "Charged"
         payment.save!
         UserCrowdsuccessJob.new.async.perform(user,self)
       end
     end
     rescue Stripe::InvalidRequestError => err
       logger.error "Stripe error: #{err.message}"
+  end
+
+  def status
+    if complete?
+      "Complete"
+    elsif rejected?
+      "Rejected"
+    elsif pending?
+      "Pending"
+    else
+      if past_deadline?
+        "Past Deadline"
+      else
+        "Crowdfunding: " + self.crowdfunder.progress
+      end
+    end
   end
 
   def crowdfunding?
@@ -268,7 +292,7 @@ class Grant < ActiveRecord::Base
 
     def valid_deadline
       errors.add(:deadline, "should be later than today") if
-        !deadline.blank? and deadline <= Date.today
+        deadline.blank? || deadline <= Date.today
     end
 
     def grade_format
