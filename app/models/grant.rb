@@ -34,40 +34,6 @@
 #  deadline           :date
 #
 
-# == Schema Information
-#
-# Table name: grants
-#
-#  id                 :integer          not null, primary key
-#  created_at         :datetime         not null
-#  updated_at         :datetime         not null
-#  title              :text
-#  summary            :text
-#  subject_areas      :text
-#  grade_level        :text
-#  duration           :text
-#  num_classes        :integer
-#  num_students       :integer
-#  total_budget       :integer
-#  requested_funds    :integer
-#  funds_will_pay_for :text
-#  budget_desc        :text
-#  purpose            :text
-#  methods            :text
-#  background         :text
-#  n_collaborators    :integer
-#  collaborators      :text
-#  comments           :text
-#  recipient_id       :integer
-#  state              :string(255)
-#  video              :string(255)
-#  image              :string(255)
-#  school_id          :integer
-#  rating_average     :decimal(6, 2)    default(0.0)
-#  school_name        :string(255)
-#  teacher_name       :string(255)
-#  type               :string(255)
-#
 require 'textacular/searchable'
 class Grant < ActiveRecord::Base
   has_paper_trail :only => [:state]
@@ -303,8 +269,8 @@ class Grant < ActiveRecord::Base
     end
 
     def valid_deadline
-      errors.add(:deadline, "should be later than today") if
-        !deadline.blank? and deadline <= Date.today
+      errors.add(:deadline, "should be later than today") unless
+        !deadline.blank? and deadline >= Date.today
     end
 
     def grade_format

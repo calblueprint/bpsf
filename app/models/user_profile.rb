@@ -5,7 +5,7 @@
 #  id           :integer          not null, primary key
 #  address      :text
 #  city         :text
-#  zipcode      :integer
+#  zipcode      :text
 #  phone        :text
 #  relationship :text
 #  user_id      :integer
