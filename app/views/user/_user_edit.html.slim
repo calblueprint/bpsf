@@ -14,7 +14,7 @@
         .field
           = ff.label :relationship, 'Relationship'
           = ff.select :relationship, options_for_select(['Parent of Student', 'Parent of Alum', 'Alum',
-                   'Grandparent of Student', 'Grandparent of Alum', 'Relative', 'Family Friend', 'Other'])
+                   'Grandparent of Student', 'Grandparent of Alum', 'Relative', 'Family Friend', 'Other'], @profile.relationship)
         .field
           = ff.label :address, 'Address'
           = ff.text_field :address, class: :input
@@ -24,6 +24,9 @@
         .field
           = ff.label :zipcode, "Zip Code"
           = ff.text_field :zipcode, class: :input
+        .field
+          = ff.label :state, "State"
+          = ff.select :state, options_for_select(us_states, @profile.state), :include_blank => "State:"
         .field
           = ff.label :phone, "Phone Number"
           = ff.text_field :phone, class: :input

@@ -24,7 +24,7 @@ module ProfilesHelper
   def incomplete_profile(user)
     profile = user.profile
     profile.attributes.each_pair do |name, value|
-      return true if value.nil?
+      return true if value.blank?
     end
     false
   end

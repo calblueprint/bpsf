@@ -11,11 +11,12 @@
 #  user_id      :integer
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  state        :string(255)
 #
 
 class UserProfile < ActiveRecord::Base
   include ActionView::Helpers::NumberHelper
-  attr_accessible :address, :city, :zipcode, :phone, :relationship, :user_id
+  attr_accessible :address, :city, :zipcode, :phone, :relationship, :user_id, :state
 
   belongs_to :user
 

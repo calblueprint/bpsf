@@ -42,7 +42,7 @@
       .two.columns
         .field
           = label_tag :address_state, "State", class: :largefont
-          = select_tag 'State', options_for_select(us_states),:name=>"state",:id=>"address_state"
+          = select_tag 'State', options_for_select(us_states, current_user.profile.state),:name=>"state",:id=>"address_state"
       .two.columns
         .field
           = label_tag :address_country, "Country", class: :largefont
