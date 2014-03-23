@@ -187,13 +187,14 @@ class Grant < ActiveRecord::Base
     @payments.each do |payment|
       unless payment.charge_id
         user = User.find payment.user_id
+        grant = payment.crowdfund.grant
         amount = (payment.amount * 100).to_i
         charge = Stripe::Charge.create amount: amount,
           currency: "usd",
           customer: user.stripe_token,
           # This should get updated depending on the environment.
           # TODO: Refactor so this logic happens in the controller
-          description: "Grant Donated to: #{payment.crowdfund.grant.title}, Grant ID: #{payment.crowdfund.grant.id}"
+          description: "F&F Grant - Teacher: #{grant.teacher_name}, Grant: #{grant.title}, Grant ID: #{payment.crowdfund.grant.id}"
         payment.charge_id = charge.id
         payment.status = "Charged"
         payment.save!
