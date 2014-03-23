@@ -46,7 +46,7 @@
                     #drawersubject style="text-align:center;"
                       p Select all subjects that would apply to your application.
                     .eight.columns.centered
-                      = f.select :subject_areas, DraftGrant::SUBJECTS, {}, {:multiple => true, class: :chosenselect}
+                      = f.select :subject_areas, DraftGrant::SUBJECTS, {}, {:multiple => true, class: :chosenselect, data:{placeholder: "Select:" }}
                   br/
                   li.field
                     h4
@@ -235,7 +235,7 @@
                     #drawerfundswillpayfor style="text-align:center;"
                       p Choose how the funds will be spent.
                     div
-                      = f.select(:funds_will_pay_for, DraftGrant::FUNDS, {}, {:multiple => true, class: :chosenselect, data:{placeholder: "Choose what funds pay for..." }})
+                      = f.select(:funds_will_pay_for, DraftGrant::FUNDS, {}, {:multiple => true, class: :chosenselect, data:{placeholder: "Select:" }})
                     br/
                 .row.centalign
                   .ttip.large.primary.btn data-tooltip="Save Your Progress"
