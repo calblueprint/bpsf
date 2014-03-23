@@ -38,6 +38,9 @@
           = ff.label :zipcode, "Zip Code"
           = ff.text_field :zipcode, class: :input
         .field
+          = ff.label :state, "State"
+          = ff.select :state, options_for_select(us_states, @user.profile.state)
+        .field
           = ff.label :work_phone, "Work Phone"
           = ff.text_field :work_phone, class: :input
         .field

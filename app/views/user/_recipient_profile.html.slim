@@ -1,18 +1,18 @@
 .row
   - if profile.school_id
-    h5.inlined School:
+    h5 School:
     = School.find(profile.school_id).name
     br/
 .row
   - if profile.started_teaching
-    h5.inlined Years of Experience:
+    h5 Years of Experience:
     = profile.years_teaching
 .row
   - if profile.grade
-    h5.inlined Grade Level(s):
+    h5 Grade Level(s):
     = profile.grade
 .row
-  h5.inlined Subject(s):
+  h5 Subject(s):
   = profile.subject
   br/
 .row
@@ -23,7 +23,7 @@
   - if profile.address
     h5 Address
     = profile.address
-    | , #{profile.city} #{profile.zipcode}
+    | , #{profile.city} #{profile.zipcode}, #{profile.state}
 .row
   - if profile.work_phone
     h5 Work Phone

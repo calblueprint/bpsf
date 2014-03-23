@@ -32,7 +32,7 @@
           /! <div class="four columns"
           /! </div
       .tab-content
-        = render partial: 'shared/table', locals: { heads: %w[Name School Amount], partials: [['payments', @payments, :payment, "There are no payments"]] }
+        = render partial: 'shared/table', locals: { heads: %w[Name School Amount Status], partials: [['payments', @payments, :payment, "There are no payments"]] }
         .four.columns.centered.centalign
           = will_paginate @payments
       .tab-content

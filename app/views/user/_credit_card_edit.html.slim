@@ -19,7 +19,7 @@
         = label_tag :card_month, "Card Expiration", class: :largefont
         = select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"}
         = select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"}
-  - if !super_user?
+      br/
     h4
       br/
       | Billing Address (Make changes as required):
@@ -42,7 +42,7 @@
       .two.columns
         .field
           = label_tag :address_state, "State", class: :largefont
-          = select_tag 'State', options_for_select(us_states),:name=>"state",:id=>"address_state"
+          = select_tag 'State', options_for_select(us_states, current_user.profile.state),:name=>"state",:id=>"address_state"
       .two.columns
         .field
           = label_tag :address_country, "Country", class: :largefont

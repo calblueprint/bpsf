@@ -7,7 +7,7 @@
     h5 Address:
     .row= profile.address
     .row
-      = "#{profile.city} #{profile.zipcode}"
+      = "#{profile.city} #{profile.zipcode}, #{profile.state}"
 .row
   - if profile.phone
     h5 Phone:
