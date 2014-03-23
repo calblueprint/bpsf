@@ -195,6 +195,7 @@ class Grant < ActiveRecord::Base
           # TODO: Refactor so this logic happens in the controller
           description: "Grant Donated to: #{payment.crowdfund.grant.title}, Grant ID: #{payment.crowdfund.grant.id}"
         payment.charge_id = charge.id
+        payment.status = "Charged"
         payment.save!
         UserCrowdsuccessJob.new.async.perform(user,self)
       end
@@ -214,7 +215,7 @@ class Grant < ActiveRecord::Base
       if past_deadline?
         "Past Deadline"
       else
-        "Crowdfunding"
+        "Crowdfunding: " + self.crowdfunder.progress
       end
     end
   end

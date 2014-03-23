@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140323184322) do
+ActiveRecord::Schema.define(:version => 20140323223211) do
 
   create_table "admin_profiles", :force => true do |t|
     t.string   "about"
@@ -110,6 +110,7 @@ ActiveRecord::Schema.define(:version => 20140323184322) do
     t.integer  "user_id"
     t.integer  "crowdfund_id"
     t.string   "charge_id"
+    t.text     "status"
   end
 
   add_index "payments", ["crowdfund_id"], :name => "index_payments_on_crowdfund_id"
