@@ -13,9 +13,10 @@
 #  grade            :string(255)
 #  address          :string(255)
 #  city             :string(255)
-#  zipcode          :integer
+#  zipcode          :text
 #  work_phone       :string(255)
 #  home_phone       :string(255)
+#  state            :text
 #
 
 class RecipientProfile < ActiveRecord::Base
