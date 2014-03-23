@@ -1,5 +1,5 @@
 - if signed_in?
-  - if !incomplete_profile(current_user) or super_user? or admin_user?
+  - if !incomplete_profile(current_user)
     = form_for(payment, remote: true) do |f|
       - if payment.errors.any?
         .error-messages
@@ -44,7 +44,6 @@
               = label_tag :card_month, "Card Expiration", class: :largefont
               = select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"}
               = select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"}
-        - if !super_user?
           h4
             br/
             | Billing Address (Make changes as required):

@@ -24,6 +24,7 @@ module ProfilesHelper
   def incomplete_profile(user)
     profile = user.profile
     profile.attributes.each_pair do |name, value|
+      next if (name == "admin_id" || name == "super_user_id")
       return true if value.blank?
     end
     false
