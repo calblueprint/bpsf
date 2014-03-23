@@ -19,9 +19,10 @@ class UserMailer < ActionMailer::Base
     mail(to: @user.email, subject: 'Your account with the Schools Fund has been approved!')
   end
 
-  def user_pledge(user,grant)
+  def user_pledge(user,grant,payment)
     @user = user
     @grant = grant
+    @amount = payment.amount
     @url = 'http://schoolsfund-friendsandfamily.herokuapp.com/grants/' + (@grant.id).to_s
     mail(to: @user.email, subject: 'Thank you for pledging a donation!')
   end
