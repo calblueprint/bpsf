@@ -5,7 +5,7 @@ tr.hoverrow onclick="window.location.href = '../#{url_for grant}'"
     - if (grant.days_left <= 0)
         = 'Past Deadline'
     - else
-        = 'Crowdfunding' if grant.crowdfunding?
+        = 'Crowdfunding: ' + grant.crowdfunder.progress if grant.crowdfunding?
         = 'Crowdfund pending' if grant.crowdfund_pending?
         = 'Pending' if grant.pending?
         = 'Complete' if grant.complete?
