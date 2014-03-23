@@ -1,8 +1,1 @@
-- if (grant.days_left <= 0)
-    = 'Past Deadline'
-- else
-    = 'Crowdfunding' if grant.crowdfunding?
-    = 'Crowdfund pending' if grant.crowdfund_pending?
-    = 'Pending' if grant.pending?
-    = 'Complete' if grant.complete?
-    = 'Rejected' if grant.rejected?
+= grant.status
