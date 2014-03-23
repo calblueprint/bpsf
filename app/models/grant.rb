@@ -282,6 +282,6 @@ class Grant < ActiveRecord::Base
     end
 
     def parent?
-      type == "User"
+      type.nil?
     end
 end
