@@ -22,6 +22,11 @@ class UserProfile < ActiveRecord::Base
 
   before_save :format_phone_numbers
 
+  validates :address, presence: true, on: :update
+  validates :city, presence: true, on: :update
+  validates :state, presence: true, on: :update
+  validates :zipcode, length: { minimum: 5, message: 'is an invalid zipcode' }, presence: true, on: :update
+
   private
     def format_phone_numbers
       self.phone = number_to_phone(self.phone, area_code: true)

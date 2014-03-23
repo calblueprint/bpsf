@@ -21,7 +21,7 @@
 class RecipientProfile < ActiveRecord::Base
   include ActionView::Helpers::NumberHelper
   attr_accessible :about, :school_id, :recipient_id, :grade, :subject,
-    :started_teaching, :zipcode, :city, :address, :work_phone, :home_phone
+    :started_teaching, :zipcode, :city, :address, :work_phone, :home_phone, :state
   belongs_to :recipient
 
   before_save :format_phone_numbers
@@ -32,6 +32,7 @@ class RecipientProfile < ActiveRecord::Base
   validates :started_teaching, presence: true, on: :update
   validates :address, presence: true, on: :update
   validates :city, presence: true, on: :update
+  validates :state, presence: true, on: :update
   validates :zipcode, length: { minimum: 5, message: 'is an invalid zipcode' }, presence: true, on: :update
   validates :work_phone, presence: true, on: :update
   validates :home_phone, presence: true, on: :update
