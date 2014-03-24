@@ -11,7 +11,7 @@
 #
 
 class Crowdfund < ActiveRecord::Base
-  attr_accessible :goal, :pledged_total, :grant_id
+  attr_accessible :goal, :pledged_total, :grant_id, :finished, :eighty
   has_many :payments
   belongs_to :grant
 
