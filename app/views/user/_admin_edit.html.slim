@@ -3,6 +3,7 @@
 .row
   .twelve.columns
     = form_for user, as: :user, url: user_path(user), html: {id: "edit_profile"} do |f|
+      = render 'shared/errors', object: f.object
       .field
         = f.label :first_name
         = f.text_field :first_name, class: :input
@@ -19,5 +20,17 @@
         .field
           = ff.label :about, "About"
           = ff.text_area :about, class: [:textarea, :input], rows: 3
+        .field
+          = ff.label :address, "Address"
+          = ff.text_field :address, class: :input
+        .field
+          = ff.label :city, "City"
+          = ff.text_field :city, class: :input
+        .field
+          = ff.label :zipcode, "Zip Code"
+          = ff.text_field :zipcode, class: :input
+        .field
+          = ff.label :state, "State"
+          = ff.select :state, options_for_select(us_states, @user.profile.state)
       .medium.primary.btn.pull_right
         = f.submit "Save!", id: 'update-profile'

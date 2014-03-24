@@ -4,14 +4,18 @@ h2.ultitle Preview
     = grant.title
   h5
     = grant.recipient.name
-    | &nbsp;| #{grant.school_name}
-    | &nbsp;| #{grant.days_left} Days Left!
+    | &nbsp;| #{grant.school_name} |&nbsp;
+    - if grant.crowdfunding? || grant.pending?
+      = grant.days_left.to_s
+      span &nbsp;days left
+    - else
+      span Successful!
   h5
-    a href="https://www.facebook.com/sharer/sharer.php?" target="_blank" 
+    a href="https://www.facebook.com/sharer/sharer.php?" target="_blank"
       i.icon-facebook
-    a expr:href="data:post.canonicalUrl" href="https://twitter.com/share" 
+    a expr:href="data:post.canonicalUrl" href="https://twitter.com/share"
       i.icon-twitter
-    a href="javascript:emailCurrentPage()" 
+    a href="javascript:emailCurrentPage()"
       i.icon-mail
 .row
   - if !grant.image_url.blank?
@@ -25,7 +29,7 @@ h2.ultitle Preview
   br/
 .row.padada
   .ten.columns.centered.centalign
-    h4.inlined Subject Areas:
+    h4.inlined Subject Areas:&nbsp;
     span.largefont= grant.subject_areas.values.to_a.join(', ')
 hr/
 .row
@@ -44,22 +48,23 @@ hr/
   .row
     .ten.columns.centered
       .video-container
-        iframe src="http://www.youtube.com/embed/#{parse_embed(grant)}" 
+        iframe src="http://www.youtube.com/embed/#{parse_embed(grant)}"
 .row
   .ten.columns.centalign.centered
     br/
     h3 Details
     h5.inlined
-      strong Grade level:
+      strong Grade level:&nbsp;
       span.medfont= grant.grade_level
     h5.inlined
-      strong Duration:
+      strong &nbsp;&nbsp;Duration:&nbsp;
       span.medfont= grant.duration
+      br/
     h5.inlined
-      strong # of classes:
+      strong &nbsp;&nbsp;# of classes:&nbsp;
       span.medfont= grant.num_classes
     h5.inlined
-      strong # of students:
+      strong &nbsp;&nbsp;# of students:&nbsp;
     span.medfont= grant.num_students
     br/
     - if grant.has_collaborators?
@@ -73,7 +78,7 @@ hr/
     h5.inlined
       strong Total budget:
     span.medfont
-      | $#{grant.total_budget}
+      |  $#{grant.total_budget}
     br/
     h5
       strong Description

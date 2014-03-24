@@ -43,7 +43,9 @@
       h5
         = @grant.recipient.name
         | &nbsp;| #{@grant.school_name}
-        | &nbsp;| #{@grant.days_left} Days Left
+        - if @grant.crowdfunding?
+          | &nbsp;| #{@grant.days_left.to_s}
+          span &nbsp;days left
       h5
         a href="http://www.facebook.com/sharer.php?u=" target="_blank" rel="nofollow" onmouseover="this.href='http://www.facebook.com/sharer.php?u='+encodeURIComponent(location.href);"
           i.icon-facebook
@@ -74,12 +76,12 @@
           span.gctext
             strong Current:
           span.currentnum
-            | $#{@grant.crowdfunder_pledged_total}
+            |  $#{@grant.crowdfunder_pledged_total}
           | &emsp;
           span.gctext
             strong Goal:
           span.goalnum
-            | $#{@grant.crowdfunder_goal}
+            |  $#{@grant.crowdfunder_goal}
           .row
             hr/
             .three.columns.centered.centalign
@@ -102,7 +104,7 @@
       .row
         .ten.columns.centered
           article.youtube.video
-            iframe src="http://www.youtube.com/embed/#{parse_embed(@grant)}" 
+            iframe src="http://www.youtube.com/embed/#{parse_embed(@grant)}"
     .row
       .ten.columns.centalign.centered
         br/
@@ -142,7 +144,7 @@
         h5.inlined
           strong Total budget:
         span.medfont
-          | $#{@grant.total_budget}
+          |  $#{@grant.total_budget}
         br/
         h5
           strong Description

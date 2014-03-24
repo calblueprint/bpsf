@@ -18,6 +18,6 @@
           span.category.pull_left Type:&emsp;
         li.field.metro.inlined
           .picker
-            = f.select :type, options_for_select([['Friend/Family', 'User'], ['Teacher', 'Recipient'], 'Admin'])
+            = f.select :type, options_for_select([['Friend/Family Member', 'User'], ['Teacher', 'Recipient'], 'Admin']), :include_blank => "Are you a..."
       .medium.primary.btn.pull_right
         = f.submit "Sign up"

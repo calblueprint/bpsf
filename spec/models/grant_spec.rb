@@ -31,6 +31,7 @@
 #  school_name        :string(255)
 #  teacher_name       :string(255)
 #  type               :string(255)
+#  deadline           :date
 #
 
 require "spec_helper"

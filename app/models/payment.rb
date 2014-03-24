@@ -12,7 +12,7 @@
 #
 
 class Payment < ActiveRecord::Base
-  attr_accessible :amount
+  attr_accessible :amount, :status
   belongs_to :user
   belongs_to :crowdfund
 
@@ -23,7 +23,14 @@ class Payment < ActiveRecord::Base
     payment.user_id = current_user.id
     payment.crowdfund_id = grant.crowdfunder.id
     payment.crowdfund.add_payment payment.amount
-    UserPledgeJob.new.async.perform(current_user,grant)
+    payment.status = "Pledged"
+    UserPledgeJob.new.async.perform(current_user,grant, payment)
+    if payment.crowdfund.past_goal
+      @supers = SuperUser.all
+      @supers.each do |admin|
+        GoalMetJob.new.async.perform(payment.crowdfund.grant, admin)
+      end
+    end
     payment
   end
 

@@ -29,7 +29,7 @@ class PagesController < ApplicationController
   end
 
   def search
-    @grants = Grant.crowdfunding_grants
+    @grants = Grant.accepted_grants
                    .search(params[:query])
                    .includes :recipient, :school
   end

@@ -31,7 +31,9 @@
 #  school_name        :string(255)
 #  teacher_name       :string(255)
 #  type               :string(255)
+#  deadline           :date
 #
+
 require 'textacular/searchable'
 class Grant < ActiveRecord::Base
   has_paper_trail :only => [:state]
@@ -106,7 +108,7 @@ class Grant < ActiveRecord::Base
   scope :submitted,           -> { where type: nil }
   scope :pending_grants,      -> { with_state :pending }
   scope :complete_grants,     -> { with_state :complete }
-  scope :accepted_grants,     -> { (with_state :complete) | (with_state :crowdfunding) | (with_state :crowdfund_pending) }
+  scope :accepted_grants,     -> { with_state [:complete, :crowdfunding, :crowdfund_pending]}
   scope :rejected_grants,     -> { with_state :rejected }
   scope :crowdfunding_grants, -> { with_state :crowdfunding }
   scope :crowdpending_grants, -> { with_state :crowdfund_pending }
@@ -148,7 +150,7 @@ class Grant < ActiveRecord::Base
   end
 
   def crowdsuccess
-    @admins = Admin.all + SuperUser.all
+    @admins = SuperUser.all
     @admins.each do |admin|
       AdminCrowdsuccessJob.new.async.perform(self, admin)
     end
@@ -156,6 +158,10 @@ class Grant < ActiveRecord::Base
 
   def days_left
     (deadline - Date.today).to_i
+  end
+
+  def past_deadline?
+    days_left <= 0
   end
 
   def grant_funded
@@ -167,7 +173,7 @@ class Grant < ActiveRecord::Base
   end
 
   def crowdfailed
-    @admins = Admin.all + SuperUser.all
+    @admins = SuperUser.all
     @admins.each do |admin|
       AdminCrowdfailedJob.new.async.perform(self, admin)
     end
@@ -181,14 +187,16 @@ class Grant < ActiveRecord::Base
     @payments.each do |payment|
       unless payment.charge_id
         user = User.find payment.user_id
+        grant = payment.crowdfund.grant
         amount = (payment.amount * 100).to_i
         charge = Stripe::Charge.create amount: amount,
           currency: "usd",
           customer: user.stripe_token,
           # This should get updated depending on the environment.
           # TODO: Refactor so this logic happens in the controller
-          description: "User Profile: http://localhost:3000#{Rails.application.routes.url_helpers.user_path(user)}"
+          description: "F&F Grant - Teacher: #{grant.teacher_name}, Grant: #{grant.title}, Grant ID: #{payment.crowdfund.grant.id}"
         payment.charge_id = charge.id
+        payment.status = "Charged"
         payment.save!
         UserCrowdsuccessJob.new.async.perform(user,self)
       end
@@ -197,13 +205,29 @@ class Grant < ActiveRecord::Base
       logger.error "Stripe error: #{err.message}"
   end
 
+  def status
+    if complete?
+      "Complete"
+    elsif rejected?
+      "Rejected"
+    elsif pending?
+      "Pending"
+    else
+      if past_deadline?
+        "Past Deadline"
+      else
+        "Crowdfunding: " + self.crowdfunder.progress
+      end
+    end
+  end
+
   def crowdfunding?
     state == "crowdfunding"
   end
 
   def with_admin_cost
-    # 3% + $3 assuming an average of 10 transactions.
-    (requested_funds * 1.029 + 3).to_i
+    # 10% cost added
+    (requested_funds * 1.1).to_i
   end
 
   def has_collaborators?
@@ -274,7 +298,7 @@ class Grant < ActiveRecord::Base
 
     def valid_deadline
       errors.add(:deadline, "should be later than today") if
-        !deadline.blank? and deadline <= Date.today
+        deadline.blank? || deadline <= Date.today
     end
 
     def grade_format
