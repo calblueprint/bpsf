@@ -23,6 +23,10 @@ class Crowdfund < ActiveRecord::Base
     self.pledged_total >= self.goal
   end
 
+  def past_80
+    (self.pledged_total >= (self.goal * 0.8)) && (self.pledged_total < self.goal)
+  end
+
   def add_payment(amount)
     self.pledged_total = self.pledged_total + amount
     self.save!

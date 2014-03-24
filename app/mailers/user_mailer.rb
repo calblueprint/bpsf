@@ -84,6 +84,7 @@ class UserMailer < ActionMailer::Base
     @grant = grant
     @user = user
     mail(to: @user.email, subject: 'A grant you have donated to is at 80% completion!')
+  end
 
   def admin_grantsubmitted(grant, admin)
     @grant = grant

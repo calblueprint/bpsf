@@ -248,7 +248,8 @@ class Grant < ActiveRecord::Base
           SuperCrowdendingJob.new.async.perform(grant, admin)
         end
       end
-      if grant.crowdfunder.progress == "80%"
+      if grant.crowdfunder.past_80 && grant.crowdfunder.eighty.blank?
+        grant.crowdfunder.eighty = true
         @payments = grant.crowdfunder.payments
         @payments.each do |payment|
           DonorNearendJob.new.async.perform(grant,payment.user)
