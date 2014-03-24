@@ -238,14 +238,14 @@ class Grant < ActiveRecord::Base
     !comments.blank?
   end
 
-  def self.grant_ending
+  def self.grant_check
     @grants = Grant.crowdfunding_grants
     @grants.each do |grant|
       if grant.days_left == 3
-        GrantEndingJob.new.async.perform(self)
+        GrantEndingJob.new.async.perform(grant)
         @supers = SuperUser.all
         @supers.each do |admin|
-          SuperCrowdendingJob.new.async.perform(self, admin)
+          SuperCrowdendingJob.new.async.perform(grant, admin)
         end
       end
     end
