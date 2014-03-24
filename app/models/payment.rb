@@ -27,9 +27,17 @@ class Payment < ActiveRecord::Base
     UserPledgeJob.new.async.perform(current_user,grant, payment)
     if payment.crowdfund.past_goal && payment.crowdfund.finished.blank?
       payment.crowdfund.finished = true
+      payment.crowdfund.save!
       @supers = SuperUser.all
       @supers.each do |admin|
-        GoalMetJob.new.async.perform(payment.crowdfund.grant, admin)
+        GoalMetJob.new.async.perform(grant, admin)
+      end
+    elsif payment.crowdfund.past_80 && payment.crowdfund.eighty.blank?
+      payment.crowdfund.eighty = true
+      payment.crowdfund.save!
+      @payments = payment.crowdfund.payments
+      @payments.each do |payment|
+        DonorNearendJob.new.async.perform(grant,payment.user)
       end
     end
     payment
