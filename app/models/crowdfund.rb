@@ -11,7 +11,7 @@
 #
 
 class Crowdfund < ActiveRecord::Base
-  attr_accessible :goal, :pledged_total, :grant_id
+  attr_accessible :goal, :pledged_total, :grant_id, :finished, :eighty
   has_many :payments
   belongs_to :grant
 
@@ -21,6 +21,10 @@ class Crowdfund < ActiveRecord::Base
 
   def past_goal
     self.pledged_total >= self.goal
+  end
+
+  def past_80
+    (self.pledged_total >= (self.goal * 0.8)) && (self.pledged_total < self.goal)
   end
 
   def add_payment(amount)
