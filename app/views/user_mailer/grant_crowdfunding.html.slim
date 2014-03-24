@@ -6,7 +6,32 @@ html
     h1
       | Your grant, #{@grant.title}, is currently crowdfunding.
     p
-      | The schools fund has decided to crowdfund a portion of your grant! This means that donors will be able to pledge donations to your grant and if the total pledges reach the crowdfund goal, the pledges will be processed and your grant will be funded.
+      | The Schools Fund has posted your grant for crowdfunding! This means that donors can now pledge donations to your grant. If total pledges reach the crowdfunding goal, the pledges will be processed and your grant will be funded. We will notify you once your grant has reached its goal.
       br/
     p
-      | To raise support, make sure to share your grant's page using this link: #{@url}.
+      b To raise support, make sure to share your grant's page with your classroom lists, social media networks, and friends using this link: #{@url}.
+      br/
+    p
+      b <u>Here is an email template to include with the link:</u>
+    p
+      | Hello,
+      br/
+      br/
+      | I am happy to share that I have a grant  posted for crowdfunding on the new Schools Fund <a href="https://schoolsfund-friendsandfamily.herokuapp.com/">Friends and Family Grants</a> platform! Learn more about my project and donate here: #{@url}.
+      br/
+      br/
+      | This grant is for <em>(explain your project)</em>.
+      br/
+      br/
+      | The total grant is for $#{@grant.crowdfunder.goal}, and I am hoping you can contribute a donation to help me achieve the fundraising goal for this exciting project. Donations are pledges until the entire project is funded, then your pledge amount will be charged to your card.
+      br/
+      br/
+      | You can also share the project with your own friends and family! You can share it on social media directly from the grant page using the icons right above the image.
+      br/
+      br/
+      | Thank you so much for your contribution and support!
+      br/
+      br/
+      | Sincerely,
+      br/
+      | #{@recipient.name}

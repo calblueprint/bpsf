@@ -11,19 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140220045232) do
+ActiveRecord::Schema.define(:version => 20140323223211) do
 
   create_table "admin_profiles", :force => true do |t|
     t.string   "about"
     t.string   "position"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
-    t.integer  "admin_id"
+    t.text     "address"
+    t.text     "city"
+    t.text     "zipcode"
+    t.text     "state"
     t.integer  "super_user_id"
+    t.integer  "admin_id"
   end
-
-  add_index "admin_profiles", ["admin_id"], :name => "index_admin_profiles_on_admin_id"
-  add_index "admin_profiles", ["super_user_id"], :name => "index_admin_profiles_on_super_user_id"
 
   create_table "crowdfunds", :force => true do |t|
     t.datetime "created_at",    :null => false
@@ -109,6 +110,7 @@ ActiveRecord::Schema.define(:version => 20140220045232) do
     t.integer  "user_id"
     t.integer  "crowdfund_id"
     t.string   "charge_id"
+    t.text     "status"
   end
 
   add_index "payments", ["crowdfund_id"], :name => "index_payments_on_crowdfund_id"
@@ -138,9 +140,10 @@ ActiveRecord::Schema.define(:version => 20140220045232) do
     t.string   "grade"
     t.string   "address"
     t.string   "city"
-    t.integer  "zipcode"
+    t.text     "zipcode"
     t.string   "work_phone"
     t.string   "home_phone"
+    t.text     "state"
   end
 
   add_index "recipient_profiles", ["school_id"], :name => "index_recipient_profiles_on_school_id"
@@ -155,12 +158,13 @@ ActiveRecord::Schema.define(:version => 20140220045232) do
   create_table "user_profiles", :force => true do |t|
     t.text     "address"
     t.text     "city"
-    t.integer  "zipcode"
+    t.text     "zipcode"
     t.text     "phone"
     t.text     "relationship"
     t.integer  "user_id"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+    t.string   "state"
   end
 
   add_index "user_profiles", ["user_id"], :name => "index_user_profiles_on_user_id"

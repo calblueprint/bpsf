@@ -19,9 +19,17 @@ class UserMailer < ActionMailer::Base
     mail(to: @user.email, subject: 'Your account with the Schools Fund has been approved!')
   end
 
-  def user_pledge(user,grant)
+  def goal_met(grant, admin)
+    @grant = grant
+    @admin = admin
+    @url = 'http://schoolsfund-friendsandfamily.herokuapp.com/grants/' + (@grant.id).to_s
+    mail(to: @admin.email, subject: "A grant has reached it's goal!")
+  end
+
+  def user_pledge(user,grant,payment)
     @user = user
     @grant = grant
+    @amount = payment.amount
     @url = 'http://schoolsfund-friendsandfamily.herokuapp.com/grants/' + (@grant.id).to_s
     mail(to: @user.email, subject: 'Thank you for pledging a donation!')
   end
@@ -55,7 +63,8 @@ class UserMailer < ActionMailer::Base
     @grant = grant
     @recipient = @grant.recipient
     @url = 'http://schoolsfund-friendsandfamily.herokuapp.com/grants/' + (@grant.id).to_s
-    mail(to: @recipient.email, subject: 'Your grant is crowdfunding.')
+    @subject = 'Your grant, '+@grant.title+', has been approved for crowdfunding by the Schools Fund. Read this email for next steps...'
+    mail(to: @recipient.email, subject: @subject)
   end
 
   def grant_ending(grant)

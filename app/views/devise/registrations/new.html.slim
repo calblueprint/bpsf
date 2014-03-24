@@ -23,7 +23,6 @@
               = f.password_field :password_confirmation, class: :input
             div
               = f.label :type
-              = f.select :type, options_for_select([['Friend/Family', 'User'], ['Teacher', 'Recipient'], 'Admin'])
+              = f.select :type, options_for_select([['Friend/Family Member', 'User'], ['Teacher', 'Recipient'], 'Admin']), :include_blank => "Are you a..."
             .medium.primary.btn
               = f.submit "Sign up"
-          = render "devise/shared/links"

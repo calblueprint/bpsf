@@ -1,4 +1,9 @@
-h5.inlined Position
+h5 Position
 = profile.position
 h5 About
 = profile.about
+.row
+  - if profile.address
+    h5 Address
+    = profile.address
+    | , #{profile.city} #{profile.zipcode}, #{profile.state}
