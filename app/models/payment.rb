@@ -25,7 +25,8 @@ class Payment < ActiveRecord::Base
     payment.crowdfund.add_payment payment.amount
     payment.status = "Pledged"
     UserPledgeJob.new.async.perform(current_user,grant, payment)
-    if payment.crowdfund.past_goal
+    if payment.crowdfund.past_goal && payment.crowdfund.finished.blank?
+      payment.crowdfund.finished = true
       @supers = SuperUser.all
       @supers.each do |admin|
         GoalMetJob.new.async.perform(payment.crowdfund.grant, admin)

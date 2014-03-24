@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140323223211) do
+ActiveRecord::Schema.define(:version => 20140324003236) do
 
   create_table "admin_profiles", :force => true do |t|
     t.string   "about"
@@ -32,6 +32,8 @@ ActiveRecord::Schema.define(:version => 20140323223211) do
     t.integer  "goal"
     t.integer  "pledged_total"
     t.integer  "grant_id"
+    t.boolean  "eighty"
+    t.boolean  "finished"
   end
 
   add_index "crowdfunds", ["grant_id"], :name => "index_crowdfunds_on_grant_id"
