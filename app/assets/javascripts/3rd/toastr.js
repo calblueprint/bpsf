@@ -1,9 +1,9 @@
 /*
  * Toastr
  * Version 2.0.1
- * Copyright 2012 John Papa and Hans Fjällemark.  
- * All Rights Reserved.  
- * Use, reproduction, distribution, and modification of this code is subject to the terms and 
+ * Copyright 2012 John Papa and Hans Fjällemark.
+ * All Rights Reserved.
+ * Use, reproduction, distribution, and modification of this code is subject to the terms and
  * conditions of the MIT license, available at http://www.opensource.org/licenses/mit-license.php
  *
  * Author: John Papa and Hans Fjällemark
@@ -28,7 +28,7 @@
         error: error,
         getContainer: getContainer,
         info: info,
-        options: {"timeOut": "1500"},
+        options: {"timeOut": "5000"},
         subscribe: subscribe,
         success: success,
         version: version,
@@ -122,7 +122,7 @@
           hideEasing: 'swing',
           onHidden: undefined,
 
-          extendedTimeOut: 1000,
+          extendedTimeOut: 5000,
           iconClasses: {
             error: 'toast-error',
             info: 'toast-info',
