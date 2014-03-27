@@ -147,6 +147,13 @@ class Grant < ActiveRecord::Base
   # Grant state transition mailer callbacks
   def grant_rejected
     GrantRejectedJob.new.async.perform(self)
+    @payments = Payment.where crowdfund_id: crowdfunder
+    @payments.each do |payment|
+      unless payment.charge_id
+        payment.status = "Cancelled"
+        payment.save!
+      end
+    end
   end
 
   def crowdsuccess
@@ -177,7 +184,6 @@ class Grant < ActiveRecord::Base
     @admins.each do |admin|
       AdminCrowdfailedJob.new.async.perform(self, admin)
     end
-    self.crowdfunder.destroy if self.crowdfunder
     GrantCrowdfailedJob.new.async.perform(self)
   end
 
