@@ -212,12 +212,12 @@ class Grant < ActiveRecord::Base
       "Rejected"
     elsif pending?
       "Pending"
-    else
-      if past_deadline?
+    elsif past_deadline?
         "Past Deadline"
-      else
+    elsif crowdfunding?
         "Crowdfunding: " + self.crowdfunder.progress
-      end
+    else
+        "Crowdfund Pending"
     end
   end
 
