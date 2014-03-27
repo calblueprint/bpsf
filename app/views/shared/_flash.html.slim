@@ -1,4 +1,7 @@
 <script type="text/javascript">
   - flash.each do |key, val|
-    | toastr.#{key}("#{val}")
+    - if key == :alert
+        | toastr.error("#{val}")
+    - else
+        | toastr.#{key}("#{val}")
 </script>
