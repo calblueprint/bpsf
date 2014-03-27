@@ -9,7 +9,7 @@
       .row.ultitle
         h3
           | General Information
-          span.ttip data-tooltip="Edit" 
+          span.ttip data-tooltip="Edit"
             = link_to '<i class="icon-pencil"></i>'.html_safe, edit_general_path(@grant)
       .row
         .eleven.columns.push_one
@@ -26,7 +26,7 @@
           .row
             h4 Video
             - if !@grant.video.blank?
-              iframe height="315" src="http://www.youtube.com/embed/#{parse_embed(@grant)}" width="560" 
+              iframe height="315" src="http://www.youtube.com/embed/#{parse_embed(@grant)}" width="560"
           .row
             h4 Subject areas
             = @grant.subject_areas.values.to_a.join(', ')
@@ -34,7 +34,7 @@
       .row.ultitle
         h3
           | Logistics
-          span.ttip data-tooltip="Edit" 
+          span.ttip data-tooltip="Edit"
             = link_to '<i class="icon-pencil"></i>'.html_safe, edit_logistics_path(@grant)
       .row
         .eleven.columns.push_one
@@ -60,7 +60,7 @@
       .row.ultitle
         h3
           | Budget
-          span.ttip data-tooltip="Edit" 
+          span.ttip data-tooltip="Edit"
             = link_to '<i class="icon-pencil"></i>'.html_safe, edit_budget_path(@grant)
       .row
         .eleven.columns.push_one
@@ -80,7 +80,7 @@
       .row.ultitle
         h3
           | Methods
-          span.ttip data-tooltip="Edit" 
+          span.ttip data-tooltip="Edit"
             = link_to '<i class="icon-pencil"></i>'.html_safe, edit_methods_path(@grant)
       .row
         .eleven.columns.push_one
