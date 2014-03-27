@@ -68,7 +68,7 @@
       .ten.columns.centered.centalign
         h4.inlined Subject Areas:
         span.largefont= @grant.subject_areas.values.to_a.join(', ')
-    - if @grant.crowdfunding?
+    - if @grant.crowdfunding? || @grant.crowdfund_pending?
       .row.grantviewbar
         .progress
           span.progressbar data-current=@grant.crowdfunder_pledged_total data-goal=@grant.crowdfunder_goal style=("width: 0%")
