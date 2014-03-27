@@ -87,6 +87,23 @@
             .three.columns.centered.centalign
               .large.primary.btn
                 a.switch#paymentbutton href="#"  Donate
+    - else
+      .row.grantviewbar
+        .progress
+          span.progressbar data-current=0 data-goal=@grant.requested_funds style=("width: 0%")
+        .gcdiv
+          span.gctext
+            strong Current:
+          span.currentnum
+            |  $0
+          | &emsp;
+          span.gctext
+            strong Goal:
+          span.goalnum
+            - if @grant.requested_funds.blank?
+              |  $0
+            - else
+              |  $#{@grant.requested_funds}
     hr/
     .row
       .ten.columns.centalign.centered
