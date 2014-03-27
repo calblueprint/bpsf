@@ -47,7 +47,7 @@ class PaymentsController < ApplicationController
       unless current_user.stripe_token
         customer = Stripe::Customer.create email: current_user.email,
                                            card: params[:stripe_token],
-                                           description: "Donor"
+                                           description: current_user.name
         current_user.stripe_token = customer.id
         current_user.save!
       end
