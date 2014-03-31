@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140324003236) do
+ActiveRecord::Schema.define(:version => 20140331093516) do
 
   create_table "admin_profiles", :force => true do |t|
     t.string   "about"
@@ -100,6 +100,7 @@ ActiveRecord::Schema.define(:version => 20140324003236) do
     t.string   "teacher_name"
     t.string   "type"
     t.date     "deadline"
+    t.text     "other_funds"
   end
 
   add_index "grants", ["recipient_id"], :name => "index_grants_on_recipient_id"

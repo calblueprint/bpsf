@@ -236,6 +236,9 @@
                       p Choose how the funds will be spent.
                     div
                       = f.select(:funds_will_pay_for, DraftGrant::FUNDS, {}, {:multiple => true, class: :chosenselect, data:{placeholder: "Select:" }})
+                      .field
+                        = f.label :other_funds, 'If other, please specify:'
+                        = f.text_field :other_funds, class: :input
                     br/
                 .row.centalign
                   .ttip.large.primary.btn data-tooltip="Save Your Progress"
