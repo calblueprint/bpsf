@@ -101,7 +101,7 @@ hr/
     = grant.budget_desc
     h5
       strong Use of Funds
-    = grant.funds_will_pay_for.values.to_a.join(', ')
+    = grant.funds_will_pay_for.join(", ")
 - if grant.has_comments?
   .row
     .ten.columns.centalign.centered

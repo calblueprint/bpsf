@@ -72,7 +72,7 @@
               | Requested funds: #{@grant.requested_funds}
           .row
             h4 Funds will pay for:
-            = @grant.funds_will_pay_for.values.to_a.join(', ')
+            = @grant.funds_will_pay_for.join(", ")
           .row
             h4 Budget description
             = @grant.budget_desc

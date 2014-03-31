@@ -18,6 +18,9 @@
               = f.label :funds_will_pay_for, 'Funds will pay for:'
               div
                 = f.select(:funds_will_pay_for, Grant::FUNDS, {}, {:multiple => true, class: :chosenselect})
+              .field
+                = f.label :other_funds, 'If other, please specify:'
+                = f.text_field :other_funds, class: :input
             .field
               = f.label :budget_desc, 'How the funds will benefit your class:'
               = f.text_area :budget_desc, class: [:textarea, :input], rows: 5

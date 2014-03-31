@@ -47,7 +47,6 @@ class Grant < ActiveRecord::Base
   FUNDS = ['Supplies','Books','Equipment','Technology / Media',
     'Professional Guest (Consultant, Speaker, Artist, etc.)','Professional Development',
     'Field Trips / Transportation','Assembly','Other']
-  enumerize :funds_will_pay_for, in: FUNDS, multiple: true
   serialize :funds_will_pay_for, Array
   serialize :subject_areas, Array
   enumerize :subject_areas, in: SUBJECTS, multiple: true, scope: true
@@ -56,7 +55,7 @@ class Grant < ActiveRecord::Base
                   :num_classes, :num_students, :total_budget, :requested_funds,
                   :funds_will_pay_for, :budget_desc, :purpose, :methods, :background,
                   :n_collaborators, :collaborators, :comments, :video, :image, :school_id,
-                  :crop_x, :crop_y, :crop_w, :crop_h
+                  :crop_x, :crop_y, :crop_w, :crop_h, :other_funds
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
 
   belongs_to :recipient
@@ -77,6 +76,8 @@ class Grant < ActiveRecord::Base
     self.school_name = school.name
     self.teacher_name = recipient.name
   end
+
+  before_save :check_funds_for
 
   after_update :crop_image
 
@@ -156,6 +157,16 @@ class Grant < ActiveRecord::Base
     end
   end
 
+  def check_funds_for
+    if self[:funds_will_pay_for][-1] == "Other"
+      self[:funds_will_pay_for].pop
+    end
+    if self[:funds_will_pay_for][0] == ""
+      self[:funds_will_pay_for].shift
+    end
+    self[:funds_will_pay_for] = self[:funds_will_pay_for] + other_funds.split(", ") unless (other_funds.blank? || other_funds.split(", ")[-1] == self[:funds_will_pay_for][-1])
+  end
+
   def crowdsuccess
     @admins = SuperUser.all
     @admins.each do |admin|
@@ -218,12 +229,28 @@ class Grant < ActiveRecord::Base
       "Rejected"
     elsif pending?
       "Pending"
+    elsif crowdfund_pending?
+      "Crowdfund Pending"
     elsif past_deadline?
-        "Past Deadline"
-    elsif crowdfunding?
-        "Crowdfunding: " + self.crowdfunder.progress
+      "Past Deadline"
     else
-        "Crowdfund Pending"
+      "Crowdfunding: " + self.crowdfunder.progress
+    end
+  end
+
+  def order_status
+    if complete?
+      5
+    elsif rejected?
+      6
+    elsif pending?
+      1
+    elsif crowdfund_pending?
+      3
+    elsif past_deadline?
+      4
+    else
+      2
     end
   end
 
