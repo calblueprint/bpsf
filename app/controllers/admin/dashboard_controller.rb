@@ -22,7 +22,7 @@ class Admin::DashboardController < ApplicationController
     school = params[:school]
     if school && school != 'All'
       schoolId = School.find_by_name(school).id
-      @recipients = Recipient.select {|recip| recip.school_id == schoolId }
+      @recipients = Recipient.select {|recip| recip.profile.school_id == schoolId }
     end
     @recipients = @recipients.paginate :page => params[:page], :per_page => 6
 
