@@ -20,7 +20,7 @@
           .six.columns.centalign
             h4 Change Status
             #grantstatus
-              | Current Status: #{@grant.state.titleize}
+              | Current Status: #{@grant.status.titleize}
             = render 'toggle_links', grant: @grant
           .three.columns.centalign
             h4
@@ -33,7 +33,7 @@
             /h4 Rate Grant
             /= ratings_for @grant, show_user_rating: true
             h4 Status
-            = @grant.state.titleize
+            = @grant.status.titleize
       hr.hr-primary/
 .row
   .wrapper.light
