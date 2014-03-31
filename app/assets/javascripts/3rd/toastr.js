@@ -28,7 +28,7 @@
         error: error,
         getContainer: getContainer,
         info: info,
-        options: {"timeOut": "5000"},
+        options: {"positionClass": "toast-top-left", "timeOut": "5000"},
         subscribe: subscribe,
         success: success,
         version: version,
