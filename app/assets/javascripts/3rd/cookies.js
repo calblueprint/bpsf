@@ -1,7 +1,8 @@
 function setCookie(c_name,value,exdays){
+deleteCookie(c_name);
 var exdate=new Date();
 exdate.setDate(exdate.getDate() + exdays);
-var c_value=escape(value) + ((exdays==null) ? "" : "; expires="+exdate.toUTCString());
+var c_value=escape(value) + ((exdays==null) ? "" : "; expires="+exdate.toUTCString()) + "; path=/";
 document.cookie=c_name + "=" + c_value;
 }
 
@@ -28,4 +29,8 @@ c_end = c_value.length;
 c_value = unescape(c_value.substring(c_start,c_end));
 }
 return c_value;
+}
+
+function deleteCookie( c_name ) {
+  document.cookie = c_name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }

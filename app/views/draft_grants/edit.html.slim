@@ -9,15 +9,15 @@
         section#tabs.tabs
           .ten.columns.centered.centalign
             ul.tab-nav
-              li#general.active onclick="setCookie('drafttab',this.id,1)"
+              li#general onclick="setCookie('prevtab',this.id,1)"
                 a href="#"  General
-              li#logistics onclick="setCookie('drafttab',this.id,1)"
+              li#logistics onclick="setCookie('prevtab',this.id,1)"
                 a href="#"  Logistics
-              li#details onclick="setCookie('drafttab',this.id,1)"
+              li#details onclick="setCookie('prevtab',this.id,1)"
                 a href="#"  Details
-              li#budget onclick="setCookie('drafttab',this.id,1)"
+              li#budget onclick="setCookie('prevtab',this.id,1)"
                 a href="#"  Budget
-              li#finalize onclick="setCookie('drafttab',this.id,1)"
+              li#finalize onclick="setCookie('prevtab',this.id,1)"
                 a href="#"  Finalize
           br/
           /! GENERAL INFO
@@ -263,16 +263,19 @@ javascript:
   $(".chosenselect").chosen({width:'100%'});
 
   $(document).ready(function(){
-    var prevtab=getCookie("drafttab");
-    if (prevtab!=null && prevtab!="")
-    {
-      var $tabs = $('#tabs');
-      $target = $tabs.find('.tab-nav li#'+prevtab);
-      // if target exists trigger the set event
-      if($target.length)
-        $tabs.trigger('gumby.set', $target.index());
-    }
-  });
+      var prevtab = getCookie("prevtab");
+        if (prevtab!=null && prevtab!=""){
+          var $tabs = $('#tabs');
+          var $target = $tabs.find('.tab-nav li#'+prevtab);
+          if($target.length) {
+              $tabs.trigger('gumby.set', $target.index());
+          }
+        } else{
+            $('#tabs').trigger('gumby.set', $('#tabs').find('.tab-nav li#general').index());
+        }
+
+    });
+
 
   function validateLength(el) {
       console.log('hit');
