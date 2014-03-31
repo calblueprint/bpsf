@@ -56,7 +56,7 @@ class Grant < ActiveRecord::Base
                   :funds_will_pay_for, :budget_desc, :purpose, :methods, :background,
                   :n_collaborators, :collaborators, :comments, :video, :image, :school_id,
                   :crop_x, :crop_y, :crop_w, :crop_h, :other_funds
-  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h, :other_funds
+  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
 
   belongs_to :recipient
   belongs_to :school
@@ -164,7 +164,7 @@ class Grant < ActiveRecord::Base
     if self[:funds_will_pay_for][0] == ""
       self[:funds_will_pay_for].shift
     end
-    self[:funds_will_pay_for] = self[:funds_will_pay_for] + other_funds.split(", ") unless other_funds.blank?
+    self[:funds_will_pay_for] = self[:funds_will_pay_for] + other_funds.split(", ") unless (other_funds.blank? || other_funds.split(", ")[-1] == self[:funds_will_pay_for][-1])
   end
 
   def crowdsuccess
