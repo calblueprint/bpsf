@@ -158,13 +158,13 @@ class Grant < ActiveRecord::Base
   end
 
   def check_funds_for
-    if other_funds.blank?
-      self[:funds_will_pay_for].shift
-    else
-      self[:funds_will_pay_for].shift
+    if self[:funds_will_pay_for][-1] == "Other"
       self[:funds_will_pay_for].pop
-      self[:funds_will_pay_for] = self[:funds_will_pay_for] + other_funds.split(", ")
     end
+    if self[:funds_will_pay_for][0] == ""
+      self[:funds_will_pay_for].shift
+    end
+    self[:funds_will_pay_for] = self[:funds_will_pay_for] + other_funds.split(", ") unless other_funds.blank?
   end
 
   def crowdsuccess
@@ -230,11 +230,27 @@ class Grant < ActiveRecord::Base
     elsif pending?
       "Pending"
     elsif past_deadline?
-        "Past Deadline"
+      "Past Deadline"
     elsif crowdfunding?
-        "Crowdfunding: " + self.crowdfunder.progress
+      "Crowdfunding: " + self.crowdfunder.progress
     else
-        "Crowdfund Pending"
+      "Crowdfund Pending"
+    end
+  end
+
+  def order_status
+    if complete?
+      5
+    elsif rejected?
+      6
+    elsif pending?
+      1
+    elsif past_deadline?
+      4
+    elsif crowdfunding?
+      2
+    else
+      3
     end
   end
 
