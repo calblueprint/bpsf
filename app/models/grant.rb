@@ -213,7 +213,7 @@ class Grant < ActiveRecord::Base
 
   def status
     if complete?
-      "Complete"
+      "Funded"
     elsif rejected?
       "Rejected"
     elsif pending?
