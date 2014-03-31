@@ -47,7 +47,6 @@ class Grant < ActiveRecord::Base
   FUNDS = ['Supplies','Books','Equipment','Technology / Media',
     'Professional Guest (Consultant, Speaker, Artist, etc.)','Professional Development',
     'Field Trips / Transportation','Assembly','Other']
-  enumerize :funds_will_pay_for, in: FUNDS, multiple: true
   serialize :funds_will_pay_for, Array
   serialize :subject_areas, Array
   enumerize :subject_areas, in: SUBJECTS, multiple: true, scope: true
@@ -56,8 +55,8 @@ class Grant < ActiveRecord::Base
                   :num_classes, :num_students, :total_budget, :requested_funds,
                   :funds_will_pay_for, :budget_desc, :purpose, :methods, :background,
                   :n_collaborators, :collaborators, :comments, :video, :image, :school_id,
-                  :crop_x, :crop_y, :crop_w, :crop_h
-  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
+                  :crop_x, :crop_y, :crop_w, :crop_h, :other_funds
+  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h, :other_funds
 
   belongs_to :recipient
   belongs_to :school
@@ -77,6 +76,8 @@ class Grant < ActiveRecord::Base
     self.school_name = school.name
     self.teacher_name = recipient.name
   end
+
+  before_save :check_funds_for
 
   after_update :crop_image
 
@@ -153,6 +154,16 @@ class Grant < ActiveRecord::Base
         payment.status = "Cancelled"
         payment.save!
       end
+    end
+  end
+
+  def check_funds_for
+    if other_funds.blank?
+      self[:funds_will_pay_for].shift
+    else
+      self[:funds_will_pay_for].shift
+      self[:funds_will_pay_for].pop
+      self[:funds_will_pay_for] = self[:funds_will_pay_for] + other_funds.split(", ")
     end
   end
 
