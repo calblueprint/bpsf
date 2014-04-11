@@ -28,13 +28,15 @@ class User < ActiveRecord::Base
 
   attr_accessible :first_name, :last_name, :email, :password,
                   :password_confirmation, :remember_me, :type,
-                  :approved, :profile_attributes
+                  :approved, :profile_attributes, :terms_of_service
 
   has_many :payments, dependent: :destroy
   has_one :profile, class_name: 'UserProfile'
   accepts_nested_attributes_for :profile
 
   validates :type, :presence => { :message => "must be selected" }
+  validates :terms_of_service, acceptance: true
+
   scope :donors, -> { where type: "User" }
 
   def name
