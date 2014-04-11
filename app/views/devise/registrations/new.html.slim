@@ -21,8 +21,18 @@
             .field
               = f.label :password_confirmation
               = f.password_field :password_confirmation, class: :input
-            div
-              = f.label :type
-              = f.select :type, options_for_select([['Friend/Family Member', 'User'], ['Teacher', 'Recipient'], 'Admin']), :include_blank => "Are you a..."
+            .field
+              span
+                | Type
+            .field.metro
+              .picker
+                = f.select :type, options_for_select([['Friend/Family Member', 'User'], ['Teacher', 'Recipient'], 'Admin']), :include_blank => "Are you a..."
+            .field
+              label.checkbox
+                = f.check_box :terms_of_service
+                span
+                | &nbsp; I accept the <div id="terms_conditions">terms and conditions</div>
             .medium.primary.btn
               = f.submit "Sign up"
+#terms-view
+  = render "devise/shared/terms_modal"
