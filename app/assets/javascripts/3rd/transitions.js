@@ -8,6 +8,7 @@ $(function() {
 	var userdropdown = $('.userdropdown')
 
 //Modal Variables
+	var termsmodal = $('#terms')
 	var teachermodal = $('#teacher-about')
 	var donormodal = $('#donor-about')
 	var aboutmodal = $('#about-about')
@@ -16,7 +17,7 @@ $(function() {
 	var confirmationmodal = $('#confirmation-modal')
 	var modals = $('#teacher-about, #about-about, #donor-about')
 
-	var everything = $('.helppanel, .helppanelbutton, .xbox, .screen, #teacher-about, #about-about, #donor-about, #payment-form, #crowdfund-form, #confirmation-modal')
+	var everything = $('.helppanel, .helppanelbutton, .xbox, .screen, #teacher-about, #about-about, #donor-about, #terms, #payment-form, #crowdfund-form, #confirmation-modal')
 
 	var open = function(items, open, close) {
 							$(items).removeClass(close).addClass(open);
@@ -62,6 +63,10 @@ $(function() {
 	$('#donorbutton').click(function(){$(open(donormodal,'active','close'))});
 	$('#paymentbutton').click(function(){
 		$(open(paymentmodal, 'active', 'close'))
+		$(open(screen, 'open', 'close'))
+	});
+	$('#terms_conditions').click(function(){
+		$(open(termsmodal, 'active','close'))
 		$(open(screen, 'open', 'close'))
 	});
 	$('.toggle_crowdfund').click(function(){

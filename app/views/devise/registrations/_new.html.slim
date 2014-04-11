@@ -19,5 +19,12 @@
         li.field.metro.inlined
           .picker
             = f.select :type, options_for_select([['Friend/Family Member', 'User'], ['Teacher', 'Recipient'], 'Admin']), :include_blank => "Are you a..."
+        li.field
+          label.checkbox
+            = f.check_box :terms_of_service
+            span
+            | &nbsp; I accept the <div id="terms_conditions">terms and conditions</div>
       .medium.primary.btn.pull_right
         = f.submit "Sign up"
+#terms-view
+  = render "devise/shared/terms_modal"
