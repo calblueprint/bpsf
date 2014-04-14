@@ -67,7 +67,7 @@
                       .five.columns.centalign
                         .imgholder style="width:300px;"
                           - if !@draft_grant.image_url.blank?
-                            = image_tag @draft_grant.image_url :banner
+                            = image_tag @draft_grant.image_url :thumb
                           - else
                             = image_tag 'http://placehold.it/880x450'
                       .five.columns.push_two.centalign

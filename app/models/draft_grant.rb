@@ -76,9 +76,8 @@ class DraftGrant < Grant
     def transfer_attributes_to_new_grant
       temp = dup.becomes Grant
       ATTRS_TO_COPY.map { |a| temp.send("#{a}=", attributes[a]) }
-      temp.image = image
       temp.type = nil
-
+      temp.remote_image_url = self.image_url
       if temp.valid? then
         temp.save
         return temp

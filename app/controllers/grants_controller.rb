@@ -23,6 +23,7 @@ class GrantsController < ApplicationController
 
   def update
     if @grant.update_attributes params[:grant]
+      render :crop and return if params[:grant][:image].present?
       flash[:success] = 'Grant updated!'
       redirect_to @grant
     else

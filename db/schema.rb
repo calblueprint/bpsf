@@ -11,20 +11,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140331093516) do
+ActiveRecord::Schema.define(:version => 20140414014345) do
 
   create_table "admin_profiles", :force => true do |t|
     t.string   "about"
     t.string   "position"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.integer  "admin_id"
+    t.integer  "super_user_id"
     t.text     "address"
     t.text     "city"
     t.text     "zipcode"
     t.text     "state"
-    t.integer  "super_user_id"
-    t.integer  "admin_id"
   end
+
+  add_index "admin_profiles", ["admin_id"], :name => "index_admin_profiles_on_admin_id"
+  add_index "admin_profiles", ["super_user_id"], :name => "index_admin_profiles_on_super_user_id"
 
   create_table "crowdfunds", :force => true do |t|
     t.datetime "created_at",    :null => false
@@ -101,6 +104,10 @@ ActiveRecord::Schema.define(:version => 20140331093516) do
     t.string   "type"
     t.date     "deadline"
     t.text     "other_funds"
+    t.string   "crop_x"
+    t.string   "crop_y"
+    t.string   "crop_w"
+    t.string   "crop_h"
   end
 
   add_index "grants", ["recipient_id"], :name => "index_grants_on_recipient_id"
@@ -157,6 +164,15 @@ ActiveRecord::Schema.define(:version => 20140331093516) do
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
   end
+
+  create_table "simple_captcha_data", :force => true do |t|
+    t.string   "key",        :limit => 40
+    t.string   "value",      :limit => 6
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+  end
+
+  add_index "simple_captcha_data", ["key"], :name => "idx_key"
 
   create_table "user_profiles", :force => true do |t|
     t.text     "address"
