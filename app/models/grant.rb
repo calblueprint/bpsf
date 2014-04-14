@@ -55,8 +55,7 @@ class Grant < ActiveRecord::Base
                   :num_classes, :num_students, :total_budget, :requested_funds,
                   :funds_will_pay_for, :budget_desc, :purpose, :methods, :background,
                   :n_collaborators, :collaborators, :comments, :video, :image, :school_id,
-                  :crop_x, :crop_y, :crop_w, :crop_h, :other_funds
-  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
+                  :crop_x, :crop_y, :crop_w, :crop_h, :other_funds, :remote_image_url
 
   belongs_to :recipient
   belongs_to :school
@@ -77,9 +76,9 @@ class Grant < ActiveRecord::Base
     self.teacher_name = recipient.name
   end
 
-  before_save :check_funds_for
+  before_validation :check_funds_for
 
-  after_update :crop_image
+  after_save :crop_image
 
   with_options if: :parent? do |grant|
     grant.validates :title, presence: true, length: { maximum: 40 }
@@ -104,6 +103,10 @@ class Grant < ActiveRecord::Base
 
   def crop_image
     image.recreate_versions! if crop_x.present?
+    if type.blank? && crop_x.present?
+      self[:crop_x],self[:crop_y],self[:crop_w],self[:crop_h] = nil
+      self.save
+    end
   end
 
   scope :submitted,           -> { where type: nil }
@@ -157,6 +160,7 @@ class Grant < ActiveRecord::Base
     end
   end
 
+  # Magic
   def check_funds_for
     if self[:funds_will_pay_for][-1] == "Other"
       self[:funds_will_pay_for].pop
@@ -300,7 +304,7 @@ class Grant < ActiveRecord::Base
     draft = dup.becomes DraftGrant
     draft.type = 'DraftGrant'
     draft.state = 'pending'
-    draft.image = image
+    draft.remote_image_url = self.image_url
     draft.save
     draft
   end

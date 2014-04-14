@@ -11,12 +11,16 @@ class ImageCropper
       setSelect: [0, 0, 300, 150]
       onSelect: @update
       onChange: @update
-  
+
   update: (coords) =>
     $('#draft_grant_crop_x').val(coords.x)
     $('#draft_grant_crop_y').val(coords.y)
     $('#draft_grant_crop_w').val(coords.w)
     $('#draft_grant_crop_h').val(coords.h)
+    $('#grant_crop_x').val(coords.x)
+    $('#grant_crop_y').val(coords.y)
+    $('#grant_crop_w').val(coords.w)
+    $('#grant_crop_h').val(coords.h)
     @updatePreview(coords)
 
   updatePreview: (coords) =>
