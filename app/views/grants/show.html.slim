@@ -42,12 +42,13 @@
         = @grant.title
       h5
         = @grant.recipient.name
-        | &nbsp;| #{@grant.school_name}
-        - if @grant.crowdfunding? && @grant.days_left > 0
-          | &nbsp;| #{@grant.days_left.to_s}
-          span &nbsp;days left
+        | &nbsp;| #{@grant.school_name} |
+        - if @grant.past_deadline?
+          |  Past Deadline
+        - elsif @grant.crowdfunding?
+          |  #{@grant.days_left} Days Left!
         - else
-          | Past Deadline!
+          |  #{@grant.status}
       h5
         a href="http://www.facebook.com/sharer.php?u=" target="_blank" rel="nofollow" onmouseover="this.href='http://www.facebook.com/sharer.php?u='+encodeURIComponent(location.href);"
           i.icon-facebook
@@ -58,7 +59,7 @@
     .row align="center"
       - if !@grant.image_url.blank?
         .coverholder
-          = image_tag @grant.image_url :banner
+          = image_tag @grant.image_url(:banner)
       - else
         .imgreplacementlrg
           .repson= @grant.title

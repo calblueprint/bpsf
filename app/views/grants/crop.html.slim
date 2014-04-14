@@ -5,14 +5,14 @@
         h2.centalign Cropping Image
         p.centalign Select a region of your image to use as the thumbnail.
       .row.centalign
-        = image_tag @draft_grant.image_url(:preview), id: 'cropbox'
+        = image_tag @grant.image_url(:preview), id: 'cropbox'
       br/
       .row
         h4 Preview
         div style=("width:294px; height:150px; overflow:hidden")
-          = image_tag @draft_grant.image_url(:preview), id: 'preview', style: 'max-width:none;'
+          = image_tag @grant.image_url(:preview), id: 'preview', style: 'max-width:none;'
       .row
-        = form_for @draft_grant, url: draft_path do |f|
+        = form_for @grant, url: grant_path, :html => {:multipart => true} do |f|
           - %w[x y w h].each do |attribute|
             = f.hidden_field "crop_#{attribute}"
           br/
