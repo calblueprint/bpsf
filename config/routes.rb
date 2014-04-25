@@ -7,7 +7,7 @@ BPSF::Application.routes.draw do
   end
   scope '/grants' do
     get ':id/edit_general_info/',    to: 'grants#edit_general_info',    as: :edit_general
-    get ':id/edit_logistics/',       to: 'grants#edit_logistics',       as: :edit_logistics
+    get ':id/edit_project_idea/',       to: 'grants#edit_project_idea',       as: :edit_project_idea
     get ':id/edit_budget/',          to: 'grants#edit_budget',          as: :edit_budget
     get ':id/edit_methods/',         to: 'grants#edit_methods',         as: :edit_methods
     post ':id/crowdfund',            to: 'grants#crowdfund_form',       as: :crowdfund_form

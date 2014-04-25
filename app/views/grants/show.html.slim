@@ -110,7 +110,7 @@
     hr/
     .row
       .ten.columns.centalign.centered
-        h3 Logistics
+        h3 Project Idea
         h5
           strong Purpose
         = @grant.purpose
@@ -178,6 +178,13 @@
           br/
           h3 Additional Comments
           = @grant.comments
+    - if @grant.crowdfunding? || @grant.crowdfund_pending?
+      hr/
+      .row
+        .three.columns.centered.centalign
+          .large.primary.btn
+            a.switch#paymentbutton href="#"  Donate
+      hr/
 #payment-form.modal
   .modalscreen
   .content
