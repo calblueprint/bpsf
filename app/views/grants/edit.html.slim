@@ -30,12 +30,12 @@
           .row
             h4 Subject areas
             = @grant.subject_areas.values.to_a.join(', ')
-      /! LOGISTICS
+      /! Project Idea
       .row.ultitle
         h3
-          | Logistics
+          | Project Idea
           span.ttip data-tooltip="Edit"
-            = link_to '<i class="icon-pencil"></i>'.html_safe, edit_logistics_path(@grant)
+            = link_to '<i class="icon-pencil"></i>'.html_safe, edit_project_idea_path(@grant)
       .row
         .eleven.columns.push_one
           .row
