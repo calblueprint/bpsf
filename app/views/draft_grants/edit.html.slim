@@ -11,8 +11,8 @@
             ul.tab-nav
               li#general onclick="setCookie('prevtab',this.id,1)"
                 a href="#"  General
-              li#logistics onclick="setCookie('prevtab',this.id,1)"
-                a href="#"  Logistics
+              li#project_idea onclick="setCookie('prevtab',this.id,1)"
+                a href="#"  Project Idea
               li#details onclick="setCookie('prevtab',this.id,1)"
                 a href="#"  Details
               li#budget onclick="setCookie('prevtab',this.id,1)"
@@ -93,7 +93,7 @@
                       = f.text_field :video, class: [:input, :wide, :text], :placeholder => "Youtube Video Link"
                   .ttip.large.primary.btn data-tooltip="Save Your Progress"
                     = f.submit 'Save!'
-          /! LOGISTICS
+          /! Project Idea
           .tab-content
             .row
               .twelve.columns
