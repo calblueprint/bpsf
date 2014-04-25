@@ -1,8 +1,8 @@
 .navigationbar
   span
-    a.homelogo.poofout href="http://www.berkeleypublicschoolsfund.org" 
+    a.homelogo.poofout href="http://www.berkeleypublicschoolsfund.org"
       img src="/assets/logohoriz.png" /
-    a.homelogo.poofin href="http://www.berkeleypublicschoolsfund.org" 
+    a.homelogo.poofin href="http://www.berkeleypublicschoolsfund.org"
       img src="/assets/logovert.png" /
   .navbuttons.poofin
     ul
@@ -12,7 +12,7 @@
     ul
       li.darken= link_to 'Home'.html_safe, root_path, class: :darken
       li.darken
-        a.helppanelbutton Help
+        a.helppanelbutton FAQ
       - if recipient?
         li.darken= link_to 'Apply'.html_safe, new_draft_path, class: :darken
       = render 'layouts/search_form'

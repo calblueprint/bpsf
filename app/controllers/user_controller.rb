@@ -13,6 +13,7 @@ class UserController < ApplicationController
     @user = User.find params[:id]
     @payments = Payment.find_by_user_id @user
     @profile = @user.profile
+    session[:return_to] ||= request.referer
   end
 
   def update
@@ -21,7 +22,7 @@ class UserController < ApplicationController
         create_customer!
       end
       flash[:success] = 'Profile updated!'
-      redirect_to user_path @user
+      redirect_to session.delete(:return_to)
     else
       if params[:stripe_token]
         create_customer!
