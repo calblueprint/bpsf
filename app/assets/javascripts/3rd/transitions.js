@@ -50,14 +50,14 @@ $(function() {
 	});
 
 //Login Menu
-	$('.loginmenu').bind('click',function(){
+	$('#loggedinmenu').bind('click',function(){
 		if (userdropdown.hasClass('dropper')){
 			$(close(userdropdown,'dropper','close'))
-			$(close('.loginmenu', 'primary-color', 'close'))
+			$(close('#loggedinmenu', 'primary-color', 'close'))
 		}
 		else {
 			$(open(userdropdown,'dropper','close'))
-			$(open('.loginmenu', 'primary-color', 'close'))
+			$(open('#loggedinmenu', 'primary-color', 'close'))
 		}
 		return false
 	});
@@ -66,7 +66,12 @@ $(function() {
 	$('#teacherbutton').bind('click',function(){$(open(teachermodal,'active','close'))});
 	$('#aboutbutton').bind('click',function(){$(open(aboutmodal,'active','close'))});
 	$('#donorbutton').bind('click',function(){$(open(donormodal,'active','close'))});
-	$('#paymentbutton').bind('click',function(){
+	$('#paymentbutton1').bind('click',function(){
+		$(open(paymentmodal, 'active', 'close'));
+		$(open(screens, 'open', 'close'));
+		return false; 
+	});
+	$('#paymentbutton2').bind('click',function(){
 		$(open(paymentmodal, 'active', 'close'));
 		$(open(screens, 'open', 'close'));
 		return false; 
