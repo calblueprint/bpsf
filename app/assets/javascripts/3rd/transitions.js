@@ -50,14 +50,14 @@ $(function() {
 	});
 
 //Login Menu
-	$('.loginmenu').bind('click',function(){
+	$('#loggedinmenu').bind('click',function(){
 		if (userdropdown.hasClass('dropper')){
 			$(close(userdropdown,'dropper','close'))
-			$(close('.loginmenu', 'primary-color', 'close'))
+			$(close('#loggedinmenu', 'primary-color', 'close'))
 		}
 		else {
 			$(open(userdropdown,'dropper','close'))
-			$(open('.loginmenu', 'primary-color', 'close'))
+			$(open('#loggedinmenu', 'primary-color', 'close'))
 		}
 		return false
 	});
