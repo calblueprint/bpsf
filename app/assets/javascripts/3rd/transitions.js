@@ -66,7 +66,12 @@ $(function() {
 	$('#teacherbutton').bind('click',function(){$(open(teachermodal,'active','close'))});
 	$('#aboutbutton').bind('click',function(){$(open(aboutmodal,'active','close'))});
 	$('#donorbutton').bind('click',function(){$(open(donormodal,'active','close'))});
-	$('#paymentbutton').bind('click',function(){
+	$('#paymentbutton1').bind('click',function(){
+		$(open(paymentmodal, 'active', 'close'));
+		$(open(screens, 'open', 'close'));
+		return false; 
+	});
+	$('#paymentbutton2').bind('click',function(){
 		$(open(paymentmodal, 'active', 'close'));
 		$(open(screens, 'open', 'close'));
 		return false; 
