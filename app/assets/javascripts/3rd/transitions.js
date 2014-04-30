@@ -1,11 +1,11 @@
 $(function() {
 
-	var items = $('.helppanel, .helppanelbutton, .xbox, .screen');
-	var helpitems = $('.helppanel, .helppanelbutton, .xbox')
-	var helpPanelButton = $('.helppanelbutton');
-	var xbox = $('.xbox');
-	var screen = $('.screen, .modalscreen');
-	var userdropdown = $('.userdropdown')
+	var items = $('.helppanel, .helppanelbutton, .xbox, .screen'),
+		helpitems = $('.helppanel, .helppanelbutton, .xbox'),
+		helpPanelButton = $('.helppanelbutton'),
+		xbox = $('.xbox'),
+		screens = $('.screen, .modalscreen'),
+		userdropdown = $('.userdropdown');
 
 //Modal Variables
 	var termsmodal = $('#terms')
@@ -21,32 +21,36 @@ $(function() {
 
 	var open = function(items, open, close) {
 							$(items).removeClass(close).addClass(open);
+							return false;
 						}
 	var close = function(items, open, close) {
 							$(items).removeClass(open).addClass(close);
+							return false;
 						}
 
 //General
 	xbox.click(function(){
-		$(close(everything,'open','close'))
-		$(close(everything, 'active', 'close'))
-	});
-	screen.click(function(){
 		$(close(everything,'open','close'));
-	    $(close(everything, 'active', 'close'))
+		$(close(everything, 'active', 'close'));
+	});
+	screens.click(function(){
+		$(close(everything,'open','close'));
+	    $(close(everything, 'active', 'close'));
 	});
 
 //Help Panel
-	helpPanelButton.click(function(){
+	helpPanelButton.bind('click',function(){
 		if (helpPanelButton.hasClass('active open')) {$(close(items,'active open','close'))}
 		else {$(open(items, 'active open', 'close'))}
+		return false;
 	});
-	$('.closeclick').click(function(){
+	$('.closeclick').bind('click',function(){
 		if (helpPanelButton.hasClass('open')) {$(close(helpitems,'open','close'))};
+		return false;
 	});
 
 //Login Menu
-	$('.loginmenu').click(function(){
+	$('.loginmenu').bind('click',function(){
 		if (userdropdown.hasClass('dropper')){
 			$(close(userdropdown,'dropper','close'))
 			$(close('.loginmenu', 'primary-color', 'close'))
@@ -55,40 +59,45 @@ $(function() {
 			$(open(userdropdown,'dropper','close'))
 			$(open('.loginmenu', 'primary-color', 'close'))
 		}
+		return false
 	});
 
 //Modal Boxes
-	$('#teacherbutton').click(function(){$(open(teachermodal,'active','close'))});
-	$('#aboutbutton').click(function(){$(open(aboutmodal,'active','close'))});
-	$('#donorbutton').click(function(){$(open(donormodal,'active','close'))});
-	$('#paymentbutton').click(function(){
-		$(open(paymentmodal, 'active', 'close'))
-		$(open(screen, 'open', 'close'))
+	$('#teacherbutton').bind('click',function(){$(open(teachermodal,'active','close'))});
+	$('#aboutbutton').bind('click',function(){$(open(aboutmodal,'active','close'))});
+	$('#donorbutton').bind('click',function(){$(open(donormodal,'active','close'))});
+	$('#paymentbutton').bind('click',function(){
+		$(open(paymentmodal, 'active', 'close'));
+		$(open(screens, 'open', 'close'));
+		return false; 
 	});
 	$('#terms_conditions').click(function(){
-		$(open(termsmodal, 'active','close'))
-		$(open(screen, 'open', 'close'))
+		$(open(termsmodal, 'active','close'));
+		$(open(screens, 'open', 'close'));
+		return false;
 	});
 	$('.toggle_crowdfund').click(function(){
-		$(open(crowdfundmodal, 'active', 'close'))
-		$(open(screen, 'open', 'close'))
+		$(open(crowdfundmodal, 'active', 'close'));
+		$(open(screens, 'open', 'close'));
+		return false;
 	})
 
 //Press Esc to Exit
 	$(document).keyup(function(e) {
 	    if (e.keyCode == 27) { // Esc
 	        $(close(everything, 'open', 'close'));
-	        $(close(everything, 'active', 'close'))
+	        $(close(everything, 'active', 'close'));
 	    }
+		return false;
 	});
 
 
 //Loading Wheel
 	$(document).on('page:fetch', function() {
-		$(open('.pace', 'pace-active', 'close'))
+		$(open('.pace', 'pace-active', 'close'));
 	});
 	$(document).on('page:change', function() {
-		$(close('.pace', 'pace-active', 'close'))
+		$(close('.pace', 'pace-active', 'close'));
 	});
 
 });
