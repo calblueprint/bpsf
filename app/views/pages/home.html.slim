@@ -12,7 +12,7 @@
     = render partial: 'crowdfunding_grants', collection: @grants[3..5], as: :grant
   - else
     .row
-      h2.centalign Sorry, there are no such grants currently available
+      h2.centalign All grants have been funded.
   = will_paginate @grants
 javascript:
   $('.banner').unslider({
