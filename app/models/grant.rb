@@ -84,6 +84,7 @@ class Grant < ActiveRecord::Base
     grant.validates :title, presence: true, length: { maximum: 40 }
     grant.validate :valid_subject_areas
     grant.validate :valid_deadline
+    grant.validate :valid_other
     grant.validates :summary, presence: true, length: { maximum: 200 }
     grant.validates :grade_level, presence: true
     grant.validate :grade_format
@@ -162,9 +163,6 @@ class Grant < ActiveRecord::Base
 
   # Magic
   def check_funds_for
-    if self[:funds_will_pay_for][-1] == "Other"
-      self[:funds_will_pay_for].pop
-    end
     if self[:funds_will_pay_for][0] == ""
       self[:funds_will_pay_for].shift
     end
@@ -263,8 +261,8 @@ class Grant < ActiveRecord::Base
   end
 
   def with_admin_cost
-    # 10% cost added
-    (requested_funds * 1.1).to_i
+    # 9% cost added
+    (requested_funds * 1.09).to_i
   end
 
   def has_collaborators?
@@ -330,6 +328,11 @@ class Grant < ActiveRecord::Base
     def valid_deadline
       errors.add(:deadline, "should be later than today") if
         deadline.blank? || deadline <= Date.today
+    end
+
+    def valid_other
+      errors.add(:other_funds, "should be filled") if
+        self[:funds_will_pay_for][-1] == "Other" and other_funds.blank?
     end
 
     def grade_format

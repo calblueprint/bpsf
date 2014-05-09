@@ -15,7 +15,7 @@
       span.destext= grant.summary
     span.progressvalues
       h3.inlined.primary-color
-        = '$' + grant.crowdfunder.pledged_total.to_s
+        = '$' + grant.crowdfunder_pledged_total.to_s
       span &nbsp;&nbsp;of&nbsp;&nbsp;
       h3.inlined.darken
         = '$' + grant.crowdfunder_goal.to_s
@@ -31,4 +31,4 @@
         h3.inlined.darken
           span &nbsp;&nbsp;Past Deadline
     .progress
-      span.progressbar data-current=grant.crowdfunder.pledged_total data-goal=grant.crowdfunder_goal style=("width: 0%")
+      span.progressbar data-current=grant.crowdfunder_pledged_total data-goal=grant.crowdfunder_goal style=("width: 0%")
