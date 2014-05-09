@@ -7,7 +7,7 @@ $(document).ready(function(){
         width = 10;
     } else if (width > 100){
         width = 100;
-      }
+    }
     var widthStyle = "width:" + width + "%";
     $(this).attr('style', widthStyle);
   });
