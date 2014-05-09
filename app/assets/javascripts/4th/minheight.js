@@ -1,15 +1,13 @@
-$(window).load(function(){
+$(document).ready(function(){
 	var numwrappers = $('.wrapper').length;
-	if (numwrappers > 1){
-		return;
-	} else {
-		var winheight = $( window ).height();
-		var elemheight = $('.wrapper').height();
-		var footoffset = $('.footwrapper').offset().top;
-		var botoomoffset = winheight - footoffset;
-		var newelemheight = elemheight + botoomoffset - 217;
-		if (newelemheight > elemheight){
-			$('.wrapper').css("minHeight", newelemheight );
+	if (numwrappers == 1){
+		var windowHeight = $( window ).height();
+		var elemHeight = $('.wrapper').height();
+		var footOffset = $('.footwrapper').offset().top;
+		var bottomOffset = windowHeight - footOffset;
+		var newElemHeight = elemHeight + bottomOffset - $('.footwrapper').height();
+		if (newElemHeight > elemHeight){
+			$('.wrapper').css("minHeight", newElemHeight );
 		}
 	}
 });
