@@ -19,12 +19,12 @@ $(function() {
 
 	var everything = $('.helppanel, .helppanelbutton, .xbox, .screen, #teacher-about, #about-about, #donor-about, #terms, #payment-form, #crowdfund-form, #confirmation-modal')
 
-	var open = function(items, open, close) {
-							$(items).removeClass(close).addClass(open);
+	var open = function(items, add, remove) {
+							$(items).removeClass(remove).addClass(add);
 							return false;
 						}
-	var close = function(items, open, close) {
-							$(items).removeClass(open).addClass(close);
+	var close = function(items, remove, add) {
+							$(items).removeClass(remove).addClass(add);
 							return false;
 						}
 
@@ -40,8 +40,11 @@ $(function() {
 
 //Help Panel
 	helpPanelButton.bind('click',function(){
-		if (helpPanelButton.hasClass('active open')) {$(close(items,'active open','close'))}
-		else {$(open(items, 'active open', 'close'))}
+		if (helpPanelButton.hasClass('active open')) {$(close(items,'active','close'))}
+		else {
+			$(open(items, 'active open', 'close'));
+			$(open(xbox, 'close', 'open'));
+		}
 		return false;
 	});
 	$('.closeclick').bind('click',function(){
