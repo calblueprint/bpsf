@@ -25,6 +25,8 @@ gem 'newrelic_rpm'
 gem 'thin', '~> 1.6.1'
 gem 'unf'
 gem 'whenever', :require => false
+gem 'mail_form'
+
 
 group :development, :test do
   gem 'rspec-rails', '2.11.0'

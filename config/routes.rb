@@ -2,6 +2,7 @@ BPSF::Application.routes.draw do
   root to: 'pages#home'
   get '/search', to: 'pages#search', as: :search
 
+  resources :contact_forms
   resources :grants, except: :index do
     post 'rate', on: :member
   end
