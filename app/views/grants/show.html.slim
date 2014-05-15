@@ -85,6 +85,7 @@
             strong Goal:
           span.goalnum
             |  $#{@grant.crowdfunder_goal}
+        - if @grant.crowdfunding? || @grant.crowdfund_pending?
           .row
             hr/
             .three.columns.centered.centalign
@@ -195,6 +196,10 @@
         - if @grant.crowdfunding?
           .row
             = render "payment_form", payment: @payment, id: @grant.id
+        - else
+          .row
+            h3 style="margin-top:60px"
+              | Grant must be crowdfunding in order to donate!
 #crowdfund-modal-view
   = render "crowdfund_modal", grant: @grant
 #confirmation-modal-view
