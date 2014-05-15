@@ -393,25 +393,7 @@
 
 //Help Panel
 	.helppanel{
-/*		position:fixed;
-		top:50%;
-		margin-top:-72px;
-		left:-100%;
-		width:100%;
-		height:100px;
-		z-index:1000;
-		background-color:$white;
-		text-align:center;
-		@include box-shadow(0 0 5px #999);
-		@include transition-duration(.5s);
-		.xbox{
-			position:relative;
-			top:10px;
-			right:10px;
-			font-size: $large;
-			display:none;
-		}
-*/		ul{
+		ul{
 			list-style: none;
 			height: 200px;
 			width: 100%; 
@@ -437,44 +419,11 @@
 	}
 
 	.helppanelbutton{
-/*		position:fixed;
-		top:50%;
-		margin-top:-50px;
-		left:-45px;
-		height:55px;
-		width:100px;
-		line-height:35px;
-		text-align:center;
-		padding-top:20px;
-		color:$white;
-		font-size:$large;
-		z-index:998;
-		background-color:$primary-color;*/
 		cursor:pointer;
-/*		@include rotate(-90deg);
-		@include box-shadow(0 0 10px rgb(170,170,170));
-		@include transition-duration(0.3s);
-*/		&:hover, &:active, &:focus{
-//			left: -40px;
-color:$primary-color;
+		&:hover, &:active, &:focus{
+			color:$primary-color;
 		}
-/*		@include respond(all-phones){
-			left:-25px;
-			height:45px;
-			width:70px;
-			line-height:30px;
-			text-align:center;
-			padding-top:15px;
-			color:$white;
-			font-size:$med;
-			&:hover, &:active, &:focus{
-			left: -25px;
-			}
-		}
-		&.open{
-			left:100% !important;
-		}
-*/	}
+	}
 
 //Javascript Hover/Modal Classes
 	.screen{
