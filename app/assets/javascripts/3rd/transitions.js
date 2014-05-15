@@ -72,12 +72,12 @@ $(function() {
 	$('#paymentbutton1').bind('click',function(){
 		$(open(paymentmodal, 'active', 'close'));
 		$(open(screens, 'open', 'close'));
-		return false; 
+		return false;
 	});
 	$('#paymentbutton2').bind('click',function(){
 		$(open(paymentmodal, 'active', 'close'));
 		$(open(screens, 'open', 'close'));
-		return false; 
+		return false;
 	});
 	$('#terms_conditions').click(function(){
 		$(open(termsmodal, 'active','close'));
