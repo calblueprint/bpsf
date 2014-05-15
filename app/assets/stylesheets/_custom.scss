@@ -52,7 +52,9 @@
 		&.light{background-color:#fff;}
 		&.homewrap{padding: 25px;}
 	}//Page wrapper
-
+  .bare-wrapper{
+    padding: 0px 30px;
+  }
 	.page-wrapper{
 		@include box-shadow(0px 0 10px rgb(170, 170, 170));
 		background-color:#fff;
@@ -396,7 +398,7 @@
 		ul{
 			list-style: none;
 			height: 200px;
-			width: 100%; 
+			width: 100%;
 			margin: 0 auto;
 			display: block;
 			position: absolute;
@@ -406,9 +408,9 @@
 		}
 		li{
 			display:inline-block;
-			height:200px;
-			width:33.333333%;
-			line-height:200px;
+			height:100px;
+			width:33.3333333%;
+			line-height:100px;
 			font-size: $med+1;
 			text-align: center;
 			&:hover, &:active, &:focus{

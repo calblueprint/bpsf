@@ -15,6 +15,7 @@
         a.helppanelbutton FAQ
       - if recipient?
         li.darken= link_to 'Apply'.html_safe, new_draft_path, class: :darken
+      li.darken= link_to 'Contact'.html_safe, new_contact_form_path, class: :darken
       = render 'layouts/search_form'
   - if user_signed_in?
     .loginmenu.pull_right.darken.pointer.linkeffect#loggedinmenu
