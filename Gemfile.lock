@@ -162,6 +162,9 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    mail_form (1.5.0)
+      actionmailer (>= 3.2, < 5)
+      activemodel (>= 3.2, < 5)
     main (5.2.0)
       arrayfields (>= 4.7.4)
       chronic (>= 0.6.2)
@@ -385,6 +388,7 @@ DEPENDENCIES
   jquery-rails (= 2.0.2)
   jquery-turbolinks (~> 2.0.1)
   launchy
+  mail_form
   metric_fu (~> 4.4.4)
   mini_magick (~> 3.5.0)
   modernizr-rails (~> 2.6.2.3)
