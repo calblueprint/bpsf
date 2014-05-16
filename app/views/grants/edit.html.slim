@@ -26,7 +26,7 @@
           .row
             h4 Video
             - if !@grant.video.blank?
-              iframe height="315" src="http://www.youtube.com/embed/#{parse_embed(@grant)}" width="560"
+              iframe height="315" src="https://www.youtube.com/embed/#{parse_embed(@grant)}" width="560"
           .row
             h4 Subject areas
             = @grant.subject_areas.values.to_a.join(', ')
