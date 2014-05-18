@@ -30,13 +30,11 @@ $(function() {
 			var openClasses = 'dropper',
 				closeClasses = 'close';
 		} else if(type == 'loader fetch' || type == 'loader change'){
-			console.log('page fetch!')
 			var openClasses = 'pace-active',
 				closeClasses = 'close';
 		};
 		if(
-			e.keyCode == 27 
-			|| object[0].hasClass(openClasses) 
+			object[0].hasClass(openClasses) 
 			|| type == 'loader change' 
 			&& type !== 'loader fetch'
 			) {
@@ -45,8 +43,8 @@ $(function() {
 			editClasses(object, openClasses, closeClasses);
 			isOpened.push(object[0]);
 		};
-		e.preventDefault();
-		return false
+		//e.preventDefault();
+		//return false
 	};
 
 	//Add any modals you want to this list.
@@ -55,6 +53,7 @@ $(function() {
 			[document, isOpened, transitionFunction, 'modal', 'keyup'],
 			[document, '.pace', transitionFunction, 'loader change', 'page:change'],
 			[document, '.pace', transitionFunction, 'loader fetch', 'page:fetch'],
+			['#loggedinmenu', '.userdropdown', transitionFunction, 'menu', 'click'],
 			['.xbox, .screen, .modalscreen', isOpened, transitionFunction, 'modal', 'click'],
 			['.toggle_crowdfund', '#crowdfund-form', transitionFunction, 'modal', 'click'],
 			['#terms_conditions', '#terms', transitionFunction, 'modal', 'click'],
@@ -63,7 +62,7 @@ $(function() {
 			['#aboutbutton', '#about-about', transitionFunction, 'modal', 'click'],
 			['#donorbutton', '#donor-about', transitionFunction, 'modal', 'click'],
 			['#paymentbutton1, #paymentbutton2', '#payment-form', transitionFunction, 'modal', 'click'],
-			['#loggedinmenu', '.userdropdown', transitionFunction, 'menu', 'click']
+			['.donate', '#payment-modal', transitionFunction, 'modal', 'click']
 		];
 
 
@@ -73,7 +72,7 @@ $(function() {
 			triggerObject.on(eventType, function(e){
 				if(typeof target == 'string'){
 					func(e, target, type);
-				} else {
+				} else if(e.keyCode == 27 || e.keyCode == undefined) {
 					for (var i = target.length - 1; i >= 0; i--) {
 						func(e, target[i], type);
 						target.pop();
@@ -98,5 +97,29 @@ $(function() {
 
 	bindAll(bindList);
 
-
 });
+
+/*
+
+  $(".donate").click ->
+    $("#payment-modal").toggleClass "active"
+
+  $(".close-payment-form").click ->
+    $("#payment-modal").removeClass "active"
+
+  $(".crowdfund").click ->
+    $("#crowdfund-form").addClass "active"
+
+  $(".close-crowdfund-modal").click ->
+    $("#crowdfund-form").removeClass "active"
+
+  $(".close-confirmation-modal").click ->
+    $("#confirmation-form").removeClass "active"
+    $("#payment-form").removeClass "active"
+
+  $(document).keyup (e) ->
+    if e.keyCode is 27
+      $("#crowdfund-form").removeClass "active"  if $("#crowdfund-form").hasClass("active")
+      $("#payment-modal").removeClass "active"  if $("#payment-modal").hasClass("active")
+      $("#confirmation-modal").removeClass "active"  if $("#confirmation-modal").hasClass("active")
+*/
