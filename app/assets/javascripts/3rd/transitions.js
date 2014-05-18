@@ -1,6 +1,6 @@
 $(function() {
 
-	var items = $('.helppanel, .helppanelbutton, .xbox, .screen'),
+	var items = $('.helppanel, .helppanelbutton'),
 		helpitems = $('.helppanel, .helppanelbutton, .xbox'),
 		helpPanelButton = $('.helppanelbutton'),
 		xbox = $('.xbox'),
@@ -28,6 +28,65 @@ $(function() {
 							return false;
 						}
 
+
+	var transitionObject = function(objects, addClasses, removeClasses){
+		for (var i = objects.length - 1; i >= 0; i--) {
+			objects[i].addClass(addClasses).removeClass(removeClasses);
+		};
+	};
+
+	var findObject = function(name){
+		var object = $(name);
+		if(object !== null || object !== undefined){
+			return object
+		} else{
+			return null
+		};
+	};
+
+	var transitionFunction = function(e, target, type){
+		var object = [$(target)];
+		//Add object type-specific behavior here
+		if(type == 'modal'){
+			var openClasses = 'open active',
+				closeClasses = 'close';
+			object.push(screens);
+		} else if(type == 'menu'){
+			var openClasses = 'dropper',
+				closeClasses = 'close';
+		};
+		if(e.keyCode == 27){
+			transitionObject(object, closeClasses, openClasses);
+		} else if (object[0].hasClass(closeClasses)) {
+			transitionObject(object, openClasses, closeClasses);
+		} else {
+			transitionObject(object, closeClasses, openClasses);
+		};
+	};
+
+	var bindList = [
+			['#terms_conditions', '#terms', transitionFunction, 'modal', 'click keyup']
+		];
+
+	/*Takes a list of triggers, targets, functions, target types and events 
+	and binds the function to the target on that event*/
+	var bindAll = function(bindList){
+		for (var i = bindList.length - 1; i >= 0; i--) {
+			var trigger = bindList[i][0],
+				target  = bindList[i][1],
+				func = bindList[i][2],
+				type = bindList[i][3],
+				eventType = bindList[i][4];
+			var trigger = findObject(trigger);
+			if(trigger !== null){
+				trigger.bind(eventType, function(e){
+					func(e, target, type);
+				});
+			};
+		};
+	};
+
+	bindAll(bindList);
 //General
 	xbox.click(function(){
 		$(close(everything,'open','close'));
@@ -79,11 +138,13 @@ $(function() {
 		$(open(screens, 'open', 'close'));
 		return false;
 	});
+/*
 	$('#terms_conditions').click(function(){
 		$(open(termsmodal, 'active','close'));
 		$(open(screens, 'open', 'close'));
 		return false;
 	});
+*/
 	$('.toggle_crowdfund').click(function(){
 		$(open(crowdfundmodal, 'active', 'close'));
 		$(open(screens, 'open', 'close'));
