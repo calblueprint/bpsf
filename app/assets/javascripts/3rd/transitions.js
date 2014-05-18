@@ -29,7 +29,9 @@ $(function() {
 						}
 
 
-	var transitionObject = function(objects, addClasses, removeClasses){
+	var isOpened = [];
+
+	var editClasses = function(objects, addClasses, removeClasses){
 		for (var i = objects.length - 1; i >= 0; i--) {
 			objects[i].addClass(addClasses).removeClass(removeClasses);
 		};
@@ -37,10 +39,10 @@ $(function() {
 
 	var findObject = function(name){
 		var object = $(name);
-		if(object !== null || object !== undefined){
-			return object
+		if(object[0] !== undefined){
+			return object;
 		} else{
-			return null
+			return null;
 		};
 	};
 
@@ -55,18 +57,46 @@ $(function() {
 			var openClasses = 'dropper',
 				closeClasses = 'close';
 		};
-		if(e.keyCode == 27){
-			transitionObject(object, closeClasses, openClasses);
-		} else if (object[0].hasClass(closeClasses)) {
-			transitionObject(object, openClasses, closeClasses);
+		if(e.keyCode == 27 || object[0].hasClass(openClasses)) {
+			editClasses(object, closeClasses, openClasses);
 		} else {
-			transitionObject(object, closeClasses, openClasses);
+			editClasses(object, openClasses, closeClasses);
+			isOpened.push(object[0]);
 		};
+		e.preventDefault();
+		return false
 	};
 
+	//Add any modals you want to this list.
+	//[Trigger, Target, Function, Target-type, Event]
 	var bindList = [
-			['#terms_conditions', '#terms', transitionFunction, 'modal', 'click keyup']
+			[document, isOpened, transitionFunction, 'modal', 'keyup'],
+			['.xbox, .screen, .modalscreen', isOpened, transitionFunction, 'modal', 'click'],
+			['#terms_conditions', '#terms', transitionFunction, 'modal', 'click'],
+			['.helppanelbutton', '.helppanel', transitionFunction, 'modal', 'click'],
+			['#teacherbutton', '#teacher-about', transitionFunction, 'modal', 'click'],
+			['#aboutbutton', '#about-about', transitionFunction, 'modal', 'click'],
+			['#donorbutton', '#donor-about', transitionFunction, 'modal', 'click'],
+			['#paymentbutton1, #paymentbutton2', '#payment-form', transitionFunction, 'modal', 'click'],
+
 		];
+
+
+	var bindFunction = function(trigger, target, func, type, eventType){
+		var triggerObject = findObject(trigger);
+		if(triggerObject !== null){
+			triggerObject.on(eventType, function(e){
+				if(typeof target == 'string'){
+					func(e, target, type);
+				} else {
+					for (var i = target.length - 1; i >= 0; i--) {
+						func(e, target[i], type);
+						target.pop();
+					};
+				};
+			});
+		};
+	};
 
 	/*Takes a list of triggers, targets, functions, target types and events 
 	and binds the function to the target on that event*/
@@ -77,17 +107,17 @@ $(function() {
 				func = bindList[i][2],
 				type = bindList[i][3],
 				eventType = bindList[i][4];
-			var trigger = findObject(trigger);
-			if(trigger !== null){
-				trigger.bind(eventType, function(e){
-					func(e, target, type);
-				});
-			};
+			bindFunction(trigger, target, func, type, eventType);
 		};
 	};
 
 	bindAll(bindList);
+
+
+
+
 //General
+/*
 	xbox.click(function(){
 		$(close(everything,'open','close'));
 		$(close(everything, 'active', 'close'));
@@ -98,6 +128,7 @@ $(function() {
 	});
 
 //Help Panel
+/*
 	helpPanelButton.bind('click',function(){
 		if (helpPanelButton.hasClass('active open')) {$(close(items,'active','close'))}
 		else {
@@ -110,7 +141,7 @@ $(function() {
 		if (helpPanelButton.hasClass('open')) {$(close(helpitems,'open','close'))};
 		return false;
 	});
-
+*/
 //Login Menu
 	$('#loggedinmenu').bind('click',function(){
 		if (userdropdown.hasClass('dropper')){
@@ -125,10 +156,10 @@ $(function() {
 	});
 
 //Modal Boxes
-	$('#teacherbutton').bind('click',function(){$(open(teachermodal,'active','close'))});
-	$('#aboutbutton').bind('click',function(){$(open(aboutmodal,'active','close'))});
-	$('#donorbutton').bind('click',function(){$(open(donormodal,'active','close'))});
-	$('#paymentbutton1').bind('click',function(){
+	//$('#teacherbutton').bind('click',function(){$(open(teachermodal,'active','close'))});
+	//$('#aboutbutton').bind('click',function(){$(open(aboutmodal,'active','close'))});
+	//$('#donorbutton').bind('click',function(){$(open(donormodal,'active','close'))});
+/*	$('#paymentbutton1').bind('click',function(){
 		$(open(paymentmodal, 'active', 'close'));
 		$(open(screens, 'open', 'close'));
 		return false;
@@ -152,14 +183,14 @@ $(function() {
 	})
 
 //Press Esc to Exit
-	$(document).keyup(function(e) {
+/*	$(document).keyup(function(e) {
 	    if (e.keyCode == 27) { // Esc
 	        $(close(everything, 'open', 'close'));
 	        $(close(everything, 'active', 'close'));
 	    }
 		return false;
 	});
-
+*/
 
 //Loading Wheel
 	$(document).on('page:fetch', function() {
