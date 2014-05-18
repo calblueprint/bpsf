@@ -1,39 +1,12 @@
 $(function() {
 
-	var items = $('.helppanel, .helppanelbutton'),
-		helpitems = $('.helppanel, .helppanelbutton, .xbox'),
-		helpPanelButton = $('.helppanelbutton'),
-		xbox = $('.xbox'),
-		screens = $('.screen, .modalscreen'),
-		userdropdown = $('.userdropdown');
 
-//Modal Variables
-	var termsmodal = $('#terms')
-	var teachermodal = $('#teacher-about')
-	var donormodal = $('#donor-about')
-	var aboutmodal = $('#about-about')
-	var paymentmodal = $('#payment-form')
-	var crowdfundmodal = $('#crowdfund-form')
-	var confirmationmodal = $('#confirmation-modal')
-	var modals = $('#teacher-about, #about-about, #donor-about')
-
-	var everything = $('.helppanel, .helppanelbutton, .xbox, .screen, #teacher-about, #about-about, #donor-about, #terms, #payment-form, #crowdfund-form, #confirmation-modal')
-
-	var open = function(items, add, remove) {
-							$(items).removeClass(remove).addClass(add);
-							return false;
-						}
-	var close = function(items, remove, add) {
-							$(items).removeClass(remove).addClass(add);
-							return false;
-						}
-
-
-	var isOpened = [];
+	var screens = $('.screen, .modalscreen'),
+		isOpened = [];
 
 	var editClasses = function(objects, addClasses, removeClasses){
 		for (var i = objects.length - 1; i >= 0; i--) {
-			objects[i].addClass(addClasses).removeClass(removeClasses);
+			objects[i].removeClass(removeClasses).addClass(addClasses);
 		};
 	};
 
@@ -56,8 +29,17 @@ $(function() {
 		} else if(type == 'menu'){
 			var openClasses = 'dropper',
 				closeClasses = 'close';
+		} else if(type == 'loader fetch' || type == 'loader change'){
+			console.log('page fetch!')
+			var openClasses = 'pace-active',
+				closeClasses = 'close';
 		};
-		if(e.keyCode == 27 || object[0].hasClass(openClasses)) {
+		if(
+			e.keyCode == 27 
+			|| object[0].hasClass(openClasses) 
+			|| type == 'loader change' 
+			&& type !== 'loader fetch'
+			) {
 			editClasses(object, closeClasses, openClasses);
 		} else {
 			editClasses(object, openClasses, closeClasses);
@@ -71,14 +53,17 @@ $(function() {
 	//[Trigger, Target, Function, Target-type, Event]
 	var bindList = [
 			[document, isOpened, transitionFunction, 'modal', 'keyup'],
+			[document, '.pace', transitionFunction, 'loader change', 'page:change'],
+			[document, '.pace', transitionFunction, 'loader fetch', 'page:fetch'],
 			['.xbox, .screen, .modalscreen', isOpened, transitionFunction, 'modal', 'click'],
+			['.toggle_crowdfund', '#crowdfund-form', transitionFunction, 'modal', 'click'],
 			['#terms_conditions', '#terms', transitionFunction, 'modal', 'click'],
 			['.helppanelbutton', '.helppanel', transitionFunction, 'modal', 'click'],
 			['#teacherbutton', '#teacher-about', transitionFunction, 'modal', 'click'],
 			['#aboutbutton', '#about-about', transitionFunction, 'modal', 'click'],
 			['#donorbutton', '#donor-about', transitionFunction, 'modal', 'click'],
 			['#paymentbutton1, #paymentbutton2', '#payment-form', transitionFunction, 'modal', 'click'],
-
+			['#loggedinmenu', '.userdropdown', transitionFunction, 'menu', 'click']
 		];
 
 
@@ -113,91 +98,5 @@ $(function() {
 
 	bindAll(bindList);
 
-
-
-
-//General
-/*
-	xbox.click(function(){
-		$(close(everything,'open','close'));
-		$(close(everything, 'active', 'close'));
-	});
-	screens.click(function(){
-		$(close(everything,'open','close'));
-	    $(close(everything, 'active', 'close'));
-	});
-
-//Help Panel
-/*
-	helpPanelButton.bind('click',function(){
-		if (helpPanelButton.hasClass('active open')) {$(close(items,'active','close'))}
-		else {
-			$(open(items, 'active open', 'close'));
-			$(open(xbox, 'close', 'open'));
-		}
-		return false;
-	});
-	$('.closeclick').bind('click',function(){
-		if (helpPanelButton.hasClass('open')) {$(close(helpitems,'open','close'))};
-		return false;
-	});
-*/
-//Login Menu
-	$('#loggedinmenu').bind('click',function(){
-		if (userdropdown.hasClass('dropper')){
-			$(close(userdropdown,'dropper','close'))
-			$(close('#loggedinmenu', 'primary-color', 'close'))
-		}
-		else {
-			$(open(userdropdown,'dropper','close'))
-			$(open('#loggedinmenu', 'primary-color', 'close'))
-		}
-		return false
-	});
-
-//Modal Boxes
-	//$('#teacherbutton').bind('click',function(){$(open(teachermodal,'active','close'))});
-	//$('#aboutbutton').bind('click',function(){$(open(aboutmodal,'active','close'))});
-	//$('#donorbutton').bind('click',function(){$(open(donormodal,'active','close'))});
-/*	$('#paymentbutton1').bind('click',function(){
-		$(open(paymentmodal, 'active', 'close'));
-		$(open(screens, 'open', 'close'));
-		return false;
-	});
-	$('#paymentbutton2').bind('click',function(){
-		$(open(paymentmodal, 'active', 'close'));
-		$(open(screens, 'open', 'close'));
-		return false;
-	});
-/*
-	$('#terms_conditions').click(function(){
-		$(open(termsmodal, 'active','close'));
-		$(open(screens, 'open', 'close'));
-		return false;
-	});
-*/
-	$('.toggle_crowdfund').click(function(){
-		$(open(crowdfundmodal, 'active', 'close'));
-		$(open(screens, 'open', 'close'));
-		return false;
-	})
-
-//Press Esc to Exit
-/*	$(document).keyup(function(e) {
-	    if (e.keyCode == 27) { // Esc
-	        $(close(everything, 'open', 'close'));
-	        $(close(everything, 'active', 'close'));
-	    }
-		return false;
-	});
-*/
-
-//Loading Wheel
-	$(document).on('page:fetch', function() {
-		$(open('.pace', 'pace-active', 'close'));
-	});
-	$(document).on('page:change', function() {
-		$(close('.pace', 'pace-active', 'close'));
-	});
 
 });
