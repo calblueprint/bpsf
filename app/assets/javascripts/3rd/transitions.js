@@ -5,12 +5,12 @@ $(function() {
 		isOpened = [];
 
 	var tabGetter = function(e, tabs, type){
-		var target = $(window.location.hash);
+		var target = $(window.location.hash.replace('tab-',''));
 		$(tabs).trigger('gumby.set', target.index());
 	};
 
 	var tabSetter = function(e, target, type){
-		window.location.hash = target.id;
+		window.location.hash = 'tab-' + target.id.replace('#','');
 	};
 
 	var editClasses = function(objects, addClasses, removeClasses){
