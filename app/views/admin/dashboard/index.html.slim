@@ -7,15 +7,15 @@
           .row
             .twelve.columns.centered.centalign
               ul.tab-nav
-                li#grants onclick="setCookie('tabval',this.id,1)"
+                li#grants
                   a href="#"  Grants
-                li#donors onclick="setCookie('tabval',this.id,1)"
+                li#donors
                   a href="#"  Donors
-                li#recipients onclick="setCookie('tabval',this.id,1)"
+                li#recipients
                   a href="#"  Recipients
-                li#pending onclick="setCookie('tabval',this.id,1)"
+                li#pending
                   a href="#"  Pending Users
-                li#distributions onclick="setCookie('tabval',this.id,1)"
+                li#distributions
                   a href="#"  Data Distributions
           .tab-content
             = render partial: 'shared/table', locals: { heads: ["Name", "Status", "Teacher, School"], partials: [['all_grants', @grants, :grant, "There are no grants"]] }
