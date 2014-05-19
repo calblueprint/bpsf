@@ -175,34 +175,31 @@ javascript:
 
   var ChartFour = new Chart(document.getElementById("canvas4").getContext("2d")).Bar(dataFour, Maximize(#{raw successful_goal}, #{raw unsuccessful_goal}));
 
-  var getQueryVariable = function(variable){
-    var query = window.location.search.substring(1);
-    var vars = query.split('&');
-    for (var i = 0; i < vars.length; i++){
-      var pair = vars[i].split('=');
-      console.log(pair);
-      if(pair[0] == variable){
-        return pair[1];
+  var setQueryVariable = function(variable, newKey){
+      var url = window.location.href.split('?')[0] + '?',
+          query = window.location.search.substring(1),
+          vars = query.split('&');
+      for (var i = 0; i < vars.length; i++){
+        var pair = vars[i].split('=');
+        if(pair[0] == variable){
+          url = url + pair[0] + '=' + newKey + '&';
+        } else {
+          url = url + vars[i] + '&';
+        };
       };
+      console.log(url.slice(0, -1));
+   };
+
+   var tabBinder = function(e, tabs, type){
+    var tabChildren = tabs.children();
+    for(var i = tabChildren.length - 1; i >= 0; i--){
+      setQueryVariable('tab', tabChildren[i]);
     };
-    return false;
-  };
+   };
 
-
-  var tabSetter = function(){
-    console.log('searching for query variable');
-    var tab = getQueryVariable('tab');
-    console.log('checking if this tab exists');
-    if(!!tab){
-      console.log('setting target')
-      var target = $('#' + tab);
-      console.log('trigger the gumby.set')
-      $('#tabs').trigger('gumby.set', target.index());
-    }
-  };
-
-  $(document).ready(tabSetter)
-  $(document).bind('page:change', tabSetter);
+   var tabSetter = function(e, target, type){
+    setQueryVariable('tab', target.id);
+   };
 
   /*
   $(document).ready(function(){
