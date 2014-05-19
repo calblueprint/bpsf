@@ -9,15 +9,15 @@
         section#tabs.tabs
           .ten.columns.centered.centalign
             ul.tab-nav
-              li#general onclick="setCookie('prevtab',this.id,1)"
+              li#general
                 a href="#"  General
-              li#project_idea onclick="setCookie('prevtab',this.id,1)"
+              li#project_idea
                 a href="#"  Project Idea
-              li#details onclick="setCookie('prevtab',this.id,1)"
+              li#details
                 a href="#"  Details
-              li#budget onclick="setCookie('prevtab',this.id,1)"
+              li#budget
                 a href="#"  Budget
-              li#finalize onclick="setCookie('prevtab',this.id,1)"
+              li#finalize
                 a href="#"  Finalize
           br/
           /! GENERAL INFO
@@ -264,7 +264,7 @@
                       = f.submit 'Submit!', name: 'save_and_submit'
 javascript:
   $(".chosenselect").chosen({width:'100%'});
-
+  /*
   $(document).ready(function(){
       var prevtab = getCookie("prevtab");
         if (prevtab!=null && prevtab!=""){
@@ -278,7 +278,7 @@ javascript:
         }
 
     });
-
+  */
 
   function validateLength(el) {
       console.log('hit');
