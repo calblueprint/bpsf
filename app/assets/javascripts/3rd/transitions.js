@@ -4,6 +4,15 @@ $(function() {
 	var screens = $('.screen, .modalscreen'),
 		isOpened = [];
 
+	var tabGetter = function(e, tabs, type){
+		var target = $(window.location.hash);
+		$(tabs).trigger('gumby.set', target.index());
+	};
+
+	var tabSetter = function(e, target, type){
+		window.location.hash = target.id;
+	};
+
 	var editClasses = function(objects, addClasses, removeClasses){
 		for (var i = objects.length - 1; i >= 0; i--) {
 			objects[i].removeClass(removeClasses).addClass(addClasses);
@@ -43,8 +52,8 @@ $(function() {
 			editClasses(object, openClasses, closeClasses);
 			isOpened.push(object[0]);
 		};
-		//e.preventDefault();
-		//return false
+		e.preventDefault();
+		return false
 	};
 
 	//Add any modals you want to this list.
@@ -65,6 +74,19 @@ $(function() {
 			['.donate', '#payment-modal', transitionFunction, 'modal', 'click']
 		];
 
+	//Bind tab change events if tabs exist on page
+	var tabs = $('.tab-nav');
+	if(tabs.length > 0){
+		console.log('adding to bindlist');
+		bindList.push(
+			[document, tabs, tabGetter, 'tab', 'page:change'],
+			[document, tabs, tabGetter, 'tab', 'ready']	
+			);
+		var tabChildren = tabs.children();
+	    for(var i = tabChildren.length - 1; i >= 0; i--){
+	    	bindList.push([tabChildren[i], [tabChildren[i]], tabSetter, 'tab', 'click'])
+	    };
+	};
 
 	var bindFunction = function(trigger, target, func, type, eventType){
 		var triggerObject = findObject(trigger);
