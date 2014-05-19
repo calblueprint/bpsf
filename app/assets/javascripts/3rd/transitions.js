@@ -94,11 +94,13 @@ $(function() {
 			triggerObject.on(eventType, function(e){
 				if(typeof target == 'string'){
 					func(e, target, type);
-				} else if(e.keyCode == 27 || e.keyCode == undefined) {
+				} else if(e.keyCode == 27 || e.keyCode == undefined && target == isOpened) {
 					for (var i = target.length - 1; i >= 0; i--) {
 						func(e, target[i], type);
 						target.pop();
 					};
+				} else if(target.length == 1){
+					func(e, target[0], type);
 				};
 			});
 		};
