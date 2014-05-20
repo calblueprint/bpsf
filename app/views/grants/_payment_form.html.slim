@@ -17,6 +17,10 @@
           span.adjoined $
           = text_field_tag :amount, nil, class: :input
         | Credit card (ending in #{current_user.last4}) has already been provided. You can update this on your profile.
+        #stripe_error
+          noscript Javscript is required. Please enable it in your browser settings.
+        .donate.large.primary.btn
+          = f.submit "Donate!", :id => "new_payment", :confirm => "Are you sure?", class: :saved_card
       - else
         h3 Welcome to your first donation!
         hr/
@@ -71,10 +75,10 @@
               .field
                 = label_tag :address_country, "Country", class: :largefont
                 = text_field_tag :address_country, "USA", name: nil, class: :input
-      #stripe_error
-        noscript Javscript is required. Please enable it in your browser settings.
-      .donate.large.primary.btn
-        = f.submit "Donate!", :id => "new_payment", :confirm => "Are you sure?"
+        #stripe_error
+          noscript Javscript is required. Please enable it in your browser settings.
+        .donate.large.primary.btn#new-card
+          = f.submit "Donate!", :id => "new_payment", :confirm => "Are you sure?"
   - else
     h3 style="margin-top:60px"
       | In order to donate, please fill out your profile first!
