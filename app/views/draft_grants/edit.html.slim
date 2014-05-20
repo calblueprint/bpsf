@@ -9,7 +9,7 @@
         section#tabs.tabs
           .ten.columns.centered.centalign
             ul.tab-nav
-              li#general
+              li#general.active
                 a href="#"  General
               li#project_idea
                 a href="#"  Project Idea
@@ -264,21 +264,6 @@
                       = f.submit 'Submit!', name: 'save_and_submit'
 javascript:
   $(".chosenselect").chosen({width:'100%'});
-  /*
-  $(document).ready(function(){
-      var prevtab = getCookie("prevtab");
-        if (prevtab!=null && prevtab!=""){
-          var $tabs = $('#tabs');
-          var $target = $tabs.find('.tab-nav li#'+prevtab);
-          if($target.length) {
-              $tabs.trigger('gumby.set', $target.index());
-          }
-        } else{
-            $('#tabs').trigger('gumby.set', $('#tabs').find('.tab-nav li#general').index());
-        }
-
-    });
-  */
 
   function validateLength(el) {
       console.log('hit');
