@@ -414,7 +414,6 @@
 			font-size: $med+1;
 			text-align: center;
 			&:hover, &:active, &:focus{
-				background-color: $global-bg-color;
 				color:$primary-color;
 			}
 		}
