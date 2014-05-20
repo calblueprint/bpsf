@@ -1,6 +1,4 @@
 - if @message.nil?
-  | $('#confirmation-modal').addClass('active');
-  | $('#payment-modal').removeClass('active');
   | $('#payment-amount').html("#{@payment.amount}");
   | $('.progressbar').html("#{@grant.crowdfunder_progress}");
   | $('.progressbar').css('width', "#{@grant.crowdfunder_progress}");
@@ -8,6 +6,4 @@
   | $('.currentnum').html('$#{@grant.crowdfunder_pledged_total}');
   | $("input[type=submit]").attr("disabled", false);
 - else
-  | $('#confirmation-modal').addClass('active');
-  | $('#payment-modal').removeClass('active');
   | $('#confirmation-body').html('#{@message}');
