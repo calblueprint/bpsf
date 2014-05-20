@@ -53,7 +53,7 @@ $(function() {
 		};
 		if(preventDefault){
 			e.preventDefault();
-			return false
+			return false;
 		}
 	};
 
@@ -72,7 +72,7 @@ $(function() {
 			['#aboutbutton', '#about-about', transitionFunction, 'modal', 'click', true],
 			['#donorbutton', '#donor-about', transitionFunction, 'modal', 'click', true],
 			['#paymentbutton1, #paymentbutton2', '#payment-form', transitionFunction, 'modal', 'click', true],
-			['.donate', '#payment-modal', transitionFunction, 'modal', 'click', false]
+			['#new_payment', '#confirmation-modal', transitionFunction, 'modal', 'submit', false],
 		];
 
 	//Bind tab change events if tabs exist on page
@@ -98,6 +98,7 @@ $(function() {
 					for (var i = target.length - 1; i >= 0; i--) {
 						func(e, target[i], type, preventDefault);
 						target.pop();
+						console.log(target);
 					};
 				};
 			});
@@ -121,28 +122,3 @@ $(function() {
 	bindAll(bindList);
 
 });
-
-/*
-
-  $(".donate").click ->
-    $("#payment-modal").toggleClass "active"
-
-  $(".close-payment-form").click ->
-    $("#payment-modal").removeClass "active"
-
-  $(".crowdfund").click ->
-    $("#crowdfund-form").addClass "active"
-
-  $(".close-crowdfund-modal").click ->
-    $("#crowdfund-form").removeClass "active"
-
-  $(".close-confirmation-modal").click ->
-    $("#confirmation-form").removeClass "active"
-    $("#payment-form").removeClass "active"
-
-  $(document).keyup (e) ->
-    if e.keyCode is 27
-      $("#crowdfund-form").removeClass "active"  if $("#crowdfund-form").hasClass("active")
-      $("#payment-modal").removeClass "active"  if $("#payment-modal").hasClass("active")
-      $("#confirmation-modal").removeClass "active"  if $("#confirmation-modal").hasClass("active")
-*/
