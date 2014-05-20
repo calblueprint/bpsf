@@ -72,7 +72,6 @@ $(function() {
 			['#aboutbutton', '#about-about', transitionFunction, 'modal', 'click', true],
 			['#donorbutton', '#donor-about', transitionFunction, 'modal', 'click', true],
 			['#paymentbutton1, #paymentbutton2', '#payment-form', transitionFunction, 'modal', 'click', true],
-			['#new_payment', '#confirmation-modal', transitionFunction, 'modal', 'submit', false],
 		];
 
 	//Bind tab change events if tabs exist on page
@@ -86,6 +85,11 @@ $(function() {
 	    for(var i = tabChildren.length - 1; i >= 0; i--){
 	    	bindList.push([tabChildren[i], tabChildren[i], tabSetter, 'tab', 'click'])
 	    };
+	};
+
+	var isSavedCard = $('.saved_card');
+	if (isSavedCard.length > 0){
+		bindList.push(['#new_payment', '#confirmation-modal', transitionFunction, 'modal', 'submit', false]);
 	};
 
 	var bindFunction = function(trigger, target, func, type, eventType, preventDefault){
