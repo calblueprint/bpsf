@@ -5,12 +5,16 @@ $(function() {
 		isOpened = [];
 
 	var tabGetter = function(e, tabs, type){
-		var target = $(window.location.hash.replace('tab-',''));
+		target = $('#' + sessionStorage.getItem('tab'));
+//		var target = $(window.location.hash.replace('tab-',''));
+//		console.log('grabbing tab', window.location.hash);
 		$(tabs).trigger('gumby.set', target.index());
 	};
 
 	var tabSetter = function(e, target, type){
-		window.location.hash = 'tab-' + target.id.replace('#','');
+		sessionStorage.setItem('tab',target.id);
+		//console.log('setting new tab', target.id);
+		//window.location.hash = 'tab-' + target.id.replace('#','');
 	};
 
 	var editClasses = function(objects, addClasses, removeClasses){
@@ -77,14 +81,13 @@ $(function() {
 	//Bind tab change events if tabs exist on page
 	var tabs = $('.tab-nav');
 	if(tabs.length > 0){
-		console.log('adding to bindlist');
 		bindList.push(
 			[document, tabs, tabGetter, 'tab', 'page:change'],
 			[document, tabs, tabGetter, 'tab', 'ready']	
 			);
 		var tabChildren = tabs.children();
 	    for(var i = tabChildren.length - 1; i >= 0; i--){
-	    	bindList.push([tabChildren[i], [tabChildren[i]], tabSetter, 'tab', 'click'])
+	    	bindList.push([tabChildren[i], tabChildren[i], tabSetter, 'tab', 'click'])
 	    };
 	};
 
@@ -92,15 +95,13 @@ $(function() {
 		var triggerObject = findObject(trigger);
 		if(triggerObject !== null){
 			triggerObject.on(eventType, function(e){
-				if(typeof target == 'string'){
+				if(typeof target == 'string' || type == 'tab'){
 					func(e, target, type);
 				} else if(e.keyCode == 27 || e.keyCode == undefined && target == isOpened) {
 					for (var i = target.length - 1; i >= 0; i--) {
 						func(e, target[i], type);
 						target.pop();
 					};
-				} else if(target.length == 1){
-					func(e, target[0], type);
 				};
 			});
 		};
