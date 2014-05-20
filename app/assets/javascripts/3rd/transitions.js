@@ -102,7 +102,6 @@ $(function() {
 					for (var i = target.length - 1; i >= 0; i--) {
 						func(e, target[i], type, preventDefault);
 						target.pop();
-						console.log(target);
 					};
 				};
 			});
