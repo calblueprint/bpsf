@@ -503,15 +503,13 @@
 	background: #fff;
 	position:fixed;
 	right:10px;
-	top: 70px;//-300px;
+	top: 70px;
 	width: 150px;
-	z-index:-10;//700;
+	z-index:-10;
 	opacity: 0;
-	//display: none;
 	@include box-shadow(0 0 3px #999);
 	@include transition-duration(.4s);
 	@include transition-property(opacity);//
-	//@include transition-timing-function(ease);
 	ul{
 		list-style:none;
 		li{
@@ -532,10 +530,8 @@
 	border-right: 9px solid transparent;
 	}
 	&.dropper{
-		//@include translate3d(0, 370px, 0)
 		opacity: 1;
 		z-index: 700;
-		//display: block;
 	}
 }
 
@@ -550,7 +546,7 @@
 	height:55px;
 	line-height:55px;
 	font-weight:$header-font-weight;
-	@include box-shadow(0px 0 10px rgb(170, 170, 170));//0 0 3px #999);
+	@include box-shadow(0px 0 10px rgb(170, 170, 170));
 	.homelogo {
 	text-align: left;
 	font-size: $med;
