@@ -102,6 +102,13 @@ class UserMailer < ActionMailer::Base
     mail(to: @admin.email, subject: 'A grant is reaching its deadline.')
   end
 
+  def thank_donor(user,grant,subject,message)
+    @grant = grant
+    @user = user
+    @message = message
+    mail(to: @user.email, from: @grant.recipient.email, subject: subject)
+  end
+
   def admin_crowdsuccess(grant, admin)
     @grant = grant
     @recipient = @grant.recipient
