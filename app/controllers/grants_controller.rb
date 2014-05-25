@@ -2,23 +2,20 @@
 class GrantsController < ApplicationController
   load_and_authorize_resource
 
-  def new
-    @grant = Grant.new
-  end
-
-  def create
-    # This is going to have to change to incorporate the Grant subclasses
-    @grant = current_user.grants.build params[:grant]
-    if @grant.save
-      flash[:success] = 'Grant created!'
-      redirect_to @grant
-    else
-      render 'new'
-    end
-  end
-
   def edit
     @grant = Grant.find params[:id]
+  end
+
+  def edit_general_info
+  end
+
+  def edit_project_info
+  end
+
+  def edit_budget
+  end
+
+  def edit_methods
   end
 
   def update
