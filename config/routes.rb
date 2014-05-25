@@ -1,13 +1,9 @@
 BPSF::Application.routes.draw do
-  get "thankdonors_form/new"
-
-  get "thankdonors_form/create"
-
   root to: 'pages#home'
   get '/search', to: 'pages#search', as: :search
 
   resources :contact_forms
-  resources :thankdonors_form
+  resources :thankdonors_forms
   resources :grants, except: :index do
     post 'rate', on: :member
   end
