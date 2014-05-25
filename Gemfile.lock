@@ -119,6 +119,11 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.1.3)
     docile (1.1.1)
+    draper (1.3.0)
+      actionpack (>= 3.0)
+      activemodel (>= 3.0)
+      activesupport (>= 3.0)
+      request_store (~> 1.0.3)
     enumerize (0.7.0)
       activesupport (>= 3.2)
     erubis (2.7.0)
@@ -259,6 +264,7 @@ GEM
       ruby2ruby (~> 2.0.7)
       ruby_parser (~> 3.2)
       sexp_processor
+    request_store (1.0.5)
     require_all (1.3.2)
     rest-client (1.6.7)
       mime-types (>= 1.16)
@@ -379,6 +385,7 @@ DEPENDENCIES
   compass-rails (~> 1.0.3)
   database_cleaner (~> 1.0.0.RC1)
   devise (~> 3.1.1)
+  draper (~> 1.3.0)
   enumerize
   factory_girl_rails (= 4.1.0)
   faker (= 1.0.1)
