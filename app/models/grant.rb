@@ -65,7 +65,6 @@ class Grant < ActiveRecord::Base
   delegate :name, to: :school, prefix: true
 
   extend Searchable :title, :summary, :subject_areas, :school_name, :teacher_name
-  ajaxful_rateable stars: 10
 
   before_validation do |grant|
     grant.subject_areas = grant.subject_areas.to_a.reject &:empty?
