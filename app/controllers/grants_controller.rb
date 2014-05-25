@@ -44,15 +44,6 @@ class GrantsController < ApplicationController
     redirect_to grants_url
   end
 
-  def rate
-    @grant = Grant.find params[:id]
-    @grant.rate params[:stars], current_user
-    respond_to do |format|
-      format.html { redirect_to @grant }
-      format.js
-    end
-  end
-
   def previous_show
     @grant = Grant.find params[:id]
   end

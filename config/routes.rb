@@ -3,9 +3,6 @@ BPSF::Application.routes.draw do
   get '/search', to: 'pages#search', as: :search
 
   resources :contact_forms
-  resources :grants, except: :index do
-    post 'rate', on: :member
-  end
   scope '/grants' do
     get ':id/edit_general_info/',    to: 'grants#edit_general_info',    as: :edit_general
     get ':id/edit_project_idea/',       to: 'grants#edit_project_idea',       as: :edit_project_idea
