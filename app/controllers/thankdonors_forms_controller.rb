@@ -10,8 +10,8 @@ class ThankdonorsFormsController < ApplicationController
       @payments_by_user = @grant.crowdfunder.payments.group_by(&:user)
       @payments_by_user.keys.each do |u|
         @thankdonors_form = ThankdonorsForm.new(
-          :subject => params[:subject], 
-          :message => params[:message],
+          :subject => params[:thankdonors_form][:subject], 
+          :message => params[:thankdonors_form][:message],
           :to => u.email, 
           :from => @grant.recipient.email, 
           :recipient => @grant.recipient.name)
