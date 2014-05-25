@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140414014345) do
+ActiveRecord::Schema.define(:version => 20140525133458) do
 
   create_table "admin_profiles", :force => true do |t|
     t.string   "about"
@@ -74,8 +74,8 @@ ActiveRecord::Schema.define(:version => 20140414014345) do
   add_index "draft_grants", ["school_id"], :name => "index_draft_grants_on_school_id"
 
   create_table "grants", :force => true do |t|
-    t.datetime "created_at",                                                        :null => false
-    t.datetime "updated_at",                                                        :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.text     "title"
     t.text     "summary"
     t.text     "subject_areas"
@@ -98,7 +98,6 @@ ActiveRecord::Schema.define(:version => 20140414014345) do
     t.string   "video"
     t.string   "image"
     t.integer  "school_id"
-    t.decimal  "rating_average",     :precision => 6, :scale => 2, :default => 0.0
     t.string   "school_name"
     t.string   "teacher_name"
     t.string   "type"
@@ -164,6 +163,15 @@ ActiveRecord::Schema.define(:version => 20140414014345) do
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
   end
+
+  create_table "simple_captcha_data", :force => true do |t|
+    t.string   "key",        :limit => 40
+    t.string   "value",      :limit => 6
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+  end
+
+  add_index "simple_captcha_data", ["key"], :name => "idx_key"
 
   create_table "user_profiles", :force => true do |t|
     t.text     "address"
