@@ -9,10 +9,11 @@
           = form_for @thankdonors_form, as: :thankdonors_form, :url => {:action => "create"} do |f|
             = hidden_field_tag :id, params[:id]
             .field
-              = f.label :subject, "Subject Line", class: :mediumfont
-              = f.text_field :subject, class: [:input, :text, :xxwide]
+              = f.label :subject, "Subject Line", class: :mediumfont 
+              = f.text_field :subject, class: [:input, :text, :xxwide], :placeholder => "Example: Thank you for your donation!"
             .field
               = f.label :message, "Message (don't forget to include a signature!)"
-              = f.text_area :message, class: [:textarea, :input], rows: 10
-            .medium.primary.btn
-              = f.submit 'Send!', :confirm => "Are you sure?"
+              = f.text_area :message, class: [:textarea, :input], rows: 10, :placeholder => "Example: Dear generous donor..."
+            .three.columns.centered.centalign
+              .medium.primary.btn
+                = f.submit 'Send!', :confirm => "Are you sure?"
