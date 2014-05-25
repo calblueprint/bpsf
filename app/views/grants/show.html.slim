@@ -38,9 +38,16 @@
 .row
   .wrapper.light
     .row.centalign
-      h2
-        = @grant.title
-      h5
+      .three.columns.centalign
+      .six.columns.centalign
+        h2
+          = @grant.title
+      .three.columns.centalign
+        - if current_user == @grant.recipient && @grant.crowdfunder.pledged_total > 0
+          .medium.primary.btn style="margin-top: 15px"
+            a.switch#thankdonorsbutton href="#" <i class="icon-mail"></i> Thank Donors
+      .row.centalign
+      h5  
         = @grant.recipient.name
         | &nbsp;| #{@grant.school_name} |
         - if @grant.past_deadline?

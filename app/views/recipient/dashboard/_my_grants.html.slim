@@ -3,3 +3,5 @@ tr.hoverrow onclick="window.location.href = '../#{url_for grant}'"
     = link_to grant.title, grant_path(grant)
   td style="text-align:right"
     = grant.status
+    - if grant.crowdfunder.pledged_total > 0
+      #thankdonorsbutton style="padding:0px" <i class="icon-mail"></i> Thank Donors
