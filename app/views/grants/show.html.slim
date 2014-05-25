@@ -45,7 +45,7 @@
       .three.columns.centalign
         - if current_user == @grant.recipient && @grant.crowdfunder.pledged_total > 0
           .medium.primary.btn style="margin-top: 15px"
-            a.switch#thankdonorsbutton href="#" <i class="icon-mail"></i> Thank Donors
+            = link_to '<i class="icon-mail"></i> Thank Donors'.html_safe, new_thankdonors_form_path(:id => @grant.id), class: :darken
       .row.centalign
       h5  
         = @grant.recipient.name
