@@ -9,10 +9,10 @@
           = form_for @thankdonors_form do |f|
             = hidden_field_tag :id, params[:id]
             .field
-              = f.label :subject, 'Subject', class: :mediumfont
+              = f.label :subject, "Subject Line", class: :mediumfont
               = f.text_field :subject, class: [:input, :text, :xxwide]
             .field
-              = f.label :message, 'Message'
+              = f.label :message, "Message (don't forget to include a signature!)"
               = f.text_area :message, class: [:textarea, :input], rows: 10
             .medium.primary.btn
               = f.submit 'Send!', :confirm => "Are you sure?"

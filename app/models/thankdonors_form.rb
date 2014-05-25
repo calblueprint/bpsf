@@ -1,10 +1,5 @@
 class ThankdonorsForm < MailForm::Base
-  attributes :subject
-  attributes :message
-  attributes :to
-  attributes :from
-  attributes :recipient
-  attributes :id
+  attributes :subject,:message,:to,:from,:recipient,:id
   attributes :nickname,   :captcha => true
 
   def headers
