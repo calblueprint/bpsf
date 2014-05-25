@@ -6,7 +6,7 @@
           | Say Thank You!
       .row
         .six.columns.push_three
-          = form_for @thankdonors_form do |f|
+          = form_for @thankdonors_form, as: :thankdonors_form, :url => {:action => "create"} do |f|
             = hidden_field_tag :id, params[:id]
             .field
               = f.label :subject, "Subject Line", class: :mediumfont

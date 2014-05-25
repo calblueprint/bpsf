@@ -5,7 +5,7 @@ class ThankdonorsFormsController < ApplicationController
   end
 
   def create
-    begin
+    if !params[:thankdonors_form][:subject].blank? && !params[:thankdonors_form][:message].blank?
       @grant = Grant.find params[:id]
       @payments_by_user = @grant.crowdfunder.payments.group_by(&:user)
       @payments_by_user.keys.each do |u|
@@ -19,8 +19,9 @@ class ThankdonorsFormsController < ApplicationController
         ThankDonorsJob.new.async.perform(@thankdonors_form)
       end
       flash.now[:notice] = 'Your email to thank the donors has been sent!'
-    rescue Exception
-      flash.now[:error] = 'Something went wrong.'
+    else
+      flash.now[:error] = 'Please fill out both subject and message fields.'
+      render :new, :id => params[:id]
     end
   end
 end
