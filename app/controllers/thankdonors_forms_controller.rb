@@ -7,12 +7,12 @@ class ThankdonorsFormsController < ApplicationController
   def create
     begin
       @grant = Grant.find params[:id]
-      @grant.crowdfunder.payments.each do |p|
-        @user = User.find(p.user_id)
+      @payments_by_user = @grant.crowdfunder.payments.group_by(&:user)
+      @payments_by_user.keys.each do |u|
         @thankdonors_form = ThankdonorsForm.new(
           :subject => params[:subject], 
           :message => params[:message],
-          :to => @user.email, 
+          :to => u.email, 
           :from => @grant.recipient.email, 
           :recipient => @grant.recipient.name)
         @thankdonors_form.request = request
