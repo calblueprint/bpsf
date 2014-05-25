@@ -1,20 +1,26 @@
 class ThankdonorsFormsController < ApplicationController
 
   def new
-    @thankdonors_form = ThankdonorsForm.new(p.email)
+    @thankdonors_form = ThankdonorsForm.new
   end
 
   def create
     begin
-      @thankdonors_form = ThankdonorsForm.new(params[:thankdonors_form])
-      @thankdonors_form.request = request
-      if @thankdonors_form.deliver
-        flash.now[:notice] = 'Your email to thank the donors has been sent!'
-      else
-        render :new
+      @grant = Grant.find params[:id]
+      @grant.crowdfunder.payments.each do |p|
+        @user = User.find(p.user_id)
+        @thankdonors_form = ThankdonorsForm.new(
+          :subject => params[:subject], 
+          :message => params[:message],
+          :to => @user.email, 
+          :from => @grant.recipient.email, 
+          :recipient => @grant.recipient.name)
+        @thankdonors_form.request = request
+        ThankDonorsJob.new.async.perform(@thankdonors_form)
       end
-    rescue ScriptError
-      flash[:error] = 'Sorry, this email was not delivered.'
+      flash.now[:notice] = 'Your email to thank the donors has been sent!'
+    rescue Exception
+      flash.now[:error] = 'Something went wrong.'
     end
   end
 end
