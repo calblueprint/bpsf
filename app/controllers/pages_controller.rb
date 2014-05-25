@@ -34,6 +34,7 @@ class PagesController < ApplicationController
                    .includes :recipient, :school
   end
 
+  private
   def slideshow_grants
     possible_grants = []
     if user_signed_in?
