@@ -3,10 +3,6 @@
     .wrapper.light
       .row
         - if super_user?
-          /h4 Current Rating
-          /= ratings_for @grant, show_user_rating: true
-          /.grant-avg
-          /  | Average: #{@grant.rating_average}
           .three.columns.centalign
             - if @grant.crowdfunding? && super_user?
                 = form_tag crowdfund_update_path do
@@ -30,8 +26,6 @@
               li= link_to 'Edit <i class="icon-pencil"></i>'.html_safe, edit_grant_path
         - else
           .ten.columns.centered.centalign
-            /h4 Rate Grant
-            /= ratings_for @grant, show_user_rating: true
             h4 Status
             = @grant.status.titleize
       hr.hr-primary/

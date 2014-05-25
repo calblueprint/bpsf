@@ -43,7 +43,6 @@ GEM
       i18n (= 0.6.1)
       multi_json (~> 1.0)
     addressable (2.3.5)
-    ajaxful_rating (3.0.0.beta8)
     annotate (2.5.0)
       rake
     arel (3.0.3)
@@ -365,7 +364,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  ajaxful_rating (~> 3.0.0.beta8)
   annotate (= 2.5.0)
   better_errors (~> 1.0.1)
   binding_of_caller (~> 0.7.2)

@@ -56,16 +56,13 @@ class Grant < ActiveRecord::Base
                   :funds_will_pay_for, :budget_desc, :purpose, :methods, :background,
                   :n_collaborators, :collaborators, :comments, :video, :image, :school_id,
                   :crop_x, :crop_y, :crop_w, :crop_h, :other_funds, :remote_image_url
-
   belongs_to :recipient
   belongs_to :school
   has_one :crowdfunder, class_name: 'Crowdfund'
-  has_one :preapproved_grant
   delegate :goal, :pledged_total, :progress, to: :crowdfunder, prefix: true
   delegate :name, to: :school, prefix: true
 
   extend Searchable :title, :summary, :subject_areas, :school_name, :teacher_name
-  ajaxful_rateable stars: 10
 
   before_validation do |grant|
     grant.subject_areas = grant.subject_areas.to_a.reject &:empty?
@@ -310,16 +307,6 @@ class Grant < ActiveRecord::Base
   private
     BLACKLISTED_ATTRIBUTES = %w{background n_collaborators collaborators
                                 comments video image}
-    def transfer_attributes_to_new_preapproved_grant
-      return false if preapproved?
-      preapproved_grant = PreapprovedGrant.new
-      valid_attributes = PreapprovedGrant.accessible_attributes.reject(&:empty?) -
-                         BLACKLISTED_ATTRIBUTES
-      preapproved_grant.attributes = attributes.slice *valid_attributes
-      preapproved_grant.image = image.file
-      preapproved_grant.grant_id = id
-      preapproved_grant.save
-    end
 
     def valid_subject_areas
       errors.add :subject_areas, "can't be empty" unless !subject_areas.empty?
