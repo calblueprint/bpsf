@@ -7,7 +7,7 @@
       .row
         .six.columns.push_three
           = form_for @thankdonors_form do |f|
-            = hidden_field_tag :id, params[:grant_id]
+            = hidden_field_tag :id, params[:id]
             .field
               = f.label :subject, 'Subject', class: :mediumfont
               = f.text_field :subject, class: [:input, :text, :xxwide]

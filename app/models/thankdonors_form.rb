@@ -1,13 +1,17 @@
 class ThankdonorsForm < MailForm::Base
-  attribute :subject,      :validate => true
-  attribute :message,     :validate => true
-  attribute :id
+  attributes :subject
+  attributes :message
+  attributes :to
+  attributes :from
+  attributes :recipient
+  attributes :id
+  attributes :nickname,   :captcha => true
 
   def headers
     {
-      :subject => %(#{id}),
-      :to => 'heyjaylin@gmail.com',
-      :from => 'heyjaylin@gmail.com'
+      :subject => %(#{subject}),
+      :to => %(#{to}),
+      :from => %("#{recipient}" <#{from}>)
     }
   end
 end
