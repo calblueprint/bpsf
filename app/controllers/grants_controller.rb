@@ -30,7 +30,7 @@ class GrantsController < ApplicationController
   end
 
   def show
-    @grant = GrantDecorator.find params[:id]
+    @grant = @grant.decorate
     @crowdfund = @grant.crowdfunder
     @payment = Payment.new
   end
