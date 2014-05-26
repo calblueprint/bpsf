@@ -61,8 +61,10 @@ class Grant < ActiveRecord::Base
   belongs_to :school
   has_one :crowdfunder, class_name: 'Crowdfund'
   has_one :preapproved_grant
-  delegate :goal, :pledged_total, :progress, to: :crowdfunder, prefix: true
+
+  delegate :id, :goal, :pledged_total, :progress, to: :crowdfunder, prefix: true
   delegate :name, to: :school, prefix: true
+  delegate :name, to: :recipient, prefix: true
 
   extend Searchable :title, :summary, :subject_areas, :school_name, :teacher_name
 
