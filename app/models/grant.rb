@@ -124,7 +124,7 @@ class Grant < ActiveRecord::Base
 
     after_transition :on => :fund, :do => :process_payments
     after_transition [:pending, :crowdfund_pending] => :rejected, :do => :grant_rejected
-    after_transition :crowdfunding => :complete, :do => [:crowdsuccess,:grant_funded]
+    after_transition :crowdfunding => :complete, :do => [:crowdsuccess, :grant_funded]
     after_transition [:pending, :crowdfund_pending] => :complete, :do => :grant_funded
     after_transition :pending => :crowdfunding, :do => :grant_crowdfunding
     after_transition :crowdfunding => :crowdfund_pending, :do => :crowdfailed
