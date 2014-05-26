@@ -30,7 +30,7 @@ describe 'The admin dashboard' do
     let!(:grant) { FactoryGirl.create :grant }
     before do
       visit admin_dashboard_path
-      click_link grant.title
+      click_link grant
     end
 
     it { should have_link 'Reject' }

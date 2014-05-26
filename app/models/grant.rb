@@ -214,7 +214,7 @@ class Grant < ActiveRecord::Base
           customer: user.stripe_token,
           # This should get updated depending on the environment.
           # TODO: Refactor so this logic happens in the controller
-          description: "F&F Grant - Teacher: #{grant.teacher_name}, Grant: #{grant.title}, Grant ID: #{payment.crowdfund.grant.id}"
+          description: "F&F Grant - Teacher: #{grant.teacher_name}, Grant: #{grant}, Grant ID: #{payment.crowdfund.grant.id}"
         payment.charge_id = charge.id
         payment.status = "Charged"
         payment.save!
@@ -223,6 +223,10 @@ class Grant < ActiveRecord::Base
     end
     rescue Stripe::InvalidRequestError => err
       logger.error "Stripe error: #{err.message}"
+  end
+
+  def to_s
+    title
   end
 
   def status
