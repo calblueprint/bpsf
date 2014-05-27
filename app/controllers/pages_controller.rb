@@ -44,7 +44,7 @@ class PagesController < ApplicationController
         possible_grants << crowdfund.grant
       end
     end
-    possible_grants.concat Grant.crowdfunding_grants.newest
+    possible_grants.concat Grant.crowdfunding_grants.includes(:school, :recipient, :crowdfunder).newest
     possible_grants.concat Grant.close_to_goal
     possible_grants = possible_grants.uniq
     possible_grants.sample 3
