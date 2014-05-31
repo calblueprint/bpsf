@@ -3,7 +3,7 @@
     .wrapper.light
       .row
         h2
-          | Editing #{@grant.title}
+          | Editing #{@grant}
       = render 'shared/errors', object: @grant
       /! GENERAL INFO
       .row.ultitle
@@ -15,7 +15,7 @@
         .eleven.columns.push_one
           .row
             h4
-              | Title: #{@grant.title}
+              | Title: #{@grant}
           .row
             h4 Summary
             = @grant.summary

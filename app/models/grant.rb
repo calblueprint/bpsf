@@ -61,11 +61,12 @@ class Grant < ActiveRecord::Base
   belongs_to :school
   has_one :crowdfunder, class_name: 'Crowdfund'
   has_one :preapproved_grant
-  delegate :goal, :pledged_total, :progress, to: :crowdfunder, prefix: true
+
+  delegate :id, :goal, :pledged_total, :progress, to: :crowdfunder, prefix: true
   delegate :name, to: :school, prefix: true
+  delegate :name, to: :recipient, prefix: true
 
   extend Searchable :title, :summary, :subject_areas, :school_name, :teacher_name
-  ajaxful_rateable stars: 10
 
   before_validation do |grant|
     grant.subject_areas = grant.subject_areas.to_a.reject &:empty?
@@ -123,7 +124,7 @@ class Grant < ActiveRecord::Base
 
     after_transition :on => :fund, :do => :process_payments
     after_transition [:pending, :crowdfund_pending] => :rejected, :do => :grant_rejected
-    after_transition :crowdfunding => :complete, :do => [:crowdsuccess,:grant_funded]
+    after_transition :crowdfunding => :complete, :do => [:crowdsuccess, :grant_funded]
     after_transition [:pending, :crowdfund_pending] => :complete, :do => :grant_funded
     after_transition :pending => :crowdfunding, :do => :grant_crowdfunding
     after_transition :crowdfunding => :crowdfund_pending, :do => :crowdfailed
@@ -213,7 +214,7 @@ class Grant < ActiveRecord::Base
           customer: user.stripe_token,
           # This should get updated depending on the environment.
           # TODO: Refactor so this logic happens in the controller
-          description: "F&F Grant - Teacher: #{grant.teacher_name}, Grant: #{grant.title}, Grant ID: #{payment.crowdfund.grant.id}"
+          description: "F&F Grant - Teacher: #{grant.teacher_name}, Grant: #{grant}, Grant ID: #{payment.crowdfund.grant.id}"
         payment.charge_id = charge.id
         payment.status = "Charged"
         payment.save!
@@ -222,6 +223,10 @@ class Grant < ActiveRecord::Base
     end
     rescue Stripe::InvalidRequestError => err
       logger.error "Stripe error: #{err.message}"
+  end
+
+  def to_s
+    title
   end
 
   def status
