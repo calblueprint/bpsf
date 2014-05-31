@@ -2,23 +2,20 @@
 class GrantsController < ApplicationController
   load_and_authorize_resource
 
-  def new
-    @grant = Grant.new
-  end
-
-  def create
-    # This is going to have to change to incorporate the Grant subclasses
-    @grant = current_user.grants.build params[:grant]
-    if @grant.save
-      flash[:success] = 'Grant created!'
-      redirect_to @grant
-    else
-      render 'new'
-    end
-  end
-
   def edit
     @grant = Grant.find params[:id]
+  end
+
+  def edit_general_info
+  end
+
+  def edit_project_info
+  end
+
+  def edit_budget
+  end
+
+  def edit_methods
   end
 
   def update
@@ -33,7 +30,7 @@ class GrantsController < ApplicationController
   end
 
   def show
-    @grant = Grant.find params[:id]
+    @grant = @grant.decorate
     @crowdfund = @grant.crowdfunder
     @payment = Payment.new
   end
@@ -42,15 +39,6 @@ class GrantsController < ApplicationController
     Grant.destroy params[:id]
     flash[:success] = 'Grant deleted.'
     redirect_to grants_url
-  end
-
-  def rate
-    @grant = Grant.find params[:id]
-    @grant.rate params[:stars], current_user
-    respond_to do |format|
-      format.html { redirect_to @grant }
-      format.js
-    end
   end
 
   def previous_show
