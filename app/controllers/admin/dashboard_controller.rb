@@ -28,6 +28,13 @@ class Admin::DashboardController < ApplicationController
   end
 
   def load_recipients
+    @recipients = Recipient.all
+    school = params[:school]
+    if school && school != 'All'
+      schoolId = School.find_by_name(school).id
+      @recipients = Recipient.select {|recip| recip.profile.school_id == schoolId }
+    end
+    @recipients = @recipients.paginate :page => params[:page], :per_page => 6
     respond_to do |format|
       format.js
     end
