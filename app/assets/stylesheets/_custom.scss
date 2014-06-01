@@ -1,3 +1,16 @@
+//Custom Variables
+
+	//Global
+	$shadow-color: rgb(170, 170, 170);
+
+	//Navigation Bar
+	$navigation-bar-height: 75px;
+	$logo-top-bottom-padding : 4px;
+	$navigation-element-padding : 18px;
+	$dropdown-element-padding : 10px;
+	$search-box-width: 320px;
+
+
 // Trival Styles
 	// Color Styles
 	.green{background-color:$secondary-color;}
@@ -29,7 +42,6 @@
 
 	//Miscellaneous Styles
 	.pointer{cursor:pointer;}
-	.noroundborder{@include border-radius(0px !important) ;}
 	#nobullet > li {list-style:none;}
 	.linkeffect{&:hover, &:active, &:focus{color: $primary-color}}
 
@@ -52,11 +64,11 @@
 		&.light{background-color:#fff;}
 		&.homewrap{padding: 25px;}
 	}//Page wrapper
-  .bare-wrapper{
-    padding: 0px 30px;
-  }
+	.bare-wrapper{
+	    padding: 0px 30px;
+	}
 	.page-wrapper{
-		@include box-shadow(0px 0 10px rgb(170, 170, 170));
+		@include box-shadow(0px 0 10px $shadow-color);
 		background-color:#fff;
 	}
 
@@ -73,7 +85,7 @@
 	.container {
 		overflow: hidden;
 		background-color: $global-bg-color;
-		padding-top:80px;
+		padding-top:$navigation-bar-height + 15px;
 
 	/*  Prevents Flickering  */
 		-webkit-backface-visibility: hidden;
@@ -210,16 +222,29 @@
 		padding:(25px 0px 25px 0px);
 		border-bottom:1px solid $global-bg-color;
 		cursor: pointer;
-		& img{width:100%;
+		& img{
+			width:100%;
 			height:150px;
-			}
+		}
 		& .cardtitle{
 			margin-bottom:-15px;
 			margin-top:-15px;
 			a {@include transition-duration(0.3s)}
 		}
-		& .infocardimg{width: 33%; max-width: 4*$row-max-width/$cols; display:inline-block; padding:(0px 10px 0px 20px); float: left;}
-		& .infocardcontent{width: 66%; max-width: 8*$row-max-width/$cols; display:inline-block; padding:(0px 20px 0px 10px); float: right;}
+		& .infocardimg{
+			width: 33%; 
+			max-width: 4*$row-max-width/$cols; 
+			display:inline-block; 
+			padding:(0px 10px 0px 20px); 
+			float: left;
+		}
+		& .infocardcontent{
+			width: 66%; 
+			max-width: 8*$row-max-width/$cols; 
+			display:inline-block; 
+			padding:(0px 20px 0px 10px); 
+			float: right;
+		}
 		@include respond(all-phones){
 			.progressvalues{
 				h3{font-size: $med}
@@ -427,19 +452,6 @@
 	}
 
 //Javascript Hover/Modal Classes
-	.screen{
-		position:fixed;
-		height:100%;
-		width:100%;
-		left:-100%;
-		background-color: rgba(0,0,0,0.0);//#000;
-		//opacity:0;
-		z-index: 999;
-		@include transition-duration(0.2s);
-		@include transition-property(opacity);
-		&.open{background-color:rgba(0,0,0,0.8)}//opacity: 0.8}
-	}
-
 	.modal{
 		@include transition-duration(0.5s)
 	}
@@ -498,6 +510,123 @@
 }
 
 /****************************************Navigation Classes*****************************/
+.navigationbar{
+	position:fixed;
+	top:0px;
+	width:100%;
+	height:$navigation-bar-height;
+	background-color:$white;
+	z-index: 800;
+	font-weight: $header-font-weight;
+	color:#000;
+	@include box-shadow(0 0 7px $shadow-color);
+	.bpsf-logo{
+		display:inline-block;
+		height:$navigation-bar-height;
+		padding: $logo-top-bottom-padding 
+				$navigation-element-padding 
+				$logo-top-bottom-padding 
+				$navigation-element-padding;
+		img{
+			display:inline;
+			height:100%;
+			width:auto;
+		}
+	}
+	.nav-left{
+		vertical-align: top;
+		display:inline-block;
+		height:$navigation-bar-height;
+		ul{
+			list-style-type: none;
+			padding:0px;
+			margin:0px;
+			width:100%;
+			li{
+				vertical-align: top;
+				display:inline-block;
+				height:$navigation-bar-height;
+				line-height: $navigation-bar-height;
+				font-size: $med;
+				padding:0;
+				a{
+					display:block;
+					height:100%;
+					padding:0px $navigation-element-padding 0px $navigation-element-padding;
+					cursor:pointer;
+				}
+				&:last-child{
+					width:$search-box-width;
+				}
+			}
+		}
+	}
+	.nav-right{
+		vertical-align:top;
+		display:inline-block;
+		height:$navigation-bar-height;
+		line-height: $navigation-bar-height;
+		font-size: $med;
+		float:right;
+		padding: 0px $navigation-element-padding 0px $navigation-element-padding;
+	}
+	.dropdown{
+		background-color: $white;
+		font-size: $med;
+		position:fixed;
+		top: $navigation-bar-height + 10;
+		z-index:-999999;
+		cursor:default;
+		@include opacity(0);
+		@include box-shadow(0 0 3px #999);
+		@include transition-duration(.2s);
+		li{
+			padding: $dropdown-element-padding;
+		}
+		&:before {
+		    content: " ";
+		    width: 0;
+		    height: 0;
+		    position: absolute;
+			top: -9px;
+			border-bottom: 9px solid $white !important;
+			border-left: 9px solid transparent;
+			border-right: 9px solid transparent;
+		}
+		&.open-dropdown{
+			z-index: 700;
+			@include opacity(1);
+		}
+	}
+	.FAQ-dropdown{
+		@extend .dropdown;
+		left: 202px;
+		width: auto;
+		&:before{
+			left:8px;
+		}
+	}
+	.userdropdown{
+		@extend .dropdown;
+		right:10px;
+		width:150px;
+		&:before{
+			right:8px;
+		}
+	}
+}
+
+
+@include respond(tablets){
+	.navigationbar{
+		background-color:red;
+	}
+}
+
+
+
+
+/*
 .userdropdown{
 	font-weight:$header-font-weight;
 	background: #fff;
@@ -548,9 +677,9 @@
 	font-weight:$header-font-weight;
 	@include box-shadow(0px 0 10px rgb(170, 170, 170));
 	.homelogo {
-	text-align: left;
-	font-size: $med;
-	padding-left: 10px;
+		text-align: left;
+		font-size: $med;
+		padding-left: 10px;
 	}
 	.loginmenu{
 		text-align: right;
@@ -563,15 +692,19 @@
 		height: 50px;
 		margin-top: 3px;
 		margin-bottom: 2px;
+		display:inline;
 	}
 }
 
 .navbuttons {
-	position: absolute;
-	left: 50%;
-	margin-left:-230px;
+	//position: absolute;
+	//left: 50%;
+	//margin-left:-230px;
 	height:55px;
-	top:0;
+	line-height: 55px;
+	display: inline-block;
+	//float:left;
+	//top:0;
 	.search{width: 300px;}
 	.field{
 		height:55px;
@@ -586,9 +719,12 @@
 	    width: auto;
 		a {
 			display: block;
-			padding: 0px 20px 12px;
+			margin: 0px 20px 12px;
 			font-family: $font-family;
 			font-weight:$header-font-weight;
+			&:hover, &:active, &:focus{
+			    background-color:  lighten($global-bg-color, 10%);
+			}
 		}
 	}
 }
@@ -612,6 +748,7 @@
 @include respond(portrait-phones){
 	.homelogo{display: none !important;}
 }
+*/
 /********************* Paginate Styles *******************/
 .pagination{
   text-align: center;
