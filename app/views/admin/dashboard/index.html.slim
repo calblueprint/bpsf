@@ -19,22 +19,22 @@
                   a href="#"  Data Distributions
           .tab-content
             = render partial: 'shared/table', locals: { heads: ["Name", "Status", "Teacher, School"], partials: [['all_grants', @grants, :grant, "There are no grants"]] }
-            .four.columns.centered.centalig1n
+            .ten.columns.centered.centalig1n
               = will_paginate @grants
           .tab-content
             = render 'donated'
             = render partial: 'shared/table', locals: { heads: %w[Name Email], partials: [['users', @donors, :user, "There are no users"]] }
-            .four.columns.centered.centalign
+            .ten.columns.centered.centalign
               = will_paginate @donors
           .tab-content
             = render 'school'
             = render partial: 'shared/table', locals: { heads: %w[Name Email], partials: [['users', @recipients, :user, "There are no recipients"]] }
-            .four.columns.centered.centalign
+            .ten.columns.centered.centalign
               = will_paginate @recipients
           .tab-content
             .pending_users
               = render partial: 'shared/table', locals: { heads: %w[Name Email Status], partials: [['pending_users', @pending_users, :pending_user, "There are no pending users"]] }
-              .four.columns.centered.centalign
+              .ten.columns.centered.centalign
               = will_paginate @pending_users
           .tab-content
             .row
