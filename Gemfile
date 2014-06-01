@@ -19,13 +19,13 @@ gem 'turbolinks', '~> 2.2.0'
 gem 'jquery-turbolinks', '~> 2.0.1'
 gem 'textacular', '~> 3.0', require: 'textacular/rails'
 gem 'enumerize'
-gem 'ajaxful_rating', '~> 3.0.0.beta8'
 gem 'sucker_punch', '~> 1.0.1'
 gem 'newrelic_rpm'
 gem 'thin', '~> 1.6.1'
 gem 'unf'
 gem 'whenever', :require => false
 gem 'mail_form'
+gem 'draper', '~> 1.3.0'
 
 
 group :development, :test do

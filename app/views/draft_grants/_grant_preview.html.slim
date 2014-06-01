@@ -1,7 +1,7 @@
 h2.ultitle Preview
 .row.centalign
   h2
-    = grant.title
+    = grant
   h5
     = grant.recipient.name
     | &nbsp;| #{grant.school_name} |&nbsp;
@@ -22,7 +22,7 @@ h2.ultitle Preview
     = image_tag grant.image_url :banner
   - else
     .imgreplacementlrg
-      .repson= grant.title
+      .repson= grant
 .row.centalign
   .eleven.columns.centered
     p.largefont= grant.summary

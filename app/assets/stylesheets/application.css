@@ -9,7 +9,6 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require ajaxful_rating
  *= require jquery.Jcrop
  *= require gumby
  *= require toastr

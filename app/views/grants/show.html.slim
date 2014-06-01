@@ -1,61 +1,16 @@
-- if admin_user?
-  .row
-    .wrapper.light
-      .row
-        - if super_user?
-          /h4 Current Rating
-          /= ratings_for @grant, show_user_rating: true
-          /.grant-avg
-          /  | Average: #{@grant.rating_average}
-          .three.columns.centalign
-            - if @grant.crowdfunding? && super_user?
-                = form_tag crowdfund_update_path do
-                  = hidden_field_tag :crowdfund_id, @grant.crowdfunder.id
-                  h4 End Date
-                  ul
-                    li.field.metro
-                      = select_date @grant.deadline, order: [:year, :month, :day], class: [:picker, :inlined]
-                  .primary.medium.btn
-                    = submit_tag 'Update deadline'
-          .six.columns.centalign
-            h4 Change Status
-            #grantstatus
-              | Current Status: #{@grant.status.titleize}
-            = render 'toggle_links', grant: @grant
-          .three.columns.centalign
-            h4
-              | Edit Grant
-            br/
-            ul.tab-nav
-              li= link_to 'Edit <i class="icon-pencil"></i>'.html_safe, edit_grant_path
-        - else
-          .ten.columns.centered.centalign
-            /h4 Rate Grant
-            /= ratings_for @grant, show_user_rating: true
-            h4 Status
-            = @grant.status.titleize
-      hr.hr-primary/
+= render 'admin_panel', grant: @grant
 .row
   .wrapper.light
     .row.centalign
-      .three.columns.centalign
-      .six.columns.centalign
-        h2
-          = @grant.title
-      .three.columns.centalign
-        - if current_user == @grant.recipient && @grant.crowdfunder.pledged_total > 0
-          .medium.primary.btn style="margin-top: 15px"
-            = link_to '<i class="icon-mail"></i> Thank Donors'.html_safe, new_thankdonors_form_path(:id => @grant.id), class: :darken
-      .row.centalign
-      h5  
-        = @grant.recipient.name
-        | &nbsp;| #{@grant.school_name} |
-        - if @grant.past_deadline?
-          |  Past Deadline
-        - elsif @grant.crowdfunding?
-          |  #{@grant.days_left} Days Left!
-        - else
-          |  #{@grant.status}
+      h2 = @grant
+      - if current_user == @grant.recipient && @grant.crowdfunder.pledged_total > 0
+        .medium.primary.btn style="margin-top: 15px"
+          = link_to '<i class="icon-mail"></i> Thank Donors'.html_safe, new_thankdonors_form_path(:id => @grant.id), class: :darken
+      .row.padada
+      h5
+        ' #{@grant.recipient_name} |
+        ' #{@grant.school_name} |
+        | #{@grant.days_left}
       h5
         a href="http://www.facebook.com/sharer.php?u=" target="_blank" rel="nofollow" onmouseover="this.href='http://www.facebook.com/sharer.php?u='+encodeURIComponent(location.href);"
           i.icon-facebook
@@ -64,58 +19,29 @@
         a href="javascript:emailCurrentPage()"
           i.icon-mail
     .row align="center"
-      - if !@grant.image_url.blank?
-        .coverholder
-          = image_tag @grant.image_url(:banner)
-      - else
-        .imgreplacementlrg
-          .repson= @grant.title
+      = @grant.image
     .row.centalign
       .eleven.columns.centered
         p.largefont= @grant.summary
       br/
     .row.padada
       .ten.columns.centered.centalign
-        h4.inlined Subject Areas:
-        span.largefont= @grant.subject_areas.values.to_a.join(', ')
-    - if @grant.crowdfunding? || @grant.crowdfund_pending? || @grant.complete?
-      .row.grantviewbar
-        .progress
-          span.progressbar data-current=@grant.crowdfunder_pledged_total data-goal=@grant.crowdfunder_goal style=("width: 0%")
-        .gcdiv
-          span.gctext
-            strong Current:
-          span.currentnum
-            |  $#{@grant.crowdfunder_pledged_total}
-          | &emsp;
-          span.gctext
-            strong Goal:
-          span.goalnum
-            |  $#{@grant.crowdfunder_goal}
-        - if @grant.crowdfunding? || @grant.crowdfund_pending?
-          .row
-            hr/
-            .three.columns.centered.centalign
-              .large.primary.btn
-                a.switch#paymentbutton1 href="#"  Donate
-    - else
-      .row.grantviewbar
-        .progress
-          span.progressbar data-current=0 data-goal=@grant.requested_funds style=("width: 0%")
-        .gcdiv
-          span.gctext
-            strong Current:
-          span.currentnum
-            |  $0
-          | &emsp;
-          span.gctext
-            strong Goal:
-          span.goalnum
-            - if @grant.requested_funds.blank?
-              |  $0
-            - else
-              |  $#{@grant.requested_funds}
-    hr/
+        h4.inlined> Subject Areas:
+        span.largefont = @grant.subject_areas
+    .row.grantviewbar
+      .progress
+        = @grant.progress_bar
+      .gcdiv
+        span.gctext
+          strong> Current:
+        span.currentnum
+          | $#{@grant.current_funds}
+        | &emsp;
+        span.gctext
+          strong> Goal:
+        span.goalnum
+          | $#{@grant.funding_goal}
+    = render 'donate_button', grant: @grant
     .row
       .ten.columns.centalign.centered
         h3 Project Idea
@@ -128,11 +54,7 @@
         h5
           strong Teacher Background
         = @grant.background
-    - if !@grant.video.blank?
-      .row
-        .ten.columns.centered
-          article.youtube.video
-            iframe src="https://www.youtube.com/embed/#{parse_embed(@grant)}"
+    = @grant.video
     .row
       .ten.columns.centalign.centered
         br/
@@ -161,10 +83,7 @@
           |&nbsp;
           = @grant.num_students
         br/
-        - if @grant.has_collaborators?
-          h5
-            strong Collaborators
-          = @grant.collaborators
+        = @grant.collaborators
     .row
       .ten.columns.centalign.centered
         br/
@@ -179,35 +98,12 @@
         = @grant.budget_desc
         h5
           strong Use of Funds
-        = @grant.funds_will_pay_for.join(", ")
-    - if @grant.has_comments?
-      .row
-        .ten.columns.centalign.centered
-          br/
-          h3 Additional Comments
-          = @grant.comments
-    - if @grant.crowdfunding? || @grant.crowdfund_pending?
-      hr/
-      .row
-        .three.columns.centered.centalign
-          .large.primary.btn
-            a.switch#paymentbutton2 href="#"  Donate
-      hr/
-#payment-form.modal
-  .modalscreen
-  .content
-    a.close.xbox
-      i.icon-cancel
+        = @grant.use_of_funds
     .row
-      .ten.columns.centered.text-center
-        - if @grant.crowdfunding?
-          .row
-            = render "payment_form", payment: @payment, id: @grant.id
-        - else
-          .row
-            h3 style="margin-top:60px"
-              | Grant must be crowdfunding in order to donate!
-#crowdfund-modal-view
-  = render "crowdfund_modal", grant: @grant
-#confirmation-modal-view
-  = render 'confirmation_modal', payment: @payment
+      .ten.columns.centalign.centered
+        = @grant.comments
+    = render 'donate_button', grant: @grant
+
+= render 'payment_modal', grant: @grant, payment: @payment
+= render 'crowdfund_modal', grant: @grant
+= render 'confirmation_modal', payment: @payment
