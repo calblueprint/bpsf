@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140414014345) do
+ActiveRecord::Schema.define(:version => 20140526015214) do
 
   create_table "admin_profiles", :force => true do |t|
     t.string   "about"
@@ -74,8 +74,8 @@ ActiveRecord::Schema.define(:version => 20140414014345) do
   add_index "draft_grants", ["school_id"], :name => "index_draft_grants_on_school_id"
 
   create_table "grants", :force => true do |t|
-    t.datetime "created_at",                                                        :null => false
-    t.datetime "updated_at",                                                        :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.text     "title"
     t.text     "summary"
     t.text     "subject_areas"
@@ -98,7 +98,6 @@ ActiveRecord::Schema.define(:version => 20140414014345) do
     t.string   "video"
     t.string   "image"
     t.integer  "school_id"
-    t.decimal  "rating_average",     :precision => 6, :scale => 2, :default => 0.0
     t.string   "school_name"
     t.string   "teacher_name"
     t.string   "type"
@@ -125,19 +124,6 @@ ActiveRecord::Schema.define(:version => 20140414014345) do
 
   add_index "payments", ["crowdfund_id"], :name => "index_payments_on_crowdfund_id"
   add_index "payments", ["user_id"], :name => "index_payments_on_user_id"
-
-  create_table "rates", :force => true do |t|
-    t.integer  "rater_id"
-    t.integer  "rateable_id"
-    t.string   "rateable_type"
-    t.integer  "stars",         :null => false
-    t.string   "dimension"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-  end
-
-  add_index "rates", ["rateable_id", "rateable_type"], :name => "index_rates_on_rateable_id_and_rateable_type"
-  add_index "rates", ["rater_id"], :name => "index_rates_on_rater_id"
 
   create_table "recipient_profiles", :force => true do |t|
     t.integer  "school_id"

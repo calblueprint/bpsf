@@ -4,19 +4,16 @@ BPSF::Application.routes.draw do
 
   resources :contact_forms
   resources :thankdonors_forms
-  resources :grants, except: :index do
-    post 'rate', on: :member
-  end
+  resources :grants, only: [:show, :edit, :update, :destroy]
   scope '/grants' do
-    get ':id/edit_general_info/',    to: 'grants#edit_general_info',    as: :edit_general
-    get ':id/edit_project_idea/',       to: 'grants#edit_project_idea',       as: :edit_project_idea
-    get ':id/edit_budget/',          to: 'grants#edit_budget',          as: :edit_budget
-    get ':id/edit_methods/',         to: 'grants#edit_methods',         as: :edit_methods
-    post ':id/crowdfund',            to: 'grants#crowdfund_form',       as: :crowdfund_form
-    post ':id/preapprove',           to: 'grants#preapprove',           as: :preapprove_grant
-    get  ':id/previous_show',        to: 'grants#previous_show',        as: :previous_show
-    post ':id/to_draft',             to: 'grants#to_draft',             as: :to_draft
-    post ':id/:state',               to: 'admin/dashboard#grant_event', as: :grant_event
+    get ':id/edit_general_info/', to: 'grants#edit_general_info',    as: :edit_general
+    get ':id/edit_project_idea/', to: 'grants#edit_project_idea',    as: :edit_project_idea
+    get ':id/edit_budget/',       to: 'grants#edit_budget',          as: :edit_budget
+    get ':id/edit_methods/',      to: 'grants#edit_methods',         as: :edit_methods
+    post ':id/crowdfund',         to: 'grants#crowdfund_form',       as: :crowdfund_form
+    get  ':id/previous_show',     to: 'grants#previous_show',        as: :previous_show
+    post ':id/to_draft',          to: 'grants#to_draft',             as: :to_draft
+    post ':id/:state',            to: 'admin/dashboard#grant_event', as: :grant_event
   end
 
   resources :drafts, controller: 'draft_grants', except: [:show, :index]
@@ -35,7 +32,7 @@ BPSF::Application.routes.draw do
 
   scope '/users' do
     post ':id/approve', to: 'user#approve', as: :approve_user
-    post ':id/reject', to: 'user#reject', as: :reject_user
+    post ':id/reject',  to: 'user#reject',  as: :reject_user
     get ':id/update_credit_card', to: 'user#credit_card', as: :update_credit_card_info
   end
 
@@ -47,7 +44,7 @@ BPSF::Application.routes.draw do
   end
 
   namespace :admin do
-    get '', to: 'dashboard#index', as: :dashboard
+    get '',  to: 'dashboard#index', as: :dashboard
     post '', to: 'dashboard#index', as: :filter_school
     post '', to: 'dashboard#index', as: :filter_donated
   end
