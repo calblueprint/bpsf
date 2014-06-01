@@ -210,9 +210,9 @@
                           p How much total funds will be used for your proposed activity? This includes other sources in addition to the Schools Fund.
                       .three.columns
                         ul
-                          li.field.prepend.noroundborder
-                            span.adjoined.noroundborder $
-                            = f.number_field :total_budget, class: [:input, :xwide, :text, :noroundborder]
+                          li.field.prepend
+                            span.adjoined $
+                            = f.number_field :total_budget, class: [:input, :xwide, :text]
                     h4.centalign
                       | *Budget Description
                     #drawerbudgetdescription style="text-align:center;"
@@ -227,9 +227,9 @@
                           p How much total funds are you requesting from the Schools Fund?
                       .three.columns
                         ul
-                          li.field.prepend.noroundborder
-                            span.adjoined.noroundborder $
-                            = f.number_field :requested_funds, class: [:input, :xwide, :text, :noroundborder], type: :number
+                          li.field.prepend
+                            span.adjoined $
+                            = f.number_field :requested_funds, class: [:input, :xwide, :text], type: :number
                     h4.centalign
                       | *Use of Funds
                     #drawerfundswillpayfor style="text-align:center;"
