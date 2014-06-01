@@ -1,4 +1,4 @@
 | $("#donors-tab").html(
 | "#{escape_javascript(render 'donated')}
 | #{escape_javascript(render partial: 'shared/table', locals: { heads: %w[Name Email], partials: [['users', @donors, :user, "There are no users"]] })}
-| #{escape_javascript(will_paginate @donors)}");
+| #{escape_javascript(ajax_will_paginate @donors)}");
