@@ -18,19 +18,11 @@
                 li#distributions
                   a href="#"  Data Distributions
           .tab-content
-            = render partial: 'shared/table', locals: { heads: ["Name", "Status", "Teacher, School"], partials: [['all_grants', @grants, :grant, "There are no grants"]] }
-            .ten.columns.centered.centalig1n
-              = will_paginate @grants
+            #grants-tab
           .tab-content
-            = render 'donated'
-            = render partial: 'shared/table', locals: { heads: %w[Name Email], partials: [['users', @donors, :user, "There are no users"]] }
-            .ten.columns.centered.centalign
-              = will_paginate @donors
+            #donors-tab
           .tab-content
-            = render 'school'
-            = render partial: 'shared/table', locals: { heads: %w[Name Email], partials: [['users', @recipients, :user, "There are no recipients"]] }
-            .ten.columns.centered.centalign
-              = will_paginate @recipients
+            #recipients-tab
           .tab-content
             .pending_users
               = render partial: 'shared/table', locals: { heads: %w[Name Email Status], partials: [['pending_users', @pending_users, :pending_user, "There are no pending users"]] }
@@ -80,6 +72,18 @@
                 canvas#canvas4.inlined height="600" width="800"
                 h5 Crowdfund Goal
 javascript:
+  $('#recipients').click(function(){
+    $.get('/admin/load_recipients');
+  });
+
+  $('#grants').click(function(){
+    $.get('/admin/load_grants');
+  });
+
+  $('#donors').click(function(){
+    $.get('/admin/load_donors');
+  });
+
   function Maximize(listOne, listTwo){
     var maxTotal = Math.max.apply( Math, listOne.concat(listTwo));
     if(maxTotal > 20){
