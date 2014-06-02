@@ -181,6 +181,10 @@ class Grant < ActiveRecord::Base
     (deadline - Date.today).to_i
   end
 
+  def has_pledges?
+    crowdfunder.pledged_total > 0
+  end
+
   def past_deadline?
     days_left <= 0
   end

@@ -3,7 +3,7 @@ BPSF::Application.routes.draw do
   get '/search', to: 'pages#search', as: :search
 
   resources :contact_forms
-
+  resources :thankdonors_forms
   resources :grants, only: [:show, :edit, :update, :destroy]
   scope '/grants' do
     get ':id/edit_general_info/', to: 'grants#edit_general_info',    as: :edit_general

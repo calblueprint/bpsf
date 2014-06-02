@@ -3,6 +3,10 @@
   .wrapper.light
     .row.centalign
       h2 = @grant
+      - if current_user == @grant.recipient && @grant.has_pledges?
+        .medium.primary.btn style="margin-top: 15px"
+          = link_to '<i class="icon-mail"></i> Thank Donors'.html_safe, new_thankdonors_form_path(:id => @grant.id), class: :darken
+      .row.padada
       h5
         ' #{@grant.recipient_name} |
         ' #{@grant.school_name} |
