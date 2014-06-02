@@ -1,6 +1,7 @@
 # Actions for the main admin dashboard page and setting the
 # grant status
 class Admin::DashboardController < ApplicationController
+  include GrantsHelper
   authorize_resource :class => false
 
   def index
@@ -49,6 +50,20 @@ class Admin::DashboardController < ApplicationController
       @donors = User.donors.select {|user| user.payments.length == 0}
     end
     @donors = @donors.paginate :page => params[:page], :per_page => 6
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def load_distributions
+    @successful = successful
+    @unsuccessful = unsuccessful
+    @accepted_school = accepted_school
+    @rejected_school = rejected_school
+    @accepted_subject = accepted_subject
+    @rejected_subject = rejected_subject
+    @successful_goal = successful_goal
+    @unsuccessful_goal = unsuccessful_goal
     respond_to do |format|
       format.js
     end
