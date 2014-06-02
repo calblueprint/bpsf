@@ -4,5 +4,5 @@ tr
   td style="text-align:right"
     = grant.status
   td style="text-align:right"
-    - if grant.crowdfunder.pledged_total > 0
+    - if grant.has_pledges?
        = link_to '<i class="icon-mail"></i> Thank Donors'.html_safe, new_thankdonors_form_path(:id => grant.id), class: :darken
