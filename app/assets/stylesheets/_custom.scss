@@ -11,6 +11,28 @@
 	$search-box-width: 320px;
 
 	$mobile-navbar-height: 55px;
+	$mobile-navpanel-width: 250px;
+	$mobile-search-width: $mobile-navpanel-width - 10;
+
+
+//Custom Mixins
+@mixin placeholder-color($color) {
+  &.placeholder {
+    color: $color; 
+  }
+  &:-moz-placeholder {
+    color: $color; 
+  }
+  &::-moz-placeholder{
+  	color: $color;
+  }
+  &::-ms-input-placeholder{
+  	color: $color;
+  }
+  &::-webkit-input-placeholder {
+    color: $color; 
+  } 
+}
 
 
 // Trival Styles
@@ -512,7 +534,7 @@
 }
 
 /****************************************Navigation Classes*****************************/
-.navigationbar{
+.navigationpanel{
 	position:fixed;
 	top:0px;
 	width:100%;
@@ -522,7 +544,6 @@
 	font-weight: $header-font-weight;
 	color:#000;
 	@include box-shadow(0 0 7px $shadow-color);
-	.navigationpanel{display:none;}
 	.bpsf-logo{
 		display:inline-block;
 		height:$navigation-bar-height;
@@ -590,6 +611,9 @@
 	li{
 		padding: $dropdown-element-padding;
 	}
+	.go-back{
+		display:none;
+	}
 	&:before {
 	    content: " ";
 	    width: 0;
@@ -600,9 +624,14 @@
 		border-left: 9px solid transparent;
 		border-right: 9px solid transparent;
 	}
-	&.open-dropdown{
+	&.open{
 		z-index: 700;
 		opacity:1;
+	}
+	a{
+		display:block;
+		width:100%;
+		height:100%;
 	}
 }
 .FAQ-dropdown{
@@ -622,37 +651,158 @@
 	}
 }
 
+.navigationburgerbar{
+	display:none;
+	opacity: 0;
+	z-index: -999999;
+}
 
 @include respond(all-tablets){
-	.navigationpanel{
-		display:block;
-		position:fixed;
-		top:0px;
-		width:100%;
-		height:$mobile-navbar-height;
-		background-color:$primary-color;
-		.burger {
-			position: absolute;
-			float: left;
-			padding: 10px;
-			top: 4px;
-			left: 10px;
-			display: block;
-			li {
-				width: 30px;
-				height: 4px;
-				background-color: red;
-				border-radius: 3px;
-				margin: 5px 0;
+	.navcontainer{
+		z-index: 800;
+		.modalscreen{
+				width: 100%;
+				height: 100%;
+				position: fixed;
+				top: 0;
+				left:0;
+				background: $modal-overlay-color;
+				z-index: -10;
+				opacity:0;
+				@include transition-duration(.4s);
+			}
+		.navigationpanel{
+			height:100%;
+			width:$mobile-navpanel-width;
+			padding:0px;
+			left:-275px;
+			@include transition-duration(.4s);
+			@include transition-property(left);
+			.bpsf-logo{
+				display:block;
+				width:100%;
+				text-align: center;
+			}
+			.nav-left{
+				display:block;
+				ul{
+					li{
+						display:block;
+						width:100%;
+						text-align: left;
+						height: $navigation-bar-height - 10;
+						line-height: $navigation-bar-height - 10;
+						&:last-child{
+							display: none;
+							width:$mobile-search-width;
+							padding-right:5px;
+							padding-left: 5px;
+							margin:0 auto;
+						}
+					}
+				}
+			}
+			.nav-right{
+				position:absolute;
+				display: block;
+				clear:float;
+				width:100%;
+				text-align:center;
+				bottom:0px;
+				padding:0px;
+				.icon-down-open-mini{
+					display:none;
+				}
+			}
+		}
+		&.open{
+			.navigationpanel{
+				left:0px;
+			}
+			.modalscreen{
+				z-index: 799;
+			    opacity:1;
+			    left:0;
 			}
 		}
 	}
-	.navigationbar{
+	.dropdown{
+		position:fixed;
 		height:100%;
-		width:250px;
+		width:$mobile-navpanel-width - 10;
+		padding:0px;
+		top:0px;
+		right:auto;
+		z-index: 90010;
+		opacity: 1;
+		color:#000;
+		left:-270px;
+		@include transition-duration(.4s);
+		@include transition-property(left);
+		.go-back{
+			display:block;
+			background-color:darken($white, 10%);
+		}
+		display:block;
+		ul{
+			li{
+				display:block;
+				width:100%;
+				text-align: left;
+				height: $navigation-bar-height - 10;
+				line-height: $navigation-bar-height - 10;
+			}
+		}
+		&.open{
+			left:0px;
+			z-index: 810;
+		}
 	}
+	.navigationburgerbar{
+			display:block;
+			opacity:1;
+			z-index: 700;
+			position:fixed;
+			top:0px;
+			width:100%;
+			height:$mobile-navbar-height;
+			line-height: $mobile-navbar-height;
+			text-align: center;
+			font-size: $med;
+			color: $white;
+			background-color:$primary-color;
+			@include box-shadow(0 0 7px $shadow-color);
+			.burger {
+				position: absolute;
+				float: left;
+				padding: 10px;
+				top: 4px;
+				left: 10px;
+				display: block;
+				cursor: pointer;
+				z-index: 10;
+				li {
+					width: 30px;
+					height: 4px;
+					background-color: $white;
+					border-radius: 3px;
+					margin: 5px 0;
+				}
+			}
+			.input{
+				background-color:$primary-color;
+				border:none;
+				color:$white;
+				@include placeholder-color(darken($white, 10%));
+				font-size: $large;
+				height:$mobile-navbar-height;
+				margin-left: 55px;
+				@include respond(all-phones){
+					font-size: $med;
+				}
+			}
+		}
 }
-
 
 
 
@@ -696,7 +846,7 @@
 
 
 
-.navigationbar {
+.navigationpanel {
 	position: fixed;
 	top:0px;
 	z-index: 800;
@@ -772,7 +922,7 @@
 			padding-right:5px;
 		}
 	}
-	.navigationbar .loginmenu{padding-right:5px;}
+	.navigationpanel .loginmenu{padding-right:5px;}
 }
 
 @include respond(portrait-phones){
