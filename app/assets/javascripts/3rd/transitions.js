@@ -30,18 +30,12 @@ $(function() {
 	var transitionFunction = function(e, target, type, preventDefault){
 		var object = [$(target)];
 		//Add object type-specific behavior here
-		if(type == 'modal'){
-			var openClasses = 'open active',
-				closeClasses = 'close';
-			object.push(screens);
-		} else if(type == 'menu'){
-			var openClasses = 'open-dropdown',
-				closeClasses = 'close';
-		} else if(type == 'loader fetch' || type == 'loader change'){
+		if(type == 'loader fetch' || type == 'loader change'){
 			var openClasses = 'pace-active',
 				closeClasses = 'close';
 		} else {
-			console.log('oops')
+			var openClasses = 'open active',
+				closeClasses = 'close';
 		};
 		if(
 			object[0].hasClass(openClasses) 
@@ -54,7 +48,6 @@ $(function() {
 			for (var i = object.length - 1; i >= 0; i--) {
 				isOpened.push(object[i]);
 			};
-			console.log(isOpened);
 		};
 		if(preventDefault){
 			e.preventDefault();
@@ -68,14 +61,17 @@ $(function() {
 			[document, isOpened, transitionFunction, 'modal', 'keyup', true],
 			[document, '.pace', transitionFunction, 'loader change', 'page:change', true],
 			[document, '.pace', transitionFunction, 'loader fetch', 'page:fetch', true],
-			['#loggedinmenu', '.userdropdown', transitionFunction, 'menu', 'click', true],
 			['.xbox, .modalscreen', isOpened, transitionFunction, 'modal', 'click', true],
 			['.toggle_crowdfund', '#crowdfund-form', transitionFunction, 'modal', 'click', true],
 			['#terms_conditions', '#terms', transitionFunction, 'modal', 'click', true],
+			['#nav-burger','.navcontainer',transitionFunction,'menu', 'click', true],
+			['#loggedinmenu', '.userdropdown', transitionFunction, 'menu', 'click', true],
 			['#FAQ', '.FAQ-dropdown', transitionFunction, 'menu', 'click', true],
 			['#teacherbutton', '#teacher-about', transitionFunction, 'modal', 'click', true],
 			['#aboutbutton', '#about-about', transitionFunction, 'modal', 'click', true],
 			['#donorbutton', '#donor-about', transitionFunction, 'modal', 'click', true],
+			['#FAQ-back', '.FAQ-dropdown', transitionFunction, 'back', 'click', true],
+			['#user-back', '.userdropdown', transitionFunction, 'back', 'click', true],
 			['#paymentbutton1, #paymentbutton2', '#payment-form', transitionFunction, 'modal', 'click', true],
 		];
 

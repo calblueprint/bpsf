@@ -1,39 +1,35 @@
-.navigationbar
+.navcontainer
+  .modalscreen
   .navigationpanel
-    ul.burger
-      li
-      li
-      li
-  .bpsf-logo
-    a href='http://www.berkeleypublicschoolsfund.org'
-      img src='/assets/logohoriz.png'
-  .nav-left
-    ul
-      li= link_to 'Home'.html_safe, root_path
-      li
-        a#FAQ FAQ
-      - if recipient?
-        li=link_to 'Apply'.html_safe, new_draft_path
-      li=link_to 'Contact'.html_safe, new_contact_form_path
-      = render 'layouts/search_form'
-  .nav-right
-    - if user_signed_in?
-      .loginmenu.pointer.linkeffect#loggedinmenu
-        span.poofout
+    .bpsf-logo
+      a href='http://www.berkeleypublicschoolsfund.org'
+        img src='/assets/logohoriz.png'
+    .nav-left
+      ul
+        li= link_to 'Home'.html_safe, root_path
+        li
+          a#FAQ FAQ
+        - if recipient?
+          li=link_to 'Apply'.html_safe, new_draft_path
+        li=link_to 'Contact'.html_safe, new_contact_form_path
+        = render 'layouts/search_form'
+    .nav-right
+      - if user_signed_in?
+        .loginmenu.pointer.linkeffect#loggedinmenu
           i.icon-user
           | #{current_user.first_name}
-        span.poofin
-          i.icon-user
-        i.icon-down-open-mini
-    - else
-      .loginmenu
-        span.poofout
+          i.icon-down-open-mini
+      - else
+        .loginmenu
           = link_to "Sign Up", new_user_session_path
           |&nbsp;&nbsp;|&nbsp;&nbsp;
-        = link_to "Sign In", new_user_session_path
+          = link_to "Sign In", new_user_session_path
 - if user_signed_in?
   .userdropdown
     ul
+      li.go-back#user-back
+        a href='#'
+          i.icon-left-open-mini &emsp; Back
       li= link_to "Account", user_path(id: current_user.id)
       - if admin_user?
         li= link_to 'Dashboard'.html_safe, admin_dashboard_path
@@ -42,9 +38,19 @@
       li= link_to "Sign Out", destroy_user_session_path
 .FAQ-dropdown
   ul
+    li.go-back#FAQ-back
+      a href='#'
+        i.icon-left-open-mini &emsp; Back
     li
       a#aboutbutton href="#" About
     li 
       a#teacherbutton  href="#" Teachers
     li
       a#donorbutton href="#" Friends and Family
+.navigationburgerbar
+  ul.burger#nav-burger
+    li
+    li
+    li
+  ul
+    = render 'layouts/search_form'
