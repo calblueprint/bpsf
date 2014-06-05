@@ -1,42 +1,56 @@
-.navigationbar
-  span
-    a.homelogo.poofout href="http://www.berkeleypublicschoolsfund.org"
-      img src="/assets/logohoriz.png" /
-    a.homelogo.poofin href="http://www.berkeleypublicschoolsfund.org"
-      img src="/assets/logovert.png" /
-  .navbuttons.poofin
-    ul
-      li.darken= link_to 'Home'.html_safe, root_path, class: :darken
-      = render 'layouts/search_form'
-  .navbuttons.poofout
-    ul
-      li.darken= link_to 'Home'.html_safe, root_path, class: :darken
-      li.darken
-        a.helppanelbutton FAQ
-      - if recipient?
-        li.darken= link_to 'Apply'.html_safe, new_draft_path, class: :darken
-      li.darken= link_to 'Contact'.html_safe, new_contact_form_path, class: :darken
-      = render 'layouts/search_form'
-  - if user_signed_in?
-    .loginmenu.pull_right.darken.pointer.linkeffect#loggedinmenu
-      span.poofout
-        i.icon-user
-        | #{current_user.first_name}
-      span.poofin
-        i.icon-user
-      i.icon-down-open-mini
-  - else
-    .loginmenu.pull_right
-      span.poofout
-        = link_to "Sign Up", new_user_session_path, class: :darken
-        |&nbsp;&nbsp;|&nbsp;&nbsp;
-      = link_to "Sign In", new_user_session_path, class: :darken
+.navcontainer
+  .modalscreen
+  .navigationpanel
+    .bpsf-logo
+      a href='http://www.berkeleypublicschoolsfund.org'
+        img src='/assets/logohoriz.png'
+    .nav-left
+      ul
+        li= link_to 'Home'.html_safe, root_path
+        li
+          a#FAQ FAQ
+        - if recipient?
+          li=link_to 'Apply'.html_safe, new_draft_path
+        li=link_to 'Contact'.html_safe, new_contact_form_path
+        = render 'layouts/search_form'
+    .nav-right
+      - if user_signed_in?
+        .loginmenu.pointer.linkeffect#loggedinmenu
+          i.icon-user
+          | #{current_user.first_name}
+          i.icon-down-open-mini
+      - else
+        .loginmenu
+          = link_to "Sign Up", new_user_session_path
+          |&nbsp;&nbsp;|&nbsp;&nbsp;
+          = link_to "Sign In", new_user_session_path
 - if user_signed_in?
-  #userdropdown.userdropdown
+  .userdropdown
     ul
-      li= link_to "Account", user_path(id: current_user.id), class: :darken
+      li.go-back#user-back
+        a href='#'
+          i.icon-left-open-mini &emsp; Back
+      li= link_to "Account", user_path(id: current_user.id)
       - if admin_user?
-        li= link_to 'Dashboard'.html_safe, admin_dashboard_path, class: :darken
+        li= link_to 'Dashboard'.html_safe, admin_dashboard_path
       - elsif recipient?
-        li= link_to 'Dashboard'.html_safe, recipient_dashboard_path, class: :darken
-      li= link_to "Sign Out", destroy_user_session_path, class: :darken
+        li= link_to 'Dashboard'.html_safe, recipient_dashboard_path
+      li= link_to "Sign Out", destroy_user_session_path
+.FAQ-dropdown
+  ul
+    li.go-back#FAQ-back
+      a href='#'
+        i.icon-left-open-mini &emsp; Back
+    li
+      a#aboutbutton href="#" About
+    li 
+      a#teacherbutton  href="#" Teachers
+    li
+      a#donorbutton href="#" Friends and Family
+.navigationburgerbar
+  ul.burger#nav-burger
+    li
+    li
+    li
+  ul
+    = render 'layouts/search_form'
