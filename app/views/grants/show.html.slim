@@ -19,7 +19,7 @@
         a href="javascript:emailCurrentPage()"
           i.icon-mail
     .row align="center"
-      = @grant.image
+      = @grant.banner classes: 'coverholder'
     .row.centalign
       .eleven.columns.centered
         p.largefont= @grant.summary
@@ -54,7 +54,7 @@
         h5
           strong Teacher Background
         = @grant.background
-    = @grant.video
+    = @grant.video_large
     .row
       .ten.columns.centalign.centered
         br/
@@ -83,7 +83,7 @@
           |&nbsp;
           = @grant.num_students
         br/
-        = @grant.collaborators
+        = @grant.collaborators_section
     .row
       .ten.columns.centalign.centered
         br/
@@ -101,7 +101,7 @@
         = @grant.use_of_funds
     .row
       .ten.columns.centalign.centered
-        = @grant.comments
+        = @grant.comments_section
     = render 'donate_button', grant: @grant
 
 = render 'payment_modal', grant: @grant, payment: @payment
