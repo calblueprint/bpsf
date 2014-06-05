@@ -1,35 +1,10 @@
 # Seed data for the app
+SEEDS = YAML.load(File.read(File.expand_path('../seeds.yml', __FILE__)))
 
 def make_schools
-  School.create! name: 'Arts Magnet Elementary School'
-  School.create! name: 'Cragmont Elementary School'
-  School.create! name: 'Emerson Elementary School'
-  School.create! name: 'Jefferson Elementary School'
-  School.create! name: 'John Muir Elementary School'
-  School.create! name: 'LeConte Elementary School'
-  School.create! name: 'Malcolm X Elementary School'
-  School.create! name: 'Oxford Elementary School'
-  School.create! name: 'Rosa Parks Elementary School'
-  School.create! name: 'Thousand Oaks Elementary School'
-  School.create! name: 'Washington Elementary School'
-  School.create! name: 'King Middle Middle School'
-  School.create! name: 'Longfellow Middle School'
-  School.create! name: 'Willard Middle School'
-  School.create! name: 'Franklin District Preschool'
-  School.create! name: 'Hopkins District Preschool'
-  School.create! name: 'King District Preschool'
-  School.create! name: 'Berkeley High School - AC'
-  School.create! name: 'Berkeley High School - AHA'
-  School.create! name: 'Berkeley High School - CAS'
-  School.create! name: 'Berkeley High School - CPA'
-  School.create! name: 'Berkeley High School - GA'
-  School.create! name: 'Berkeley High School - IB'
-  School.create! name: 'Berkeley High School - All'
-  School.create! name: 'B-Tech'
-  School.create! name: 'Independent Study'
-  School.create! name: 'Districtwide'
-  School.create! name: 'Herrick Hospital'
-  School.create! name: 'Other BUSD'
+  SEEDS[:schools].each do |school|
+    School.create! school
+  end
 end
 
 def make_users

@@ -3,7 +3,7 @@ class GrantsController < ApplicationController
   load_and_authorize_resource
 
   def edit
-    @grant = Grant.find params[:id]
+    @grant = @grant.decorate
   end
 
   def edit_general_info
@@ -24,7 +24,7 @@ class GrantsController < ApplicationController
       flash[:success] = 'Grant updated!'
       redirect_to @grant
     else
-      @grant.reload
+      @grant = @grant.reload.decorate
       render 'edit'
     end
   end
@@ -42,7 +42,7 @@ class GrantsController < ApplicationController
   end
 
   def previous_show
-    @grant = Grant.find params[:id]
+    @grant = @grant.decorate
   end
 
   def to_draft
@@ -50,5 +50,4 @@ class GrantsController < ApplicationController
     draft = grant.clone_into_draft!
     redirect_to edit_draft_path draft
   end
-
 end

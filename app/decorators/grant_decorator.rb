@@ -1,5 +1,5 @@
 class GrantDecorator < Draper::Decorator
-  delegate :tag, :content_tag, :image_tag, to: :h
+  delegate :tag, :content_tag, :image_tag, :link_to, to: :h
   delegate_all
 
   def status
@@ -20,9 +20,9 @@ class GrantDecorator < Draper::Decorator
     end
   end
 
-  def image
+  def banner(options = {})
     if !image_url.blank?
-      content_tag :div, image_tag(image_url :banner), class: 'coverholder'
+      content_tag :div, image_tag(image_url :banner), class: options[:classes]
     else
       content_tag :div, class: 'imgreplacementlrg' do
         content_tag :div, title, class: 'repson'
@@ -55,19 +55,24 @@ class GrantDecorator < Draper::Decorator
     crowdfunder
   end
 
-  def video
+  def video_large
     content_tag :div, class: 'row' do
       content_tag :div, class: 'ten columns centered' do
         content_tag :article, class: 'youtube video' do
-          tag :iframe, src: "https://www.youtube.com/embed/#{h.parse_embed(model)}"
+          %Q[<iframe src="#{"https://www.youtube.com/embed/#{h.parse_embed(model)}"}"></iframe>].html_safe
         end
       end
-    end if model.video.present?
+    end if video.present?
   end
 
-  def collaborators
+  def video_small
+    %Q[<iframe src="#{"https://www.youtube.com/embed/#{h.parse_embed(model)}"}"
+               height="315" width="560"></iframe>].html_safe if video.present?
+  end
+
+  def collaborators_section
     if has_collaborators?
-      content_tag(:h5, content_tag(:span, 'Collaborators')) + model.collaborators
+      content_tag(:h5, content_tag(:span, 'Collaborators')) + collaborators
     end
   end
 
@@ -75,7 +80,13 @@ class GrantDecorator < Draper::Decorator
     funds_will_pay_for.join ', '
   end
 
-  def comments
-    tag(:br) + content_tag(:h3, 'Additional Comments') + model.comments
+  def comments_section
+    tag(:br) + content_tag(:h3, 'Additional Comments') + comments
+  end
+
+  def edit_icon_for(url)
+    content_tag :span, class: 'ttip', data: { tooltip: 'Edit' } do
+      link_to '<i class="icon-pencil"></i>'.html_safe, url
+    end
   end
 end
