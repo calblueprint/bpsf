@@ -20,27 +20,25 @@
           .tab-content
             #grants-tab
           .tab-content
-            #donors-tab
+            = render 'donated'
+            = render partial: 'shared/table', locals: { heads: %w[Name Email], partials: [['users', @donors, :user, "There are no users"]] }
+            .ten.columns.centered.centalign
+              = ajax_will_paginate @donors
           .tab-content
-            #recipients-tab
+            = render 'school'
+            = render partial: 'shared/table', locals: { heads: %w[Name Email], partials: [['users', @recipients, :user, "There are no recipients"]] }
+            .ten.columns.centered.centalign
+              = ajax_will_paginate @recipients
           .tab-content
             .pending_users
               = render partial: 'shared/table', locals: { heads: %w[Name Email Status], partials: [['pending_users', @pending_users, :pending_user, "There are no pending users"]] }
               .ten.columns.centered.centalign
-              = will_paginate @pending_users
+              = ajax_will_paginate @pending_users
           .tab-content
             #distributions-tab
 javascript:
-  $('#recipients').click(function(){
-    $.get('/admin/load_recipients');
-  });
-
   $('#grants').click(function(){
     $.get('/admin/load_grants');
-  });
-
-  $('#donors').click(function(){
-    $.get('/admin/load_donors');
   });
 
   $('#distributions').click(function(){
