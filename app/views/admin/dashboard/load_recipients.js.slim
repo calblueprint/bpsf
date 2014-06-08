@@ -1,4 +1,0 @@
-| $("#recipients-tab").html(
-| "#{escape_javascript(render 'school')}
-| #{escape_javascript(render partial: 'shared/table', locals: { heads: %w[Name Email], partials: [['users', @recipients, :user, "There are no recipients"]] })}
-| #{escape_javascript(ajax_will_paginate @recipients)}");
