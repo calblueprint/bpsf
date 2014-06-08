@@ -1,6 +1,6 @@
 $(function() {
 
-	var screens = $('.screen, .modalscreen'),
+	var screens = $('.modalscreen'),
 		isOpened = [];
 
 	var tabGetter = function(e, tabs, type, preventDefault){
@@ -30,15 +30,11 @@ $(function() {
 	var transitionFunction = function(e, target, type, preventDefault){
 		var object = [$(target)];
 		//Add object type-specific behavior here
-		if(type == 'modal'){
-			var openClasses = 'open active',
-				closeClasses = 'close';
-			object.push(screens);
-		} else if(type == 'menu'){
-			var openClasses = 'dropper',
-				closeClasses = 'close';
-		} else if(type == 'loader fetch' || type == 'loader change'){
+		if(type == 'loader fetch' || type == 'loader change'){
 			var openClasses = 'pace-active',
+				closeClasses = 'close';
+		} else {
+			var openClasses = 'open active',
 				closeClasses = 'close';
 		};
 		if(
@@ -49,7 +45,9 @@ $(function() {
 			editClasses(object, closeClasses, openClasses);
 		} else {
 			editClasses(object, openClasses, closeClasses);
-			isOpened.push(object[0]);
+			for (var i = object.length - 1; i >= 0; i--) {
+				isOpened.push(object[i]);
+			};
 		};
 		if(preventDefault){
 			e.preventDefault();
@@ -63,14 +61,17 @@ $(function() {
 			[document, isOpened, transitionFunction, 'modal', 'keyup', true],
 			[document, '.pace', transitionFunction, 'loader change', 'page:change', true],
 			[document, '.pace', transitionFunction, 'loader fetch', 'page:fetch', true],
-			['#loggedinmenu', '.userdropdown', transitionFunction, 'menu', 'click', true],
-			['.xbox, .screen, .modalscreen', isOpened, transitionFunction, 'modal', 'click', true],
+			['.xbox, .modalscreen', isOpened, transitionFunction, 'modal', 'click', true],
 			['.toggle_crowdfund', '#crowdfund-form', transitionFunction, 'modal', 'click', true],
 			['#terms_conditions', '#terms', transitionFunction, 'modal', 'click', true],
-			['.helppanelbutton', '.helppanel', transitionFunction, 'modal', 'click', true],
+			['#nav-burger','.navcontainer',transitionFunction,'menu', 'click', true],
+			['#loggedinmenu', '.userdropdown', transitionFunction, 'menu', 'click', true],
+			['#FAQ', '.FAQ-dropdown', transitionFunction, 'menu', 'click', true],
 			['#teacherbutton', '#teacher-about', transitionFunction, 'modal', 'click', true],
 			['#aboutbutton', '#about-about', transitionFunction, 'modal', 'click', true],
 			['#donorbutton', '#donor-about', transitionFunction, 'modal', 'click', true],
+			['#FAQ-back', '.FAQ-dropdown', transitionFunction, 'back', 'click', true],
+			['#user-back', '.userdropdown', transitionFunction, 'back', 'click', true],
 			['#paymentbutton1, #paymentbutton2', '#payment-form', transitionFunction, 'modal', 'click', true],
 		];
 
@@ -87,6 +88,7 @@ $(function() {
 	    };
 	};
 
+	//Bind a certain payment modal if it exists
 	var isSavedCard = $('.saved_card');
 	if (isSavedCard.length > 0){
 		bindList.push(['#new_payment', '#confirmation-modal', transitionFunction, 'modal', 'submit', false]);
@@ -100,8 +102,7 @@ $(function() {
 					func(e, target, type, preventDefault);
 				} else if(e.keyCode == 27 || e.keyCode == undefined && target == isOpened) {
 					for (var i = target.length - 1; i >= 0; i--) {
-						func(e, target[i], type, preventDefault);
-						target.pop();
+						func(e, target.pop(), type, preventDefault);
 					};
 				};
 			});
