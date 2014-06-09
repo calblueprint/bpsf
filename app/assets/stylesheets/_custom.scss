@@ -631,6 +631,7 @@
 .FAQ-dropdown{
 	@extend .dropdown;
 	left: 202px;
+	right:auto;
 	width: auto;
 	&:before{
 		left:8px;
@@ -638,6 +639,7 @@
 }
 .userdropdown{
 	@extend .dropdown;
+	left:auto;
 	right:10px;
 	width:150px;
 	&:before{
