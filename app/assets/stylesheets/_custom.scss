@@ -34,6 +34,19 @@
   } 
 }
 
+@mixin vertical-center-text($height, $size: $med){
+	height:$height;
+	line-height: $height;
+	font-size: $size;
+}
+
+@mixin hide-this($display: none, $z-index: -999999, $opacity: 0, $cursor: default){
+	display: $display;
+	z-index: $z-index;
+	opacity: $opacity;
+	cursor: $cursor;
+}
+
 
 // Trival Styles
 	// Color Styles
@@ -284,10 +297,9 @@
 
 	.imgholder{
 		width:100%;
-		height:150px;
-		line-height:150px;
 		overflow:hidden;
 		text-align: center;
+		@include vertical-center-text(150px);
 		img {
 			vertical-align: middle;
 			height: 100%;
@@ -303,10 +315,8 @@
 
 	//Other
 	.category{
-	font-size:$med;
-	line-height:40px;
 	text-align:left;
-	height:40px;
+	@include vertical-center-text(40px);
 	}
 
 
@@ -332,20 +342,16 @@
 		background: rgb(255,117,117);
 		text-align: center;
 		overflow:hidden;
-		font-size: $xlarge;
 		color: $white;
-		height:$imglargereplacementhgt;
-		line-height:$imglargereplacementhgt;
+		@include vertical-center-text($imglargereplacementhgt, $xlarge);
 		.repson{
 			margin:0 auto;
 			margin-top: 10px;
-			height: $imglargereplacementhgt - 20px;
 			width: 97%;
-			line-height: $imglargereplacementhgt - 20px;
-			font-size: $xlarge;
 			color: $white;
 			text-align: center;
 			border: 5px dashed $white;
+			@include vertical-center-text($imglargereplacementhgt - 20px, $xlarge);
 		}
 	}//Only used when there is no image available
 
@@ -436,39 +442,6 @@
 		@extend .toggle_crowdfund;
 	}
 
-//Help Panel
-	.helppanel{
-		ul{
-			list-style: none;
-			height: 200px;
-			width: 100%;
-			margin: 0 auto;
-			display: block;
-			position: absolute;
-			top: 50%;
-			left: 0px;
-			margin-top: -100px;
-		}
-		li{
-			display:inline-block;
-			height:100px;
-			width:33.3333333%;
-			line-height:100px;
-			font-size: $med+1;
-			text-align: center;
-			&:hover, &:active, &:focus{
-				color:$primary-color;
-			}
-		}
-	}
-
-	.helppanelbutton{
-		cursor:pointer;
-		&:hover, &:active, &:focus{
-			color:$primary-color;
-		}
-	}
-
 //Javascript Hover/Modal Classes
 	.modal{
 		@include transition-duration(0.5s)
@@ -487,7 +460,6 @@
 /*********************************Footer Classes******************************************/
 .footwrapper{
 	padding:10px 40px 20px 40px;
-	//@include box-shadow(-5px 8px 10px -2px rgb(170,170,170), 5px 8px 10px -2px rgb(170,170,170));
 	background-color:#fff;
 	margin-top:0px;
 	top: -1px;
@@ -563,10 +535,8 @@
 			li{
 				vertical-align: top;
 				display:inline-block;
-				height:$navigation-bar-height;
-				line-height: $navigation-bar-height;
-				font-size: $med;
 				padding:0;
+				@include vertical-center-text($navigation-bar-height);
 				a{
 					display:block;
 					height:100%;
@@ -582,11 +552,9 @@
 	.nav-right{
 		vertical-align:top;
 		display:inline-block;
-		height:$navigation-bar-height;
-		line-height: $navigation-bar-height;
-		font-size: $med;
 		float:right;
 		padding: 0px $navigation-element-padding 0px $navigation-element-padding;
+		@include vertical-center-text($navigation-bar-height);
 	}
 
 }
@@ -596,9 +564,7 @@
 	font-size: $med;
 	position:fixed;
 	top: $navigation-bar-height + 10;
-	z-index:-999999;
-	cursor:default;
-	opacity:0;
+	@include hide-this(auto);
 	@include box-shadow(0 0 3px #999);
 	@include transition-duration(.2s);
 	@include transition-property(opacity);
@@ -631,6 +597,7 @@
 .FAQ-dropdown{
 	@extend .dropdown;
 	left: 202px;
+	right:auto;
 	width: auto;
 	&:before{
 		left:8px;
@@ -638,6 +605,7 @@
 }
 .userdropdown{
 	@extend .dropdown;
+	left:auto;
 	right:10px;
 	width:150px;
 	&:before{
@@ -646,9 +614,7 @@
 }
 
 .navigationburgerbar{
-	display:none;
-	opacity: 0;
-	z-index: -999999;
+	@include hide-this();
 }
 
 @include respond(all-tablets){
@@ -661,8 +627,7 @@
 				top: 0;
 				left:0;
 				background: $modal-overlay-color;
-				z-index: -10;
-				opacity:0;
+				@include hide-this(block, -10);
 				@include transition-duration(.4s);
 			}
 		.navigationpanel{
@@ -684,8 +649,7 @@
 						display:block;
 						width:100%;
 						text-align: left;
-						height: $navigation-bar-height - 10;
-						line-height: $navigation-bar-height - 10;
+						@include vertical-center-text($navigation-bar-height - 10);
 						&:last-child{
 							display: none;
 							width:$mobile-search-width;
@@ -743,8 +707,7 @@
 				display:block;
 				width:100%;
 				text-align: left;
-				height: $navigation-bar-height - 10;
-				line-height: $navigation-bar-height - 10;
+				@include vertical-center-text($navigation-bar-height - 10);
 			}
 		}
 		&.open{
@@ -759,12 +722,10 @@
 			position:fixed;
 			top:0px;
 			width:100%;
-			height:$mobile-navbar-height;
-			line-height: $mobile-navbar-height;
 			text-align: center;
-			font-size: $med;
 			color: $white;
 			background-color:$primary-color;
+			@include vertical-center-text($mobile-navbar-height);
 			@include box-shadow(0 0 7px $shadow-color);
 			.burger {
 				position: absolute;
