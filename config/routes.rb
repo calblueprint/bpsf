@@ -3,7 +3,7 @@ BPSF::Application.routes.draw do
   get '/search', to: 'pages#search', as: :search
 
   resources :contact_forms
-  resources :thankdonors_forms
+
   resources :grants, only: [:show, :edit, :update, :destroy]
   scope '/grants' do
     get ':id/edit_general_info/', to: 'grants#edit_general_info',    as: :edit_general
@@ -45,6 +45,8 @@ BPSF::Application.routes.draw do
 
   namespace :admin do
     get '',  to: 'dashboard#index', as: :dashboard
+    get '/load_grants',  to: 'dashboard#load_grants'
+    get '/load_distributions',  to: 'dashboard#load_distributions'
     post '', to: 'dashboard#index', as: :filter_school
     post '', to: 'dashboard#index', as: :filter_donated
   end
