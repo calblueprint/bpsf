@@ -1,0 +1,3 @@
+| $("#grants-tab").html(
+| "#{escape_javascript(render partial: 'shared/table', locals: { heads: ["Name", "Status", "Teacher, School"], partials: [['all_grants', @grants, :grant, "There are no grants"]] })}
+| #{escape_javascript(will_paginate @grants)}");

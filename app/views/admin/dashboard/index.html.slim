@@ -18,159 +18,29 @@
                 li#distributions
                   a href="#"  Data Distributions
           .tab-content
-            = render partial: 'shared/table', locals: { heads: ["Name", "Status", "Teacher, School"], partials: [['all_grants', @grants, :grant, "There are no grants"]] }
-            .four.columns.centered.centalig1n
-              = will_paginate @grants
+            #grants-tab
           .tab-content
             = render 'donated'
             = render partial: 'shared/table', locals: { heads: %w[Name Email], partials: [['users', @donors, :user, "There are no users"]] }
-            .four.columns.centered.centalign
+            .ten.columns.centered.centalign
               = will_paginate @donors
           .tab-content
             = render 'school'
             = render partial: 'shared/table', locals: { heads: %w[Name Email], partials: [['users', @recipients, :user, "There are no recipients"]] }
-            .four.columns.centered.centalign
+            .ten.columns.centered.centalign
               = will_paginate @recipients
           .tab-content
             .pending_users
               = render partial: 'shared/table', locals: { heads: %w[Name Email Status], partials: [['pending_users', @pending_users, :pending_user, "There are no pending users"]] }
-              .four.columns.centered.centalign
-              = will_paginate @pending_users
+              .ten.columns.centered.centalign
+                = will_paginate @pending_users
           .tab-content
-            .row
-              .four.columns.centalign
-                div style="margin-top:150px"
-                  | Successful Crowdfunds&emsp;
-                  .colorbox.green> &nbsp;
-                  | &emsp;&emsp;Unsuccessful Crowdfunds&emsp;
-                  .colorbox.red &nbsp;
-              .eight.columns
-                canvas#canvas1 height="350" width="350"
-            .row
-              .centalign
-                div style="margin-top:200px;"
-                  | Accepted Grants&emsp;
-                  .colorbox.green> &nbsp;
-                  | &emsp;&emsp;Rejected Grants&emsp;
-                  .colorbox.red &nbsp;
-            .row
-              .centalign
-                canvas#canvas2 height="450" width="700"
-                h5 School
-            .row
-              .centalign
-                div style="margin-top:200px;"
-                  | Accepted Grants&emsp;
-                  .colorbox.green> &nbsp;
-                  | &emsp;&emsp;Rejected Grants&emsp;
-                  .colorbox.red &nbsp;
-            .row
-              .centalign
-                canvas#canvas3 height="600" width="900"
-                h5 Subject Area
-            .row
-              .centalign
-                div style="margin-top:150px"
-                  | Successful Crowdfunds&emsp;
-                  .colorbox.green> &nbsp;
-                  | &emsp;&emsp;Unsuccessful Crowdfunds&emsp;
-                  .colorbox.red &nbsp;
-            .row
-              .centalign
-                canvas#canvas4.inlined height="600" width="800"
-                h5 Crowdfund Goal
+            #distributions-tab
 javascript:
-  function Maximize(listOne, listTwo){
-    var maxTotal = Math.max.apply( Math, listOne.concat(listTwo));
-    if(maxTotal > 20){
-      var stepDouble = maxTotal / 20,
-          stepInt = parseInt(stepDouble),
-          numSteps = 20;
-      if(stepDouble - stepInt >= 0.5){
-        stepInt++;
-      };
-    } else{
-      var stepInt = 1,
-          numSteps = maxTotal;
-    };
+  $('#grants').click(function(){
+    $.get('/admin/load_grants');
+  });
 
-    var graphScale = {
-      scaleOverride : true,
-      //Number - The number of steps in a hard coded scale
-      scaleSteps : numSteps,
-      //Number - The value jump in the hard coded scale
-      scaleStepWidth : stepInt,
-      //Number - The scale starting value
-      scaleStartValue : 0,
-    }
-    return graphScale
-  };
-
-  var dataOne = [
-      {
-        value: #{(successful.length==0 && unsuccessful.length==0) ? 1 : successful.length},
-        color:"#71c637"
-      },
-      {
-        value : #{(successful.length==0 && unsuccessful.length==0) ? 1 : unsuccessful.length},
-        color : "#f14f4f"
-      },
-    ];
-
-  var PieOne = new Chart(document.getElementById("canvas1").getContext("2d")).Pie(dataOne);
-
-  var dataTwo = {
-    labels : #{raw School.uniq.pluck(:name).to_json},
-    datasets : [
-      {
-        fillColor : "#71c637",
-        strokeColor : "#71c637",
-        data : #{raw accepted_school}
-      },
-      {
-        fillColor : "#f14f4f",
-        strokeColor : "#f14f4f",
-        data : #{raw rejected_school}
-      }
-    ]
-  }
-
-  var ChartTwo = new Chart(document.getElementById("canvas2").getContext("2d")).Bar(dataTwo, Maximize(#{raw accepted_school}, #{raw rejected_school}));
-
-
-  var dataThree = {
-    labels : #{raw Grant::SUBJECTS.to_json},
-    datasets : [
-      {
-        fillColor : "#71c637",
-        strokeColor : "#71c637",
-        data : #{raw accepted_subject}
-      },
-      {
-        fillColor : "#f14f4f",
-        strokeColor : "#f14f4f",
-        data : #{raw rejected_subject}
-      }
-    ]
-  }
-
-  var ChartThree = new Chart(document.getElementById("canvas3").getContext("2d")).Bar(dataThree, Maximize(#{raw accepted_subject}, #{raw rejected_subject}));
-
-
-  var dataFour = {
-    labels : ["$0-99","$100-199","$200-299","$300-399","$400-499","$500-599","$600-699","$700-799","$800-899","$900-999","$1000+"],
-    datasets : [
-      {
-        fillColor : "#71c637",
-        strokeColor : "#71c637",
-        data : #{raw successful_goal}
-      },
-      {
-        fillColor : "#f14f4f",
-        strokeColor : "#f14f4f",
-        data : #{raw unsuccessful_goal}
-      }
-    ]
-  }
-
-  var ChartFour = new Chart(document.getElementById("canvas4").getContext("2d")).Bar(dataFour, Maximize(#{raw successful_goal}, #{raw unsuccessful_goal}));
+  $('#distributions').click(function(){
+    $.get('/admin/load_distributions');
+  });
