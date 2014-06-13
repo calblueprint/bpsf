@@ -254,7 +254,6 @@ GEM
       rdoc (~> 3.4)
       thor (>= 0.14.6, < 2.0)
     rake (10.1.1)
-    rb-readline (0.4.2)
     rdoc (3.12.2)
       json (~> 1.4)
     redcard (1.1.0)
@@ -405,7 +404,6 @@ DEPENDENCIES
   pry (~> 0.9.12.2)
   rails (= 3.2.13)
   rails_12factor
-  rb-readline (~> 0.4.2)
   rspec-rails (= 2.11.0)
   ruby-graphviz (~> 1.0.9)
   sass-rails (~> 3.2.3)
