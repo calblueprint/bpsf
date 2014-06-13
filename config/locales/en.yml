@@ -2,4 +2,10 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  layouts:
+    footer:
+      tagline: All grants have been reviewed and approved by the Berkeley Public Schools Fund.
+      learn_more: Learn More About Berkeley Public Schools Fund
+      donate_button: Make a Schools Fund Donation
+      phone: 510.644.6244
+      location: Berkeley, CA
