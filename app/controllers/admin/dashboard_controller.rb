@@ -58,6 +58,10 @@ class Admin::DashboardController < ApplicationController
     end
   end
 
+  def edit_content
+    @content_editor = ContentEditor.new
+  end
+
   def use_https?
     true
   end
