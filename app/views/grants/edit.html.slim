@@ -3,56 +3,47 @@
     .wrapper.light
       .row
         h2
-          | Editing #{@grant.title}
+          | Editing #{@grant}
       = render 'shared/errors', object: @grant
       /! GENERAL INFO
       .row.ultitle
         h3
           | General Information
-          span.ttip data-tooltip="Edit"
-            = link_to '<i class="icon-pencil"></i>'.html_safe, edit_general_path(@grant)
+          = @grant.edit_icon_for edit_general_path
       .row
         .eleven.columns.push_one
           .row
-            h4
-              | Title: #{@grant.title}
+            h4 Title: #{@grant}
           .row
             h4 Summary
             = @grant.summary
           .row
             h4 Image
-            - if !@grant.image_url.blank?
-              = image_tag @grant.image_url :banner
+            = @grant.banner
           .row
             h4 Video
-            - if !@grant.video.blank?
-              iframe height="315" src="https://www.youtube.com/embed/#{parse_embed(@grant)}" width="560"
+            = @grant.video_small
           .row
             h4 Subject areas
-            = @grant.subject_areas.values.to_a.join(', ')
+            = @grant.subject_areas
       /! Project Idea
       .row.ultitle
         h3
           | Project Idea
-          span.ttip data-tooltip="Edit"
-            = link_to '<i class="icon-pencil"></i>'.html_safe, edit_project_idea_path(@grant)
+          = @grant.edit_icon_for edit_project_idea_path
       .row
         .eleven.columns.push_one
           .row
-            h4
-              | Grade level: #{@grant.grade_level}
+            h4 Grade level: #{@grant.grade_level}
           .row
             h4 Duration
             = @grant.duration
           .row
-            h4
-              | Number of classes: #{@grant.num_classes}
+            h4 Number of classes: #{@grant.num_classes}
           .row
-            h4
-              | Number of students: #{@grant.num_students}
+            h4 Number of students: #{@grant.num_students}
           .row
-            h4
-              | Num. collaborators: #{@grant.n_collaborators}
+            h4 Num. collaborators: #{@grant.n_collaborators}
           .row
             h4 Collaborators
             = @grant.collaborators
@@ -60,19 +51,16 @@
       .row.ultitle
         h3
           | Budget
-          span.ttip data-tooltip="Edit"
-            = link_to '<i class="icon-pencil"></i>'.html_safe, edit_budget_path(@grant)
+          = @grant.edit_icon_for edit_budget_path
       .row
         .eleven.columns.push_one
           .row
-            h4
-              | Funding Goal: #{@grant.total_budget}
+            h4 Funding Goal: #{@grant.total_budget}
           .row
-            h4
-              | Requested funds: #{@grant.requested_funds}
+            h4 Requested funds: #{@grant.requested_funds}
           .row
             h4 Funds will pay for:
-            = @grant.funds_will_pay_for.join(", ")
+            = @grant.use_of_funds
           .row
             h4 Budget description
             = @grant.budget_desc
@@ -80,8 +68,7 @@
       .row.ultitle
         h3
           | Methods
-          span.ttip data-tooltip="Edit"
-            = link_to '<i class="icon-pencil"></i>'.html_safe, edit_methods_path(@grant)
+          = @grant.edit_icon_for edit_methods_path
       .row
         .eleven.columns.push_one
           .row

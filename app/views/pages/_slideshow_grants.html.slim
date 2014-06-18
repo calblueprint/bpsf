@@ -1,7 +1,7 @@
 li onclick="window.location.href='../#{url_for grant}'" style="background-image:url(#{grant.image_url :banner}); background-size:cover;"
   .slidecard
     .cardtitle
-      h3= link_to grant.title, grant
+      h3= link_to grant, grant
     p.cardcontent
       span.darken.poofout = grant.recipient.name + ' | ' + grant.school.name
       br.poofout/

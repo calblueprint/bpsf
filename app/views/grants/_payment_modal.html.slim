@@ -1,0 +1,14 @@
+#payment-form.modal
+  .modalscreen
+  .content
+    a.close.xbox
+      i.icon-cancel
+    .row
+      .ten.columns.centered.text-center
+        - if grant.crowdfunding?
+          .row
+            = render "payment_form", payment: payment, id: grant.id
+        - else
+          .row
+            h3 style="margin-top:60px"
+              | Grant must be crowdfunding in order to donate!

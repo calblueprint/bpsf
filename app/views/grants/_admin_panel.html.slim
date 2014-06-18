@@ -1,0 +1,31 @@
+- if admin_user?
+  .row
+    .wrapper.light
+      .row
+        - if super_user?
+          .three.columns.centalign
+            - if grant.crowdfunding?
+                = form_tag crowdfund_update_path do
+                  = hidden_field_tag :crowdfund_id, grant.crowdfunder_id
+                  h4 End Date
+                  ul
+                    li.field.metro
+                      = select_date grant.deadline, order: [:year, :month, :day], class: [:picker, :inlined]
+                  .primary.medium.btn
+                    = submit_tag 'Update deadline'
+          .six.columns.centalign
+            h4 Change Status
+            #grantstatus
+              | Current Status - #{grant.status}
+            = render 'toggle_links', grant: grant
+          .three.columns.centalign
+            h4
+              | Edit Grant
+            br/
+            ul.tab-nav
+              li= link_to 'Edit <i class="icon-pencil"></i>'.html_safe, edit_grant_path
+        - else
+          .ten.columns.centered.centalign
+            h4 Status
+            = grant.status
+      hr.hr-primary/
