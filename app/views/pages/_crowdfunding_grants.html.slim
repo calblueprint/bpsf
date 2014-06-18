@@ -7,7 +7,7 @@
         = link_to (image_tag "/assets/default/Other.jpg"), grant
   .infocardcontent
     .cardtitle
-      h3= link_to grant.title, grant
+      h3= link_to grant, grant
     p.cardtext
       span.darken
       = grant.recipient.first_name + ' ' + grant.recipient.last_name + ' | ' + grant.school_name

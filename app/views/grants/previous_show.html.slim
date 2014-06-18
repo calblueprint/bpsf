@@ -2,25 +2,20 @@
   .wrapper.light
     .row.centalign
       h2
-        = @grant.title
+        = @grant
       h5
-        = @grant.recipient.name
-        | &nbsp;| #{@grant.school_name}
+      ' #{@grant.recipient_name} |
+      ' #{@grant.school_name}
     .row align="center"
-      - if !@grant.image_url.blank?
-        .coverholder
-          = image_tag @grant.image_url :banner
-      - else
-        .imgreplacementlrg
-          .repson= @grant.title
+      = @grant.banner classes: 'coverholder'
     .row.centalign
       .eleven.columns.centered
         p.largefont= @grant.summary
       br/
     .row.padada
       .ten.columns.centered.centalign
-        h4.inlined Subject Areas:
-        span.largefont= @grant.subject_areas.values.to_a.join(', ')
+        h4.inlined> Subject Areas:
+        span.largefont = @grant.subject_areas
 
     hr/
 
@@ -43,11 +38,7 @@
         h5
           strong Teacher Background
         = @grant.background
-    - if !@grant.video.blank?
-      .row
-        .ten.columns.centered
-          article.youtube.video
-            iframe src="https://www.youtube.com/embed/#{parse_embed(@grant)}"
+    = @grant.video_large
     .row
       .ten.columns.centalign.centered
         br/
@@ -76,10 +67,7 @@
           |&nbsp;
           = @grant.num_students
         br/
-        - if @grant.has_collaborators?
-          h5
-            strong Collaborators
-          = @grant.collaborators
+        = @grant.collaborators_section
     .row
       .ten.columns.centalign.centered
         br/
@@ -94,10 +82,7 @@
         = @grant.budget_desc
         h5
           strong Use of Funds
-        = @grant.funds_will_pay_for.join(", ")
-    - if @grant.has_comments?
-      .row
-        .ten.columns.centalign.centered
-          br/
-          h3 Additional Comments
-          = @grant.comments
+        = @grant.use_of_funds
+    .row
+      .ten.columns.centalign.centered
+        = @grant.comments_section

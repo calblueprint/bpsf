@@ -1,27 +1,28 @@
-#crowdfund-form.modal
-  .modalscreen
-  .content
-    a.close.switch.xbox
-      i.icon-cancel
-    .row
-      .ten.columns.centered.text-center
-        h3
-          | Crowdfund Settings for
-          br/
-          | "#{grant.title}"
-        = form_tag crowdfund_create_path do
-          h4 Goal
-          h8
-            | (Admin Fee Added: 9%):
-          .field.prepend.noroundborder
-            span.adjoined.noroundborder $
-            = text_field_tag :goal, grant.with_admin_cost, class: [:input, :text, :narrow, :noroundborder]
-          h4 End Date
-          h8
-            | (Proposed by Teacher)
-          ul
-            li.field.metro
-              = select_date grant.deadline, order: [:year, :month, :day], class: [:picker, :inlined]
-          = hidden_field_tag :grant_id, grant.id
-          .primary.medium.btn
-            = submit_tag "Start Crowdfund!", class: "close-crowdfund-modal", confirm: "Are you sure?"
+#crowdfund-modal-view
+  #crowdfund-form.modal
+    .modalscreen
+    .content
+      a.close.switch.xbox
+        i.icon-cancel
+      .row
+        .ten.columns.centered.text-center
+          h3
+            | Crowdfund Settings for
+            br/
+            | "#{grant}"
+          = form_tag crowdfund_create_path do
+            h4 Goal
+            h8
+              | (Admin Fee Added: 9%):
+            .field.prepend.noroundborder
+              span.adjoined.noroundborder $
+              = text_field_tag :goal, grant.with_admin_cost, class: [:input, :text, :narrow, :noroundborder]
+            h4 End Date
+            h8
+              | (Proposed by Teacher)
+            ul
+              li.field.metro
+                = select_date grant.deadline, order: [:year, :month, :day], class: [:picker, :inlined]
+            = hidden_field_tag :grant_id, grant.id
+            .primary.medium.btn
+              = submit_tag "Start Crowdfund!", class: "close-crowdfund-modal", confirm: "Are you sure?"

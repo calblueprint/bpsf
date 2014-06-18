@@ -1,3 +1,53 @@
+//Custom Variables
+
+	//Global
+	$shadow-color: rgb(170, 170, 170);
+
+	//Navigation Bar
+	$navigation-bar-height: 75px;
+	$logo-top-bottom-padding : 4px;
+	$navigation-element-padding : 18px;
+	$dropdown-element-padding : 10px;
+	$search-box-width: 320px;
+
+	$mobile-navbar-height: 55px;
+	$mobile-navpanel-width: 250px;
+	$mobile-search-width: $mobile-navpanel-width - 10;
+
+
+//Custom Mixins
+@mixin placeholder-color($color) {
+  &.placeholder {
+    color: $color; 
+  }
+  &:-moz-placeholder {
+    color: $color; 
+  }
+  &::-moz-placeholder{
+  	color: $color;
+  }
+  &::-ms-input-placeholder{
+  	color: $color;
+  }
+  &::-webkit-input-placeholder {
+    color: $color; 
+  } 
+}
+
+@mixin vertical-center-text($height, $size: $med){
+	height:$height;
+	line-height: $height;
+	font-size: $size;
+}
+
+@mixin hide-this($display: none, $z-index: -999999, $opacity: 0, $cursor: default){
+	display: $display;
+	z-index: $z-index;
+	opacity: $opacity;
+	cursor: $cursor;
+}
+
+
 // Trival Styles
 	// Color Styles
 	.green{background-color:$secondary-color;}
@@ -29,7 +79,6 @@
 
 	//Miscellaneous Styles
 	.pointer{cursor:pointer;}
-	.noroundborder{@include border-radius(0px !important) ;}
 	#nobullet > li {list-style:none;}
 	.linkeffect{&:hover, &:active, &:focus{color: $primary-color}}
 
@@ -52,11 +101,11 @@
 		&.light{background-color:#fff;}
 		&.homewrap{padding: 25px;}
 	}//Page wrapper
-  .bare-wrapper{
-    padding: 0px 30px;
-  }
+	.bare-wrapper{
+	    padding: 0px 30px;
+	}
 	.page-wrapper{
-		@include box-shadow(0px 0 10px rgb(170, 170, 170));
+		@include box-shadow(0px 0 10px $shadow-color);
 		background-color:#fff;
 	}
 
@@ -73,7 +122,7 @@
 	.container {
 		overflow: hidden;
 		background-color: $global-bg-color;
-		padding-top:80px;
+		padding-top:$navigation-bar-height + 15px;
 
 	/*  Prevents Flickering  */
 		-webkit-backface-visibility: hidden;
@@ -210,16 +259,29 @@
 		padding:(25px 0px 25px 0px);
 		border-bottom:1px solid $global-bg-color;
 		cursor: pointer;
-		& img{width:100%;
+		& img{
+			width:100%;
 			height:150px;
-			}
+		}
 		& .cardtitle{
 			margin-bottom:-15px;
 			margin-top:-15px;
 			a {@include transition-duration(0.3s)}
 		}
-		& .infocardimg{width: 33%; max-width: 4*$row-max-width/$cols; display:inline-block; padding:(0px 10px 0px 20px); float: left;}
-		& .infocardcontent{width: 66%; max-width: 8*$row-max-width/$cols; display:inline-block; padding:(0px 20px 0px 10px); float: right;}
+		& .infocardimg{
+			width: 33%; 
+			max-width: 4*$row-max-width/$cols; 
+			display:inline-block; 
+			padding:(0px 10px 0px 20px); 
+			float: left;
+		}
+		& .infocardcontent{
+			width: 66%; 
+			max-width: 8*$row-max-width/$cols; 
+			display:inline-block; 
+			padding:(0px 20px 0px 10px); 
+			float: right;
+		}
 		@include respond(all-phones){
 			.progressvalues{
 				h3{font-size: $med}
@@ -235,10 +297,9 @@
 
 	.imgholder{
 		width:100%;
-		height:150px;
-		line-height:150px;
 		overflow:hidden;
 		text-align: center;
+		@include vertical-center-text(150px);
 		img {
 			vertical-align: middle;
 			height: 100%;
@@ -254,10 +315,8 @@
 
 	//Other
 	.category{
-	font-size:$med;
-	line-height:40px;
 	text-align:left;
-	height:40px;
+	@include vertical-center-text(40px);
 	}
 
 
@@ -283,20 +342,16 @@
 		background: rgb(255,117,117);
 		text-align: center;
 		overflow:hidden;
-		font-size: $xlarge;
 		color: $white;
-		height:$imglargereplacementhgt;
-		line-height:$imglargereplacementhgt;
+		@include vertical-center-text($imglargereplacementhgt, $xlarge);
 		.repson{
 			margin:0 auto;
 			margin-top: 10px;
-			height: $imglargereplacementhgt - 20px;
 			width: 97%;
-			line-height: $imglargereplacementhgt - 20px;
-			font-size: $xlarge;
 			color: $white;
 			text-align: center;
 			border: 5px dashed $white;
+			@include vertical-center-text($imglargereplacementhgt - 20px, $xlarge);
 		}
 	}//Only used when there is no image available
 
@@ -323,12 +378,6 @@
 	    left: 0;
 	    width: 100%;
 	    height: 100%;
-	}
-
-	//Admin Rating styles
-	.ajaxful-rating{
-		text-align:center;
-		margin: 0 auto;
 	}
 
 	//Superadmin Grant Status Buttons
@@ -393,53 +442,7 @@
 		@extend .toggle_crowdfund;
 	}
 
-//Help Panel
-	.helppanel{
-		ul{
-			list-style: none;
-			height: 200px;
-			width: 100%;
-			margin: 0 auto;
-			display: block;
-			position: absolute;
-			top: 50%;
-			left: 0px;
-			margin-top: -100px;
-		}
-		li{
-			display:inline-block;
-			height:100px;
-			width:33.3333333%;
-			line-height:100px;
-			font-size: $med+1;
-			text-align: center;
-			&:hover, &:active, &:focus{
-				color:$primary-color;
-			}
-		}
-	}
-
-	.helppanelbutton{
-		cursor:pointer;
-		&:hover, &:active, &:focus{
-			color:$primary-color;
-		}
-	}
-
 //Javascript Hover/Modal Classes
-	.screen{
-		position:fixed;
-		height:100%;
-		width:100%;
-		left:-100%;
-		background-color: rgba(0,0,0,0.0);//#000;
-		//opacity:0;
-		z-index: 999;
-		@include transition-duration(0.2s);
-		@include transition-property(opacity);
-		&.open{background-color:rgba(0,0,0,0.8)}//opacity: 0.8}
-	}
-
 	.modal{
 		@include transition-duration(0.5s)
 	}
@@ -457,7 +460,6 @@
 /*********************************Footer Classes******************************************/
 .footwrapper{
 	padding:10px 40px 20px 40px;
-	//@include box-shadow(-5px 8px 10px -2px rgb(170,170,170), 5px 8px 10px -2px rgb(170,170,170));
 	background-color:#fff;
 	margin-top:0px;
 	top: -1px;
@@ -498,124 +500,265 @@
 }
 
 /****************************************Navigation Classes*****************************/
-.userdropdown{
-	font-weight:$header-font-weight;
-	background: #fff;
+.navigationpanel{
 	position:fixed;
-	right:10px;
-	top: 70px;//-300px;
-	width: 150px;
-	z-index:-10;//700;
-	opacity: 0;
-	//display: none;
-	@include box-shadow(0 0 3px #999);
-	@include transition-duration(.4s);
-	@include transition-property(opacity);//
-	//@include transition-timing-function(ease);
-	ul{
-		list-style:none;
-		li{
-			font-size: $med;
-			display: block;
-			padding:10px;
+	top:0px;
+	width:100%;
+	height:$navigation-bar-height;
+	background-color:$white;
+	z-index: 800;
+	font-weight: $header-font-weight;
+	color:#000;
+	@include box-shadow(0 0 7px $shadow-color);
+	.bpsf-logo{
+		display:inline-block;
+		height:$navigation-bar-height;
+		padding: $logo-top-bottom-padding 
+				$navigation-element-padding 
+				$logo-top-bottom-padding 
+				$navigation-element-padding;
+		img{
+			display:inline;
+			height:100%;
+			width:auto;
 		}
+	}
+	.nav-left{
+		vertical-align: top;
+		display:inline-block;
+		height:$navigation-bar-height;
+		ul{
+			list-style-type: none;
+			padding:0px;
+			margin:0px;
+			width:100%;
+			li{
+				vertical-align: top;
+				display:inline-block;
+				padding:0;
+				@include vertical-center-text($navigation-bar-height);
+				a{
+					display:block;
+					height:100%;
+					padding:0px $navigation-element-padding 0px $navigation-element-padding;
+					cursor:pointer;
+				}
+				&:last-child{
+					width:$search-box-width;
+				}
+			}
+		}
+	}
+	.nav-right{
+		vertical-align:top;
+		display:inline-block;
+		float:right;
+		padding: 0px $navigation-element-padding 0px $navigation-element-padding;
+		@include vertical-center-text($navigation-bar-height);
+	}
+
+}
+
+.dropdown{
+	background-color: $white;
+	font-size: $med;
+	position:fixed;
+	top: $navigation-bar-height + 10;
+	@include hide-this(auto);
+	@include box-shadow(0 0 3px #999);
+	@include transition-duration(.2s);
+	@include transition-property(opacity);
+	li{
+		padding: $dropdown-element-padding;
+	}
+	.go-back{
+		display:none;
 	}
 	&:before {
-    content: " ";
-    width: 0;
-    height: 0;
-    position: absolute;
-	top: -9px;
-	right: 8px;
-	border-bottom: 9px solid $white !important;
-	border-left: 9px solid transparent;
-	border-right: 9px solid transparent;
+	    content: " ";
+	    width: 0;
+	    height: 0;
+	    position: absolute;
+		top: -9px;
+		border-bottom: 9px solid $white !important;
+		border-left: 9px solid transparent;
+		border-right: 9px solid transparent;
 	}
-	&.dropper{
-		//@include translate3d(0, 370px, 0)
-		opacity: 1;
+	&.open{
 		z-index: 700;
-		//display: block;
+		opacity:1;
+	}
+	a{
+		display:block;
+		width:100%;
+		height:100%;
+	}
+}
+.FAQ-dropdown{
+	@extend .dropdown;
+	left: 202px;
+	right:auto;
+	width: auto;
+	&:before{
+		left:8px;
+	}
+}
+.userdropdown{
+	@extend .dropdown;
+	left:auto;
+	right:10px;
+	width:150px;
+	&:before{
+		right:8px;
 	}
 }
 
-
-
-.navigationbar {
-	position: fixed;
-	top:0px;
-	z-index: 800;
-	background-color: $white;
-	width: 100%;
-	height:55px;
-	line-height:55px;
-	font-weight:$header-font-weight;
-	@include box-shadow(0px 0 10px rgb(170, 170, 170));//0 0 3px #999);
-	.homelogo {
-	text-align: left;
-	font-size: $med;
-	padding-left: 10px;
-	}
-	.loginmenu{
-		text-align: right;
-		display: inline;
-		font-size: $med;
-		padding-right:10px;
-
-	}
-	img{
-		height: 50px;
-		margin-top: 3px;
-		margin-bottom: 2px;
-	}
+.navigationburgerbar{
+	@include hide-this();
 }
 
-.navbuttons {
-	position: absolute;
-	left: 50%;
-	margin-left:-230px;
-	height:55px;
-	top:0;
-	.search{width: 300px;}
-	.field{
-		height:55px;
-		margin: 0px !important;
-		padding: 0px !important;
-		margin-top:-5px !important;
-	}
-	li {
-	    float: left;
-	    display: inline-block;
-	    font-size: $med;
-	    width: auto;
-		a {
-			display: block;
-			padding: 0px 20px 12px;
-			font-family: $font-family;
-			font-weight:$header-font-weight;
+@include respond(all-tablets){
+	.navcontainer{
+		z-index: 800;
+		.modalscreen{
+				width: 100%;
+				height: 100%;
+				position: fixed;
+				top: 0;
+				left:0;
+				background: $modal-overlay-color;
+				@include hide-this(block, -10);
+				@include transition-duration(.4s);
+			}
+		.navigationpanel{
+			height:100%;
+			width:$mobile-navpanel-width;
+			padding:0px;
+			left:-275px;
+			@include transition-duration(.4s);
+			@include transition-property(left);
+			.bpsf-logo{
+				display:block;
+				width:100%;
+				text-align: center;
+			}
+			.nav-left{
+				display:block;
+				ul{
+					li{
+						display:block;
+						width:100%;
+						text-align: left;
+						@include vertical-center-text($navigation-bar-height - 10);
+						&:last-child{
+							display: none;
+							width:$mobile-search-width;
+							padding-right:5px;
+							padding-left: 5px;
+							margin:0 auto;
+						}
+					}
+				}
+			}
+			.nav-right{
+				position:absolute;
+				display: block;
+				clear:float;
+				width:100%;
+				text-align:center;
+				bottom:0px;
+				padding:0px;
+				.icon-down-open-mini{
+					display:none;
+				}
+			}
+		}
+		&.open{
+			.navigationpanel{
+				left:0px;
+			}
+			.modalscreen{
+				z-index: 799;
+			    opacity:1;
+			    left:0;
+			}
 		}
 	}
-}
-
-
-@include respond(all-phones){
-	.navbuttons {
-		position: static;
-		margin-left:0px;
-		left:0;
-		display:inline-block;
-		.search{width: 100%;}
-		li a{
-			padding-left:5px;
-			padding-right:5px;
+	.dropdown{
+		position:fixed;
+		height:100%;
+		width:$mobile-navpanel-width - 10;
+		padding:0px;
+		top:0px;
+		right:auto;
+		z-index: 90010;
+		opacity: 1;
+		color:#000;
+		left:-270px;
+		@include transition-duration(.4s);
+		@include transition-property(left);
+		.go-back{
+			display:block;
+			background-color:darken($white, 10%);
+		}
+		display:block;
+		ul{
+			li{
+				display:block;
+				width:100%;
+				text-align: left;
+				@include vertical-center-text($navigation-bar-height - 10);
+			}
+		}
+		&.open{
+			left:0px;
+			z-index: 810;
 		}
 	}
-	.navigationbar .loginmenu{padding-right:5px;}
+	.navigationburgerbar{
+			display:block;
+			opacity:1;
+			z-index: 700;
+			position:fixed;
+			top:0px;
+			width:100%;
+			text-align: center;
+			color: $white;
+			background-color:$primary-color;
+			@include vertical-center-text($mobile-navbar-height);
+			@include box-shadow(0 0 7px $shadow-color);
+			.burger {
+				position: absolute;
+				float: left;
+				padding: 10px;
+				top: 4px;
+				left: 10px;
+				display: block;
+				cursor: pointer;
+				z-index: 10;
+				li {
+					width: 30px;
+					height: 4px;
+					background-color: $white;
+					border-radius: 3px;
+					margin: 5px 0;
+				}
+			}
+			.input{
+				background-color:$primary-color;
+				border:none;
+				color:$white;
+				@include placeholder-color(darken($white, 10%));
+				font-size: $large;
+				height:$mobile-navbar-height;
+				margin-left: 55px;
+				@include respond(all-phones){
+					font-size: $med;
+				}
+			}
+		}
 }
 
-@include respond(portrait-phones){
-	.homelogo{display: none !important;}
-}
 /********************* Paginate Styles *******************/
 .pagination{
   text-align: center;

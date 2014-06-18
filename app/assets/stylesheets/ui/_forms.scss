@@ -2,6 +2,7 @@
 
 @import "../functions/forms";
 
+$form-radius-size: 3px;
 
 form {
   margin: 0 0 18px;
@@ -63,15 +64,14 @@ form {
   }
   .input {
     position: relative;
-    padding: 0 10px;
-    background: lighten($global-bg-color, 10%);//#f2f2f2;
-    //border: 1px solid darken($default-color, 10%);
+    padding: 3px 3px;
+    background: darken($white, 2%);//#f2f2f2;
+    border: 1px solid darken($white, 10%);
     @include line-and-height(height-calc($norm));
     @include font-size($norm);
-    //@include border-radius(4px);
+    @include border-radius($form-radius-size);
     &.search {
       @include line-and-height(height-calc($norm));
-      //@include border-radius(1000px);
       padding-right: 0;
     }
   }
@@ -132,25 +132,25 @@ form {
 
   &.prepend input,
   &.prepend .input {
-    //@include border-radius(0px 4px 4px 0);
+    @include border-radius(0px $form-radius-size $form-radius-size 0);
   }
 
   &.append input,
   &.append .input {
-    //@include border-radius(4px 0 0 4px);
+    @include border-radius($form-radius-size 0 0 $form-radius-size);
   }
 
   &.prepend.append input {
-    //@include border-radius(0);
+    @include border-radius(0);
   }
 
   &.prepend.append input:first-child {
-    //@include border-radius(4px 0 0 4px);
+    @include border-radius($form-radius-size 0 0 $form-radius-size);
   }
 
   &.prepend.append input:last-child {
     margin-left: -1px;
-    //@include border-radius(0px 4px 4px 0);
+    @include border-radius(0px $form-radius-size $form-radius-size 0);
   }
 
   &.prepend .adjoined, &.append .adjoined, &.prepend .btn, &.append .btn {
@@ -167,8 +167,8 @@ form {
 
   &.prepend .adjoined, &.append .adjoined  {
     padding: 0 7px 0 7px;
-    background: lighten($global-bg-color, 10%);//$default-color;
-    border: 1px solid lighten($global-bg-color, 10%);//darken($default-color, 10%);
+    background: darken($white, 5%);//$default-color;
+    border: 1px solid darken($white, 10%);//darken($default-color, 10%);
     font-family: $font-family;
     font-weight: $font-weight-semibold;
     color: $body-font-color;
@@ -177,7 +177,7 @@ form {
   }
 
   &.prepend *:first-child {
-    //@include border-radius(4px 0 0 4px);
+    @include border-radius($form-radius-size 0 0 $form-radius-size);
   }
 
   &.prepend input:first-child {
@@ -185,7 +185,8 @@ form {
   }
 
   &.prepend .adjoined, &.prepend .btn {
-    margin-right: -1px;
+    margin-right: 0px;
+    vertical-align: top;
   }
 
   .adjoined:first-child {
@@ -197,7 +198,7 @@ form {
   }
 
   &.append *:last-child {
-    //@include border-radius(0px 4px 4px 0);
+    @include border-radius(0px $form-radius-size $form-radius-size 0);
   }
 
   &.append button, &.prepend button {
@@ -340,7 +341,7 @@ form {
     @include border-radius(8px);
   }
   .checkbox span {
-    @include border-radius(3px);
+    @include border-radius($form-radius-size);
   }
 }
 
@@ -358,7 +359,7 @@ form {
   margin: 0 0 2px 1.2%;
   overflow: hidden;
   border: 1px solid lighten($default-color, 25%);
-  //@include border-radius(4px);
+  //@include border-radius($form-radius-size);
   font-family: $font-family;
   font-weight: $font-weight-regular;
   height: auto;
