@@ -38,7 +38,7 @@ class Admin::DashboardController < ApplicationController
   end
 
   def load_grants
-    @grants = (Grant.all-DraftGrant.all).sort_by(&:order_status).paginate :page => params[:page], :per_page => 6
+    @grants = (Grant.includes(:school).all-DraftGrant.all).sort_by(&:order_status).paginate :page => params[:page], :per_page => 6
     respond_to do |format|
       format.js
     end
