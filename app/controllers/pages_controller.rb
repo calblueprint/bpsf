@@ -9,7 +9,7 @@ class PagesController < ApplicationController
 
   def home
     if params[:successful] || Grant.crowdfunding_grants.empty?
-      @grants = Grant.complete_grants
+      @grants = Grant.complete_grants.includes(:school, :recipient, :crowdfunder)
       @grants = @grants.select { |grant| grant.previous_version.state == 'crowdfunding'}
       @slideshow_grants = @grants.sample 3
       subject = params[:subject]
@@ -34,6 +34,7 @@ class PagesController < ApplicationController
                    .includes :recipient, :school
   end
 
+  private
   def slideshow_grants
     possible_grants = []
     if user_signed_in?
@@ -43,8 +44,8 @@ class PagesController < ApplicationController
         possible_grants << crowdfund.grant
       end
     end
-    possible_grants.concat Grant.crowdfunding_grants.newest
-    possible_grants.concat Grant.close_to_goal
+    possible_grants.concat Grant.crowdfunding_grants.includes(:school, :recipient, :crowdfunder).newest
+    possible_grants.concat Grant.includes(:school, :recipient, :crowdfunder).close_to_goal
     possible_grants = possible_grants.uniq
     possible_grants.sample 3
   end
