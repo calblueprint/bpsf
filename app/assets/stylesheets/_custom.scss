@@ -189,7 +189,7 @@ p{
 //Custom Variables
 
 	//Global
-	$shadow-color: rgb(170, 170, 170);
+	$shadow-color: rgb(120, 120, 120);
 
 	//Navigation Bar
 	$navigation-bar-height: 75px;
@@ -342,6 +342,25 @@ p{
 
 	.progressbar{float: left;}
 
+	.progress-text-container{
+		font-weight:$font-weight-light;
+		.progress-large-text{
+			font-size:$large;
+			color:#000;
+			margin:0px 3px;
+			display:inline;
+		}
+		.progress-large-text-primary{
+			@extend .progress-large-text;
+			color: $primary-color;
+		}
+		.progress-small-text{
+			font-size:$med;
+			margin:0px 3px;
+			display:inline;
+		}
+	}
+
 	.progress {
 		height: 6px;
 		width: 100%;
@@ -382,12 +401,43 @@ p{
 		z-index:0;
 		overflow:none;
 		@include box-shadow(0px 0 7px $shadow-color);
-		.home-slider{}
+		.home-slider{
+			.slides-container{
+				li{
+					.home-slide-background{}
+					.home-slide-information{
+						background-color:rgba($white, 0.9);
+						border-top:solid 4px $primary-color;
+						height:auto;
+						width:350px;
+						max-height:400px;
+						position:absolute;
+						top:10%;
+						left:12%;
+						padding:5px;
+						@include box-shadow(0px 0 7px $shadow-color);
+						.home-slide-title{
+							@extend h3;
+							padding-bottom:0px;
+						}
+						.home-slide-subtitle{
+							font-size:$norm - 3;
+							font-weight:$font-weight-medium;
+							color:#888;
+							padding-top:0px;
+							margin-top:-5px;
+						}
+						.home-slide-description{
+							@extend p;
+						}
+						.home-slide-progress{
+
+						}
+					}
+				}
+			}
+		}
 		.slides-navigation{
-			position: absolute;
-			top: 0px;
-			width:100%;
-			height:100%;
 			z-index: 5;
 			.arrow-box{
 				position:absolute;
@@ -395,7 +445,7 @@ p{
 				max-width: 100px;
 				width: 15%;
 				height:100%;
-				z-index: 25;
+				z-index: 6;
 				opacity:0.1;
 				cursor:pointer;
 				background-color:#000;

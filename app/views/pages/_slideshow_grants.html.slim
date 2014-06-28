@@ -5,6 +5,24 @@ li
     .home-slide-subtitle = grant.recipient.name + ' | ' + grant.school.name
     .home-slide-description = grant.summary
     .home-slide-progress
+      .progress-text-container
+        .progress-large-text-primary
+          = '$' + grant.crowdfunder_pledged_total.to_s
+        .progress-small-text of
+        .progress-large-text
+          = '$' + grant.crowdfunder_goal.to_s
+        - if !grant.crowdfunding?
+          .progress-large-text
+            .progress-small-text Successful!
+        - elsif grant.days_left > 0
+          .progress-small-text with
+          .progress-large-text
+            = grant.days_left.to_s
+          span &nbsp;days left
+        - else
+          .progress-large-text Past Deadline
+      .progress
+        .progressbar data-current=grant.crowdfunder_pledged_total data-goal=grant.crowdfunder_goal style=("width: 0%")
 
 
 //li onclick="window.location.href='../#{url_for grant}'" style="background-image:url(#{grant.image_url :banner}); background-size:cover;"
@@ -18,19 +36,19 @@ li
 //      span.progressvalues
 //        h3.inlined.primary-color
 //          = '$' + grant.crowdfunder_pledged_total.to_s
-//        span &nbsp;&nbsp;of&nbsp;&nbsp;
+//        .progress-small-text of
 //        h3.inlined.darken
 //          = '$' + grant.crowdfunder_goal.to_s
 //        - if !grant.crowdfunding?
 //          h3.inlined.darken
-//            span &nbsp;&nbsp;Successful!
+//            .progress-small-text Successful!
 //        - elsif grant.days_left > 0
-//          span &nbsp;&nbsp;with&nbsp;&nbsp;
+//          .progress-small-text with
 //          h3.inlined.darken
 //            = grant.days_left.to_s
 //          span &nbsp;days left
 //        - else
-//          h4.inlined.darken
-//            span &nbsp;&nbsp;Past Deadline
+//          .progress-large-text
+//            .progress-small-text Past Deadline
 //      .progress
 //        span.progressbar data-current=grant.crowdfunder_pledged_total data-goal=grant.crowdfunder_goal style=("width: 0%")
