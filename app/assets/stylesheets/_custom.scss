@@ -424,7 +424,9 @@ p{
 					}
 				}
 				&:active{
-					//@include transform(scale:1.2);
+					opacity:0.8;
+					@include translateX(1em);
+					//@include scale(0.95);
 				}
 			}
 		}
