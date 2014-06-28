@@ -1,0 +1,5 @@
+| $('#donorcards').append('#{ j render(partial: 'shared/table', locals: { heads: [], partials: [['users', @donors, :user, "There are no users"]] } , collection: @donors, as: :donor)}');
+- if @donors.next_page
+  | $('.donors-pagination').replaceWith('#{j will_paginate(@donors)}');
+- else
+  | $('.donors-pagination').remove();
