@@ -367,9 +367,12 @@
 			}
 		}
 		@include transition-duration(0.3s);
-		&:hover, &:active, &:focus{
+		&:hover, &:focus{
 			background-color: lighten($global-bg-color, 10%);
 			& .cardtitle{ h3{ a{color:$primary-color !important;} } }
+		}
+		&:active{
+			background-color: $global-bg-color;
 		}
 	}
 
