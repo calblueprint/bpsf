@@ -121,12 +121,23 @@ javascript:
     }
   });
 
-  $('.home-slider').superslides({
-    play: 0,
-    pagination: false,
-    hashchange: false,
-    inherit_width_from: '.home-slider-container',
-    inherit_height_from: '.home-slider-container'
+  $(document).on('ready page:change', function(){
+    $('.home-slider').superslides({
+      play: 8000,
+      pagination: false,
+      hashchange: false,
+      inherit_width_from: '.home-slider-container',
+      inherit_height_from: '.home-slider-container'
+    });
+  });
+
+  var nextScreen = document.getElementsByClassName('arrow-box-right');
+  var prevScreen = document.getElementsByClassName('arrow-box-left');
+  $(nextScreen).on('click', function(){
+    $('.home-slider').superslides('animate','next');
+  });
+  $(prevScreen).on('click', function(){
+    $('.home-slider').superslides('animate','prev');
   });
 
   var easter_egg = new Konami('http://www.vivekraghuram.com/bpsf.html');
