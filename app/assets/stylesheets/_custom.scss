@@ -400,8 +400,20 @@ p{
 				cursor:pointer;
 				background-color:#000;
 				@include transition-duration(0.3s);
-				&.arrow-box-right{right:0px;}
-				&.arrow-box-left{left:0px;}
+				&.arrow-box-right{
+					right:0px;
+					&:active{
+						opacity:0.8;
+						@include translateX(1em);
+					}
+				}
+				&.arrow-box-left{
+					left:0px;
+					&:active{
+						opacity:0.8;
+						@include translateX(-1em);
+					}
+				}
 				.arrow-container{
 					margin: 0 auto;
 					position: absolute;
@@ -422,11 +434,6 @@ p{
 							color:$primary-color;
 						}
 					}
-				}
-				&:active{
-					opacity:0.8;
-					@include translateX(1em);
-					//@include scale(0.95);
 				}
 			}
 		}
