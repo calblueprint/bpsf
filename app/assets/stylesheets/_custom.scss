@@ -203,6 +203,20 @@
 		position: relative;
 		z-index: 10;
 		border-top:solid 5px $primary-color;
+		.home-lead{
+			padding:20px;
+			.call-to-action{
+				font-size:$med+2;
+				font-weight:$font-weight-light;
+			}
+			.home-lead-buttons{
+				text-align:right;
+				.btn{
+					margin:0px 10px 10px 10px;
+					display:block;
+				}
+			}
+		}
 	}
 
 	//Slideshow Styles

@@ -3,6 +3,15 @@
 //      = render 'menu'
 .row
   .home-wrapper
+    .row.home-lead
+      .eight.columns.call-to-action Berkeley Public Schools Fund's Friends and Family Grants allows you to directly donate to and support a classroom in need. Jumpstart their future. Small contributions can make a big difference. Click below to learn how to get started!
+      .four.columns.home-lead-buttons
+        .medium.primary.btn 
+          a About Us
+        .medium.primary.btn 
+          a For Teachers
+        .medium.primary.btn 
+          a For Friends and Family
     #grantcards
       - if @grants[0]
         = render partial: 'crowdfunding_grants', collection: @grants[0..2], as: :grant
