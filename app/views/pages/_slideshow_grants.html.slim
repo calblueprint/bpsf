@@ -1,27 +1,36 @@
-li onclick="window.location.href='../#{url_for grant}'" style="background-image:url(#{grant.image_url :banner}); background-size:cover;"
-  .slidecard
-    .cardtitle
-      h3= link_to grant, grant
-    p.cardcontent
-      span.darken.poofout = grant.recipient.name + ' | ' + grant.school.name
-      br.poofout/
-      span.poofout = grant.summary
-      span.progressvalues
-        h3.inlined.primary-color
-          = '$' + grant.crowdfunder_pledged_total.to_s
-        span &nbsp;&nbsp;of&nbsp;&nbsp;
-        h3.inlined.darken
-          = '$' + grant.crowdfunder_goal.to_s
-        - if !grant.crowdfunding?
-          h3.inlined.darken
-            span &nbsp;&nbsp;Successful!
-        - elsif grant.days_left > 0
-          span &nbsp;&nbsp;with&nbsp;&nbsp;
-          h3.inlined.darken
-            = grant.days_left.to_s
-          span &nbsp;days left
-        - else
-          h4.inlined.darken
-            span &nbsp;&nbsp;Past Deadline
-      .progress
-        span.progressbar data-current=grant.crowdfunder_pledged_total data-goal=grant.crowdfunder_goal style=("width: 0%")
+li
+  img.home-slide-background src='#{grant.image_url :banner}'
+  .home-slide-information
+    .home-slide-title = grant
+    .home-slide-subtitle = grant.recipient.name + ' | ' + grant.school.name
+    .home-slide-description = grant.summary
+    .home-slide-progress
+
+
+//li onclick="window.location.href='../#{url_for grant}'" style="background-image:url(#{grant.image_url :banner}); background-size:cover;"
+//  .slidecard
+//    .cardtitle
+//      h3= link_to grant, grant
+//    p.cardcontent
+//      span.darken.poofout = grant.recipient.name + ' | ' + grant.school.name
+//      br.poofout/
+//      span.poofout = grant.summary
+//      span.progressvalues
+//        h3.inlined.primary-color
+//          = '$' + grant.crowdfunder_pledged_total.to_s
+//        span &nbsp;&nbsp;of&nbsp;&nbsp;
+//        h3.inlined.darken
+//          = '$' + grant.crowdfunder_goal.to_s
+//        - if !grant.crowdfunding?
+//          h3.inlined.darken
+//            span &nbsp;&nbsp;Successful!
+//        - elsif grant.days_left > 0
+//          span &nbsp;&nbsp;with&nbsp;&nbsp;
+//          h3.inlined.darken
+//            = grant.days_left.to_s
+//          span &nbsp;days left
+//        - else
+//          h4.inlined.darken
+//            span &nbsp;&nbsp;Past Deadline
+//      .progress
+//        span.progressbar data-current=grant.crowdfunder_pledged_total data-goal=grant.crowdfunder_goal style=("width: 0%")
