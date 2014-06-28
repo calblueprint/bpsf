@@ -367,76 +367,20 @@ p{
 
 
 //Home Page Styles
-	//Slideshow Styles
-	.banner {
+	.home-wrapper{
+		@extend .page-wrapper;
 		position: relative;
-		overflow: auto;
-		width: 100%;
-		ul {
-		 	list-style: none;
-		 	li {
-		 		float: left;
-		 		min-height: 350px;
-		 		display:block;
-		 		position:relative;
-		 		@include background-size(100% 100%);
-		 	}
-		}
+		z-index: 10;
+		border-top:solid 5px $primary-color;
 	}
 
-	.navholder{
-		position: absolute;
-		bottom:50%;
-		margin-bottom:-25px;
-		background-color:rgba(255,255,255,0.7);
-		height: 50px;
-		&.rightarrow{
-			right:0px;
-		}
-		&.leftarrow{left:0px}
-		.unslider-arrow{
-			z-index: 100;
-			font-size: $med+1;
-			color: #000;//$white;
-			line-height: 50px;
-			&:hover, &:active, &:focus{
-				color: $primary-color;
-			}
-		}
-	}
-
-	.slidecard {
-		position:absolute;
-		top:5%;
-		left:5%;
-		width:35%;
-		text-align: left;
-		background: rgba(255,255,255,0.9);
-		padding: (5px 5px 5px 5px);
-		& .cardtitle{padding:5px 5px 0px 5px; margin-bottom:-10px;}
-		& .cardcontent{
-			padding:2px 5px 5px 5px;
-			.gcdiv{line-height:30px;}
-		}
-		@include respond(tablets){
-			top:0px;
-			left: 0px;
-			width: 40%;
-			height: 100%;
-			margin: 0px 0px 0px 0px !important;
-		}
-		@include respond(all-phones){
-			top:0px;
-			left: 0px;
-			width: 100%;
-			height: auto;
-			margin: 0px 0px 0px 0px !important;
-			.cardtitle{text-align: center;}
-			.cardcontent{
-				& p {display:none;}
-				.progress{background: $global-bg-color !important;}
-			}
-		}
+	//Slideshow Styles
+	.home-slider-container{
+		max-width: 1060px;
+		margin:0 auto -40px auto;
+		z-index:0;
+		overflow:none;
+		@include box-shadow(0px 0 7px $shadow-color);
 	}
 
 
