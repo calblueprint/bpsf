@@ -181,131 +181,6 @@ p{
 	background-color: rgba(255,255,255,0.2);
 }
 
-/************************
-***    Top Left Nav   ***
-*************************/
-.navigation{
-	position:absolute;
-	top:15px;
-	left:0px;
-	width:100%;
-	z-index: 25;
-	overflow:hidden;
-}
-
-.pusher{
-	position:relative;
-	display:inline-block;
-	float:left;
-	max-width: 150px;
-	width: 15%;
-}
-
-.logo{
-	display:inline-block;
-	position:relative;
-	float:left;
-	width:30px;
-	margin-left: 5px;
-}
-
-.share-mem-link{
-	display:inline-block;
-	position:relative;
-	float:left;
-	font-size:1.5em;
-	border-left-style:solid;
-	border-left-color:#ffffff;
-	border-left-width: 1px;
-	padding-left: 8px;
-	margin-left: 15px;
-}
-
-.share-mem-link a{
-	color:#ffffff;
-	text-decoration: none;
-	-webkit-transition: 200ms linear;
-    -moz-transition: 200ms linear;
-    -o-transition: 200ms linear;
-    transition: 200ms linear;
-}
-
-.share-mem-link a:hover, .share-mem-link a:active, .share-mem-link a:focus{
-	color:rgba(255,255,255,0.7);	
-}
-
-/************************
-***    Post Page     ***
-*************************/
-#postslide.bg-photo-screen{
-	opacity:0.7;
-}
-
-.post-contentbox{
-	padding:10px;
-}
-
-.postbox{
-	outline:none;
-	resize:none;
-	overflow:auto;
-	background-color:rgba(255,255,255,0.1);
-	border:none;
-	width:100%;
-	max-height: 500px;
-	font-size:1.3em;
-	margin-bottom:10px;
-	padding:2px;
-}
-
-.signature{
-	outline:none;
-	resize:none;
-	overflow:auto;
-	background-color:rgba(255,255,255,0.1);
-	border:none;
-	width:100%;
-	max-width: 400px;
-	font-size:1.3em;
-	margin-bottom:10px;
-	padding:2px;
-}
-
-.imgbox{
-	float:right;
-}
-
-.imgbox h4{
-	text-align:left;
-	font-size:1.8em;
-	display:inline;
-}
-
-.imgbox .optional{
-	font-size:0.7em;
-	font-weight: 500;
-	text-align: right;
-}
-
-.imgbox .imgboxtext{
-	float:left;
-	margin-right: 10px;
-}
-
-.imgbox .button{
-	font-size:1.7em;
-	float:left;
-	margin-bottom:10px;
-}
-
-.postbutton{
-	padding:10px 30px 10px 30px;
-}
-
-.post-wrapper{
-	text-align: center;
-	margin-top:15px;
-}
 
 }
 
@@ -420,6 +295,7 @@ p{
 	.page-wrapper{
 		@include box-shadow(0px 0 10px $shadow-color);
 		background-color:#fff;
+		margin-bottom:20px;
 	}
 
 	.fluid_container {
@@ -773,10 +649,7 @@ p{
 /*********************************Footer Classes******************************************/
 .footwrapper{
 	padding:10px 40px 20px 40px;
-	background-color:#fff;
 	margin-top:0px;
-	top: -1px;
-	position:relative;
 }
 
 .hr-primary{
