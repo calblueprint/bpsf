@@ -245,6 +245,15 @@
 						.home-slide-progress{
 
 						}
+						@include respond(all-phones){
+							top:0px;
+							left:0px;
+							max-height:200px;
+							width:100%;
+							.home-slide-description{
+								@include hide-this();
+							}
+						}
 					}
 				}
 			}
