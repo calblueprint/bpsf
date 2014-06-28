@@ -5,7 +5,7 @@ $(document).ready(function(){
 		var elemHeight = $('.wrapper').height();
 		var footOffset = $('.footwrapper').offset().top;
 		var bottomOffset = windowHeight - footOffset;
-		var newElemHeight = elemHeight + bottomOffset - $('.footwrapper').height();
+		var newElemHeight = elemHeight + bottomOffset - $('.footwrapper').height() - $('.navigationpanel').height();
 		if (newElemHeight > elemHeight){
 			$('.wrapper').css("minHeight", newElemHeight );
 		}
