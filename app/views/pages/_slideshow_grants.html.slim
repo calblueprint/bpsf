@@ -1,7 +1,7 @@
 li
   img.home-slide-background src='#{grant.image_url :banner}'
   .home-slide-information
-    .home-slide-title = grant
+    .home-slide-title = link_to grant, grant
     .home-slide-subtitle = grant.recipient.name + ' | ' + grant.school.name
     .home-slide-description = grant.summary
     .home-slide-progress
