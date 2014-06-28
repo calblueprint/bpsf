@@ -23,8 +23,8 @@ html
 
       .row
         .page-wrapper
-          = render 'layouts/helppanel'
           = yield
+          = render 'layouts/helppanel'
           = render 'layouts/footer'
       br
     = render 'shared/flash', flash: flash
