@@ -679,6 +679,15 @@ p{
 }
 
 /****************************************Navigation Classes*****************************/
+@mixin navigation-link-animations($color:$global-bg-color){
+	&:hover{
+		background-color:rgba($color, 0.5);
+	}
+	&:active{
+		background-color:$color;
+	}
+}
+
 .navigationpanel{
 	position:fixed;
 	top:0px;
@@ -715,7 +724,10 @@ p{
 				vertical-align: top;
 				display:inline-block;
 				padding:0;
+				background-color:$white;
 				@include vertical-center-text($navigation-bar-height);
+				@include transition-duration(0.3s);
+				@include navigation-link-animations();
 				a{
 					display:block;
 					height:100%;
@@ -724,6 +736,7 @@ p{
 				}
 				&:last-child{
 					width:$search-box-width;
+					@include navigation-link-animations($white);
 				}
 			}
 		}
@@ -734,6 +747,7 @@ p{
 		float:right;
 		padding: 0px $navigation-element-padding 0px $navigation-element-padding;
 		@include vertical-center-text($navigation-bar-height);
+		@include navigation-link-animations();
 	}
 
 }
@@ -745,10 +759,11 @@ p{
 	top: $navigation-bar-height + 10;
 	@include hide-this(auto);
 	@include box-shadow(0 0 3px #999);
-	@include transition-duration(.2s);
+	@include transition-duration(0.2s);
 	@include transition-property(opacity);
+	@include transition-delay(0.1s);
 	li{
-		padding: $dropdown-element-padding;
+		@include navigation-link-animations();
 	}
 	.go-back{
 		display:none;
@@ -764,10 +779,12 @@ p{
 		border-right: 9px solid transparent;
 	}
 	&.open{
+		display:block;
 		z-index: 700;
 		opacity:1;
 	}
 	a{
+		padding: $dropdown-element-padding;
 		display:block;
 		width:100%;
 		height:100%;
@@ -806,22 +823,17 @@ p{
 				top: 0;
 				left:0;
 				background: $modal-overlay-color;
-				z-index: 799;
-				transform: translateX(-100%);
-				-webkit-transform: translateX(-100%);
-				//@include hide-this(block, -10);
+				@include hide-this(block, -10);
 				@include transition-duration(.4s);
+				@include transition-property(opacity);
+				@include transition-delay(0.1s);
 			}
 		.navigationpanel{
 			height:100%;
 			width:$mobile-navpanel-width;
 			padding:0px;
-			//left:-275px;
-			transform:translateX(-275px);
-			-webkit-transform:translateX(-275px);
+			@include translateX(-275px);
 			@include transition-duration(.4s);
-			//@include transition-property(transform);
-			//@include transition-property(left);
 			.bpsf-logo{
 				display:block;
 				width:100%;
@@ -860,14 +872,10 @@ p{
 		}
 		&.open{
 			.navigationpanel{
-				transform: translateX(0px);
-				-webkit-transform: translateX(0px);
-				//left:0px;
+				@include translateX(0px);
 			}
 			.modalscreen{
-				//z-index: 799;
-				transform: translateX(0px);
-				-webkit-transform: translateX(0px);
+				z-index: 799;
 			    opacity:1;
 			}
 		}
@@ -924,12 +932,16 @@ p{
 				display: block;
 				cursor: pointer;
 				z-index: 10;
+				@include transition-duration(0.1s);
 				li {
 					width: 30px;
 					height: 4px;
 					background-color: $white;
 					border-radius: 3px;
 					margin: 5px 0;
+				}
+				&:active{
+					@include scale(0.85);
 				}
 			}
 			.input{
