@@ -23,32 +23,3 @@ li
           .progress-large-text Past Deadline
       .progress
         .progressbar data-current=grant.crowdfunder_pledged_total data-goal=grant.crowdfunder_goal style=("width: 0%")
-
-
-//li onclick="window.location.href='../#{url_for grant}'" style="background-image:url(#{grant.image_url :banner}); background-size:cover;"
-//  .slidecard
-//    .cardtitle
-//      h3= link_to grant, grant
-//    p.cardcontent
-//      span.darken.poofout = grant.recipient.name + ' | ' + grant.school.name
-//      br.poofout/
-//      span.poofout = grant.summary
-//      span.progressvalues
-//        h3.inlined.primary-color
-//          = '$' + grant.crowdfunder_pledged_total.to_s
-//        .progress-small-text of
-//        h3.inlined.darken
-//          = '$' + grant.crowdfunder_goal.to_s
-//        - if !grant.crowdfunding?
-//          h3.inlined.darken
-//            .progress-small-text Successful!
-//        - elsif grant.days_left > 0
-//          .progress-small-text with
-//          h3.inlined.darken
-//            = grant.days_left.to_s
-//          span &nbsp;days left
-//        - else
-//          .progress-large-text
-//            .progress-small-text Past Deadline
-//      .progress
-//        span.progressbar data-current=grant.crowdfunder_pledged_total data-goal=grant.crowdfunder_goal style=("width: 0%")
