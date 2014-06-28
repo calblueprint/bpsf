@@ -3,6 +3,16 @@
 	  .home-slider
 	    ul.slides-container
 			= render partial: 'slideshow_grants', collection: @slideshow_grants, as: :grant
+		.slides-navigation
+			.arrow-box.arrow-box-right
+				.arrow-container
+					a.next href='#'
+						i.icon-right-open-big
+			.arrow-box.arrow-box-left
+				.arrow-container
+					a.prev href='#'
+						i.icon-left-open-big
+
 
 //- unless @slideshow_grants.empty?
 //	.row
