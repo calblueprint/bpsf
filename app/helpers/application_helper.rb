@@ -55,4 +55,12 @@ module ApplicationHelper
         ['WY', 'WY']
       ]
     end
+
+    def title(page_title, display_SF=true)
+        if display_SF
+            content_for :title, "Schools Fund - " + page_title
+        else
+            content_for :title, page_title
+        end
+    end
 end
