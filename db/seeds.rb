@@ -61,6 +61,7 @@ def make_profiles
                               grade: Faker::Lorem.sentence,
                               address: Faker::Address.street_address,
                               city: 'Berkeley',
+                              state: 'CA',
                               zipcode: 94720,
                               work_phone: Faker::PhoneNumber.phone_number,
                               home_phone: Faker::PhoneNumber.phone_number
