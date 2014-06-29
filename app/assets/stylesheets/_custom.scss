@@ -601,8 +601,6 @@
 		display:inline-block;
 		height:$navigation-bar-height;
 		padding: $logo-top-bottom-padding 
-				$navigation-element-padding 
-				$logo-top-bottom-padding 
 				$navigation-element-padding;
 		img{
 			display:inline;
@@ -810,6 +808,7 @@
 			z-index: 810;
 		}
 	}
+	$navigation-burger-bar-color:#333;
 	.navigationburgerbar{
 			display:block;
 			opacity:1;
@@ -818,16 +817,18 @@
 			top:0px;
 			width:100%;
 			text-align: center;
-			color: $white;
-			background-color:$primary-color;
+			//color: $white;
+			//background-color:$primary-color;
+			color:$navigation-burger-bar-color;
+			background-color:$white;
 			@include vertical-center-text($mobile-navbar-height);
 			@include box-shadow(0 0 7px $shadow-color);
 			.burger {
 				position: absolute;
 				float: left;
-				padding: 10px;
+				padding: 5px 15px;
 				top: 4px;
-				left: 10px;
+				left: 0px;
 				display: block;
 				cursor: pointer;
 				z-index: 10;
@@ -835,7 +836,8 @@
 				li {
 					width: 30px;
 					height: 4px;
-					background-color: $white;
+					//background-color: $white;
+					background-color:$navigation-burger-bar-color;
 					border-radius: 3px;
 					margin: 5px 0;
 				}
@@ -844,10 +846,14 @@
 				}
 			}
 			.input{
-				background-color:$primary-color;
+				//background-color:$primary-color;
+				background-color:$white;
 				border:none;
-				color:$white;
-				@include placeholder-color(darken($white, 10%));
+				border-left:solid 1px $navigation-burger-bar-color;
+				@include border-radius(0px);
+				//color:$white;
+				color:$navigation-burger-bar-color;
+				@include placeholder-color(darken($white, 20%));
 				font-size: $large;
 				height:$mobile-navbar-height;
 				margin-left: 55px;
