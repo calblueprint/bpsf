@@ -15,19 +15,19 @@
               a href="#"  Update Credit Card Info.
             li
               a href="#"  Change Password
+      br/
       .tab-content.active
-        br/
-        - if @user.eql? current_user
-          .medium.primary.btn
-            =link_to 'Edit Profile<i class="icon-pencil"></i>'.html_safe, edit_user_path(id: @user.id)
-        br/
-        .row
-          .eight.columns
-            h5 Email:
-            = @user.email
-            br/
-            = render profile_for(@user), user: @user, profile: @profile
-            br/
+        .ten.columns.push_three
+          .row
+            .eight.columns
+              h5 Email
+              = @user.email
+              br/
+              = render profile_for(@user), user: @user, profile: @profile
+              br/
+          - if @user.eql? current_user
+            .medium.primary.btn
+              =link_to 'Edit Profile<i class="icon-pencil"></i>'.html_safe, edit_user_path(id: @user.id)
       .tab-content
         = render partial: 'shared/table', locals: { heads: %w[Name School Amount Status], partials: [['payments', @payments, :payment, "There are no payments"]] }
         .four.columns.centered.centalign
@@ -35,8 +35,7 @@
       .tab-content
         - if @user.default_card
           | You are currently using a credit card ending in #{@user.last4}.
-        br/
-        br/
         = render 'user/credit_card_edit'
       .tab-content
-        = render 'user/update_password'
+        .ten.columns.push_three
+          = render 'user/update_password'

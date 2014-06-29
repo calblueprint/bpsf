@@ -1,7 +1,9 @@
 .row
   .row.centalign
+    br/
     h2 Forgot your password?
-  .row style="margin-top: 20px;"
+  br/
+  .row
     .six.columns.push_three
       = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f|
         = devise_error_messages!
@@ -13,3 +15,4 @@
             = f.submit "Send me reset password instructions"
           .medium.primary.btn.pull_right style="margin-top: 10px;"
             = link_to "Back to Sign In", new_registration_path(resource_name)
+  br/
