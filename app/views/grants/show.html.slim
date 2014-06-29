@@ -43,64 +43,67 @@
           | $#{@grant.funding_goal}
     = render 'donate_button', grant: @grant
     .row
-      .ten.columns.centalign.centered
+      .ten.columns.centered
         h3 Project Idea
-        h5
-          strong Purpose
-        = @grant.purpose
-        h5
-          strong Methods
-        = @grant.methods
-        h5
-          strong Teacher Background
-        = @grant.background
+        .twelve.columns
+          h5
+            strong Purpose
+          = @grant.purpose
+          h5
+            strong Methods
+          = @grant.methods
+          h5
+            strong Teacher Background
+          = @grant.background
     = @grant.video_large
     .row
-      .ten.columns.centalign.centered
+      .ten.columns.centered
         br/
         h3 Details
-        h5.inlined
-          strong Grade level:
-        span.medfont
-          |&nbsp;
-          = @grant.grade_level
-        |&emsp;
-        h5.inlined
-          strong Duration:
-        span.medfont
-          |&nbsp;
-          = @grant.duration
-        |&emsp;
-        h5.inlined
-          strong # of classes:
-        span.medfont
-          |&nbsp;
-          = @grant.num_classes
-        |&emsp;
-        h5.inlined
-          strong # of students:
-        span.medfont
-          |&nbsp;
-          = @grant.num_students
-        br/
-        = @grant.collaborators_section
+        .three.columns.pull_left
+          h5.inlined
+            strong Grade Level:
+          span.medfont
+            |&nbsp;
+            = @grant.grade_level
+          br/
+          h5.inlined
+            strong Duration:
+          span.medfont
+            |&nbsp;
+            = @grant.duration
+          br/
+          h5.inlined
+            strong # of classes:
+          span.medfont
+            |&nbsp;
+            = @grant.num_classes
+          br/
+          h5.inlined
+            strong # of students:
+          span.medfont
+            |&nbsp;
+            = @grant.num_students
+        .eight.columns  style="margin-left: 50px;"
+          = @grant.collaborators_section
     .row
-      .ten.columns.centalign.centered
+      .ten.columns.centered
         br/
-        h3.centalign Budget
-        h5.inlined
-          strong Budget (does not include 9% administrative fee):
-        span.medfont
-          |  $#{@grant.total_budget}
-        br/
-        h5
-          strong Description
-        = @grant.budget_desc
-        h5
-          strong Use of Funds
-        = @grant.use_of_funds
+        h3 Budget
+        .twelve.columns
+          h5.inlined
+            strong Budget (does not include 9% administrative fee):
+          span.medfont
+            |  $#{@grant.total_budget}
+          br/
+          h5
+            strong Description
+          = @grant.budget_desc
+          h5
+            strong Use of Funds
+          = @grant.use_of_funds
     .row
-      .ten.columns.centalign.centered
+      .ten.columns.centered
         = @grant.comments_section
     = render 'donate_button', grant: @grant
 
