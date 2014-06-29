@@ -81,7 +81,7 @@ class GrantDecorator < Draper::Decorator
   end
 
   def comments_section
-    tag(:br) + content_tag(:h3, 'Additional Comments') + comments
+    tag(:br) + content_tag(:h3, 'Additional Comments') + content_tag(:div, comments, class: 'twelve columns centered')
   end
 
   def edit_icon_for(url)
