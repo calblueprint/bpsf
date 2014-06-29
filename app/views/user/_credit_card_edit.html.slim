@@ -3,49 +3,49 @@
   .row
     .six.columns
       .field
-        = label_tag :card_name, "Cardholder", class: :largefont
+        = label_tag :card_name, "Cardholder", class: :medfont
         = text_field_tag :card_name, current_user.name, name: nil, class: :input
   .row
     .six.columns
       .field
-        = label_tag :card_number, "Credit Card Number", class: :largefont
+        = label_tag :card_number, "Credit Card Number", class: :medfont
         = text_field_tag :card_number, nil, name: nil, class: :input
     .two.columns
       .field
-        = label_tag :card_code, "CVC", class: :largefont
+        = label_tag :card_code, "CVC", class: :medfont
         = text_field_tag :card_code, nil, name: nil, class: :input
     .four.columns
       .field
-        = label_tag :card_month, "Card Expiration", class: :largefont
+        = label_tag :card_month, "Card Expiration", class: :medfont
         = select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"}
         = select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"}
       br/
-    h4
+    h5
       br/
       | Billing Address (Make changes as required):
       hr/
     .field
-      = label_tag :address_line1, "Address Line 1", class: :largefont
+      = label_tag :address_line1, "Address Line 1", class: :medfont
       = text_field_tag :address_line1, current_user.profile.address, name: nil, class: :input
     .field
-      = label_tag :address_line2, "Address Line 2", class: :largefont
+      = label_tag :address_line2, "Address Line 2", class: :medfont
       = text_field_tag :address_line2, nil, name: nil, class: :input
     .row
       .six.columns
         .field
-          = label_tag :address_city, "City", class: :largefont
+          = label_tag :address_city, "City", class: :medfont
           = text_field_tag :address_city, current_user.profile.city, name: nil, class: :input
       .two.columns
         .field
-          = label_tag :address_zip, "Zip", class: :largefont
+          = label_tag :address_zip, "Zip", class: :medfont
           = text_field_tag :address_zip, current_user.profile.zipcode, name: nil, class: :input
       .two.columns
         .field
-          = label_tag :address_state, "State", class: :largefont
+          = label_tag :address_state, "State", class: :medfont
           = select_tag 'State', options_for_select(us_states, current_user.profile.state),:name=>"state",:id=>"address_state"
       .two.columns
         .field
-          = label_tag :address_country, "Country", class: :largefont
+          = label_tag :address_country, "Country", class: :medfont
           = text_field_tag :address_country, "USA", name: nil, class: :input
     noscript Javascript is required. Please enable it in your browser settings.
   br/
