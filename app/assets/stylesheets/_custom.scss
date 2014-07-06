@@ -638,7 +638,7 @@
 				a{
 					display:block;
 					height:100%;
-					padding:0px $navigation-element-padding 0px $navigation-element-padding;
+					padding:0px $navigation-element-padding;
 					cursor:pointer;
 				}
 				&:last-child{
@@ -652,7 +652,7 @@
 		vertical-align:top;
 		display:inline-block;
 		float:right;
-		padding: 0px $navigation-element-padding 0px $navigation-element-padding;
+		padding: 0px $navigation-element-padding;
 		@include vertical-center-text($navigation-bar-height);
 		@include navigation-link-animations();
 	}
@@ -827,8 +827,6 @@
 			top:0px;
 			width:100%;
 			text-align: center;
-			//color: $white;
-			//background-color:$primary-color;
 			color:$navigation-burger-bar-color;
 			background-color:$white;
 			@include vertical-center-text($mobile-navbar-height);
@@ -846,7 +844,6 @@
 				li {
 					width: 30px;
 					height: 4px;
-					//background-color: $white;
 					background-color:$navigation-burger-bar-color;
 					border-radius: 3px;
 					margin: 5px 0;
@@ -856,12 +853,10 @@
 				}
 			}
 			.input{
-				//background-color:$primary-color;
 				background-color:$white;
 				border:none;
 				border-left:solid 1px (lighten($navigation-burger-bar-color, 25%));
 				@include border-radius(0px);
-				//color:$white;
 				color:$navigation-burger-bar-color;
 				@include placeholder-color(darken($white, 20%));
 				font-size: $large;
