@@ -217,6 +217,32 @@
 				}
 			}
 		}
+		.category-title{
+			@extend h2;
+			padding:0px 20px;
+			display:inline;
+		}
+		.category-form-container{
+			float:right;
+			margin:0px 15px;
+			display:table-cell;
+			.category-form-title{
+				@extend h4;
+				display:inline-block;
+				vertical-align:middle;
+			}
+			.category-form{
+				display:inline-block;
+				margin:5px;
+			}
+			.category-successful{
+				display:inline;
+			}
+			@include respond(all-tablets){
+				float:none;
+				padding:0px 20px;
+			}
+		}
 	}
 
 	//Slideshow Styles
@@ -403,12 +429,6 @@
 		overflow:hidden;
 		text-overflow:ellipsis;
 		}
-
-	//Other
-	.category{
-	text-align:left;
-	@include vertical-center-text(40px);
-	}
 
 
 //Grant View Page
