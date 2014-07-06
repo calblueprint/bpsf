@@ -17,7 +17,10 @@
         = render partial: 'crowdfunding_grants', collection: @grants, as: :grant
       - else
         .row
-          h2.centalign All grants have been funded.
+          -if params[:successful]
+            h4.centalign Help us make our first grants successful!
+          -else
+            h4.centalign All grants have been funded.
       = will_paginate @grants
     = render 'layouts/footer'
 
