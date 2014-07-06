@@ -859,14 +859,14 @@
 				//background-color:$primary-color;
 				background-color:$white;
 				border:none;
-				border-left:solid 1px $navigation-burger-bar-color;
+				border-left:solid 1px (lighten($navigation-burger-bar-color, 25%));
 				@include border-radius(0px);
 				//color:$white;
 				color:$navigation-burger-bar-color;
 				@include placeholder-color(darken($white, 20%));
 				font-size: $large;
 				height:$mobile-navbar-height;
-				margin-left: 55px;
+				margin-left: 60px;
 				@include respond(all-phones){
 					font-size: $med;
 				}
