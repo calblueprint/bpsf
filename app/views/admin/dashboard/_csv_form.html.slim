@@ -1,0 +1,15 @@
+.row
+  .six.columns.push_three
+    = form_tag do
+      .field
+        = label_tag :start_date, 'Start Date', class: :mediumfont
+        = select_date Date.current, options = {}, html_options = {}
+      .field
+        = label_tag :end_date, 'End Date', class: :mediumfont
+        = select_date Date.current, options = {}, html_options = {}
+      .csv_buttons
+        .medium.primary.btn
+          = submit_tag 'Generate Donors CSV'
+        .medium.primary.btn.btn-with-padding
+          = submit_tag 'Generate Teachers CSV'
+
