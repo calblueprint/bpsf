@@ -1,24 +1,32 @@
 .row
-  .twelve.columns
-    .wrapper.light
-      .row
+  .wrapper.light
+    .bare-wrapper
+      .row.centalign
         h2 Editing Methods
       /! This is the form to edit the purpose, methods, background, and comments.
       .row
-        .twelve.columns
+        .twelve.columns.centered.centalign
           = form_for @grant, url: grant_path do |f|
             = render 'shared/errors', object: f.object
-            .field
-              = f.label :purpose, 'Purpose'
-              = f.text_area :purpose, class: [:textarea, :input], rows: 5
-            .field
-              = f.label :methods, 'Methods'
-              = f.text_area :methods, class: [:textarea, :input], rows: 5
-            .field
-              = f.label :background, 'Background'
-              = f.text_area :background, class: [:textarea, :input], rows: 5
-            .field
-              = f.label :comments, 'Comments'
-              = f.text_area :comments, class: [:textarea, :input], rows: 5
-            .medium.primary.pull_right.btn
+            .field style="margin-top: 15px"
+              .three.columns style="text-align:right"
+                = f.label :purpose, 'Purpose'
+              .seven.columns
+                = f.text_area :purpose, class: [:textarea, :input], rows: 5
+            .field style="margin-top: 15px"
+              .three.columns style="text-align:right"
+                = f.label :methods, 'Methods'
+              .seven.columns
+                = f.text_area :methods, class: [:textarea, :input], rows: 5
+            .field style="margin-top: 15px"
+              .three.columns style="text-align:right"
+                = f.label :background, 'Background'
+              .seven.columns
+                = f.text_area :background, class: [:textarea, :input], rows: 5
+            .field style="margin-top: 15px"
+              .three.columns style="text-align:right"
+                = f.label :comments, 'Comments'
+              .seven.columns
+                = f.text_area :comments, class: [:textarea, :input], rows: 5
+            .medium.primary.btn
               = f.submit 'Save!'
