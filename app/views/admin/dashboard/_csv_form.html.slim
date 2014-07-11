@@ -1,6 +1,6 @@
 .row
   .six.columns.push_three
-    = form_tag do
+    = form_tag :admin_csv, method: :post do
       .field
         = label_tag :start_date, 'Start Date', class: :mediumfont
         = select_date Date.current, options = {}, html_options = {}

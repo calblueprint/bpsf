@@ -44,6 +44,10 @@ class Admin::DashboardController < ApplicationController
     end
   end
 
+  def generate_csv
+    puts 'generating csv...'
+  end
+
   def load_distributions
     @successful = successful
     @unsuccessful = unsuccessful
