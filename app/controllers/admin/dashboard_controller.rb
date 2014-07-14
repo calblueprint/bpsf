@@ -45,7 +45,17 @@ class Admin::DashboardController < ApplicationController
   end
 
   def generate_csv
-    puts 'generating csv...'
+    if params[:donors]
+      @recipients = User.all
+      respond_to do |format|
+        format.csv { send_data: @recipients.to_csv }
+      end
+    else #params[:teachers]
+      @recipients = Recipient.all
+      respond_to do |format|
+        format.csv { send_data: @recipients.to_csv }
+      end
+    end
   end
 
   def load_distributions
