@@ -37,4 +37,14 @@ class Recipient < User
   def previous_grants
     grants.complete_grants
   end
+
+  def self.collection_to_csv()
+    CSV.generate do |csv|
+      csv << column_names
+      recipients.each do |recipient|
+        csv << recipient.attributes.values_at(*column_names)
+      end
+    end
+  end
+
 end

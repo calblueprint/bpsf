@@ -9,7 +9,7 @@
         = select_date Date.current, options = {}, html_options = {}
       .csv_buttons
         .medium.primary.btn
-          = submit_tag 'Generate Donors CSV'
+          = submit_tag 'Generate Donors CSV', name: :donors
         .medium.primary.btn.btn-with-padding
-          = submit_tag 'Generate Teachers CSV'
+          = submit_tag 'Generate Teachers CSV', name: :teachers
 
