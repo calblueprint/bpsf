@@ -18,6 +18,10 @@ class Payment < ActiveRecord::Base
 
   validates :amount, numericality: {greater_than: 0}
 
+  scope :updated_in_range, ->(start_date, end_date) {
+    where("updated_at between ? and ?", start_date, end_date)
+  }
+
   CSV_COLUMNS = ['Name', 'Email', 'Street', 'City', 'Zipcode', 'Teacher Name', 'Project Name', 'Amount', 'Date', 'Credit Card Transaction Success']
 
   def self.make_payment!(amount, grant, current_user)

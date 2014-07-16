@@ -119,6 +119,9 @@ class Grant < ActiveRecord::Base
   scope :crowdfunding_grants, -> { with_state :crowdfunding }
   scope :crowdpending_grants, -> { with_state :crowdfund_pending }
   scope :newest, limit: 5, order: 'created_at DESC'
+  scope :updated_in_range, ->(start_date, end_date) {
+    where("updated_at between ? and ?", start_date, end_date)
+  }
 
   state_machine initial: :pending do
 
