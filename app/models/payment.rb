@@ -18,6 +18,8 @@ class Payment < ActiveRecord::Base
 
   validates :amount, numericality: {greater_than: 0}
 
+  CSV_COLUMNS = ['Name', 'Email', 'Street', 'City', 'Zipcode', 'Teacher Name', 'Project Name', 'Amount', 'Date', 'Credit Card Transaction Success']
+
   def self.make_payment!(amount, grant, current_user)
     payment = current_user.payments.build amount: amount
     payment.user_id = current_user.id
@@ -45,5 +47,22 @@ class Payment < ActiveRecord::Base
 
   def dollars_amount
     "$%05.2f" % self.amount
+  end
+
+  def self.to_csv(payments)
+    CSV.generate do |csv|
+      csv << CSV_COLUMNS
+      payments.each do |payment|
+        csv << payment.to_csv
+      end
+    end
+  end
+
+  def to_csv
+    profile = user.profile
+    grant = crowdfund.grant
+    recipient = grant.recipient
+    [user.name, user.email, profile.address, profile.city, profile.zipcode,
+     recipient.name, grant.title, amount, created_at, 'YES']
   end
 end

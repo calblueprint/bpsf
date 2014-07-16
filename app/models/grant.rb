@@ -316,6 +316,19 @@ class Grant < ActiveRecord::Base
     draft
   end
 
+  def self.to_csv(grants)
+    CSV.generate do |csv|
+      csv << column_names
+      grants.each do |grant|
+        csv << grant.to_csv
+        end
+      end
+  end
+
+  def to_csv
+    attributes.values_at(*self.class.column_names)
+  end
+
   private
     BLACKLISTED_ATTRIBUTES = %w{background n_collaborators collaborators
                                 comments video image}
