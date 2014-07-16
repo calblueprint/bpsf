@@ -32,6 +32,10 @@ class Recipient < User
 
   CSV_COLUMNS = ['First Name', 'Last Name', 'Email']
 
+  scope :updated_in_range, ->(start_date, end_date) {
+    where("updated_at between ? and ?", start_date, end_date)
+  }
+
   def init_approved
     true
   end

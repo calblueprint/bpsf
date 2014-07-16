@@ -3,10 +3,10 @@
     = form_tag admin_csv_path(format: :csv), method: :post do
       .field
         = label_tag :start_date, 'Start Date', class: :mediumfont
-        = select_date Date.current, options = {}, html_options = {}
+        = select_date Date.current, prefix: :start_date
       .field
         = label_tag :end_date, 'End Date', class: :mediumfont
-        = select_date Date.current, options = {}, html_options = {}
+        = select_date Date.current, prefix: :end_date
       .csv_buttons
         .medium.primary.btn
           = submit_tag 'Payments CSV', name: :payments
