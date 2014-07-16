@@ -30,6 +30,8 @@ class Recipient < User
   attr_accessible :profile_attributes
   accepts_nested_attributes_for :profile
 
+  CSV_COLUMNS = ['First Name', 'Last Name', 'Email']
+
   def init_approved
     true
   end
@@ -38,13 +40,16 @@ class Recipient < User
     grants.complete_grants
   end
 
-  def self.collection_to_csv()
+  def self.to_csv(recipients)
     CSV.generate do |csv|
-      csv << column_names
+      csv << CSV_COLUMNS
       recipients.each do |recipient|
-        csv << recipient.attributes.values_at(*column_names)
+        csv << recipient.to_csv
       end
     end
   end
 
+  def to_csv
+    [first_name, last_name, email]
+  end
 end

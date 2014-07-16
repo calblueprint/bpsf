@@ -45,15 +45,20 @@ class Admin::DashboardController < ApplicationController
   end
 
   def generate_csv
-    if params[:donors]
-      @recipients = User.all
+    if params[:grants]
+      donors = Grant.all
       respond_to do |format|
-        format.csv { send_data: @recipients.to_csv }
+        format.csv { send_data Grant.to_csv(donors) }
       end
-    else #params[:teachers]
-      @recipients = Recipient.all
+    elsif params[:teachers]
+      recipients = Recipient.all
       respond_to do |format|
-        format.csv { send_data: @recipients.to_csv }
+        format.csv { render text: Recipient.to_csv(recipients) }
+      end
+    else # params[:payments]
+      payments = Payment.all
+      respond_to do |format|
+        format.csv { render text: Payment.to_csv(payments) }
       end
     end
   end
