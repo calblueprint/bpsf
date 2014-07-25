@@ -9,8 +9,9 @@
 //
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
+//= require_tree ./libs
+//= require_tree ./plugins
+//= require_tree ./controllers
 //= require_self
-//= require_tree .
-//= require jquery.Jcrop
 //= require jquery_ujs
 //= require turbolinks
