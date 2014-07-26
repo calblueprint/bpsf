@@ -2,15 +2,34 @@ var AppController = function(documentObject){
 	var me = this;
 	me.documentObject = documentObject || document;
 	me.activeControllers = [];
-	me.wind = window;
 
 	me.init = function(){
 		console.log('Initializing AppController...');
 		me.objectCreatePolyfill();
+		me.checkBrowserVersion();
 
 		me.findController();
 		if(me.controllerdocumentObjects){
 			me.activateControllers();
+		}
+	}
+
+	me.checkBrowserVersion = function(){
+		if('querySelector' in document &&
+			'localStorage' in window &&
+			'addEventListener' in window){
+			return true;
+		} else {
+			var response = confirm('This site is designed for modern web browsers \
+									and may offer a subpar experience in older \
+									versions. We kindly suggest you update your web browser \
+									to a newer version. Click "Ok" to be redirected to a safe \
+									place to update your browser. Otherwise click "Cancel" ');
+			if (response){
+				window.location.href = 'http://whatbrowser.org/';
+			} else {
+				return true;
+			}
 		}
 	}
 
