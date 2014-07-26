@@ -15,3 +15,6 @@
 //= require_self
 //= require jquery_ujs
 //= require turbolinks
+
+var appController = new AppController();
+appController.init()
