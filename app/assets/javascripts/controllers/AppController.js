@@ -43,8 +43,6 @@
 
 	ifOldieAlert();
 
-
-
 	function AppController(documentObject){
 		var me = this;
 		me.documentObject = documentObject || document;
