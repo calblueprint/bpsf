@@ -47,6 +47,7 @@
 		var me = this;
 		me.documentObject = documentObject || document;
 		me.activeControllers = [];
+		window['activeElements'] = [];
 
 		me.init = function(){
 			console.log('Initializing AppController...');
@@ -88,7 +89,7 @@
 		}
 
 		me.getActiveControllers = function(){
-			return me.activateControllers;
+			return me.activeControllers;
 		}
 
 		me.deactivateControllers = function(){
@@ -145,11 +146,13 @@
 		var me = this;
 		for (var i = arguments.length - 1; i >= 0; i--) {
 			try{
-				if(me.isJQuery(arguments[i]){
+				if(me.isJQuery(arguments[i])){
 					arguments[i].addClass('active');
 				} else {
 					arguments[i].className += arguments[i].className ? ' active' : 'active';
 				}
+
+				me.setActiveElement(arguments[i]);
 			} catch(err){
 				console.log(arguments[i] + ' is not a document element');
 				console.log(err);
@@ -161,11 +164,13 @@
 		var me = this;
 		for (var i = arguments.length - 1; i >= 0; i--) {
 			try{
-				if(me.isJQuery(arguments[i]){
+				if(me.isJQuery(arguments[i])){
 					arguments[i].removeClass('active');
 				} else {
 					arguments[i].className = arguments[i].className.replace('active', '');
 				}
+
+				me.removeActiveElement(arguments[i]);
 			} catch(err){
 				console.log(arguments[i] + ' is not a document element');
 				console.log(err);
@@ -176,7 +181,7 @@
 	AppController.prototype.flipElementStates = function(){
 		var me = this;
 		for (var i = arguments.length - 1; i >= 0; i--) {
-			if(arguments[i].indexOf('active') > -1){
+			if(arguments[i].className.indexOf('active') > -1){
 				me.deactivateElements(arguments[i]);
 			} else{
 				me.activateElements(arguments[i]);
@@ -188,6 +193,22 @@
 		return obj instanceof $;
 	}
 
+	AppController.prototype.setActiveElement = function(el){
+		activeElements.push(el);
+	}
+
+	AppController.prototype.removeActiveElement = function(el){
+		var index = activateElements.indexOf(el);
+		if(index > -1){
+			activeElements.splice(index, 1);
+		}
+	}
+
+	AppController.prototype.clearActiveElements = function(){
+		var me = this;
+		me.deactivateElements.apply(window, activeElements);
+	}
+
 	AppController.prototype.clearData = function(){}
 
 	AppController.prototype.navigationBar = function(){}
@@ -195,12 +216,6 @@
 	AppController.prototype.turbolinkHook = function(){}
 
 	AppController.prototype.extendPageLength = function(){}
-
-	AppController.prototype.setActiveElements = function(){}
-
-	AppController.prototype.getActiveElements = function(){}
-
-	AppController.prototype.clearActiveElements = function(){}
 
 	AppController.prototype.initDataStore = function(){}
 
