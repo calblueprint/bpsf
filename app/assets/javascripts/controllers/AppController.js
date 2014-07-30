@@ -109,7 +109,6 @@
 		for (var i = modalButtons.length - 1; i >= 0; i--) {
 			(function(){
 				var targetModal = $(modalButtons[i].getAttribute('data-bp-modal')),
-					isPreserve = modalButtons[i].getAttribute('data-bp-preserve'),
 					triggerButton = $(modalButtons[i]),
 					closeButton = targetModal.find('.xbox'),
 					modalScreen = targetModal.find('.modalscreen');
@@ -119,44 +118,77 @@
 				}
 
 				$(triggerButton).on('click', function(e){
-					targetModal.addClass('active');
+					me.activateElements(targetModal);
 					e.preventDefault();
 					return false;
 				});
 
 				$(closeButton).on('click', function(e){
-					targetModal.removeClass('active');
+					me.deactivateElements(targetModal);
 					e.preventDefault();
 					return false;
 				});
 
 				$(modalScreen).on('click', function(e){
-					targetModal.removeClass('active');
+					me.deactivateElements(targetModal);
 					e.preventDefault();
 					return false;
-				})
-
-				if(!isPreserve){
-					me.setTempEvent(triggerButton, closeButton, modalScreen);
-				} else {
-					me.setPreservedEvent(triggerButton, closeButton, modalscreen);
-				}
+				});
 
 			})();
 		};
 	}
 
-	AppController.prototype.removeEvents = function(){}
+
+//Add event registration for esc functionality
+	AppController.prototype.activateElements = function(){
+		var me = this;
+		for (var i = arguments.length - 1; i >= 0; i--) {
+			try{
+				if(me.isJQuery(arguments[i]){
+					arguments[i].addClass('active');
+				} else {
+					arguments[i].className += arguments[i].className ? ' active' : 'active';
+				}
+			} catch(err){
+				console.log(arguments[i] + ' is not a document element');
+				console.log(err);
+			}
+		};
+	}
+
+	AppController.prototype.deactivateElements = function(){
+		var me = this;
+		for (var i = arguments.length - 1; i >= 0; i--) {
+			try{
+				if(me.isJQuery(arguments[i]){
+					arguments[i].removeClass('active');
+				} else {
+					arguments[i].className = arguments[i].className.replace('active', '');
+				}
+			} catch(err){
+				console.log(arguments[i] + ' is not a document element');
+				console.log(err);
+			}
+		};
+	}
+
+	AppController.prototype.flipElementStates = function(){
+		var me = this;
+		for (var i = arguments.length - 1; i >= 0; i--) {
+			if(arguments[i].indexOf('active') > -1){
+				me.deactivateElements(arguments[i]);
+			} else{
+				me.activateElements(arguments[i]);
+			}
+		};
+	}
+
+	AppController.prototype.isJQuery = function(obj){
+		return obj instanceof $;
+	}
 
 	AppController.prototype.clearData = function(){}
-
-	AppController.prototype.setTempEvent = function(){}
-
-	AppController.prototype.setPreservedEvent = function(){}
-
-	AppController.prototype.getTempEvent = function(){}
-
-	AppController.prototype.getPreservedEvent = function(){}
 
 	AppController.prototype.navigationBar = function(){}
 

@@ -7,25 +7,26 @@
     .nav-left
       ul
         li= link_to 'Home'.html_safe, root_path
-        li
-          a#FAQ FAQ
+        li data-bp-dropdown='#FAQ_dropdown'
+          a FAQ
         - if recipient?
           li=link_to 'Apply'.html_safe, new_draft_path
         li=link_to 'Contact'.html_safe, new_contact_form_path
         = render 'layouts/search_form'
     .nav-right
       - if user_signed_in?
-        .loginmenu.pointer.linkeffect#loggedinmenu
-          i.icon-user
-          | #{current_user.first_name}
-          i.icon-down-open-mini
+        .loginmenu data-bp-dropdown='#user_dropdown'
+          a
+            i.icon-user
+            | #{current_user.first_name}
+            i.icon-down-open-mini
       - else
         .loginmenu
           = link_to "Sign Up", new_user_session_path
           |&nbsp;&nbsp;|&nbsp;&nbsp;
           = link_to "Sign In", new_user_session_path
 - if user_signed_in?
-  .userdropdown
+  .userdropdown#user_dropdown
     ul
       li.go-back#user-back
         a href='#'
@@ -36,7 +37,7 @@
       - elsif recipient?
         li= link_to 'Dashboard'.html_safe, recipient_dashboard_path
       li= link_to "Sign Out", destroy_user_session_path
-.FAQ-dropdown
+.FAQ-dropdown#FAQ_dropdown
   ul
     li.go-back#FAQ-back
       a href='#'
