@@ -140,8 +140,6 @@
 		};
 	}
 
-
-//Add event registration for esc functionality
 	AppController.prototype.activateElements = function(){
 		var me = this;
 		for (var i = arguments.length - 1; i >= 0; i--) {
@@ -209,13 +207,7 @@
 		me.deactivateElements.apply(window, activeElements);
 	}
 
-	AppController.prototype.clearData = function(){}
-
-	AppController.prototype.navigationBar = function(){}
-
 	AppController.prototype.turbolinkHook = function(){}
-
-	AppController.prototype.extendPageLength = function(){}
 
 	AppController.prototype.initDataStore = function(){}
 
