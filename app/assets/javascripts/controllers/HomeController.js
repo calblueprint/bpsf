@@ -10,37 +10,9 @@ var HomeController = function(documentObject){
 		me.turbolinkBind();
 	}
 
-	//This needs to be wired to fire when more grants are loaded from scrolling
-	me.fundingProgress = function(){
-		var fundingBars = me.documentObject.querySelectorAll('.funding-bar');
-		for (var i = fundingBars.length - 1; i >= 0; i--) {
-			var currentFunding = fundingBars[i].getAttribute('data-current'),
-				goalFunding = fundingBars[i].getAttribute('data-goal'),
-				fundingBarWidth = currentFunding/goalFunding * 100;
-			if (fundingBarWidth > 0 && fundingBarWidth < 10){
-				fundingBarWidth = 10;
-			} else if(fundingBarWidth > 100){
-				fundingBarWidth = 100;
-			}
-			fundingBars[i].style.width = String(fundingBarWidth) + '%';
-		};
-	}
-
-	me.truncateText = function(){}
-
-	me.infiniteScroll = function(){
-		var me = this;
-		$(window).scroll(function(){
-		    var url = $('.pagination .next_page').attr('href');
-		    if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 150) {
-		        $('.pagination').text('Fetching more grants...')
-		        $.getScript(url, me.fundingProgress);
-		    }
-		});
-	}
+	me.truncateText = function(){} 
 
 	me.superSlider = function(){
-		var me = this;
 	    $('.home-slider').superslides({
 			play: 8000,
 			pagination: false,
@@ -64,3 +36,32 @@ var HomeController = function(documentObject){
 
 HomeController.prototype = Object.create(AppController.prototype);
 HomeController.prototype.constructor = HomeController;
+
+HomeController.prototype.infiniteScroll = function(){
+	var me = this;
+	$(window).scroll(function(){
+	    var url = $('.pagination .next_page').attr('href');
+	    if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 150) {
+	        $('.pagination').text('Fetching more grants...')
+	        $.getScript(url, function(){
+	        	me.fundingProgress.call(me);
+	        });
+	    }
+	});
+}
+
+HomeController.prototype.fundingProgress = function(){
+	var me = this,
+		fundingBars = me.documentObject.querySelectorAll('.funding-bar');
+	for (var i = fundingBars.length - 1; i >= 0; i--) {
+		var currentFunding = fundingBars[i].getAttribute('data-current'),
+			goalFunding = fundingBars[i].getAttribute('data-goal'),
+			fundingBarWidth = currentFunding/goalFunding * 100;
+		if (fundingBarWidth > 0 && fundingBarWidth < 10){
+			fundingBarWidth = 10;
+		} else if(fundingBarWidth > 100){
+			fundingBarWidth = 100;
+		}
+		fundingBars[i].style.width = String(fundingBarWidth) + '%';
+	};
+}
