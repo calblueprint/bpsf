@@ -17,7 +17,7 @@
 //= require jquery_ujs
 //= require turbolinks
 
-$(document).ready(function(){
-	appController = new AppController();
+appController = new AppController();
+$(document).on('page:change', function(){
 	appController.init();
 })

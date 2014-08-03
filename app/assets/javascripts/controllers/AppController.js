@@ -64,8 +64,6 @@
 			});
 		}
 
-		me.initOnPageChange = function(){}
-
 		me.findControllers = function(){
 			me.controllerdocumentObjects = me.documentObject.querySelectorAll('[data-bp-controller]');
 		}
