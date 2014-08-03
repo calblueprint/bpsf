@@ -29,13 +29,14 @@ var HomeController = function(documentObject){
 	me.truncateText = function(){}
 
 	me.infiniteScroll = function(){
+		var me = this;
 		$(window).scroll(function(){
-	    var url = $('.pagination .next_page').attr('href');
-	    if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 150) {
-	        $('.pagination').text('Fetching more grants...')
-	        $.getScript(url);
-	    }
-	  });
+		    var url = $('.pagination .next_page').attr('href');
+		    if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 150) {
+		        $('.pagination').text('Fetching more grants...')
+		        $.getScript(url, me.fundingProgress);
+		    }
+		});
 	}
 
 	me.superSlider = function(){
