@@ -230,11 +230,24 @@
 		me.deactivateElements.apply(me, activeElements);
 	}
 
-	AppController.prototype.retrieveObject = function(){
-
+	AppController.prototype.turbolinkBind = function(){
+		var me = this,
+			links = me.documentObject.querySelectorAll('[data-bp-turbo]');
+		for (var i = links.length - 1; i >= 0; i--) {
+			(function(){
+				var path = links[i].getAttribute('data-bp-turbo');
+				$(links[i]).on('click', function(e){
+					me.turbolinkHook(path);
+					e.preventDefault();
+					return false;
+				});
+			})();
+		}
 	}
 
-	AppController.prototype.turbolinkHook = function(){}
+	AppController.prototype.turbolinkHook = function(path){
+		Turbolinks.visit(path)
+	}
 
 	AppController.prototype.initDataStore = function(){}
 
