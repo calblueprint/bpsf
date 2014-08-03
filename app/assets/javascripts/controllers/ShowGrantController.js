@@ -4,6 +4,9 @@ var ShowGrantController = function(documentObject){
 	me.documentObject = documentObject || document;
 
 	me.init = function(){}
+
+	me.socialButtons = function(){}
+
 }
 
 ShowGrantController.prototype = Object.create(AppController.prototype);
