@@ -5,7 +5,7 @@ var NavigationController = function(documentObject){
 
 	me.init = function(){
 		me.modalBind();
-		me.dropdownBind();
+		me.dropDownBind();
 	}
 	
 }
@@ -19,8 +19,8 @@ NavigationController.prototype.dropDownBind = function(){
 		dropDownButtons = me.documentObject.querySelectorAll('[data-bp-dropdown]');
 	for (var i = dropDownButtons.length - 1; i >= 0; i--) {
 		(function(){
-			var targetDropDown = $(dropDownButtons[i].getAttribute('data-bp-dropdown')),
-				triggerButton = $(dropDownButtons[i]);
+			var targetDropDown = me.documentObject.querySelector(dropDownButtons[i].getAttribute('data-bp-dropdown')),
+				triggerButton = dropDownButtons[i];
 			
 			if(targetDropDown == []){
 				return console.log('Improper dropdown declaration at ' + dropDownButtons[i]);
@@ -41,9 +41,9 @@ NavigationController.prototype.mobileNavBind = function(){
 		mobileNavButtons = me.documentObject.querySelectorAll('[data-bp-mobilenav]');
 	for (var i = mobileNavButtons.length - 1; i >= 0; i--) {
 		(function(){
-			var targetNavigation = $(mobileNavButtons[i].getAttribute('data-bp-mobilenav')),
-				modalScreen = targetNavigation.find('.modalscreen'),
-				triggerButton = $(mobileNavButtons[i]);
+			var targetNavigation = me.documentObject.querySelector(mobileNavButtons[i].getAttribute('data-bp-mobilenav')),
+				modalScreen = targetNavigation.querySelector('.modalscreen'),
+				triggerButton = mobileNavButtons[i];
 			
 			if(targetNavigation == []){
 				return console.log('Improper mobilenav declaration at ' + mobileNavButtons[i]);

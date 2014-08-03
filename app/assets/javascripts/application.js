@@ -11,10 +11,13 @@
 // GO AFTER THE REQUIRES BELOW.
 //= require_tree ./libs
 //= require_tree ./plugins
+//= require ./controllers/AppController.js
 //= require_tree ./controllers
 //= require_self
 //= require jquery_ujs
 //= require turbolinks
 
-var appController = new AppController();
-appController.init()
+$(document).ready(function(){
+	appController = new AppController();
+	appController.init();
+})
