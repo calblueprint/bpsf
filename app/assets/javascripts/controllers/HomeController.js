@@ -5,6 +5,7 @@ var HomeController = function(documentObject){
 
 	me.init = function(){
 		me.fundingProgress();
+		me.turbolinkBind();
 	}
 
 	//This needs to be wired to fire when more grants are loaded from scrolling
