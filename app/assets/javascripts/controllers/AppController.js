@@ -56,6 +56,12 @@
 			if(me.controllerdocumentObjects){
 				me.activateControllers();
 			}
+
+			$(document).on('keyup', function(e){
+				if(e.keyCode == 27){
+					me.clearActiveElements();
+				}
+			});
 		}
 
 		me.initOnPageChange = function(){}
@@ -126,14 +132,12 @@
 
 					$(closeButton).on('click', function(e){
 						me.clearActiveElements();
-//						me.deactivateElements(targetModal);
 						e.preventDefault();
 						return false;
 					});
 
 					$(modalScreen).on('click', function(e){
 						me.clearActiveElements();
-//						me.deactivateElements(targetModal);
 						e.preventDefault();
 						return false;
 					});
