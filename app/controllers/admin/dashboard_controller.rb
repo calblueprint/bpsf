@@ -57,6 +57,11 @@ class Admin::DashboardController < ApplicationController
       respond_to do |format|
         format.csv { render text: Recipient.to_csv(recipients) }
       end
+    elsif params[:donors]
+      users = User.updated_in_range(start_date, end_date)
+      respond_to do |format|
+        format.csv { render text: User.to_csv(users) }
+      end
     else # params[:payments]
       payments = Payment.updated_in_range(start_date, end_date)
       respond_to do |format|
