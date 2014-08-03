@@ -1,0 +1,14 @@
+.row
+  .twelve.columns
+    .wrapper.light
+      .row
+        h2.centalign Edit Content
+      .row
+        .twelve.columns
+          = form_for @content_editor, url: admin_update_content_path do |f|
+            / TODO: Hacky, will replace later
+            = f.hidden_field :content, style:"width:100%;height:400px", :id=>'yaml-content'
+            #yaml-canvas
+              #yaml-title
+            .medium.primary.btn
+              = f.submit 'Update content!'

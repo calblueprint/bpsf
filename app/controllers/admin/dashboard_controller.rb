@@ -58,6 +58,20 @@ class Admin::DashboardController < ApplicationController
     end
   end
 
+  def edit_content
+    @content_editor = ContentEditor.new
+  end
+
+  def update_content
+    @content_editor = ContentEditor.new params[:content_editor][:content]
+    if @content_editor.save
+      flash[:success] = 'Success!'
+    else
+      flash[:alert] = 'Failed!'
+    end
+    render :edit_content
+  end
+
   def use_https?
     true
   end

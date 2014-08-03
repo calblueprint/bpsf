@@ -1,5 +1,7 @@
-# Sample localization file for English. Add more files in this directory for other locales.
-# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
-
 en:
-  hello: "Hello world"
+  layouts:
+    footer:
+      tagline: All grants have been reviewed and approved by the Berkeley Public Schools Fund.
+      learn_more: Learn More About Berkeley Public Schools Fund
+      donate_button: Make a Schools Fund Donation
+      phone_location: 510.644.6244 • Berkeley, CA

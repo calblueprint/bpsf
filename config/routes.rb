@@ -49,6 +49,8 @@ BPSF::Application.routes.draw do
     get '/load_distributions',  to: 'dashboard#load_distributions'
     post '', to: 'dashboard#index', as: :filter_school
     post '', to: 'dashboard#index', as: :filter_donated
+    get '/edit_content', to: 'dashboard#edit_content', as: :edit_content
+    post '/edit_content', to: 'dashboard#update_content', as: :update_content
   end
 
   post 'crowdfund/create'
