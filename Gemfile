@@ -26,6 +26,7 @@ gem 'unf'
 gem 'whenever', :require => false
 gem 'mail_form'
 gem 'draper', '~> 1.3.0'
+gem 'phrasing', '~> 3.2.5'
 
 
 group :development, :test do
