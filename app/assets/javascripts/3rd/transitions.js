@@ -73,6 +73,9 @@ $(function() {
 			['#FAQ-back', '.FAQ-dropdown', transitionFunction, 'back', 'click', true],
 			['#user-back', '.userdropdown', transitionFunction, 'back', 'click', true],
 			['#paymentbutton1, #paymentbutton2', '#payment-form', transitionFunction, 'modal', 'click', true],
+			['#lead-teacher-button', '#teacher-about', transitionFunction, 'modal', 'click', true],
+			['#lead-about-button', '#about-about', transitionFunction, 'modal', 'click', true],
+			['#lead-donor-button', '#donor-about', transitionFunction, 'modal', 'click', true],
 		];
 
 	//Bind tab change events if tabs exist on page

@@ -1,43 +1,55 @@
 - title "Friend & Family Grants"
+= render 'slideshow'
 .row
-  .wrapper.light.homewrap
-    .twelve.columns.centered.centalign
-      .row
-        img src="/assets/mastheadpilot.png" /
-      = render 'slideshow'
-      = render 'menu'
-    /! ***************************************TILES********************************************
-.row#grantcards
-  - if @grants[0]
-    = render partial: 'crowdfunding_grants', collection: @grants[0..2], as: :grant
-    = render partial: 'crowdfunding_grants', collection: @grants[3..5], as: :grant
-  - else
-    .row
-      h2.centalign All grants have been funded.
-.pagination
-  = will_paginate @grants
+  .home-wrapper
+    .row.home-lead
+      .eight.columns.call-to-action Berkeley Public Schools Fund's Friends and Family Grants allows you to directly donate to and support a classroom in need. Jumpstart their future. Small contributions can make a big difference. Click below to learn how to get started!
+      .three.columns.push_one.home-lead-buttons
+        .medium.primary.btn 
+          a#lead-about-button href='#' About Us
+        .medium.primary.btn 
+          a#lead-teacher-button href='#' For Teachers
+        .medium.primary.btn 
+          a#lead-donor-button href='#' For Friends and Family
+    = render 'menu'
+    #grantcards
+      - if @grants[0]
+        = render partial: 'crowdfunding_grants', collection: @grants, as: :grant
+      - else
+        .row
+          -if params[:successful]
+            h4.centalign Help us make our first grants successful!
+          -else
+            h4.centalign All grants have been funded.
+      = will_paginate @grants
+    = render 'layouts/footer'
+
 javascript:
-  $('.banner').unslider({
-      speed: 500,               //  The speed to animate each slide (in milliseconds)
-      delay: 30000,              //  The delay between slide animations (in milliseconds)
-      fluid: true              //  Support responsive design. May break non-responsive designs
-  });
-
-
-  var unslider = $('.banner').unslider();
-
-  $('.unslider-arrow').click(function() {
-      var fn = this.className.split(' ')[1];
-
-      unslider.data('unslider')[fn]();
-  });
-
   $(window).scroll(function(){
     var url = $('.pagination .next_page').attr('href');
     if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 150) {
         $('.pagination').text('Fetching more grants...')
         $.getScript(url);
     }
+  });
+
+  $(document).on('ready page:change', function(){
+    $('.home-slider').superslides({
+      play: 8000,
+      pagination: false,
+      hashchange: false,
+      inherit_width_from: '.home-slider-container',
+      inherit_height_from: '.home-slider-container'
+    });
+  });
+
+  var nextScreen = document.getElementsByClassName('arrow-box-right');
+  var prevScreen = document.getElementsByClassName('arrow-box-left');
+  $(nextScreen).on('click', function(){
+    $('.home-slider').superslides('animate','next');
+  });
+  $(prevScreen).on('click', function(){
+    $('.home-slider').superslides('animate','prev');
   });
 
   var easter_egg = new Konami('http://www.vivekraghuram.com/bpsf.html');
