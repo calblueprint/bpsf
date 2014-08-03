@@ -50,8 +50,6 @@ var HomeController = function(documentObject){
 
 		var nextArrow = me.documentObject.getElementsByClassName('arrow-box-right'),
 			prevArrow = me.documentObject.getElementsByClassName('arrow-box-left');
-
-		console.log(nextArrow, 'is next arrow');
 		
 		$(nextArrow).on('click', function(){
 			$('.home-slider').superslides('animate','next');
