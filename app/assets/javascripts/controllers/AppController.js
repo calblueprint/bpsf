@@ -109,6 +109,75 @@
 		}
 	}
 
+
+	AppController.prototype.activateElements = function(){
+		var me = this;
+		for (var i = arguments.length - 1; i >= 0; i--) {
+			try{
+				if(me.isJQuery(arguments[i])){
+					arguments[i].addClass('active');
+					//
+					arguments[i].addClass('open');
+					//
+				} else {
+					arguments[i].className += arguments[i].className ? ' active' : 'active';
+					//
+					arguments[i].className += ' open';
+					//
+				}
+
+				me.setActiveElement(arguments[i]);
+			} catch(err){
+				console.log(arguments[i] + ' is not a document element');
+				console.log(err);
+			}
+		};
+	}
+
+	AppController.prototype.clearActiveElements = function(){
+		var me = this;
+		me.deactivateElements.apply(me, activeElements);
+	}
+
+	AppController.prototype.deactivateElements = function(){
+		var me = this;
+		for (var i = arguments.length - 1; i >= 0; i--) {
+			try{
+				if(me.isJQuery(arguments[i])){
+					arguments[i].removeClass('active');
+					//
+					arguments[i].removeClass('open');
+					//
+				} else {
+					arguments[i].className = arguments[i].className.replace('active', '');
+					//
+					arguments[i].className = arguments[i].className.replace('open', '');
+					//
+				}
+
+				me.removeActiveElement(arguments[i]);
+			} catch(err){
+				console.log(arguments[i], ' is not a document element');
+				console.log(err);
+			}
+		};
+	}
+
+	AppController.prototype.flipElementStates = function(){
+		var me = this;
+		for (var i = arguments.length - 1; i >= 0; i--) {
+			if(arguments[i].className.indexOf('active') > -1){
+				me.deactivateElements(arguments[i]);
+			} else{
+				me.activateElements(arguments[i]);
+			}
+		};
+	}
+
+	AppController.prototype.isJQuery = function(obj){
+		return obj instanceof $;
+	}
+
 	AppController.prototype.modalBind = function(){
 		var me = this,
 			modalButtons = me.documentObject.querySelectorAll('[data-bp-modal]');
@@ -151,73 +220,6 @@
 		};
 	}
 
-	AppController.prototype.activateElements = function(){
-		var me = this;
-		for (var i = arguments.length - 1; i >= 0; i--) {
-			try{
-				if(me.isJQuery(arguments[i])){
-					arguments[i].addClass('active');
-					//
-					arguments[i].addClass('open');
-					//
-				} else {
-					arguments[i].className += arguments[i].className ? ' active' : 'active';
-					//
-					arguments[i].className += ' open';
-					//
-				}
-
-				me.setActiveElement(arguments[i]);
-			} catch(err){
-				console.log(arguments[i] + ' is not a document element');
-				console.log(err);
-			}
-		};
-	}
-
-	AppController.prototype.deactivateElements = function(){
-		var me = this;
-		for (var i = arguments.length - 1; i >= 0; i--) {
-			try{
-				if(me.isJQuery(arguments[i])){
-					arguments[i].removeClass('active');
-					//
-					arguments[i].removeClass('open');
-					//
-				} else {
-					arguments[i].className = arguments[i].className.replace('active', '');
-					//
-					arguments[i].className = arguments[i].className.replace('open', '');
-					//
-				}
-
-				me.removeActiveElement(arguments[i]);
-			} catch(err){
-				console.log(arguments[i], ' is not a document element');
-				console.log(err);
-			}
-		};
-	}
-
-	AppController.prototype.flipElementStates = function(){
-		var me = this;
-		for (var i = arguments.length - 1; i >= 0; i--) {
-			if(arguments[i].className.indexOf('active') > -1){
-				me.deactivateElements(arguments[i]);
-			} else{
-				me.activateElements(arguments[i]);
-			}
-		};
-	}
-
-	AppController.prototype.isJQuery = function(obj){
-		return obj instanceof $;
-	}
-
-	AppController.prototype.setActiveElement = function(el){
-		activeElements.push(el);
-	}
-
 	AppController.prototype.removeActiveElement = function(el){
 		var index = activeElements.indexOf(el);
 		if(index > -1){
@@ -225,9 +227,8 @@
 		}
 	}
 
-	AppController.prototype.clearActiveElements = function(){
-		var me = this;
-		me.deactivateElements.apply(me, activeElements);
+	AppController.prototype.setActiveElement = function(el){
+		activeElements.push(el);
 	}
 
 	AppController.prototype.turbolinkBind = function(){
