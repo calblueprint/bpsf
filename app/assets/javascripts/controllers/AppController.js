@@ -43,7 +43,7 @@
 
 	ifOldieAlert();
 
-	function AppController(documentObject){
+	window['AppController'] = function(documentObject){
 		var me = this;
 		me.documentObject = documentObject || document;
 		me.activeControllers = [];
@@ -74,9 +74,10 @@
 						newController = new controllerConstructor(documentObject);
 						me.setActiveController(newController);
 						newController.init();
+						console.log(controller + ' initialized');
 					} catch(err){
-						console.log('Error: Improper controller name. ' + controller + ' does not exist.');
-						console.log(err.message);
+						console.log('Error: Improper controller initialization. ' + controller + ' cannot initialize.');
+						console.log(err);
 					}
 				} else {
 					console.log('Error: Improper controller declaration.' + controller + ' is not a string.')
@@ -102,39 +103,43 @@
 		}
 	}
 
-	window['AppController'] = AppController;
-
 	AppController.prototype.modalBind = function(){
 		var me = this,
 			modalButtons = me.documentObject.querySelectorAll('[data-bp-modal]');
 		for (var i = modalButtons.length - 1; i >= 0; i--) {
 			(function(){
-				var targetModal = $(modalButtons[i].getAttribute('data-bp-modal')),
-					triggerButton = $(modalButtons[i]),
-					closeButton = targetModal.find('.xbox'),
-					modalScreen = targetModal.find('.modalscreen');
-				
-				if(targetModal == []){
-					return console.log('Improper modal declaration at ' + modalButtons[i]);
+				try{
+					var targetModal = document.querySelector(modalButtons[i].getAttribute('data-bp-modal')),
+						triggerButton = modalButtons[i],
+						closeButton = targetModal.querySelector('.xbox'),
+						modalScreen = targetModal.querySelector('.modalscreen');
+					
+					if(targetModal == []){
+						return console.log('Improper modal declaration at ' + modalButtons[i]);
+					}
+
+					$(triggerButton).on('click', function(e){
+						me.activateElements(targetModal);
+						e.preventDefault();
+						return false;
+					});
+
+					$(closeButton).on('click', function(e){
+						me.deactivateElements(targetModal);
+						e.preventDefault();
+						return false;
+					});
+
+					$(modalScreen).on('click', function(e){
+						me.deactivateElements(targetModal);
+						e.preventDefault();
+						return false;
+					});
+
+				} catch(err){
+					console.log('Error: Improper modal declaration at ', modalButtons[i]);
+					console.log(err);
 				}
-
-				$(triggerButton).on('click', function(e){
-					me.activateElements(targetModal);
-					e.preventDefault();
-					return false;
-				});
-
-				$(closeButton).on('click', function(e){
-					me.deactivateElements(targetModal);
-					e.preventDefault();
-					return false;
-				});
-
-				$(modalScreen).on('click', function(e){
-					me.deactivateElements(targetModal);
-					e.preventDefault();
-					return false;
-				});
 
 			})();
 		};
@@ -146,8 +151,14 @@
 			try{
 				if(me.isJQuery(arguments[i])){
 					arguments[i].addClass('active');
+					//
+					arguments[i].addClass('open');
+					//
 				} else {
 					arguments[i].className += arguments[i].className ? ' active' : 'active';
+					//
+					arguments[i].className += ' open';
+					//
 				}
 
 				me.setActiveElement(arguments[i]);
@@ -164,8 +175,14 @@
 			try{
 				if(me.isJQuery(arguments[i])){
 					arguments[i].removeClass('active');
+					//
+					arguments[i].removeClass('open');
+					//
 				} else {
 					arguments[i].className = arguments[i].className.replace('active', '');
+					//
+					arguments[i].className = arguments[i].className.replace('open', '');
+					//
 				}
 
 				me.removeActiveElement(arguments[i]);
@@ -196,7 +213,7 @@
 	}
 
 	AppController.prototype.removeActiveElement = function(el){
-		var index = activateElements.indexOf(el);
+		var index = activeElements.indexOf(el);
 		if(index > -1){
 			activeElements.splice(index, 1);
 		}
@@ -205,6 +222,10 @@
 	AppController.prototype.clearActiveElements = function(){
 		var me = this;
 		me.deactivateElements.apply(window, activeElements);
+	}
+
+	AppController.prototype.retrieveObject = function(){
+
 	}
 
 	AppController.prototype.turbolinkHook = function(){}
