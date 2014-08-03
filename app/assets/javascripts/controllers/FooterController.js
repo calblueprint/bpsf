@@ -4,7 +4,7 @@ var FooterController = function(documentObject){
 	me.documentObject = documentObject || document;
 
 	me.init = function(){
-		
+		me.extendPageLength();
 	}
 	
 }
