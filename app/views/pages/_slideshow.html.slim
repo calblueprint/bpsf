@@ -1,13 +1,16 @@
 - unless @slideshow_grants.empty?
-	.row
-	  .fluid_container
-	    .banner
-	      ul style="cursor: pointer;"
-	        = render partial: 'slideshow_grants', collection: @slideshow_grants, as: :grant
-	    .navholder.leftarrow
-	      a.unslider-arrow.prev.pointer
-	        i.icon-left-open-big
-	    .navholder.rightarrow
-	      a.unslider-arrow.next.pointer
-	        i.icon-right-open-big
-	.row &nbsp;
+	.home-slider-container
+	  .home-slider
+	    ul.slides-container
+	    	li
+	    		img src="/assets/mastheadpilot.png"
+			= render partial: 'slideshow_grants', collection: @slideshow_grants, as: :grant
+		.slides-navigation
+			.arrow-box.arrow-box-right
+				.arrow-container
+					a.next href='#'
+						i.icon-right-open-big
+			.arrow-box.arrow-box-left
+				.arrow-container
+					a.prev href='#'
+						i.icon-left-open-big

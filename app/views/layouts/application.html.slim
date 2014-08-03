@@ -20,13 +20,17 @@ html
       noscript
         .row
           .danger.alert This website is built to take advantage of javascript. Please enable it in your browser settings.
+      
+      -if current_page?(root_url)
+        = yield
+      -else
+        .row
+          .page-wrapper
+            = yield
+            = render 'layouts/footer'
+            
+      = render 'layouts/helppanel'
 
-      .row
-        .page-wrapper
-          = render 'layouts/helppanel'
-          = yield
-          = render 'layouts/footer'
-      br
     = render 'shared/flash', flash: flash
     javascript:
       function emailCurrentPage(){

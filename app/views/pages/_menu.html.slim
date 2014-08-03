@@ -1,11 +1,19 @@
 /! *****************************************MENU**********************************************
 .row
-  .twelve.columns
-    span.category.pull_left Category:&emsp;
-    li.field.metro.inlined.pull_left
-      .picker
-        = form_tag(:action => :home, :id => 'filter_subject') do
-          = select_tag "subject", options_for_select(PagesController::MENU, params[:subject]), :onchange => "this.form.submit()"
-    span.category.pull_right
-    	ul.tab-nav
-    		li= link_to "Successful Grants", root_path(:successful=>true)
+	.twelve.columns
+		-if params[:successful]
+			.category-title Successful Grants
+		-else
+			.category-title Recent Grants
+	    .category-form-container
+	    	.category-form-title Filter:
+	    	= form_tag({:action => :home, :id => 'filter_subject'}, {:class => 'category-form'}) do
+	    		= select_tag "subject", options_for_select(PagesController::MENU, params[:subject]), :onchange => "this.form.submit()", class: [:picker]
+	    	-if params[:successful]
+		    	.category-successful
+		    		| &nbsp;|&nbsp;
+		    		= link_to "Recent Grants", root_path()
+		    -else
+		    	.category-successful
+		    		| &nbsp;|&nbsp;
+		    		= link_to "Successful Grants", root_path(:successful=>true)
