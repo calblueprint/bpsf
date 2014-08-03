@@ -125,13 +125,15 @@
 					});
 
 					$(closeButton).on('click', function(e){
-						me.deactivateElements(targetModal);
+						me.clearActiveElements();
+//						me.deactivateElements(targetModal);
 						e.preventDefault();
 						return false;
 					});
 
 					$(modalScreen).on('click', function(e){
-						me.deactivateElements(targetModal);
+						me.clearActiveElements();
+//						me.deactivateElements(targetModal);
 						e.preventDefault();
 						return false;
 					});
@@ -187,7 +189,7 @@
 
 				me.removeActiveElement(arguments[i]);
 			} catch(err){
-				console.log(arguments[i] + ' is not a document element');
+				console.log(arguments[i], ' is not a document element');
 				console.log(err);
 			}
 		};
@@ -221,7 +223,7 @@
 
 	AppController.prototype.clearActiveElements = function(){
 		var me = this;
-		me.deactivateElements.apply(window, activeElements);
+		me.deactivateElements.apply(me, activeElements);
 	}
 
 	AppController.prototype.retrieveObject = function(){
