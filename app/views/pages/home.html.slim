@@ -3,13 +3,13 @@
 .row
   .home-wrapper
     .row.home-lead
-      .eight.columns.call-to-action Berkeley Public Schools Fund's Friends and Family Grants allows you to directly donate to and support a classroom in need. Jumpstart their future. Small contributions can make a big difference. Click below to learn how to get started!
+      .eight.columns.call-to-action = phrase 'call-to-action'
       .three.columns.push_one.home-lead-buttons
-        .medium.primary.btn 
+        .medium.primary.btn
           a#lead-about-button href='#' About Us
-        .medium.primary.btn 
+        .medium.primary.btn
           a#lead-teacher-button href='#' For Teachers
-        .medium.primary.btn 
+        .medium.primary.btn
           a#lead-donor-button href='#' For Friends and Family
     = render 'menu'
     #grantcards
