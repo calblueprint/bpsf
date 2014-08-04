@@ -15,17 +15,16 @@
           li=link_to 'Contact'.html_safe, new_contact_form_path
           = render 'layouts/search_form'
       .nav-right
-        - if user_signed_in?
-          .loginmenu data-bp-dropdown='#user_dropdown'
-            a
-              i.icon-user
-              | #{current_user.first_name}
-              i.icon-down-open-mini
-        - else
-          .loginmenu
-            = link_to "Sign Up", new_user_registration_path
-            |&nbsp;&nbsp;|&nbsp;&nbsp;
-            = link_to "Sign In", new_user_session_path
+        ul
+          - if user_signed_in?
+            li data-bp-dropdown='#user_dropdown'
+              a
+                i.icon-user
+                | #{current_user.first_name}
+                i.icon-down-open-mini
+          - else
+            li.sign-up= link_to "Sign Up", new_user_registration_path
+            li= link_to "Sign In", new_user_session_path
   - if user_signed_in?
     .userdropdown#user_dropdown
       ul
@@ -39,7 +38,6 @@
           li= link_to 'Dashboard'.html_safe, recipient_dashboard_path
         li= link_to "Sign Out", destroy_user_session_path
   .FAQ-dropdown#FAQ_dropdown
->>>>>>> Fix minor glitches in methods and add temporary 'open' class when activating
     ul
       li.go-back#FAQ-back
         a href='#'
