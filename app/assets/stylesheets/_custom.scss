@@ -661,20 +661,20 @@
 					padding:0px $navigation-element-padding;
 					cursor:pointer;
 				}
-				&:last-child{
+				&.search-form{
 					width:$search-box-width;
+					margin-left:15px;
 					@include navigation-link-animations($white);
 				}
 			}
 		}
 	}
 	.nav-right{
-		vertical-align:top;
-		display:inline-block;
+		@extend .nav-left;
 		float:right;
-		padding: 0px $navigation-element-padding;
-		@include vertical-center-text($navigation-bar-height);
-		@include navigation-link-animations();
+		.sign-up{
+			border-right:solid 1px #CCC;
+		}
 	}
 
 }
