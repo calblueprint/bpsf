@@ -1,13 +1,17 @@
 var ShowGrantController = function(documentObject){
 	var me = this;
-	AppController.call(me, documentObject);
+	HomeController.call(me, documentObject);
 	me.documentObject = documentObject || document;
 
-	me.init = function(){}
+	me.init = function(){
+		me.fundingProgress();
+	}
 
-	me.socialButtons = function(){}
+	me.socialButtons = function(){
+		
+	}
 
 }
 
-ShowGrantController.prototype = Object.create(AppController.prototype);
+ShowGrantController.prototype = Object.create(HomeController.prototype);
 ShowGrantController.prototype.constructor = ShowGrantController;

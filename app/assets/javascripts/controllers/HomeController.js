@@ -5,7 +5,7 @@ var HomeController = function(documentObject){
 
 	me.init = function(){
 		me.superSlider();
-		me.infiniteScroll();
+		me.infiniteScroll(me.fundingProgress);
 		me.fundingProgress();
 		me.turbolinkBind();
 	}
@@ -37,15 +37,17 @@ var HomeController = function(documentObject){
 HomeController.prototype = Object.create(AppController.prototype);
 HomeController.prototype.constructor = HomeController;
 
-HomeController.prototype.infiniteScroll = function(){
+HomeController.prototype.infiniteScroll = function(callback){
 	var me = this;
 	$(window).scroll(function(){
 	    var url = $('.pagination .next_page').attr('href');
 	    if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 150) {
 	        $('.pagination').text('Fetching more grants...')
-	        $.getScript(url, function(){
-	        	me.fundingProgress.call(me);
-	        });
+	        if(callback){
+		        $.getScript(url, function(){
+		        	callback.call(me);
+		        });
+		    }
 	    }
 	});
 }
