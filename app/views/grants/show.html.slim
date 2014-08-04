@@ -1,117 +1,118 @@
 - title @grant, false
-= render 'admin_panel', grant: @grant
-.row
-  .wrapper.light
-    .row.centalign
-      h2 = @grant
-      - if current_user == @grant.recipient && @grant.has_pledges?
-        .medium.primary.btn style="margin-top: 15px"
-          = link_to '<i class="icon-mail"></i> Thank Donors'.html_safe, new_thankdonors_form_path(:id => @grant.id), class: :darken
+.bp-show-grant data-bp-controller='ShowGrantController'
+  = render 'admin_panel', grant: @grant
+  .row
+    .wrapper.light
+      .row.centalign
+        h2 = @grant
+        - if current_user == @grant.recipient && @grant.has_pledges?
+          .medium.primary.btn style="margin-top: 15px"
+            = link_to '<i class="icon-mail"></i> Thank Donors'.html_safe, new_thankdonors_form_path(:id => @grant.id), class: :darken
+        .row.padada
+        h5
+          ' #{@grant.recipient_name} |
+          ' #{@grant.school_name} |
+          | #{@grant.days_left}
+        h5
+          a href="http://www.facebook.com/sharer.php?u=" target="_blank" rel="nofollow" onmouseover="this.href='http://www.facebook.com/sharer.php?u='+encodeURIComponent(location.href);"
+            i.icon-facebook
+          a expr:href="data:post.canonicalUrl" href="https://twitter.com/share"
+            i.icon-twitter
+          a href="javascript:emailCurrentPage()"
+            i.icon-mail
+      .row align="center"
+        = @grant.banner classes: 'coverholder'
+      .row.centalign
+        .eleven.columns.centered
+          p.largefont= @grant.summary
+        br/
       .row.padada
-      h5
-        ' #{@grant.recipient_name} |
-        ' #{@grant.school_name} |
-        | #{@grant.days_left}
-      h5
-        a href="http://www.facebook.com/sharer.php?u=" target="_blank" rel="nofollow" onmouseover="this.href='http://www.facebook.com/sharer.php?u='+encodeURIComponent(location.href);"
-          i.icon-facebook
-        a expr:href="data:post.canonicalUrl" href="https://twitter.com/share"
-          i.icon-twitter
-        a href="javascript:emailCurrentPage()"
-          i.icon-mail
-    .row align="center"
-      = @grant.banner classes: 'coverholder'
-    .row.centalign
-      .eleven.columns.centered
-        p.largefont= @grant.summary
-      br/
-    .row.padada
-      .ten.columns.centered.centalign
-        h4.inlined> Subject Areas:
-        span.largefont = @grant.subject_areas
-    .row.grantviewbar
-      .progress
-        = @grant.progress_bar
-      .gcdiv
-        span.gctext
-          strong> Current:
-        span.currentnum
-          | $#{@grant.current_funds}
-        | &emsp;
-        span.gctext
-          strong> Goal:
-        span.goalnum
-          | $#{@grant.funding_goal}
-    = render 'donate_button', grant: @grant
-    .row
-      .ten.columns.centered
-        h3 Project Idea
-        .twelve.columns
-          h5
-            strong Purpose
-          = @grant.purpose
-          h5
-            strong Methods
-          = @grant.methods
-          h5
-            strong Teacher Background
-          = @grant.background
-    = @grant.video_large
-    .row
-      .ten.columns.centered
-        br/
-        h3 Details
-        .two.columns.pull_left style="margin-top: 3px;"
-          h5.inlined
-            strong Grade Level:
+        .ten.columns.centered.centalign
+          h4.inlined> Subject Areas:
+          span.largefont = @grant.subject_areas
+      .row.grantviewbar
+        .progress
+          = @grant.progress_bar
+        .gcdiv
+          span.gctext
+            strong> Current:
+          span.currentnum
+            | $#{@grant.current_funds}
+          | &emsp;
+          span.gctext
+            strong> Goal:
+          span.goalnum
+            | $#{@grant.funding_goal}
+      = render 'donate_button', grant: @grant
+      .row
+        .ten.columns.centered
+          h3 Project Idea
+          .twelve.columns
+            h5
+              strong Purpose
+            = @grant.purpose
+            h5
+              strong Methods
+            = @grant.methods
+            h5
+              strong Teacher Background
+            = @grant.background
+      = @grant.video_large
+      .row
+        .ten.columns.centered
           br/
-          h5.inlined
-            strong Duration:
+          h3 Details
+          .two.columns.pull_left style="margin-top: 3px;"
+            h5.inlined
+              strong Grade Level:
+            br/
+            h5.inlined
+              strong Duration:
+            br/
+            h5.inlined
+              strong # of classes:
+            br/
+            h5.inlined
+              strong # of students:
+          .two.columns.pull_right style="margin-top: 3px;"
+            span.medfont
+              |&nbsp;
+              = @grant.grade_level
+            br/
+            span.medfont
+              |&nbsp;
+              = @grant.duration
+            br/
+            span.medfont
+              |&nbsp;
+              = @grant.num_classes
+            br/
+            span.medfont
+              |&nbsp;
+              = @grant.num_students
+          .seven.columns 
+            = @grant.collaborators_section
+      .row
+        .ten.columns.centered
           br/
-          h5.inlined
-            strong # of classes:
-          br/
-          h5.inlined
-            strong # of students:
-        .two.columns.pull_right style="margin-top: 3px;"
-          span.medfont
-            |&nbsp;
-            = @grant.grade_level
-          br/
-          span.medfont
-            |&nbsp;
-            = @grant.duration
-          br/
-          span.medfont
-            |&nbsp;
-            = @grant.num_classes
-          br/
-          span.medfont
-            |&nbsp;
-            = @grant.num_students
-        .seven.columns 
-          = @grant.collaborators_section
-    .row
-      .ten.columns.centered
-        br/
-        h3 Budget
-        .twelve.columns
-          h5.inlined
-            strong Budget (does not include 9% administrative fee):
-          span.medfont
-            |  $#{@grant.total_budget}
-          br/
-          h5
-            strong Description
-          = @grant.budget_desc
-          h5
-            strong Use of Funds
-          = @grant.use_of_funds
-    .row
-      .ten.columns.centered
-        = @grant.comments_section
-    = render 'donate_button', grant: @grant
+          h3 Budget
+          .twelve.columns
+            h5.inlined
+              strong Budget (does not include 9% administrative fee):
+            span.medfont
+              |  $#{@grant.total_budget}
+            br/
+            h5
+              strong Description
+            = @grant.budget_desc
+            h5
+              strong Use of Funds
+            = @grant.use_of_funds
+      .row
+        .ten.columns.centered
+          = @grant.comments_section
+      = render 'donate_button', grant: @grant
 
-= render 'payment_modal', grant: @grant, payment: @payment
-= render 'crowdfund_modal', grant: @grant
-= render 'confirmation_modal', payment: @payment
+  = render 'payment_modal', grant: @grant, payment: @payment
+  = render 'crowdfund_modal', grant: @grant
+  = render 'confirmation_modal', payment: @payment
