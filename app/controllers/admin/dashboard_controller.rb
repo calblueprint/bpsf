@@ -9,6 +9,7 @@ class Admin::DashboardController < ApplicationController
       raise CanCan::AccessDenied.new
     end
     @donors = User.donors
+    @all_donors = @donors
     donated = params[:donated]
     if donated && donated == 'Donated'
       @donors = User.donors.select {|user| user.payments.length > 0}
@@ -58,9 +59,9 @@ class Admin::DashboardController < ApplicationController
         format.csv { render text: Recipient.to_csv(recipients) }
       end
     elsif params[:donors]
-      users = User.updated_in_range(start_date, end_date)
+      user = User.find(params["donor-selection"])
       respond_to do |format|
-        format.csv { render text: User.to_csv(users) }
+        format.csv { render text: user.to_csv }
       end
     else # params[:payments]
       payments = Payment.updated_in_range(start_date, end_date)
