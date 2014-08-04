@@ -5,7 +5,10 @@ var HomeController = function(documentObject){
 
 	me.init = function(){
 		me.superSlider();
-		me.infiniteScroll(me.fundingProgress);
+		me.infiniteScroll(function(){
+			me.fundingProgress();
+			me.turbolinkBind();
+		});
 		me.fundingProgress();
 		me.turbolinkBind();
 	}
@@ -53,11 +56,13 @@ HomeController.prototype.infiniteScroll = function(callback){
 }
 
 HomeController.prototype.fundingProgress = function(){
+	console.log('progressing funding')
 	var me = this,
-		fundingBars = me.documentObject.querySelectorAll('.funding-bar');
+		fundingBars = me.documentObject.querySelectorAll('[data-bp-current]');
+	console.log(me.documentObject);
 	for (var i = fundingBars.length - 1; i >= 0; i--) {
-		var currentFunding = fundingBars[i].getAttribute('data-current'),
-			goalFunding = fundingBars[i].getAttribute('data-goal'),
+		var currentFunding = fundingBars[i].getAttribute('data-bp-current'),
+			goalFunding = fundingBars[i].getAttribute('data-bp-goal'),
 			fundingBarWidth = currentFunding/goalFunding * 100;
 		if (fundingBarWidth > 0 && fundingBarWidth < 10){
 			fundingBarWidth = 10;
