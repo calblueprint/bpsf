@@ -1,6 +1,5 @@
 - if @message.nil?
   | $('#payment-amount').html("#{@payment.amount}");
-  | $('.progressbar').html("#{@grant.crowdfunder_progress}");
   | $('.progressbar').css('width', "#{@grant.crowdfunder_progress}");
   | $('.progressbar').attr('data-current', #{@grant.crowdfunder_pledged_total});
   | $('.currentnum').html('$#{@grant.crowdfunder_pledged_total}');

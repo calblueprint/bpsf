@@ -56,10 +56,8 @@ HomeController.prototype.infiniteScroll = function(callback){
 }
 
 HomeController.prototype.fundingProgress = function(){
-	console.log('progressing funding')
 	var me = this,
 		fundingBars = me.documentObject.querySelectorAll('[data-bp-current]');
-	console.log(me.documentObject);
 	for (var i = fundingBars.length - 1; i >= 0; i--) {
 		var currentFunding = fundingBars[i].getAttribute('data-bp-current'),
 			goalFunding = fundingBars[i].getAttribute('data-bp-goal'),

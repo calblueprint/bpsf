@@ -5,10 +5,81 @@ var ShowGrantController = function(documentObject){
 
 	me.init = function(){
 		me.fundingProgress();
+		me.modalBind();
+		me.setupStripeForm();
+		me.setupConfirmationModal();
 	}
 
 	me.socialButtons = function(){
 		
+	}
+
+	me.setupConfirmationModal = function(){
+		$('.saved_card').parents('form').submit(function(){
+			var confirmationModal = me.documentObject.querySelector('#confirmation-modal'),
+				closeButton = confirmationModal.querySelector('.xbox'),
+				modalScreen = confirmationModal.querySelector('.modalscreen'),
+				paymentModal = me.documentObject.querySelector('#payment-form');
+
+			me.activateElements(confirmationModal);
+			me.deactivateElements(paymentModal);
+
+			$(closeButton).on('click', function(e){
+				me.clearActiveElements();
+				e.preventDefault();
+				return false;
+			});
+
+			$(modalScreen).on('click', function(e){
+				me.clearActiveElements();
+				e.preventDefault();
+				return false;
+			});
+		});
+	}
+
+	me.setupStripeForm = function(){
+		Stripe.setPublishableKey($("meta[name='stripe-key']").attr("content"));
+		me.setupCustomerForm();
+	}
+
+	me.setupCustomerForm = function(){
+		$("#new_payment").submit(function() {
+			$("input[type=submit]").attr("disabled", true);
+			if ($("#card_number").length) {
+				me.processCustomerForm();
+				return false;
+			} else {
+				return true;
+			}
+		});
+	}
+
+	me.processCustomerForm = function(){
+		var card = {
+			name: $("#card_name").val(),
+			number: $("#card_number").val(),
+			cvc: $("#card_code").val(),
+			expMonth: $("#card_month").val(),
+			expYear: $("#card_year").val(),
+			address_line1: $("#address_line1").val(),
+			address_line2: $("#address_line2").val(),
+			address_city: $("#address_city").val(),
+			address_zip: $("#address_zip").val(),
+			address_state: $("#address_state").val(),
+			address_country: $("#address_country").val()
+		};
+		Stripe.createToken(card, me.stripeResponseHandler);
+	}
+
+	me.stripeResponseHandler = function(status, response){
+		if (status === 200) {
+			$("#stripe_token").val(response.id);
+			$("#new_payment")[0].submit();
+		} else {
+			$("#stripe_error").text(response.error.message);
+			$("input[type=submit]").attr("disabled", false);
+		}
 	}
 
 }
