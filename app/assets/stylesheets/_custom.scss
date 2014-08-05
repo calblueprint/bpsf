@@ -150,7 +150,11 @@
 		}
 	}
 
-	.progressbar{float: left;}
+	.progress-bar{
+		float: left;
+		height:100%;
+		background-color:$primary-color;
+	}
 
 	.progress-text-container{
 		font-weight:$font-weight-light;
@@ -671,7 +675,7 @@
 		@extend .nav-left;
 		float:right;
 		.sign-up{
-			border-right:solid 1px #CCC;
+			border-right:solid 1px #DDD;
 		}
 	}
 
