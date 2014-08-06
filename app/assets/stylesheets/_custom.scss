@@ -691,6 +691,9 @@
 	@include transition-duration(0.2s);
 	@include transition-property(opacity);
 	@include transition-delay(0.1s);
+	ul{
+		margin:0;
+	}
 	li{
 		@include navigation-link-animations();
 	}
