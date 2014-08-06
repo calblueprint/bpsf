@@ -254,7 +254,46 @@
 
 	AppController.prototype.getDataStore = function(){}
 
-	AppController.prototype.manageTabs = function(){}
+	AppController.prototype.manageTabs = function(){
+		var this = me,
+			tabButtons = me.documentObject.querySelectorAll('.tab-nav li'),
+			tabs = me.documentObject.querySelectorAll('.tab-content'),
+			numButtons = tabButtons.length,
+			numTabs = tabs.length;
+
+		if(numButtons != numTabs){
+			console.log('Error: Incorrect number of tabs (' + numTabs + ') and tab buttons (' + numButtons + ').');
+		}
+
+		for (var i = 0; i < numButtons; i++) {
+			(function(){
+				$(tabButtons[i]).on('click', function(){
+					me.deactivateTab();
+					me.activateTab(tabButtons[i], tabs[i]);
+				});
+			})()
+		};
+
+		function deactivateTab(){
+			var activeTab = me.getActiveTab();
+
+		}
+
+		function activateTab(button, tab){
+			if(!button || !tab){
+				var tabObject = getActiveTab();
+				button = tabObject.button;
+				tab = tabObject.tab;
+			}
+
+			me.activateElements(button, tab);
+
+			var getPath = tab.getAttribute('data-bp-get');
+			if(getPath){
+				$.get(getPath);
+			}
+		}
+	}
 
 	AppController.prototype.setActiveTab = function(){}
 
