@@ -1,6 +1,5 @@
 - title "Friends & Family Grants"
-.row
-  .wrapper.light
-    .row
-      h2.centalign Search Results
-    = render partial: 'crowdfunding_grants', collection: @grants, as: :grant
+.bp-search data-bp-controller='SearchController'
+	.row
+	  h2.centalign Search Results
+	= render partial: 'crowdfunding_grants', collection: @grants, as: :grant
