@@ -255,7 +255,7 @@
 	AppController.prototype.getDataStore = function(){}
 
 	AppController.prototype.manageTabs = function(){
-		var this = me,
+		var me = this,
 			tabButtons = me.documentObject.querySelectorAll('.tab-nav li'),
 			tabs = me.documentObject.querySelectorAll('.tab-content'),
 			numButtons = tabButtons.length,
@@ -274,9 +274,11 @@
 			})()
 		};
 
-		function deactivateTab(){
-			var activeTab = me.getActiveTab();
+		activateTab();
 
+		function deactivateTab(){
+			var tabObject = me.getActiveTab();
+			me.deactivateElements(tabObject.button, tabObject.tab);
 		}
 
 		function activateTab(button, tab){
@@ -286,17 +288,27 @@
 				tab = tabObject.tab;
 			}
 
-			me.activateElements(button, tab);
-
 			var getPath = tab.getAttribute('data-bp-get');
 			if(getPath){
 				$.get(getPath);
 			}
+
+			me.activateElements(button, tab);
+			me.setActiveTab(button, tab);
 		}
 	}
 
-	AppController.prototype.setActiveTab = function(){}
+	AppController.prototype.setActiveTab = function(button, tab){
+		var tab = {
+			button : button,
+			tab : tab
+		}
 
-	AppController.prototype.getActiveTab = function(){}
+		sessionStorage.setItem('tabObject', tab);
+	}
+
+	AppController.prototype.getActiveTab = function(){
+		return sessionStorage.getItem('tabObject')
+	}
 
 })(jQuery);
