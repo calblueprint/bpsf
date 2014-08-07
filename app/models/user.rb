@@ -39,6 +39,10 @@ class User < ActiveRecord::Base
 
   scope :donors, -> { where type: "User" }
 
+  scope :updated_in_range, ->(start_date, end_date) {
+    where("updated_at between ? and ?", start_date, end_date)
+  }
+
   def name
     return "#{first_name} #{last_name}"
   end
@@ -56,5 +60,9 @@ class User < ActiveRecord::Base
 
   def last4
     default_card[:last4] if default_card
+  end
+
+  def to_csv
+    Payment.to_csv(payments)
   end
 end

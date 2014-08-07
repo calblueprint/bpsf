@@ -9,6 +9,7 @@ class Admin::DashboardController < ApplicationController
       raise CanCan::AccessDenied.new
     end
     @donors = User.donors
+    @all_donors = @donors
     donated = params[:donated]
     if donated && donated == 'Donated'
       @donors = User.donors.select {|user| user.payments.length > 0}
@@ -44,6 +45,32 @@ class Admin::DashboardController < ApplicationController
     end
   end
 
+  def generate_csv
+    start_date = hash_to_date(params[:start_date])
+    end_date = hash_to_date(params[:end_date])
+    if params[:grants]
+      grants = Grant.updated_in_range(start_date, end_date)
+      respond_to do |format|
+        format.csv { send_data Grant.to_csv(grants) }
+      end
+    elsif params[:teachers]
+      recipients = Recipient.updated_in_range(start_date, end_date)
+      respond_to do |format|
+        format.csv { render text: Recipient.to_csv(recipients) }
+      end
+    elsif params[:donors]
+      user = User.find(params["donor-selection"])
+      respond_to do |format|
+        format.csv { render text: user.to_csv }
+      end
+    else # params[:payments]
+      payments = Payment.updated_in_range(start_date, end_date)
+      respond_to do |format|
+        format.csv { render text: Payment.to_csv(payments) }
+      end
+    end
+  end
+
   def load_distributions
     @successful = successful
     @unsuccessful = unsuccessful
@@ -60,5 +87,11 @@ class Admin::DashboardController < ApplicationController
 
   def use_https?
     true
+  end
+
+  private
+
+  def hash_to_date(date_hash)
+    Date.new(date_hash[:year].to_i, date_hash[:month].to_i, date_hash[:day].to_i)
   end
 end
