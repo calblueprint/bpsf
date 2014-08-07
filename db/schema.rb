@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140526015214) do
+ActiveRecord::Schema.define(:version => 20140803230351) do
 
   create_table "admin_profiles", :force => true do |t|
     t.string   "about"
@@ -124,6 +124,23 @@ ActiveRecord::Schema.define(:version => 20140526015214) do
 
   add_index "payments", ["crowdfund_id"], :name => "index_payments_on_crowdfund_id"
   add_index "payments", ["user_id"], :name => "index_payments_on_user_id"
+
+  create_table "phrasing_phrase_versions", :force => true do |t|
+    t.integer  "phrasing_phrase_id"
+    t.text     "value"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  add_index "phrasing_phrase_versions", ["phrasing_phrase_id"], :name => "index_phrasing_phrase_versions_on_phrasing_phrase_id"
+
+  create_table "phrasing_phrases", :force => true do |t|
+    t.string   "locale"
+    t.string   "key"
+    t.text     "value"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "recipient_profiles", :force => true do |t|
     t.integer  "school_id"
