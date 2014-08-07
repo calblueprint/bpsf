@@ -30,11 +30,30 @@ class Recipient < User
   attr_accessible :profile_attributes
   accepts_nested_attributes_for :profile
 
+  CSV_COLUMNS = ['First Name', 'Last Name', 'Email']
+
+  scope :updated_in_range, ->(start_date, end_date) {
+    where("updated_at between ? and ?", start_date, end_date)
+  }
+
   def init_approved
     true
   end
 
   def previous_grants
     grants.complete_grants
+  end
+
+  def self.to_csv(recipients)
+    CSV.generate do |csv|
+      csv << CSV_COLUMNS
+      recipients.each do |recipient|
+        csv << recipient.to_csv
+      end
+    end
+  end
+
+  def to_csv
+    [first_name, last_name, email]
   end
 end
