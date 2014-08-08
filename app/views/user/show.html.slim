@@ -1,42 +1,43 @@
 - title @user.name
-.row
-  .wrapper.light
-    .row.centalign
-      h2 style=("inlined")
-        = @user.name
-    section.tabs
-      .row
-        .twelve.columns.centered.centalign
-          ul.tab-nav
-            li.active
-              a href="#"  My Account
-            li
-              a href="#"  Payment History
-            li
-              a href="#"  Update Credit Card Info.
-            li
-              a href="#"  Change Password
-      br/
-      .tab-content.active
-        .ten.columns.push_three
-          .row
-            .eight.columns
-              h5 Email
-              = @user.email
-              br/
-              = render profile_for(@user), user: @user, profile: @profile
-              br/
-          - if @user.eql? current_user
-            .medium.primary.btn
-              =link_to 'Edit Profile<i class="icon-pencil"></i>'.html_safe, edit_user_path(id: @user.id)
-      .tab-content
-        = render partial: 'shared/table', locals: { heads: %w[Name School Amount Status], partials: [['payments', @payments, :payment, "There are no payments"]] }
-        .four.columns.centered.centalign
-          = will_paginate @payments
-      .tab-content
-        - if @user.default_card
-          | You are currently using a credit card ending in #{@user.last4}.
-        = render 'user/credit_card_edit'
-      .tab-content
-        .ten.columns.push_three
-          = render 'user/update_password'
+.bp-user data-bp-controller='UserController'
+  .row
+    .wrapper.light
+      .row.centalign
+        h2 style=("inlined")
+          = @user.name
+      section.tabs
+        .row
+          .twelve.columns.centered.centalign
+            ul.tab-nav
+              li.active
+                a href="#"  My Account
+              li
+                a href="#"  Payment History
+              li
+                a href="#"  Update Credit Card Info.
+              li
+                a href="#"  Change Password
+        br/
+        .tab-content.active
+          .ten.columns.push_three
+            .row
+              .eight.columns
+                h5 Email
+                = @user.email
+                br/
+                = render profile_for(@user), user: @user, profile: @profile
+                br/
+            - if @user.eql? current_user
+              .medium.primary.btn
+                =link_to 'Edit Profile<i class="icon-pencil"></i>'.html_safe, edit_user_path(id: @user.id)
+        .tab-content
+          = render partial: 'shared/table', locals: { heads: %w[Name School Amount Status], partials: [['payments', @payments, :payment, "There are no payments"]] }
+          .four.columns.centered.centalign
+            = will_paginate @payments
+        .tab-content
+          - if @user.default_card
+            | You are currently using a credit card ending in #{@user.last4}.
+          = render 'user/credit_card_edit'
+        .tab-content
+          .ten.columns.push_three
+            = render 'user/update_password'
