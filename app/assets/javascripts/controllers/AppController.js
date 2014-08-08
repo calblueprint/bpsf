@@ -248,18 +248,13 @@
 		Turbolinks.visit(path)
 	}
 
-	AppController.prototype.initDataStore = function(){}
-
-	AppController.prototype.setDataStore = function(){}
-
-	AppController.prototype.getDataStore = function(){}
-
 	AppController.prototype.manageTabs = function(){
 		var me = this,
-			tabButtons = me.documentObject.querySelectorAll('.tab-nav li'),
+			buttons = me.documentObject.querySelectorAll('.tab-nav li'),
 			tabs = me.documentObject.querySelectorAll('.tab-content'),
-			numButtons = tabButtons.length,
+			numButtons = buttons.length,
 			numTabs = tabs.length;
+
 
 		if(numButtons != numTabs){
 			console.log('Error: Incorrect number of tabs (' + numTabs + ') and tab buttons (' + numButtons + ').');
@@ -267,9 +262,15 @@
 
 		for (var i = 0; i < numButtons; i++) {
 			(function(){
-				$(tabButtons[i]).on('click', function(){
-					me.deactivateTab();
-					me.activateTab(tabButtons[i], tabs[i]);
+				var thisButton = buttons[i],
+					thisTab = tabs[i];
+				$(thisButton).on('click', function(e){
+					if(!$(this).hasClass('active')){
+						deactivateTab();
+						activateTab(thisButton, thisTab);
+					}
+					e.preventDefault();
+					return false;
 				});
 			})()
 		};
@@ -277,15 +278,17 @@
 		activateTab();
 
 		function deactivateTab(){
-			var tabObject = me.getActiveTab();
-			me.deactivateElements(tabObject.button, tabObject.tab);
+			var tabObject = me.getActiveTab(buttons, tabs);
+			if(tabObject){
+				me.deactivateElements(tabObject.button, tabObject.tab);
+			}
 		}
 
 		function activateTab(button, tab){
 			if(!button || !tab){
-				var tabObject = getActiveTab();
-				button = tabObject.button;
-				tab = tabObject.tab;
+				var tabObject = me.getActiveTab(buttons, tabs),
+					button = tabObject.button,
+					tab = tabObject.tab;
 			}
 
 			var getPath = tab.getAttribute('data-bp-get');
@@ -294,21 +297,26 @@
 			}
 
 			me.activateElements(button, tab);
-			me.setActiveTab(button, tab);
+			me.setActiveTab(tabs, tab);
 		}
 	}
 
-	AppController.prototype.setActiveTab = function(button, tab){
-		var tab = {
-			button : button,
-			tab : tab
-		}
+	AppController.prototype.setActiveTab = function(tabs, tab){
+		var tabIndex = Array.prototype.indexOf.call(tabs, tab);
 
-		sessionStorage.setItem('tabObject', tab);
+		sessionStorage.setItem('tabIndex', tabIndex);
 	}
 
-	AppController.prototype.getActiveTab = function(){
-		return sessionStorage.getItem('tabObject')
+	AppController.prototype.getActiveTab = function(buttons, tabs){
+		var tabIndex = Number(sessionStorage.getItem('tabIndex'));
+		if(tabIndex != NaN){
+			var tabObject = {};
+			tabObject.button = buttons[tabIndex];
+			tabObject.tab = tabs[tabIndex];
+			return tabObject;
+		} else {
+			return false;
+		}
 	}
 
 })(jQuery);
