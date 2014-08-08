@@ -20,7 +20,7 @@
                   a href="#"  Data Distributions
                 li#csv
                   a href="#"  CSV
-          .tab-content
+          .tab-content data-bp-get='/admin/load_grants'
             #grants-tab
           .tab-content
             = render 'donated'
@@ -37,15 +37,16 @@
               = render partial: 'shared/table', locals: { heads: %w[Name Email Status], partials: [['pending_users', @pending_users, :pending_user, "There are no pending users"]] }
               .ten.columns.centered.centalign
                 = will_paginate @pending_users
-          .tab-content
+          .tab-content data-bp-get='/admin/load_distributions'
             #distributions-tab
           .tab-content
             = render partial: 'csv_form'
-javascript:
-  $('#grants').click(function(){
-    $.get('/admin/load_grants');
-  });
 
-  $('#distributions').click(function(){
-    $.get('/admin/load_distributions');
-  });
+javascript:
+  //$('#grants').click(function(){
+  //  $.get('/admin/load_grants');
+  //});
+
+  //$('#distributions').click(function(){
+  //  $.get('/admin/load_distributions');
+  //});
