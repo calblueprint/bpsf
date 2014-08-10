@@ -1,46 +1,47 @@
 - title "Admin Dashboard"
-.row
-  .twelve.columns
-    .wrapper.light
-      .row
-        h2.centalign Admin Dashboard
-        section#tabs.tabs
-          .row
-            .twelve.columns.centered.centalign
-              ul.tab-nav
-                li#grants
-                  a href="#"  Grants
-                li#donors
-                  a href="#"  Donors
-                li#recipients
-                  a href="#"  Recipients
-                li#pending
-                  a href="#"  Pending Users
-                li#distributions
-                  a href="#"  Data Distributions
-                li#csv
-                  a href="#"  CSV
-          .tab-content data-bp-get='/admin/load_grants'
-            #grants-tab
-          .tab-content
-            = render 'donated'
-            = render partial: 'shared/table', locals: { heads: %w[Name Email], partials: [['users', @donors, :user, "There are no users"]] }
-            .ten.columns.centered.centalign
-              = will_paginate @donors
-          .tab-content
-            = render 'school'
-            = render partial: 'shared/table', locals: { heads: %w[Name Email], partials: [['users', @recipients, :user, "There are no recipients"]] }
-            .ten.columns.centered.centalign
-              = will_paginate @recipients
-          .tab-content
-            .pending_users
-              = render partial: 'shared/table', locals: { heads: %w[Name Email Status], partials: [['pending_users', @pending_users, :pending_user, "There are no pending users"]] }
+.bp-admin-dashboard data-bp-controller='AdminDashboardController'
+  .row
+    .twelve.columns
+      .wrapper.light
+        .row
+          h2.centalign Admin Dashboard
+          section#tabs.tabs
+            .row
+              .twelve.columns.centered.centalign
+                ul.tab-nav
+                  li#grants
+                    a href="#"  Grants
+                  li#donors
+                    a href="#"  Donors
+                  li#recipients
+                    a href="#"  Recipients
+                  li#pending
+                    a href="#"  Pending Users
+                  li#distributions
+                    a href="#"  Data Distributions
+                  li#csv
+                    a href="#"  CSV
+            .tab-content data-bp-get='/admin/load_grants'
+              #grants-tab
+            .tab-content
+              = render 'donated'
+              = render partial: 'shared/table', locals: { heads: %w[Name Email], partials: [['users', @donors, :user, "There are no users"]] }
               .ten.columns.centered.centalign
-                = will_paginate @pending_users
-          .tab-content data-bp-get='/admin/load_distributions'
-            #distributions-tab
-          .tab-content
-            = render partial: 'csv_form'
+                = will_paginate @donors
+            .tab-content
+              = render 'school'
+              = render partial: 'shared/table', locals: { heads: %w[Name Email], partials: [['users', @recipients, :user, "There are no recipients"]] }
+              .ten.columns.centered.centalign
+                = will_paginate @recipients
+            .tab-content
+              .pending_users
+                = render partial: 'shared/table', locals: { heads: %w[Name Email Status], partials: [['pending_users', @pending_users, :pending_user, "There are no pending users"]] }
+                .ten.columns.centered.centalign
+                  = will_paginate @pending_users
+            .tab-content data-bp-get='/admin/load_distributions'
+              #distributions-tab
+            .tab-content
+              = render partial: 'csv_form'
 
 javascript:
   //$('#grants').click(function(){
