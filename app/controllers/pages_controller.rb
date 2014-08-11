@@ -23,7 +23,7 @@ class PagesController < ApplicationController
       if subject && subject != 'All'
         @grants = @grants.select { |grant| grant.subject_areas.include? subject }
       end
-      @grants = @grants.paginate :page => params[:page], :per_page => 6
+      @grants = @grants.paginate page: params[:page], per_page: 6
       @slideshow_grants = slideshow_grants
     end
   end
