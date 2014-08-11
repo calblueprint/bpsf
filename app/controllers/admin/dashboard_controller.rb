@@ -54,6 +54,39 @@ class Admin::DashboardController < ApplicationController
     end
   end
 
+  def load_grants
+    @grants = (Grant.includes(:school).all-DraftGrant.all).sort_by(&:order_status).paginate page: params[:page], per_page: 6
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def generate_csv
+    start_date = hash_to_date(params[:start_date])
+    end_date = hash_to_date(params[:end_date])
+    if params[:grants]
+      grants = Grant.updated_in_range(start_date, end_date)
+      respond_to do |format|
+        format.csv { send_data Grant.to_csv(grants) }
+      end
+    elsif params[:teachers]
+      recipients = Recipient.updated_in_range(start_date, end_date)
+      respond_to do |format|
+        format.csv { render text: Recipient.to_csv(recipients) }
+      end
+    elsif params[:donors]
+      user = User.find(params["donor-selection"])
+      respond_to do |format|
+        format.csv { render text: user.to_csv }
+      end
+    else # params[:payments]
+      payments = Payment.updated_in_range(start_date, end_date)
+      respond_to do |format|
+        format.csv { render text: Payment.to_csv(payments) }
+      end
+    end
+  end
+
   def load_distributions
     @successful = successful
     @unsuccessful = unsuccessful
