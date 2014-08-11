@@ -69,7 +69,8 @@
 		}
 
 		me.activateControllers = function(){
-			for (var i = me.controllerdocumentObjects.length - 1; i >= 0; i--) {
+			var numControllers = me.controllerdocumentObjects.length
+			for (var i = 0; i < numControllers; i++) {
 				var documentObject = me.controllerdocumentObjects[i],
 					controller = documentObject.getAttribute('data-bp-controller');
 				if(typeof(controller) == 'string'){
