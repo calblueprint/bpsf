@@ -2,7 +2,7 @@
 # grant status
 class Admin::DashboardController < ApplicationController
   include GrantsHelper
-  authorize_resource :class => false
+  authorize_resource class: false
 
   def index
     if !current_user.approved
@@ -16,7 +16,7 @@ class Admin::DashboardController < ApplicationController
     elsif donated && donated == 'Have Not Donated'
       @donors = User.donors.select {|user| user.payments.length == 0}
     end
-    @donors = @donors.paginate :page => params[:page], :per_page => 6
+    @donors = @donors.paginate page: params[:page], per_page: 6
 
     @recipients = Recipient.all
     school = params[:school]
@@ -24,9 +24,9 @@ class Admin::DashboardController < ApplicationController
       schoolId = School.find_by_name(school).id
       @recipients = Recipient.select {|recip| recip.profile.school_id == schoolId }
     end
-    @recipients = @recipients.paginate :page => params[:page], :per_page => 6
+    @recipients = @recipients.paginate page: params[:page], per_page: 6
     @pending_users = User.where approved: false
-    @pending_users = @pending_users.paginate :page => params[:page], :per_page => 6
+    @pending_users = @pending_users.paginate page: params[:page], per_page: 6
   end
 
   def grant_event
@@ -39,7 +39,7 @@ class Admin::DashboardController < ApplicationController
   end
 
   def load_grants
-    @grants = (Grant.includes(:school).all-DraftGrant.all).sort_by(&:order_status).paginate :page => params[:page], :per_page => 6
+    @grants = (Grant.includes(:school).all-DraftGrant.all).sort_by(&:order_status).paginate page: params[:page], per_page: 6
     respond_to do |format|
       format.js
     end
