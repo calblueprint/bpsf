@@ -5,7 +5,7 @@ class UserController < ApplicationController
   def show
     @user = User.find params[:id]
     @payments = @user.payments.includes(:crowdfund)
-    @payments = @payments.paginate :page => params[:page], :per_page => 6
+    @payments = @payments.paginate page: params[:page], per_page: 6
     @profile = @user.profile
   end
 
@@ -77,7 +77,7 @@ class UserController < ApplicationController
     if @user.update_attributes params[:user]
       # Sign in the user by passing validation in case his password changed
       flash[:success] = "Password Succesfully Changed"
-      sign_in @user, :bypass => true
+      sign_in @user, bypass: true
     else
       flash[:error] = "Mistyped password"
     end

@@ -2,13 +2,13 @@
 # grant status
 class Admin::DashboardController < ApplicationController
   include GrantsHelper
-  authorize_resource :class => false
+  authorize_resource class: false
 
   def index
     if !current_user.approved
       raise CanCan::AccessDenied.new
     end
-    
+
     @grants = (Grant.includes(:school).all-DraftGrant.all).sort_by! {|g| [g.order_status, g.title]}
     order = params[:order]
     if order && order == 'Status'
@@ -30,7 +30,7 @@ class Admin::DashboardController < ApplicationController
       @donors = User.donors.select {|user| user.payments.length == 0}
     end
     @donors.sort_by! {|u| [u.last_name, u.first_name]}
-    @donors = @donors.paginate :page => params[:page], :per_page => 6
+    @donors = @donors.paginate page: params[:page], per_page: 6
 
     @recipients = Recipient.all
     school = params[:school]
@@ -39,10 +39,10 @@ class Admin::DashboardController < ApplicationController
       @recipients = Recipient.select {|recip| recip.profile.school_id == schoolId }
     end
     @recipients.sort_by! {|u| [u.last_name, u.first_name]}
-    @recipients = @recipients.paginate :page => params[:page], :per_page => 6
-    
+    @recipients = @recipients.paginate page: params[:page], per_page: 6
+
     @pending_users = User.where approved: false
-    @pending_users = @pending_users.paginate :page => params[:page], :per_page => 6
+    @pending_users = @pending_users.paginate page: params[:page], per_page: 6
   end
 
   def grant_event
@@ -51,6 +51,39 @@ class Admin::DashboardController < ApplicationController
     respond_to do |format|
       format.html { redirect_to admin_dashboard_path }
       format.js
+    end
+  end
+
+  def load_grants
+    @grants = (Grant.includes(:school).all-DraftGrant.all).sort_by(&:order_status).paginate page: params[:page], per_page: 6
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def generate_csv
+    start_date = hash_to_date(params[:start_date])
+    end_date = hash_to_date(params[:end_date])
+    if params[:grants]
+      grants = Grant.updated_in_range(start_date, end_date)
+      respond_to do |format|
+        format.csv { send_data Grant.to_csv(grants) }
+      end
+    elsif params[:teachers]
+      recipients = Recipient.updated_in_range(start_date, end_date)
+      respond_to do |format|
+        format.csv { render text: Recipient.to_csv(recipients) }
+      end
+    elsif params[:donors]
+      user = User.find(params["donor-selection"])
+      respond_to do |format|
+        format.csv { render text: user.to_csv }
+      end
+    else # params[:payments]
+      payments = Payment.updated_in_range(start_date, end_date)
+      respond_to do |format|
+        format.csv { render text: Payment.to_csv(payments) }
+      end
     end
   end
 
