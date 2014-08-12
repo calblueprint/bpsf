@@ -917,7 +917,7 @@
 }
 
 /*********************  Loading Bar  ***********************/
-.loading-bg{
+.loader-bg{
 	position:fixed;
 	bottom:0px;
 	right:-340px;
@@ -926,22 +926,25 @@
 	border-left:170px solid transparent;
 	border-right:170px solid transparent;
 	border-bottom:170px solid rgba(0,0,0,0.3);
-	//background-color:rgba(0,0,0,0.3);
 	z-index:9998;
-	//@include transform(rotate(45deg));
 	@include transition-duration(0.3s);
 	&.active{
-		@include transform(translateX(-170px));
+		@include transform(translate3d(-170px,0,0));
+	}
+	&.open{
+		left:initial;
 	}
 
 }
-.loading-blob {
+.loader-blob {
 	position:fixed;
-	bottom:2em;
-	right:2em;
+	bottom:20px;
+	right:-150px;
 	z-index:9999;
 	width: 70px;
 	text-align: center;
+	//display:none;
+	@include transition-duration(0.3s);
 	div {
 		width: 18px;
 		height: 18px;
@@ -954,6 +957,9 @@
 		/* Prevent first frame from flickering when animation starts */
 		-webkit-animation-fill-mode: both;
 		animation-fill-mode: both;
+
+		-webkit-animation-play-state: paused;
+		animation-play-state: paused;
 	}
 	.bounce-1 {
 		-webkit-animation-delay: -0.32s;
@@ -963,6 +969,17 @@
 	.bounce-2 {
 		-webkit-animation-delay: -0.16s;
 		animation-delay: -0.16s;
+	}
+	&.active{
+		display:inline;
+		@include transform(translate3d(-170px,0,0));
+		div{
+			-webkit-animation-play-state: running;
+			animation-play-state: running;
+		}
+	}
+	&.open{
+		left:initial;
 	}
 
 }

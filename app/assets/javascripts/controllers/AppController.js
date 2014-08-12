@@ -56,6 +56,7 @@
 			if(me.controllerdocumentObjects){
 				me.activateControllers();
 			}
+			me.bindLoader();
 
 			$(document).on('keyup', function(e){
 				if(e.keyCode == 27){
@@ -105,6 +106,14 @@
 				activeControllers[i].clearData();
 				delete activeControllers[i];
 			};
+		}
+
+		me.bindLoader = function(){
+			$(document).on('page:before-change', function(e){
+				var loaderBg = me.documentObject.querySelector('.loader-bg'),
+					loaderBlob = me.documentObject.querySelector('.loader-blob');
+				me.activateElements(loaderBg, loaderBlob);
+			});
 		}
 	}
 
