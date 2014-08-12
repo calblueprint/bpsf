@@ -16,6 +16,7 @@
 //= require_self
 //= require jquery_ujs
 //= require turbolinks
+//= require ./draft_cropping.js.coffee
 
 appController = new AppController();
 $(document).on('page:change', function(){
