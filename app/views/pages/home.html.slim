@@ -7,11 +7,11 @@
         .eight.columns.call-to-action = phrase 'call-to-action'
         .three.columns.push_one.home-lead-buttons
           .medium.primary.btn
-            a#lead-about-button href='#' About Us
+            a#lead-about-button href='#' data-bp-modal='#about_bpsf' About Us
           .medium.primary.btn
-            a#lead-teacher-button href='#' For Teachers
+            a#lead-teacher-button href='#' data-bp-modal='#about_teachers' For Teachers
           .medium.primary.btn
-            a#lead-donor-button href='#' For Friends and Family
+            a#lead-donor-button href='#' data-bp-modal='#about_donors' For Friends and Family
       = render 'menu'
       #grantcards
         - if @grants[0]
