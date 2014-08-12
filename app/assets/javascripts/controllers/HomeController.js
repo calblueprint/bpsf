@@ -18,7 +18,7 @@ var HomeController = function(documentObject){
 
 	me.superSlider = function(){
 	    $('.home-slider').superslides({
-			play: 0,//8000,
+			play: 8000,
 			pagination: false,
 			hashchange: false,
 			inherit_width_from: '.home-slider-container',
