@@ -1,31 +1,53 @@
 /! ***************************************FOOTER********************************************
-.row data-bp-controller='FooterController'
-
-  .footwrapper
-    hr.hr-primary
+.bp-footer data-bp-controller='FooterController'
+  .footer-wrapper
+    hr.footer-divider
     .row
-      .centalign All grants have been reviewed and approved by the Berkeley Public Schools Fund.
-    .lmorefoot
-      h4.primary-color
-        | Learn More About <br/>
-          Berkeley Public Schools Fund
-      li
-        a href="http://www.berkeleypublicschoolsfund.org/?page_id=14"  About Us
-      li
-        a href="http://www.berkeleypublicschoolsfund.org/?page_id=15"  Donate
-      li
-        a href="http://www.berkeleypublicschoolsfund.org/?page_id=16"  Volunteer
-      li
-        a href="http://www.berkeleypublicschoolsfund.org/?page_id=17"  Grants
-    .donfoot
-      .primary.btn.large
-        a#footer-donate href="https://www.berkeleypublicschoolsfund.org/donate/online-donation/"
-          | Make a Schools Fund Donation
-      p 510.644.6244 • Berkeley, CA
-      p#socials
-        a href="https://www.facebook.com/pages/Berkeley-Public-Schools-Fund/120129884666097?ref=hl" target="_blank"
-          img src="https://www.berkeleypublicschoolsfund.org/wp-content/uploads/2013/09/social-facebook.jpg" /
-      p
-        | Developed by
-        a href="http://www.calblueprint.org"  Blueprint
-    div style="clear:both"
+      .two.columns
+        h5
+          strong Explore
+        p
+          = link_to 'Home'.html_safe, root_path
+          br
+          a href="#" data-bp-modal='#about_bpsf' About Us
+          br
+          a href="http://www.berkeleypublicschoolsfund.org/?page_id=16"  Volunteer
+      .two.columns
+        h5
+          strong Account
+        p
+          - if user_signed_in?
+            = link_to "Account", user_path(id: current_user.id)
+            - if admin_user?
+              br
+              = link_to 'Dashboard'.html_safe, admin_dashboard_path
+            - elsif recipient?
+              br
+              = link_to 'Dashboard'.html_safe, recipient_dashboard_path
+              br
+              = link_to "Sign Out", destroy_user_session_path
+          - else
+            = link_to "Sign In", new_user_session_path
+            br
+            = link_to "Sign Up", new_user_session_path
+      .two.columns
+        h5
+          strong Contact
+        p 
+          a href='mailto:schoolsfund@berkeley.net' schoolsfund@berkeley.net
+          br
+          | 510.644.6244
+          br
+          a href='https://www.facebook.com/pages/Berkeley-Public-Schools-Fund/120129884666097'
+            i.icon-facebook
+      .five.columns.push_one.text-right
+        p
+          em
+            | All grants have been reviewed and approved by the Berkeley Public Schools Fund.
+        .primary.btn.medium
+          a href="https://www.berkeleypublicschoolsfund.org/donate/online-donation/"
+            | Donate to the Schools Fund
+        h4
+          small
+            | Developed by
+            a href="http://www.calblueprint.org"  Blueprint
