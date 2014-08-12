@@ -5,7 +5,11 @@ var AdminDashboardController = function(documentObject){
 
 	me.init = function(){
 		me.manageTabs();
+		me.handleCsvFields();
+		
+	}
 
+	me.handleCsvFields = function(){
 		$(".chosenselect").chosen({width:'90%'});
 		$("input[name=donors]").attr("disabled", true).addClass('disabled');
 		$("#donor-selection").change(function() {
