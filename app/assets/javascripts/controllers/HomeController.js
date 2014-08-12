@@ -11,6 +11,7 @@ var HomeController = function(documentObject){
 		});
 		me.fundingProgress();
 		me.turbolinkBind();
+		me.modalBind();
 	}
 
 	me.truncateText = function(){} 
