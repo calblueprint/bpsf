@@ -72,7 +72,7 @@ class GrantDecorator < Draper::Decorator
 
   def collaborators_section
     if has_collaborators?
-      content_tag(:h5, content_tag(:span, 'Collaborators')) + collaborators
+      content_tag(:h5, %Q[<strong>Collaborators</strong>].html_safe) + collaborators
     end
   end
 
