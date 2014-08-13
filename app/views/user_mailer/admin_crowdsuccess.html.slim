@@ -4,7 +4,22 @@ html
     meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
   body
     h1
-      | #{@recipient.first_name} #{@recipient.last_name}'s grant, #{@grant}, has reached its crowdfund goal and successfully been funded!
+      | #{@recipient.name}'s grant, #{@grant}, has reached its crowdfund goal and successfully been funded!
+    p
+      | Here are some details about the grant:
+    p
+      | Teacher name: #{@recipient.first_name} #{@recipient.last_name}
+      br/
+      | Teacher work phone number: #{@recprof.work_phone}
+      br/
+      | Teacher home phone number: #{@recprof.home_phone}
+      br/
+      | Teacher address: #{@recprof.address + ", " + @recprof.city + ", " + @recprof.state + " " + @recprof.zipcode}
+      br/
+      | Grant title: #{@grant.title}
+      br/
+      | Amount to pay the teacher: $#{@grant.requested_funds}
+      br/
+      | Amount of administrator fee: $#{@grant.with_admin_cost-@grant.requested_funds}
     p
       | To view the grant page, follow this link: #{@url}.
-      br/

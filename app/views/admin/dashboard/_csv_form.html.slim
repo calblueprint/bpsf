@@ -1,0 +1,21 @@
+.row
+  .seven.columns.push_three
+    = form_tag admin_csv_path(format: :csv), method: :post, class: :csv_form do
+      .field
+        = label_tag :start_date, 'Start Date', class: :mediumfont
+        = select_date Date.current, prefix: :start_date
+      .field
+        = label_tag :end_date, 'End Date', class: :mediumfont
+        = select_date Date.current, prefix: :end_date
+      .field.overflow_field
+        = label_tag :donor, 'Donor', class: :mediumfont
+        = select_tag 'donor-selection', options_from_collection_for_select(@all_donors, 'id', 'name'), class: :chosenselect, prompt: "Select donor to download their history in CSV form..."
+      .csv_buttons
+        .medium.primary.btn.btn-with-padding
+          = submit_tag 'Payments CSV', name: :payments
+        .medium.primary.btn
+          = submit_tag 'Teachers CSV', name: :teachers
+        .medium.primary.btn.btn-with-padding
+          = submit_tag 'Grants CSV', name: :grants
+        .medium.primary.btn
+          = submit_tag 'Donor CSV', name: :donors

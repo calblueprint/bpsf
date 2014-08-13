@@ -1,7 +1,7 @@
 doctype html
 html
   head
-    title Schools Fund
+    title = yield :title
     meta content="width=device-width, initial-scale=1.0, user-scalable=no" name="viewport" /
     = stylesheet_link_tag    "application", :media => "all", "data-turbolinks-track" => true
     = javascript_include_tag "application", "data-turbolinks-track" => true
@@ -11,6 +11,8 @@ html
     = render 'layouts/shim'
     link rel="icon" href="/assets/favicon.ico" type="image/x-icon"
   body
+    = render 'phrasing/initializer'
+
     .pace
       .pace-progress
         .pace-progress-inner
@@ -21,12 +23,16 @@ html
         .row
           .danger.alert This website is built to take advantage of javascript. Please enable it in your browser settings.
 
-      .row
-        .page-wrapper
-          = render 'layouts/helppanel'
-          = yield
-          = render 'layouts/footer'
-      br
+      -if current_page?(root_url)
+        = yield
+      -else
+        .row
+          .page-wrapper
+            = yield
+            = render 'layouts/footer'
+
+      = render 'layouts/helppanel'
+
     = render 'shared/flash', flash: flash
     javascript:
       function emailCurrentPage(){
