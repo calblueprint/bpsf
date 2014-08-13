@@ -47,6 +47,7 @@
 		var me = this;
 		me.documentObject = documentObject || document;
 		me.activeControllers = [];
+		window['bpEvents'] = [];
 		window['activeElements'] = [];
 
 		me.init = function(){
@@ -57,11 +58,11 @@
 				me.activateControllers();
 			}
 			me.bindLoader();
+			me.bindEscElements();
+			
 
-			$(document).on('keyup', function(e){
-				if(e.keyCode == 27){
-					me.clearActiveElements();
-				}
+			$(document).one('page:fetch',function(){
+				me.deactivateControllers();
 			});
 		}
 
@@ -102,17 +103,24 @@
 		me.deactivateControllers = function(){
 			var activeControllers = me.getActiveControllers();
 			for (var i = activeControllers.length - 1; i >= 0; i--) {
-				activeControllers[i].removeEvents();
-				activeControllers[i].clearData();
-				delete activeControllers[i];
+				var thisController = activeControllers.pop();
+				delete thisController;
 			};
 		}
 
 		me.bindLoader = function(){
-			$(document).on('page:before-change', function(e){
+			$(document).one('page:before-change', function(e){
 				var loaderBg = me.documentObject.querySelector('.loader-bg'),
 					loaderBlob = me.documentObject.querySelector('.loader-blob');
 				me.activateElements(loaderBg, loaderBlob);
+			});
+		}
+
+		me.bindEscElements = function(){
+			$(document).on('keyup', function(e){
+				if(e.keyCode == 27){
+					me.clearActiveElements();
+				}
 			});
 		}
 	}
