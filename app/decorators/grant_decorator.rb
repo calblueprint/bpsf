@@ -35,8 +35,8 @@ class GrantDecorator < Draper::Decorator
   end
 
   def progress_bar
-    tag :span, class: 'progressbar', style: 'width: 0%',
-        data: { current: current_funds , goal: funding_goal }
+    tag :span, class: 'progress-bar', style: 'width: 0%',
+        data: { bp_current: current_funds , bp_goal: funding_goal }
   end
 
   def current_funds
