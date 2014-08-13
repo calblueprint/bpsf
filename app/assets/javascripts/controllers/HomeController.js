@@ -44,14 +44,24 @@ HomeController.prototype.constructor = HomeController;
 HomeController.prototype.infiniteScroll = function(callback){
 	var me = this;
 	$(window).scroll(function(){
-	    var url = $('.pagination .next_page').attr('href');
-	    if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 150) {
-	        $('.pagination').text('Fetching more grants...')
-	        if(callback){
-		        $.getScript(url, function(){
-		        	callback.call(me);
-		        });
-		    }
+	    if ($(window).scrollTop() > $(document).height() - $(window).height() - 150) {
+	    	var pagination = me.documentObject.querySelector('.pagination .next_page'),
+	    		url = pagination ? pagination.getAttribute('href') : false;
+	    	if(url){
+		        me.documentObject.querySelector('.pagination')
+		        	.innerHTML = "<div class='loader-blob active' style='position:inherit'> \
+			        				<div class='bounce-1'></div> \
+									<div class='bounce-2'></div> \
+									<div class='bounce-3'></div> \
+								</div>";
+		        if(callback){
+			        $.getScript(url, function(){
+			        	callback.call(me);
+			        });
+			    } else {
+			    	$.getScript(url);
+			    }
+			}
 	    }
 	});
 }
