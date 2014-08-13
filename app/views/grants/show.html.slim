@@ -61,31 +61,35 @@
       .ten.columns.centered
         br/
         h3 Details
-        .three.columns.pull_left
+        .two.columns.pull_left style="margin-top: 3px;"
           h5.inlined
             strong Grade Level:
+          br/
+          h5.inlined
+            strong Duration:
+          br/
+          h5.inlined
+            strong # of classes:
+          br/
+          h5.inlined
+            strong # of students:
+        .two.columns.pull_right style="margin-top: 3px;"
           span.medfont
             |&nbsp;
             = @grant.grade_level
           br/
-          h5.inlined
-            strong Duration:
           span.medfont
             |&nbsp;
             = @grant.duration
           br/
-          h5.inlined
-            strong # of classes:
           span.medfont
             |&nbsp;
             = @grant.num_classes
           br/
-          h5.inlined
-            strong # of students:
           span.medfont
             |&nbsp;
             = @grant.num_students
-        .eight.columns  style="margin-left: 50px;"
+        .seven.columns 
           = @grant.collaborators_section
     .row
       .ten.columns.centered
