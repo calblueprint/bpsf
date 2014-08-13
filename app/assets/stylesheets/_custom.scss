@@ -1,7 +1,7 @@
 //Custom Variables
 
 	//Global
-	$shadow-color: rgb(170, 170, 170);
+	$shadow-color: rgb(120, 120, 120);
 
 	//Navigation Bar
 	$navigation-bar-height: 75px;
@@ -107,6 +107,7 @@
 	.page-wrapper{
 		@include box-shadow(0px 0 10px $shadow-color);
 		background-color:#fff;
+		margin-bottom:20px;
 	}
 
 	.fluid_container {
@@ -153,6 +154,25 @@
 
 	.progressbar{float: left;}
 
+	.progress-text-container{
+		font-weight:$font-weight-light;
+		.progress-large-text{
+			font-size:$large;
+			color:#000;
+			margin:0px 3px;
+			display:inline;
+		}
+		.progress-large-text-primary{
+			@extend .progress-large-text;
+			color: $primary-color;
+		}
+		.progress-small-text{
+			font-size:$med;
+			margin:0px 3px;
+			display:inline;
+		}
+	}
+
 	.progress {
 		height: 6px;
 		width: 100%;
@@ -178,74 +198,168 @@
 
 
 //Home Page Styles
-	//Slideshow Styles
-	.banner {
+	.home-wrapper{
+		@extend .page-wrapper;
 		position: relative;
-		overflow: auto;
-		width: 100%;
-		ul {
-		 	list-style: none;
-		 	li {
-		 		float: left;
-		 		min-height: 350px;
-		 		display:block;
-		 		position:relative;
-		 		@include background-size(100% 100%);
-		 	}
+		z-index: 10;
+		border-top:solid 10px $primary-color;
+		.home-lead{
+			padding:20px;
+			.call-to-action{
+				font-size:$med+2;
+				font-weight:$font-weight-light;
+			}
+			.home-lead-buttons{
+				text-align:right;
+				.btn{
+					margin:0px 10px 10px 10px;
+					display:block;
+				}
+			}
 		}
-	}
-
-	.navholder{
-		position: absolute;
-		bottom:50%;
-		margin-bottom:-25px;
-		background-color:rgba(255,255,255,0.7);
-		height: 50px;
-		&.rightarrow{
-			right:0px;
+		.category-title{
+			@extend h2;
+			padding:0px 20px;
+			display:inline;
 		}
-		&.leftarrow{left:0px}
-		.unslider-arrow{
-			z-index: 100;
-			font-size: $med+1;
-			color: #000;//$white;
-			line-height: 50px;
-			&:hover, &:active, &:focus{
-				color: $primary-color;
+		.category-form-container{
+			float:right;
+			margin:0px 15px;
+			display:table-cell;
+			.category-form-title{
+				@extend h4;
+				display:inline-block;
+				vertical-align:middle;
+			}
+			.category-form{
+				display:inline-block;
+				margin:5px;
+			}
+			.category-successful{
+				display:inline;
+			}
+			@include respond(all-tablets){
+				float:none;
+				padding:0px 20px;
 			}
 		}
 	}
 
-	.slidecard {
-		position:absolute;
-		top:5%;
-		left:5%;
-		width:35%;
-		text-align: left;
-		background: rgba(255,255,255,0.9);
-		padding: (5px 5px 5px 5px);
-		& .cardtitle{padding:5px 5px 0px 5px; margin-bottom:-10px;}
-		& .cardcontent{
-			padding:2px 5px 5px 5px;
-			.gcdiv{line-height:30px;}
+	//Slideshow Styles
+	.home-slider-container{
+		max-width: 1040px;//1060px;
+		height: 470px;
+		margin:0px auto 20px auto;
+		z-index:0;
+		overflow:none;
+		@include box-shadow(0px 0 7px $shadow-color);
+		@include respond(all-phones){height:350px;}
+		.home-slider{
+			.slides-container{
+				li{
+					cursor:pointer;
+					.home-slide-background{}
+					.home-slide-information{
+						background-color:rgba($white, 0.9);
+						border-top:solid 4px $primary-color;
+						height:auto;
+						width:350px;
+						max-height:400px;
+						position:absolute;
+						top:10%;
+						left:12%;
+						padding:5px;
+						@include box-shadow(0px 0 7px $shadow-color);
+						.home-slide-title{
+							@extend h3;
+							padding-bottom:0px;
+						}
+						.home-slide-subtitle{
+							font-size:$norm - 3;
+							font-weight:$font-weight-medium;
+							color:#888;
+							padding-top:0px;
+							margin-top:-5px;
+						}
+						.home-slide-description{
+							@extend p;
+						}
+						.home-slide-progress{
+
+						}
+						@include respond(all-phones){
+							top:0px;
+							left:0px;
+							max-height:150px;
+							width:100%;
+							.home-slide-title{
+								font-size:$large -1;
+							}
+							.home-slide-description{
+								@include hide-this();
+							}
+						}
+					}
+					&:hover, &:active, &:focus{
+						.home-slide-information{
+							.home-slide-title{
+								a{
+									color:$primary-color;
+								}
+							}
+						}
+					}
+				}
+			}
 		}
-		@include respond(tablets){
-			top:0px;
-			left: 0px;
-			width: 40%;
-			height: 100%;
-			margin: 0px 0px 0px 0px !important;
-		}
-		@include respond(all-phones){
-			top:0px;
-			left: 0px;
-			width: 100%;
-			height: auto;
-			margin: 0px 0px 0px 0px !important;
-			.cardtitle{text-align: center;}
-			.cardcontent{
-				& p {display:none;}
-				.progress{background: $global-bg-color !important;}
+		.slides-navigation{
+			z-index: 5;
+			.arrow-box{
+				position:absolute;
+				top:0;
+				max-width: 100px;
+				width: 15%;
+				height:100%;
+				z-index: 6;
+				opacity:0.1;
+				cursor:pointer;
+				background-color:#000;
+				@include transition-duration(0.3s);
+				&.arrow-box-right{
+					right:0px;
+					&:active{
+						opacity:0.8;
+						@include translateX(1em);
+					}
+				}
+				&.arrow-box-left{
+					left:0px;
+					&:active{
+						opacity:0.8;
+						@include translateX(-1em);
+					}
+				}
+				.arrow-container{
+					margin: 0 auto;
+					position: absolute;
+					z-index: 28;
+					top: 42%;
+					width: 100%;
+					text-align: center;
+					a{
+						color:#fff;
+						font-size:$xlarge;
+						@include transition-duration(0.3s);
+					}
+				}
+				&:hover{
+					opacity: 0.6;
+					.arrow-container{
+						a{
+							color:$primary-color;
+						}
+					}
+				}
 			}
 		}
 	}
@@ -289,9 +403,12 @@
 			}
 		}
 		@include transition-duration(0.3s);
-		&:hover, &:active, &:focus{
+		&:hover, &:focus{
 			background-color: lighten($global-bg-color, 10%);
 			& .cardtitle{ h3{ a{color:$primary-color !important;} } }
+		}
+		&:active{
+			background-color: $global-bg-color;
 		}
 	}
 
@@ -312,12 +429,6 @@
 		overflow:hidden;
 		text-overflow:ellipsis;
 		}
-
-	//Other
-	.category{
-	text-align:left;
-	@include vertical-center-text(40px);
-	}
 
 
 //Grant View Page
@@ -460,10 +571,7 @@
 /*********************************Footer Classes******************************************/
 .footwrapper{
 	padding:10px 40px 20px 40px;
-	background-color:#fff;
 	margin-top:0px;
-	top: -1px;
-	position:relative;
 }
 
 .hr-primary{
@@ -500,6 +608,15 @@
 }
 
 /****************************************Navigation Classes*****************************/
+@mixin navigation-link-animations($color:$global-bg-color){
+	&:hover{
+		background-color:rgba($color, 0.5);
+	}
+	&:active{
+		background-color:$color;
+	}
+}
+
 .navigationpanel{
 	position:fixed;
 	top:0px;
@@ -514,8 +631,6 @@
 		display:inline-block;
 		height:$navigation-bar-height;
 		padding: $logo-top-bottom-padding 
-				$navigation-element-padding 
-				$logo-top-bottom-padding 
 				$navigation-element-padding;
 		img{
 			display:inline;
@@ -536,15 +651,19 @@
 				vertical-align: top;
 				display:inline-block;
 				padding:0;
+				background-color:$white;
 				@include vertical-center-text($navigation-bar-height);
+				@include transition-duration(0.3s);
+				@include navigation-link-animations();
 				a{
 					display:block;
 					height:100%;
-					padding:0px $navigation-element-padding 0px $navigation-element-padding;
+					padding:0px $navigation-element-padding;
 					cursor:pointer;
 				}
 				&:last-child{
 					width:$search-box-width;
+					@include navigation-link-animations($white);
 				}
 			}
 		}
@@ -553,8 +672,9 @@
 		vertical-align:top;
 		display:inline-block;
 		float:right;
-		padding: 0px $navigation-element-padding 0px $navigation-element-padding;
+		padding: 0px $navigation-element-padding;
 		@include vertical-center-text($navigation-bar-height);
+		@include navigation-link-animations();
 	}
 
 }
@@ -566,10 +686,11 @@
 	top: $navigation-bar-height + 10;
 	@include hide-this(auto);
 	@include box-shadow(0 0 3px #999);
-	@include transition-duration(.2s);
+	@include transition-duration(0.2s);
 	@include transition-property(opacity);
+	@include transition-delay(0.1s);
 	li{
-		padding: $dropdown-element-padding;
+		@include navigation-link-animations();
 	}
 	.go-back{
 		display:none;
@@ -585,10 +706,12 @@
 		border-right: 9px solid transparent;
 	}
 	&.open{
+		display:block;
 		z-index: 700;
 		opacity:1;
 	}
 	a{
+		padding: $dropdown-element-padding;
 		display:block;
 		width:100%;
 		height:100%;
@@ -629,14 +752,15 @@
 				background: $modal-overlay-color;
 				@include hide-this(block, -10);
 				@include transition-duration(.4s);
+				@include transition-property(opacity);
+				@include transition-delay(0.1s);
 			}
 		.navigationpanel{
 			height:100%;
 			width:$mobile-navpanel-width;
 			padding:0px;
-			left:-275px;
+			@include translateX(-275px);
 			@include transition-duration(.4s);
-			@include transition-property(left);
 			.bpsf-logo{
 				display:block;
 				width:100%;
@@ -675,12 +799,11 @@
 		}
 		&.open{
 			.navigationpanel{
-				left:0px;
+				@include translateX(0px);
 			}
 			.modalscreen{
 				z-index: 799;
 			    opacity:1;
-			    left:0;
 			}
 		}
 	}
@@ -715,6 +838,7 @@
 			z-index: 810;
 		}
 	}
+	$navigation-burger-bar-color:#333;
 	.navigationburgerbar{
 			display:block;
 			opacity:1;
@@ -723,35 +847,41 @@
 			top:0px;
 			width:100%;
 			text-align: center;
-			color: $white;
-			background-color:$primary-color;
+			color:$navigation-burger-bar-color;
+			background-color:$white;
 			@include vertical-center-text($mobile-navbar-height);
 			@include box-shadow(0 0 7px $shadow-color);
 			.burger {
 				position: absolute;
 				float: left;
-				padding: 10px;
+				padding: 5px 15px;
 				top: 4px;
-				left: 10px;
+				left: 0px;
 				display: block;
 				cursor: pointer;
 				z-index: 10;
+				@include transition-duration(0.1s);
 				li {
 					width: 30px;
 					height: 4px;
-					background-color: $white;
+					background-color:$navigation-burger-bar-color;
 					border-radius: 3px;
 					margin: 5px 0;
 				}
+				&:active{
+					@include scale(0.85);
+				}
 			}
 			.input{
-				background-color:$primary-color;
+				background-color:$white;
 				border:none;
-				color:$white;
-				@include placeholder-color(darken($white, 10%));
+				border-left:solid 1px (lighten($navigation-burger-bar-color, 25%));
+				@include border-radius(0px);
+				color:$navigation-burger-bar-color;
+				@include placeholder-color(darken($white, 20%));
 				font-size: $large;
 				height:$mobile-navbar-height;
-				margin-left: 55px;
+				margin-left: 60px;
 				@include respond(all-phones){
 					font-size: $med;
 				}

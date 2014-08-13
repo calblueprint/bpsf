@@ -1,8 +1,8 @@
 class AdminCrowdsuccessJob
   include SuckerPunch::Job
 
-  def perform(grant,user)
-    ::UserMailer.admin_crowdsuccess(grant, user).deliver
+  def perform(grant, admin)
+    ::UserMailer.admin_crowdsuccess(grant, admin).deliver
   end
 
 end

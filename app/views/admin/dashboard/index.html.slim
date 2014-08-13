@@ -1,3 +1,4 @@
+- title "Admin Dashboard"
 .row
   .twelve.columns
     .wrapper.light
@@ -17,6 +18,8 @@
                   a href="#"  Pending Users
                 li#distributions
                   a href="#"  Data Distributions
+                li#csv
+                  a href="#"  CSV
           .tab-content
             #grants-tab
           .tab-content
@@ -36,6 +39,8 @@
                 = will_paginate @pending_users
           .tab-content
             #distributions-tab
+          .tab-content
+            = render partial: 'csv_form'
 javascript:
   $('#grants').click(function(){
     $.get('/admin/load_grants');

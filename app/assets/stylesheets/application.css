@@ -12,6 +12,7 @@
  *= require jquery.Jcrop
  *= require gumby
  *= require toastr
+ *= require phrasing
  */
 
 .table-message {

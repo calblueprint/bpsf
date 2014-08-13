@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.13'
 
 gem 'pg', '0.12.2'
-gem 'rb-readline', '~> 0.4.2'
 gem 'faker', '1.0.1'
 gem 'jquery-rails', '2.0.2'
 gem 'cancan', '~> 1.6.10'
@@ -26,6 +25,7 @@ gem 'unf'
 gem 'whenever', :require => false
 gem 'mail_form'
 gem 'draper', '~> 1.3.0'
+gem 'phrasing', '~> 3.2.5'
 
 
 group :development, :test do

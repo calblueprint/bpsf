@@ -54,7 +54,7 @@
       padding: 0 ms(-1);
     }
   }
-  
+
   &.oval {
     @include shape(oval);
   }
@@ -159,4 +159,8 @@
       }
     }
   }
+}
+
+.btn.btn-with-padding {
+  margin: 5px;
 }
