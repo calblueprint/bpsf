@@ -1,39 +1,39 @@
 - title "Sign Up"
 .row
-  .twelve.columns
-    .wrapper.light
+  .wrapper.light
+    = form_for resource, :as => resource_name, :url => registration_path(resource_name) do |f|
       .row
-        .five.columns.centered
-          h2 Sign up
-          = form_for resource, :as => resource_name, :url => registration_path(resource_name) do |f|
-            = devise_error_messages!
-            .field
-              = f.label :first_name
-              = f.text_field :first_name, class: :input
-            .field
-              = f.label :last_name
-              = f.text_field :last_name, class: :input
-            .field
-              = f.label :email
-              = f.email_field :email, class: :input
-            .field
-              = f.label :password
-              = f.password_field :password, class: :input
-            .field
-              = f.label :password_confirmation
-              = f.password_field :password_confirmation, class: :input
-            .field
-              span
-                | Type
-            .field.metro
+        .six.columns
+          h2 Register as 
+          .field.metro
               .picker
-                = f.select :type, options_for_select([['Friend/Family Member', 'User'], ['Teacher', 'Recipient'], 'Admin']), :include_blank => "Are you a..."
-            .field
-              label.checkbox
-                = f.check_box :terms_of_service
-                span
-                | &nbsp; I accept the <div id="terms_conditions">terms and conditions</div>
-            .medium.primary.btn
-              = f.submit "Sign up"
+                = f.select :type, options_for_select([['Friend/Family Member', 'User'], ['Teacher', 'Recipient'], 'Admin'])
+        .five.columns
+          = devise_error_messages!
+          .field
+            = f.label :first_name
+            = f.text_field :first_name, class: :input
+          .field
+            = f.label :last_name
+            = f.text_field :last_name, class: :input
+          .field
+            = f.label :email
+            = f.email_field :email, class: :input
+          .field
+            = f.label :password
+            = f.password_field :password, class: :input
+          .field
+            = f.label :password_confirmation
+            = f.password_field :password_confirmation, class: :input
+          .field
+            span
+              | Type
+          .field
+            label.checkbox
+              = f.check_box :terms_of_service
+              span
+              | &nbsp; I accept the <div id="terms_conditions">terms and conditions</div>
+          .medium.primary.btn
+            = f.submit "Sign up"
 #terms-view
   = render "devise/shared/terms_modal"
