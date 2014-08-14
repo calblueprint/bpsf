@@ -4,11 +4,13 @@
     = form_for resource, :as => resource_name, :url => registration_path(resource_name) do |f|
       .row
         .six.columns
-          h2 Register as 
-          .field.metro
-              .picker
+          h2.inlined Register as 
+          .field.inlined
+              .inlined-picker.h2-font
                 = f.select :type, options_for_select([['Friend/Family Member', 'User'], ['Teacher', 'Recipient'], 'Admin'])
-        .five.columns
+          p This is planned to be some text describing the account and what the account can do and what it is useful for. This text will change based on the option for account type so every type gets proper attention. The text will also explain restrictions on account types better.
+          p Another benefit is it should prevent stupid registrations because they realize they will need approval to be a teacher or admin. Hopefully this can also further make the sale so people will be even more willing to register and donate.
+        .five.columns.push_one
           = devise_error_messages!
           .field
             = f.label :first_name
