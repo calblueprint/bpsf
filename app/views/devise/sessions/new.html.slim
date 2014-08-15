@@ -16,9 +16,11 @@
           = form_for resource, as: resource_name, url: session_path(resource_name) do |f|
             ul
               li.field
-                = f.email_field :email, :autofocus => true, class: [:xxwide, :text, :input], placeholder: "Email"
+                = f.label :email
+                = f.email_field :email, :autofocus => true, class: [:xxwide, :text, :input]
               li.field
-                = f.password_field :password, class: [:input, :text, :xxwide], placeholder: "Password"
+                = f.label :password
+                = f.password_field :password, class: [:input, :text, :xxwide]
               - if devise_mapping.rememberable?
                 li.field.passless.marginless.pull_right
                   label.checkbox for="user_remember_me" 
