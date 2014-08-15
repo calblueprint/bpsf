@@ -99,9 +99,8 @@
 
 //Containers
 	.wrapper{
-		padding:10px 10px 20px 10px;
-		&.dark{background-color:#000;}
-		&.light{background-color:#fff;}
+		padding:20px;
+		background-color:#fff;
 		&.homewrap{padding: 25px;}
 	}//Page wrapper
 	.bare-wrapper{
