@@ -29,7 +29,8 @@
     width: 100%;
     font-size: 100%;
     cursor: pointer;
-    font-weight: $type-font-weight;
+    font-family: $font-family;
+    font-weight: $font-weight-light;
     @include appearance(none);
   }
 }

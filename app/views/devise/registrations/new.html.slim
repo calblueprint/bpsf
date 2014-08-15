@@ -10,6 +10,11 @@
                 = f.select :type, options_for_select([['Friend/Family Member', 'User'], ['Teacher', 'Recipient'], 'Admin'])
           p This is planned to be some text describing the account and what the account can do and what it is useful for. This text will change based on the option for account type so every type gets proper attention. The text will also explain restrictions on account types better.
           p Another benefit is it should prevent stupid registrations because they realize they will need approval to be a teacher or admin. Hopefully this can also further make the sale so people will be even more willing to register and donate.
+          p 
+            br
+            | Already registered?
+          .btn.medium.primary
+            = link_to "Sign In", new_user_session_path
         .five.columns.push_one
           = devise_error_messages!
           .field
