@@ -43,19 +43,43 @@
         span.goalnum
           | $#{@grant.funding_goal}
     = render 'donate_button', grant: @grant
-    .row
-      .ten.columns.centered
-        h3 Project Idea
-        .twelve.columns
-          h5
-            strong Purpose
-          = @grant.purpose
-          h5
-            strong Methods
-          = @grant.methods
-          h5
-            strong Teacher Background
-          = @grant.background
+    - if admin_user?
+      .seven.columns.pull_left
+        .row
+          .ten.columns.centered
+            h3 Project Idea
+            .twelve.columns
+              h5
+                strong Purpose
+              = @grant.purpose
+              h5
+                strong Methods
+              = @grant.methods
+              h5
+                strong Teacher Background
+              = @grant.background
+      .four.columns
+        h3 Donors 
+        ul#donorlist.mousescroll
+          - @donors.each do |u|
+            li
+              = u[0].name
+              | &nbsp;-&nbsp;
+              = u[0].email
+    - else
+      .row
+        .ten.columns.centered
+          h3 Project Idea
+          .twelve.columns
+            h5
+              strong Purpose
+            = @grant.purpose
+            h5
+              strong Methods
+            = @grant.methods
+            h5
+              strong Teacher Background
+            = @grant.background
     = @grant.video_large
     .row
       .ten.columns.centered
