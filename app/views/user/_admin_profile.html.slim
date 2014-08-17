@@ -1,9 +1,17 @@
-h5 Position
-= profile.position
-h5 About
-= profile.about
+.row
+  .five.columns
+    h5.pull_right Position
+  .seven.columns
+    = profile.position
+.row
+  .five.columns
+    h5.pull_right About
+  .seven.columns
+    = profile.about
 .row
   - if profile.address
-    h5 Address
-    = profile.address
-    | , #{profile.city} #{profile.zipcode}, #{profile.state}
+    .five.columns
+      h5.pull_right Address
+    .seven.columns
+      = profile.address
+      | , #{profile.city} #{profile.zipcode}, #{profile.state}

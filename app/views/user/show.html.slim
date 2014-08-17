@@ -18,19 +18,18 @@
               a href="#"  Change Password
       .tab-content.active
         .row
-          .twelve.columns.centered.centalign
+          .seven.columns.push_five
             br
             - if @user.eql? current_user
               .medium.primary.btn
                 = link_to 'Edit Profile<i class="icon-pencil"></i>'.html_safe, edit_user_path(id: @user.id)
-            br
-            br
-        .row
-          .six.columns
-              h3.pull_right Email
-          .six.columns
-            = @user.email
         br
+        br
+        .row
+          .five.columns
+              h5.pull_right Email
+          .seven.columns
+            = @user.email
         = render profile_for(@user), user: @user, profile: @profile
         br
       .tab-content
