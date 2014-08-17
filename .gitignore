@@ -40,3 +40,5 @@
 # Ignore image uploads
 /public/uploads/tmp/*
 
+# Ignore application configuration
+/config/application.yml
