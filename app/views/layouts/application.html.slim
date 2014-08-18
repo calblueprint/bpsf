@@ -23,7 +23,7 @@ html
         .row
           .danger.alert This website is built to take advantage of javascript. Please enable it in your browser settings.
 
-      -if current_page?(root_url)
+      -if current_controller?('pages')
         = yield
       -else
         .row
