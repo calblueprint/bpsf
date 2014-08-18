@@ -545,11 +545,11 @@
 	}
 
 //Teacher Dashboard
-	.destroy_grant{
+	.destroy_grant_button{
 		@extend .toggle_reject;
 	}
 
-	.edit_grant{
+	.edit_grant_button{
 		@extend .toggle_crowdfund;
 	}
 
