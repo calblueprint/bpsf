@@ -1,3 +1,6 @@
+@import "custom/superslides";
+@import "custom/inlinedforms";
+
 //Custom Variables
 
 	//Global
@@ -95,12 +98,6 @@
 
 
 //Containers
-	.wrapper{
-		padding:10px 10px 20px 10px;
-		&.dark{background-color:#000;}
-		&.light{background-color:#fff;}
-		&.homewrap{padding: 25px;}
-	}//Page wrapper
 	.bare-wrapper{
 	    padding: 0px 30px;
 	}
@@ -108,6 +105,7 @@
 		@include box-shadow(0px 0 10px $shadow-color);
 		background-color:#fff;
 		margin-bottom:20px;
+		padding:20px;
 	}
 
 	.fluid_container {
@@ -570,7 +568,7 @@
 
 /*********************************Footer Classes******************************************/
 .footwrapper{
-	padding:10px 40px 20px 40px;
+	padding:30px 20px 0px 20px;
 	margin-top:0px;
 }
 
