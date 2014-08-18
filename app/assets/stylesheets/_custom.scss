@@ -472,6 +472,19 @@
 		}
 	}
 
+	#donorlist {
+    height: 400px;
+		ul {
+		  list-style-type: none;
+		}
+	}
+	.mousescroll {
+	  overflow: hidden;
+	}
+	.mousescroll:hover {
+	  overflow-y: scroll;
+	}
+
 	//Video Styles
 	.video-container {
 	    position: relative;
