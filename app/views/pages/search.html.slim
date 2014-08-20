@@ -1,5 +1,7 @@
 - title "Friends & Family Grants"
 .bp-search data-bp-controller='SearchController'
 	.row
-	  h2.centalign Search Results
-	= render partial: 'crowdfunding_grants', collection: @grants, as: :grant
+	  .page-wrapper
+			.row
+			  h2.centalign Search Results
+			= render partial: 'crowdfunding_grants', collection: @grants, as: :grant
