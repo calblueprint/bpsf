@@ -12,21 +12,20 @@
         = link_to "Sign Up", new_user_registration_path
     .five.columns.push_one
       = form_for resource, as: resource_name, url: session_path(resource_name) do |f|
-        ul
-          li.field
-            = f.label :email
-            = f.email_field :email, :autofocus => true, class: [:xxwide, :text, :input]
-          li.field
-            = f.label :password
-            = f.password_field :password, class: [:input, :text, :xxwide]
-          - if devise_mapping.rememberable?
-            li.field.passless.marginless.pull_right
-              label.checkbox for="user_remember_me" 
-                = f.check_box :remember_me
-                span
-                  i.icon-check
-                | &nbsp; Remember me
-          li= render "devise/shared/links"
+        .field
+          = f.label :email
+          = f.email_field :email, :autofocus => true, class: [:input]
+        .field
+          = f.label :password
+          = f.password_field :password, class: [:input]
+        - if devise_mapping.rememberable?
+          .field.passless.marginless.pull_right
+            label.checkbox for="user_remember_me" 
+              = f.check_box :remember_me
+              span
+              | &nbsp; Remember me
+        = render "devise/shared/links"
         br/
         .medium.primary.btn.pull_right
           = f.submit 'Sign in'
+
