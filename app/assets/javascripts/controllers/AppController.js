@@ -133,12 +133,12 @@
 				if(me.isJQuery(arguments[i])){
 					arguments[i].addClass('active');
 					//
-					arguments[i].addClass('open');
+//					arguments[i].addClass('open');
 					//
 				} else {
 					arguments[i].className += arguments[i].className ? ' active' : 'active';
 					//
-					arguments[i].className += ' open';
+//					arguments[i].className += ' open';
 					//
 				}
 
@@ -162,14 +162,11 @@
 				if(me.isJQuery(arguments[i])){
 					arguments[i].removeClass('active');
 					//
-					arguments[i].removeClass('open');
+//					arguments[i].removeClass('open');
 					//
 				} else {
 					while(arguments[i].className.indexOf('active') > 0){
 						arguments[i].className = arguments[i].className.replace('active', '');
-						//
-						arguments[i].className = arguments[i].className.replace('open', '');
-						//
 					}
 				}
 

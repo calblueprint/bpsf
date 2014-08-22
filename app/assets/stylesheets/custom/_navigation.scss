@@ -89,7 +89,7 @@
 		border-left: 9px solid transparent;
 		border-right: 9px solid transparent;
 	}
-	&.open{
+	&.active{
 		display:block;
 		z-index: 700;
 		opacity:1;
@@ -181,7 +181,7 @@
 				}
 			}
 		}
-		&.open{
+		&.active{
 			.navigationpanel{
 				@include translateX(0px);
 			}
@@ -217,7 +217,7 @@
 				@include vertical-center-text($navigation-bar-height - 10);
 			}
 		}
-		&.open{
+		&.active{
 			left:0px;
 			z-index: 810;
 		}
