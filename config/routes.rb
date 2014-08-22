@@ -50,7 +50,6 @@ BPSF::Application.routes.draw do
     get '/load_distributions',  to: 'dashboard#load_distributions'
     post '', to: 'dashboard#index', as: :filter_school
     post '', to: 'dashboard#index', as: :filter_donated
-    post '/csv', to: 'dashboard#generate_csv'
   end
 
   post 'crowdfund/create'
