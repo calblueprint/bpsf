@@ -1,6 +1,25 @@
 // Welcome to Gumby 2.0 Settings.
 // Happy Tinkering!
 
+//*****************
+//CUSTOM VARIABLES
+//*****************
+
+//Global
+$shadow-color: rgb(120, 120, 120);
+
+//Navigation Bar
+$navigation-bar-height: 75px;
+$logo-top-bottom-padding : 4px;
+$navigation-element-padding : 18px;
+$dropdown-element-padding : 10px;
+$search-box-width: 320px;
+
+$mobile-navbar-height: 55px;
+$mobile-navpanel-width: 250px;
+$mobile-search-width: $mobile-navpanel-width - 10;
+
+//*****************
 
 // Grid Settings
 $row-max-width: 1040px !default;    				// 940px
