@@ -19,8 +19,6 @@
                     a href="#"  Pending Users
                   li#distributions
                     a href="#"  Data Distributions
-                  li#csv
-                    a href="#"  CSV
             .tab-content data-bp-get='/admin/load_grants'
               #grants-tab
             .tab-content
@@ -40,9 +38,6 @@
                   = will_paginate @pending_users
             .tab-content data-bp-get='/admin/load_distributions'
               #distributions-tab
-            .tab-content
-              = render partial: 'csv_form'
-
 javascript:
   //$('#grants').click(function(){
   //  $.get('/admin/load_grants');
