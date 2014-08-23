@@ -59,7 +59,7 @@
 			}
 			me.bindLoader();
 			me.bindEscElements();
-			me.checkboxBind();
+
 
 			$(document).one('page:fetch',function(){
 				me.deactivateControllers();
