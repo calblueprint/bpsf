@@ -59,7 +59,7 @@
 			}
 			me.bindLoader();
 			me.bindEscElements();
-
+			me.checkboxBind();
 
 			$(document).one('page:fetch',function(){
 				me.deactivateControllers();
@@ -165,10 +165,12 @@
 					arguments[i].removeClass('open');
 					//
 				} else {
-					arguments[i].className = arguments[i].className.replace('active', '');
-					//
-					arguments[i].className = arguments[i].className.replace('open', '');
-					//
+					while(arguments[i].className.indexOf('active') > 0){
+						arguments[i].className = arguments[i].className.replace('active', '');
+						//
+						arguments[i].className = arguments[i].className.replace('open', '');
+						//
+					}
 				}
 
 				me.removeActiveElement(arguments[i]);
