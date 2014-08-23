@@ -1,44 +1,46 @@
 - title "Sign Up"
-= form_for resource, :as => resource_name, :url => registration_path(resource_name) do |f|
-  .row
-    .six.columns
-      h2.inlined Register as 
-      .field.inlined
-          .inlined-picker.h2-font
-            = f.select :type, options_for_select([['Friend/Family Member', 'User'], ['Teacher', 'Recipient'], 'Admin'])
-      p This is planned to be some text describing the account and what the account can do and what it is useful for. This text will change based on the option for account type so every type gets proper attention. The text will also explain restrictions on account types better.
-      p Another benefit is it should prevent stupid registrations because they realize they will need approval to be a teacher or admin. Hopefully this can also further make the sale so people will be even more willing to register and donate.
-      p 
-        br
-        | Already registered?
-      .btn.medium.primary
-        = link_to "Sign In", new_user_session_path
-    .five.columns.push_one
-      = devise_error_messages!
-      .field
-        = f.label :first_name
-        = f.text_field :first_name, class: :input
-      .field
-        = f.label :last_name
-        = f.text_field :last_name, class: :input
-      .field
-        = f.label :email
-        = f.email_field :email, class: :input
-      .field
-        = f.label :password
-        = f.password_field :password, class: :input
-      .field
-        = f.label :password_confirmation
-        = f.password_field :password_confirmation, class: :input
-      .field
-        span
-          | Type
-      .field
-        label.checkbox
-          = f.check_box :terms_of_service
+.bp-registration data-bp-controller='RegistrationController'
+  = form_for resource, :as => resource_name, :url => registration_path(resource_name) do |f|
+    .row
+      .six.columns
+        h2.inlined Register as 
+        .field.inlined
+            .inlined-picker.h2-font
+              = f.select :type, options_for_select([['Friend/Family Member', 'User'], ['Teacher', 'Recipient'], 'Admin'])
+        p This is planned to be some text describing the account and what the account can do and what it is useful for. This text will change based on the option for account type so every type gets proper attention. The text will also explain restrictions on account types better.
+        p Another benefit is it should prevent stupid registrations because they realize they will need approval to be a teacher or admin. Hopefully this can also further make the sale so people will be even more willing to register and donate.
+        p 
+          br
+          | Already registered?
+        .btn.medium.primary
+          = link_to "Sign In", new_user_session_path
+      .five.columns.push_one
+        = devise_error_messages!
+        .field
+          = f.label :first_name
+          = f.text_field :first_name, class: :input
+        .field
+          = f.label :last_name
+          = f.text_field :last_name, class: :input
+        .field
+          = f.label :email
+          = f.email_field :email, class: :input
+        .field
+          = f.label :password
+          = f.password_field :password, class: :input
+        .field
+          = f.label :password_confirmation
+          = f.password_field :password_confirmation, class: :input
+        .field
           span
-          | &nbsp; I accept the <div id="terms_conditions">terms and conditions</div>
-      .medium.primary.btn
-        = f.submit "Sign up"
-#terms-view
-  = render "devise/shared/terms_modal"
+            | Type
+        .field
+          label.checkbox
+            = f.check_box :terms_of_service
+            span
+            | &nbsp; I accept the 
+            a.primary-color data-bp-modal='#terms' terms and conditions
+        .medium.primary.btn
+          = f.submit "Sign up"
+  #terms-view
+    = render "devise/shared/terms_modal"
