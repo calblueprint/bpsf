@@ -41,7 +41,5 @@
                   = will_paginate @pending_users
             .tab-content data-bp-get='/admin/load_distributions'
               #distributions-tab
-javascript:
-  $('#distributions').click(function(){
-    $.get('/admin/load_distributions');
-  });
+            .tab-content
+              = render partial: 'csv_form'
