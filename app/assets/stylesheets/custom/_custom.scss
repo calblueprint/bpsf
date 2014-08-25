@@ -331,10 +331,6 @@
 	}
 
 //Javascript Hover/Modal Classes
-	.modal{
-		@include transition-duration(0.5s)
-	}
-
 	.open{
 		left:0px;
 	}
