@@ -295,10 +295,8 @@
 		activateTab();
 
 		function deactivateTab(){
-			var tabObject = me.getActiveTab(buttons, tabs);
-			if(tabObject){
-				me.deactivateElements(tabObject.button, tabObject.tab);
-			}
+			me.deactivateElements.apply(me, buttons);
+			me.deactivateElements.apply(me, tabs);
 		}
 
 		function activateTab(button, tab){
