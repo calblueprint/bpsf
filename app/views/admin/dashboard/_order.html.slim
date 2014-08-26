@@ -1,0 +1,7 @@
+.row
+  .twelve.columns
+    span.category.pull_left Order By:&emsp;
+    li.field.metro.inlined
+      .picker
+        = form_tag(:action => :index, :id => 'filter_donated') do
+          = select_tag "order", options_for_select(["Title","Created Date", "Last Updated Date"], params[:order]), :onchange => "this.form.submit()"

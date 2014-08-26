@@ -9,8 +9,17 @@ class Admin::DashboardController < ApplicationController
       raise CanCan::AccessDenied.new
     end
     
-    @grants = (Grant.includes(:school).all-DraftGrant.all).sort_by(&:order_status).paginate :page => params[:page], :per_page => 6
-    
+    @grants = (Grant.includes(:school).all-DraftGrant.all).sort_by! {|g| [g.order_status, g.title]}
+    order = params[:order]
+    if order && order == 'Title'
+      @grants.sort_by! {|g| [g.order_status, g.title]}
+    elsif order && order == 'Created Date'
+      @grants.sort_by! {|g| [g.order_status, g.created_at]}
+    elsif order && order == 'Last Updated Date'
+      @grants.sort_by! {|g| [g.order_status, g.updated_at]}
+    end
+    @grants = @grants.paginate :page => params[:page], :per_page => 6
+
     @donors = User.donors
     donated = params[:donated]
     if donated && donated == 'Donated'
