@@ -18,6 +18,7 @@ class Admin::DashboardController < ApplicationController
     elsif donated && donated == 'Have Not Donated'
       @donors = User.donors.select {|user| user.payments.length == 0}
     end
+    @donors.sort_by! {|u| [u.last_name, u.first_name]}
     @donors = @donors.paginate :page => params[:page], :per_page => 6
 
     @recipients = Recipient.all
@@ -26,6 +27,7 @@ class Admin::DashboardController < ApplicationController
       schoolId = School.find_by_name(school).id
       @recipients = Recipient.select {|recip| recip.profile.school_id == schoolId }
     end
+    @recipients.sort_by! {|u| [u.last_name, u.first_name]}
     @recipients = @recipients.paginate :page => params[:page], :per_page => 6
     
     @pending_users = User.where approved: false
