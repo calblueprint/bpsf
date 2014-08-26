@@ -24,7 +24,7 @@
         = @grant.banner classes: 'coverholder'
       .row.centalign
         .eleven.columns.centered
-          p.largefont= @grant.summary
+          p.largefont= simple_format(@grant.summary)
         br/
       .row.padada
         .ten.columns.centered.centalign
@@ -52,13 +52,13 @@
               .twelve.columns
                 h5
                   strong Purpose
-                = @grant.purpose
+                = simple_format(@grant.purpose)
                 h5
                   strong Methods
-                = @grant.methods
+                = simple_format(@grant.methods)
                 h5
                   strong Teacher Background
-                = @grant.background
+                = simple_format(@grant.background)
         .four.columns
           h3 Donors 
           ul#donorlist.mousescroll
@@ -74,13 +74,13 @@
             .twelve.columns
               h5
                 strong Purpose
-              = @grant.purpose
+              = simple_format(@grant.purpose)
               h5
                 strong Methods
-              = @grant.methods
+              = simple_format(@grant.methods)
               h5
                 strong Teacher Background
-              = @grant.background
+              = simple_format(@grant.background)
       = @grant.video_large
       .row
         .ten.columns.centered
@@ -128,13 +128,13 @@
             br/
             h5
               strong Description
-            = @grant.budget_desc
+            = simple_format(@grant.budget_desc)
             h5
               strong Use of Funds
             = @grant.use_of_funds
       .row
         .ten.columns.centered
-          = @grant.comments_section
+          = simple_format(@grant.comments_section)
       = render 'donate_button', grant: @grant
 
   = render 'payment_modal', grant: @grant, payment: @payment
