@@ -14,9 +14,9 @@ class Admin::DashboardController < ApplicationController
     if order && order == 'Title'
       @grants.sort_by! {|g| [g.order_status, g.title]}
     elsif order && order == 'Created Date'
-      @grants.sort_by! {|g| [g.order_status, g.created_at]}
+      @grants.sort_by! {|g| g.created_at}
     elsif order && order == 'Last Updated Date'
-      @grants.sort_by! {|g| [g.order_status, g.updated_at]}
+      @grants.sort_by! {|g| g.updated_at}
     end
     @grants = @grants.paginate :page => params[:page], :per_page => 6
 
