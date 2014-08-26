@@ -6,6 +6,7 @@ var NavigationController = function(documentObject){
 	me.init = function(){
 		me.modalBind();
 		me.dropDownBind();
+		me.mobileNavBind();
 	}
 	
 }
