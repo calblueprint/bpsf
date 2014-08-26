@@ -11,12 +11,14 @@ class Admin::DashboardController < ApplicationController
     
     @grants = (Grant.includes(:school).all-DraftGrant.all).sort_by! {|g| [g.order_status, g.title]}
     order = params[:order]
-    if order && order == 'Title'
+    if order && order == 'Status'
       @grants.sort_by! {|g| [g.order_status, g.title]}
-    elsif order && order == 'Created Date'
-      @grants.sort_by! {|g| g.created_at}
+    elsif order && order == 'Title'
+      @grants.sort_by! {|g| g.title}
+    elsif order && order == 'Last Created Date'
+      @grants.sort_by! {|g| g.created_at}.reverse!
     elsif order && order == 'Last Updated Date'
-      @grants.sort_by! {|g| g.updated_at}
+      @grants.sort_by! {|g| g.updated_at}.reverse!
     end
     @grants = @grants.paginate :page => params[:page], :per_page => 6
 
