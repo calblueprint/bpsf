@@ -20,6 +20,7 @@
                   li#distributions
                     a href="#"  Data Distributions
             .tab-content
+              = render 'order'
               = render partial: 'shared/table', locals: { heads: ["Name", "Status", "Teacher, School"], partials: [['all_grants', @grants, :grant, "There are no grants"]] }
               .ten.columns.centered.centalign
                 = will_paginate @grants
@@ -44,4 +45,3 @@ javascript:
   $('#distributions').click(function(){
     $.get('/admin/load_distributions');
   });
-  
