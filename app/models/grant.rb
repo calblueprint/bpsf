@@ -156,8 +156,10 @@ class Grant < ActiveRecord::Base
     @payments = Payment.where crowdfund_id: crowdfunder
     @payments.each do |payment|
       unless payment.charge_id
+        user = User.find payment.user_id
         payment.status = "Cancelled"
         payment.save!
+        UserCrowdfailedJob.new.async.perform(user,self)
       end
     end
   end
