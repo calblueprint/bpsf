@@ -19,8 +19,10 @@
                     a href="#"  Pending Users
                   li#distributions
                     a href="#"  Data Distributions
-            .tab-content data-bp-get='/admin/load_grants'
-              #grants-tab
+            .tab-content
+              = render partial: 'shared/table', locals: { heads: ["Name", "Status", "Teacher, School"], partials: [['all_grants', @grants, :grant, "There are no grants"]] }
+              .ten.columns.centered.centalign
+                = will_paginate @grants
             .tab-content
               = render 'donated'
               = render partial: 'shared/table', locals: { heads: %w[Name Email], partials: [['users', @donors, :user, "There are no users"]] }
@@ -39,10 +41,7 @@
             .tab-content data-bp-get='/admin/load_distributions'
               #distributions-tab
 javascript:
-  //$('#grants').click(function(){
-  //  $.get('/admin/load_grants');
-  //});
-
-  //$('#distributions').click(function(){
-  //  $.get('/admin/load_distributions');
-  //});
+  $('#distributions').click(function(){
+    $.get('/admin/load_distributions');
+  });
+  
