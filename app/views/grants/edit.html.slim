@@ -17,7 +17,7 @@
             h4 Title: #{@grant}
           .row
             h4 Summary
-            = @grant.summary
+            = simple_format(@grant.summary)
           .row
             h4 Image
             = @grant.banner
@@ -64,7 +64,7 @@
             = @grant.use_of_funds
           .row
             h4 Budget description
-            = @grant.budget_desc
+            = simple_format(@grant.budget_desc)
       /! METHODS
       .row.ultitle
         h3
@@ -74,13 +74,13 @@
         .eleven.columns.push_one
           .row
             h4 Purpose
-            = @grant.purpose
+            = simple_format(@grant.purpose)
           .row
             h4 Methods
-            = @grant.methods
+            = simple_format(@grant.methods)
           .row
             h4 Teacher background
-            = @grant.background
+            = simple_format(@grant.background)
           .row
             h4 Comments
-            = @grant.comments
+            = simple_format(@grant.comments)

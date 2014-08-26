@@ -25,7 +25,7 @@ h2.ultitle Preview
       .repson= grant
 .row.centalign
   .eleven.columns.centered
-    p.largefont= grant.summary
+    p.largefont= simple_format(grant.summary)
   br/
 .row.padada
   .ten.columns.centered.centalign
@@ -53,13 +53,13 @@ hr/
     h3 Project Idea
     h5
       strong Purpose
-    = grant.purpose
+    = simple_format(grant.purpose)
     h5
       strong Methods
-    = grant.methods
+    = simple_format(grant.methods)
     h5
       strong Teacher Background
-    = grant.background
+    = simple_format(grant.background)
 - if !grant.video.blank?
   .row
     .ten.columns.centered
@@ -98,7 +98,7 @@ hr/
     br/
     h5
       strong Description
-    = grant.budget_desc
+    = simple_format(grant.budget_desc)
     h5
       strong Use of Funds
     = grant.funds_will_pay_for.join(", ")
@@ -107,4 +107,4 @@ hr/
     .ten.columns.centalign.centered
       br/
       h3 Additional Comments
-      = grant.comments
+      = simple_format(grant.comments)
