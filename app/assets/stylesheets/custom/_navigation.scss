@@ -187,6 +187,10 @@
 						display:inline-block;
 						text-align: center;
 						border-top:solid 1px #DDD;
+
+						&.user{
+							width:100%;
+						}
 					}
 				}
 			}
