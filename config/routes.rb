@@ -46,8 +46,8 @@ BPSF::Application.routes.draw do
 
   namespace :admin do
     get '',  to: 'dashboard#index', as: :dashboard
-    get '/load_grants',  to: 'dashboard#load_grants'
     get '/load_distributions',  to: 'dashboard#load_distributions'
+    post '', to: 'dashboard#index', as: :filter_order
     post '', to: 'dashboard#index', as: :filter_school
     post '', to: 'dashboard#index', as: :filter_donated
   end

@@ -8,6 +8,20 @@ class Admin::DashboardController < ApplicationController
     if !current_user.approved
       raise CanCan::AccessDenied.new
     end
+    
+    @grants = (Grant.includes(:school).all-DraftGrant.all).sort_by! {|g| [g.order_status, g.title]}
+    order = params[:order]
+    if order && order == 'Status'
+      @grants.sort_by! {|g| [g.order_status, g.title]}
+    elsif order && order == 'Title'
+      @grants.sort_by! {|g| g.title}
+    elsif order && order == 'Last Created Date'
+      @grants.sort_by! {|g| g.created_at}.reverse!
+    elsif order && order == 'Last Updated Date'
+      @grants.sort_by! {|g| g.updated_at}.reverse!
+    end
+    @grants = @grants.paginate :page => params[:page], :per_page => 6
+
     @donors = User.donors
     donated = params[:donated]
     if donated && donated == 'Donated'
@@ -15,6 +29,7 @@ class Admin::DashboardController < ApplicationController
     elsif donated && donated == 'Have Not Donated'
       @donors = User.donors.select {|user| user.payments.length == 0}
     end
+    @donors.sort_by! {|u| [u.last_name, u.first_name]}
     @donors = @donors.paginate :page => params[:page], :per_page => 6
 
     @recipients = Recipient.all
@@ -23,7 +38,9 @@ class Admin::DashboardController < ApplicationController
       schoolId = School.find_by_name(school).id
       @recipients = Recipient.select {|recip| recip.profile.school_id == schoolId }
     end
+    @recipients.sort_by! {|u| [u.last_name, u.first_name]}
     @recipients = @recipients.paginate :page => params[:page], :per_page => 6
+    
     @pending_users = User.where approved: false
     @pending_users = @pending_users.paginate :page => params[:page], :per_page => 6
   end
@@ -33,13 +50,6 @@ class Admin::DashboardController < ApplicationController
     @grant.send params[:state]
     respond_to do |format|
       format.html { redirect_to admin_dashboard_path }
-      format.js
-    end
-  end
-
-  def load_grants
-    @grants = (Grant.includes(:school).all-DraftGrant.all).sort_by(&:order_status).paginate :page => params[:page], :per_page => 6
-    respond_to do |format|
       format.js
     end
   end
