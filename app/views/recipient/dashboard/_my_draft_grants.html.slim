@@ -1,6 +1,6 @@
 tr
   td
     = draft_grant
-  td style="text-align:right;"
-    .destroy_grant_button style="padding:0px;"= link_to 'Edit'.html_safe, edit_draft_path(draft_grant)
-    .edit_grant_button style="padding:0px" = link_to 'Delete'.html_safe, draft_path(draft_grant), :confirm => "Are you sure?", method: :delete
+  td.text-right
+    .destroy-grant-button = link_to 'Edit'.html_safe, edit_draft_path(draft_grant)
+    .edit-grant-button = link_to 'Delete'.html_safe, draft_path(draft_grant), :confirm => "Are you sure?", method: :delete
