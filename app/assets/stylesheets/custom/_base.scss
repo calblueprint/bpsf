@@ -1,0 +1,19 @@
+.bare-wrapper{
+    padding: 0px 30px;
+}
+.page-wrapper{
+	@include box-shadow(0px 0 10px $shadow-color);
+	background-color:#fff;
+	margin-bottom:20px;
+	padding:20px;
+}
+
+.container {
+	overflow: hidden;
+	background-color: $global-bg-color;
+	padding-top:$navigation-bar-height + 15px;
+
+/*  Prevents Flickering  */
+	-webkit-backface-visibility: hidden;
+	-ms-backface-visibility: hidden;
+}

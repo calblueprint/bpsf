@@ -1,0 +1,105 @@
+.home-wrapper{
+	@extend .page-wrapper;
+	padding: 20px 0px;
+	position: relative;
+	z-index: 10;
+	border-top:solid 10px $primary-color;
+	.home-lead{
+		padding:20px;
+		.call-to-action{
+			font-size:$med+2;
+			font-weight:$font-weight-light;
+		}
+		.home-lead-buttons{
+			text-align:right;
+			.btn{
+				margin:0px 10px 10px 10px;
+				display:block;
+			}
+		}
+	}
+	.category-title{
+		@extend h2;
+		padding:0px 20px;
+		display:inline;
+	}
+	.category-form-container{
+		float:right;
+		margin:0px 15px;
+		display:table-cell;
+		.category-form-title{
+			@extend h4;
+			display:inline-block;
+			vertical-align:middle;
+		}
+		.category-form{
+			display:inline-block;
+			margin:5px;
+		}
+		.category-successful{
+			display:inline;
+		}
+		@include respond(all-tablets) {
+			float:none;
+			padding:0px 20px;
+		}
+	}
+
+	.grant-card{
+		overflow:none;
+	    background-color: $white;
+		text-align: left;
+		padding:(25px 0px 25px 0px);
+		border-bottom:1px solid $global-bg-color;
+		cursor: pointer;
+		.grant-info-wrapper{
+			width: 66%; 
+			max-width: 8*$row-max-width/$cols; 
+			display:inline-block; 
+			padding:(0px 20px 0px 10px); 
+			float: right;
+		}
+		.grant-title{
+			margin-bottom:-15px;
+			margin-top:-15px;
+			a {@include transition-duration(0.3s)}
+		}
+		.grant-subtitle{
+			height:$base-line-height*3;
+			overflow:hidden;
+			text-overflow:ellipsis;
+		}
+		.grant-image-wrapper{
+			width: 33%; 
+			max-width: 4*$row-max-width/$cols; 
+			display:inline-block; 
+			padding:(0px 10px 0px 20px); 
+			float: left;
+		}
+		.grant-image{
+			width:100%;
+			overflow:hidden;
+			text-align: center;
+			@include vertical-center-text(150px);
+			img {
+				vertical-align: middle;
+				height: 100%;
+				width: auto;
+			}
+		}
+		@include respond(all-phones){
+			.progressvalues{
+				h3{font-size: $med}
+				span{font-size: $small}
+			}
+		}
+		@include transition-duration(0.3s);
+		&:hover, &:focus{
+			background-color: lighten($global-bg-color, 10%);
+			& .grant-title{ h3{ a{color:$primary-color !important;} } }
+		}
+		&:active{
+			background-color: $global-bg-color;
+		}
+	}
+}
