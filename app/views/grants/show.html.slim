@@ -48,7 +48,7 @@
         .row
           .seven.columns.pull_left
             .row
-              .ten.columns.centered
+              #project.ten.columns.centered
                 h3 Project Idea
                 .twelve.columns
                   h5
@@ -141,3 +141,6 @@
   = render 'payment_modal', grant: @grant, payment: @payment
   = render 'crowdfund_modal', grant: @grant
   = render 'confirmation_modal', payment: @payment
+
+javascript:
+  $('#donorlist').height($('#project').height());
