@@ -1,6 +1,8 @@
+@import "base";
 @import "mixins";
 @import "inlinedforms";
 @import "slideshow";
+@import "home-content";
 @import "progress-bar";
 @import "navigation";
 @import "footer";
@@ -49,133 +51,8 @@
 	.picker{height:40px;}
 
 
-//Containers
-	.bare-wrapper{
-	    padding: 0px 30px;
-	}
-	.page-wrapper{
-		@include box-shadow(0px 0 10px $shadow-color);
-		background-color:#fff;
-		margin-bottom:20px;
-		padding:20px;
-	}
-
-	.fluid_container {
-		margin: 0 auto;
-		max-width: 1200px;
-		width: 100%;
-		position: relative;
-		&:hover, &:active, &:focus{
-			.slidecard{ a{color:$primary-color !important;}}
-		}
-	} // Used for slideshow
-
-	.container {
-		overflow: hidden;
-		background-color: $global-bg-color;
-		padding-top:$navigation-bar-height + 15px;
-
-	/*  Prevents Flickering  */
-		-webkit-backface-visibility: hidden;
-		-ms-backface-visibility: hidden;
-	}
 
 
-//Home Page Styles
-	.home-wrapper{
-		@extend .page-wrapper;
-		position: relative;
-		z-index: 10;
-		border-top:solid 10px $primary-color;
-		.home-lead{
-			padding:20px;
-			.call-to-action{
-				font-size:$med+2;
-				font-weight:$font-weight-light;
-			}
-			.home-lead-buttons{
-				text-align:right;
-				.btn{
-					margin:0px 10px 10px 10px;
-					display:block;
-				}
-			}
-		}
-		.category-title{
-			@extend h2;
-			padding:0px 20px;
-			display:inline;
-		}
-		.category-form-container{
-			float:right;
-			margin:0px 15px;
-			display:table-cell;
-			.category-form-title{
-				@extend h4;
-				display:inline-block;
-				vertical-align:middle;
-			}
-			.category-form{
-				display:inline-block;
-				margin:5px;
-			}
-			.category-successful{
-				display:inline;
-			}
-			@include respond(all-tablets){
-				float:none;
-				padding:0px 20px;
-			}
-		}
-	}
-
-
-	//Grant Cards
-	.infocard{
-		overflow:none;
-	    background-color: $white;
-		text-align: left;
-		padding:(25px 0px 25px 0px);
-		border-bottom:1px solid $global-bg-color;
-		cursor: pointer;
-		& img{
-			width:100%;
-			height:150px;
-		}
-		& .cardtitle{
-			margin-bottom:-15px;
-			margin-top:-15px;
-			a {@include transition-duration(0.3s)}
-		}
-		& .infocardimg{
-			width: 33%; 
-			max-width: 4*$row-max-width/$cols; 
-			display:inline-block; 
-			padding:(0px 10px 0px 20px); 
-			float: left;
-		}
-		& .infocardcontent{
-			width: 66%; 
-			max-width: 8*$row-max-width/$cols; 
-			display:inline-block; 
-			padding:(0px 20px 0px 10px); 
-			float: right;
-		}
-		@include respond(all-phones){
-			.progressvalues{
-				h3{font-size: $med}
-				span{font-size: $small}
-			}
-		}
-		@include transition-duration(0.3s);
-		&:hover, &:focus{
-			background-color: lighten($global-bg-color, 10%);
-			& .cardtitle{ h3{ a{color:$primary-color !important;} } }
-		}
-		&:active{
-			background-color: $global-bg-color;
-		}
-	}
 
 	.imgholder{
 		width:100%;
@@ -188,13 +65,6 @@
 			width: auto;
 		}
 	}
-
-	.cardtext{
-		height:$base-line-height*3;
-		overflow:hidden;
-		text-overflow:ellipsis;
-		}
-
 
 //Grant View Page
 	.coverholder{

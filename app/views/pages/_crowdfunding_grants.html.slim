@@ -1,18 +1,18 @@
-.row.infocard data-bp-turbo='#{url_for grant}'
-  .infocardimg
-    .imgholder
+.row.grant-card data-bp-turbo='#{url_for grant}'
+  .grant-image-wrapper
+    .grant-image
       - if grant.image
         = link_to (image_tag grant.image_url :thumb), grant
       - else
         = link_to (image_tag "/assets/default/Other.jpg"), grant
-  .infocardcontent
-    .cardtitle
+  .grant-info-wrapper
+    .grant-title
       h3= link_to grant, grant
-    p.cardtext
+    p.grant-subtitle
       span.darken
-      = grant.recipient.first_name + ' ' + grant.recipient.last_name + ' | ' + grant.school_name
+        = grant.recipient.first_name + ' ' + grant.recipient.last_name + ' | ' + grant.school_name
       br/
-      span.destext= grant.summary
+      = grant.summary
     span.progressvalues
       h3.inlined.primary-color
         = '$' + grant.crowdfunder_pledged_total.to_s
