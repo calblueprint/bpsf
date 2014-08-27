@@ -17,7 +17,7 @@
       .nav-right
         ul
           - if user_signed_in?
-            li data-bp-dropdown='#user_dropdown'
+            li.user data-bp-dropdown='#user_dropdown'
               a
                 i.icon-user
                 | #{current_user.first_name}
