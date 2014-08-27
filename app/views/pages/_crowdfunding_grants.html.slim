@@ -1,5 +1,6 @@
 .row.grant-card data-bp-turbo='#{url_for grant}'
   .grant-image-wrapper
+    .aspect-ratio-box
     .grant-image
       - if grant.image
         = link_to (image_tag grant.image_url :thumb), grant
