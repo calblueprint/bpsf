@@ -11,17 +11,3 @@
     margin: 1em 0;
     padding: 0;
 }
-
-.social-icon{
-	height:2.5em;
-	width:2.5em;
-	margin:0 0.2em;
-	line-height:2.5em;
-	text-align:center;
-	@include border-radius(1.25em);
-	background-color:$black;
-	i{
-		font-size:1.5em;
-		color:$white;
-	}
-}
