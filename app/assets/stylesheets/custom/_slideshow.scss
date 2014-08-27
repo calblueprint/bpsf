@@ -1,11 +1,23 @@
 .home-slider-container{
-	max-width: 1040px;//1060px;
-	height: 470px;
+	max-width: 1040px;
+	width:100%;
 	margin:0px auto 20px auto;
 	z-index:0;
 	overflow:none;
+	position:relative;
 	@include box-shadow(0px 0 7px $shadow-color);
-	@include respond(all-phones){height:350px;}
+
+	.aspect-ratio-box{
+		content:'';
+		padding-top:$aspect-ratio;
+		display:block;
+	}
+
+	.aspect-ratio-container{
+		position: absolute;
+		top: 0; bottom: 0; right: 0; left: 0;
+	}
+
 	.home-slider{
 		.slides-container{
 			li{
