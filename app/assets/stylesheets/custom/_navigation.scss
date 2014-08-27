@@ -158,7 +158,7 @@
 						width:100%;
 						text-align: left;
 						@include vertical-center-text($navigation-bar-height - 10);
-						&:last-child{
+						&.search-form{
 							display: none;
 							width:$mobile-search-width;
 							padding-right:5px;
@@ -173,11 +173,21 @@
 				display: block;
 				clear:float;
 				width:100%;
+				height:auto;
 				text-align:center;
 				bottom:0px;
 				padding:0px;
 				.icon-down-open-mini{
 					display:none;
+				}
+				ul{
+					text-align: left;
+					li{
+						width:50%;
+						display:inline-block;
+						text-align: center;
+						border-top:solid 1px #DDD;
+					}
 				}
 			}
 		}
