@@ -355,7 +355,7 @@ label + {
   font-family: $font-family;
   font-weight: $font-weight-semibold;
   height: auto;
-  @include background-image(linear-gradient(lighten($default-color, 20%), $default-color));
+  //@include background-image(linear-gradient(lighten($default-color, 20%), $default-color));
   &:after {
     content: "\25BE";
     font-family: $icons;
