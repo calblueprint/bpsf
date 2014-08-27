@@ -165,7 +165,7 @@
 //					arguments[i].removeClass('open');
 					//
 				} else {
-					while(arguments[i].className.indexOf('active') > 0){
+					while(arguments[i].className.indexOf('active') > -1){
 						arguments[i].className = arguments[i].className.replace('active', '');
 					}
 				}
