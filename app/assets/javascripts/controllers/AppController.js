@@ -318,18 +318,28 @@
 
 	AppController.prototype.setActiveTab = function(tabs, tab){
 		var tabIndex = Array.prototype.indexOf.call(tabs, tab);
-
-		sessionStorage.setItem('tabIndex', tabIndex);
+		try{
+			sessionStorage.setItem('tabIndex', tabIndex);
+		} catch(err){
+			console.log('Tab-saving will not work. Try turning off private mode');
+			console.log(err);
+		}
 	}
 
 	AppController.prototype.getActiveTab = function(buttons, tabs){
-		var tabIndex = Number(sessionStorage.getItem('tabIndex'));
-		if(tabIndex != NaN){
-			var tabObject = {};
-			tabObject.button = buttons[tabIndex];
-			tabObject.tab = tabs[tabIndex];
-			return tabObject;
-		} else {
+		try{
+			var tabIndex = Number(sessionStorage.getItem('tabIndex'));
+			if(tabIndex != NaN){
+				var tabObject = {};
+				tabObject.button = buttons[tabIndex];
+				tabObject.tab = tabs[tabIndex];
+				return tabObject;
+			} else {
+				return false;
+			}
+		} catch(err) {
+			console.log('Try turning off private mode');
+			console.log(err);
 			return false;
 		}
 	}
