@@ -29,7 +29,12 @@ NavigationController.prototype.dropDownBind = function(){
 			}
 
 			$(triggerButton).on('click', function(e){
-				me.flipElementStates(targetDropDown, triggerButton);
+				me.activateElements(targetDropDown, triggerButton);
+
+				$('html').one('click', function(){
+					me.deactivateElements(targetDropDown, triggerButton);
+				});
+
 				e.preventDefault();
 				return false;
 			});
@@ -39,6 +44,8 @@ NavigationController.prototype.dropDownBind = function(){
 				e.preventDefault();
 				return false;
 			});
+
+
 			
 		})();
 	};
