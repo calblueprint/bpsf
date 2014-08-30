@@ -12,6 +12,7 @@ var HomeController = function(documentObject){
 		me.fundingProgress();
 		me.turbolinkBind();
 		me.modalBind();
+		me.convertSelects();
 	}
 
 	me.truncateText = function(){} 
