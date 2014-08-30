@@ -24,9 +24,7 @@
 		display:inline;
 	}
 	.category-form-container{
-		float:right;
-		margin:0px 15px;
-		display:table-cell;
+		padding:0px 20px;
 		.category-form-title{
 			@extend h4;
 			display:inline-block;
@@ -37,11 +35,7 @@
 			margin:5px;
 		}
 		.category-successful{
-			display:inline;
-		}
-		@include respond(all-tablets) {
-			float:none;
-			padding:0px 20px;
+			display:inline-block;
 		}
 	}
 
