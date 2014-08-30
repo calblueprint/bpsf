@@ -65,7 +65,6 @@
 				me.deactivateControllers();
 			});
 
-			me.convertSelects();
 		}
 
 		me.findControllers = function(){

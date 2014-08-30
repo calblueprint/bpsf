@@ -10,6 +10,7 @@ var AdminDashboardController = function(documentObject){
 		$(document).on('ajaxComplete', function(){
 			me.turbolinkBind();
 		});
+		me.convertSelects();
 	}
 
 	me.handleCsvFields = function(){
