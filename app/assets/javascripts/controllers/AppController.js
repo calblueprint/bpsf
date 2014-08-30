@@ -105,6 +105,13 @@
 			var activeControllers = me.getActiveControllers();
 			for (var i = activeControllers.length - 1; i >= 0; i--) {
 				var thisController = activeControllers.pop();
+				if (thisController.hasOwnProperty('deactivate')){
+					thisController.deactivate();
+				}
+
+				for (var property in thisController){
+					delete thisController[property];
+				}
 				delete thisController;
 			};
 		}
