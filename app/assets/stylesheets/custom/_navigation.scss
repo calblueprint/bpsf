@@ -75,6 +75,7 @@
 	}
 	li{
 		@include navigation-link-animations();
+		padding: 0;
 	}
 	.go-back{
 		display:none;
