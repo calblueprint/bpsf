@@ -17,19 +17,31 @@
 	}
 }
 
-.coverholder{
-	width:100%;
-	max-height:470px;
-	overflow:hidden;
-	text-align: center;
-	img {
-		vertical-align: middle;
-		min-width:100%;
-		min-height: 100%;
-		width: auto;
-		height: auto;
+
+.grant-cover-wrapper{
+	width: 100%;
+	display:inline-block; 
+	position: relative;
+	white-space: nowrap;
+	.grant-cover{
+		position: absolute;
+		top: 0; bottom: 0; right: 0; left: 0;
+		text-align: center;
+		img {
+			width: auto;
+			height: auto;
+			max-width: 100%;
+			max-height: 100%;
+			vertical-align: middle;
+		}
+	}
+	.aspect-ratio-box{
+		content:'';
+		padding-top:$aspect-ratio;
+		display:block;
 	}
 }
+
 
 $imglargereplacementhgt: 250px;
 

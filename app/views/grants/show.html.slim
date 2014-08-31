@@ -23,8 +23,10 @@
         .social-icon
           a href="javascript:emailCurrentPage()"
             i.icon-mail
-      .row align="center"
-        = @grant.banner classes: 'coverholder'
+      .row
+        .grant-cover-wrapper
+          .aspect-ratio-box
+          = @grant.banner classes: 'grant-cover'
       .row.centalign
         .eleven.columns.centered
           p.largefont= simple_format(@grant.summary)
