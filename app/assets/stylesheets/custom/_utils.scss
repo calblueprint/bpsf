@@ -1,0 +1,70 @@
+// Color Styles
+.green, .secondary-color{
+	background-color:$secondary-color;
+}
+
+.red, .danger-color{
+	background-color:$danger-hover-color;
+}
+
+.darken, .black{
+	color:#000;
+}
+
+.primary-color{
+	color:$primary-color;
+}
+
+	
+//Position Styles
+.centalign, .text-center{
+	text-align:center;
+}
+
+.padada{
+	padding-top:10px;
+}
+
+.padless, .no-padding{
+	padding:0px !important;
+}
+
+.marginless, .no-margin{
+	margin: 0px !important;
+}
+
+.elevate{
+	z-index: 2000;
+}
+
+//Display Styles
+.inlined, .inline{
+	display:inline;
+}
+
+.inline-block{
+	display: inline-block;
+}
+
+.poofin{display:none;}
+@include respond(all-phones){
+	.poofin{display:inline-block !important;}
+	.poofout{display:none !important;}
+}
+
+//Font Styles
+.ultitle{
+	border-bottom:$table-cell-border-size $table-cell-border-style $default-color;
+}
+
+.smallfont, .font-small{
+	font-size:$small;
+}
+
+.medfont, .font-med{
+	font-size:$med;
+}
+
+.largefont, .font-large{
+	font-size:$large;
+}

@@ -1,3 +1,4 @@
+@import "utils";
 @import "base";
 @import "mixins";
 @import "inlinedforms";
@@ -11,35 +12,7 @@
 @import "select";
 
 
-// Trival Styles
-	// Color Styles
-	.green{background-color:$secondary-color;}
-	.red{background-color:$danger-hover-color;}
-	.darken{color:#000;}
-	.primary-color{color:$primary-color;}
 
-	//Position Styles
-	.centalign{text-align:center;}
-	.inlined{display:inline;}
-	.padada{padding-top:10px;}
-	.padless{padding:0px !important;}
-	.marginless{margin: 0px !important;}
-	.elevate{z-index: 2000;}
-
-	//Display Styles
-	.poofin{display:none;}
-	@include respond(all-phones){
-		.poofin{display:inline-block !important;}
-		.poofout{display:none !important;}
-	}
-	.nodisplay{display:none;}
-
-	//Font Styles
-	.ultitle{border-bottom:$table-cell-border-size $table-cell-border-style $default-color;}
-	.smallfont{font-size:$small;}
-	.medfont{font-size:$med;}
-	.largefont{font-size:$large;}
-	.inline-block{display: inline-block;}
 
 //Dropdown Menu Styles
 	.picker option{
@@ -50,22 +23,6 @@
 		padding: 6px 0px 6px 15px;
 		}
 	.picker{height:40px;}
-
-
-
-
-
-	.imgholder{
-		width:100%;
-		overflow:hidden;
-		text-align: center;
-		@include vertical-center-text(150px);
-		img {
-			vertical-align: middle;
-			height: 100%;
-			width: auto;
-		}
-	}
 
 //Grant View Page
 	.coverholder{
@@ -204,12 +161,6 @@
 	.create-grant-button{
 		@extend .toggle_fund;
 	}
-
-//Javascript Hover/Modal Classes
-	.open{
-		left:0px;
-	}
-
 
 //Edit Grant Page
 	.hinttext{color:darken($global-bg-color, 25%);}
