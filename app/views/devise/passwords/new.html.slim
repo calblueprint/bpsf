@@ -1,13 +1,19 @@
 - title "Forgot Your Password?"
 .row
-  h2 Forgot your password?
-.row
-  .six.columns
-    = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f|
-      = devise_error_messages!
-      .field
-        = f.label :email
-        = f.email_field :email, :autofocus => true, class: :input
-      .medium.default.btn
-        = f.submit "Send me reset password instructions"
-    = render "devise/shared/links"
+  .row.centalign
+    br/
+    h2 Forgot your password?
+  br/
+  .row
+    .six.columns.push_three
+      = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f|
+        = devise_error_messages!
+        .field
+          = f.label :email
+          = f.email_field :email, :autofocus => true, class: :input
+        .row
+          .medium.default.btn style="margin-top: 10px;"
+            = f.submit "Send me reset password instructions"
+          .medium.primary.btn.pull_right style="margin-top: 10px;"
+            = link_to "Back to Sign In", new_registration_path(resource_name)
+  br/

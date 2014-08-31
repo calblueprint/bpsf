@@ -63,4 +63,8 @@ module ApplicationHelper
             content_for :title, page_title
         end
     end
+
+    def current_controller?(expected_controller)
+        controller.controller_name == expected_controller
+    end
 end

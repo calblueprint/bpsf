@@ -324,6 +324,15 @@ form {
       left: -8px;
       line-height: 16px;
     }
+    &.active {
+      @extend .checked;
+      i{
+        display:inline;
+      }
+    }
+    i {
+      display:none;
+    }
     span {
       display: inline-block;
       width: 16px;
@@ -409,6 +418,3 @@ form {
   color: $primary-color;
 }
 
-.overflow_field {
-  overflow: visible;
-}

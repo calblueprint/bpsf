@@ -1,8 +1,7 @@
 - if @message.nil?
   | $('#payment-amount').html("#{@payment.amount}");
-  | $('.progressbar').html("#{@grant.crowdfunder_progress}");
-  | $('.progressbar').css('width', "#{@grant.crowdfunder_progress}");
-  | $('.progressbar').attr('data-current', #{@grant.crowdfunder_pledged_total});
+  | $('.progress-bar').css('width', "#{@grant.crowdfunder_progress}");
+  | $('.progress-bar').attr('data-current', #{@grant.crowdfunder_pledged_total});
   | $('.currentnum').html('$#{@grant.crowdfunder_pledged_total}');
   | $("input[type=submit]").attr("disabled", false);
 - else

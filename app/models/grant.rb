@@ -119,9 +119,6 @@ class Grant < ActiveRecord::Base
   scope :crowdfunding_grants, -> { with_state :crowdfunding }
   scope :crowdpending_grants, -> { with_state :crowdfund_pending }
   scope :newest, limit: 5, order: 'created_at DESC'
-  scope :updated_in_range, ->(start_date, end_date) {
-    where("updated_at between ? and ?", start_date, end_date)
-  }
 
   state_machine initial: :pending do
 
@@ -159,8 +156,10 @@ class Grant < ActiveRecord::Base
     @payments = Payment.where crowdfund_id: crowdfunder
     @payments.each do |payment|
       unless payment.charge_id
+        user = User.find payment.user_id
         payment.status = "Cancelled"
         payment.save!
+        UserCrowdfailedJob.new.async.perform(user,self)
       end
     end
   end
@@ -317,19 +316,6 @@ class Grant < ActiveRecord::Base
     draft.remote_image_url = self.image_url
     draft.save
     draft
-  end
-
-  def self.to_csv(grants)
-    CSV.generate do |csv|
-      csv << column_names
-      grants.each do |grant|
-        csv << grant.to_csv
-        end
-      end
-  end
-
-  def to_csv
-    attributes.values_at(*self.class.column_names)
   end
 
   private

@@ -1,4 +1,4 @@
-li onclick="window.location.href='../#{url_for grant}'"
+li data-bp-turbo='#{url_for grant}'
   img.home-slide-background src='#{grant.image_url :banner}'
   .home-slide-information
     .home-slide-title = link_to grant, grant
@@ -22,4 +22,4 @@ li onclick="window.location.href='../#{url_for grant}'"
         - else
           .progress-large-text Past Deadline
       .progress
-        .progressbar data-current=grant.crowdfunder_pledged_total data-goal=grant.crowdfunder_goal style=("width: 0%")
+        span.progress-bar data-bp-current=grant.crowdfunder_pledged_total data-bp-goal=grant.crowdfunder_goal style=("width: 0%")
