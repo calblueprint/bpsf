@@ -1,65 +1,26 @@
 - title "Friend & Family Grants"
-= render 'slideshow'
-.row
-  .home-wrapper
-    .row.home-lead
-      .eight.columns.call-to-action = phrase 'call-to-action'
-      .three.columns.push_one.home-lead-buttons
-        .medium.primary.btn
-          a#lead-about-button href='#' About Us
-        .medium.primary.btn
-          a#lead-teacher-button href='#' For Teachers
-        .medium.primary.btn
-          a#lead-donor-button href='#' For Friends and Family
-    = render 'menu'
-    #grantcards
-      - if @grants[0]
-        = render partial: 'crowdfunding_grants', collection: @grants, as: :grant
-      - else
-        .row
-          -if params[:successful]
-            h4.centalign Help us make our first grants successful!
-          -else
-            h4.centalign All grants have been funded.
+.bp-home data-bp-controller='HomeController'
+  = render 'slideshow'
+  .row
+    .home-wrapper
+      .row.home-lead
+        .eight.columns.call-to-action = phrase 'call-to-action'
+        .three.columns.push_one.home-lead-buttons
+          .medium.primary.btn
+            a#lead-about-button href='#' data-bp-modal='#about_bpsf' About Us
+          .medium.primary.btn
+            a#lead-teacher-button href='#' data-bp-modal='#about_teachers' For Teachers
+          .medium.primary.btn
+            a#lead-donor-button href='#' data-bp-modal='#about_donors' For Friends and Family
+      = render 'menu'
+      #grantcards
+        - if @grants[0]
+          = render partial: 'crowdfunding_grants', collection: @grants, as: :grant
+        - else
+          .row
+            -if params[:successful]
+              h4.centalign Help us make our first grants successful!
+            -else
+              h4.centalign All grants have been funded.
       = will_paginate @grants
-    = render 'layouts/footer'
-
-javascript:
-  $(window).scroll(function(){
-    var url = $('.pagination .next_page').attr('href');
-    if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 150) {
-        $('.pagination').text('Fetching more grants...')
-        $.getScript(url);
-    }
-  });
-
-  $(document).on('ready page:change', function(){
-    $('.home-slider').superslides({
-      play: 8000,
-      pagination: false,
-      hashchange: false,
-      inherit_width_from: '.home-slider-container',
-      inherit_height_from: '.home-slider-container'
-    });
-  });
-
-  var nextScreen = document.getElementsByClassName('arrow-box-right');
-  var prevScreen = document.getElementsByClassName('arrow-box-left');
-  $(nextScreen).on('click', function(){
-    $('.home-slider').superslides('animate','next');
-  });
-  $(prevScreen).on('click', function(){
-    $('.home-slider').superslides('animate','prev');
-  });
-
-  var easter_egg = new Konami('http://www.vivekraghuram.com/bpsf.html');
-
-  var $buoop = {vs:{i:7,f:15,o:15,s:5.1,n:9}};
-  $buoop.ol = window.onload;
-  window.onload=function(){
-   try {if ($buoop.ol) $buoop.ol();}catch (e) {}
-   var e = document.createElement("script");
-   e.setAttribute("type", "text/javascript");
-   e.setAttribute("src", "//browser-update.org/update.js");
-   document.body.appendChild(e);
-  }
+      = render 'layouts/footer'

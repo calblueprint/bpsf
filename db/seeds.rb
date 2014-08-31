@@ -106,7 +106,7 @@ def make_grants
   end
   crowdfunding_grants.map do |grant|
     grant.crowdfund
-    Crowdfund.create pledged_total: 0,
+    Crowdfund.create pledged_total: rand(1..3) * 150,
                      grant_id: grant.id,
                      goal: grant.requested_funds
     grant.save!

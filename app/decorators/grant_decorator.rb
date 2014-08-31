@@ -35,8 +35,8 @@ class GrantDecorator < Draper::Decorator
   end
 
   def progress_bar
-    tag :span, class: 'progressbar', style: 'width: 0%',
-        data: { current: current_funds , goal: funding_goal }
+    tag :span, class: 'progress-bar', style: 'width: 0%',
+        data: { bp_current: current_funds , bp_goal: funding_goal }
   end
 
   def current_funds
@@ -72,7 +72,7 @@ class GrantDecorator < Draper::Decorator
 
   def collaborators_section
     if has_collaborators?
-      content_tag(:h5, content_tag(:span, 'Collaborators')) + collaborators
+      content_tag(:h5, %Q[<strong>Collaborators</strong>].html_safe) + collaborators
     end
   end
 
@@ -81,7 +81,7 @@ class GrantDecorator < Draper::Decorator
   end
 
   def comments_section
-    tag(:br) + content_tag(:h3, 'Additional Comments') + comments
+    tag(:br) + content_tag(:h3, 'Additional Comments') + content_tag(:div, comments, class: 'twelve columns centered')
   end
 
   def edit_icon_for(url)

@@ -29,7 +29,8 @@
     width: 100%;
     font-size: 100%;
     cursor: pointer;
-    font-weight: $type-font-weight;
+    font-family: $font-family;
+    font-weight: $font-weight-light;
     @include appearance(none);
   }
 }
@@ -54,7 +55,7 @@
       padding: 0 ms(-1);
     }
   }
-
+  
   &.oval {
     @include shape(oval);
   }
@@ -159,8 +160,4 @@
       }
     }
   }
-}
-
-.btn.btn-with-padding {
-  margin: 5px;
 }

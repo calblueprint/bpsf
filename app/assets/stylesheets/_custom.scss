@@ -1,3 +1,6 @@
+@import "custom/superslides";
+@import "custom/inlinedforms";
+
 //Custom Variables
 
 	//Global
@@ -95,12 +98,6 @@
 
 
 //Containers
-	.wrapper{
-		padding:10px 10px 20px 10px;
-		&.dark{background-color:#000;}
-		&.light{background-color:#fff;}
-		&.homewrap{padding: 25px;}
-	}//Page wrapper
 	.bare-wrapper{
 	    padding: 0px 30px;
 	}
@@ -108,6 +105,7 @@
 		@include box-shadow(0px 0 10px $shadow-color);
 		background-color:#fff;
 		margin-bottom:20px;
+		padding:20px;
 	}
 
 	.fluid_container {
@@ -152,7 +150,11 @@
 		}
 	}
 
-	.progressbar{float: left;}
+	.progress-bar{
+		float: left;
+		height:100%;
+		background-color:$primary-color;
+	}
 
 	.progress-text-container{
 		font-weight:$font-weight-light;
@@ -474,6 +476,18 @@
 		}
 	}
 
+	#donorlist {
+		ul {
+		  list-style-type: none;
+		}
+	}
+	.mousescroll {
+	  overflow: hidden;
+	}
+	.mousescroll:hover {
+	  overflow-y: scroll;
+	}
+
 	//Video Styles
 	.video-container {
 	    position: relative;
@@ -545,11 +559,11 @@
 	}
 
 //Teacher Dashboard
-	.destroy_grant{
+	.destroy_grant_button{
 		@extend .toggle_reject;
 	}
 
-	.edit_grant{
+	.edit_grant_button{
 		@extend .toggle_crowdfund;
 	}
 
@@ -570,40 +584,30 @@
 
 /*********************************Footer Classes******************************************/
 .footwrapper{
-	padding:10px 40px 20px 40px;
+	padding:30px 20px 0px 20px;
 	margin-top:0px;
 }
 
-.hr-primary{
+.footer-divider{
 	display: block;
 	height: 1px;
     border: 0;
-    border-top: 2px solid $primary-color;
+    border-top: 1px solid $global-bg-color;
     margin: 1em 0;
     padding: 0;
 }
 
-.lmorefoot{
-	float:left;
-	li {
-		line-height: 18px;
-		font-size: 14px;
-	}
-	h4{
-		font-size: 22px;
-		line-height:32px;
-	}
-}
-
-.donfoot{
-	float:right;
-	text-align:right;
-	.large{
-		line-height: 44px;
-		height:42px;
-		width: 224px;
-		font-size: 20px;
-		padding: 15px 30px 15px 30px;
+.social-icon{
+	height:2.5em;
+	width:2.5em;
+	margin:0 0.2em;
+	line-height:2.5em;
+	text-align:center;
+	@include border-radius(1.25em);
+	background-color:$black;
+	i{
+		font-size:1.5em;
+		color:$white;
 	}
 }
 
@@ -661,20 +665,20 @@
 					padding:0px $navigation-element-padding;
 					cursor:pointer;
 				}
-				&:last-child{
+				&.search-form{
 					width:$search-box-width;
+					margin-left:15px;
 					@include navigation-link-animations($white);
 				}
 			}
 		}
 	}
 	.nav-right{
-		vertical-align:top;
-		display:inline-block;
+		@extend .nav-left;
 		float:right;
-		padding: 0px $navigation-element-padding;
-		@include vertical-center-text($navigation-bar-height);
-		@include navigation-link-animations();
+		.sign-up{
+			border-right:solid 1px #DDD;
+		}
 	}
 
 }
@@ -689,6 +693,9 @@
 	@include transition-duration(0.2s);
 	@include transition-property(opacity);
 	@include transition-delay(0.1s);
+	ul{
+		margin:0;
+	}
 	li{
 		@include navigation-link-animations();
 	}
@@ -920,75 +927,86 @@
 }
 
 /*********************  Loading Bar  ***********************/
-.pace {
-  -webkit-pointer-events: none;
-  pointer-events: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
-  @include transition-duration(0.3s)
+.loader-bg{
+	position:fixed;
+	bottom:0px;
+	right:-340px;
+	height:0px;
+	width:0px;
+	border-left:170px solid transparent;
+	border-right:170px solid transparent;
+	border-bottom:170px solid rgba(0,0,0,0.3);
+	z-index:9998;
+	@include transition-duration(0.3s);
+	&.active{
+		@include transform(translate3d(-170px,0,0));
+	}
+	&.open{
+		left:initial;
+	}
+
+}
+.loader-blob {
+	position:fixed;
+	bottom:20px;
+	right:-150px;
+	z-index:9999;
+	width: 70px;
+	text-align: center;
+	//display:none;
+	@include transition-duration(0.3s);
+	div {
+		width: 18px;
+		height: 18px;
+		background-color: #333;
+
+		border-radius: 100%;
+		display: inline-block;
+		-webkit-animation: bouncedelay 1.4s infinite ease-in-out;
+		animation: bouncedelay 1.4s infinite ease-in-out;
+		/* Prevent first frame from flickering when animation starts */
+		-webkit-animation-fill-mode: both;
+		animation-fill-mode: both;
+
+		-webkit-animation-play-state: paused;
+		animation-play-state: paused;
+	}
+	.bounce-1 {
+		-webkit-animation-delay: -0.32s;
+		animation-delay: -0.32s;
+	}
+
+	.bounce-2 {
+		-webkit-animation-delay: -0.16s;
+		animation-delay: -0.16s;
+	}
+	&.active{
+		display:inline;
+		@include transform(translate3d(-170px,0,0));
+		div{
+			-webkit-animation-play-state: running;
+			animation-play-state: running;
+		}
+	}
+	&.open{
+		left:initial;
+	}
+
 }
 
-.pace .pace-activity {
-  display: block;
-  position: fixed;
-  z-index: 10;
-  top: -300px;
-  left: -300px;
-  width: 300px;
-  height: 300px;
-  background: $global-bg-color;//$primary-color;
-  @include rotate(-45deg);
-  pointer-events: none;
-  @include transition-duration(0.3s);
+@-webkit-keyframes bouncedelay {
+  0%, 80%, 100% { -webkit-transform: scale(0.0) }
+  40% { -webkit-transform: scale(1.0) }
 }
 
-.pace.pace-active .pace-activity {
-  @include rotate(-45deg);
-  top:-95px;
-  left:-150px;
-  @include transition-duration(0.3s);
-}
-
-.pace .pace-activity::before,
-.pace .pace-activity::after {
-    position: absolute;
-    bottom: 30px;
-    left: 50%;
-    display: block;
-    border: 5px solid lighten($global-bg-color, 7%);//$primary-color,10%);//#fff;
-    border-radius: 50%;
-    content: '';
-}
-
-.pace .pace-activity::before {
-    margin-left: -40px;
-    width: 80px;
-    height: 80px;
-    border-right-color: darken($global-bg-color, 7%);//$primary-color,10%);//rgba(0, 0, 0, .2);
-    border-left-color: darken($global-bg-color, 7%);//$primary-color,10%);//rgba(0, 0, 0, .2);
-    -webkit-animation: pace-rotation 3s linear infinite;
-    animation: pace-rotation 3s linear infinite;
-}
-
-.pace .pace-activity::after {
-    bottom: 50px;
-    margin-left: -20px;
-    width: 40px;
-    height: 40px;
-    border-top-color: lighten($global-bg-color, 7%);//$primary-color,10%);//rgba(0, 0, 0, .2);
-    border-bottom-color: lighten($global-bg-color, 7%);//$primary-color,10%);//rgba(0, 0, 0, .2);
-    -webkit-animation: pace-rotation 1s linear infinite;
-    animation: pace-rotation 1s linear infinite;
-}
-
-@-webkit-keyframes pace-rotation {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(359deg); }
-}
-@keyframes pace-rotation {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(359deg); }
+@keyframes bouncedelay {
+  0%, 80%, 100% { 
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 40% { 
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+  }
 }
 
 /************************ Chosen Select ************************/
