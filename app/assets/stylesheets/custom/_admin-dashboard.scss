@@ -1,0 +1,14 @@
+.colorbox, .color-box{
+	display:inline-block;
+	height:15px;
+	width:15px;
+}
+
+.hoverrow, .hover-row{
+	cursor:pointer;
+	@include transition-duration(0.2s);
+	&:hover, &:active, &:focus{
+		background-color: lighten($global-bg-color, 10%);
+		a{color: $primary-color !important}
+	}
+}
