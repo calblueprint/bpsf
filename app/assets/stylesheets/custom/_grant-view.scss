@@ -1,0 +1,104 @@
+.coverholder{
+	width:100%;
+	max-height:470px;
+	overflow:hidden;
+	text-align: center;
+	img {
+		vertical-align: middle;
+		min-width:100%;
+		min-height: 100%;
+		width: auto;
+		height: auto;
+	}
+}
+
+$imglargereplacementhgt: 250px;
+
+.image-replacement{
+	display:block;
+	background: rgb(255,117,117);
+	text-align: center;
+	overflow:hidden;
+	color: $white;
+	@include vertical-center-text($imglargereplacementhgt, $xlarge);
+	.repson{
+		margin:0 auto;
+		margin-top: 10px;
+		width: 97%;
+		color: $white;
+		text-align: center;
+		border: 5px dashed $white;
+		@include vertical-center-text($imglargereplacementhgt - 20px, $xlarge);
+	}
+}
+
+.grantviewbar{
+	padding-top: 10px;
+	.gcdiv{
+		padding-top: 8px;
+		.gctext{font-size:$med;}
+	}
+}
+
+.donor-list {
+	overflow: hidden;
+	ul {
+	  list-style-type: none;
+	}
+	&:hover {
+	  overflow-y: scroll;
+	}
+}
+
+//Video Styles
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px; height: 0; overflow: hidden;
+}
+
+.video-container iframe,
+.video-container object,
+.video-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+//Superadmin Grant Status Buttons
+.toggle_reject{
+	@extend .medium;
+	@extend .danger;
+	@extend .btn;
+	margin:(0px 5px 0px 5px);
+}
+
+.toggle_crowdfund{
+	@extend .medium;
+	@extend .primary;
+	@extend .btn;
+	margin:(0px 5px 0px 5px);
+}
+
+.toggle_reconsider{
+	@extend .medium;
+	@extend .default;
+	@extend .btn;
+	margin:(0px 5px 0px 5px);
+}
+
+.toggle_fund{
+	@extend .medium;
+	@extend .secondary;
+	@extend .btn;
+	margin:(0px 5px 0px 5px);
+}
+
+.toggle_crowdfunding_failed{
+	@extend .medium;
+	@extend .danger;
+	@extend .btn;
+	margin:(0px 5px 0px 5px);
+}

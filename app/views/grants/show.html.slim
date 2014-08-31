@@ -65,7 +65,7 @@
                   = simple_format(@grant.background)
           .five.columns
             h3 Donors 
-            ul#donorlist.mousescroll
+            ul.donor-list
               - @donors.each do |u|
                 li
                   = u[0].name
@@ -144,6 +144,3 @@
   = render 'payment_modal', grant: @grant, payment: @payment
   = render 'crowdfund_modal', grant: @grant
   = render 'confirmation_modal', payment: @payment
-
-javascript:
-  $('#donorlist').height($('#project').height());
