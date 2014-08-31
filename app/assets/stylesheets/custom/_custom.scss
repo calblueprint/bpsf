@@ -5,7 +5,11 @@
 @import "slideshow";
 @import "home-content";
 @import "progress-bar";
-@import "grant-view";
+@import "show-grant";
+@import "edit-grant";
+@import "admin-dashboard";
+@import "teacher-dashboard";
+@import "teacher-dashboard";
 @import "navigation";
 @import "footer";
 @import "paginate";
@@ -26,56 +30,3 @@
 	.picker{height:40px;}
 
 
-
-
-//Admin Dashboard
-	.colorbox{
-		display:inline-block;
-		height:15px;
-		width:15px;
-	}
-
-	.hoverrow{
-		cursor:pointer;
-		@include transition-duration(0.2s);
-		&:hover, &:active, &:focus{
-			background-color: lighten($global-bg-color, 10%);
-			a{color: $primary-color !important}
-		}
-	}
-
-//Teacher Dashboard
-	.destroy-grant-button{
-		@extend .toggle_reject;
-	}
-
-	.edit-grant-button{
-		@extend .toggle_crowdfund;
-	}
-
-	.create-grant-button{
-		@extend .toggle_fund;
-	}
-
-//Edit Grant Page
-	.hinttext{color:darken($global-bg-color, 25%);}
-
-
-.social-icon{
-	display:inline-block;
-	height:2.5em;
-	width:2.5em;
-	margin:0 0.2em 0.2em;
-	line-height:2.5em;
-	text-align:center;
-	@include border-radius(1.25em);
-	background-color:$black;
-	i{
-		font-size:1.5em;
-		color:$white;
-	}
-
-	&:hover{
-		background-color: $primary-color;
-	}
-}

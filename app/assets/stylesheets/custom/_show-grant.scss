@@ -1,3 +1,22 @@
+.social-icon{
+	display:inline-block;
+	height:2.5em;
+	width:2.5em;
+	margin:0 0.2em 0.2em;
+	line-height:2.5em;
+	text-align:center;
+	@include border-radius(1.25em);
+	background-color:$black;
+	i{
+		font-size:1.5em;
+		color:$white;
+	}
+
+	&:hover{
+		background-color: $primary-color;
+	}
+}
+
 .coverholder{
 	width:100%;
 	max-height:470px;
