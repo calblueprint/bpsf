@@ -36,7 +36,7 @@
 
 require 'textacular/searchable'
 class Grant < ActiveRecord::Base
-  has_paper_trail :only => [:state]
+  has_paper_trail only: [:state]
   extend Enumerize
   SUBJECTS = ['After School Program', 'Arts / Music', 'Arts / Dance', 'Arts / Drama',
     'Arts / Visual', 'Community Service', 'Computer / Media', 'Computer Science',
@@ -122,12 +122,12 @@ class Grant < ActiveRecord::Base
 
   state_machine initial: :pending do
 
-    after_transition :on => :fund, :do => :process_payments
-    after_transition [:pending, :crowdfund_pending] => :rejected, :do => :grant_rejected
-    after_transition :crowdfunding => :complete, :do => [:crowdsuccess, :grant_funded]
-    after_transition [:pending, :crowdfund_pending] => :complete, :do => :grant_funded
-    after_transition :pending => :crowdfunding, :do => :grant_crowdfunding
-    after_transition :crowdfunding => :crowdfund_pending, :do => :crowdfailed
+    after_transition on: :fund, do: :process_payments
+    after_transition [:pending, :crowdfund_pending] => :rejected, do: :grant_rejected
+    after_transition :crowdfunding => :complete, do: [:crowdsuccess, :grant_funded]
+    after_transition [:pending, :crowdfund_pending] => :complete, do: :grant_funded
+    after_transition :pending => :crowdfunding, do: :grant_crowdfunding
+    after_transition :crowdfunding => :crowdfund_pending, do: :crowdfailed
 
     event :reject do
       transition [:pending, :crowdfund_pending] => :rejected
