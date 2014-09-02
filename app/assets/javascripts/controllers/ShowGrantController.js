@@ -8,6 +8,14 @@ var ShowGrantController = function(documentObject){
 		me.modalBind();
 		me.setupStripeForm();
 		me.setupConfirmationModal();
+		me.donorListHeight();
+	}
+
+	me.donorListHeight = function(){
+		var donorList = me.documentObject.querySelector('.donor-list');
+		if (donorList){
+			donorList.style.height = String(me.documentObject.querySelector('#project').offsetHeight) + 'px';
+		}
 	}
 
 	me.socialButtons = function(){

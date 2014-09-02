@@ -1,0 +1,81 @@
+.select-wrapper {
+    /* Size & position */
+    position: relative;
+    width: 300px;
+    margin: 0 auto;
+    padding: 8px 10px;
+    z-index: 100;
+
+    /* Styles */
+    background-color: #fff;
+    border-radius: 5px;
+    border: solid 1px $default-color;
+    cursor: pointer;
+    outline: none;
+
+    &:after { /* Little arrow */
+        content: "";
+        width: 0;
+        height: 0;
+        position: absolute;
+        top: 50%;
+        right: 15px;
+        margin-top: -3px;
+        border-width: 6px 6px 0 6px;
+        border-style: solid;
+        border-color: $primary-color transparent;
+    }
+    .select {
+        /* Size & position */
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+
+        /* Styles */
+        background: #fff;
+        border-radius: 0 0 5px 5px;
+        border: 1px solid rgba(0,0,0,0.2);
+        border-top: none;
+        border-bottom: none;
+        list-style: none;
+
+
+        /* Hiding */
+        max-height: 0;
+        overflow: hidden;
+        li {
+            padding: 0 5px ;
+            a {
+                display: block;
+                padding: 10px 0;
+                border-bottom: 1px solid #e6e8ea;
+            }
+            &:last-of-type a {
+                border: none;
+            }
+            i {
+                margin-right: 5px;
+                color: inherit;
+                vertical-align: middle;
+            }
+            &.active{
+                border-left:5px solid $primary-color;
+            }
+        }
+    }
+    &.active {
+        border-radius: 5px 5px 0 0;
+        background-color: $primary-color;
+    //    border-bottom: none;
+        color: white;
+        &:after {
+            border-color: $white transparent;
+        }
+        .select {
+            border-bottom: 1px solid rgba(0,0,0,0.2);
+            max-height: 400px;
+            overflow-y:scroll;
+        }
+    }
+}

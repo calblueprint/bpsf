@@ -1,0 +1,68 @@
+.gcdiv{
+	text-align:center;
+	line-height:$med;
+	.goalnum{
+		font-size:$large;
+		vertical-align:middle;
+		color: #222;
+		@include respond(all-phones){font-size: $med;}
+	}
+	.currentnum{
+		font-size:$large;
+		vertical-align:middle;
+		color: $primary-color;
+		@include respond(all-phones){font-size: $med;}
+	}
+	.gctext{
+		vertical-align:middle;
+		font-size:$small;
+	}
+}
+
+.progress-bar{
+	float: left;
+	height:100%;
+	background-color:$primary-color;
+}
+
+.progress-text-container{
+	font-weight:$font-weight-light;
+	.progress-large-text{
+		font-size:$large;
+		color:#000;
+		margin:0px 3px;
+		display:inline;
+	}
+	.progress-large-text-primary{
+		@extend .progress-large-text;
+		color: $primary-color;
+	}
+	.progress-small-text{
+		font-size:$med;
+		margin:0px 3px;
+		display:inline;
+	}
+}
+
+.progress {
+	height: 6px;
+	width: 100%;
+	position: relative;
+	background: $global-bg-color;
+	@include border-radius(3px);
+	span {
+		display: inline-block;
+		height: 100%;
+		background-color: $primary-color;
+		@include border-radius(3px);
+		position: relative;
+		overflow: hidden;
+		text-align:right;
+		line-height:6px;
+		color:$white;
+		@include transition-duration(0.5s);
+		&:hover{
+			@include box-shadow(0px 0px 8px $primary-color);
+		}
+	}
+}

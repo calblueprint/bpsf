@@ -1,21 +1,20 @@
 - title "Contact Us!"
 .row
   .wrapper.light
-    .bare-wrapper
-      .row.centalign
-        h2 style=("inlined")
-          | Contact us!
-      .row
-        .six.columns.push_three
-          = form_for @contact_form do |f|
-            .field
-              = f.label :name, 'Name', class: :mediumfont
-              = f.text_field :name, class: [:input, :text, :xxwide]
-            .field
-              = f.label :email, 'Email'
-              = f.text_field :email, class: :input
-            .field
-              = f.label :message, 'Message'
-              = f.text_area :message, class: [:textarea, :input], rows: 5
-            .medium.primary.btn
-              = f.submit 'Send message'
+    .row.centalign
+      h2
+        | Contact us!
+    .row
+      .six.columns.centered
+        = form_for @contact_form do |f|
+          .field
+            = f.label :name, 'Name', class: :mediumfont
+            = f.text_field :name, class: :input
+          .field
+            = f.label :email, 'Email'
+            = f.text_field :email, class: :input
+          .field
+            = f.label :message, 'Message'
+            = f.text_area :message, class: [:textarea, :input], rows: 5
+          .medium.primary.btn
+            = f.submit 'Send message'
