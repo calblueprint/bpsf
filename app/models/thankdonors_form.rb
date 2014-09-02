@@ -4,9 +4,9 @@ class ThankdonorsForm < MailForm::Base
 
   def headers
     {
-      :subject => %(#{subject}),
-      :to => %(#{to}),
-      :from => %("#{recipient}" <#{from}>)
+      subject: %(#{subject}),
+      to: %(#{to}),
+      from: %("#{recipient}" <#{from}>)
     }
   end
 end
