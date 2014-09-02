@@ -1,14 +1,19 @@
 .row
   - if profile.relationship
-    h5 Relationship:
-    .row = profile.relationship
+    .five.columns
+      h5.pull_right Relationship
+    .seven.columns
+      = profile.relationship
 .row
   - if profile.address
-    h5 Address:
-    .row= profile.address
-    .row
-      = "#{profile.city} #{profile.zipcode}, #{profile.state}"
+    .five.columns
+      h5.pull_right Address
+    .seven.columns
+      = profile.address
+      | , #{profile.city} #{profile.zipcode}, #{profile.state}
 .row
   - if profile.phone
-    h5 Phone:
-    = profile.phone
+    .five.columns
+      h5.pull_right Phone
+    .seven.columns
+      = profile.phone

@@ -1,34 +1,50 @@
 .row
   - if profile.school_id
-    h5 School:
-    = School.find(profile.school_id).name
+    .five.columns
+      h5.pull_right School
+    .seven.columns
+      = School.find(profile.school_id).name
     br/
 .row
   - if profile.started_teaching
-    h5 Years of Experience:
-    = profile.years_teaching
+    .five.columns
+      h5.pull_right Years of Experience
+    .seven.columns
+      = profile.years_teaching
 .row
   - if profile.grade
-    h5 Grade Level(s):
-    = profile.grade
+    .five.columns
+      h5.pull_right Grade Level(s)
+    .seven.columns
+      = profile.grade
 .row
-  h5 Subject(s):
-  = profile.subject
+  .five.columns
+    h5.pull_right Subject(s)
+  .seven.columns
+    = profile.subject
   br/
 .row
   - if profile.about
-    h5 Teacher Background
-    = profile.about
+    .five.columns
+      h5.pull_right Teacher Background
+    .seven.columns
+      = profile.about
 .row
   - if profile.address
-    h5 Address
-    = profile.address
-    | , #{profile.city} #{profile.zipcode}, #{profile.state}
+    .five.columns
+      h5.pull_right Address
+    .seven.columns
+      = profile.address
+      | , #{profile.city} #{profile.zipcode}, #{profile.state}
 .row
   - if profile.work_phone
-    h5 Work Phone
-    = profile.work_phone
+    .five.columns
+      h5.pull_right Work Phone
+    .seven.columns
+      = profile.work_phone
 .row
   - if profile.home_phone
-    h5 Home Phone
-    = profile.home_phone
+    .five.columns
+      h5.pull_right Home Phone
+    .seven.columns
+      = profile.home_phone
