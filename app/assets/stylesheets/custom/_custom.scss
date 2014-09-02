@@ -1,0 +1,22 @@
+@import "utils";
+@import "base";
+@import "mixins";
+@import "inlinedforms";
+@import "slideshow";
+@import "home-content";
+@import "progress-bar";
+@import "show-grant";
+@import "edit-grant";
+@import "admin-dashboard";
+@import "teacher-dashboard";
+@import "teacher-dashboard";
+@import "navigation";
+@import "footer";
+@import "paginate";
+@import "loader";
+@import "select";
+
+.table-message {
+  display: block;
+  text-align: center;
+}

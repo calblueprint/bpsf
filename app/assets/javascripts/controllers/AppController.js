@@ -64,6 +64,7 @@
 			$(document).one('page:fetch',function(){
 				me.deactivateControllers();
 			});
+
 		}
 
 		me.findControllers = function(){
@@ -104,6 +105,13 @@
 			var activeControllers = me.getActiveControllers();
 			for (var i = activeControllers.length - 1; i >= 0; i--) {
 				var thisController = activeControllers.pop();
+				if (thisController.hasOwnProperty('deactivate')){
+					thisController.deactivate();
+				}
+
+				for (var property in thisController){
+					delete thisController[property];
+				}
 				delete thisController;
 			};
 		}
@@ -127,22 +135,20 @@
 
 
 	AppController.prototype.activateElements = function(){
-		var me = this;
-		for (var i = arguments.length - 1; i >= 0; i--) {
+		var me = this,
+			registerThis = arguments[0],
+			endIndex = registerThis ? 0 : 1;
+		for (var i = arguments.length - 1; i >= endIndex; i--) {
 			try{
 				if(me.isJQuery(arguments[i])){
 					arguments[i].addClass('active');
-					//
-					arguments[i].addClass('open');
-					//
 				} else {
 					arguments[i].className += arguments[i].className ? ' active' : 'active';
-					//
-					arguments[i].className += ' open';
-					//
 				}
 
-				me.setActiveElement(arguments[i]);
+				if(registerThis){
+					me.setActiveElement(arguments[i]);
+				}
 			} catch(err){
 				console.log(arguments[i] + ' is not a document element');
 				console.log(err);
@@ -161,15 +167,9 @@
 			try{
 				if(me.isJQuery(arguments[i])){
 					arguments[i].removeClass('active');
-					//
-					arguments[i].removeClass('open');
-					//
 				} else {
-					while(arguments[i].className.indexOf('active') > 0){
+					while(arguments[i].className.indexOf('active') > -1){
 						arguments[i].className = arguments[i].className.replace('active', '');
-						//
-						arguments[i].className = arguments[i].className.replace('open', '');
-						//
 					}
 				}
 
@@ -298,10 +298,8 @@
 		activateTab();
 
 		function deactivateTab(){
-			var tabObject = me.getActiveTab(buttons, tabs);
-			if(tabObject){
-				me.deactivateElements(tabObject.button, tabObject.tab);
-			}
+			me.deactivateElements.apply(me, buttons);
+			me.deactivateElements.apply(me, tabs);
 		}
 
 		function activateTab(button, tab){
@@ -323,18 +321,28 @@
 
 	AppController.prototype.setActiveTab = function(tabs, tab){
 		var tabIndex = Array.prototype.indexOf.call(tabs, tab);
-
-		sessionStorage.setItem('tabIndex', tabIndex);
+		try{
+			sessionStorage.setItem('tabIndex', tabIndex);
+		} catch(err){
+			console.log('Tab-saving will not work. Try turning off private mode');
+			console.log(err);
+		}
 	}
 
 	AppController.prototype.getActiveTab = function(buttons, tabs){
-		var tabIndex = Number(sessionStorage.getItem('tabIndex'));
-		if(tabIndex != NaN){
-			var tabObject = {};
-			tabObject.button = buttons[tabIndex];
-			tabObject.tab = tabs[tabIndex];
-			return tabObject;
-		} else {
+		try{
+			var tabIndex = Number(sessionStorage.getItem('tabIndex'));
+			if(tabIndex != NaN){
+				var tabObject = {};
+				tabObject.button = buttons[tabIndex];
+				tabObject.tab = tabs[tabIndex];
+				return tabObject;
+			} else {
+				return false;
+			}
+		} catch(err) {
+			console.log('Try turning off private mode');
+			console.log(err);
 			return false;
 		}
 	}
@@ -345,7 +353,7 @@
 
 		for (var i = checkboxes.length - 1; i >= 0; i--) {
 			(function(){
-				var checkbox = checkboxes[i]
+				var checkbox = checkboxes[i];
 				$(checkbox).on('click', function(e){
 					var inputEl = checkbox.querySelector('input[type="checkbox"]');
 					if(inputEl.checked){
@@ -359,6 +367,77 @@
 				});
 			})();
 		};
+	}
+
+
+	AppController.prototype.convertSelects = function(){
+		if(document.width < 1040){
+			return;
+		}
+
+
+		var me = this,
+			selects = me.documentObject.querySelectorAll('select');
+
+		for (var i = selects.length - 1; i >= 0; i--) {
+			(function(){
+				var oldSelect = selects[i],
+					scope = oldSelect.parentNode,
+					newSelect = createSelect(oldSelect);
+
+				oldSelect.className = 'hide';
+				scope.appendChild(newSelect);
+				manageSelect(newSelect, oldSelect);
+
+			})();
+		};
+
+		function createSelect(oldSelect){
+			var newSelectHTML = '<div class="select-wrapper"><span>';
+				newSelectHTML += oldSelect.value;
+				newSelectHTML += '</span><ul class="select">';
+
+			for (var i = 0; i < oldSelect.options.length; i++) {
+				newSelectHTML += '<li data-bp-value="' + oldSelect.options[i].value + '"><a>' + oldSelect.options[i].value + '</a></li>';
+			};
+
+			newSelectHTML += '</ul></div>';
+
+			var tempDiv = document.createElement('div');
+				tempDiv.innerHTML = newSelectHTML;
+			
+			return tempDiv.firstChild
+		}
+
+		function manageSelect(newSelect, oldSelect){
+			$(newSelect).on('click', function(e){
+				me.flipElementStates(newSelect);
+				e.preventDefault();
+				return false;
+			})
+
+			var options = newSelect.querySelectorAll('li');
+
+			for (var i = options.length - 1; i >= 0; i--) {
+				(function(){
+					var thisOption = options[i];
+					$(thisOption).on('click', function(e){
+						oldSelect.value = thisOption.getAttribute('data-bp-value');
+						newSelect.querySelector('span').innerText = thisOption.getAttribute('data-bp-value');
+
+						me.deactivateElements.apply(me, options);
+						me.activateElements(false, thisOption);
+						me.deactivateElements(newSelect);
+
+						oldSelect.onchange();
+
+						e.preventDefault();
+						return false;
+					});
+				})();
+			};
+
+		}
 
 	}
 

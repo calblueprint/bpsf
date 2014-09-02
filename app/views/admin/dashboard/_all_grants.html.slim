@@ -1,2 +1,2 @@
-tr.hoverrow id="grant#{grant.id}" onclick="window.location.href = '../#{url_for grant}'"
+tr.hoverrow id="grant#{grant.id}" data-bp-turbo="#{url_for grant}"
   = render 'grant_row', grant: grant

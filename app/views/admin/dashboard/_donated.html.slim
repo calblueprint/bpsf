@@ -1,7 +1,6 @@
 .row
   .twelve.columns
-    span.category.pull_left Category:&emsp;
-    li.field.metro.inlined
-      .picker
+    span Category:&emsp;
+    .inline-block
         = form_tag(:action => :index, :id => 'filter_donated') do
           = select_tag "donated", options_for_select(["All","Donated","Have Not Donated"], params[:donated]), :onchange => "this.form.submit()"

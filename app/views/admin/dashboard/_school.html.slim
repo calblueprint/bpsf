@@ -1,7 +1,6 @@
 .row
   .twelve.columns
-    span.category.pull_left School:&emsp;
-    li.field.metro.inlined
-      .picker
+    span School:&emsp;
+    .inline-block
         = form_tag(:action => :index, :id => 'filter_school') do
           = select_tag "school", options_for_select(School.pluck(:name).unshift('All'), params[:school]), :onchange => "this.form.submit()"
