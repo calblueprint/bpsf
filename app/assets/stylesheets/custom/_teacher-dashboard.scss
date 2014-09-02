@@ -1,0 +1,11 @@
+.destroy-grant-button{
+	@extend .toggle_reject;
+}
+
+.edit-grant-button{
+	@extend .toggle_crowdfund;
+}
+
+.create-grant-button{
+	@extend .toggle_fund;
+}

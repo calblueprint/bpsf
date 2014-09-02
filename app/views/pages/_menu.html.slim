@@ -7,8 +7,9 @@
 			.category-title Recent Grants
 	    .category-form-container
 	    	.category-form-title Filter:
-	    	= form_tag({:action => :home, :id => 'filter_subject'}, {:class => 'category-form'}) do
-	    		= select_tag "subject", options_for_select(PagesController::MENU, params[:subject]), :onchange => "this.form.submit()", class: [:picker]
+	    	.category-form
+		    	= form_tag({:action => :home, :id => 'filter_subject'}) do
+		    		= select_tag "subject", options_for_select(PagesController::MENU, params[:subject]), :onchange => "this.form.submit()"
 	    	-if params[:successful]
 		    	.category-successful
 		    		| &nbsp;|&nbsp;

@@ -6,6 +6,7 @@ var NavigationController = function(documentObject){
 	me.init = function(){
 		me.modalBind();
 		me.dropDownBind();
+		me.mobileNavBind();
 	}
 	
 }
@@ -20,6 +21,7 @@ NavigationController.prototype.dropDownBind = function(){
 	for (var i = dropDownButtons.length - 1; i >= 0; i--) {
 		(function(){
 			var targetDropDown = me.documentObject.querySelector(dropDownButtons[i].getAttribute('data-bp-dropdown')),
+				backButton = targetDropDown.querySelector('.go-back'),
 				triggerButton = dropDownButtons[i];
 			
 			if(targetDropDown == []){
@@ -27,10 +29,23 @@ NavigationController.prototype.dropDownBind = function(){
 			}
 
 			$(triggerButton).on('click', function(e){
-				me.flipElementStates(targetDropDown, triggerButton);
+				me.activateElements(targetDropDown, triggerButton);
+
+				$('html').one('click', function(){
+					me.deactivateElements(targetDropDown, triggerButton);
+				});
+
 				e.preventDefault();
 				return false;
 			});
+
+			$(backButton).on('click', function(e){
+				me.deactivateElements(targetDropDown, triggerButton);
+				e.preventDefault();
+				return false;
+			});
+
+
 			
 		})();
 	};
@@ -56,7 +71,7 @@ NavigationController.prototype.mobileNavBind = function(){
 			});
 
 			$(modalScreen).on('click', function(e){
-				me.deactivateElements(targetNavigation, modalScreen);
+				me.clearActiveElements();
 				e.preventDefault();
 				return false;
 			});
