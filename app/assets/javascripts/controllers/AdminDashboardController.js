@@ -6,7 +6,11 @@ var AdminDashboardController = function(documentObject){
 	me.init = function(){
 		me.manageTabs();
 		me.handleCsvFields();
-		
+		me.turbolinkBind();
+		$(document).on('ajaxComplete', function(){
+			me.turbolinkBind();
+		});
+		me.convertSelects();
 	}
 
 	me.handleCsvFields = function(){

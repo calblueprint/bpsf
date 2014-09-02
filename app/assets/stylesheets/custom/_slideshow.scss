@@ -1,0 +1,129 @@
+.home-slider-container{
+	max-width: 1040px;
+	width:100%;
+	margin:0px auto 20px auto;
+	z-index:0;
+	overflow:none;
+	position:relative;
+	@include box-shadow(0px 0 7px $shadow-color);
+
+	.aspect-ratio-box{
+		content:'';
+		padding-top:$aspect-ratio;
+		display:block;
+	}
+
+	.aspect-ratio-container{
+		position: absolute;
+		top: 0; bottom: 0; right: 0; left: 0;
+	}
+
+	.home-slider{
+		.slides-container{
+			li{
+				cursor:pointer;
+				.home-slide-background{}
+				.home-slide-information{
+					background-color:rgba($white, 0.9);
+					border-top:solid 4px $primary-color;
+					height:auto;
+					width:350px;
+					max-height:400px;
+					position:absolute;
+					top:10%;
+					left:12%;
+					padding:5px;
+					@include box-shadow(0px 0 7px $shadow-color);
+					.home-slide-title{
+						@extend h3;
+						padding-bottom:0px;
+					}
+					.home-slide-subtitle{
+						font-size:$norm - 3;
+						font-weight:$font-weight-medium;
+						color:#888;
+						padding-top:0px;
+						margin-top:-5px;
+					}
+					.home-slide-description{
+						@extend p;
+					}
+					.home-slide-progress{
+
+					}
+					@include respond(all-phones){
+						top:0px;
+						left:0px;
+						max-height:150px;
+						width:100%;
+						.home-slide-title{
+							font-size:$large -1;
+						}
+						.home-slide-description{
+							@include hide-this();
+						}
+					}
+				}
+				&:hover, &:active, &:focus{
+					.home-slide-information{
+						.home-slide-title{
+							a{
+								color:$primary-color;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	.slides-navigation{
+		z-index: 5;
+		.arrow-box{
+			position:absolute;
+			top:0;
+			max-width: 100px;
+			width: 15%;
+			height:100%;
+			z-index: 6;
+			opacity:0.1;
+			cursor:pointer;
+			background-color:#000;
+			@include transition-duration(0.3s);
+			&.arrow-box-right{
+				right:0px;
+				&:active{
+					opacity:0.8;
+					@include translateX(1em);
+				}
+			}
+			&.arrow-box-left{
+				left:0px;
+				&:active{
+					opacity:0.8;
+					@include translateX(-1em);
+				}
+			}
+			.arrow-container{
+				margin: 0 auto;
+				position: absolute;
+				z-index: 28;
+				top: 42%;
+				width: 100%;
+				text-align: center;
+				a{
+					color:#fff;
+					font-size:$xlarge;
+					@include transition-duration(0.3s);
+				}
+			}
+			&:hover{
+				opacity: 0.6;
+				.arrow-container{
+					a{
+						color:$primary-color;
+					}
+				}
+			}
+		}
+	}
+}

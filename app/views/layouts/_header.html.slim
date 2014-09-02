@@ -17,7 +17,7 @@
       .nav-right
         ul
           - if user_signed_in?
-            li data-bp-dropdown='#user_dropdown'
+            li.user data-bp-dropdown='#user_dropdown'
               a
                 i.icon-user
                 | #{current_user.first_name}
@@ -28,7 +28,7 @@
   - if user_signed_in?
     .userdropdown#user_dropdown
       ul
-        li.go-back#user-back
+        li.go-back
           a href='#'
             i.icon-left-open-mini &emsp; Back
         li= link_to "Account", user_path(id: current_user.id)
@@ -39,7 +39,7 @@
         li= link_to "Sign Out", destroy_user_session_path
   .FAQ-dropdown#FAQ_dropdown
     ul
-      li.go-back#FAQ-back
+      li.go-back
         a href='#'
           i.icon-left-open-mini &emsp; Back
       li
@@ -49,7 +49,7 @@
       li
         a href="#" data-bp-modal='#about_donors' Friends and Family
   .navigationburgerbar
-    ul.burger#nav-burger
+    ul.burger#nav-burger data-bp-mobilenav='.navcontainer'
       li
       li
       li

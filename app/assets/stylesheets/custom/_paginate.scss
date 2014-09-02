@@ -1,0 +1,28 @@
+.pagination{
+  text-align: center;
+  padding: 0.3em;
+  cursor: default;
+  a, span, em{padding: 0.2em 0.5em}
+  .disabled{color: #aaaaaa}
+  .current{
+    font-style: normal;
+    font-weight: bold;
+    color: #000
+	}
+  a{
+    border: 1px solid $primary-color;
+    color: $primary-color;
+    text-decoration: none;
+    @include transition-duration(0.3s);
+    &:hover, &:focus{
+      background: $primary-color;
+      color: white;
+  	}
+  }
+  .page_info{
+    color: #aaaaaa;
+    padding-top: 0.8em}
+  .previous_page, .next_page{border-width: 1px}
+  .previous_page{margin-right: 1em}
+  .next_page{margin-left: 1em}
+}

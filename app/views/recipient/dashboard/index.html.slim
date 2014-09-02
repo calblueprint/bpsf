@@ -7,10 +7,8 @@
           | Welcome #{current_user.first_name}!
       .row
         .six.columns.drafts
-          h3.inlined
-            | Draft Applications
-          ul.tab-nav.pull_right
-            li = link_to 'Apply'.html_safe, new_draft_path
+          h3.inlined Draft Applications
+          .create-grant-button.pull_right = link_to 'Apply'.html_safe, new_draft_path
           table
             = render partial: 'my_draft_grants', collection: @draft_grants, as: :draft_grant
         .six.columns.submitted

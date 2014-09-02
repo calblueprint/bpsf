@@ -1,16 +1,18 @@
 - unless @slideshow_grants.empty?
 	.home-slider-container
-	  .home-slider
-	    ul.slides-container
-	    	li
-	    		img src="/assets/mastheadpilot.png"
-			= render partial: 'slideshow_grants', collection: @slideshow_grants, as: :grant
-		.slides-navigation
-			.arrow-box.arrow-box-right
-				.arrow-container
-					a.next href='#'
-						i.icon-right-open-big
-			.arrow-box.arrow-box-left
-				.arrow-container
-					a.prev href='#'
-						i.icon-left-open-big
+	  .aspect-ratio-box
+	  .aspect-ratio-container
+		  .home-slider
+		    ul.slides-container
+		    	li
+		    		img src="/assets/mastheadpilot.png"
+				= render partial: 'slideshow_grants', collection: @slideshow_grants, as: :grant
+			.slides-navigation
+				.arrow-box.arrow-box-right
+					.arrow-container
+						a.next href='#'
+							i.icon-right-open-big
+				.arrow-box.arrow-box-left
+					.arrow-container
+						a.prev href='#'
+							i.icon-left-open-big

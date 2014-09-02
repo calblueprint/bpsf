@@ -12,6 +12,7 @@ var HomeController = function(documentObject){
 		me.fundingProgress();
 		me.turbolinkBind();
 		me.modalBind();
+		me.convertSelects();
 	}
 
 	me.truncateText = function(){} 
@@ -36,6 +37,10 @@ var HomeController = function(documentObject){
 			$('.home-slider').superslides('animate','prev');
 		});
 	}
+
+	me.deactivate = function(){
+		$(window).off('scroll')
+	}
 }
 
 HomeController.prototype = Object.create(AppController.prototype);
@@ -43,7 +48,9 @@ HomeController.prototype.constructor = HomeController;
 
 HomeController.prototype.infiniteScroll = function(callback){
 	var me = this;
-	$(window).scroll(function(){
+	$(window).on('scroll', loadPagContent);
+
+	function loadPagContent(){
 	    if ($(window).scrollTop() > $(document).height() - $(window).height() - 150) {
 	    	var pagination = me.documentObject.querySelector('.pagination .next_page'),
 	    		url = pagination ? pagination.getAttribute('href') : false;
@@ -63,7 +70,7 @@ HomeController.prototype.infiniteScroll = function(callback){
 			    }
 			}
 	    }
-	});
+	}
 }
 
 HomeController.prototype.fundingProgress = function(){

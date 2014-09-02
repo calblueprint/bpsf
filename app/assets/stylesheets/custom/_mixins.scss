@@ -1,0 +1,39 @@
+@mixin placeholder-color($color) {
+  &.placeholder {
+    color: $color; 
+  }
+  &:-moz-placeholder {
+    color: $color; 
+  }
+  &::-moz-placeholder{
+  	color: $color;
+  }
+  &::-ms-input-placeholder{
+  	color: $color;
+  }
+  &::-webkit-input-placeholder {
+    color: $color; 
+  } 
+}
+
+@mixin vertical-center-text($height, $size: $med){
+	height:$height;
+	line-height: $height;
+	font-size: $size;
+}
+
+@mixin hide-this($display: none, $z-index: -999999, $opacity: 0, $cursor: default){
+	display: $display;
+	z-index: $z-index;
+	opacity: $opacity;
+	cursor: $cursor;
+}
+
+@mixin navigation-link-animations($color:$global-bg-color){
+  &:hover{
+    background-color:rgba($color, 0.5);
+  }
+  &:active{
+    background-color:$color;
+  }
+}
