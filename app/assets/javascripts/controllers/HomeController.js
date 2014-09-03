@@ -4,6 +4,8 @@ var HomeController = function(documentObject){
 	me.documentObject = documentObject || document;
 
 	me.init = function(){
+		me.extend(customSelect);
+
 		me.superSlider();
 		me.infiniteScroll(function(){
 			me.fundingProgress();

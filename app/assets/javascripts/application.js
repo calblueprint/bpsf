@@ -11,6 +11,7 @@
 // GO AFTER THE REQUIRES BELOW.
 //= require_tree ./libs
 //= require_tree ./plugins
+//= require_tree ./mixins
 //= require ./controllers/AppController.js
 //= require_tree ./controllers
 //= require_self
