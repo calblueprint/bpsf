@@ -5,6 +5,7 @@ var AdminDashboardController = function(documentObject){
 
 	me.init = function(){
 		me.extend(customSelect);
+		me.extend(tabs);
 
 		me.manageTabs();
 		me.turbolinkBind();
