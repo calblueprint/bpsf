@@ -5,6 +5,7 @@ var HomeController = function(documentObject){
 
 	me.init = function(){
 		me.extend(customSelect);
+		me.extend(modal);
 
 		me.superSlider();
 		me.infiniteScroll(function(){
