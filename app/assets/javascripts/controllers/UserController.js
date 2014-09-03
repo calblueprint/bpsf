@@ -5,6 +5,8 @@ var UserController = function(documentObject){
 
 	me.init = function(){
 		me.extend(tabs);
+		me.extend(setupStripe);
+		
 		me.manageTabs();
 		me.setupStripeForm();
 	}
