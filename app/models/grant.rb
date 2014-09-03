@@ -184,7 +184,7 @@ class Grant < ActiveRecord::Base
   end
 
   def has_pledges?
-    crowdfunder.pledged_total > 0
+    crowdfunder && crowdfunder.pledged_total > 0
   end
 
   def past_deadline?
