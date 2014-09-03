@@ -226,7 +226,6 @@
 		Turbolinks.visit(path)
 	}
 
-
 	AppController.prototype.extend = function(source) {
 		var me = this;
 		for (var prop in source) {

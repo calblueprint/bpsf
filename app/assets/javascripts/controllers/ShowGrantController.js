@@ -5,6 +5,8 @@ var ShowGrantController = function(documentObject){
 
 	me.init = function(){
 		me.extend(modal);
+		me.extend(fundingBar);
+		
 		me.fundingProgress();
 		me.modalBind();
 		me.setupStripeForm();

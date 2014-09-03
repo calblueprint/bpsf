@@ -4,6 +4,8 @@ var SearchController = function(documentObject){
 	me.documentObject = documentObject || document;
 
 	me.init = function(){
+		me.extend(fundingBar);
+		
 		me.fundingProgress();
 		me.turbolinkBind();
 	}
