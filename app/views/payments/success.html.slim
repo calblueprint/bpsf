@@ -2,22 +2,16 @@
 .row
   .twelve.columns
     .wrapper.light
-      .row.centalign
-        h2.centalign Congratulations!
-        | You just made your first donation!
-        .field.largefont
-          | You donated $
-          span#payment-amount= @payment.amount
-          |  to #{@grant}!
-        .field
-          = @grant.recipient.name
-          |  will be very grateful. You're making a difference.
-          br
-          | As a reminder, your donation is fully tax-deductible - our tax ID number is 94-2918219.
-        br
-        .field.largefont
-          | If you would like to make a general donation to 
-          br
-          | Berkeley Public Schools Fund, please 
-          br
-          | click the button below on the right!
+      .row
+        .ten.columns.centered
+          h2.text-center  Congratulations on your first donation!
+          h3.text-center
+            | You donated $
+            span#payment-amount= @payment.amount
+            |  to #{@grant}!
+          p
+            = @grant.recipient.name
+            |  will be very grateful. You're making a difference. As a reminder, your donation is fully tax-deductible - our tax ID number is 94-2918219.
+          p
+            strong
+              | If you would like to make a general donation to Berkeley Public Schools Fund, please click the button below on the right!
