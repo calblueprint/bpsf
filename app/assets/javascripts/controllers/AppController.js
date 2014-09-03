@@ -117,7 +117,7 @@
 		}
 
 		me.bindLoader = function(){
-			$(document).one('page:before-change', function(e){
+			$(document).one('page:fetch', function(e){
 				var loaderBg = me.documentObject.querySelector('.loader-bg'),
 					loaderBlob = me.documentObject.querySelector('.loader-blob');
 				me.activateElements(loaderBg, loaderBlob);
