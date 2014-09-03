@@ -1,6 +1,6 @@
 var ShowGrantController = function(documentObject){
 	var me = this;
-	HomeController.call(me, documentObject);
+	AppController.call(me, documentObject);
 	me.documentObject = documentObject || document;
 
 	me.init = function(){
@@ -74,5 +74,5 @@ var ShowGrantController = function(documentObject){
 
 }
 
-ShowGrantController.prototype = Object.create(HomeController.prototype);
+ShowGrantController.prototype = Object.create(AppController.prototype);
 ShowGrantController.prototype.constructor = ShowGrantController;
