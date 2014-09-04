@@ -93,27 +93,31 @@
           br/
           h3 Details
           .four.columns
-            ul.two_up.tiles
-              li
-                h5.inline
-                  strong Grade Level:
-              li
-                h5.inline =@grant.grade_level
-              li
-                h5.inline
-                  strong Duration:
-              li
-                h5.inline =@grant.duration
-              li
-                h5.inline
-                  strong # of classes:
-              li
-                h5.inline =@grant.num_classes
-              li
-                h5.inline
-                  strong # of students:
-              li
-                h5.inline =@grant.num_students
+            table.no-border
+              tr
+                td.no-padding.no-border
+                  h5.inline
+                    strong Grade Level:
+                td.no-padding.no-border
+                  h5.inline =@grant.grade_level
+              tr
+                td.no-padding.no-border
+                  h5.inline
+                    strong Duration:
+                td.no-padding.no-border
+                  h5.inline =@grant.duration
+              tr
+                td.no-padding.no-border
+                  h5.inline
+                    strong # of classes:
+                td.no-padding.no-border
+                  h5.inline =@grant.num_classes
+              tr
+                td.no-padding.no-border
+                  h5.inline
+                    strong # of students:
+                td.no-padding.no-border
+                  h5.inline =@grant.num_students
           .seven.columns 
             = @grant.collaborators_section
       .row
