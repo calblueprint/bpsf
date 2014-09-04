@@ -4,6 +4,8 @@ var RegistrationController = function(documentObject){
 	me.documentObject = documentObject || document;
 
 	me.init = function(){
+		me.extend(checkbox);
+		me.extend(modal);
 		me.checkboxBind();
 		me.modalBind();
 		me.userSwitch();

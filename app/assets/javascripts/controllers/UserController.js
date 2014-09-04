@@ -1,9 +1,12 @@
 var UserController = function(documentObject){
 	var me = this;
-	ShowGrantController.call(me, documentObject);
+	AppController.call(me, documentObject);
 	me.documentObject = documentObject || document;
 
 	me.init = function(){
+		me.extend(tabs);
+		me.extend(setupStripe);
+		
 		me.manageTabs();
 		me.setupStripeForm();
 	}
@@ -33,5 +36,5 @@ var UserController = function(documentObject){
 	}
 }
 
-UserController.prototype = Object.create(ShowGrantController.prototype);
+UserController.prototype = Object.create(AppController.prototype);
 UserController.prototype.constructor = UserController;

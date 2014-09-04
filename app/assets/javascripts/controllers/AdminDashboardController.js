@@ -4,27 +4,15 @@ var AdminDashboardController = function(documentObject){
 	me.documentObject = documentObject || document;
 
 	me.init = function(){
+		me.extend(customSelect);
+		me.extend(tabs);
+
 		me.manageTabs();
-		me.handleCsvFields();
 		me.turbolinkBind();
 		$(document).on('ajaxComplete', function(){
 			me.turbolinkBind();
 		});
 		me.convertSelects();
-	}
-
-	me.handleCsvFields = function(){
-		$(".chosenselect").chosen({width:'90%'});
-		$("input[name=donors]").attr("disabled", true).addClass('disabled');
-		$("#donor-selection").change(function() {
-			var selection = $("#donor-selection")[0].selectedIndex;
-			if (selection == 0) {
-				// Placeholder
-				$("input[name=donors]").attr("disabled", true);
-			} else {
-				$("input[name=donors]").attr("disabled", false);
-			}
-		});
 	}
 }
 

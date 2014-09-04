@@ -4,6 +4,7 @@ var FooterController = function(documentObject){
 	me.documentObject = documentObject || document;
 
 	me.init = function(){
+		me.extend(modal);
 		me.extendPageLength();
 		me.modalBind();
 	}
