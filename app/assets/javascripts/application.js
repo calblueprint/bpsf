@@ -11,13 +11,15 @@
 // GO AFTER THE REQUIRES BELOW.
 //= require_tree ./libs
 //= require_tree ./plugins
+//= require turbolinks
 //= require_tree ./mixins
 //= require ./controllers/AppController.js
 //= require_tree ./controllers
 //= require_self
 //= require jquery_ujs
-//= require turbolinks
 //= require ./draft_cropping.js.coffee
+
+Turbolinks.pagesCached(0);
 
 appController = new AppController();
 $(document).on('page:change', function(){
