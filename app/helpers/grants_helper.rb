@@ -76,7 +76,7 @@ module GrantsHelper
     @count = [0,0,0,0,0,0,0,0,0,0,0]
     unsuccessful.each do |grant|
       @count[in_bucket(grant.requested_funds)] += 1
-    end 
+    end
     return @count.to_json
   end
 
@@ -102,7 +102,7 @@ module GrantsHelper
       return 8
     when 900..999
       return 9
-    when (goal >= 1000)
+    else
       return 10
     end
   end
