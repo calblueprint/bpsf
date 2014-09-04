@@ -33,7 +33,7 @@
         br/
       .row.padada
         .ten.columns.centered.centalign
-          h4.inlined> Subject Areas:
+          h4.inline> Subject Areas:
           span.largefont = @grant.subject_areas
       .row.grantviewbar
         .progress
@@ -92,34 +92,28 @@
         .ten.columns.centered
           br/
           h3 Details
-          .two.columns.pull_left style="margin-top: 3px;"
-            h5.inlined
-              strong Grade Level:
-            br/
-            h5.inlined
-              strong Duration:
-            br/
-            h5.inlined
-              strong # of classes:
-            br/
-            h5.inlined
-              strong # of students:
-          .two.columns.pull_right style="margin-top: 3px;"
-            span.medfont
-              |&nbsp;
-              = @grant.grade_level
-            br/
-            span.medfont
-              |&nbsp;
-              = @grant.duration
-            br/
-            span.medfont
-              |&nbsp;
-              = @grant.num_classes
-            br/
-            span.medfont
-              |&nbsp;
-              = @grant.num_students
+          .four.columns
+            ul.two_up.tiles
+              li
+                h5.inline
+                  strong Grade Level:
+              li
+                h5.inline =@grant.grade_level
+              li
+                h5.inline
+                  strong Duration:
+              li
+                h5.inline =@grant.duration
+              li
+                h5.inline
+                  strong # of classes:
+              li
+                h5.inline =@grant.num_classes
+              li
+                h5.inline
+                  strong # of students:
+              li
+                h5.inline =@grant.num_students
           .seven.columns 
             = @grant.collaborators_section
       .row
@@ -127,7 +121,7 @@
           br/
           h3 Budget
           .twelve.columns
-            h5.inlined
+            h5.inline
               strong Budget:
             span.medfont
               |  $#{@grant.total_budget} (does not include 9% administrative fee)
