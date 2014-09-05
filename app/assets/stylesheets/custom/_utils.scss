@@ -41,6 +41,14 @@
 	z-index: 2000;
 }
 
+.nudge-top{
+	margin-top:10px;
+}
+
+.nudge-bottom{
+	margin-bottom:10px;
+}
+
 //Display Styles
 .inlined, .inline{
 	display:inline;
@@ -58,7 +66,7 @@
 
 //Font Styles
 .ultitle{
-	border-bottom:$table-cell-border-size $table-cell-border-style $default-color;
+	border-bottom:$table-cell-border-size $table-cell-border-style $global-bg-color;
 }
 
 .smallfont, .font-small{
