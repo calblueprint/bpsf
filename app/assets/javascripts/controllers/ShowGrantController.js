@@ -24,10 +24,6 @@ var ShowGrantController = function(documentObject){
 		}
 	}
 
-	me.socialButtons = function(){
-		
-	}
-
 	me.setupConfirmationModal = function(){
 		$('.saved_card').parents('form').submit(function(){
 			var confirmationModal = me.documentObject.querySelector('#confirmation-modal'),
