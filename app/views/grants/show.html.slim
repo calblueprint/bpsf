@@ -27,31 +27,42 @@
     .grant-cover-wrapper
       .aspect-ratio-box
       = @grant.banner classes: 'grant-cover'
-  .row.centalign
+  .row
     .eleven.columns.centered
-      p.largefont= simple_format(@grant.summary)
-    br/
-  .row.padada
-    .ten.columns.centered.centalign
-      h4.inline> Subject Areas:
-      span.largefont = @grant.subject_areas
-  .row.grantviewbar
-    h4 = @grant.days_left
-    .progress
-      = @grant.progress_bar
-    .gcdiv
-      span.gctext
-        strong> Current:
-      span.currentnum
-        | $#{@grant.current_funds}
-      | &emsp;
-      span.gctext
-        strong> Goal:
-      span.goalnum
-        | $#{@grant.funding_goal}
-  = render 'donate_button', grant: @grant
+      .row
+        .six.columns
+          h5.ultitle
+            strong Summary
+          = simple_format(@grant.summary)
+          table.no-border
+            tr
+              td.no-padding.no-border
+                h5
+                  strong Subject Areas:
+              td.no-border.subject-areas
+                = simple_format(@grant.subject_areas)
+        .six.columns
+          .grantviewbar.text-right
+            .funding-info
+              - if !@grant.crowdfunding?
+                h3.no-padding Successful!
+              - elsif @grant.days_left.to_f > 0
+                h2.no-padding = @grant.days_left
+                h5.no-padding
+                  strong Days Left!
+              - else
+                h3.no-padding Past Deadline
+            .funding-info
+              h5.no-padding
+                strong Raised
+              h2.primary-color.no-padding $#{@grant.current_funds}
+              h5.no-padding
+                strong out of $#{@grant.funding_goal}
+            .progress
+              = @grant.progress_bar
+            = render 'donate_button', grant: @grant
   - if admin_user?
-    .row
+    .row.nudge-top
       .seven.columns
         .row
           #project.ten.columns.centered
@@ -75,7 +86,7 @@
               | &nbsp;-&nbsp;
               = u[0].email
   - else
-    .row
+    .row.nudge-top
       .ten.columns.centered
         h3 Project Idea
         .twelve.columns

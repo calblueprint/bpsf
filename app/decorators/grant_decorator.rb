@@ -14,7 +14,7 @@ class GrantDecorator < Draper::Decorator
     if past_deadline?
       'Past Deadline'
     elsif crowdfunding?
-      "#{model.days_left} Days Left!"
+      "#{model.days_left}"
     else
       status
     end

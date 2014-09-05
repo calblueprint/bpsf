@@ -63,12 +63,23 @@ $imglargereplacementhgt: 250px;
 	}
 }
 
-.grantviewbar{
-	padding-top: 10px;
-	.gcdiv{
-		padding-top: 8px;
-		.gctext{font-size:$med;}
-	}
+
+.subject-areas{
+	padding: 0px 0px 0px 10px;
+}
+
+.funding-info{
+	display: inline-block;
+	width: 33%;
+	min-width: 130px;
+	vertical-align: bottom;
+	padding: 5px;
+	border: none;
+	text-align: right;
+}
+
+.grant-divider{
+	@extend .footer-divider;
 }
 
 .donor-list {
