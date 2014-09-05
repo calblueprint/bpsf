@@ -7,12 +7,14 @@ var ShowGrantController = function(documentObject){
 		me.extend(modal);
 		me.extend(fundingBar);
 		me.extend(setupStripe);
+		me.extend(social);
 		
 		me.fundingProgress();
 		me.modalBind();
 		me.setupStripeForm();
 		me.setupConfirmationModal();
 		me.donorListHeight();
+		me.bindSocial();
 	}
 
 	me.donorListHeight = function(){
