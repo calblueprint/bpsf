@@ -32,7 +32,11 @@
 
 ready = ->
   console.log "Hello"
-  new Croppic 'croppic'
+  croppic = $('#croppic')
+  croppicOptions =
+    uploadUrl: croppic.data('uploadurl')
+    cropUrl: croppic.data('cropurl')
+  new Croppic 'croppic', croppicOptions
 
 $(document).ready ready
 $(document).on 'page:load', ready
