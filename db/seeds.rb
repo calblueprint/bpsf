@@ -85,7 +85,7 @@ def make_grants
                             school_id: r.profile.school_id
     crowdfunding_grants << r.grants.build(title: "Grant #{r.id-4}",
                                           deadline: 30.days.from_now,
-                                          summary: Faker::Lorem.sentence(7) * rand(1..2),
+                                          summary: Faker::Lorem.sentence,
                                           subject_areas: ["Arts / Music", "Multi-subject"],
                                           grade_level: "#{rand(1..11)}",
                                           duration: "#{rand(1..4)} weeks",
