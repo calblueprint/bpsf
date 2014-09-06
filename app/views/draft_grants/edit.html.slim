@@ -156,12 +156,12 @@
         h3 Additional Comments
         .camo-field.nudge-left
           = f.text_area :comments, class: [:textarea, :input], rows: 5, :data => {:bp_tooltip => 'Please state any additional information that may contribute to your application.', :bp_charlimit => '1200'}, :placeholder => "Click here to edit"
-    .row
-      h4 Cover Image
-      #drawerimage style="text-align:center;"
-        p
-          | Optional: Choose a photo that will appear at the top of your application.
-          br/
-          | A default photo will be used if you choose not to upload one.
-      .eight.columns.centered
-        #croppic
+        .row
+          h4 Cover Image
+          #drawerimage style="text-align:center;"
+            p
+              | Optional: Choose a photo that will appear at the top of your application.
+              br/
+              | A default photo will be used if you choose not to upload one.
+          .eight.columns.centered
+              #croppic data={uploadurl: upload_image_draft_path(@draft_grant), cropurl: crop_image_draft_path(@draft_grant)}
