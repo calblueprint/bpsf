@@ -3,8 +3,8 @@ var truncate = {
 		var me = this,
 		textBoxes = me.documentObject.querySelectorAll('[data-bp-truncate]');
 		for (var i = textBoxes.length - 1; i >= 0; i--) {
-			var maxLines = Number(textBoxes[i].getAttribute('data-bp-truncate')),
-			truncateLines(textBoxes[i], maxLines);
+			var maxLines = Number(textBoxes[i].getAttribute('data-bp-truncate'));
+			me.truncateLines(textBoxes[i], maxLines);
 		};
 	},
 	truncateLines: function(textBox, maxLines){
@@ -13,13 +13,14 @@ var truncate = {
 			origText = textBox.innerText;
 		
 		textBox.innerText += '\n .';
-		var lineHeight = scrollHeight - textBox.scrollHeight;
+		var lineHeight = textBox.scrollHeight - scrollHeight || false;
 
-		if(scrollHeight / lineHeight > maxLines){
-			while(scrollHeight / lineHeight > maxLines){
+		if(lineHeight && scrollHeight / lineHeight > maxLines){
+			while(textBox.scrollHeight / lineHeight > maxLines){
 				textBox.innerText = textBox.innerText.substring(0, textBox.innerText.length - 1);
 			}
-			textBox.innerText = textBox.innerText.substring(0, textBox.innerText.length - 2) + '&hellip;';
+			textBox.innerText = textBox.innerText.substring(0, textBox.innerText.length - 4);
+			textBox.innerHTML += '&hellip;';
 		} else {
 			textBox.innerText = origText;
 		}
