@@ -66,16 +66,7 @@
                           br/
                           | A default photo will be used if you choose not to upload one.
                       .eight.columns.centered
-                        .five.columns.centalign
-                          .imgholder style="width:300px;"
-                            - if !@draft_grant.image_url.blank?
-                              = image_tag @draft_grant.image_url :thumb
-                            - else
-                              = image_tag 'https://placehold.it/880x450'
-                        .five.columns.push_two.centalign
-                          li.field
-                            br/
-                            = f.file_field :image
+                        #croppic
 
                     - if !@draft_grant.video.blank?
                       .row
