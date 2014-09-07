@@ -55,7 +55,8 @@ class Grant < ActiveRecord::Base
                   :num_classes, :num_students, :total_budget, :requested_funds,
                   :funds_will_pay_for, :budget_desc, :purpose, :methods, :background,
                   :n_collaborators, :collaborators, :comments, :video, :image, :school_id,
-                  :crop_x, :crop_y, :crop_w, :crop_h, :other_funds, :remote_image_url
+                  :other_funds, :remote_image_url
+  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h, :image_width, :image_height
 
   belongs_to :recipient
   belongs_to :school
