@@ -81,8 +81,8 @@ class DraftGrantsController < ApplicationController
     @draft_grant.crop_y = params[:imgY1]
     @draft_grant.crop_w = params[:cropW]
     @draft_grant.crop_h = params[:cropH]
-    @draft_grant.image_width = params[:imgInitW]
-    @draft_grant.image_height = params[:imgInitH]
+    @draft_grant.image_width = params[:imgW]
+    @draft_grant.image_height = params[:imgH]
   end
 
 end

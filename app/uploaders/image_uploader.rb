@@ -59,9 +59,10 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   def crop
     if model.crop_x.present?
+      puts "\nCropping params:"
       puts model.image_width, model.image_height, model.crop_x, model.crop_y, model.crop_w, model.crop_h
-      resize_to_fill model.image_width, model.image_height
-        manipulate! do |img|
+      resize_to_fit model.image_width.to_i, model.image_height.to_i
+      manipulate! do |img|
         x = model.crop_x.to_i
         y = model.crop_y.to_i
         w = model.crop_w.to_i
@@ -73,9 +74,9 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   def store_dimensions
-    if file && model
+    if file && model && !model.crop_x.present?
       model.image_width, model.image_height = ::MiniMagick::Image.open(file.file)[:dimensions]
-      puts [model.image_width, model.image_height]
+      puts "#{model.image_width}, #{model.image_height}"
     end
   end
 
