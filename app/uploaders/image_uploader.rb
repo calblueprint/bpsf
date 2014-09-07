@@ -43,22 +43,22 @@ class ImageUploader < CarrierWave::Uploader::Base
   #   process :scale => [50, 50]
   # end
   version :preview do
-    resize_to_limit 920, 470
+    resize_to_limit 1000, 500
   end
 
   version :banner do
     process :crop
-    resize_to_fill 920, 470
+    resize_to_fill 1000, 500
   end
 
   version :thumb do
     process :crop
-    resize_to_fill 294, 150
+    resize_to_fill 300, 150
   end
 
   def crop
     if model.crop_x.present?
-      resize_to_limit 920, 470
+      resize_to_limit 1000, 5000
       manipulate! do |img|
         x = model.crop_x.to_i
         y = model.crop_y.to_i
