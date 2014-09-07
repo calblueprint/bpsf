@@ -53,7 +53,7 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   version :thumb do
     process :crop
-    resize_to_fill 294, 150
+    resize_to_fill 300, 150
   end
 
   def crop
