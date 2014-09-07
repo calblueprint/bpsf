@@ -164,4 +164,7 @@
           br/
           | A default photo will be used if you choose not to upload one.
       .twelve.columns
-          #croppic data={uploadurl: upload_image_draft_path(@draft_grant), cropurl: crop_image_draft_path(@draft_grant)}
+        / - if @draft_grant.image_url.present?
+        /   = image_tag @draft_grant.image_url :banner
+        / - else
+        #croppic data={uploadurl: upload_image_draft_path(@draft_grant), cropurl: crop_image_draft_path(@draft_grant)}
