@@ -62,6 +62,13 @@
 	&.open{
 		left:initial;
 	}
+	&.croppic-loader{
+		position: absolute;
+		top:50%;
+		left:50%;
+		right:initial;
+		bottom:initial;
+	}
 
 }
 

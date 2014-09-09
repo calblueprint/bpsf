@@ -4,14 +4,12 @@
   position: relative;  /* MANDATORY */
 
   margin: 20px -30px;
-  border: 3px  solid #FFF;
+  border: 1px  solid #D1D2D6;
   box-sizing: content-box;
   -moz-box-sizing: content-box;
   border-radius: 2px;
-  background-image: image-url("placeholder.png");
   background-repeat: no-repeat;
   background-position: center;
-  box-shadow: 8px 8px 0px rgba(0,0,0,0.1);
 }
 
 /* DO NOT CHANGE FROM HERE ( unless u know what u are doing) */
@@ -36,7 +34,7 @@
   height:20px;
   text-align:center;
   line-height:20px;
-  color:#FFF;
+  color:#D1D2D6;
 }
 
 .cropControls{
@@ -61,7 +59,7 @@
   height:30px;
   text-align:center;
   line-height:20px;
-  color:#FFF;
+  color:#D1D2D6;
   font-size:13px;
   font-weight: bold;
   font-style: normal;
@@ -117,8 +115,7 @@
   width: 10px;
   height: 10px;
   margin: 25px auto;
-  background: #FFF;
-  box-shadow: 5px 5px 0px rgba(0,0,0,0.2);
+  background: #D1D2D6;
   -moz-border-radius: 50px;
   -moz-animation: bubblingG 1s infinite alternate;
   -webkit-border-radius: 50px;
@@ -160,14 +157,14 @@
   0% {
     width: 10px;
     height: 10px;
-    background-color:#FFF;
+    background-color:#D1D2D6;
     -moz-transform: translateY(0);
   }
 
   100% {
     width: 24px;
     height: 24px;
-    background-color:#FFF;
+    background-color:#D1D2D6;
     -moz-transform: translateY(-21px);
   }
 
@@ -177,14 +174,14 @@
   0% {
     width: 10px;
     height: 10px;
-    background-color:#FFF;
+    background-color:#D1D2D6;
     -webkit-transform: translateY(0);
   }
 
   100% {
     width: 24px;
     height: 24px;
-    background-color:#FFF;
+    background-color:#D1D2D6;
     -webkit-transform: translateY(-21px);
   }
 
@@ -194,14 +191,14 @@
   0% {
     width: 10px;
     height: 10px;
-    background-color:#FFF;
+    background-color:#D1D2D6;
     -ms-transform: translateY(0);
   }
 
   100% {
     width: 24px;
     height: 24px;
-    background-color:#FFF;
+    background-color:#D1D2D6;
     -ms-transform: translateY(-21px);
   }
 
@@ -211,14 +208,14 @@
   0% {
     width: 10px;
     height: 10px;
-    background-color:#FFF;
+    background-color:#D1D2D6;
     -o-transform: translateY(0);
   }
 
   100% {
     width: 24px;
     height: 24px;
-    background-color:#FFF;
+    background-color:#D1D2D6;
     -o-transform: translateY(-21px);
   }
 
@@ -228,14 +225,14 @@
   0% {
     width: 10px;
     height: 10px;
-    background-color:#FFF;
+    background-color:#D1D2D6;
     transform: translateY(0);
   }
 
   100% {
     width: 24px;
     height: 24px;
-    background-color:#FFF;
+    background-color:#D1D2D6;
     transform: translateY(-21px);
   }
 

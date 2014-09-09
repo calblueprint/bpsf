@@ -17,7 +17,7 @@
 //= require_tree ./controllers
 //= require_self
 //= require jquery_ujs
-//= require ./draft_cropping.js.coffee
+//= require ./draft_cropping.js
 
 Turbolinks.pagesCached(0);
 
