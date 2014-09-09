@@ -7,19 +7,20 @@ var HomeController = function(documentObject){
 		me.extend(customSelect);
 		me.extend(modal);
 		me.extend(fundingBar);
+		me.extend(truncate);
 
 		me.superSlider();
 		me.infiniteScroll(function(){
 			me.fundingProgress();
 			me.turbolinkBind();
+			me.setupTruncate();
 		});
 		me.fundingProgress();
 		me.turbolinkBind();
 		me.modalBind();
 		me.convertSelects();
+		me.setupTruncate();
 	}
-
-	me.truncateText = function(){} 
 
 	me.superSlider = function(){
 	    $('.home-slider').superslides({
