@@ -49,7 +49,6 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   version :banner do
     process :crop
-    process :optimize
   end
 
   version :thumb, from_version: :banner do
@@ -69,6 +68,13 @@ class ImageUploader < CarrierWave::Uploader::Base
         w = model.crop_w.to_i
         h = model.crop_h.to_i
         img.crop "#{w}x#{h}+#{x}+#{y}"
+        return img unless img.mime_type.match /image\/jpeg/
+          img.strip
+          img.combine_options do |c|
+            c.quality "90"
+            c.depth "8"
+            c.interlace "plane"
+          end
         img
       end
     end
@@ -80,19 +86,6 @@ class ImageUploader < CarrierWave::Uploader::Base
       puts "#{model.image_width}, #{model.image_height}"
     end
   end
-
-  def optimize
-  manipulate! do |img|
-    return img unless img.mime_type.match /image\/jpeg/
-    img.strip
-    img.combine_options do |c|
-      c.quality "90"
-      c.depth "8"
-      c.interlace "plane"
-    end
-    img
-  end
-end
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
