@@ -169,7 +169,6 @@
 
             me.imgInitW = me.imgW = response.width;
             me.imgInitH = me.imgH = response.height;
-            console.log(me.imgW, me.imgH);
 
             if(me.options.modal){ me.createModal(); }
             if( !$.isEmptyObject(me.croppedImg)){ me.croppedImg.remove(); }
@@ -246,8 +245,7 @@
       //me.zoom(40);
 
       // initial center image
-      console.log(me.objW, me.objH, me.imgW, me.imgH);
-      me.img.css({'left': 0/*-(me.imgW -me.objW)/2*/, 'top': 0/*-(me.imgH -me.objH)/2*/, 'position':'relative'});
+      me.img.css({'left': 0, 'top': 0, 'position':'relative'});
       if(me.options.imgEyecandy){ me.imgEyecandy.css({'left': -(me.imgW -me.objW)/2, 'top': -(me.imgH -me.objH)/2, 'position':'relative'}); }
 
     },
@@ -423,7 +421,6 @@
           cropW:me.objW
         };
 
-      console.log(cropData);
 
       var formData = new FormData();
 
