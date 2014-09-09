@@ -8,13 +8,13 @@
 
   Croppic = function (id, options) {
 
-    var that = this;
-    that.id = id;
-    that.obj = $('#' + id);
-    that.outputDiv = that.obj;
+    var me = this;
+    me.id = id;
+    me.obj = $('#' + id);
+    me.outputDiv = me.obj;
 
     // DEFAULT OPTIONS
-    that.options = {
+    me.options = {
       uploadUrl:'',
       uploadData:{},
       cropUrl:'',
@@ -38,10 +38,10 @@
     };
 
     // OVERWRITE DEFAULT OPTIONS
-    for (i in options) that.options[i] = options[i];
+    for (i in options) me.options[i] = options[i];
 
     // INIT THE WHOLE DAMN THING!!!
-    that.init();
+    me.init();
 
   };
 
@@ -76,86 +76,86 @@
     loader:{},
 
     init: function () {
-      var that = this;
+      var me = this;
 
-      that.objW = that.obj.width();
-      that.objH = that.obj.height();
+      me.objW = me.obj.width();
+      me.objH = me.obj.height();
 
-      if( $.isEmptyObject(that.defaultImg)){ that.defaultImg = that.obj.find('img'); }
+      if( $.isEmptyObject(me.defaultImg)){ me.defaultImg = me.obj.find('img'); }
 
-      that.createImgUploadControls();
-      that.bindImgUploadControl();
+      me.createImgUploadControls();
+      me.bindImgUploadControl();
 
     },
     createImgUploadControls: function(){
-      var that = this;
+      var me = this;
 
       var cropControlUpload = '';
-      if(that.options.customUploadButtonId ===''){ cropControlUpload = '<i class="cropControlUpload"></i>'; }
+      if(me.options.customUploadButtonId ===''){ cropControlUpload = '<i class="cropControlUpload"></i>'; }
       var cropControlRemoveCroppedImage = '<i class="cropControlRemoveCroppedImage"></i>';
 
-      if( $.isEmptyObject(that.croppedImg)){ cropControlRemoveCroppedImage=''; }
+      if( $.isEmptyObject(me.croppedImg)){ cropControlRemoveCroppedImage=''; }
 
       var html =    '<div class="cropControls cropControlsUpload"> ' + cropControlUpload + cropControlRemoveCroppedImage + ' </div>';
-      that.outputDiv.append(html);
+      me.outputDiv.append(html);
 
-      that.cropControlsUpload = that.outputDiv.find('.cropControlsUpload');
+      me.cropControlsUpload = me.outputDiv.find('.cropControlsUpload');
 
-      if(that.options.customUploadButtonId ===''){ that.imgUploadControl = that.outputDiv.find('.cropControlUpload'); }
-      else{ that.imgUploadControl = $('#'+that.options.customUploadButtonId); that.imgUploadControl.show(); }
+      if(me.options.customUploadButtonId ===''){ me.imgUploadControl = me.outputDiv.find('.cropControlUpload'); }
+      else{ me.imgUploadControl = $('#'+me.options.customUploadButtonId); me.imgUploadControl.show(); }
 
-      if( !$.isEmptyObject(that.croppedImg)){
-        that.cropControlRemoveCroppedImage = that.outputDiv.find('.cropControlRemoveCroppedImage');
+      if( !$.isEmptyObject(me.croppedImg)){
+        me.cropControlRemoveCroppedImage = me.outputDiv.find('.cropControlRemoveCroppedImage');
       }
 
     },
     bindImgUploadControl: function(){
 
-      var that = this;
+      var me = this;
 
       // CREATE UPLOAD IMG FORM
-      var formHtml = '<form class="'+that.id+'_imgUploadForm" style="display: none; visibility: hidden;">  <input type="file" name="img">  </form>';
-      that.outputDiv.append(formHtml);
-      that.form = that.outputDiv.find('.'+that.id+'_imgUploadForm');
+      var formHtml = '<form class="'+me.id+'_imgUploadForm" style="display: none; visibility: hidden;">  <input type="file" name="img">  </form>';
+      me.outputDiv.append(formHtml);
+      me.form = me.outputDiv.find('.'+me.id+'_imgUploadForm');
 
-      that.imgUploadControl.off('click');
-      that.imgUploadControl.on('click',function(){
-        that.form.find('input[type="file"]').trigger('click');
+      me.imgUploadControl.off('click');
+      me.imgUploadControl.on('click',function(){
+        me.form.find('input[type="file"]').trigger('click');
       });
 
-      if( !$.isEmptyObject(that.croppedImg)){
+      if( !$.isEmptyObject(me.croppedImg)){
 
-        that.cropControlRemoveCroppedImage.on('click',function(){
-          that.croppedImg.remove();
+        me.cropControlRemoveCroppedImage.on('click',function(){
+          me.croppedImg.remove();
           $(this).hide();
 
-          if( !$.isEmptyObject(that.defaultImg)){
-            that.obj.append(that.defaultImg);
+          if( !$.isEmptyObject(me.defaultImg)){
+            me.obj.append(me.defaultImg);
           }
 
-          if(that.options.outputUrlId !== ''){  $('#'+that.options.outputUrlId).val('');  }
+          if(me.options.outputUrlId !== ''){  $('#'+me.options.outputUrlId).val('');  }
 
         });
 
       }
 
-      that.form.find('input[type="file"]').change(function(){
+      me.form.find('input[type="file"]').change(function(){
 
-        if (that.options.onBeforeImgUpload) that.options.onBeforeImgUpload.call(that);
+        if (me.options.onBeforeImgUpload) me.options.onBeforeImgUpload.call(me);
 
-        that.showLoader();
-        that.imgUploadControl.hide();
+        me.showLoader();
+        me.imgUploadControl.hide();
 
-        var formData = new FormData(that.form[0]);
+        var formData = new FormData(me.form[0]);
 
-        for (var key in that.options.uploadData) {
-          if( that.options.uploadData.hasOwnProperty(key) ) {
-            formData.append( key , that.options.uploadData[key] );
+        for (var key in me.options.uploadData) {
+          if( me.options.uploadData.hasOwnProperty(key) ) {
+            formData.append( key , me.options.uploadData[key] );
           }
         }
 
         $.ajax({
-                    url: that.options.uploadUrl,
+                    url: me.options.uploadUrl,
                     data: formData,
                     context: document.body,
                     cache: false,
@@ -167,27 +167,28 @@
           response = data;
           if(response.status=='success'){
 
-            that.imgInitW = that.imgW = response.width;
-            that.imgInitH = that.imgH = response.height;
+            me.imgInitW = me.imgW = response.width;
+            me.imgInitH = me.imgH = response.height;
+            console.log(me.imgW, me.imgH);
 
-            if(that.options.modal){ that.createModal(); }
-            if( !$.isEmptyObject(that.croppedImg)){ that.croppedImg.remove(); }
+            if(me.options.modal){ me.createModal(); }
+            if( !$.isEmptyObject(me.croppedImg)){ me.croppedImg.remove(); }
 
-            that.imgUrl=response.url;
+            me.imgUrl=response.url;
 
-            that.obj.append('<img src="'+response.url+'">');
-            that.initCropper();
+            me.obj.append('<img src="'+response.url+'">');
+            me.initCropper();
 
-            that.hideLoader();
+            me.hideLoader();
 
-            if (that.options.onAfterImgUpload) that.options.onAfterImgUpload.call(that);
+            if (me.options.onAfterImgUpload) me.options.onAfterImgUpload.call(me);
 
           }
 
           if(response.status=='error'){
-            that.obj.append('<p style="width:100%; height:100%; text-align:center; line-height:'+that.objH+'px;">'+response.message+'</p>');
-            that.hideLoader();
-            setTimeout( function(){ that.reset(); },2000)
+            me.obj.append('<p style="width:100%; height:100%; text-align:center; line-height:'+me.objH+'px;">'+response.message+'</p>');
+            me.hideLoader();
+            setTimeout( function(){ me.reset(); },2000)
           }
 
 
@@ -197,62 +198,62 @@
 
     },
     createModal: function(){
-      var that = this;
+      var me = this;
 
-      var marginTop = that.windowH/2-that.objH/2;
-      var modalHTML =  '<div id="croppicModal">'+'<div id="croppicModalObj" style="width:'+ that.objW +'px; height:'+ that.objH +'px; margin:0 auto; margin-top:'+ marginTop +'px; position: relative;"> </div>'+'</div>';
+      var marginTop = me.windowH/2-me.objH/2;
+      var modalHTML =  '<div id="croppicModal">'+'<div id="croppicModalObj" style="width:'+ me.objW +'px; height:'+ me.objH +'px; margin:0 auto; margin-top:'+ marginTop +'px; position: relative;"> </div>'+'</div>';
 
       $('body').append(modalHTML);
 
-      that.modal = $('#croppicModal');
+      me.modal = $('#croppicModal');
 
-      that.obj = $('#croppicModalObj');
+      me.obj = $('#croppicModalObj');
 
     },
     destroyModal: function(){
-      var that = this;
+      var me = this;
 
-      that.obj = that.outputDiv;
-      that.modal.remove();
+      me.obj = me.outputDiv;
+      me.modal.remove();
     },
     initCropper: function(){
-      var that = this;
+      var me = this;
 
       /*SET UP SOME VARS*/
-      that.img = that.obj.find('img');
-      that.img.wrap('<div class="cropImgWrapper" style="overflow:hidden; z-index:1; position:absolute; width:'+that.objW+'px; height:'+that.objH+'px;"></div>');
+      me.img = me.obj.find('img');
+      me.img.wrap('<div class="cropImgWrapper" style="overflow:hidden; z-index:1; position:absolute; width:'+me.objW+'px; height:'+me.objH+'px;"></div>');
 
       /*INIT DRAGGING*/
-      that.createCropControls();
+      me.createCropControls();
 
-      if(that.options.imgEyecandy){ that.createEyecandy(); }
-      that.initDrag();
-      that.initialScaleImg();
+      if(me.options.imgEyecandy){ me.createEyecandy(); }
+      me.initDrag();
+      me.initialScaleImg();
     },
     createEyecandy: function(){
-      var that = this;
+      var me = this;
 
-      that.imgEyecandy = that.img.clone();
-      that.imgEyecandy.css({'z-index':'0','opacity':that.options.imgEyecandyOpacity}).appendTo(that.obj);
+      me.imgEyecandy = me.img.clone();
+      me.imgEyecandy.css({'z-index':'0','opacity':me.options.imgEyecandyOpacity}).appendTo(me.obj);
     },
     destroyEyecandy: function(){
-      var that = this;
-      that.imgEyecandy.remove();
+      var me = this;
+      me.imgEyecandy.remove();
     },
     initialScaleImg:function(){
-      var that = this;
-      that.zoom(-that.imgInitW);
-      that.zoom(40);
+      var me = this;
+      me.zoom(-me.imgInitW);
+      //me.zoom(40);
 
       // initial center image
-
-      that.img.css({'left': -(that.imgW -that.objW)/2, 'top': -(that.imgH -that.objH)/2, 'position':'relative'});
-      if(that.options.imgEyecandy){ that.imgEyecandy.css({'left': -(that.imgW -that.objW)/2, 'top': -(that.imgH -that.objH)/2, 'position':'relative'}); }
+      console.log(me.objW, me.objH, me.imgW, me.imgH);
+      me.img.css({'left': 0/*-(me.imgW -me.objW)/2*/, 'top': 0/*-(me.imgH -me.objH)/2*/, 'position':'relative'});
+      if(me.options.imgEyecandy){ me.imgEyecandy.css({'left': -(me.imgW -me.objW)/2, 'top': -(me.imgH -me.objH)/2, 'position':'relative'}); }
 
     },
 
     createCropControls: function(){
-      var that = this;
+      var me = this;
 
       // CREATE CONTROLS
       var cropControlZoomMuchIn =      '<i class="cropControlZoomMuchIn"></i>';
@@ -264,93 +265,93 @@
 
             var html;
 
-      if(that.options.doubleZoomControls){ html =  '<div class="cropControls cropControlsCrop">'+ cropControlZoomMuchIn + cropControlZoomIn + cropControlZoomOut + cropControlZoomMuchOut + cropControlCrop + cropControlReset + '</div>'; }
+      if(me.options.doubleZoomControls){ html =  '<div class="cropControls cropControlsCrop">'+ cropControlZoomMuchIn + cropControlZoomIn + cropControlZoomOut + cropControlZoomMuchOut + cropControlCrop + cropControlReset + '</div>'; }
       else{ html =  '<div class="cropControls cropControlsCrop">' + cropControlZoomIn + cropControlZoomOut + cropControlCrop + cropControlReset + '</div>'; }
 
-      that.obj.append(html);
+      me.obj.append(html);
 
-      that.cropControlsCrop = that.obj.find('.cropControlsCrop');
+      me.cropControlsCrop = me.obj.find('.cropControlsCrop');
 
       // CACHE AND BIND CONTROLS
-      if(that.options.doubleZoomControls){
-        that.cropControlZoomMuchIn = that.cropControlsCrop.find('.cropControlZoomMuchIn');
-        that.cropControlZoomMuchIn.on('click',function(){ that.zoom( that.options.zoomFactor*10 ); });
+      if(me.options.doubleZoomControls){
+        me.cropControlZoomMuchIn = me.cropControlsCrop.find('.cropControlZoomMuchIn');
+        me.cropControlZoomMuchIn.on('click',function(){ me.zoom( me.options.zoomFactor*10 ); });
 
-        that.cropControlZoomMuchOut = that.cropControlsCrop.find('.cropControlZoomMuchOut');
-        that.cropControlZoomMuchOut.on('click',function(){ that.zoom(-that.options.zoomFactor*10); });
+        me.cropControlZoomMuchOut = me.cropControlsCrop.find('.cropControlZoomMuchOut');
+        me.cropControlZoomMuchOut.on('click',function(){ me.zoom(-me.options.zoomFactor*10); });
       }
 
-      that.cropControlZoomIn = that.cropControlsCrop.find('.cropControlZoomIn');
-      that.cropControlZoomIn.on('click',function(){ that.zoom(that.options.zoomFactor); });
+      me.cropControlZoomIn = me.cropControlsCrop.find('.cropControlZoomIn');
+      me.cropControlZoomIn.on('click',function(){ me.zoom(me.options.zoomFactor); });
 
-      that.cropControlZoomOut = that.cropControlsCrop.find('.cropControlZoomOut');
-      that.cropControlZoomOut.on('click',function(){ that.zoom(-that.options.zoomFactor); });
+      me.cropControlZoomOut = me.cropControlsCrop.find('.cropControlZoomOut');
+      me.cropControlZoomOut.on('click',function(){ me.zoom(-me.options.zoomFactor); });
 
-      that.cropControlCrop = that.cropControlsCrop.find('.cropControlCrop');
-      that.cropControlCrop.on('click',function(){ that.crop(); });
+      me.cropControlCrop = me.cropControlsCrop.find('.cropControlCrop');
+      me.cropControlCrop.on('click',function(){ me.crop(); });
 
-      that.cropControlReset = that.cropControlsCrop.find('.cropControlReset');
-      that.cropControlReset.on('click',function(){ that.reset(); });
+      me.cropControlReset = me.cropControlsCrop.find('.cropControlReset');
+      me.cropControlReset.on('click',function(){ me.reset(); });
 
     },
     initDrag:function(){
-      var that = this;
+      var me = this;
 
-      that.img.on("mousedown", function(e) {
+      me.img.on("mousedown", function(e) {
 
         e.preventDefault(); // disable selection
 
-        var z_idx = that.img.css('z-index'),
-                drg_h = that.img.outerHeight(),
-                drg_w = that.img.outerWidth(),
-                pos_y = that.img.offset().top + drg_h - e.pageY,
-                pos_x = that.img.offset().left + drg_w - e.pageX;
+        var z_idx = me.img.css('z-index'),
+                drg_h = me.img.outerHeight(),
+                drg_w = me.img.outerWidth(),
+                pos_y = me.img.offset().top + drg_h - e.pageY,
+                pos_x = me.img.offset().left + drg_w - e.pageX;
 
-        that.img.css('z-index', 1000).on("mousemove", function(e) {
+        me.img.css('z-index', 1000).on("mousemove", function(e) {
 
           var imgTop = e.pageY + pos_y - drg_h;
           var imgLeft = e.pageX + pos_x - drg_w;
 
-          that.img.offset({
+          me.img.offset({
             top:imgTop,
             left:imgLeft
           }).on("mouseup", function() {
             $(this).removeClass('draggable').css('z-index', z_idx);
           });
 
-          if(that.options.imgEyecandy){ that.imgEyecandy.offset({ top:imgTop, left:imgLeft }); }
+          if(me.options.imgEyecandy){ me.imgEyecandy.offset({ top:imgTop, left:imgLeft }); }
 
-          if( parseInt( that.img.css('top')) > 0 ){ that.img.css('top',0);  if(that.options.imgEyecandy){ that.imgEyecandy.css('top', 0); } }
-          var maxTop = -( that.imgH-that.objH); if( parseInt( that.img.css('top')) < maxTop){ that.img.css('top', maxTop); if(that.options.imgEyecandy){ that.imgEyecandy.css('top', maxTop); } }
+          if( parseInt( me.img.css('top')) > 0 ){ me.img.css('top',0);  if(me.options.imgEyecandy){ me.imgEyecandy.css('top', 0); } }
+          var maxTop = -( me.imgH-me.objH); if( parseInt( me.img.css('top')) < maxTop){ me.img.css('top', maxTop); if(me.options.imgEyecandy){ me.imgEyecandy.css('top', maxTop); } }
 
-          if( parseInt( that.img.css('left')) > 0 ){ that.img.css('left',0); if(that.options.imgEyecandy){ that.imgEyecandy.css('left', 0); }}
-          var maxLeft = -( that.imgW-that.objW); if( parseInt( that.img.css('left')) < maxLeft){ that.img.css('left', maxLeft); if(that.options.imgEyecandy){ that.imgEyecandy.css('left', maxLeft); } }
+          if( parseInt( me.img.css('left')) > 0 ){ me.img.css('left',0); if(me.options.imgEyecandy){ me.imgEyecandy.css('left', 0); }}
+          var maxLeft = -( me.imgW-me.objW); if( parseInt( me.img.css('left')) < maxLeft){ me.img.css('left', maxLeft); if(me.options.imgEyecandy){ me.imgEyecandy.css('left', maxLeft); } }
 
-          if (that.options.onImgDrag) that.options.onImgDrag.call(that);
+          if (me.options.onImgDrag) me.options.onImgDrag.call(me);
 
         });
 
       }).on("mouseup", function() {
-        that.img.off("mousemove");
+        me.img.off("mousemove");
       }).on("mouseout", function() {
-        that.img.off("mousemove");
+        me.img.off("mousemove");
       });
 
     },
     zoom :function(x){
-      var that = this;
-      var ratio = that.imgW / that.imgH;
-      var newWidth = that.imgW+x;
+      var me = this;
+      var ratio = me.imgW / me.imgH;
+      var newWidth = me.imgW+x;
       var newHeight = newWidth/ratio;
       var doPositioning = true;
 
-      if( newWidth < that.objW || newHeight < that.objH){
+      if( newWidth < me.objW || newHeight < me.objH){
 
-        if( newWidth - that.objW < newHeight - that.objH ){
-          newWidth = that.objW;
+        if( newWidth - me.objW < newHeight - me.objH ){
+          newWidth = me.objW;
           newHeight = newWidth/ratio;
         }else{
-          newHeight = that.objH;
+          newHeight = me.objH;
           newWidth = ratio * newHeight;
         }
 
@@ -358,13 +359,13 @@
 
       }
 
-      if( newWidth > that.imgInitW || newHeight > that.imgInitH){
+      if( newWidth > me.imgInitW || newHeight > me.imgInitH){
 
-        if( newWidth - that.imgInitW < newHeight - that.imgInitH ){
-          newWidth = that.imgInitW;
+        if( newWidth - me.imgInitW < newHeight - me.imgInitH ){
+          newWidth = me.imgInitW;
           newHeight = newWidth/ratio;
         }else{
-          newHeight = that.imgInitH;
+          newHeight = me.imgInitH;
           newWidth = ratio * newHeight;
         }
 
@@ -372,54 +373,54 @@
 
       }
 
-      that.imgW = newWidth;
-      that.img.width(newWidth);
+      me.imgW = newWidth;
+      me.img.width(newWidth);
 
-      that.imgH = newHeight;
-      that.img.height(newHeight);
+      me.imgH = newHeight;
+      me.img.height(newHeight);
 
-      var newTop = parseInt( that.img.css('top') ) - x/2;
-      var newLeft = parseInt( that.img.css('left') ) - x/2;
+      var newTop = parseInt( me.img.css('top') ) - x/2;
+      var newLeft = parseInt( me.img.css('left') ) - x/2;
 
       if( newTop>0 ){ newTop=0;}
       if( newLeft>0 ){ newLeft=0;}
 
-      var maxTop = -( newHeight-that.objH); if( newTop < maxTop){ newTop = maxTop;  }
-      var maxLeft = -( newWidth-that.objW); if( newLeft < maxLeft){ newLeft = maxLeft;  }
+      var maxTop = -( newHeight-me.objH); if( newTop < maxTop){ newTop = maxTop;  }
+      var maxLeft = -( newWidth-me.objW); if( newLeft < maxLeft){ newLeft = maxLeft;  }
 
       if( doPositioning ){
-        that.img.css({'top':newTop, 'left':newLeft});
+        me.img.css({'top':newTop, 'left':newLeft});
       }
 
-      if(that.options.imgEyecandy){
-        that.imgEyecandy.width(newWidth);
-        that.imgEyecandy.height(newHeight);
+      if(me.options.imgEyecandy){
+        me.imgEyecandy.width(newWidth);
+        me.imgEyecandy.height(newHeight);
         if( doPositioning ){
-          that.imgEyecandy.css({'top':newTop, 'left':newLeft});
+          me.imgEyecandy.css({'top':newTop, 'left':newLeft});
         }
       }
 
-      if (that.options.onImgZoom) that.options.onImgZoom.call(that);
+      if (me.options.onImgZoom) me.options.onImgZoom.call(me);
 
     },
     crop:function(){
-      var that = this;
+      var me = this;
 
-      if (that.options.onBeforeImgCrop) that.options.onBeforeImgCrop.call(that);
+      if (me.options.onBeforeImgCrop) me.options.onBeforeImgCrop.call(me);
 
-      that.cropControlsCrop.hide();
-      that.showLoader();
+      me.cropControlsCrop.hide();
+      me.showLoader();
 
       var cropData = {
-          imgUrl:that.imgUrl,
-          imgInitW:that.imgInitW,
-          imgInitH:that.imgInitH,
-          imgW:that.imgW,
-          imgH:that.imgH,
-          imgY1:Math.abs( parseInt( that.img.css('top') ) ),
-          imgX1:Math.abs( parseInt( that.img.css('left') ) ),
-          cropH:that.objH,
-          cropW:that.objW
+          imgUrl:me.imgUrl,
+          imgInitW:me.imgInitW,
+          imgInitH:me.imgInitH,
+          imgW:me.imgW,
+          imgH:me.imgH,
+          imgY1:Math.abs( parseInt( me.img.css('top') ) ),
+          imgX1:Math.abs( parseInt( me.img.css('left') ) ),
+          cropH:me.objH,
+          cropW:me.objW
         };
 
       console.log(cropData);
@@ -432,14 +433,14 @@
         }
       }
 
-      for (var key in that.options.cropData) {
-        if( that.options.cropData.hasOwnProperty(key) ) {
-            formData.append( key , that.options.cropData[key] );
+      for (var key in me.options.cropData) {
+        if( me.options.cropData.hasOwnProperty(key) ) {
+            formData.append( key , me.options.cropData[key] );
         }
       }
 
       $.ajax({
-          url: that.options.cropUrl,
+          url: me.options.cropUrl,
           data: formData,
           context: document.body,
           cache: false,
@@ -451,60 +452,60 @@
           response = data;
           if(response.status=='success'){
 
-            that.imgEyecandy.hide();
+//            me.imgEyecandy.hide();
 
-            that.destroy();
+            me.destroy();
 
-            that.obj.append('<img class="croppedImg" src="'+response.url+'">');
-            if(that.options.outputUrlId !== ''){  $('#'+that.options.outputUrlId).val(response.url);  }
+            me.obj.append('<img class="croppedImg" src="'+response.url+'">');
+            if(me.options.outputUrlId !== ''){  $('#'+me.options.outputUrlId).val(response.url);  }
 
-            that.croppedImg = that.obj.find('.croppedImg');
+            me.croppedImg = me.obj.find('.croppedImg');
 
-            that.init();
+            me.init();
 
-            that.hideLoader();
+            me.hideLoader();
 
           }
           if(response.status=='error'){
-            that.obj.append('<p style="width:100%; height:100%;>'+response.message+'</p>">');
+            me.obj.append('<p style="width:100%; height:100%;>'+response.message+'</p>">');
           }
 
-          if (that.options.onAfterImgCrop) that.options.onAfterImgCrop.call(that);
+          if (me.options.onAfterImgCrop) me.options.onAfterImgCrop.call(me);
 
         });
     },
     showLoader:function(){
-      var that = this;
+      var me = this;
 
-      that.obj.append(that.options.loaderHtml);
-      that.loader = that.obj.find('.loader');
+      me.obj.append(me.options.loaderHtml);
+      me.loader = me.obj.find('.loader');
 
     },
     hideLoader:function(){
-      var that = this;
-      that.loader.remove();
+      var me = this;
+      me.loader.remove();
     },
     reset:function(){
-      var that = this;
-      that.destroy();
+      var me = this;
+      me.destroy();
 
-      that.init();
+      me.init();
 
-      if( !$.isEmptyObject(that.croppedImg)){
-        that.obj.append(that.croppedImg);
-        if(that.options.outputUrlId !== ''){  $('#'+that.options.outputUrlId).val(that.croppedImg.attr('url')); }
+      if( !$.isEmptyObject(me.croppedImg)){
+        me.obj.append(me.croppedImg);
+        if(me.options.outputUrlId !== ''){  $('#'+me.options.outputUrlId).val(me.croppedImg.attr('url')); }
       }
 
     },
     destroy:function(){
-      var that = this;
-      if(that.options.modal && !$.isEmptyObject(that.modal) ){ that.destroyModal(); }
-      if(that.options.imgEyecandy && !$.isEmptyObject(that.imgEyecandy) ){  that.destroyEyecandy(); }
-      if( !$.isEmptyObject( that.cropControlsUpload ) ){  that.cropControlsUpload.remove(); }
-      if( !$.isEmptyObject( that.cropControlsCrop ) ){   that.cropControlsCrop.remove(); }
-      if( !$.isEmptyObject( that.loader ) ){   that.loader.remove(); }
-      if( !$.isEmptyObject( that.form ) ){   that.form.remove(); }
-      that.obj.html('');
+      var me = this;
+      if(me.options.modal && !$.isEmptyObject(me.modal) ){ me.destroyModal(); }
+      if(me.options.imgEyecandy && !$.isEmptyObject(me.imgEyecandy) ){  me.destroyEyecandy(); }
+      if( !$.isEmptyObject( me.cropControlsUpload ) ){  me.cropControlsUpload.remove(); }
+      if( !$.isEmptyObject( me.cropControlsCrop ) ){   me.cropControlsCrop.remove(); }
+      if( !$.isEmptyObject( me.loader ) ){   me.loader.remove(); }
+      if( !$.isEmptyObject( me.form ) ){   me.form.remove(); }
+      me.obj.html('');
     }
   };
 })(window, document);
