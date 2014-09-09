@@ -2,80 +2,67 @@
 .bp-show-grant data-bp-controller='ShowGrantController'
   = render 'admin_panel', grant: @grant
   .row
-    .wrapper.light
-      .row.centalign
-        h2 = @grant
-        - if current_user == @grant.recipient && @grant.has_pledges?
-          .medium.primary.btn style="margin-top: 15px"
-            = link_to '<i class="icon-mail"></i> Thank Donors'.html_safe, new_thankdonors_form_path(:id => @grant.id), class: :darken
-        .row.padada
-        h5
-          ' #{@grant.recipient_name} |
-          ' #{@grant.school_name} |
-          | #{@grant.days_left}
-      .row.text-center
-        .social-icon
-          a href="http://www.facebook.com/sharer.php?u=" target="_blank" rel="nofollow" onmouseover="this.href='http://www.facebook.com/sharer.php?u='+encodeURIComponent(location.href);"
+    .eleven.columns.centered
+      .row.nudge-top
+        .eight.columns
+          h2.no-padding = @grant
+        .four.columns.text-right
+          h5.ultitle By #{@grant.recipient_name}
+          h5 At #{@grant.school_name}
+          .social-icon data-bp-social='facebook'
             i.icon-facebook
-        .social-icon
-          a expr:href="data:post.canonicalUrl" href="https://twitter.com/share"
+          .social-icon data-bp-social='twitter'
             i.icon-twitter
-        .social-icon
-          a href="javascript:emailCurrentPage()"
+          .social-icon data-bp-social='mail'
             i.icon-mail
+  - if current_user == @grant.recipient && @grant.has_pledges?
+    .row.nudge-top
+      .eleven.columns.centered.text-right
+        .medium.primary.btn
+          = link_to '<i class="icon-mail"></i> Thank Donors'.html_safe, new_thankdonors_form_path(:id => @grant.id)
+  .row.nudge-top
+    .grant-cover-wrapper
+      .aspect-ratio-box
+      = @grant.banner classes: 'grant-cover'
+  .row
+    .eleven.columns.centered
       .row
-        .grant-cover-wrapper
-          .aspect-ratio-box
-          = @grant.banner classes: 'grant-cover'
-      .row.centalign
-        .eleven.columns.centered
-          p.largefont= simple_format(@grant.summary)
-        br/
-      .row.padada
-        .ten.columns.centered.centalign
-          h4.inlined> Subject Areas:
-          span.largefont = @grant.subject_areas
-      .row.grantviewbar
-        .progress
-          = @grant.progress_bar
-        .gcdiv
-          span.gctext
-            strong> Current:
-          span.currentnum
-            | $#{@grant.current_funds}
-          | &emsp;
-          span.gctext
-            strong> Goal:
-          span.goalnum
-            | $#{@grant.funding_goal}
-      = render 'donate_button', grant: @grant
-      - if admin_user?
+        .six.columns
+          h5.ultitle
+            strong Summary
+          = simple_format(@grant.summary)
+          table.no-border
+            tr
+              td.no-padding.no-border
+                h5
+                  strong Subject Areas:
+              td.no-border.subject-areas
+                = simple_format(@grant.subject_areas)
+        .six.columns
+          .grantviewbar.text-right
+            .funding-info
+              - if !@grant.crowdfunding?
+                h3.no-padding Successful!
+              - elsif @grant.days_left.to_f > 0
+                h2.no-padding = @grant.days_left
+                h5.no-padding
+                  strong Days Left!
+              - else
+                h3.no-padding Past Deadline
+            .funding-info
+              h5.no-padding
+                strong Raised
+              h2.primary-color.no-padding $#{@grant.current_funds}
+              h5.no-padding
+                strong out of $#{@grant.funding_goal}
+            .progress
+              = @grant.progress_bar
+            = render 'donate_button', grant: @grant
+  - if admin_user?
+    .row.nudge-top
+      .seven.columns
         .row
-          .seven.columns.pull_left
-            .row
-              #project.ten.columns.centered
-                h3 Project Idea
-                .twelve.columns
-                  h5
-                    strong Purpose
-                  = simple_format(@grant.purpose)
-                  h5
-                    strong Methods
-                  = simple_format(@grant.methods)
-                  h5
-                    strong Teacher Background
-                  = simple_format(@grant.background)
-          .five.columns
-            h3 Donors 
-            ul.donor-list
-              - @donors.each do |u|
-                li
-                  = u[0].name
-                  | &nbsp;-&nbsp;
-                  = u[0].email
-      - else
-        .row
-          .ten.columns.centered
+          #project.ten.columns.centered
             h3 Project Idea
             .twelve.columns
               h5
@@ -87,61 +74,81 @@
               h5
                 strong Teacher Background
               = simple_format(@grant.background)
-      = @grant.video_large
-      .row
-        .ten.columns.centered
-          br/
-          h3 Details
-          .two.columns.pull_left style="margin-top: 3px;"
-            h5.inlined
-              strong Grade Level:
-            br/
-            h5.inlined
-              strong Duration:
-            br/
-            h5.inlined
-              strong # of classes:
-            br/
-            h5.inlined
-              strong # of students:
-          .two.columns.pull_right style="margin-top: 3px;"
-            span.medfont
-              |&nbsp;
-              = @grant.grade_level
-            br/
-            span.medfont
-              |&nbsp;
-              = @grant.duration
-            br/
-            span.medfont
-              |&nbsp;
-              = @grant.num_classes
-            br/
-            span.medfont
-              |&nbsp;
-              = @grant.num_students
-          .seven.columns 
-            = @grant.collaborators_section
-      .row
-        .ten.columns.centered
-          br/
-          h3 Budget
-          .twelve.columns
-            h5.inlined
-              strong Budget:
-            span.medfont
-              |  $#{@grant.total_budget} (does not include 9% administrative fee)
-            br/
-            h5
-              strong Description
-            = simple_format(@grant.budget_desc)
-            h5
-              strong Use of Funds
-            = @grant.use_of_funds
-      .row
-        .ten.columns.centered
-          = simple_format(@grant.comments_section)
-      = render 'donate_button', grant: @grant
+      .five.columns
+        h3 Donors 
+        ul.donor-list
+          - @donors.each do |u|
+            li
+              = u[0].name
+              | &nbsp;-&nbsp;
+              = u[0].email
+  - else
+    .row.nudge-top
+      .ten.columns.centered
+        h3 Project Idea
+        .twelve.columns
+          h5
+            strong Purpose
+          = simple_format(@grant.purpose)
+          h5
+            strong Methods
+          = simple_format(@grant.methods)
+          h5
+            strong Teacher Background
+          = simple_format(@grant.background)
+  = @grant.video_large
+  .row
+    .ten.columns.centered
+      br/
+      h3 Details
+      .four.columns
+        table.no-border
+          tr
+            td.no-padding.no-border
+              h5.inline
+                strong Grade Level:
+            td.no-padding.no-border
+              h5.inline =@grant.grade_level
+          tr
+            td.no-padding.no-border
+              h5.inline
+                strong Duration:
+            td.no-padding.no-border
+              h5.inline =@grant.duration
+          tr
+            td.no-padding.no-border
+              h5.inline
+                strong # of classes:
+            td.no-padding.no-border
+              h5.inline =@grant.num_classes
+          tr
+            td.no-padding.no-border
+              h5.inline
+                strong # of students:
+            td.no-padding.no-border
+              h5.inline =@grant.num_students
+      .seven.columns 
+        = @grant.collaborators_section
+  .row
+    .ten.columns.centered
+      br/
+      h3 Budget
+      .twelve.columns
+        h5.inline
+          strong Budget:
+        h5.inline
+          |  $#{@grant.total_budget} (does not include 9% administrative fee)
+        br/
+        h5
+          strong Description
+        = simple_format(@grant.budget_desc)
+        h5
+          strong Use of Funds
+        = simple_format(@grant.use_of_funds)
+  .row
+    .ten.columns.centered
+      = simple_format(@grant.comments_section)
+  = render 'donate_button', grant: @grant
 
   = render 'payment_modal', grant: @grant, payment: @payment
   = render 'crowdfund_modal', grant: @grant
