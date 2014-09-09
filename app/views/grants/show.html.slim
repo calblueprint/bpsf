@@ -60,28 +60,42 @@
             = render 'donate_button', grant: @grant
   - if admin_user?
     .row.nudge-top
-      .seven.columns
-        .row
-          #project.ten.columns.centered
-            h3 Project Idea
-            .twelve.columns
-              h5
-                strong Purpose
-              = simple_format(@grant.purpose)
-              h5
-                strong Methods
-              = simple_format(@grant.methods)
-              h5
-                strong Teacher Background
-              = simple_format(@grant.background)
-      .five.columns
-        h3 Donors 
-        ul.donor-list
-          - @donors.each do |u|
-            li
-              = u[0].name
-              | &nbsp;-&nbsp;
-              = u[0].email
+      - if @donors
+        .seven.columns
+          .row
+            #project.ten.columns.centered
+              h3 Project Idea
+              .twelve.columns
+                h5
+                  strong Purpose
+                = simple_format(@grant.purpose)
+                h5
+                  strong Methods
+                = simple_format(@grant.methods)
+                h5
+                  strong Teacher Background
+                = simple_format(@grant.background)
+        .five.columns.donor-container
+          h3 Donors 
+          ul.donor-list
+            - @donors.each do |u|
+              li
+                = u[0].name
+                | &nbsp;-&nbsp;
+                = u[0].email
+      - else
+        #project.ten.columns.centered
+          h3 Project Idea
+          .twelve.columns
+            h5
+              strong Purpose
+            = simple_format(@grant.purpose)
+            h5
+              strong Methods
+            = simple_format(@grant.methods)
+            h5
+              strong Teacher Background
+            = simple_format(@grant.background)
   - else
     .row.nudge-top
       .ten.columns.centered

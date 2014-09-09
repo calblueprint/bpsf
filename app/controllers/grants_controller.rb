@@ -33,7 +33,9 @@ class GrantsController < ApplicationController
     @grant = @grant.decorate
     @crowdfund = @grant.crowdfunder
     @payment = Payment.new
-    @donors = @grant.crowdfunder.payments.group_by(&:user)
+    if @grant.crowdfunder
+      @donors = @crowdfund.payments.group_by(&:user)
+    end
   end
 
   def destroy

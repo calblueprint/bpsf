@@ -18,7 +18,7 @@ var ShowGrantController = function(documentObject){
 	}
 
 	me.donorListHeight = function(){
-		var donorList = me.documentObject.querySelector('.donor-list');
+		var donorList = me.documentObject.querySelector('.donor-container');
 		if (donorList){
 			donorList.style.height = String(me.documentObject.querySelector('#project').offsetHeight) + 'px';
 		}
