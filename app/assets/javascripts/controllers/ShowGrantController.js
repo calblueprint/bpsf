@@ -7,12 +7,14 @@ var ShowGrantController = function(documentObject){
 		me.extend(modal);
 		me.extend(fundingBar);
 		me.extend(setupStripe);
+		me.extend(social);
 		
 		me.fundingProgress();
 		me.modalBind();
 		me.setupStripeForm();
 		me.setupConfirmationModal();
 		me.donorListHeight();
+		me.bindSocial();
 	}
 
 	me.donorListHeight = function(){
@@ -20,10 +22,6 @@ var ShowGrantController = function(documentObject){
 		if (donorList){
 			donorList.style.height = String(me.documentObject.querySelector('#project').offsetHeight) + 'px';
 		}
-	}
-
-	me.socialButtons = function(){
-		
 	}
 
 	me.setupConfirmationModal = function(){

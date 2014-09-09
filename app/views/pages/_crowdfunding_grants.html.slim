@@ -9,7 +9,7 @@
   .grant-info-wrapper
     .grant-title
       h3= link_to grant, grant
-    p.grant-subtitle
+    p.grant-subtitle data-bp-truncate='3'
       span.darken
         = grant.recipient.first_name + ' ' + grant.recipient.last_name + ' | ' + grant.school_name
       br/

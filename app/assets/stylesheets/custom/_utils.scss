@@ -33,8 +33,28 @@
 	margin: 0px !important;
 }
 
+.no-border{
+	border: none !important;
+}
+
 .elevate{
 	z-index: 2000;
+}
+
+.nudge-top{
+	margin-top:10px;
+}
+
+.nudge-bottom{
+	margin-bottom:10px;
+}
+
+.nudge-right{
+	margin-right: 10px;
+}
+
+.nudge-left{
+	margin-left: 10px;
 }
 
 //Display Styles
@@ -54,7 +74,7 @@
 
 //Font Styles
 .ultitle{
-	border-bottom:$table-cell-border-size $table-cell-border-style $default-color;
+	border-bottom:$table-cell-border-size $table-cell-border-style $global-bg-color;
 }
 
 .smallfont, .font-small{
