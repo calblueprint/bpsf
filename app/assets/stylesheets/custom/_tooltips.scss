@@ -13,7 +13,7 @@
 		visibility: visible;
 		transition-delay:0s;
 	}
-	&:after {
+	.arrow {
 		content: "";
 		position: absolute;
 		width: 0;

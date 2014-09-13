@@ -27,12 +27,12 @@ var formToolTip = {
 			});
 	},
 	createToolTip: function(toolTipInfo, charLimit) {
-		var newToolTip = '<div class="tooltip">' + toolTipInfo;
+		var newToolTip = '<div class="tooltip"><div class="arrow"></div>' + toolTipInfo;
 
 		if (charLimit) {
-			newToolTip += '&nbsp;<span class="char-limit">('
+			newToolTip += '&nbsp;(<span class="char-limit">'
 							+ charLimit
-							+ ' characters left)</span>';
+							+ '</span> characters left)';
 		}
 
 		newToolTip += '<div>';
@@ -43,10 +43,19 @@ var formToolTip = {
 		return tempDiv.firstChild;
 	},
 	limitChars: function(el, newToolTip, charLimit) {
-		return;
-		$(el).on('keyup', function() {
-			//'count chars';
-		})
+		$(el).on('input paste propertychange', function() {
+			var charUsed = el.value.length,
+				bgColor = 'rgba('
+							+ parseInt( Math.pow(charUsed / charLimit, 3) * 255)
+							+ ', 0, 0, '
+							+ (0.3 * (charUsed / charLimit) + 0.7)
+							+ ')';
+			newToolTip.querySelector('.char-limit').innerHTML = charLimit - charUsed;
+			newToolTip.style.backgroundColor = bgColor;
+			newToolTip.querySelector('.arrow').style.borderBottomColor = bgColor;
+		});
+
+		$(el).trigger('input');
 	},
 	placeToolTip: function(el, newToolTip){
 		//var me = this,
