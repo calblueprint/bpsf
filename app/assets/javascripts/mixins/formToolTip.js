@@ -69,25 +69,6 @@ var formToolTip = {
 		$(el).trigger('input');
 	},
 	placeToolTip: function(el, newToolTip){
-		//var me = this,
-		//	elPosition = me.getPosition(el);
-		//	console.log(elPosition);
-
-		//newToolTip.style.top = elPosition.y + el.scrollHeight + 5 + 'px';
-		//newToolTip.style.left = elPosition.x + 'px';
 		el.parentNode.appendChild(newToolTip);
-	},
-	getPosition: function(el){
-		var xPosition = 0;
-	    var yPosition = 0;
-	    console.log(el);
-
-	    while(el) {
-	        xPosition += (el.offsetLeft - el.scrollLeft + el.clientLeft);
-	        yPosition += (el.offsetTop - el.scrollTop + el.clientTop);
-	        el = el.offsetParent;
-	    }
-
-	    return { x: xPosition, y: yPosition };
 	}
 }
