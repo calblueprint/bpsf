@@ -6,6 +6,9 @@ var EditGrantController = function(documentObject){
 	me.init = function(){
 		me.extend(tabs);
 		me.manageTabs();
+
+		me.extend(formToolTip);
+		me.initFormToolTip();
 	}
 }
 

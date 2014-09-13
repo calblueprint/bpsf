@@ -25,19 +25,17 @@
             /! GENERAL INFO
             .tab-content
               .row
-                .twelve.columns.centalign
+                .twelve.columns
                   span.hinttext You must hit save to keep all your grant information
+                  .field
+                    h4
+                      | *Title
+                    = f.text_field :title, class: [:input], :placeholder => "Title", :data=> {:bp_tooltip => 'Name your grant. A good title summarizes the essence of the application.', :bp_charlimit => '200'}
                   ul
-                    li.field
-                      h4
-                        | *Title
-                      #drawertitle style="text-align:center;"
-                        p Name your grant. A good title summarizes the essence of the application.
-                      = f.text_field :title, class: [:text, :wide, :input], :placeholder => "Title your grant"
                     li
                       h4
                         | *Crowdfund Deadline
-                      #drawersubject style="text-align:center;"
+                      #drawersubject
                         p When will your crowdfunding period end?
                       .eight.columns.centered
                         = f.date_select :deadline, order: [:year, :month, :day], class: [:picker, :inlined]
@@ -45,7 +43,7 @@
                     li
                       h4
                         | *Subject Areas
-                      #drawersubject style="text-align:center;"
+                      #drawersubject
                         p Select all subjects that would apply to your application.
                       .eight.columns.centered
                         = f.select :subject_areas, DraftGrant::SUBJECTS, {}, {:multiple => true, class: :chosenselect, data:{placeholder: "Select:" }}
@@ -53,14 +51,14 @@
                     li.field
                       h4
                         | *Summary
-                      #drawersummary style="text-align:center;"
+                      #drawersummary
                         p Give a brief explanation explanation of your application (200 character limit)
                       span#summarycount 200 left
                       br/
                       = f.text_area :summary, class: [:textarea, :input, :wide, :validateThis], rows: 3, :placeholder => "Summarize your application", :data => {:length => '200', :id => "#summarycount"}
                     .row
                       h4 Cover Image
-                      #drawerimage style="text-align:center;"
+                      #drawerimage
                         p
                           | Optional: Choose a photo that will appear at the top of your application.
                           br/
@@ -80,7 +78,7 @@
                     - if !@draft_grant.video.blank?
                       .row
                         h4 Grant Video (Optional)
-                        #drawervideo style="text-align:center;"
+                        #drawervideo
                           p Optional: Link a Youtube video to help explain or enhance your application.
                         .five.columns.push_one.centalign
                           article.youtube.video
@@ -104,7 +102,7 @@
                     .eight.columns.centered.centalign
                       h4.centalign
                         | *Purpose
-                      #drawerpurpose style="text-align:center;"
+                      #drawerpurpose
                         p What is the purpose of this grant request and proposal? (1200 characters limit)
                       .field
                         span#purposecount 1200 left
@@ -112,7 +110,7 @@
                         = f.text_area :purpose, class: [:textarea, :input, :validateThis], rows: 5, :data => {:length => '1200', :id => "#purposecount"}
                       h4.centalign
                         | *Methods
-                      #drawermethods style="text-align:center;"
+                      #drawermethods
                         p What methods will you employ in the implementation of this plan? Basically, what is your implementation strategy? (1200 character limit)
                       .field
                         span#methodscount 1200 left
@@ -120,7 +118,7 @@
                         = f.text_area :methods, class: [:textarea, :input, :validateThis], rows: 5, :data => {:length => '1200', :id => "#methodscount"}
                       h4.centalign
                         | *Teacher Background
-                      #drawerbackground style="text-align:center;"
+                      #drawerbackground
                         p What is your own background? Please explain any relevant details to yourself and the project. (1200 character limit)
                       .field
                         span#backgroundcount 1200 left
@@ -187,7 +185,7 @@
                               = f.number_field :n_collaborators, class: [:input, :xxwide, :text]
                       h4.centalign
                         | *Collaborators & Role
-                      #drawercollaborators style="text-align:center;"
+                      #drawercollaborators
                         p Please list all the people with whom you will collaborate, if any, and what role they will play. (1200 character limit)
                       ul
                         li.field style="text-align:center"
@@ -217,7 +215,7 @@
                               = f.number_field :total_budget, class: [:input, :xwide, :text]
                       h4.centalign
                         | *Budget Description
-                      #drawerbudgetdescription style="text-align:center;"
+                      #drawerbudgetdescription
                         p Explain in specific detail how the budget will be allotted and used.
                       .field
                         = f.text_area :budget_desc, class: [:textarea, :input], rows: 5, :placeholder => "The budget will be used to..."
@@ -234,7 +232,7 @@
                               = f.number_field :requested_funds, class: [:input, :xwide, :text], type: :number
                       h4.centalign
                         | *Use of Funds
-                      #drawerfundswillpayfor style="text-align:center;"
+                      #drawerfundswillpayfor
                         p Choose how the funds will be spent.
                       div
                         = f.select(:funds_will_pay_for, DraftGrant::FUNDS, {}, {:multiple => true, class: :chosenselect, data:{placeholder: "Select:" }})
@@ -253,7 +251,7 @@
                   .row
                     .eight.columns.centered.centalign
                       h4.centalign Additional Comments
-                      #drawercomments style="text-align:center;"
+                      #drawercomments
                         p Please state any additional information that may contribute to your application. (1200 character limit)
                       .field
                         span#commentscount 1200 left

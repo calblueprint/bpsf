@@ -43,7 +43,7 @@ form {
   vertical-align: middle;
   // Font-size 16px for weird form style error
   font-size: 16px;
-  overflow: hidden;
+  //overflow: hidden;
   &.metro, .metro {
     @include border-radius(0);
   }
