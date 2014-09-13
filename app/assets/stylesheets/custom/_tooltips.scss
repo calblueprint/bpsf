@@ -1,6 +1,6 @@
 .tooltip{
 	position:absolute;
-	background-color: rgba($black, 0.5);
+	background-color: rgba($black, 0.7);
 	color:$white;
 	padding:5px;
 	@include translateY(-20px);
@@ -12,6 +12,17 @@
 		opacity: 1;
 		visibility: visible;
 		transition-delay:0s;
+	}
+	&:after {
+		content: "";
+		position: absolute;
+		width: 0;
+		height: 0;
+		border-width: 10px;
+		border-style: solid;
+		border-color: transparent transparent rgba($black, 0.7) transparent;
+		top: -20px;
+		left: 0px;
 	}
 }
 
