@@ -25,7 +25,7 @@
             /! GENERAL INFO
             .tab-content
               .row
-                .twelve.columns
+                .eight.columns.centered.text-center
                   span.hinttext You must hit save to keep all your grant information
                   .field
                     h4
@@ -55,7 +55,7 @@
                         p Give a brief explanation explanation of your application (200 character limit)
                       span#summarycount 200 left
                       br/
-                      = f.text_area :summary, class: [:textarea, :input, :wide, :validateThis], rows: 3, :placeholder => "Summarize your application", :data => {:length => '200', :id => "#summarycount"}
+                      = f.text_area :summary, class: [:textarea, :input, :validateThis], rows: 3, :placeholder => "Summarize your application", :data => {:length => '200', :id => "#summarycount"}
                     .row
                       h4 Cover Image
                       #drawerimage
@@ -86,11 +86,11 @@
                         .five.columns.centalign
                       li.field
                         = f.label :video, 'Youtube Video link'
-                        = f.text_field :video, class: [:input, :xxwide, :text], :placeholder => "Youtube Video Link"
+                        = f.text_field :video, class: [:input], :placeholder => "Youtube Video Link"
                     - else
                       li.field
                         h4 Grant Video (Optional)
-                        = f.text_field :video, class: [:input, :wide, :text], :placeholder => "Youtube Video Link"
+                        = f.text_field :video, class: [:input], :placeholder => "Youtube Video Link"
                     .ttip.large.primary.btn data-tooltip="Save Your Progress"
                       = f.submit 'Save!'
             /! Project Idea
