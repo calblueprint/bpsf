@@ -45,11 +45,22 @@ var formToolTip = {
 	limitChars: function(el, newToolTip, charLimit) {
 		$(el).on('input paste propertychange', function() {
 			var charUsed = el.value.length,
-				bgColor = 'rgba('
-							+ parseInt( Math.pow(charUsed / charLimit, 3) * 255)
-							+ ', 0, 0, '
-							+ (0.3 * (charUsed / charLimit) + 0.7)
+				charRatio = charUsed / charLimit;
+
+			if(charRatio < 1) {
+				var bgColor = 'rgba('
+							+ parseInt( Math.pow(charRatio, 3) * 239)
+							+ ','
+							+ parseInt( Math.pow(charRatio, 3) * 64)
+							+ ','
+							+ parseInt( Math.pow(charRatio, 3) * 35)
+							+ ','
+							+ (0.3 * (charRatio) + 0.7)
 							+ ')';
+			} else {
+				var bgColor ='rgba(239, 54, 35, 1)';
+			}
+
 			newToolTip.querySelector('.char-limit').innerHTML = charLimit - charUsed;
 			newToolTip.style.backgroundColor = bgColor;
 			newToolTip.querySelector('.arrow').style.borderBottomColor = bgColor;
