@@ -6,6 +6,10 @@ var tabs = {
 			numButtons = buttons.length,
 			numTabs = tabs.length;
 
+		if(numButtons == 0 && numTabs == 0){
+			console.log('No tabs on this page.');
+			return;
+		}
 
 		if(numButtons != numTabs){
 			console.log('Error: Incorrect number of tabs (' + numTabs + ') and tab buttons (' + numButtons + ').');
