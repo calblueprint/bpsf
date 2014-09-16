@@ -61,8 +61,8 @@ class ImageUploader < CarrierWave::Uploader::Base
     if model.crop_x.present?
       puts "\nCropping params:"
       puts model.image_width, model.image_height, model.crop_x, model.crop_y, model.crop_w, model.crop_h
-      resize_to_fit model.image_width.to_i, model.image_height.to_i
       manipulate! do |img|
+        img.resize "#{model.image_width.to_i}x#{model.image_height.to_i}"
         x = model.crop_x.to_i
         y = model.crop_y.to_i
         w = model.crop_w.to_i

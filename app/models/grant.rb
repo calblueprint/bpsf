@@ -106,7 +106,7 @@ class Grant < ActiveRecord::Base
 
   def crop_image
     image.recreate_versions! if crop_x.present?
-    if type.blank? && crop_x.present?
+    if crop_x.present?
       self[:crop_x],self[:crop_y],self[:crop_w],self[:crop_h] = nil
       self.save
     end
