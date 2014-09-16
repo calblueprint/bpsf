@@ -2,6 +2,9 @@
 	position:absolute;
 	background-color: rgba($black, 0.7);
 	color:$white;
+	text-align: left;
+	font-size: $norm;
+	white-space: normal;
 	padding:5px;
 	@include translateY(-20px);
 	opacity: 0;
@@ -12,6 +15,7 @@
 		opacity: 1;
 		visibility: visible;
 		transition-delay:0s;
+		z-index: 9999;
 	}
 	.arrow {
 		content: "";
