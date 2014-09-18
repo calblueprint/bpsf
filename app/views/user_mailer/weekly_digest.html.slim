@@ -1,0 +1,14 @@
+doctype html
+html
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+  body
+    h1
+      | #{@user.first_name}, here is your weekly digest for the Schools Fund Friends and Family Grant Portal.
+    - @grants.each do |g|
+      h2
+        | #{g.title}: currently at #{g.crowdfunder.progress}
+        br/
+      p
+        | You only have #{g.days_left} days left until your deadline! Try sharing your grant on social media to raise the last $#{g.total_budget-g.crowdfunder.pledged_total}. Here is the link to your grant: #{'http://schoolsfund-friendsandfamily.herokuapp.com/grants/' + (g.id).to_s}.
+        br/
