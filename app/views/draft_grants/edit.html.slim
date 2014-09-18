@@ -1,158 +1,238 @@
 - title "Editing #{@draft_grant}"
 .bp-edit-grant data-bp-controller='EditGrantController'
-  .row
-    .twelve.columns
-      .wrapper.light
-        = form_for @draft_grant, url: draft_path, :html => {:multipart => true} do |f|
-          .row
-            = render 'shared/errors', object: f.object
-            h2.centalign
-              | Editing #{@draft_grant}
-            /! GENERAL INFO
-            .row
-              .eight.columns.centered.text-center
-                span.hinttext You must hit save to keep all your grant information
-                .field
-                  h4 Title*
-                  = f.text_field :title, class: [:input], :placeholder => "Title", :data=> {:bp_tooltip => 'Name your grant. A good title summarizes the essence of the application.', :bp_charlimit => '200'}
-                ul
-                  li
-                    h4
-                      | *Crowdfund Deadline
-                    #drawersubject
-                      p When will your crowdfunding period end?
-                    .eight.columns.centered
-                      = f.date_select :deadline, order: [:year, :month, :day], class: [:picker, :inlined]
-                  br/
-                  li
-                    h4
-                      | *Subject Areas
-                    #drawersubject
-                      p Select all subjects that would apply to your application.
-                    .eight.columns.centered
-                      = f.select :subject_areas, DraftGrant::SUBJECTS, {}, {:multiple => true, class: :chosenselect, data:{placeholder: "Select:" }}
-                  br/
-                  li.field
-                    h4 Summary*
-                    = f.text_area :summary, class: [:textarea, :input, :validateThis], rows: 3, :placeholder => "Summarize your application", :data => {:bp_tooltip => 'Give a brief explanation explanation of your application', :bp_charlimit => '200'}
-                  .row
-                    h4 Cover Image
-                    #drawerimage
-                      p
-                        | Optional: Choose a photo that will appear at the top of your application.
-                        br/
-                        | A default photo will be used if you choose not to upload one.
-                    .eight.columns.centered
-                      .five.columns.centalign
-                        .imgholder style="width:300px;"
-                          - if !@draft_grant.image_url.blank?
-                            = image_tag @draft_grant.image_url :thumb
-                          - else
-                            = image_tag 'https://placehold.it/880x450'
-                      .five.columns.push_two.centalign
-                        li.field
-                          br/
-                          = f.file_field :image
+  = form_for @draft_grant, url: draft_path, :html => {:multipart => true} do |f|
+    .row
+      .eleven.columns.centered
+        .row.nudge-top
+          .eight.columns
+            .camo-field
+              = f.text_field :title, class: [:input, :h2], :placeholder => "Title", :data=> {:bp_tooltip => 'Name your grant. A good title summarizes the essence of the application.', :bp_charlimit => '200'}
+    .row.nudge-top
+      /h4 Cover Image
+      /#drawerimage
+      /  p
+      /    | Optional: Choose a photo that will appear at the top of your application.
+      /    br/
+      /    | A default photo will be used if you choose not to upload one.
+      /  .five.columns.text-center
+      /    .imgholder style="width:300px;"
+      /      - if !@draft_grant.image_url.blank?
+      /        = image_tag @draft_grant.image_url :thumb
+      /  .five.columns.push_two.text-center
+      /    .field
+      /      = f.file_field :image
+    .row
+      .eleven.columns.centered
+        .row
+          .six.columns
+            h5
+              strong Summary
+            .camo-field
+              = f.text_area :summary, class: [:textarea, :input, :validateThis], rows: 3, :placeholder => "Summarize your application", :data => {:bp_tooltip => 'Give a brief explanation explanation of your application', :bp_charlimit => '200'}
+            h5
+              strong Subject Areas:
+            = f.select :subject_areas, DraftGrant::SUBJECTS, {}, {:multiple => true, class: :chosenselect, data:{placeholder: "Select:" }}
+          .six.columns
+    .row.nudge-top
+      .ten.columns.centered
+        h3 Project Idea
+        .twelve.columns
+          h5
+            strong Purpose
+          .camo-field
+            = f.text_area :purpose, class: [:textarea, :input, :validateThis], rows: 5, :data => {:bp_tooltip => 'What is the purpose of this grant request and proposal?', :bp_charlimit => '1200'}
+          h5
+            strong Methods
+          .camo-field
+            = f.text_area :methods, class: [:textarea, :input, :validateThis], rows: 5, :data => {:bp_tooltip => 'What methods will you employ in the implementation of this plan? Basically, what is your implementation strategy?', :bp_charlimit => '1200'}
+          h5
+            strong Teacher Background
+          .camo-field
+            = f.text_area :background, class: [:textarea, :input, :validateThis], rows: 5, :data => {:bp_tooltip => 'What is your own background? Please explain any relevant details to yourself and the project.', :bp_charlimit => '1200'}
+    .row
+      .ten.columns.centered
+        br/
+        h3 Details
+        .four.columns
+          table.no-border
+            tr
+              td.no-padding.no-border
+                h5.inline
+                  strong Grade Level:
+              td.no-padding.no-border
+                .camo-field
+                  = f.text_field :grade_level, class: [:input], :placeholder => "Ex. 7, 8, 10", :data => {:bp_tooltip => 'List the grade levels that will be affected. Please separate different grades by commas.'}
+            tr
+              td.no-padding.no-border
+                h5.inline
+                  strong Duration:
+              td.no-padding.no-border
+                .camo-field
+                  = f.text_field :duration, class: [:input], :placeholder => "Ex. 2 weeks", :data => {:bp_tooltip => 'How long will the proposed activity last? Please enter a number followed by a time period (ex. 1 day, 2 weeks, 3 months). If this is not applicable then please put "n/a".'}
+            tr
+              td.no-padding.no-border
+                h5.inline
+                  strong # of classes:
+              td.no-padding.no-border
+                .camo-field
+                  = f.number_field :num_classes, class: [:input], :data => {:bp_tooltip => 'How many different classes will be affected by the application?'}
+            tr
+              td.no-padding.no-border
+                h5.inline
+                  strong # of students:
+              td.no-padding.no-border
+                .camo-field
+                  = f.number_field :n_collaborators, class: [:input], :data => {:bp_tooltip => 'Including yourself, how many people are collaborating on this application?'}
+        .seven.columns
+          h5.inline
+            strong Collaborators
+          .camo-field
+            = f.text_area :collaborators, class: [:textarea, :input], rows: 3, :placeholder => "Ex. Elvis Presley - Entertainment Advising, Neil Armstrong - Transportation, John F. Kennedy - Coordination and Advising", :data => {:bp_tooltip => 'Please list all the people with whom you will collaborate, if any, and what role they will play.', :bp_charlimit => '1200'}
+    .row
+      .ten.columns.centered
+        br/
+        h3 Budget
+        .twelve.columns
+          h5.inline
+            strong Budget:
+            |  $
+          .camo-field.inline-block
+            = f.number_field :total_budget, class: [:input], :data => {:bp_tooltip => 'How much total funds will be used for your proposed activity? This includes other sources in addition to the Schools Fund.'}
+          |  (does not include 9% administrative fee)
+          br/
+          h5
+            strong Description
+          .camo-field
+            = f.text_area :budget_desc, class: [:textarea, :input], rows: 5, :placeholder => "The budget will be used to...", :data => {:bp_tooltip => 'Explain in specific detail how the budget will be allotted and used.'}
+          h5
+            strong Use of Funds
+          = f.select(:funds_will_pay_for, DraftGrant::FUNDS, {}, {:multiple => true, class: :chosenselect, data:{placeholder: "Select:" }})
+          .field
+            = f.label :other_funds, 'If other, please specify:'
+            = f.text_field :other_funds, class: :input
+    .row
+      .ten.columns.centered
+        h3 Additional Comments
+        .camo-field
+          = f.text_area :comments, class: [:textarea, :input, :validateThis], rows: 5, :data => {:bp_tooltip => 'Please state any additional information that may contribute to your application.', :bp_charlimit => '1200'}
 
-                  - if !@draft_grant.video.blank?
-                    .row
-                      h4 Grant Video (Optional)
-                      #drawervideo
-                        p Optional: Link a Youtube video to help explain or enhance your application.
-                      .five.columns.push_one.centalign
-                        article.youtube.video
-                          iframe src="https://www.youtube.com/embed/#{parse_embed(@draft_grant)}"
-                      .five.columns.centalign
-                    li.field
-                      = f.label :video, 'Youtube Video link'
-                      = f.text_field :video, class: [:input], :placeholder => "Youtube Video Link"
-                  - else
-                    li.field
-                      h4 Grant Video (Optional)
-                      = f.text_field :video, class: [:input], :placeholder => "Youtube Video Link"
-            /! Project Idea
-            .row
-              .twelve.columns
-                br/
-                .row
-                  .eight.columns.centered.centalign
-                    h4 Purpose*
-                    .field
-                      = f.text_area :purpose, class: [:textarea, :input, :validateThis], rows: 5, :data => {:bp_tooltip => 'What is the purpose of this grant request and proposal?', :bp_charlimit => '1200'}
-                    h4 Methods*
-                    .field
-                      = f.text_area :methods, class: [:textarea, :input, :validateThis], rows: 5, :data => {:bp_tooltip => 'What methods will you employ in the implementation of this plan? Basically, what is your implementation strategy?', :bp_charlimit => '1200'}
-                    h4 Teacher Background*
-                    .field
-                      = f.text_area :background, class: [:textarea, :input, :validateThis], rows: 5, :data => {:bp_tooltip => 'What is your own background? Please explain any relevant details to yourself and the project.', :bp_charlimit => '1200'}
-            /! DETAILS
-            .row
-              .twelve.columns
-                br/
-                .row
+
+
+    .row
+      .eleven.columns.centered
+        .row
+          = render 'shared/errors', object: f.object
+          h2.centalign
+            | Editing #{@draft_grant}
+          /! GENERAL INFO
+          .row
+            .eight.columns.centered.text-center
+              span.hinttext You must hit save to keep all your grant information
+              ul
+                li
+                  h4
+                    | *Crowdfund Deadline
+                  #drawersubject
+                    p When will your crowdfunding period end?
                   .eight.columns.centered
-                    h4 Grade Level*
-                    .field
-                      = f.text_field :grade_level, class: [:input, :xxwide, :text], :placeholder => "Ex. 7, 8, 10", :data => {:bp_tooltip => 'List the grade levels that will be affected. Please separate different grades by commas.'}
-                    h4 Project Duration*
-                    .field
-                      = f.text_field :duration, class: [:input, :xxwide, :text], :placeholder => "Ex. 2 weeks", :data => {:bp_tooltip => 'How long will the proposed activity last? Please enter a number followed by a time period (ex. 1 day, 2 weeks, 3 months). If this is not applicable then please put "n/a".'}
-                    .row
-                        h4 Num. of Classes Affected*
-                        .field
-                          = f.number_field :num_classes, class: [:input, :xxwide, :text], :data => {:bp_tooltip => 'How many different classes will be affected by the application?'}
-                    .row
-                      h4 Num. of Students Affected*
-                      .field
-                        = f.number_field :num_students, class: [:input, :xxwide, :text], :data => {:bp_tooltip => 'How many students will be affected by the application?'}
-                    .row
-                      h4 Num. of Collaborators*
-                      .field
-                        = f.number_field :n_collaborators, class: [:input, :xxwide, :text], :data => {:bp_tooltip => 'Including yourself, how many people are collaborating on this application?'}
-                    h4 Collaborators & Role*
-                    .field
-                      = f.text_area :collaborators, class: [:textarea, :input, :xxwide, :validateThis], rows: 3, :placeholder => "Ex. Elvis Presley - Entertainment Advising, Neil Armstrong - Transportation, John F. Kennedy - Coordination and Advising", :data => {:bp_tooltip => 'Please list all the people with whom you will collaborate, if any, and what role they will play.', :bp_charlimit => '1200'}
-            /! BUDGET
-            .row
-              .twelve.columns
+                    = f.date_select :deadline, order: [:year, :month, :day], class: [:picker, :inlined]
                 br/
-                .row
+                li
+                  h4
+                    | *Subject Areas
+                  #drawersubject
+                    p Select all subjects that would apply to your application.
                   .eight.columns.centered
-                    h4 Funding Goal*
+                    = f.select :subject_areas, DraftGrant::SUBJECTS, {}, {:multiple => true, class: :chosenselect, data:{placeholder: "Select:" }}
+                br/
+                li.field
+                  h4 Summary*
+                  = f.text_area :summary, class: [:textarea, :input, :validateThis], rows: 3, :placeholder => "Summarize your application", :data => {:bp_tooltip => 'Give a brief explanation explanation of your application', :bp_charlimit => '200'}
+
+                - if !@draft_grant.video.blank?
+                  .row
+                    h4 Grant Video (Optional)
+                    #drawervideo
+                      p Optional: Link a Youtube video to help explain or enhance your application.
+                    .five.columns.push_one.centalign
+                      article.youtube.video
+                        iframe src="https://www.youtube.com/embed/#{parse_embed(@draft_grant)}"
+                    .five.columns.centalign
+                  li.field
+                    = f.label :video, 'Youtube Video link'
+                    = f.text_field :video, class: [:input], :placeholder => "Youtube Video Link"
+                - else
+                  li.field
+                    h4 Grant Video (Optional)
+                    = f.text_field :video, class: [:input], :placeholder => "Youtube Video Link"
+          /! DETAILS
+          .row
+            .twelve.columns
+              br/
+              .row
+                .eight.columns.centered
+                  h4 Grade Level*
+                  .field
+                    = f.text_field :grade_level, class: [:input, :xxwide, :text], :placeholder => "Ex. 7, 8, 10", :data => {:bp_tooltip => 'List the grade levels that will be affected. Please separate different grades by commas.'}
+                  h4 Project Duration*
+                  .field
+                    = f.text_field :duration, class: [:input, :xxwide, :text], :placeholder => "Ex. 2 weeks", :data => {:bp_tooltip => 'How long will the proposed activity last? Please enter a number followed by a time period (ex. 1 day, 2 weeks, 3 months). If this is not applicable then please put "n/a".'}
+                  .row
+                      h4 Num. of Classes Affected*
+                      .field
+                        = f.number_field :num_classes, class: [:input, :xxwide, :text], :data => {:bp_tooltip => 'How many different classes will be affected by the application?'}
+                  .row
+                    h4 Num. of Students Affected*
+                    .field
+                      = f.number_field :num_students, class: [:input, :xxwide, :text], :data => {:bp_tooltip => 'How many students will be affected by the application?'}
+                  .row
+                    h4 Num. of Collaborators*
+                    .field
+                      = f.number_field :n_collaborators, class: [:input, :xxwide, :text], :data => {:bp_tooltip => 'Including yourself, how many people are collaborating on this application?'}
+                  h4 Collaborators & Role*
+                  .field
+                    = f.text_area :collaborators, class: [:textarea, :input, :xxwide, :validateThis], rows: 3, :placeholder => "Ex. Elvis Presley - Entertainment Advising, Neil Armstrong - Transportation, John F. Kennedy - Coordination and Advising", :data => {:bp_tooltip => 'Please list all the people with whom you will collaborate, if any, and what role they will play.', :bp_charlimit => '1200'}
+          /! BUDGET
+          .row
+            .twelve.columns
+              br/
+              .row
+                .eight.columns.centered
+                  h4 Funding Goal*
+                  .field.prepend
+                    span.adjoined $
+                    = f.number_field :total_budget, class: [:input], :data => {:bp_tooltip => 'How much total funds will be used for your proposed activity? This includes other sources in addition to the Schools Fund.'}
+                  h4 Budget Description*
+                  .field
+                    = f.text_area :budget_desc, class: [:textarea, :input], rows: 5, :placeholder => "The budget will be used to...", :data => {:bp_tooltip => 'Explain in specific detail how the budget will be allotted and used.'}
+                  .row
+                    h4 Total Funds Requested*
                     .field.prepend
                       span.adjoined $
-                      = f.number_field :total_budget, class: [:input], :data => {:bp_tooltip => 'How much total funds will be used for your proposed activity? This includes other sources in addition to the Schools Fund.'}
-                    h4 Budget Description*
+                      = f.number_field :requested_funds, class: [:input, :xwide, :text], type: :number, :data => {:bp_tooltip => 'How much total funds are you requesting from the Schools Fund?'}
+                  h4.centalign
+                    | *Use of Funds
+                  #drawerfundswillpayfor
+                    p Choose how the funds will be spent.
+                  div
+                    = f.select(:funds_will_pay_for, DraftGrant::FUNDS, {}, {:multiple => true, class: :chosenselect, data:{placeholder: "Select:" }})
                     .field
-                      = f.text_area :budget_desc, class: [:textarea, :input], rows: 5, :placeholder => "The budget will be used to...", :data => {:bp_tooltip => 'Explain in specific detail how the budget will be allotted and used.'}
-                    .row
-                      h4 Total Funds Requested*
-                      .field.prepend
-                        span.adjoined $
-                        = f.number_field :requested_funds, class: [:input, :xwide, :text], type: :number, :data => {:bp_tooltip => 'How much total funds are you requesting from the Schools Fund?'}
-                    h4.centalign
-                      | *Use of Funds
-                    #drawerfundswillpayfor
-                      p Choose how the funds will be spent.
-                    div
-                      = f.select(:funds_will_pay_for, DraftGrant::FUNDS, {}, {:multiple => true, class: :chosenselect, data:{placeholder: "Select:" }})
-                      .field
-                        = f.label :other_funds, 'If other, please specify:'
-                        = f.text_field :other_funds, class: :input
-                    br/
-            /! Finalize
-            .row
-              .twelve.columns
-                br/
-                .row
-                  .eight.columns.centered.centalign
-                    h4 Additional Comments
-                    .field
-                      = f.text_area :comments, class: [:textarea, :input, :validateThis], rows: 5, :data => {:bp_tooltip => 'Please state any additional information that may contribute to your application.', :bp_charlimit => '1200'}
-                    .ttip.large.primary.btn data-tooltip="Save Your Progress"
-                      = f.submit 'Save!'
-                    = render 'grant_preview', grant: @draft_grant
-                    .large.primary.btn
-                      = f.submit 'Submit!', name: 'save_and_submit'
+                      = f.label :other_funds, 'If other, please specify:'
+                      = f.text_field :other_funds, class: :input
+                  br/
+          /! Finalize
+          .row
+            .twelve.columns
+              br/
+              .row
+                .eight.columns.centered.centalign
+                  h4 Additional Comments
+                  .field
+                    = f.text_area :comments, class: [:textarea, :input, :validateThis], rows: 5, :data => {:bp_tooltip => 'Please state any additional information that may contribute to your application.', :bp_charlimit => '1200'}
+                  .ttip.large.primary.btn data-tooltip="Save Your Progress"
+                    = f.submit 'Save!'
+                  = render 'grant_preview', grant: @draft_grant
+                  .large.primary.btn
+                    = f.submit 'Submit!', name: 'save_and_submit'
 javascript:
   $(".chosenselect").chosen({width:'100%'});
