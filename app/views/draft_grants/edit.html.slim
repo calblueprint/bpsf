@@ -113,15 +113,12 @@
                 td.no-padding.no-border
                   .camo-field
                     = f.number_field :num_students, class: [:input], :data => {:bp_tooltip => 'How many students will be affected by the application?'}, :placeholder => "Click to edit"
-              tr
-                td.no-padding.no-border
-                  h5.inline
-                    strong # of collaborators*:
-                td.no-padding.no-border
-                  .camo-field
-                    = f.number_field :n_collaborators, class: [:input], :data => {:bp_tooltip => 'Including yourself, how many people are collaborating on this application?'}, :placeholder => "Click to edit"
           .seven.columns
             h5.inline
+              strong # of collaborators*:
+            .camo-field.inline-block.nudge-left
+              = f.number_field :n_collaborators, class: [:input], :data => {:bp_tooltip => 'Including yourself, how many people are collaborating on this application?'}, :placeholder => "Click to edit"
+            h5
               strong Collaborators*
             .camo-field
               = f.text_area :collaborators, class: [:textarea, :input], rows: 3, :placeholder => "Click here to edit", :data => {:bp_tooltip => 'Please list all the people with whom you will collaborate, if any, and what role they will play.', :bp_charlimit => '1200'}
