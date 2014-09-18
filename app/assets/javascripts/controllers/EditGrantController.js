@@ -13,7 +13,7 @@ var EditGrantController = function(documentObject){
 	me.confirmSave = function(){
 		var hasChanged = false;
 
-		$('form :input').on('change', function(){
+		$('.bp-edit-grant form :input').on('change', function(){
 			hasChanged = true;
 		});
 

@@ -1,6 +1,6 @@
 - title "Editing #{@draft_grant}"
 .bp-edit-grant data-bp-controller='EditGrantController'
-  = form_for @draft_grant, url: draft_path, :html => {:multipart => true} do |f|
+  = form_for @draft_grant, :id => 'draft_grant_form', url: draft_path, :html => {:multipart => true} do |f|
     .row
       .six.columns
         h2 Editing Draft Grant
@@ -20,7 +20,7 @@
         .row.nudge-top
           .eight.columns
             .camo-field
-              = f.text_field :title, class: [:input, :h2], :placeholder => "Title", :data=> {:bp_tooltip => 'Name your grant. A good title summarizes the essence of the application.', :bp_charlimit => '200'}
+              = f.text_field :title, class: [:input, :h2], :placeholder => "Click here to edit", :data=> {:bp_tooltip => 'Name your grant. A good title summarizes the essence of the application.', :bp_charlimit => '200'}
     .row.nudge-top
       /h4 Cover Image
       /#drawerimage
