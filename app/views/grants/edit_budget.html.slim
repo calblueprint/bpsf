@@ -4,7 +4,7 @@
     .bare-wrapper
       .row.centalign
         h2 Editing Budget
-      /! This is the form to edit the total_budget, requested_funds, funds_will_pay_for, and budget_desc.
+      /! This is the form to edit the total_budget, funds_will_pay_for, and budget_desc.
       .row
         .twelve.columns.centered.centalign
           = form_for @grant, url: grant_path do |f|
@@ -14,11 +14,6 @@
                 = f.label :total_budget, 'Funding Goal'
               .six.columns
                 = f.text_field :total_budget, class: :input
-            .field style="margin-top: 15px"
-              .four.columns style="text-align:right"
-                = f.label :requested_funds, 'Funds requested from the Schools Fund'
-              .six.columns
-                = f.text_field :requested_funds, class: :input
             .field style="margin-top: 15px"
               .four.columns style="text-align:right"
                 = f.label :funds_will_pay_for, 'Funds will pay for:'

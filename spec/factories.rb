@@ -42,7 +42,6 @@ FactoryGirl.define do
     sequence(:num_classes)     { |n| n }
     sequence(:num_students)    { |n| n * 10 }
     sequence(:total_budget)    { |n| n * 200 }
-    sequence(:requested_funds) { |n| n * 250 }
     funds_will_pay_for         ['Other']
     budget_desc                Faker::Lorem.paragraph
     purpose                    Faker::Lorem.paragraph
@@ -68,7 +67,6 @@ FactoryGirl.define do
       sequence(:num_classes)     { |n| n }
       sequence(:num_students)    { |n| n * 10 }
       sequence(:total_budget)    { |n| n * 200 }
-      sequence(:requested_funds) { |n| n * 250 }
       funds_will_pay_for         ['Other']
       budget_desc                Faker::Lorem.paragraph
       purpose                    Faker::Lorem.paragraph
