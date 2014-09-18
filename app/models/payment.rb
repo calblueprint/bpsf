@@ -9,6 +9,7 @@
 #  user_id      :integer
 #  crowdfund_id :integer
 #  charge_id    :string(255)
+#  status       :text
 #
 
 class Payment < ActiveRecord::Base

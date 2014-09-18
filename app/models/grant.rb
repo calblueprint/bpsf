@@ -13,7 +13,6 @@
 #  num_classes        :integer
 #  num_students       :integer
 #  total_budget       :integer
-#  requested_funds    :integer
 #  funds_will_pay_for :text
 #  budget_desc        :text
 #  purpose            :text
@@ -27,11 +26,15 @@
 #  video              :string(255)
 #  image              :string(255)
 #  school_id          :integer
-#  rating_average     :decimal(6, 2)    default(0.0)
 #  school_name        :string(255)
 #  teacher_name       :string(255)
 #  type               :string(255)
 #  deadline           :date
+#  other_funds        :text
+#  crop_x             :string(255)
+#  crop_y             :string(255)
+#  crop_w             :string(255)
+#  crop_h             :string(255)
 #
 
 require 'textacular/searchable'
@@ -52,7 +55,7 @@ class Grant < ActiveRecord::Base
   enumerize :subject_areas, in: SUBJECTS, multiple: true, scope: true
 
   attr_accessible :title, :summary, :subject_areas, :grade_level, :deadline, :duration,
-                  :num_classes, :num_students, :total_budget, :requested_funds,
+                  :num_classes, :num_students, :total_budget,
                   :funds_will_pay_for, :budget_desc, :purpose, :methods, :background,
                   :n_collaborators, :collaborators, :comments, :video, :image, :school_id,
                   :crop_x, :crop_y, :crop_w, :crop_h, :other_funds, :remote_image_url
@@ -91,7 +94,7 @@ class Grant < ActiveRecord::Base
     grant.validate :grade_format
     grant.validate :duration, presence: true
     grant.validates :num_classes, :num_students, numericality: { only_integer: true }
-    grant.validates :requested_funds, :total_budget, numericality: true
+    grant.validates :total_budget, numericality: true
     grant.validates :budget_desc, :funds_will_pay_for, presence: true
     grant.validates :purpose, :methods, :background,
                     presence: true, length: { maximum: 1200 }
@@ -273,7 +276,7 @@ class Grant < ActiveRecord::Base
 
   def with_admin_cost
     # 9% cost added
-    (requested_funds * 1.09).to_i
+    (total_budget * 1.09).to_i
   end
 
   def has_collaborators?
