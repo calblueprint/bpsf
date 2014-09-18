@@ -53,41 +53,42 @@
       .ten.columns.centered
         br/
         h3 Details
-        .four.columns
-          table.no-border
-            tr
-              td.no-padding.no-border
-                h5.inline
-                  strong Grade Level:
-              td.no-padding.no-border
-                .camo-field
-                  = f.text_field :grade_level, class: [:input], :placeholder => "Ex. 7, 8, 10", :data => {:bp_tooltip => 'List the grade levels that will be affected. Please separate different grades by commas.'}
-            tr
-              td.no-padding.no-border
-                h5.inline
-                  strong Duration:
-              td.no-padding.no-border
-                .camo-field
-                  = f.text_field :duration, class: [:input], :placeholder => "Ex. 2 weeks", :data => {:bp_tooltip => 'How long will the proposed activity last? Please enter a number followed by a time period (ex. 1 day, 2 weeks, 3 months). If this is not applicable then please put "n/a".'}
-            tr
-              td.no-padding.no-border
-                h5.inline
-                  strong # of classes:
-              td.no-padding.no-border
-                .camo-field
-                  = f.number_field :num_classes, class: [:input], :data => {:bp_tooltip => 'How many different classes will be affected by the application?'}
-            tr
-              td.no-padding.no-border
-                h5.inline
-                  strong # of students:
-              td.no-padding.no-border
-                .camo-field
-                  = f.number_field :n_collaborators, class: [:input], :data => {:bp_tooltip => 'Including yourself, how many people are collaborating on this application?'}
-        .seven.columns
-          h5.inline
-            strong Collaborators
-          .camo-field
-            = f.text_area :collaborators, class: [:textarea, :input], rows: 3, :placeholder => "Ex. Elvis Presley - Entertainment Advising, Neil Armstrong - Transportation, John F. Kennedy - Coordination and Advising", :data => {:bp_tooltip => 'Please list all the people with whom you will collaborate, if any, and what role they will play.', :bp_charlimit => '1200'}
+        .row
+          .four.columns
+            table.no-border
+              tr
+                td.no-padding.no-border.half-width
+                  h5.inline
+                    strong Grade Level:
+                td.no-padding.no-border.half-width
+                  .camo-field
+                    = f.text_field :grade_level, class: [:input], :placeholder => "Ex. 7, 8, 10", :data => {:bp_tooltip => 'List the grade levels that will be affected. Please separate different grades by commas.'}
+              tr
+                td.no-padding.no-border
+                  h5.inline
+                    strong Duration:
+                td.no-padding.no-border
+                  .camo-field
+                    = f.text_field :duration, class: [:input], :placeholder => "Ex. 2 weeks", :data => {:bp_tooltip => 'How long will the proposed activity last? Please enter a number followed by a time period (ex. 1 day, 2 weeks, 3 months). If this is not applicable then please put "n/a".'}
+              tr
+                td.no-padding.no-border
+                  h5.inline
+                    strong # of classes:
+                td.no-padding.no-border
+                  .camo-field
+                    = f.number_field :num_classes, class: [:input], :data => {:bp_tooltip => 'How many different classes will be affected by the application?'}
+              tr
+                td.no-padding.no-border
+                  h5.inline
+                    strong # of students:
+                td.no-padding.no-border
+                  .camo-field
+                    = f.number_field :n_collaborators, class: [:input], :data => {:bp_tooltip => 'Including yourself, how many people are collaborating on this application?'}
+          .seven.columns
+            h5.inline
+              strong Collaborators
+            .camo-field
+              = f.text_area :collaborators, class: [:textarea, :input], rows: 3, :placeholder => "Ex. Elvis Presley - Entertainment Advising, Neil Armstrong - Transportation, John F. Kennedy - Coordination and Advising", :data => {:bp_tooltip => 'Please list all the people with whom you will collaborate, if any, and what role they will play.', :bp_charlimit => '1200'}
     .row
       .ten.columns.centered
         br/
