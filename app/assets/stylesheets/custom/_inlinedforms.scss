@@ -55,7 +55,7 @@
     background: none;
     border: none;
     height: auto;
-    border: dashed 1px $global-bg-color;
+    border: dashed 1px darken($global-bg-color, 12%);
     cursor: pointer;
     @include border-radius(0px);
     line-height: $base-line-height;

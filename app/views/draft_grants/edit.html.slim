@@ -2,6 +2,20 @@
 .bp-edit-grant data-bp-controller='EditGrantController'
   = form_for @draft_grant, url: draft_path, :html => {:multipart => true} do |f|
     .row
+      .six.columns
+        h2 Editing Draft Grant
+      .three.columns
+        h5
+          strong Save Progress:
+        .medium.primary.btn
+          = f.submit 'Save!'
+      .three.columns
+        h5
+          strong Submit Grant:
+        .medium.primary.btn
+          = f.submit 'Submit!', name: 'save_and_submit'
+    hr.edit-grant-divider
+    .row.nudge-top
       .eleven.columns.centered
         .row.nudge-top
           .eight.columns
@@ -32,28 +46,40 @@
             h5
               strong Subject Areas:
             = f.select :subject_areas, DraftGrant::SUBJECTS, {}, {:multiple => true, class: :chosenselect, data:{placeholder: "Select:" }}
-          .six.columns
+          .five.columns.push_one
+            h5
+              strong Crowdfund Deadline*
+            h6.subhead.no-margin When will your crowdfunding period end?
+            = f.date_select :deadline, order: [:year, :month, :day], class: [:picker, :inlined]
     .row.nudge-top
       .ten.columns.centered
         h3 Project Idea
-        .twelve.columns
-          h5
-            strong Purpose
-          .camo-field
-            = f.text_area :purpose, class: [:textarea, :input, :validateThis], rows: 5, :data => {:bp_tooltip => 'What is the purpose of this grant request and proposal?', :bp_charlimit => '1200'}
-          h5
-            strong Methods
-          .camo-field
-            = f.text_area :methods, class: [:textarea, :input, :validateThis], rows: 5, :data => {:bp_tooltip => 'What methods will you employ in the implementation of this plan? Basically, what is your implementation strategy?', :bp_charlimit => '1200'}
-          h5
-            strong Teacher Background
-          .camo-field
-            = f.text_area :background, class: [:textarea, :input, :validateThis], rows: 5, :data => {:bp_tooltip => 'What is your own background? Please explain any relevant details to yourself and the project.', :bp_charlimit => '1200'}
+        .row.nudge-left
+          .twelve.columns
+            h5
+              strong Purpose
+            .camo-field
+              = f.text_area :purpose, class: [:textarea, :input, :validateThis], rows: 5, :data => {:bp_tooltip => 'What is the purpose of this grant request and proposal?', :bp_charlimit => '1200'}
+            h5
+              strong Methods
+            .camo-field
+              = f.text_area :methods, class: [:textarea, :input, :validateThis], rows: 5, :data => {:bp_tooltip => 'What methods will you employ in the implementation of this plan? Basically, what is your implementation strategy?', :bp_charlimit => '1200'}
+            h5
+              strong Teacher Background
+            .camo-field
+              = f.text_area :background, class: [:textarea, :input, :validateThis], rows: 5, :data => {:bp_tooltip => 'What is your own background? Please explain any relevant details to yourself and the project.', :bp_charlimit => '1200'}
+        .row.nudge-left
+          .three.columns
+            h5
+              strong Youtube Video:
+          .nine.columns
+            .camo-field
+              = f.text_field :video, class: [:input], :placeholder => "Youtube Video Link", :data => {:bp_tooltip => 'Link to a Youtube Video about your grant.'}
     .row
       .ten.columns.centered
         br/
         h3 Details
-        .row
+        .row.nudge-left
           .four.columns
             table.no-border
               tr
@@ -93,28 +119,32 @@
       .ten.columns.centered
         br/
         h3 Budget
-        .twelve.columns
-          h5.inline
-            strong Budget:
-            |  $
-          .camo-field.inline-block
-            = f.number_field :total_budget, class: [:input], :data => {:bp_tooltip => 'How much total funds will be used for your proposed activity? This includes other sources in addition to the Schools Fund.'}
-          |  (does not include 9% administrative fee)
-          br/
-          h5
-            strong Description
-          .camo-field
-            = f.text_area :budget_desc, class: [:textarea, :input], rows: 5, :placeholder => "The budget will be used to...", :data => {:bp_tooltip => 'Explain in specific detail how the budget will be allotted and used.'}
-          h5
-            strong Use of Funds
-          = f.select(:funds_will_pay_for, DraftGrant::FUNDS, {}, {:multiple => true, class: :chosenselect, data:{placeholder: "Select:" }})
-          .field
-            = f.label :other_funds, 'If other, please specify:'
-            = f.text_field :other_funds, class: :input
-    .row
+        .row.nudge-left
+          .twelve.columns
+            h5.inline
+              strong Budget:
+              |  $
+            .camo-field.inline-block
+              = f.number_field :total_budget, class: [:input], :data => {:bp_tooltip => 'How much total funds will be used for your proposed activity? This includes other sources in addition to the Schools Fund.'}
+            |  (does not include 9% administrative fee)
+            br/
+            h5
+              strong Description
+            .camo-field
+              = f.text_area :budget_desc, class: [:textarea, :input], rows: 5, :placeholder => "The budget will be used to...", :data => {:bp_tooltip => 'Explain in specific detail how the budget will be allotted and used.'}
+        .row.nudge-left
+          .seven.columns
+            h5
+              strong Use of Funds
+            = f.select(:funds_will_pay_for, DraftGrant::FUNDS, {}, {:multiple => true, class: :chosenselect, data:{placeholder: "Select:" }})
+          .five.columns
+            .camo-field
+              h5 If other, please specify:
+              = f.text_field :other_funds, class: :input, :data => {:bp_tooltip => 'If and only if you answered other to "Use of Funds" please specify what is the usage.'}
+    .row.nudge-top
       .ten.columns.centered
         h3 Additional Comments
-        .camo-field
+        .camo-field.nudge-left
           = f.text_area :comments, class: [:textarea, :input, :validateThis], rows: 5, :data => {:bp_tooltip => 'Please state any additional information that may contribute to your application.', :bp_charlimit => '1200'}
 
 
@@ -230,9 +260,6 @@
                   h4 Additional Comments
                   .field
                     = f.text_area :comments, class: [:textarea, :input, :validateThis], rows: 5, :data => {:bp_tooltip => 'Please state any additional information that may contribute to your application.', :bp_charlimit => '1200'}
-                  .ttip.large.primary.btn data-tooltip="Save Your Progress"
-                    = f.submit 'Save!'
-                  = render 'grant_preview', grant: @draft_grant
                   .large.primary.btn
                     = f.submit 'Submit!', name: 'save_and_submit'
 javascript:
