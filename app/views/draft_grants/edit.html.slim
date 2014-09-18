@@ -14,6 +14,8 @@
           strong Submit Grant:
         .medium.primary.btn
           = f.submit 'Submit!', name: 'save_and_submit', id: 'submit_button'
+    .row
+      = render 'shared/errors', object: f.object
     hr.edit-grant-divider
     .row.nudge-top
       .eleven.columns.centered
