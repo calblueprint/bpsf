@@ -40,11 +40,11 @@
         .row
           .six.columns
             h5
-              strong Summary
+              strong Summary*
             .camo-field
-              = f.text_area :summary, class: [:textarea, :input, :validateThis], rows: 3, :placeholder => "Summarize your application", :data => {:bp_tooltip => 'Give a brief explanation explanation of your application', :bp_charlimit => '200'}
+              = f.text_area :summary, class: [:textarea, :input, :validateThis], rows: 3, :placeholder => "Click here to edit", :data => {:bp_tooltip => 'Give a brief explanation explanation of your application', :bp_charlimit => '200'}
             h5
-              strong Subject Areas:
+              strong Subject Areas*:
             = f.select :subject_areas, DraftGrant::SUBJECTS, {}, {:multiple => true, class: :chosenselect, data:{placeholder: "Select:" }}
           .five.columns.push_one
             h5
@@ -57,24 +57,24 @@
         .row.nudge-left
           .twelve.columns
             h5
-              strong Purpose
+              strong Purpose*
             .camo-field
-              = f.text_area :purpose, class: [:textarea, :input, :validateThis], rows: 5, :data => {:bp_tooltip => 'What is the purpose of this grant request and proposal?', :bp_charlimit => '1200'}
+              = f.text_area :purpose, class: [:textarea, :input], rows: 5, :data => {:bp_tooltip => 'What is the purpose of this grant request and proposal?', :bp_charlimit => '1200'}, :placeholder => "Click here to edit"
             h5
-              strong Methods
+              strong Methods*
             .camo-field
-              = f.text_area :methods, class: [:textarea, :input, :validateThis], rows: 5, :data => {:bp_tooltip => 'What methods will you employ in the implementation of this plan? Basically, what is your implementation strategy?', :bp_charlimit => '1200'}
+              = f.text_area :methods, class: [:textarea, :input], rows: 5, :data => {:bp_tooltip => 'What methods will you employ in the implementation of this plan? Basically, what is your implementation strategy?', :bp_charlimit => '1200'}, :placeholder => "Click here to edit"
             h5
-              strong Teacher Background
+              strong Teacher Background*
             .camo-field
-              = f.text_area :background, class: [:textarea, :input, :validateThis], rows: 5, :data => {:bp_tooltip => 'What is your own background? Please explain any relevant details to yourself and the project.', :bp_charlimit => '1200'}
+              = f.text_area :background, class: [:textarea, :input], rows: 5, :data => {:bp_tooltip => 'What is your own background? Please explain any relevant details to yourself and the project.', :bp_charlimit => '1200'}, :placeholder => "Click here to edit"
         .row.nudge-left
           .three.columns
             h5
               strong Youtube Video:
           .nine.columns
             .camo-field
-              = f.text_field :video, class: [:input], :placeholder => "Youtube Video Link", :data => {:bp_tooltip => 'Link to a Youtube Video about your grant.'}
+              = f.text_field :video, class: [:input], :placeholder => "Click here to edit", :data => {:bp_tooltip => 'Link to a Youtube Video about your grant.'}
     .row
       .ten.columns.centered
         br/
@@ -85,36 +85,36 @@
               tr
                 td.no-padding.no-border.half-width
                   h5.inline
-                    strong Grade Level:
+                    strong Grade Level*:
                 td.no-padding.no-border.half-width
                   .camo-field
-                    = f.text_field :grade_level, class: [:input], :placeholder => "Ex. 7, 8, 10", :data => {:bp_tooltip => 'List the grade levels that will be affected. Please separate different grades by commas.'}
+                    = f.text_field :grade_level, class: [:input], :placeholder => "Click to edit", :data => {:bp_tooltip => 'List the grade levels that will be affected. Please separate different grades by commas.'}
               tr
                 td.no-padding.no-border
                   h5.inline
-                    strong Duration:
+                    strong Duration*:
                 td.no-padding.no-border
                   .camo-field
-                    = f.text_field :duration, class: [:input], :placeholder => "Ex. 2 weeks", :data => {:bp_tooltip => 'How long will the proposed activity last? Please enter a number followed by a time period (ex. 1 day, 2 weeks, 3 months). If this is not applicable then please put "n/a".'}
+                    = f.text_field :duration, class: [:input], :placeholder => "Click to edit", :data => {:bp_tooltip => 'How long will the proposed activity last? Please enter a number followed by a time period (ex. 1 day, 2 weeks, 3 months). If this is not applicable then please put "n/a".'}
               tr
                 td.no-padding.no-border
                   h5.inline
-                    strong # of classes:
+                    strong # of classes*:
                 td.no-padding.no-border
                   .camo-field
-                    = f.number_field :num_classes, class: [:input], :data => {:bp_tooltip => 'How many different classes will be affected by the application?'}
+                    = f.number_field :num_classes, class: [:input], :data => {:bp_tooltip => 'How many different classes will be affected by the application?'}, :placeholder => "Click to edit"
               tr
                 td.no-padding.no-border
                   h5.inline
-                    strong # of students:
+                    strong # of students*:
                 td.no-padding.no-border
                   .camo-field
-                    = f.number_field :n_collaborators, class: [:input], :data => {:bp_tooltip => 'Including yourself, how many people are collaborating on this application?'}
+                    = f.number_field :n_collaborators, class: [:input], :data => {:bp_tooltip => 'Including yourself, how many people are collaborating on this application?'}, :placeholder => "Click to edit"
           .seven.columns
             h5.inline
-              strong Collaborators
+              strong Collaborators*
             .camo-field
-              = f.text_area :collaborators, class: [:textarea, :input], rows: 3, :placeholder => "Ex. Elvis Presley - Entertainment Advising, Neil Armstrong - Transportation, John F. Kennedy - Coordination and Advising", :data => {:bp_tooltip => 'Please list all the people with whom you will collaborate, if any, and what role they will play.', :bp_charlimit => '1200'}
+              = f.text_area :collaborators, class: [:textarea, :input], rows: 3, :placeholder => "Click here to edit", :data => {:bp_tooltip => 'Please list all the people with whom you will collaborate, if any, and what role they will play.', :bp_charlimit => '1200'}
     .row
       .ten.columns.centered
         br/
@@ -122,30 +122,30 @@
         .row.nudge-left
           .twelve.columns
             h5.inline
-              strong Budget:
+              strong Budget*:
               |  $
             .camo-field.inline-block
-              = f.number_field :total_budget, class: [:input], :data => {:bp_tooltip => 'How much total funds will be used for your proposed activity? This includes other sources in addition to the Schools Fund.'}
+              = f.number_field :total_budget, class: [:input], :data => {:bp_tooltip => 'How much total funds will be used for your proposed activity? This includes other sources in addition to the Schools Fund.'}, :placeholder => "Click to edit"
             |  (does not include 9% administrative fee)
             br/
             h5
-              strong Description
+              strong Description*
             .camo-field
-              = f.text_area :budget_desc, class: [:textarea, :input], rows: 5, :placeholder => "The budget will be used to...", :data => {:bp_tooltip => 'Explain in specific detail how the budget will be allotted and used.'}
+              = f.text_area :budget_desc, class: [:textarea, :input], rows: 5, :placeholder => "Click here to edit", :data => {:bp_tooltip => 'Explain in specific detail how the budget will be allotted and used.'}
         .row.nudge-left
           .seven.columns
             h5
-              strong Use of Funds
+              strong Use of Funds*
             = f.select(:funds_will_pay_for, DraftGrant::FUNDS, {}, {:multiple => true, class: :chosenselect, data:{placeholder: "Select:" }})
           .five.columns
             .camo-field
               h5 If other, please specify:
-              = f.text_field :other_funds, class: :input, :data => {:bp_tooltip => 'If and only if you answered other to "Use of Funds" please specify what is the usage.'}
+              = f.text_field :other_funds, class: :input, :data => {:bp_tooltip => 'If and only if you answered other to "Use of Funds" please specify what is the usage.'}, :placeholder => "Click here to edit"
     .row.nudge-top
       .ten.columns.centered
         h3 Additional Comments
         .camo-field.nudge-left
-          = f.text_area :comments, class: [:textarea, :input, :validateThis], rows: 5, :data => {:bp_tooltip => 'Please state any additional information that may contribute to your application.', :bp_charlimit => '1200'}
+          = f.text_area :comments, class: [:textarea, :input], rows: 5, :data => {:bp_tooltip => 'Please state any additional information that may contribute to your application.', :bp_charlimit => '1200'}, :placeholder => "Click here to edit"
 
 
 
