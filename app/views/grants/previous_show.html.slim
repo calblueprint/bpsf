@@ -1,6 +1,5 @@
 - title @grant, false
 .bp-show-grant data-bp-controller='ShowGrantController'
-  = render 'admin_panel', grant: @grant
   .row
     .eleven.columns.centered
       .row.nudge-top
@@ -19,6 +18,16 @@
     .grant-cover-wrapper
       .aspect-ratio-box
       = @grant.banner classes: 'grant-cover'
+
+  hr/
+
+  .row
+    .three.columns.centered.centalign
+      .large.primary.btn
+        = link_to 'Use This!', to_draft_path(@grant), method: :post
+
+  hr/
+
   .row
     .eleven.columns.centered
       .row
