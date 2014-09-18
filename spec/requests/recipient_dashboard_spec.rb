@@ -62,7 +62,6 @@ describe "The recipient dashboard" do
                                          num_classes: 4,
                                          num_students: 10,
                                          total_budget: 300,
-                                         requested_funds: 250,
                                          funds_will_pay_for: Faker::Lorem.paragraph,
                                          budget_desc: Faker::Lorem.paragraph,
                                          purpose: Faker::Lorem.paragraph,

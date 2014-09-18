@@ -165,10 +165,6 @@
 /         .field.prepend
 /           span.adjoined $
 /           = f.number_field :total_budget, class: [:input], :data => {:bp_tooltip => 'How much total funds will be /used for your proposed activity? This includes other sources in addition to the Schools Fund.'}
-/           h4 Total Funds Requested*
-/           .field.prepend
-/             span.adjoined $
-/             = f.number_field :requested_funds, class: [:input, :xwide, :text], type: :number, :data => {:/bp_tooltip => 'How much total funds are you requesting from the Schools Fund?'}
 
 /         .large.primary.btn
 /           = f.submit 'Submit!', name: 'save_and_submit'

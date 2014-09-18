@@ -13,7 +13,6 @@
 #  num_classes        :integer
 #  num_students       :integer
 #  total_budget       :integer
-#  requested_funds    :integer
 #  funds_will_pay_for :text
 #  budget_desc        :text
 #  purpose            :text
@@ -27,11 +26,15 @@
 #  video              :string(255)
 #  image              :string(255)
 #  school_id          :integer
-#  rating_average     :decimal(6, 2)    default(0.0)
 #  school_name        :string(255)
 #  teacher_name       :string(255)
 #  type               :string(255)
 #  deadline           :date
+#  other_funds        :text
+#  crop_x             :string(255)
+#  crop_y             :string(255)
+#  crop_w             :string(255)
+#  crop_h             :string(255)
 #
 
 class DraftGrant < Grant
