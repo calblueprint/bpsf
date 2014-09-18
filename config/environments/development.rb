@@ -24,7 +24,7 @@ BPSF::Application.configure do
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 
   # Stop emails from breaking app on development
-  ActionMailer::Base.perform_deliveries = true
+  ActionMailer::Base.perform_deliveries = false
   config.action_mailer.delivery_method = :test
 
   # Print deprecation notices to the Rails logger
