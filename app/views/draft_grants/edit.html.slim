@@ -8,12 +8,12 @@
         h5
           strong Save Progress:
         .medium.primary.btn
-          = f.submit 'Save!'
+          = f.submit 'Save!', id: 'save_button'
       .three.columns
         h5
           strong Submit Grant:
         .medium.primary.btn
-          = f.submit 'Submit!', name: 'save_and_submit'
+          = f.submit 'Submit!', name: 'save_and_submit', id: 'submit_button'
     hr.edit-grant-divider
     .row.nudge-top
       .eleven.columns.centered
@@ -262,5 +262,3 @@
                     = f.text_area :comments, class: [:textarea, :input, :validateThis], rows: 5, :data => {:bp_tooltip => 'Please state any additional information that may contribute to your application.', :bp_charlimit => '1200'}
                   .large.primary.btn
                     = f.submit 'Submit!', name: 'save_and_submit'
-javascript:
-  $(".chosenselect").chosen({width:'100%'});

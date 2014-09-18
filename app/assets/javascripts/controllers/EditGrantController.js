@@ -6,6 +6,7 @@ var EditGrantController = function(documentObject){
 	me.init = function(){
 		me.extend(formToolTip);
 		me.initFormToolTip();
+		me.activateChosen();
 
 		me.confirmSave();
 	}
@@ -28,6 +29,18 @@ var EditGrantController = function(documentObject){
 				return confirm('You have unsaved changes. Are you sure you want to leave?');
 			}
 		});
+
+		$('#save_button').on('click', function(){
+			hasChanged = false;
+		});
+
+		$('#submit_button').on('click', function(){
+			hasChanged = false;
+		});
+	}
+
+	me.activateChosen = function(){
+		$(".chosenselect").chosen({width:'100%'});
 	}
 
 	me.deactivate = function(){
