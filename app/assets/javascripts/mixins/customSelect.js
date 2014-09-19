@@ -34,7 +34,7 @@ var customSelect = {
 
 			var tempDiv = document.createElement('div');
 				tempDiv.innerHTML = newSelectHTML;
-			
+
 			return tempDiv.firstChild
 		},
 
@@ -60,7 +60,7 @@ var customSelect = {
 						me.activateElements(false, thisOption);
 						me.deactivateElements(newSelect);
 
-						oldSelect.onchange();
+						$(oldSelect).trigger('change');
 
 						e.preventDefault();
 						return false;
