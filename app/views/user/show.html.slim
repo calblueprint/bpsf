@@ -13,10 +13,11 @@
                 a href="#"  My Account
               li
                 a href="#"  Payment History
-              li
-                a href="#"  Update Credit Card Info.
-              li
-                a href="#"  Change Password
+              - if @user === current_user
+                li
+                  a href="#"  Update Credit Card Info
+                li
+                  a href="#"  Change Password
         .tab-content
           .ten.columns.push_three
             .row
