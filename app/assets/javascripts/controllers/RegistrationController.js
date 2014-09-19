@@ -6,9 +6,11 @@ var RegistrationController = function(documentObject){
 	me.init = function(){
 		me.extend(checkbox);
 		me.extend(modal);
+		me.extend(customSelect);
 		me.checkboxBind();
 		me.modalBind();
 		me.userSwitch();
+		me.convertSelects();
 	}
 
 	me.userSwitch = function(){
@@ -24,11 +26,16 @@ var RegistrationController = function(documentObject){
 									texts[i].className += ' hide';
 								}
 							};
-						}
+						};
+			showForm = function(){
+				var form = me.documentObject.querySelector('#registration-form');
+				form.className = form.className.replace('hide', '');
+			}
 
 		switchText();
 
 		$(select).on('change', switchText);
+		$(select).one('change', showForm);
 	}
 }
 
