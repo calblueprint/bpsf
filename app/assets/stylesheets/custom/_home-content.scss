@@ -1,9 +1,12 @@
 .home-wrapper{
 	@extend .page-wrapper;
-	padding: 20px 0px;
 	position: relative;
 	z-index: 10;
 	border-top:solid 10px $primary-color;
+}
+
+.home-wrapper, .bp-search .page-wrapper{
+	padding: 20px 0px;
 	.home-lead{
 		padding:20px;
 		.call-to-action{
