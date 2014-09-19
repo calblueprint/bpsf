@@ -5,7 +5,7 @@
       .six.columns
         h2.inlined Register as
         .text-left#account-select
-          = f.select :type, options_for_select([['Friend/Family Member', 'User'], ['Teacher', 'Recipient'], 'Admin'])
+          = f.select :type, options_for_select([['Friend/Family Member', 'User'], ['Teacher', 'Recipient'], 'Admin']), :prompt => 'Choose one...'
         #account-select-text
           div data-bp-account='User'
             p THIS TEXT IS FOR USERS. This is planned to be some text describing the account and what the account can do and what it is useful for. This text will change based on the option for account type so every type gets proper attention. The text will also explain restrictions on account types better.
@@ -21,7 +21,7 @@
           | Already registered?
         .btn.medium.primary
           = link_to "Sign In", new_user_session_path
-      .five.columns.push_one
+      .five.columns.push_one.hide#registration-form
         = devise_error_messages!
         .field
           = f.label :first_name

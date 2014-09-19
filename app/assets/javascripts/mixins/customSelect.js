@@ -1,5 +1,5 @@
 var customSelect = {
-	convertSelects: function(){	
+	convertSelects: function(){
 			if(document.width < 1040){
 				return;
 			}
@@ -23,11 +23,16 @@ var customSelect = {
 
 	createSelect: function(oldSelect){
 			var newSelectHTML = '<div class="select-wrapper"><span>';
-				newSelectHTML += oldSelect.value;
+				newSelectHTML += oldSelect.value ? oldSelect.value : oldSelect.options[0].innerText;
 				newSelectHTML += '</span><ul class="select">';
 
 			for (var i = 0; i < oldSelect.options.length; i++) {
-				newSelectHTML += '<li data-bp-value="' + oldSelect.options[i].value + '"><a>' + oldSelect.options[i].value + '</a></li>';
+				if(oldSelect.options[i].value){
+					newSelectHTML += '<li data-bp-value="'
+					+ oldSelect.options[i].value + '"><a>'
+					+ oldSelect.options[i].innerText
+					+ '</a></li>';
+				}
 			};
 
 			newSelectHTML += '</ul></div>';
@@ -54,7 +59,7 @@ var customSelect = {
 					var thisOption = options[i];
 					$(thisOption).on('click', function(e){
 						oldSelect.value = thisOption.getAttribute('data-bp-value');
-						newSelect.querySelector('span').innerText = thisOption.getAttribute('data-bp-value');
+						newSelect.querySelector('span').innerText = thisOption.innerText;
 
 						me.deactivateElements.apply(me, options);
 						me.activateElements(false, thisOption);

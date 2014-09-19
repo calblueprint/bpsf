@@ -26,11 +26,16 @@ var RegistrationController = function(documentObject){
 									texts[i].className += ' hide';
 								}
 							};
-						}
+						};
+			showForm = function(){
+				var form = me.documentObject.querySelector('#registration-form');
+				form.className = form.className.replace('hide', '');
+			}
 
 		switchText();
 
 		$(select).on('change', switchText);
+		$(select).one('change', showForm);
 	}
 }
 
