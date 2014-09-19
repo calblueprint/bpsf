@@ -41,6 +41,7 @@ require 'textacular/searchable'
 class Grant < ActiveRecord::Base
   has_paper_trail only: [:state]
   extend Enumerize
+  include ActiveModel::Dirty
   SUBJECTS = ['After School Program', 'Arts / Music', 'Arts / Dance', 'Arts / Drama',
     'Arts / Visual', 'Community Service', 'Computer / Media', 'Computer Science',
     'Foreign Language / ELL / TWI','Gardening','History & Social Studies / Multi-culturalism',
@@ -87,8 +88,8 @@ class Grant < ActiveRecord::Base
   with_options if: :parent? do |grant|
     grant.validates :title, presence: true, length: { maximum: 40 }
     grant.validate :valid_subject_areas
-    grant.validate :valid_deadline
     grant.validate :valid_other
+    grant.validate :valid_deadline, if: "self.deadline_changed?"
     grant.validates :summary, presence: true, length: { maximum: 200 }
     grant.validates :grade_level, presence: true
     grant.validate :grade_format

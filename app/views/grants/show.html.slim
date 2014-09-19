@@ -41,8 +41,10 @@
         .six.columns
           .grantviewbar.text-right
             .funding-info
-              - if !@grant.crowdfunding?
+              - if @grant.complete?
                 h3.no-padding Successful!
+              - if @grant.pending?
+                h3.no-padding Pending...
               - elsif @grant.days_left.to_f > 0
                 h2.no-padding = @grant.days_left
                 h5.no-padding
