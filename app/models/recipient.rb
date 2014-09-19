@@ -37,4 +37,12 @@ class Recipient < User
   def previous_grants
     grants.complete_grants
   end
+
+  def self.weekly_digest
+    @recipients = Recipient.includes(:grants).where(grants: {state: 'crowdfunding'})
+    @recipients.each do |recipient|
+      @grants = recipient.grants
+      WeeklyDigestJob.new.async.perform(recipient, @grants)
+    end
+  end
 end

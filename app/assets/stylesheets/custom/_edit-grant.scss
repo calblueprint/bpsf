@@ -1,1 +1,5 @@
 .hinttext{color:darken($global-bg-color, 25%);}
+
+.edit-grant-divider{
+	@extend .footer-divider;
+}

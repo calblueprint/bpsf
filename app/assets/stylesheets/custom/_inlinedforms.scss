@@ -45,3 +45,29 @@
     font-weight: $font-weight-light;
   }
 }
+
+.camo-field{
+  @extend .field;
+  background: none;
+  border: none;
+  height:auto;
+  .input{
+    background: none;
+    border: none;
+    height: auto;
+    border: dashed 1px darken($global-bg-color, 12%);
+    cursor: pointer;
+    @include border-radius(0px);
+    line-height: $base-line-height;
+    &:hover{
+      background-color: lighten($primary-color, 40%);
+    }
+    &:focus{
+      background-color: lighten($global-bg-color, 12%);
+    }
+    &.h2{
+      font-size: $xlarge;
+      line-height: $xlarge;
+    }
+  }
+}

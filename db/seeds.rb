@@ -93,7 +93,6 @@ def make_grants
                                           num_classes: rand(1..5),
                                           num_students: rand(1..5) * 10,
                                           total_budget: rand(8..12) * 100,
-                                          requested_funds: rand(1..3) * 250,
                                           funds_will_pay_for: ["Supplies"],
                                           budget_desc: Faker::Lorem.paragraph,
                                           purpose: Faker::Lorem.paragraph,
@@ -108,7 +107,7 @@ def make_grants
     grant.crowdfund
     Crowdfund.create pledged_total: rand(1..3) * 150,
                      grant_id: grant.id,
-                     goal: grant.requested_funds
+                     goal: grant.with_admin_cost
     grant.save!
   end
 end

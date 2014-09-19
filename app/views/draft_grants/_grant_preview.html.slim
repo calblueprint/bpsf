@@ -33,7 +33,7 @@ h2.ultitle Preview
     span.largefont= grant.subject_areas.values.to_a.join(', ')
 .row.grantviewbar
   .progress
-    span.progressbar data-current=0 data-goal=grant.requested_funds style=("width: 0%")
+    span.progressbar data-current=0 data-goal=grant.total_budget style=("width: 0%")
   .gcdiv
     span.gctext
       strong Current:
@@ -43,10 +43,10 @@ h2.ultitle Preview
     span.gctext
       strong Goal:
     span.goalnum
-      - if grant.requested_funds.blank?
+      - if grant.total_budget.blank?
         |  $0
       - else
-        |  $#{grant.requested_funds}
+        |  $#{grant.total_budget}
 hr/
 .row
   .ten.columns.centalign.centered

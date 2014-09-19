@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140803230351) do
+ActiveRecord::Schema.define(:version => 20140918204028) do
 
   create_table "admin_profiles", :force => true do |t|
     t.string   "about"
@@ -51,7 +51,6 @@ ActiveRecord::Schema.define(:version => 20140803230351) do
     t.integer  "num_classes"
     t.integer  "num_students"
     t.integer  "total_budget"
-    t.integer  "requested_funds"
     t.text     "funds_will_pay_for"
     t.text     "budget_desc"
     t.text     "purpose"
@@ -84,7 +83,6 @@ ActiveRecord::Schema.define(:version => 20140803230351) do
     t.integer  "num_classes"
     t.integer  "num_students"
     t.integer  "total_budget"
-    t.integer  "requested_funds"
     t.text     "funds_will_pay_for"
     t.text     "budget_desc"
     t.text     "purpose"

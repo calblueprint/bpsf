@@ -139,4 +139,9 @@ class UserMailer < ActionMailer::Base
     mail(to: @admin.email, subject: 'A new administrator account needs your approval')
   end
 
+  def weekly_digest(user,grants)
+    @user = user
+    @grants = grants
+    mail(to: @user.email, subject: 'Your weekly digest for the Schools Fund Friends and Family Grant Portal')
+  end
 end

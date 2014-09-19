@@ -1,89 +1,128 @@
 - title @grant, false
-.row
-  .wrapper.light
-    .row.centalign
-      h2
-        = @grant
-      h5
-      ' #{@grant.recipient_name} |
-      ' #{@grant.school_name}
-    .row align="center"
-      = @grant.banner classes: 'coverholder'
-    .row.centalign
-      .eleven.columns.centered
-        p.largefont= @grant.summary
-      br/
-    .row.padada
-      .ten.columns.centered.centalign
-        h4.inlined> Subject Areas:
-        span.largefont = @grant.subject_areas
+.bp-show-grant data-bp-controller='ShowGrantController'
+  .row
+    .eleven.columns.centered
+      .row.nudge-top
+        .eight.columns
+          h2.no-padding = @grant
+        .four.columns.text-right
+          h5.ultitle By #{@grant.recipient_name}
+          h5 At #{@grant.school_name}
+          .social-icon data-bp-social='facebook'
+            i.icon-facebook
+          .social-icon data-bp-social='twitter'
+            i.icon-twitter
+          .social-icon data-bp-social='mail'
+            i.icon-mail
+  .row.nudge-top
+    .grant-cover-wrapper
+      .aspect-ratio-box
+      = @grant.banner classes: 'grant-cover'
 
-    hr/
+  hr/
 
-    .row
-      .three.columns.centered.centalign
-        .large.primary.btn
-          = link_to 'Use This!', to_draft_path(@grant), method: :post
+  .row
+    .three.columns.centered.centalign
+      .large.primary.btn
+        = link_to 'Use This!', to_draft_path(@grant), method: :post
 
-    hr/
+  hr/
 
-    .row
-      .ten.columns.centalign.centered
-        h3 Project Idea
+  .row
+    .eleven.columns.centered
+      .row
+        .six.columns
+          h5.ultitle
+            strong Summary
+          = simple_format(@grant.summary)
+          table.no-border
+            tr
+              td.no-padding.no-border
+                h5
+                  strong Subject Areas:
+              td.no-border.subject-areas
+                = simple_format(@grant.subject_areas)
+        .six.columns
+          .grantviewbar.text-right
+            .funding-info
+              - if !@grant.crowdfunding?
+                h3.no-padding Successful!
+              - elsif @grant.days_left.to_f > 0
+                h2.no-padding = @grant.days_left
+                h5.no-padding
+                  strong Days Left!
+              - else
+                h3.no-padding Past Deadline
+            .funding-info
+              h5.no-padding
+                strong Raised
+              h2.primary-color.no-padding $#{@grant.current_funds}
+              h5.no-padding
+                strong out of $#{@grant.funding_goal}
+            .progress
+              = @grant.progress_bar
+  .row.nudge-top
+    .ten.columns.centered
+      h3 Project Idea
+      .twelve.columns
         h5
           strong Purpose
-        = @grant.purpose
+        = simple_format(@grant.purpose)
         h5
           strong Methods
-        = @grant.methods
+        = simple_format(@grant.methods)
         h5
           strong Teacher Background
-        = @grant.background
-    = @grant.video_large
-    .row
-      .ten.columns.centalign.centered
-        br/
-        h3 Details
-        h5.inlined
-          strong Grade level:
-        span.medfont
-          |&nbsp;
-          = @grant.grade_level
-        |&emsp;
-        h5.inlined
-          strong Duration:
-        span.medfont
-          |&nbsp;
-          = @grant.duration
-        |&emsp;
-        h5.inlined
-          strong # of classes:
-        span.medfont
-          |&nbsp;
-          = @grant.num_classes
-        |&emsp;
-        h5.inlined
-          strong # of students:
-        span.medfont
-          |&nbsp;
-          = @grant.num_students
-        br/
+        = simple_format(@grant.background)
+  = @grant.video_large
+  .row
+    .ten.columns.centered
+      br/
+      h3 Details
+      .four.columns
+        table.no-border
+          tr
+            td.no-padding.no-border
+              h5.inline
+                strong Grade Level:
+            td.no-padding.no-border
+              h5.inline =@grant.grade_level
+          tr
+            td.no-padding.no-border
+              h5.inline
+                strong Duration:
+            td.no-padding.no-border
+              h5.inline =@grant.duration
+          tr
+            td.no-padding.no-border
+              h5.inline
+                strong # of classes:
+            td.no-padding.no-border
+              h5.inline =@grant.num_classes
+          tr
+            td.no-padding.no-border
+              h5.inline
+                strong # of students:
+            td.no-padding.no-border
+              h5.inline =@grant.num_students
+      .seven.columns 
         = @grant.collaborators_section
-    .row
-      .ten.columns.centalign.centered
-        br/
-        h3.centalign Budget
-        h5.inlined
-          strong Total budget:
-        span.medfont
-          | $#{@grant.total_budget}
+  .row
+    .ten.columns.centered
+      br/
+      h3 Budget
+      .twelve.columns
+        h5.inline
+          strong Budget:
+        h5.inline
+          |  $#{@grant.total_budget} (does not include 9% administrative fee)
         br/
         h5
           strong Description
-        = @grant.budget_desc
+        = simple_format(@grant.budget_desc)
         h5
           strong Use of Funds
-        = @grant.use_of_funds
-    .row
-      .ten.columns.centalign.centered
-        = @grant.comments_section
+        = simple_format(@grant.use_of_funds)
+  .row
+    .ten.columns.centered
+      = simple_format(@grant.comments_section)

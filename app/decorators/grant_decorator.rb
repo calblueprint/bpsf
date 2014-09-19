@@ -44,7 +44,7 @@ class GrantDecorator < Draper::Decorator
   end
 
   def funding_goal
-    has_crowdfunder? ? crowdfunder_goal : requested_funds
+    has_crowdfunder? ? crowdfunder_goal : total_budget
   end
 
   def can_receive_donations?
@@ -53,6 +53,10 @@ class GrantDecorator < Draper::Decorator
 
   def has_crowdfunder?
     crowdfunder
+  end
+
+  def max_donation
+    funding_goal - current_funds
   end
 
   def video_large
