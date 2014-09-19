@@ -6,9 +6,11 @@ var RegistrationController = function(documentObject){
 	me.init = function(){
 		me.extend(checkbox);
 		me.extend(modal);
+		me.extend(customSelect);
 		me.checkboxBind();
 		me.modalBind();
 		me.userSwitch();
+		me.convertSelects();
 	}
 
 	me.userSwitch = function(){
