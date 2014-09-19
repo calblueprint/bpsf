@@ -13,7 +13,7 @@
       = hidden_field_tag :stripe_token
       - if current_user && current_user.stripe_token.present?
         .field.prepend
-          = label_tag :amount, "Donation Total", class: :largefont
+          = label_tag :amount, "Donation Total (Max = #{@grant.max_donation})", class: :largefont
           span.adjoined $
           = text_field_tag :amount, nil, class: :input
         | Credit card (ending in #{current_user.last4}) has already been provided. You can update this on your profile.
@@ -31,7 +31,7 @@
               = text_field_tag :card_name, current_user.name, name: nil, class: :input
           .six.columns
             .field.prepend
-              = label_tag :amount, "Donation Total", class: :largefont
+              = label_tag :amount, "Donation Total (Max = #{@grant.max_donation})", class: :largefont
               span.adjoined $
               = text_field_tag :amount, nil, class: :input
         .row

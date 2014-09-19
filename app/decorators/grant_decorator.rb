@@ -55,6 +55,10 @@ class GrantDecorator < Draper::Decorator
     crowdfunder
   end
 
+  def max_donation
+    funding_goal - current_funds
+  end
+
   def video_large
     content_tag :div, class: 'row' do
       content_tag :div, class: 'ten columns centered' do
