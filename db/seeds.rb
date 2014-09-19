@@ -107,7 +107,7 @@ def make_grants
     grant.crowdfund
     Crowdfund.create pledged_total: rand(1..3) * 150,
                      grant_id: grant.id,
-                     goal: grant.total_budget
+                     goal: grant.with_admin_cost
     grant.save!
   end
 end

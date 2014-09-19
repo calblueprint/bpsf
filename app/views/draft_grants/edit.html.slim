@@ -117,7 +117,7 @@
             h5.inline
               strong # of collaborators*:
             .camo-field.inline-block.nudge-left
-              = f.number_field :n_collaborators, class: [:input], :data => {:bp_tooltip => 'Including yourself, how many people are collaborating on this application?'}, :placeholder => "Click to edit"
+              = f.number_field :n_collaborators, class: [:input], :data => {:bp_tooltip => 'Not including yourself, how many people are collaborating on this application?'}, :placeholder => "Click to edit"
             h5
               strong Collaborators*
             .camo-field
