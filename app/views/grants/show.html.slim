@@ -62,7 +62,7 @@
             = render 'donate_button', grant: @grant
   - if admin_user?
     .row.nudge-top
-      - if !@donors.empty?
+      - if @donors && !@donors.empty?
         .seven.columns
           .row
             #project.ten.columns.centered

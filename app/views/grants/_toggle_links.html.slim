@@ -4,10 +4,9 @@
       - if state.eql? "crowdfund"
         = link_to state.titleize,
           "#",
-          method: :post,
-          remote: true,
           class: "crowdfund",
-          id: grant.id
+          id: grant.id,
+          data: { bp_modal: '#crowdfund-form' }
       - elsif state.eql? "fund"
         = link_to state.titleize,
           grant_event_path(id: grant.id, state: state),
