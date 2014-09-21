@@ -1,5 +1,5 @@
 - partials.each do |p, collection, val, message|
-  - if collection.eql?(true) || collection.length > 0
+  - if collection && (collection.eql?(true) || collection.length > 0)
     table
       thead
         tr
