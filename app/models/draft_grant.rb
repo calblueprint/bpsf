@@ -38,7 +38,7 @@
 #
 
 class DraftGrant < Grant
-  validates :title, presence: true, length: { maximum: 40 }
+  validates :title, presence: true, length: { maximum: 200 }
   validates :recipient_id, :school_id, presence: true, if: 'type.nil?'
   validates :summary, length: { maximum: 200 }
   validate :grade_format
