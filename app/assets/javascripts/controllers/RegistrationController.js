@@ -28,14 +28,18 @@ var RegistrationController = function(documentObject){
 							};
 						};
 			showForm = function(){
-				var form = me.documentObject.querySelector('#registration-form');
-				form.className = form.className.replace('hide', '');
+				if (select.value){
+					var form = me.documentObject.querySelector('#registration-form');
+					form.className = form.className.replace('hide', '');
+				}
 			}
 
 		switchText();
 
 		$(select).on('change', switchText);
-		$(select).one('change', showForm);
+		$(select).on('change', showForm);
+
+		$(select).trigger('change');
 	}
 }
 
