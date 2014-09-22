@@ -23,6 +23,6 @@
             ul
               li.field.metro
                 = select_date grant.deadline, order: [:year, :month, :day], class: [:picker, :inlined]
-            = hidden_field_tag :grant_id, grant.id
-            .primary.medium.btn
-              = submit_tag "Start Crowdfund!", class: "close-crowdfund-modal", confirm: "Are you sure?"
+              = hidden_field_tag :grant_id, grant.id
+              .primary.medium.btn
+                = submit_tag "Start Crowdfund!", class: "close-crowdfund-modal", confirm: "Are you sure?"
