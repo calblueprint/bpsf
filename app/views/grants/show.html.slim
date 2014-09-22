@@ -9,12 +9,13 @@
         .four.columns.text-right
           h5.ultitle By #{@grant.recipient_name}
           h5 At #{@grant.school_name}
-          .social-icon data-bp-social='facebook'
-            i.icon-facebook
-          .social-icon data-bp-social='twitter'
-            i.icon-twitter
-          .social-icon data-bp-social='mail'
-            i.icon-mail
+          - if !@grant.crowdfunder.nil?
+            .social-icon data-bp-social='facebook'
+              i.icon-facebook
+            .social-icon data-bp-social='twitter'
+              i.icon-twitter
+            .social-icon data-bp-social='mail'
+              i.icon-mail
   - if current_user == @grant.recipient && @grant.has_pledges?
     .row.nudge-top
       .eleven.columns.centered.text-right
