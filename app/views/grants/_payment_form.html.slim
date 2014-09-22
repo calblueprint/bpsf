@@ -8,7 +8,7 @@
             | prohibited this donation from being processed:
           ul
             - payment.errors.full_messages.each do |msg|
-              li= msg
+              li.danger.alert= msg
       = hidden_field_tag :grant_id, id
       = hidden_field_tag :stripe_token
       - if current_user && current_user.stripe_token.present?
@@ -74,7 +74,7 @@
             .field
               = label_tag :address_country, "Country"
               = text_field_tag :address_country, "USA", name: nil, class: :input
-        #stripe_error
+        .alert.primary#stripe_error
           noscript Javscript is required. Please enable it in your browser settings.
         .donate.large.primary.btn#new-card
           = f.submit "Donate!", :id => "new_payment", :confirm => "Are you sure?"
