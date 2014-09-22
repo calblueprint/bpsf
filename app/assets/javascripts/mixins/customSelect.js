@@ -23,8 +23,16 @@ var customSelect = {
 
 	createSelect: function(oldSelect){
 			var newSelectHTML = '<div class="select-wrapper"><span>';
-				newSelectHTML += oldSelect.value ? oldSelect.value : oldSelect.options[0].innerText;
-				newSelectHTML += '</span><ul class="select">';
+			if (oldSelect.value) {
+				for (var i = 0; i < oldSelect.options.length; i++) {
+					if (oldSelect.options[i].value == oldSelect.value) {
+						newSelectHTML += oldSelect.options[i].innerText;
+					}
+				}
+			} else {
+				newSelectHTML += oldSelect.options[0].innerText;
+			}
+			newSelectHTML += '</span><ul class="select">';
 
 			for (var i = 0; i < oldSelect.options.length; i++) {
 				if(oldSelect.options[i].value){
