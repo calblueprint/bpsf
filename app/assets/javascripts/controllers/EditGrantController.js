@@ -9,6 +9,7 @@ var EditGrantController = function(documentObject){
 		me.activateChosen();
 
 		me.confirmSave();
+		me.uploadImg();
 	}
 
 	me.confirmSave = function(){
@@ -46,6 +47,22 @@ var EditGrantController = function(documentObject){
 	me.deactivate = function(){
 		$(window).off('beforeunload');
 		$(document).off('page:before-change');
+	}
+
+	me.uploadImg = function(){
+		var button = me.documentObject.querySelector('#upload_button'),
+			fileInput = me.documentObject.querySelector('#upload_input'),
+			saveButton = me.documentObject.querySelector('#save_button');
+
+		$(button).on('click', function(e){
+			$(fileInput).trigger('click');
+			e.preventDefault();
+			return false;
+		});
+
+		$(fileInput).on('change', function(){
+			$(save_button).trigger('click');
+		});
 	}
 }
 

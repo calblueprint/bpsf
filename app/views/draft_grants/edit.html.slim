@@ -28,15 +28,19 @@
       - if @draft_grant.image_url.blank?
         h4 Cover Image
         h6.subhead.no-margin Choose a photo that will appear at the top of your application. Please choose an image with a 2:1 aspect ratio.
-        .field
-          = f.file_field :image
+        .medium.primary.btn#upload_button
+          a href='#' Upload Cover Image
+        .field.hidden
+          = f.file_field :image, :id => 'upload_input'
       - else
         .grant-cover-wrapper
           .aspect-ratio-box
           .grant-cover
             = image_tag @draft_grant.image_url :banner
-        .field
-          = f.file_field :image
+          .medium.primary.btn.uploaded#upload_button
+            a href='#' Change Cover Image
+        .field.hidden
+          = f.file_field :image, :id => 'upload_input'
     .row
       .eleven.columns.centered
         .row
