@@ -28,7 +28,7 @@ class DraftGrantsController < ApplicationController
 
   def update
     if @draft_grant.update_attributes params[:draft_grant]
-      render :crop and return if params[:draft_grant][:image].present?
+      #render :crop and return if params[:draft_grant][:image].present?
       submit and return if params[:save_and_submit]
       flash[:success] = 'Application updated!'
       redirect_to edit_draft_path @draft_grant
