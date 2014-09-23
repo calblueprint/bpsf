@@ -12,7 +12,7 @@ gem 'figaro', '~> 0.7.0'
 gem 'stripe', '~> 1.8.7'
 gem 'state_machine', '~> 1.2.0'
 gem 'paper_trail', '>= 3.0.0.rc2'
-gem 'carrierwave', '~> 0.9.0'
+gem 'carrierwave', '~> 0.10.0'
 gem 'fog', :git => 'https://github.com/fog/fog.git'
 gem 'mini_magick', '~> 3.5.0'
 gem 'nokogiri', '~> 1.6.3.1'
@@ -35,7 +35,7 @@ group :development, :test do
   gem 'childprocess', '0.3.6'
   gem 'spork', '0.9.2'
   gem 'commands', '~> 0.2.1'
-  gem 'pry', '~> 0.9.12.2'
+  gem 'jazz_hands'
 end
 
 group :development do
