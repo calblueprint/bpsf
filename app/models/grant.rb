@@ -105,10 +105,9 @@ class Grant < ActiveRecord::Base
   mount_uploader :image, ImageUploader
 
   def crop_image
-    image.recreate_versions! if crop_x.present?
     if crop_x.present?
-      self[:crop_x],self[:crop_y],self[:crop_w],self[:crop_h] = nil
-      self.save
+      self.image.recreate_versions!
+      self.crop_x = nil
     end
   end
 

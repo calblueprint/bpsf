@@ -68,13 +68,17 @@ class ImageUploader < CarrierWave::Uploader::Base
         w = model.crop_w.to_i
         h = model.crop_h.to_i
         img.crop "#{w}x#{h}+#{x}+#{y}"
-        return img unless img.mime_type.match /image\/jpeg/
+
+        # binding.pry
+        if img.mime_type.match /image\/jpeg/
           img.strip
           img.combine_options do |c|
             c.quality "90"
             c.depth "8"
             c.interlace "plane"
           end
+        end
+        img = yield(img) if block_given?
         img
       end
     end
