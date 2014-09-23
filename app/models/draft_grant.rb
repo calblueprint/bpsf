@@ -27,11 +27,11 @@
 #  video              :string(255)
 #  image              :string(255)
 #  school_id          :integer
-#  rating_average     :decimal(6, 2)    default(0.0)
 #  school_name        :string(255)
 #  teacher_name       :string(255)
 #  type               :string(255)
 #  deadline           :date
+#  other_funds        :text
 #
 
 class DraftGrant < Grant

@@ -8,6 +8,8 @@
 #  goal          :integer
 #  pledged_total :integer
 #  grant_id      :integer
+#  eighty        :boolean
+#  finished      :boolean
 #
 
 class Crowdfund < ActiveRecord::Base
