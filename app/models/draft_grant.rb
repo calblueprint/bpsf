@@ -48,12 +48,6 @@ class DraftGrant < Grant
   validates :collaborators, length: { maximum: 1200 },
             if: 'n_collaborators && n_collaborators > 0'
 
-  before_create :set_deadline
-
-  def set_deadline
-    self.deadline = Date.today
-  end
-
   def has_collaborators?
     n_collaborators && n_collaborators > 0
   end
