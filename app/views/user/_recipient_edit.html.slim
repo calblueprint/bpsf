@@ -13,12 +13,10 @@
       = f.fields_for :profile do |ff|
         .field
           = ff.label :school, "School"
-          .picker
-            = ff.collection_select :school_id, School.all, :id, :name
+          = ff.collection_select :school_id, School.all, :id, :name, :prompt => 'Choose one...'
         .field
           = ff.label :started_teaching, "Started Teaching:"
-          .picker
-            = ff.date_select :started_teaching, start_year: Time.now.year - 40, end_year: Time.now.year, order: [:year]
+          = ff.date_select :started_teaching, start_year: Time.now.year - 70, end_year: Time.now.year, order: [:year], :prompt => 'Choose one...'
         .field
           = ff.label :subject, "Subject You Teach"
           = ff.text_field :subject, class: :input
