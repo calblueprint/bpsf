@@ -8,18 +8,17 @@
           = f.select :type, options_for_select([['Friend/Family Member', 'User'], ['Teacher', 'Recipient'], 'Admin']), :prompt => 'Choose one...'
         #account-select-text
           div data-bp-account='User'
-            p THIS TEXT IS FOR USERS. This is planned to be some text describing the account and what the account can do and what it is useful for. This text will change based on the option for account type so every type gets proper attention. The text will also explain restrictions on account types better.
-            p Another benefit is it should prevent stupid registrations because they realize they will need approval to be a teacher or admin. Hopefully this can also further make the sale so people will be even more willing to register and donate.
+            p Donate to our local schools and classrooms to help support the education of our community! By crowdfunding support for our fantastic teachers we can all contribute to the education of our children. Be sure to read the FAQ for Friends and Family if you have any questions about how this application works or what step to take next.
+            p The Berkeley Public Schools Fund and all the teachers in the district thank you for your continued support and we look forward to the amazing things we'll accomplish together.
           div data-bp-account='Recipient'
-            p THIS TEXT IS FOR RECIPIENTS. This is planned to be some text describing the account and what the account can do and what it is useful for. This text will change based on the option for account type so every type gets proper attention. The text will also explain restrictions on account types better.
-            p Another benefit is it should prevent stupid registrations because they realize they will need approval to be a teacher or admin. Hopefully this can also further make the sale so people will be even more willing to register and donate.
+            p Register as a teacher to create crowdfunding grants for various projects in your classroom. With the help of the Berkeley community we hope to empower you with greater freedom and more effective tools. You must be a BUSD employee to register and submit grant applications. Be sure to read the FAQ for teachers to find out more about the process.
+            p Thank you for working so hard to educate our children and we wish you the best of look with your crowdfunding projects.
           div data-bp-account='Admin'
-            p THIS TEXT IS FOR ADMINS. This is planned to be some text describing the account and what the account can do and what it is useful for. This text will change based on the option for account type so every type gets proper attention. The text will also explain restrictions on account types better.
-            p Another benefit is it should prevent stupid registrations because they realize they will need approval to be a teacher or admin. Hopefully this can also further make the sale so people will be even more willing to register and donate.
+            p Only register as an Admin if you have prior permission and instruction. Admin accounts will require approval to fully function.
         p
           br
           | Already registered?
-        .btn.medium.primary
+        .medium.primary.btn
           = link_to "Sign In", new_user_session_path
       .five.columns.push_one.hide#registration-form
         = devise_error_messages!
