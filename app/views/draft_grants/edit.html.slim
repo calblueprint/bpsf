@@ -53,7 +53,7 @@
             h5
               strong Crowdfund Deadline*
             h6.subhead.no-margin When will your crowdfunding period end?
-            = f.date_select :deadline, order: [:year, :month, :day], class: [:picker, :inlined]
+            = f.date_select :deadline, order: [:year, :month, :day], class: [:picker, :inlined], :prompt => true
     .row.nudge-top
       .ten.columns.centered
         h3 Project Idea
