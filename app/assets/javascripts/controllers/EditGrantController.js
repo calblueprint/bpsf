@@ -9,6 +9,7 @@ var EditGrantController = function(documentObject){
 		me.activateChosen();
 
 		me.confirmSave();
+		me.uploadImg();
 	}
 
 	me.confirmSave = function(){
@@ -46,6 +47,36 @@ var EditGrantController = function(documentObject){
 	me.deactivate = function(){
 		$(window).off('beforeunload');
 		$(document).off('page:before-change');
+	}
+
+	me.uploadImg = function(){
+		var button = me.documentObject.querySelector('#upload_button'),
+			fileInput = me.documentObject.querySelector('#upload_input'),
+			saveButton = me.documentObject.querySelector('#save_button');
+
+		$(button).on('click', function(e){
+			$(fileInput).trigger('click');
+			e.preventDefault();
+			return false;
+		});
+
+		$(fileInput).on('change', function(){
+			$(save_button).trigger('click');
+			if($(button).hasClass('uploaded')){
+				$(button).replaceWith("<div class='loader-blob active' style='position:absolute; \
+										z-index: 50; top:5px;'> \
+				        				<div class='bounce-1'></div> \
+										<div class='bounce-2'></div> \
+										<div class='bounce-3'></div> \
+									</div>");
+			} else {
+				$(button).replaceWith("<div class='loader-blob active' style='position:inherit;'> \
+				        				<div class='bounce-1'></div> \
+										<div class='bounce-2'></div> \
+										<div class='bounce-3'></div> \
+									</div>");
+			}
+		});
 	}
 }
 

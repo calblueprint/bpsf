@@ -16,6 +16,7 @@ var RegistrationController = function(documentObject){
 	me.userSwitch = function(){
 		var select = me.documentObject.querySelector('#account-select').querySelector('select'),
 			texts = me.documentObject.querySelector('#account-select-text').children,
+			form = me.documentObject.querySelector('form'),
 			switchText = function(){
 							for (var i = texts.length - 1; i >= 0; i--) {
 								if (select.value == texts[i].getAttribute('data-bp-account')){
@@ -26,18 +27,30 @@ var RegistrationController = function(documentObject){
 									texts[i].className += ' hide';
 								}
 							};
-						};
+						},
 			showForm = function(){
 				if (select.value){
 					var form = me.documentObject.querySelector('#registration-form');
 					form.className = form.className.replace('hide', '');
 				}
-			}
+			},
+			setValue = function(){
+				sessionStorage.userType = select.value;
+			},
+			setForm = function(){
+				if(sessionStorage.userType){
+					select.value = sessionStorage.userType;
+					$(select).trigger('change');
+				}
+			};
 
 		switchText();
+		setForm();
 
 		$(select).on('change', switchText);
 		$(select).on('change', showForm);
+
+		$(form).on('submit', setValue);
 
 		$(select).trigger('change');
 	}

@@ -89,6 +89,7 @@ class Grant < ActiveRecord::Base
     grant.validates :title, presence: true, length: { maximum: 40 }
     grant.validate :valid_subject_areas
     grant.validate :valid_other
+    grant.validates :deadline, presence: true
     grant.validate :valid_deadline, if: "self.deadline_changed?"
     grant.validates :summary, presence: true, length: { maximum: 200 }
     grant.validates :grade_level, presence: true

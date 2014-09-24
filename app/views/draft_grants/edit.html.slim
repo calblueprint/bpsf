@@ -24,20 +24,23 @@
           .eight.columns
             .camo-field
               = f.text_field :title, class: [:input, :h2], :placeholder => "Click here to edit", :data=> {:bp_tooltip => 'Name your grant. A good title summarizes the essence of the application.', :bp_charlimit => '200'}
-    .row.nudge-top
-      /h4 Cover Image
-      /#drawerimage
-      /  p
-      /    | Optional: Choose a photo that will appear at the top of your application.
-      /    br/
-      /    | A default photo will be used if you choose not to upload one.
-      /  .five.columns.text-center
-      /    .imgholder style="width:300px;"
-      /      - if !@draft_grant.image_url.blank?
-      /        = image_tag @draft_grant.image_url :thumb
-      /  .five.columns.push_two.text-center
-      /    .field
-      /      = f.file_field :image
+    .row.nudge-top.text-center
+      - if @draft_grant.image_url.blank?
+        h4 Cover Image
+        h6.subhead.no-margin Choose a photo that will appear at the top of your application. Please choose an image with a 2:1 aspect ratio.
+        .medium.primary.btn#upload_button
+          a href='#' Upload Cover Image
+        .field.hidden
+          = f.file_field :image, :id => 'upload_input'
+      - else
+        .grant-cover-wrapper
+          .aspect-ratio-box
+          .grant-cover
+            = image_tag @draft_grant.image_url :banner
+          .medium.primary.btn.uploaded#upload_button
+            a href='#' Change Cover Image
+        .field.hidden
+          = f.file_field :image, :id => 'upload_input'
     .row
       .eleven.columns.centered
         .row
@@ -53,7 +56,7 @@
             h5
               strong Crowdfund Deadline*
             h6.subhead.no-margin When will your crowdfunding period end?
-            = f.date_select :deadline, order: [:year, :month, :day], class: [:picker, :inlined]
+            = f.date_select :deadline, order: [:year, :month, :day], class: [:picker, :inlined], :prompt => true
     .row.nudge-top
       .ten.columns.centered
         h3 Project Idea
@@ -132,7 +135,7 @@
               strong Budget*:
               |  $
             .camo-field.inline-block
-              = f.number_field :total_budget, class: [:input], :data => {:bp_tooltip => 'How much total funds will be used for your proposed activity? This includes other sources in addition to the Schools Fund.'}, :placeholder => "Click to edit"
+              = f.number_field :total_budget, class: [:input], :data => {:bp_tooltip => 'How much total funds will be used for your proposed activity?'}, :placeholder => "Click to edit"
             |  (does not include 9% administrative fee)
             br/
             h5
