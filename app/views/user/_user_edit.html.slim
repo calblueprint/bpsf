@@ -26,7 +26,7 @@
           = ff.text_field :zipcode, class: :input
         .field
           = ff.label :state, "State"
-          = ff.select :state, options_for_select(us_states, @user.profile.state), :prompt => 'Choose one...'
+          = ff.select :state, options_for_select(us_states, @user.profile.state)
         .field
           = ff.label :phone, "Phone Number"
           = ff.text_field :phone, class: :input
