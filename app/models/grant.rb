@@ -101,7 +101,7 @@ class Grant < ActiveRecord::Base
                     presence: true, length: { maximum: 1200 }
     grant.validates :comments, length: { maximum: 1200 }
     grant.validates :n_collaborators, numericality: { greater_than_or_equal_to: 0 }
-    grant.validates :collaborators, length: { maximum: 1200 }
+    grant.validates :collaborators, presence: :has_collaborators?, length: { maximum: 1200 }
   end
 
   mount_uploader :image, ImageUploader
@@ -280,7 +280,7 @@ class Grant < ActiveRecord::Base
   end
 
   def has_collaborators?
-    n_collaborators > 0
+    n_collaborators && n_collaborators > 0
   end
 
   def has_comments?
