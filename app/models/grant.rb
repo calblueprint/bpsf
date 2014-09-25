@@ -13,6 +13,7 @@
 #  num_classes        :integer
 #  num_students       :integer
 #  total_budget       :integer
+#  requested_funds    :integer
 #  funds_will_pay_for :text
 #  budget_desc        :text
 #  purpose            :text
@@ -31,10 +32,6 @@
 #  type               :string(255)
 #  deadline           :date
 #  other_funds        :text
-#  crop_x             :string(255)
-#  crop_y             :string(255)
-#  crop_w             :string(255)
-#  crop_h             :string(255)
 #
 
 require 'textacular/searchable'
@@ -56,7 +53,7 @@ class Grant < ActiveRecord::Base
   enumerize :subject_areas, in: SUBJECTS, multiple: true, scope: true
 
   attr_accessible :title, :summary, :subject_areas, :grade_level, :deadline, :duration,
-                  :num_classes, :num_students, :total_budget,
+                  :num_classes, :num_students, :total_budget, :requested_funds,
                   :funds_will_pay_for, :budget_desc, :purpose, :methods, :background,
                   :n_collaborators, :collaborators, :comments, :video, :image, :school_id,
                   :crop_x, :crop_y, :crop_w, :crop_h, :other_funds, :remote_image_url
