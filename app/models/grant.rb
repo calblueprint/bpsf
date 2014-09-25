@@ -13,6 +13,7 @@
 #  num_classes        :integer
 #  num_students       :integer
 #  total_budget       :integer
+#  requested_funds    :integer
 #  funds_will_pay_for :text
 #  budget_desc        :text
 #  purpose            :text
@@ -31,10 +32,6 @@
 #  type               :string(255)
 #  deadline           :date
 #  other_funds        :text
-#  crop_x             :string(255)
-#  crop_y             :string(255)
-#  crop_w             :string(255)
-#  crop_h             :string(255)
 #
 
 require 'textacular/searchable'
@@ -56,10 +53,12 @@ class Grant < ActiveRecord::Base
   enumerize :subject_areas, in: SUBJECTS, multiple: true, scope: true
 
   attr_accessible :title, :summary, :subject_areas, :grade_level, :deadline, :duration,
-                  :num_classes, :num_students, :total_budget,
+                  :num_classes, :num_students, :total_budget, :requested_funds,
                   :funds_will_pay_for, :budget_desc, :purpose, :methods, :background,
                   :n_collaborators, :collaborators, :comments, :video, :image, :school_id,
-                  :crop_x, :crop_y, :crop_w, :crop_h, :other_funds, :remote_image_url
+                  :other_funds, :remote_image_url
+  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
+
 
   belongs_to :recipient
   belongs_to :school
@@ -102,8 +101,7 @@ class Grant < ActiveRecord::Base
                     presence: true, length: { maximum: 1200 }
     grant.validates :comments, length: { maximum: 1200 }
     grant.validates :n_collaborators, numericality: { greater_than_or_equal_to: 0 }
-    grant.validates :collaborators, length: { maximum: 1200 },
-                    presence: true, if: 'n_collaborators && n_collaborators > 0'
+    grant.validates :collaborators, presence: :has_collaborators?, length: { maximum: 1200 }
   end
 
   mount_uploader :image, ImageUploader
@@ -282,7 +280,7 @@ class Grant < ActiveRecord::Base
   end
 
   def has_collaborators?
-    n_collaborators > 0
+    n_collaborators && n_collaborators > 0
   end
 
   def has_comments?
