@@ -13,6 +13,7 @@
 #  num_classes        :integer
 #  num_students       :integer
 #  total_budget       :integer
+#  requested_funds    :integer
 #  funds_will_pay_for :text
 #  budget_desc        :text
 #  purpose            :text
@@ -31,10 +32,6 @@
 #  type               :string(255)
 #  deadline           :date
 #  other_funds        :text
-#  crop_x             :string(255)
-#  crop_y             :string(255)
-#  crop_w             :string(255)
-#  crop_h             :string(255)
 #
 
 require 'spec_helper'

@@ -1,4 +1,4 @@
-  # == Schema Information
+# == Schema Information
 #
 # Table name: grants
 #
@@ -13,6 +13,7 @@
 #  num_classes        :integer
 #  num_students       :integer
 #  total_budget       :integer
+#  requested_funds    :integer
 #  funds_will_pay_for :text
 #  budget_desc        :text
 #  purpose            :text
@@ -31,10 +32,6 @@
 #  type               :string(255)
 #  deadline           :date
 #  other_funds        :text
-#  crop_x             :string(255)
-#  crop_y             :string(255)
-#  crop_w             :string(255)
-#  crop_h             :string(255)
 #
 
 class DraftGrant < Grant
@@ -45,12 +42,7 @@ class DraftGrant < Grant
   validates :purpose, :methods, :background, :comments, length: { maximum: 1200 }
   validates :n_collaborators, allow_blank: true,
             numericality: { greater_than_or_equal_to: 0 }
-  validates :collaborators, length: { maximum: 1200 },
-            if: 'n_collaborators && n_collaborators > 0'
-
-  def has_collaborators?
-    n_collaborators && n_collaborators > 0
-  end
+  validates :collaborators, length: { maximum: 1200 }
 
   def has_comments?
     comments
