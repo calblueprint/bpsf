@@ -1,16 +1,10 @@
 - title "Sign In"
 .bp-registration data-bp-controller='RegistrationController'
   .row
-    .six.columns
+    .six.columns.centered
       h2 Sign in
-      p This is planned to be some text describing the account and what the account can do and what it is useful for. This text will change based on the option for account type so every type gets proper attention. The text will also explain restrictions on account types better.
-      p Another benefit is it should prevent stupid registrations because they realize they will need approval to be a teacher or admin. Hopefully this can also further make the sale so people will be even more willing to register and donate.
-      p 
-        br
-        | Not yet registered?
-      .btn.medium.primary
-        = link_to "Sign Up", new_user_registration_path
-    .five.columns.push_one
+  .row
+    .five.columns.centered
       = form_for resource, as: resource_name, url: session_path(resource_name) do |f|
         .field
           = f.label :email
@@ -27,6 +21,11 @@
               | &nbsp; Remember me
         = render "devise/shared/links"
         br/
+        .six.columns
+          | Not yet registered?
+          br/
+          .medium.primary.btn
+            = link_to "Sign Up", new_user_registration_path
+        br/
         .medium.primary.btn.pull_right
           = f.submit 'Sign in'
-
