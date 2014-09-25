@@ -56,7 +56,9 @@ class Grant < ActiveRecord::Base
                   :num_classes, :num_students, :total_budget, :requested_funds,
                   :funds_will_pay_for, :budget_desc, :purpose, :methods, :background,
                   :n_collaborators, :collaborators, :comments, :video, :image, :school_id,
-                  :crop_x, :crop_y, :crop_w, :crop_h, :other_funds, :remote_image_url
+                  :other_funds, :remote_image_url
+  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
+
 
   belongs_to :recipient
   belongs_to :school
@@ -99,8 +101,7 @@ class Grant < ActiveRecord::Base
                     presence: true, length: { maximum: 1200 }
     grant.validates :comments, length: { maximum: 1200 }
     grant.validates :n_collaborators, numericality: { greater_than_or_equal_to: 0 }
-    grant.validates :collaborators, length: { maximum: 1200 },
-                    presence: true, if: 'n_collaborators && n_collaborators > 0'
+    grant.validates :collaborators, length: { maximum: 1200 }
   end
 
   mount_uploader :image, ImageUploader
