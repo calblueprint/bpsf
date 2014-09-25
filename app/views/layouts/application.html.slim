@@ -11,6 +11,10 @@ html
     = render 'layouts/shim'
     link rel="icon" href="/assets/favicon.ico" type="image/x-icon"
   body
+    .maintenance-cover.text-center style='postion:fixed; z-index:10000000; height:100%; width:100%; top:0; left:0; background-color:#ddd; padding-top:200px;'
+      .row
+        .ten.columns
+          h3 The website is currently down for maintenance and will return soon. Thank you for your patience.
     = render 'phrasing/initializer'
     .loader-bg
     .loader-blob
