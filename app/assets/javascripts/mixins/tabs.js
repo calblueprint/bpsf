@@ -57,7 +57,7 @@ var tabs = {
 	setActiveTab: function(tabs, tab){
 		var tabIndex = Array.prototype.indexOf.call(tabs, tab);
 		try{
-			sessionStorage.setItem('tabIndex', tabIndex);
+			sessionStorage.setItem('tabIndex' + window.location.pathname, tabIndex);
 		} catch(err){
 			console.log('Tab-saving will not work. Try turning off private mode');
 			console.log(err);
@@ -66,7 +66,8 @@ var tabs = {
 
 	getActiveTab: function(buttons, tabs){
 		try{
-			var tabIndex = Number(sessionStorage.getItem('tabIndex'));
+			var tabIndex = Number(sessionStorage.getItem('tabIndex'
+									+ window.location.pathname));
 			if(tabIndex != NaN){
 				var tabObject = {};
 				tabObject.button = buttons[tabIndex];
