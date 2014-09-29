@@ -92,7 +92,7 @@
 
       var cropControlUpload = '';
       if(me.options.customUploadButtonId ===''){ cropControlUpload = '<i class="cropControlUpload"></i>'; }
-      var cropControlRemoveCroppedImage = '<i class="cropControlRemoveCroppedImage"></i>';
+      var cropControlRemoveCroppedImage = '<div class="medium primary btn pointer cropControlRemoveCroppedImage"><a>Change Image</a></div>';
 
       if( $.isEmptyObject(me.croppedImg)){ cropControlRemoveCroppedImage=''; }
 
@@ -258,13 +258,13 @@
       var cropControlZoomIn =          '<i class="cropControlZoomIn"></i>';
       var cropControlZoomOut =         '<i class="cropControlZoomOut"></i>';
       var cropControlZoomMuchOut =     '<i class="cropControlZoomMuchOut"></i>';
-      var cropControlCrop =            '<i class="cropControlCrop"></i>';
-      var cropControlReset =           '<i class="cropControlReset"></i>';
+      var cropControlCrop =            '<div class="medium primary btn pointer cropControlCrop"><a>Save Image</a></div>';
+      var cropControlReset =           '<div class="medium primary btn pointer cropControlReset nudge-left"><a>Change Image</a></div>';
 
             var html;
 
       if(me.options.doubleZoomControls){ html =  '<div class="cropControls cropControlsCrop">'+ cropControlZoomMuchIn + cropControlZoomIn + cropControlZoomOut + cropControlZoomMuchOut + cropControlCrop + cropControlReset + '</div>'; }
-      else{ html =  '<div class="cropControls cropControlsCrop">' + cropControlZoomIn + cropControlZoomOut + cropControlCrop + cropControlReset + '</div>'; }
+      else{ html =  '<div class="cropControls cropControlsCrop">' + cropControlCrop + cropControlReset + '</div>'; }
 
       me.obj.append(html);
 
@@ -277,13 +277,13 @@
 
         me.cropControlZoomMuchOut = me.cropControlsCrop.find('.cropControlZoomMuchOut');
         me.cropControlZoomMuchOut.on('click',function(){ me.zoom(-me.options.zoomFactor*10); });
+
+        me.cropControlZoomIn = me.cropControlsCrop.find('.cropControlZoomIn');
+        me.cropControlZoomIn.on('click',function(){ me.zoom(me.options.zoomFactor); });
+
+        me.cropControlZoomOut = me.cropControlsCrop.find('.cropControlZoomOut');
+        me.cropControlZoomOut.on('click',function(){ me.zoom(-me.options.zoomFactor); });
       }
-
-      me.cropControlZoomIn = me.cropControlsCrop.find('.cropControlZoomIn');
-      me.cropControlZoomIn.on('click',function(){ me.zoom(me.options.zoomFactor); });
-
-      me.cropControlZoomOut = me.cropControlsCrop.find('.cropControlZoomOut');
-      me.cropControlZoomOut.on('click',function(){ me.zoom(-me.options.zoomFactor); });
 
       me.cropControlCrop = me.cropControlsCrop.find('.cropControlCrop');
       me.cropControlCrop.on('click',function(){ me.crop(); });
@@ -475,7 +475,7 @@
       var me = this;
 
       me.obj.append(me.options.loaderHtml);
-      me.loader = me.obj.find('.loader');
+      me.loader = me.obj.find('.loader-blob');
 
     },
     hideLoader:function(){
@@ -485,6 +485,16 @@
     reset:function(){
       var me = this;
       me.destroy();
+
+      me.obj.append(
+            '<div class="grant-cover-prompt"> \
+              <h4>Cover Image</h4> \
+              <h6 class="subhead no-margin">Choose a photo that will appear at the top \
+              of your application. Please choose an image with a 2:1 aspect ratio.</h6> \
+              <div class="medium primary btn pointer" id="upload_button"> \
+                <a>Upload Cover Image</a> \
+              </div> \
+            </div>');
 
       me.init();
 

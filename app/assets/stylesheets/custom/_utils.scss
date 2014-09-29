@@ -80,6 +80,14 @@
 	visibility: hidden;
 }
 
+.display-none{
+	display:none;
+}
+
+.pointer{
+	cursor:pointer;
+}
+
 //Font Styles
 .ultitle{
 	border-bottom:$table-cell-border-size $table-cell-border-style $global-bg-color;

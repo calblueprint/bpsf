@@ -30,18 +30,3 @@
 //#       marginLeft: '-' + Math.round(300/coords.w * coords.x) + 'px'
 //#       marginTop: '-' + Math.round(150/coords.h * coords.y) + 'px'
 
-$(document).on('page:change ready', function(){
-  console.log("init Croppic...");
-  croppic = document.querySelector('#croppic');
-  if(croppic){
-    croppicOptions = {
-      uploadUrl: croppic.getAttribute('data-uploadurl'),
-      cropUrl: croppic.getAttribute('data-cropurl'),
-      zoomFactor: 0,
-      doubleZoomControls: false,
-      imgEyecandy: false,
-      loaderHtml: '<div class="loader bubblingG"><span id="bubblingG_1"></span><span id="bubblingG_2"></span><span id="bubblingG_3"></span></div>'
-    }
-    new Croppic('croppic', croppicOptions);
-  }
-});
