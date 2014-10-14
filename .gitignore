@@ -33,6 +33,7 @@
 # Ignore rvm configuration files
 .ruby-gemset
 .ruby-version
+.rvmrc
 
 # Ignore image uploads
 /public/uploads/tmp/*

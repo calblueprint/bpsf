@@ -20,6 +20,10 @@ class GrantsController < ApplicationController
 
   def update
     if @grant.update_attributes params[:grant]
+      puts params[:grant][:total_budget]
+      if params[:grant][:total_budget].present? && @grant.crowdfunder.present?
+        @grant.crowdfunder.update_attributes(:goal => params[:grant][:total_budget])
+      end
       render :crop and return if params[:grant][:image].present?
       flash[:success] = 'Grant updated!'
       redirect_to @grant
