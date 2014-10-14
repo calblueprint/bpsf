@@ -34,10 +34,11 @@
           = render partial: 'shared/table', locals: { heads: %w[Name School Amount Status], partials: [['payments', @payments, :payment, "There are no payments"]] }
           .four.columns.centered.centalign
             = will_paginate @payments
-        .tab-content
-          - if @user.default_card
-            | You are currently using a credit card ending in #{@user.last4}.
-          = render 'user/credit_card_edit'
-        .tab-content
-          .ten.columns.push_three
-            = render 'user/update_password'
+        - if @user === current_user
+          .tab-content
+            - if @user.default_card
+              | You are currently using a credit card ending in #{@user.last4}.
+            = render 'user/credit_card_edit'
+          .tab-content
+            .ten.columns.push_three
+              = render 'user/update_password'
