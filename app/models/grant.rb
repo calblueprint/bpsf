@@ -92,7 +92,6 @@ class Grant < ActiveRecord::Base
     grant.validate :valid_deadline, if: "self.deadline_changed?"
     grant.validates :summary, presence: true, length: { maximum: 200 }
     grant.validates :grade_level, presence: true
-    grant.validate :grade_format
     grant.validate :duration, presence: true
     grant.validates :num_classes, :num_students, numericality: { only_integer: true }
     grant.validates :total_budget, numericality: true
@@ -101,7 +100,8 @@ class Grant < ActiveRecord::Base
                     presence: true, length: { maximum: 1200 }
     grant.validates :comments, length: { maximum: 1200 }
     grant.validates :n_collaborators, numericality: { greater_than_or_equal_to: 0 }
-    grant.validates :collaborators, presence: :has_collaborators?, length: { maximum: 1200 }
+    grant.validates :collaborators, length: { maximum: 1200 }
+    grant.validate :valid_collaborators
   end
 
   mount_uploader :image, ImageUploader
@@ -180,6 +180,10 @@ class Grant < ActiveRecord::Base
     @admins.each do |admin|
       AdminCrowdsuccessJob.new.async.perform(self, admin)
     end
+  end
+
+  def has_collaborators?
+      n_collaborators && n_collaborators > 0
   end
 
   def days_left
@@ -279,8 +283,9 @@ class Grant < ActiveRecord::Base
     (total_budget * 1.09).to_i
   end
 
-  def has_collaborators?
-    n_collaborators && n_collaborators > 0
+  def valid_collaborators
+    errors.add(:collaborators, "can't be blank") if
+      collaborators.blank? && n_collaborators && n_collaborators > 0
   end
 
   def has_comments?
@@ -347,14 +352,6 @@ class Grant < ActiveRecord::Base
     def valid_other
       errors.add(:other_funds, "should be filled") if
         self[:funds_will_pay_for][-1] == "Other" and other_funds.blank?
-    end
-
-    def grade_format
-      return if not grade_level
-      nums = grade_level.split(/,\s*|-/)
-      unless nums.all? { |num| num =~ /^([K1-9]|1[0-2])$/ }
-        errors.add :grade_level, "is not formatted properly"
-      end
     end
 
     def parent?
