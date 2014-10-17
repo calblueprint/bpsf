@@ -37,6 +37,7 @@ class UserMailer < ActionMailer::Base
   def user_crowdsuccess(user,grant)
     @user = user
     @grant = grant
+    @url = 'http://schoolsfund-friendsandfamily.herokuapp.com/grants/' + (@grant.id).to_s
     mail(to: @user.email, subject: 'A grant you donated to has been successfully crowdfunded!')
   end
 
@@ -89,6 +90,7 @@ class UserMailer < ActionMailer::Base
   def donor_nearend(grant, user)
     @grant = grant
     @user = user
+    @url = 'http://schoolsfund-friendsandfamily.herokuapp.com/grants/' + (@grant.id).to_s
     mail(to: @user.email, subject: 'A grant you have donated to is at 80% completion!')
   end
 
