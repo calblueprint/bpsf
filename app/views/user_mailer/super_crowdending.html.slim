@@ -4,7 +4,7 @@ html
     meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
   body
     h1
-      | #{@recipient.name}'s grant, #{@grant}, will finish crowdfunding in three days.
+      | #{@recipient.name}'s grant, #{@grant.title}, will finish crowdfunding in three days.
     p
       | This grant has three days left for its crowdfund. The grant is currently #{@grant.crowdfunder.progress} funded.
       br/
