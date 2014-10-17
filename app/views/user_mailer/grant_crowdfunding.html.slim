@@ -4,26 +4,31 @@ html
     meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
   body
     h1
-      | Your grant, #{@grant}, is currently crowdfunding.
+      | Your grant, #{@grant.title}, is currently crowdfunding.
     p
-      | The Schools Fund has posted your grant for crowdfunding! This means that donors can now pledge donations to your grant. If total pledges reach the crowdfunding goal, the pledges will be processed and your grant will be funded. We will notify you once your grant has reached its goal.
-      br/
+      | The Schools Fund has posted your grant for crowdfunding!
+      b You can send the email below to your class list and/or school e-tree, or have a room parent send it, if you prefer. It's a crowdfunding site, so it won't get funded unless people are told about it, but it's easy! You (or a room parent) just need to send an email to your class list or school e-tree.
+    p
+      | Donors can now pledge donations to your grant. If total pledges reach the crowdfunding goal, the pledges will be processed and your grant will be funded. We will notify you once your grant has reached its goal.
     p
       b To raise support, make sure to share your grant's page with your classroom lists, social media networks, and friends using this link: #{@url}.
       br/
     p
-      b <u>Here is an email template to include with the link:</u>
+      b <u>Here is an email template to include with the link: (of course you can edit as you like)</u>
     p
       | Hello,
       br/
       br/
-      | I have a project posted for crowdfunding on the new Berkeley Public Schools Fund <a href="https://schoolsfund-friendsandfamily.herokuapp.com/">Friends and Family Grants</a> platform! I’m raising funds for (briefly describe project). Learn more about my project here: #{@url}.
+      | I am happy to share that I have a grant posted for crowdfunding on the new Schools Fund <a href="https://schoolsfund-friendsandfamily.herokuapp.com/">Friends and Family Grants</a> platform! I’m raising funds for (briefly describe project). Learn more about my project and donate here: #{@url}.
       br/
       br/
-      | The total project cost is for $#{@grant.crowdfunder.goal}, and I am hoping you can make a donation to help me meet my goal. Donations are treated as “pledges” until the entire project is funded, then your pledge amount will be charged to your card.
+      | This grant is for (explain your project).
       br/
       br/
-      | You can also share the project with your own friends and family by forwarding this email or using the social media links on my grant page above the image.
+      | The total project cost is for $#{@grant.crowdfunder.goal}, and I am hoping you can contribute a donation to help me achieve the fundraising goal for this project. Donations are pledges until the entire project is funded, then your pledge amount will be charged to your card.
+      br/
+      br/
+      | You can also share the project with your own friends and family! You can share it on social media directly from the grant page using the icons right above the image.
       br/
       br/
       | Thank you so much for your contribution and support!
