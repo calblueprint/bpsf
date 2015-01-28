@@ -67,7 +67,7 @@ var customSelect = {
                     var thisOption = options[i];
                     $(thisOption).on('click', function(e){
                         oldSelect.value = thisOption.getAttribute('data-bp-value');
-                        newSelect.querySelector('span').innerText = thisOption.innerText;
+                        $(newSelect).children('span').first().text($(thisOption).text());
 
                         me.deactivateElements.apply(me, options);
                         me.activateElements(false, thisOption);
