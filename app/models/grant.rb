@@ -283,6 +283,10 @@ class Grant < ActiveRecord::Base
     (total_budget * 1.09).to_i
   end
 
+  def admin_cost
+    with_admin_cost - total_budget
+  end
+
   def valid_collaborators
     errors.add(:collaborators, "can't be blank") if
       collaborators.blank? && n_collaborators && n_collaborators > 0
