@@ -79,7 +79,7 @@ class UserController < ApplicationController
       flash[:success] = "Password Succesfully Changed"
       sign_in @user, bypass: true
     else
-      flash[:error] = "Mistyped password"
+      flash[:error] = "Passwords must match and be longer than six characters"
     end
     redirect_to user_path @user
   end
