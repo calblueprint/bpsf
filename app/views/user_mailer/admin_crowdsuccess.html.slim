@@ -18,8 +18,8 @@ html
       br/
       | Grant title: #{@grant.title}
       br/
-      | Amount to pay the teacher: $#{@grant.total_budget}
+      | Amount to pay the teacher (without administrator fee): $#{@grant.current_funds-@grant.admin_cost}
       br/
-      | Amount of administrator fee: $#{@grant.with_admin_cost-@grant.total_budget}
+      | Amount of administrator fee: $#{@grant.admin_cost}
     p
       | To view the grant page, follow this link: #{@url}.
