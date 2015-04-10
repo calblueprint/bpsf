@@ -233,7 +233,7 @@ class Grant < ActiveRecord::Base
           payment.status = "Charged"
           payment.save!
           UserCrowdsuccessJob.new.async.perform(user,self)
-        rescue Stripe::InvalidRequestError => err
+        rescue Stripe::InvalidRequestError, Stripe::CardError => err
           logger.error "Stripe error: #{err.message}"
           logger.error "#{user}"
           payment.status = "Invalid"
