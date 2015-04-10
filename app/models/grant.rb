@@ -190,6 +190,14 @@ class Grant < ActiveRecord::Base
     (deadline - Date.today).to_i
   end
 
+  def current_funds
+    if crowdfunder
+      crowdfunder.pledged_total
+    else
+      0
+    end
+  end
+
   def has_pledges?
     crowdfunder && crowdfunder.pledged_total > 0
   end
