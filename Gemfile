@@ -35,7 +35,6 @@ group :development, :test do
   gem 'childprocess', '0.3.6'
   gem 'spork', '0.9.2'
   gem 'commands', '~> 0.2.1'
-  gem 'jazz_hands'
 end
 
 group :development do
