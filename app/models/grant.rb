@@ -190,6 +190,14 @@ class Grant < ActiveRecord::Base
     (deadline - Date.today).to_i
   end
 
+  def current_funds
+    if crowdfunder
+      crowdfunder.pledged_total
+    else
+      0
+    end
+  end
+
   def has_pledges?
     crowdfunder && crowdfunder.pledged_total > 0
   end
@@ -219,23 +227,29 @@ class Grant < ActiveRecord::Base
     @payments = Payment.where crowdfund_id: crowdfunder
     @payments.each do |payment|
       unless payment.charge_id
-        user = User.find payment.user_id
-        grant = payment.crowdfund.grant
-        amount = (payment.amount * 100).to_i
-        charge = Stripe::Charge.create amount: amount,
-          currency: "usd",
-          customer: user.stripe_token,
-          # This should get updated depending on the environment.
-          # TODO: Refactor so this logic happens in the controller
-          description: "F&F Grant - Teacher: #{grant.teacher_name}, Grant: #{grant}, Grant ID: #{payment.crowdfund.grant.id}"
-        payment.charge_id = charge.id
-        payment.status = "Charged"
-        payment.save!
-        UserCrowdsuccessJob.new.async.perform(user,self)
+        begin
+          user = User.find payment.user_id
+          grant = payment.crowdfund.grant
+          amount = (payment.amount * 100).to_i
+          charge = Stripe::Charge.create amount: amount,
+            currency: "usd",
+            customer: user.stripe_token,
+            # This should get updated depending on the environment.
+            # TODO: Refactor so this logic happens in the controller
+            description: "F&F Grant - Teacher: #{grant.teacher_name}, Grant: #{grant}, Grant ID: #{payment.crowdfund.grant.id}"
+          payment.charge_id = charge.id
+          payment.status = "Charged"
+          payment.save!
+          UserCrowdsuccessJob.new.async.perform(user,self)
+        rescue Stripe::InvalidRequestError, Stripe::CardError => err
+          logger.error "Stripe error: #{err.message}"
+          logger.error "#{user}"
+          payment.status = "Invalid"
+          payment.charge_id = "Invalid"
+          payment.save!
+        end
       end
     end
-    rescue Stripe::InvalidRequestError => err
-      logger.error "Stripe error: #{err.message}"
   end
 
   def to_s
