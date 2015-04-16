@@ -121,42 +121,6 @@ def make_grants
   end
 end
 
-def make_grants
-  crowdfunding_grants = []
-  Recipient.all.each do |r|
-    r.draft_grants.create!  title: "Draft #{r.id}",
-                            summary: Faker::Lorem.sentence,
-                            subject_areas: ["Other"],
-                            school_id: r.profile.school_id
-    crowdfunding_grants << r.grants.build(title: "Grant #{r.id-4}",
-                                          deadline: 30.days.from_now,
-                                          summary: Faker::Lorem.sentence,
-                                          subject_areas: ["Arts / Music", "Multi-subject"],
-                                          grade_level: "#{rand(1..11)}",
-                                          duration: "#{rand(1..4)} weeks",
-                                          school_id: r.profile.school_id,
-                                          num_classes: rand(1..5),
-                                          num_students: rand(1..5) * 10,
-                                          total_budget: rand(8..12) * 100,
-                                          funds_will_pay_for: ["Supplies"],
-                                          budget_desc: Faker::Lorem.paragraph,
-                                          purpose: Faker::Lorem.paragraph,
-                                          methods: Faker::Lorem.paragraph,
-                                          background: Faker::Lorem.paragraph,
-                                          n_collaborators: rand(1..4),
-                                          collaborators: Faker::Lorem.paragraph,
-                                          comments: Faker::Lorem.paragraph,
-                                          image: File.open(File.join(Rails.root, "app/assets/images/default/Other.jpg")))
-  end
-  crowdfunding_grants.map do |grant|
-    grant.crowdfund
-    Crowdfund.create pledged_total: rand(1..3) * 150,
-                     grant_id: grant.id,
-                     goal: grant.total_budget
-    grant.save!
-  end
-end
-
 make_schools
 make_users
 make_profiles
