@@ -1,3 +1,12 @@
+def check_env
+  if Rails.env.production?
+    exit
+  end
+end
+
+# Do not seed if production environment
+check_env
+
 # Seed data for the app
 SEEDS = YAML.load(File.read(File.expand_path('../seeds.yml', __FILE__)))
 
