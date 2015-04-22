@@ -36,9 +36,8 @@
 
 require 'textacular/searchable'
 class Grant < ActiveRecord::Base
-  has_paper_trail only: [:state]
+  has_paper_trail only: [:state], skip: [:image]
   extend Enumerize
-  include ActiveModel::Dirty
   SUBJECTS = ['After School Program', 'Arts / Music', 'Arts / Dance', 'Arts / Drama',
     'Arts / Visual', 'Community Service', 'Computer / Media', 'Computer Science',
     'Foreign Language / ELL / TWI','Gardening','History & Social Studies / Multi-culturalism',
