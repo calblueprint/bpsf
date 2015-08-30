@@ -22,11 +22,12 @@
           .ten.columns.push_three
             .row
               .eight.columns
-                h5 Email
-                = @user.email
-                br/
+                .row
+                  .five.columns
+                    h5.pull_right Email
+                  .seven.columns
+                    = @user.email
                 = render profile_for(@user), user: @user, profile: @profile
-                br/
             - if @user.eql? current_user
               .medium.primary.btn
                 =link_to 'Edit Profile<i class="icon-pencil"></i>'.html_safe, edit_user_path(id: @user.id)
