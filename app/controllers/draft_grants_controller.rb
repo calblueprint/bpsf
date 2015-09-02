@@ -37,6 +37,28 @@ class DraftGrantsController < ApplicationController
     end
   end
 
+  def upload_image
+    @draft_grant.image = params[:img]
+    if @draft_grant.save
+      render json: { status: :success,
+                     url: @draft_grant.image.cropping.url,
+                     width: @draft_grant.image_width,
+                     height: @draft_grant.image_height }
+    else
+      render json: { status: :error, message: 'Image uploading failed.' }
+    end
+  end
+
+  def crop_image
+    set_draft_crop_params
+    if @draft_grant.save
+      render json: { status: :success,
+                     url: @draft_grant.image.banner.url }
+    else
+      render json: { status: :error, message: 'Cropping failed.' }
+    end
+  end
+
   def submit
     if @draft_grant.submit_and_destroy
       flash[:success] = 'Application submitted!'
@@ -50,6 +72,17 @@ class DraftGrantsController < ApplicationController
     DraftGrant.destroy params[:id]
     flash[:success] = 'Application deleted.'
     redirect_to recipient_dashboard_path
+  end
+
+  private
+
+  def set_draft_crop_params
+    @draft_grant.crop_x = params[:imgX1]
+    @draft_grant.crop_y = params[:imgY1]
+    @draft_grant.crop_w = params[:cropW]
+    @draft_grant.crop_h = params[:cropH]
+    @draft_grant.image_width = params[:imgW]
+    @draft_grant.image_height = params[:imgH]
   end
 
 end

@@ -1,0 +1,104 @@
+#croppic{
+  width: 1000px;  /* MANDATORY */
+  height: 500px; /* MANDATORY */
+  position: relative;  /* MANDATORY */
+
+  border: 1px  solid #D1D2D6;
+  box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  border-radius: 2px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* DO NOT CHANGE FROM HERE ( unless u know what u are doing) */
+.cropImgWrapper{
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+.cropImgWrapper:active{
+  cursor: -webkit-grabbing;
+  cursor: grabbing;
+}
+
+.cropImgUpload{
+  z-index:2;
+  position:absolute;
+  height:28px;
+  display:block;
+  top: -30px;
+  right: -2px;
+  font-family:sans-serif;
+  width:20px;
+  height:20px;
+  text-align:center;
+  line-height:20px;
+  color:#D1D2D6;
+}
+
+.cropControls{
+  z-index:2;
+  position:absolute;
+  height:30px;
+  display:block;
+  /* top: -31px; */
+  top: -1px;
+  right: -1px;
+  font-family:sans-serif;
+}
+
+.cropControls i{
+  display:block;
+  float:left;
+  margin:0;
+  cursor:pointer;
+  background-image:image-url("cropperIcons.png");
+  width:30px;
+  height:30px;
+  text-align:center;
+  line-height:20px;
+  color:#D1D2D6;
+  font-size:13px;
+  font-weight: bold;
+  font-style: normal;
+
+}
+
+
+.cropControls i.cropControlZoomMuchIn{ background-position:0px 0px;}
+.cropControls i.cropControlZoomIn{ background-position:-30px 0px; }
+.cropControls i.cropControlZoomOut{ background-position:-60px 0px; }
+.cropControls i.cropControlZoomMuchOut{ background-position:-90px 0px; }
+.cropControls i.cropControlCrop{ background-position:-120px 0px;}
+.cropControls i.cropControlUpload{ background-position:-150px 0px;}
+.cropControls i.cropControlReset{ background-position:-180px 0px;}
+.cropControls i.cropControlRemoveCroppedImage{ background-position:-180px 0px;}
+
+.cropControls i:last-child{
+  margin-right:none;
+}
+
+#croppicModal{
+  position:fixed;
+  width:100%;
+  height:100%;
+  top: 0;
+  left: 0;
+  display:block;
+  background:rgba(0,0,0,0.8);
+  z-index: 10000;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

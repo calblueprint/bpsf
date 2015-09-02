@@ -26,22 +26,26 @@
               = f.text_field :title, class: [:input, :h2], :placeholder => "Click here to edit", :data=> {:bp_tooltip => 'Name your grant. A good title summarizes the essence of the application.', :bp_charlimit => '200'}
     .row.nudge-top.text-center
       - if @draft_grant.image_url.blank?
-        h4 Cover Image
-        h6.subhead.no-margin Choose a photo that will appear at the top of your application. Please choose an image with a 2:1 aspect ratio.
-        .medium.primary.btn#upload_button
-          a href='#' Upload Cover Image
-        .field.hidden
-          = f.file_field :image, :id => 'upload_input'
+        #croppic data={uploadurl: upload_image_draft_path(@draft_grant), cropurl: crop_image_draft_path(@draft_grant)}
+          .grant-cover-prompt
+            h4 Cover Image
+            h6.subhead.no-margin Choose a photo that will appear at the top of your application. Please choose an image with a 2:1 aspect ratio.
+            .medium.primary.btn.pointer#upload_button
+              a Upload Cover Image
       - else
+        .display-none#croppic data={uploadurl: upload_image_draft_path(@draft_grant), cropurl: crop_image_draft_path(@draft_grant)}
+          .grant-cover-prompt
+            h4 Cover Image
+            h6.subhead.no-margin Choose a photo that will appear at the top of your application. Please choose an image with a 2:1 aspect ratio.
+            .medium.primary.btn.pointer#upload_button
+              a Upload Cover Image
         .grant-cover-wrapper
           .aspect-ratio-box
           .grant-cover
             = image_tag @draft_grant.image_url :banner
-          .medium.primary.btn.uploaded#upload_button
-            a href='#' Change Cover Image
-        .field.hidden
-          = f.file_field :image, :id => 'upload_input'
-    .row
+          .medium.primary.btn.uploaded#croppic_button
+            a Change Image
+    .row.nudge-top
       .eleven.columns.centered
         .row
           .six.columns

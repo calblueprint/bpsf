@@ -42,31 +42,52 @@ class ImageUploader < CarrierWave::Uploader::Base
   # version :thumb do
   #   process :scale => [50, 50]
   # end
-  version :preview do
-    resize_to_limit 1000, 500
+
+  version :cropping do
+    process :store_dimensions
   end
 
   version :banner do
     process :crop
-    resize_to_fill 1000, 500
   end
 
-  version :thumb do
-    process :crop
-    resize_to_fill 294, 150
+  version :thumb, from_version: :banner do
+    resize_to_fill 300, 150
   end
+
+  private
 
   def crop
     if model.crop_x.present?
-      resize_to_limit 1000, 500
+      puts "\nCropping params:"
+      puts model.image_width, model.image_height, model.crop_x, model.crop_y, model.crop_w, model.crop_h
       manipulate! do |img|
+        img.resize "#{model.image_width.to_i}x#{model.image_height.to_i}"
         x = model.crop_x.to_i
         y = model.crop_y.to_i
         w = model.crop_w.to_i
         h = model.crop_h.to_i
         img.crop "#{w}x#{h}+#{x}+#{y}"
+
+        # binding.pry
+        if img.mime_type.match /image\/jpeg/
+          img.strip
+          img.combine_options do |c|
+            c.quality "90"
+            c.depth "8"
+            c.interlace "plane"
+          end
+        end
+        img = yield(img) if block_given?
         img
       end
+    end
+  end
+
+  def store_dimensions
+    if file && model && !model.crop_x.present?
+      model.image_width, model.image_height = ::MiniMagick::Image.open(file.file)[:dimensions]
+      puts "#{model.image_width}, #{model.image_height}"
     end
   end
 

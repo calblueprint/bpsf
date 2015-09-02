@@ -56,8 +56,7 @@ class Grant < ActiveRecord::Base
                   :funds_will_pay_for, :budget_desc, :purpose, :methods, :background,
                   :n_collaborators, :collaborators, :comments, :video, :image, :school_id,
                   :other_funds, :remote_image_url
-  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
-
+  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h, :image_width, :image_height
 
   belongs_to :recipient
   belongs_to :school
@@ -106,10 +105,9 @@ class Grant < ActiveRecord::Base
   mount_uploader :image, ImageUploader
 
   def crop_image
-    image.recreate_versions! if crop_x.present?
-    if type.blank? && crop_x.present?
-      self[:crop_x],self[:crop_y],self[:crop_w],self[:crop_h] = nil
-      self.save
+    if crop_x.present?
+      self.image.recreate_versions!
+      self.crop_x = nil
     end
   end
 

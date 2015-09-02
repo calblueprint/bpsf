@@ -17,7 +17,12 @@ BPSF::Application.routes.draw do
     post ':id/:state',            to: 'admin/dashboard#grant_event', as: :grant_event
   end
 
-  resources :drafts, controller: 'draft_grants', except: [:show, :index]
+  resources :drafts, controller: 'draft_grants', except: [:show, :index] do
+    member {
+      post :upload_image
+      post :crop_image
+    }
+  end
 
   resources :preapproved_grants, only: [:show, :destroy]
   scope '/preapproved_grants' do
@@ -29,9 +34,6 @@ BPSF::Application.routes.draw do
 
   scope '/user' do
     put ':id/update_password', to: 'user#update_password', as: :update_password
-  end
-
-  scope '/users' do
     post ':id/approve', to: 'user#approve', as: :approve_user
     post ':id/reject',  to: 'user#reject',  as: :reject_user
     get ':id/update_credit_card', to: 'user#credit_card', as: :update_credit_card_info
