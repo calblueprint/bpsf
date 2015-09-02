@@ -29,14 +29,16 @@
         #croppic data={uploadurl: upload_image_draft_path(@draft_grant), cropurl: crop_image_draft_path(@draft_grant)}
           .grant-cover-prompt
             h4 Cover Image
-            h6.subhead.no-margin Choose a photo that will appear at the top of your application. Please choose an image with a 2:1 aspect ratio.
+            h6.subhead.no-margin
+              | Please choose an image with a 2:1 aspect ratio. Then crop by dragging up or down.
             .medium.primary.btn.pointer#upload_button
               a Upload Cover Image
       - else
         .display-none#croppic data={uploadurl: upload_image_draft_path(@draft_grant), cropurl: crop_image_draft_path(@draft_grant)}
           .grant-cover-prompt
             h4 Cover Image
-            h6.subhead.no-margin Choose a photo that will appear at the top of your application. Please choose an image with a 2:1 aspect ratio.
+            h6.subhead.no-margin
+              | Please choose an image with a 2:1 aspect ratio. Then crop by dragging up or down.
             .medium.primary.btn.pointer#upload_button
               a Upload Cover Image
         .grant-cover-wrapper
