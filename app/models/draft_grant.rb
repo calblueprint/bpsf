@@ -65,7 +65,7 @@ class DraftGrant < Grant
       temp = dup.becomes Grant
       ATTRS_TO_COPY.map { |a| temp.send("#{a}=", attributes[a]) }
       temp.type = nil
-      temp.remote_image_url = self.image_url
+      temp.remote_image_url = self.image_url :banner
       if temp.valid? then
         temp.save
         return temp
