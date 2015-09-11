@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.13'
+gem 'rails', '3.2.18'
 
 gem 'pg', '0.12.2'
 gem 'faker', '1.0.1'
