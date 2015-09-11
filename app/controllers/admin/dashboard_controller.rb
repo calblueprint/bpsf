@@ -41,8 +41,6 @@ class Admin::DashboardController < ApplicationController
     @recipients.sort_by! {|u| [u.last_name, u.first_name]}
     @recipients = @recipients.paginate page: params[:page], per_page: 6
 
-    @pending_users = User.where approved: false
-    @pending_users = @pending_users.paginate page: params[:page], per_page: 6
   end
 
   def grant_event

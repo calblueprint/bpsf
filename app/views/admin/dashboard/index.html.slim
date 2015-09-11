@@ -15,8 +15,6 @@
                     a href="#"  Donors
                   li#recipients
                     a href="#"  Recipients
-                  li#pending
-                    a href="#"  Pending Users
                   li#distributions
                     a href="#"  Data Distributions
             .tab-content
@@ -34,10 +32,5 @@
               = render partial: 'shared/table', locals: { heads: %w[Name Email], partials: [['users', @recipients, :user, "There are no recipients"]] }
               .ten.columns.centered.centalign
                 = will_paginate @recipients
-            .tab-content
-              .pending_users
-                = render partial: 'shared/table', locals: { heads: %w[Name Email Status], partials: [['pending_users', @pending_users, :pending_user, "There are no pending users"]] }
-                .ten.columns.centered.centalign
-                  = will_paginate @pending_users
             .tab-content data-bp-get='/admin/load_distributions'
               #distributions-tab
