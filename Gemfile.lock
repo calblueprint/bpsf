@@ -104,6 +104,8 @@ GEM
       compass (>= 0.12.2, < 0.14)
     daemons (1.1.9)
     database_cleaner (1.0.1)
+    datagrid (1.3.9)
+      rails (>= 3.2.18)
     debug_inspector (0.0.2)
     devise (3.1.2)
       bcrypt-ruby (~> 3.0)
@@ -385,6 +387,7 @@ DEPENDENCIES
   commands (~> 0.2.1)
   compass-rails (~> 1.0.3)
   database_cleaner (~> 1.0.0.RC1)
+  datagrid
   devise (~> 3.1.1)
   draper (~> 1.3.0)
   enumerize
