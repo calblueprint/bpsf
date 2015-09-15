@@ -12,3 +12,44 @@
 		a{color: $primary-color !important}
 	}
 }
+
+.datagrid-filter {
+  width: 80%;
+  .select-wrapper {
+    margin-left: 10px;
+    &:nth-of-type(1) {
+      width: 10%;
+    }
+  }
+}
+
+.datagrid-filter, .select-wrapper, .datagrid-submit, .datagrid-actions, .order {
+  display: inline-block;
+}
+
+.condition {
+  width: 45%;
+  padding: 12px 10px;
+  font-size: 12pt;
+  background-color: #fff;
+  border-radius: 5px;
+  border: solid 1px #999999;
+}
+
+.datagrid-submit {
+  background-color: #ef4023;
+  border: none;
+  cursor: pointer;
+  color: white;
+  padding: 10px 30px;
+  font-size: 14pt;
+}
+
+.datagrid-reset {
+  padding-left: 20px;
+}
+
+.order {
+  margin-left: 5px;
+}
+

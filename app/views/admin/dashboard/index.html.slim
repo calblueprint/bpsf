@@ -15,15 +15,14 @@
                     a href="#"  Donors
                   li#recipients
                     a href="#"  Recipients
-                  li#pending
-                    a href="#"  Pending Users
                   li#distributions
                     a href="#"  Data Distributions
             .tab-content
-              = render 'order'
-              = render partial: 'shared/table', locals: { heads: ["Name", "Status", "Teacher, School"], partials: [['all_grants', @grants, :grant, "There are no grants"]] }
-              .ten.columns.centered.centalign
-                = will_paginate @grants
+              = datagrid_form_for @grant_report, :url => admin_dashboard_path
+              = datagrid_table(@grant_report)
+              = will_paginate @grant_report.assets
+              .large.primary.btn.centered.columns.three
+                = link_to "Get Grant CSV", url_for(format: 'csv', grant_report: params[:grant_report])
             .tab-content
               = render 'donated'
               = render partial: 'shared/table', locals: { heads: %w[Name Email], partials: [['users', @donors, :user, "There are no users"]] }
@@ -34,10 +33,5 @@
               = render partial: 'shared/table', locals: { heads: %w[Name Email], partials: [['users', @recipients, :user, "There are no recipients"]] }
               .ten.columns.centered.centalign
                 = will_paginate @recipients
-            .tab-content
-              .pending_users
-                = render partial: 'shared/table', locals: { heads: %w[Name Email Status], partials: [['pending_users', @pending_users, :pending_user, "There are no pending users"]] }
-                .ten.columns.centered.centalign
-                  = will_paginate @pending_users
             .tab-content data-bp-get='/admin/load_distributions'
               #distributions-tab

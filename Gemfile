@@ -1,12 +1,13 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.13'
+gem 'rails', '3.2.18'
 
 gem 'pg', '0.12.2'
 gem 'faker', '1.0.1'
 gem 'jquery-rails', '2.0.2'
 gem 'cancan', '~> 1.6.10'
 gem 'devise', '~> 3.1.1'
+gem 'datagrid'
 gem 'will_paginate', '~> 3.0'
 gem 'figaro', '~> 0.7.0'
 gem 'stripe', '~> 1.8.7'

@@ -9,7 +9,18 @@ class Admin::DashboardController < ApplicationController
       raise CanCan::AccessDenied.new
     end
 
-    @grants = (Grant.includes(:school).all-DraftGrant.all).sort_by! {|g| [g.order_status, g.title]}
+    @grant_report = GrantReport.new(params[:grant_report])
+    respond_to do |f|
+      f.html do
+        @grant_report.scope {|scope| scope.page(params[:page]) }
+      end
+      f.csv do
+        send_data @grant_report.to_csv,
+          type: "text/csv",
+          disposition: 'inline',
+          filename: "grant-report-#{Time.now.to_s}.csv"
+      end
+    end
     order = params[:order]
     if order && order == 'Status'
       @grants.sort_by! {|g| [g.order_status, g.title]}
@@ -20,7 +31,6 @@ class Admin::DashboardController < ApplicationController
     elsif order && order == 'Last Updated Date'
       @grants.sort_by! {|g| g.updated_at}.reverse!
     end
-    @grants = @grants.paginate :page => params[:page], :per_page => 6
 
     @donors = User.donors
     donated = params[:donated]
@@ -41,8 +51,6 @@ class Admin::DashboardController < ApplicationController
     @recipients.sort_by! {|u| [u.last_name, u.first_name]}
     @recipients = @recipients.paginate page: params[:page], per_page: 6
 
-    @pending_users = User.where approved: false
-    @pending_users = @pending_users.paginate page: params[:page], per_page: 6
   end
 
   def grant_event
