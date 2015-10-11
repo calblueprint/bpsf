@@ -120,6 +120,9 @@ var ShowGrantController = function(documentObject){
 	    if ($('.donation_amount').val() && $('.donation_amount').val() > 0) {
 				var sure = confirm("Are you sure you want to submit this donation?");
     		if (sure) {
+    			$('.new_card').prop('value', 'Submitting...');
+    			$('.new_card').parent().css('border', 'none');
+    			$('.new_card').prop('disabled', true);
 					$('.new_card').parents('form').submit();
 				}
 	    }

@@ -34,6 +34,14 @@
   }
 }
 
+// Button Disabled
+.btn {
+  > input:disabled {
+    background-color: #ddd;
+    cursor: default;
+  }
+}
+
 // Button Shapes & Sizes
 .btn, .skiplink {
   &.xlarge {
@@ -54,7 +62,7 @@
       padding: 0 ms(-1);
     }
   }
-  
+
   &.oval {
     @include shape(oval);
   }
