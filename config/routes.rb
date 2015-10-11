@@ -40,6 +40,7 @@ BPSF::Application.routes.draw do
   end
 
   resources :payments, only: [:create, :destroy]
+  post 'payments/create_offline', to: 'payments#create_offline'
   get 'payments/success/:grant_id/:payment_id/', to: 'payments#success', as: :payment_success
 
   namespace :recipient do

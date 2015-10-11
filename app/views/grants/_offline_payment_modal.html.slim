@@ -1,0 +1,32 @@
+#offline-payment-form.modal
+  .modalscreen
+  .content
+    a.close.xbox
+      i.icon-cancel
+    .row
+      .ten.columns.centered.text-center
+        .row
+          h3 Add an offline donation for #{@grant}
+          hr
+          = form_for @payment, remote: true, :url => { :controller => "payments", :action => "create_offline" } do |f|
+            .error-messages
+              ul
+                li.danger.alert.hide#donor-alert
+                  | You must submit a donor name.
+                li.danger.alert.hide#amount-alert
+                  | You must submit an amount.
+                li.danger.alert.hide#offline-amount-below-alert
+                  | You must submit an amount greater than zero.
+            = hidden_field_tag :grant_id, @grant.id
+            .row
+              .six.columns
+                .field
+                  = label_tag :donor_name, "Donor's Name"
+                  = text_field_tag :donor_name, nil, class: [:input, :donor_name]
+              .five.columns
+                .field.prepend
+                  = label_tag :amount, "Donation Amount"
+                  span.adjoined $
+                  = text_field_tag :amount, nil, class: [:input, :offline_donation_amount]
+            .donate.large.primary.btn#offline-donate
+              = f.submit "Add Donation", class: :saved_offline_payment

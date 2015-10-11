@@ -24,6 +24,8 @@
             br/
             ul.tab-nav
               li= link_to 'Edit <i class="icon-pencil"></i>'.html_safe, edit_grant_path
+              li data-bp-modal='#offline-payment-form'
+                a href="#"  Add Donation
         - else
           .ten.columns.centered.centalign
             h4 Status
