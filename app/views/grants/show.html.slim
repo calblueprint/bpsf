@@ -79,7 +79,7 @@
                   strong Teacher Background
                 = simple_format(@grant.background)
         .five.columns.donor-container
-          h3 Donors 
+          h3 Donors
           ul.donor-list
             - @donors.each do |u|
               li
@@ -144,7 +144,7 @@
                 strong # of students:
             td.no-padding.no-border
               h5.inline =@grant.num_students
-      .seven.columns 
+      .seven.columns
         = @grant.collaborators_section
   .row
     .ten.columns.centered
@@ -168,5 +168,7 @@
   = render 'donate_button', grant: @grant
 
   = render 'payment_modal', grant: @grant, payment: @payment
+  = render 'offline_payment_modal', grant: @grant, payment: @payment
   = render 'crowdfund_modal', grant: @grant
   = render 'confirmation_modal', payment: @payment
+  = render 'offline_confirmation_modal', payment: @payment

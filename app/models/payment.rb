@@ -19,13 +19,18 @@ class Payment < ActiveRecord::Base
 
   validates :amount, numericality: {greater_than: 0}
 
-  def self.make_payment!(amount, grant, current_user)
+  def self.make_payment!(amount, grant, current_user, donor_name = '')
     payment = current_user.payments.build amount: amount
     payment.user_id = current_user.id
     payment.crowdfund_id = grant.crowdfunder.id
     payment.crowdfund.add_payment payment.amount
-    payment.status = "Pledged"
-    UserPledgeJob.new.async.perform(current_user,grant, payment)
+    if donor_name.blank?
+      payment.status = "Pledged"
+      UserPledgeJob.new.async.perform(current_user,grant, payment)
+    else
+      payment.status = "Charged"
+      payment.charge_id = donor_name
+    end
     if payment.crowdfund.past_goal && payment.crowdfund.finished.blank?
       payment.crowdfund.finished = true
       payment.crowdfund.save!

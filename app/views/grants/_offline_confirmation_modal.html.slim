@@ -1,0 +1,24 @@
+#offline-confirmation-modal-view
+  #offline-confirmation-modal.modal
+    .modalscreen
+    .content
+      a.close.switch.xbox
+        i.icon-cancel
+      .row.centalign
+        #confirmation-body.ten.columns.centered.text-center.centalign
+          h4 You've successfully added an offline donation.
+          .field.largefont
+            | You added
+            '
+            span#donor-name-1
+            | 's donation of $
+            span#offline-payment-amount
+            |  to #{@grant}!
+          .field
+            = @grant.recipient.name
+            |  will be very grateful.
+            br
+            | As a reminder, please let
+            '
+            span#donor-name-2
+            |  know that their donation is fully tax-deductible - our tax ID number is 94-2918219.

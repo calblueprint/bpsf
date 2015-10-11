@@ -12,18 +12,24 @@
       = hidden_field_tag :grant_id, id
       = hidden_field_tag :stripe_token
       - if current_user && current_user.stripe_token.present?
+        .error-messages
+          li.danger.alert.hide#saved-amount-below-alert
+            | You must submit an amount greater than zero.
         .field.prepend
           = label_tag :amount, "Donation Total (Max = #{@grant.max_donation})"
           span.adjoined $
-          = text_field_tag :amount, nil, class: :input
+          = text_field_tag :amount, nil, class: [:input, :saved_donation_amount]
         | Credit card (ending in #{current_user.last4}) has already been provided. You can update this on your profile.
         #stripe_error
           noscript Javscript is required. Please enable it in your browser settings.
         .donate.large.primary.btn
-          = f.submit "Donate!", :id => "new_payment", :confirm => "Are you sure?", class: :saved_card
+          = f.submit "Donate!", :id => "new_payment", class: :saved_card
       - else
         h3 Welcome to your first donation!
         hr
+        .error-messages
+          li.danger.alert.hide#amount-below-alert
+            | You must submit an amount greater than zero.
         .row
           .six.columns
             .field
@@ -33,7 +39,7 @@
             .field.prepend
               = label_tag :amount, "Donation Total (Max = #{@grant.max_donation})"
               span.adjoined $
-              = text_field_tag :amount, nil, class: :input
+              = text_field_tag :amount, nil, class: [:input, :donation_amount]
         .row
           .six.columns
             .field
@@ -77,7 +83,7 @@
         .alert.primary#stripe_error
           noscript Javscript is required. Please enable it in your browser settings.
         .donate.large.primary.btn#new-card
-          = f.submit "Donate!", :id => "new_payment", :confirm => "Are you sure?"
+          = f.submit "Donate!", :id => "new_payment", class: :new_card
   - else
     h3 style="margin-top:60px"
       | In order to donate, please fill out your profile first!

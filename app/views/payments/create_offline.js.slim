@@ -1,0 +1,10 @@
+- if @message.nil?
+  | $('#offline-payment-amount').html("#{@payment.amount}");
+  | $('#donor-name-1').html("#{@payment.charge_id}");
+  | $('#donor-name-2').html("#{@payment.charge_id}");
+  | $('.progress-bar').css('width', "#{@grant.crowdfunder_progress}");
+  | $('.progress-bar').attr('data-current', #{@grant.crowdfunder_pledged_total});
+  | $('.currentnum').html('$#{@grant.crowdfunder_pledged_total}');
+  | $("input[type=submit]").attr("disabled", false);
+- else
+  | $('#confirmation-body').html('#{@message}');
