@@ -5,8 +5,8 @@ Staging environment is **[here.](https://ff-stage.herokuapp.com/)**
 
 What is Berkeley Public Schools Fund?
 ----
-**[Berkeley Public Schools Fund](berkeleypublicschoolsfund.org)** is a nonprofit organization whose mission is to inspire and empower an extraordinary public education for every child. The Berkeley Public Schools Fund invests directly in teachers’ ideas and creativity with classroom and districtwide program grants and volunteer support in the classroom.
-Every year the Schools Fund awards approximately 300 classroom and districtwide grants, serving 9,000 students, 19 schools, and 550 teachers and totaling $500,000. This, coupled with their volunteer program, means they contribute $1.5 million in grants and in-kind donations every year.
+**[Berkeley Public Schools Fund](berkeleypublicschoolsfund.org)** is a nonprofit organization whose mission is to inspire and empower an extraordinary public education for every child. The Berkeley Public Schools Fund invests directly in teachers’ creativity with program grants and volunteer support in the classroom.
+Every year the Schools Fund awards approximately 300 grants totaling $500,000, serving 9,000 students, 19 schools,and 550 teachers. This, coupled with their volunteer program, means they contribute $1.5 million in grants and in-kind donations every year.
 
 What We Are Doing
 ----
