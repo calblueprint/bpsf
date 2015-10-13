@@ -1,4 +1,4 @@
-Berkeley Public Schools Fund <br> Grant Platform
+Friends and Family Grants
 ====
 
 Our staging environment is here: https://ff-stage.herokuapp.com
