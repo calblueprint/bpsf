@@ -1,7 +1,7 @@
 Friends and Family Grants
 ====
 The app is live **[here.](https://schoolsfund-friendsandfamily.herokuapp.com/)**
-Staging environment **[is here.](https://ff-stage.herokuapp.com/)**
+Staging environment is **[here.](https://ff-stage.herokuapp.com/)**
 
 What is Berkeley Public Schools Fund?
 ----
