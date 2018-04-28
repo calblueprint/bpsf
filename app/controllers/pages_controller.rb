@@ -23,6 +23,7 @@ class PagesController < ApplicationController
       if subject && subject != 'All'
         @grants = @grants.select { |grant| grant.subject_areas.include? subject }
       end
+      @grants = @grants.select { |grant| !grant.past_deadline?}
       @grants = @grants.paginate page: params[:page], per_page: 6
       @slideshow_grants = slideshow_grants
     end
@@ -47,6 +48,7 @@ class PagesController < ApplicationController
     possible_grants.concat Grant.crowdfunding_grants.includes(:school, :recipient, :crowdfunder).newest
     possible_grants.concat Grant.includes(:school, :recipient, :crowdfunder).close_to_goal
     possible_grants = possible_grants.uniq
+    possible_grants = possible_grants.select { |grant| !grant.past_deadline?}
     possible_grants.sample 3
   end
 end

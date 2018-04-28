@@ -4,7 +4,7 @@
 		-if params[:successful]
 			.category-title Successful Grants
 		-else
-			.category-title Recent Grants
+			.category-title Current Grants
 	    .category-form-container
 	    	.category-form-title Filter:
 	    	.category-form
@@ -13,7 +13,7 @@
 	    	-if params[:successful]
 		    	.category-successful
 		    		| &nbsp;|&nbsp;
-		    		= link_to "Recent Grants", root_path()
+		    		= link_to "Current Grants", root_path()
 		    -else
 		    	.category-successful
 		    		| &nbsp;|&nbsp;
